@@ -11,8 +11,8 @@ const DEFAULT_PROMO_SETTINGS = {
   discountPrice: 10,
   titleAr: "عرض خاص!",
   titleEn: "Special Offer!",
-  descriptionAr: "احصل على خصم 50٪ للشهر الأول. فقط بـ 10 دنانير بدلاً من 20 دينار.",
-  descriptionEn: "Get a 50% discount for the first month. Only 10 JOD instead of 20 JOD."
+  descriptionAr: "خصم لمادة اللغة الانجليزية نظام BTEC للفصل الواحد. هذا الخصم ساري لمدة شهر واحد فقط بـ 10 دنانير بدلاً من 20 دينار.",
+  descriptionEn: "Discount for the English Language subject (BTEC system) for one semester. This offer is valid for one month only, at 10 JOD instead of 20 JOD."
 };
 
 export async function GET(request: Request) {
