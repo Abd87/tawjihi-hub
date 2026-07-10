@@ -359,6 +359,25 @@ export default function Navbar() {
               {/* Auth Actions */}
               {user ? (
                 <>
+                  {user.isMasterAdmin && (
+                    <>
+                      <div className="border-t border-slate-800/60 my-2" />
+                      <p className="px-4 py-1 text-xs font-bold text-slate-500 uppercase tracking-wider">{currentLocale === 'ar' ? 'محاكاة دور' : 'Simulate Role'}</p>
+                      <div className="grid grid-cols-2 gap-2 px-4 py-2">
+                        {['STUDENT', 'PARENT', 'TEACHER', 'ADMIN'].map(r => (
+                          <button
+                            key={r}
+                            onClick={() => handleRoleSwitch(r)}
+                            disabled={switchingRole}
+                            className={`flex items-center justify-center py-2 rounded-xl text-xs font-bold transition-all ${user.role === r ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30' : 'bg-slate-900 text-slate-400 border border-slate-800'}`}
+                          >
+                            {r}
+                          </button>
+                        ))}
+                      </div>
+                      <div className="border-t border-slate-800/60 my-2" />
+                    </>
+                  )}
                   <Link
                     href={isParent ? '/parent/dashboard' : (isAdminOrTeacher ? '/admin/courses' : '/dashboard')}
                     className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-brand-500 to-amber-600"
