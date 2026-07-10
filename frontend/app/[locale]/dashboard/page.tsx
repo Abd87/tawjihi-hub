@@ -549,51 +549,7 @@ export default function DashboardPage() {
           <div className="space-y-10 animate-fade-in pb-20">
             {/* Dashboard Content */}
 
-            {/* Continue Learning Widget */}
-            {courses.length > 0 && (
-              <div className="mb-10">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2.5 bg-brand-500/20 rounded-xl border border-brand-500/30">
-                    <PlayCircle className="h-6 w-6 text-brand-400" />
-                  </div>
-                  <h2 className="text-xl font-black text-white">
-                    {locale === 'ar' ? 'متابعة التعلم (Resume Learning)' : 'Resume Learning'}
-                  </h2>
-                </div>
-                
-                <div className="bg-gradient-to-r from-slate-900 to-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center gap-6 shadow-xl relative overflow-hidden group">
-                   <div className="absolute top-0 end-0 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-brand-500/20 transition-all duration-700" />
-                   
-                   <div className="h-24 w-24 sm:h-32 sm:w-32 shrink-0 rounded-2xl overflow-hidden relative border-2 border-slate-700/50 shadow-md">
-                     {courses[0]?.coverImage ? (
-                        <Image src={courses[0].coverImage} alt="Cover" fill className="object-cover" />
-                     ) : (
-                        <div className="absolute inset-0 bg-slate-800 flex items-center justify-center"><BookOpen className="text-slate-500 h-10 w-10" /></div>
-                     )}
-                   </div>
-                   
-                   <div className="flex-1 space-y-3 text-center md:text-start z-10">
-                      <span className="text-brand-500 text-xs font-bold px-3 py-1 bg-brand-500/10 rounded-lg">
-                        {locale === 'ar' ? 'آخر دورة تم فتحها' : 'Last Accessed'}
-                      </span>
-                      <h3 className="text-2xl font-bold text-white">{locale === 'ar' ? courses[0]?.titleAr : courses[0]?.titleEn}</h3>
-                      <p className="text-sm text-slate-400 max-w-xl">
-                        {locale === 'ar' ? 'أنت على وشك إكمال الدورة، واصل تقدمك الآن لتحقيق أفضل النتائج!' : 'You are making great progress! Continue where you left off.'}
-                      </p>
-                   </div>
-                   
-                   <div className="shrink-0 w-full md:w-auto z-10">
-                      <Link 
-                        href={`/courses/${courses[0]?.id}`}
-                        className="w-full md:w-auto inline-flex justify-center items-center gap-2 px-8 py-4 bg-brand-500 hover:bg-brand-400 text-white font-bold rounded-2xl transition-all shadow-lg shadow-brand-500/20 group-hover:scale-105"
-                      >
-                         <PlayCircle className="h-5 w-5" />
-                         {locale === 'ar' ? 'متابعة الدرس' : 'Resume Course'}
-                      </Link>
-                   </div>
-                </div>
-              </div>
-            )}
+
 
 
         {/* My Schedule / Live Sessions Widget */}
