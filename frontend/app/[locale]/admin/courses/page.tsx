@@ -689,13 +689,13 @@ export default function AdminCoursesPage() {
                     {canEdit && (
                       <button
                         onClick={() => handleToggleLock(course.id)}
-                        title={course.locked ? (isRtl ? 'فتح القفل' : 'Unlock') : (isRtl ? 'قفل' : 'Lock')}
-                        className={`p-2 rounded-lg transition-all ${
+                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${
                           course.locked
-                            ? 'text-amber-400 hover:bg-amber-500/10'
-                            : 'text-slate-500 hover:bg-slate-800 hover:text-slate-300'
+                            ? 'bg-amber-500/10 text-amber-400 border-amber-500/20 hover:bg-amber-500/20'
+                            : 'bg-slate-800/50 text-slate-400 border-slate-700/50 hover:bg-slate-700/50'
                         }`}>
                         {course.locked ? <Lock className="h-3.5 w-3.5" /> : <Unlock className="h-3.5 w-3.5" />}
+                        <span>{course.locked ? (isRtl ? 'مغلق للجميع' : 'Locked') : (isRtl ? 'مفتوح للجميع' : 'Unlocked')}</span>
                       </button>
                     )}
 
@@ -703,13 +703,13 @@ export default function AdminCoursesPage() {
                     {isAdmin && (
                       <button
                         onClick={() => handleTogglePublish(course.id)}
-                        title={course.published ? (isRtl ? 'إلغاء النشر' : 'Unpublish') : (isRtl ? 'نشر' : 'Publish')}
-                        className={`p-2 rounded-lg transition-all ${
+                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${
                           course.published
-                            ? 'text-emerald-400 hover:bg-emerald-500/10'
-                            : 'text-slate-500 hover:bg-slate-800 hover:text-slate-300'
+                            ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20 hover:bg-emerald-500/20'
+                            : 'bg-slate-800/50 text-slate-400 border-slate-700/50 hover:bg-slate-700/50'
                         }`}>
                         {course.published ? <Eye className="h-3.5 w-3.5" /> : <EyeOff className="h-3.5 w-3.5" />}
+                        <span>{course.published ? (isRtl ? 'منشور للطلاب' : 'Published') : (isRtl ? 'مسودة' : 'Draft')}</span>
                       </button>
                     )}
 
