@@ -217,7 +217,6 @@ export default function RedeemCouponPage() {
                   <li>{isRtl ? '• لا يمكن نقل الكوبون لطالب آخر' : '• Coupons cannot be transferred to another student'}</li>
                 </ul>
               </div>
-              </div>
             </div>
           </div>
         )}
