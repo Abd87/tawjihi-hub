@@ -85,8 +85,9 @@ export default function AdminCouponsPage() {
   const [success, setSuccess] = useState<string | null>(null);
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
   const [subjectOpen, setSubjectOpen] = useState(false);
+  const [couponExpiry, setCouponExpiry] = useState('2026-07-31');
 
-  const COUPON_EXPIRY = '2026-07-31T23:59:59.000Z';
+  const COUPON_EXPIRY = couponExpiry ? new Date(couponExpiry + 'T23:59:59.000Z').toISOString() : '2026-07-31T23:59:59.000Z';
 
   // Manage Subjects panel
   const [manageOpen, setManageOpen] = useState(false);
@@ -526,25 +527,49 @@ export default function AdminCouponsPage() {
               )}
             </div>
 
-            {/* Optional custom code + Generate button */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 items-end">
-              <div className="sm:col-span-2 space-y-1.5">
-                <label className="text-xs font-bold text-slate-400">
-                  {isRtl ? 'الخطوة 3 — كود مخصص (اختياري، سيُنشأ تلقائياً)' : 'Step 3 — Custom Code (optional, auto-generated if empty)'}
+            {/* Step 3: Custom Code */}
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-400">
+                {isRtl ? 'الخطوة 3 — كود مخصص (اختياري، سيُنشأ تلقائياً)' : 'Step 3 — Custom Code (optional, auto-generated if empty)'}
+              </label>
+              <input
+                type="text"
+                placeholder={isRtl ? 'مثال: HUB-CHEM-7890' : 'e.g. HUB-CHEM-7890'}
+                value={customCode}
+                onChange={(e) => setCustomCode(e.target.value.toUpperCase())}
+                className="w-full py-3 px-4 text-sm bg-slate-950 border border-slate-800 rounded-xl text-white font-bold placeholder:text-slate-600 focus:outline-none focus:border-brand-500 transition-colors uppercase tracking-wider"
+              />
+            </div>
+
+            {/* Step 4: Expiry Date + Generate button */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 items-end">
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold text-slate-400 flex items-center gap-1.5">
+                  <Calendar className="h-3.5 w-3.5 text-brand-500" />
+                  {isRtl ? 'الخطوة 4 — تاريخ انتهاء الصلاحية' : 'Step 4 — Expiry Date'}
                 </label>
                 <input
-                  type="text"
-                  placeholder={isRtl ? 'مثال: HUB-CHEM-7890' : 'e.g. HUB-CHEM-7890'}
-                  value={customCode}
-                  onChange={(e) => setCustomCode(e.target.value.toUpperCase())}
-                  className="w-full py-3 px-4 text-sm bg-slate-950 border border-slate-800 rounded-xl text-white font-bold placeholder:text-slate-600 focus:outline-none focus:border-brand-500 transition-colors uppercase tracking-wider"
+                  type="date"
+                  value={couponExpiry}
+                  min={new Date().toISOString().split('T')[0]}
+                  onChange={(e) => setCouponExpiry(e.target.value)}
+                  className="w-full py-3 px-4 text-sm bg-slate-950 border border-slate-800 rounded-xl text-white font-bold focus:outline-none focus:border-brand-500 transition-colors [color-scheme:dark]"
                 />
+                <p className="text-xs text-slate-600">
+                  {couponExpiry
+                    ? (isRtl
+                        ? `ينتهي في: ${new Date(couponExpiry + 'T00:00:00').toLocaleDateString('ar-JO', { day: 'numeric', month: 'long', year: 'numeric' })}`
+                        : `Expires: ${new Date(couponExpiry + 'T00:00:00').toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}`
+                      )
+                    : (isRtl ? 'اختر تاريخ الانتهاء' : 'Choose expiry date')
+                  }
+                </p>
               </div>
               <button
                 type="submit"
-                disabled={formLoading || !selectedCourseId}
+                disabled={formLoading || !selectedCourseId || !couponExpiry}
                 className={`py-3 px-4 font-bold text-sm rounded-xl transition-all flex items-center justify-center gap-2 ${
-                  selectedCourseId
+                  selectedCourseId && couponExpiry
                     ? 'bg-brand-500 hover:bg-brand-600 text-white shadow-lg shadow-brand-500/20 hover:shadow-brand-500/30'
                     : 'bg-slate-900 text-slate-600 cursor-not-allowed'
                 }`}
