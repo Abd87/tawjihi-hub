@@ -32,14 +32,11 @@ interface Course {
   descriptionAr?: string;
   descriptionEn?: string;
   coverImage?: string;
-  subject: {
-    nameAr: string;
-    nameEn: string;
-  };
-  teacher: {
-    nameAr: string;
-    nameEn: string;
-  };
+  subjectAr?: string;
+  subjectEn?: string;
+  teacherId?: string;
+  teacherNameAr?: string;
+  teacherNameEn?: string;
   _count?: {
     lessons: number;
     quizzes: number;
@@ -78,8 +75,8 @@ export default function DashboardPage() {
           descriptionAr: 'دورة شاملة ومبسطة لشرح منهاج تاريخ الأردن المعتمد لطلبة المسار المهني والتقني.',
           descriptionEn: 'Comprehensive guide covering historical milestones tailored for technical students.',
           coverImage: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600&auto=format&fit=crop&q=60',
-          subject: { nameAr: 'تاريخ الأردن (المشترك)', nameEn: 'Jordan History' },
-          teacher: { nameAr: 'أ. محمد المهني', nameEn: 'Mr. Mohammad BTEC' },
+          subjectAr: 'تاريخ الأردن (المشترك)', subjectEn: 'Jordan History',
+          teacherNameAr: 'أ. محمد المهني', teacherNameEn: 'Mr. Mohammad BTEC',
           mockLessonsCount: 12,
           mockQuizzesCount: 6,
           mockProgress: 45
@@ -91,8 +88,8 @@ export default function DashboardPage() {
           descriptionAr: 'منهاج اللغة الإنجليزية المشترك لتعزيز مهارات القراءة والكتابة والمحادثة المهنية.',
           descriptionEn: 'Focus on communication, core grammar structures and vocational English writing.',
           coverImage: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&auto=format&fit=crop&q=60',
-          subject: { nameAr: 'اللغة الإنجليزية (المشتركة)', nameEn: 'Core English' },
-          teacher: { nameAr: 'أ. رانيا شحاتة', nameEn: 'Mrs. Rania Shehata' },
+          subjectAr: 'اللغة الإنجليزية (المشتركة)', subjectEn: 'Core English',
+          teacherNameAr: 'أ. رانيا شحاتة', teacherNameEn: 'Mrs. Rania Shehata',
           mockLessonsCount: 15,
           mockQuizzesCount: 5,
           mockProgress: 75
@@ -104,8 +101,8 @@ export default function DashboardPage() {
           descriptionAr: 'شرح مبسط وواضح للمنهاج المقرر للتربية الإسلامية والثقافة الدينية.',
           descriptionEn: 'Islamic concepts, jurisprudence, and ethical structures for core education.',
           coverImage: 'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?w=600&auto=format&fit=crop&q=60',
-          subject: { nameAr: 'التربية الإسلامية (المشتركة)', nameEn: 'Islamic Studies' },
-          teacher: { nameAr: 'أ. إبراهيم خليل', nameEn: 'Mr. Ibrahim Khalil' },
+          subjectAr: 'التربية الإسلامية (المشتركة)', subjectEn: 'Islamic Studies',
+          teacherNameAr: 'أ. إبراهيم خليل', teacherNameEn: 'Mr. Ibrahim Khalil',
           mockLessonsCount: 10,
           mockQuizzesCount: 4,
           mockProgress: 15
@@ -120,8 +117,8 @@ export default function DashboardPage() {
           descriptionAr: 'شرح مكثف وتفصيلي للنهايات والاشتقاق وتطبيقات التفاضل المتقدمة.',
           descriptionEn: 'Advanced topics in differentiation, limits and rate of change.',
           coverImage: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&auto=format&fit=crop&q=60',
-          subject: { nameAr: 'الرياضيات العلمية', nameEn: 'Scientific Mathematics' },
-          teacher: { nameAr: 'أ. أحمد العلمي', nameEn: 'Dr. Ahmad Academic' },
+          subjectAr: 'الرياضيات العلمية', subjectEn: 'Scientific Mathematics',
+          teacherNameAr: 'أ. أحمد العلمي', teacherNameEn: 'Dr. Ahmad Academic',
           mockLessonsCount: 24,
           mockQuizzesCount: 12,
           mockProgress: 30
@@ -133,8 +130,8 @@ export default function DashboardPage() {
           descriptionAr: 'تغطية شاملة لقوانين كيرشوف، المجال المغناطيسي، والتيار المتردد.',
           descriptionEn: 'Complete breakdown of electrical circuits and electromagnetic induction.',
           coverImage: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&auto=format&fit=crop&q=60',
-          subject: { nameAr: 'الفيزياء التخصصية', nameEn: 'Advanced Physics' },
-          teacher: { nameAr: 'أ. يوسف ريان', nameEn: 'Mr. Yousef Rayan' },
+          subjectAr: 'الفيزياء التخصصية', subjectEn: 'Advanced Physics',
+          teacherNameAr: 'أ. يوسف ريان', teacherNameEn: 'Mr. Yousef Rayan',
           mockLessonsCount: 20,
           mockQuizzesCount: 10,
           mockProgress: 10
@@ -146,8 +143,8 @@ export default function DashboardPage() {
           descriptionAr: 'دراسة سرعة التفاعلات الكيميائية، الاتزان الديناميكي وحسابات الأحماض والقواعد.',
           descriptionEn: 'Chemical kinetics, dynamic equilibrium, and pH calculation guides.',
           coverImage: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop&q=60',
-          subject: { nameAr: 'الكيمياء التخصصية', nameEn: 'Advanced Chemistry' },
-          teacher: { nameAr: 'أ. سارة الكيماوي', nameEn: 'Mrs. Sara Chemistry' },
+          subjectAr: 'الكيمياء التخصصية', subjectEn: 'Advanced Chemistry',
+          teacherNameAr: 'أ. سارة الكيماوي', teacherNameEn: 'Mrs. Sara Chemistry',
           mockLessonsCount: 18,
           mockQuizzesCount: 8,
           mockProgress: 55
