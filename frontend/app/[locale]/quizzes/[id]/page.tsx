@@ -414,8 +414,8 @@ export default function StudentQuizPage() {
             {/* Questions Grading Breakdown details */}
             <div className="space-y-6">
               {gradedResult.breakdown.map((item, index) => {
-                const questionText = isRtl ? item.textAr : item.textEn;
-                const explanationText = isRtl ? item.explanationAr : item.explanationEn;
+                const questionText = (isRtl ? item.textAr : item.textEn) || (isRtl ? item.textEn : item.textAr);
+                const explanationText = (isRtl ? item.explanationAr : item.explanationEn) || (isRtl ? item.explanationEn : item.explanationAr);
 
                 return (
                   <div 
@@ -510,7 +510,7 @@ export default function StudentQuizPage() {
           <form onSubmit={handleSubmit} className="space-y-8">
             
             {quiz.questions.map((q, index) => {
-              const questionText = isRtl ? q.textAr : q.textEn;
+              const questionText = (isRtl ? q.textAr : q.textEn) || (isRtl ? q.textEn : q.textAr);
               const studentAnswer = answers.find(a => a.questionId === q.id);
 
               return (
@@ -532,7 +532,7 @@ export default function StudentQuizPage() {
                     <div className="grid gap-3.5">
                       {q.choices.map((choice) => {
                         const isSelected = studentAnswer?.selectedChoiceId === choice.id;
-                        const choiceText = isRtl ? choice.textAr : choice.textEn;
+                        const choiceText = (isRtl ? choice.textAr : choice.textEn) || (isRtl ? choice.textEn : choice.textAr);
                         
                         return (
                           <div 

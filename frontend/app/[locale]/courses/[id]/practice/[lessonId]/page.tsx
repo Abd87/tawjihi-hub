@@ -231,7 +231,7 @@ export default function PracticeSessionPage() {
           
           <div className="mb-8">
             <h2 className="text-xl sm:text-2xl font-bold text-white leading-relaxed">
-              {isRtl ? currentQuestion.textAr : currentQuestion.textEn}
+              { (isRtl ? currentQuestion.textAr : currentQuestion.textEn) || (isRtl ? currentQuestion.textEn : currentQuestion.textAr) }
             </h2>
           </div>
 
@@ -275,7 +275,7 @@ export default function PracticeSessionPage() {
                     {!isSelected && hasChecked && choice.isCorrect && <Check className="w-3.5 h-3.5 text-emerald-400" />}
                   </div>
                   <span className="text-base sm:text-lg font-medium">
-                    {isRtl ? choice.textAr : choice.textEn}
+                    { (isRtl ? choice.textAr : choice.textEn) || (isRtl ? choice.textEn : choice.textAr) }
                   </span>
                 </button>
               );
@@ -290,7 +290,7 @@ export default function PracticeSessionPage() {
                 {isRtl ? 'الشرح' : 'Explanation'}
               </h4>
               <p className="text-slate-200 leading-relaxed text-sm sm:text-base">
-                {isRtl ? currentQuestion.explanationAr : currentQuestion.explanationEn}
+                { (isRtl ? currentQuestion.explanationAr : currentQuestion.explanationEn) || (isRtl ? currentQuestion.explanationEn : currentQuestion.explanationAr) }
               </p>
             </div>
           )}
