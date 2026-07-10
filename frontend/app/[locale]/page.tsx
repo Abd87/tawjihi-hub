@@ -40,12 +40,28 @@ export default function HomePage({ params: { locale } }: PageProps) {
   return (
     <div className="relative min-h-screen bg-[#020617] overflow-x-hidden font-sans selection:bg-brand-500/30 selection:text-brand-300">
       
-      {/* Background Decorative Glowing Blobs (Premium Aesthetic) */}
-      <div className="absolute top-[-10%] start-[-10%] w-[50vw] h-[50vw] rounded-full bg-brand-500/5 blur-[120px] pointer-events-none" />
-      <div className="absolute top-[20%] end-[-15%] w-[45vw] h-[45vw] rounded-full bg-blue-500/5 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[10%] start-[20%] w-[40vw] h-[40vw] rounded-full bg-brand-600/5 blur-[120px] pointer-events-none" />
+      {/* Video Background */}
+      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          className="w-full h-full object-cover opacity-40 scale-105"
+        >
+          <source src="/hero-bg.mp4" type="video/mp4" />
+        </video>
+        {/* Dark Overlay to ensure text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/40 via-[#020617]/80 to-[#020617] pointer-events-none" />
+      </div>
 
-      <PromoPopup />
+      {/* Background Decorative Glowing Blobs (Premium Aesthetic) */}
+      <div className="absolute top-[-10%] start-[-10%] w-[50vw] h-[50vw] rounded-full bg-brand-500/10 blur-[120px] pointer-events-none z-0" />
+      <div className="absolute top-[20%] end-[-15%] w-[45vw] h-[45vw] rounded-full bg-blue-500/10 blur-[120px] pointer-events-none z-0" />
+      <div className="absolute bottom-[10%] start-[20%] w-[40vw] h-[40vw] rounded-full bg-brand-600/10 blur-[120px] pointer-events-none z-0" />
+
+      <div className="relative z-10">
+        <PromoPopup />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
@@ -402,6 +418,7 @@ export default function HomePage({ params: { locale } }: PageProps) {
         </div>
       </footer>
 
+      </div> {/* End relative z-10 wrapper */}
     </div>
   );
 }
