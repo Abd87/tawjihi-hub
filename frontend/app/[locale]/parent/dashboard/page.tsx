@@ -219,9 +219,9 @@ export default function ParentDashboardPage() {
 
       {/* ── Header ── */}
       <header className="sticky top-0 z-30 border-b border-slate-800/60 bg-[#020617]/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
-            <Image src="/logo.png" alt="Tawjihi Hub Logo" width={160} height={60} className="h-12 w-auto object-contain drop-shadow-md" priority />
+            <Image src="/logo.png" alt="Tawjihi Hub Logo" width={320} height={120} className="h-20 sm:h-24 w-auto object-contain drop-shadow-md" priority />
           </Link>
 
           <div className="flex items-center gap-3">

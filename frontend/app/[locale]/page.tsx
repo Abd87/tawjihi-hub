@@ -392,7 +392,7 @@ export default function HomePage({ params: { locale } }: PageProps) {
       <footer className="border-t border-slate-900 bg-slate-950/40 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-slate-500">
           <div className="flex items-center gap-2">
-            <Image src="/logo.png" alt="Tawjihi Hub Logo" width={60} height={24} className="h-6 w-auto opacity-75 grayscale hover:grayscale-0 hover:opacity-100 transition-all" />
+            <Image src="/logo.png" alt="Tawjihi Hub Logo" width={240} height={80} className="h-16 w-auto opacity-75 grayscale hover:grayscale-0 hover:opacity-100 transition-all" />
           </div>
           <p>© {new Date().getFullYear()} Tawjihi Hub. All rights reserved.</p>
           <div className="flex gap-6">

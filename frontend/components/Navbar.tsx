@@ -114,16 +114,16 @@ export default function Navbar() {
           ? 'bg-slate-950/95 backdrop-blur-md border-b border-slate-800/60 shadow-lg' 
           : 'bg-transparent'
       }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex items-center justify-between">
           
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 cursor-pointer z-10">
             <Image 
               src="/logo.png" 
               alt="Tawjihi Hub Logo" 
-              width={160} 
-              height={60} 
-              className="h-14 w-auto object-contain drop-shadow-md"
+              width={320} 
+              height={120} 
+              className="h-20 sm:h-24 w-auto object-contain drop-shadow-md"
               priority
             />
           </Link>
