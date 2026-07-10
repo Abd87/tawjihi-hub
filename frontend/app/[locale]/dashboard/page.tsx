@@ -27,6 +27,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import RoleSimulator from '@/components/RoleSimulator';
 
 interface LiveSession {
   id: string;
@@ -360,6 +361,7 @@ export default function DashboardPage() {
 
       {/* Dashboard container */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 z-10 relative">
+        <RoleSimulator />
         
         {/* Welcome Section */}
         <div className="bg-slate-900/20 border border-slate-850 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-xl mb-10 overflow-hidden relative">

@@ -10,6 +10,7 @@ import {
   GraduationCap, Edit3, X, PlusCircle, Eye, EyeOff,
   Lock, Unlock, AlertCircle, Users, Calendar,
 } from 'lucide-react';
+import RoleSimulator from '@/components/RoleSimulator';
 
 interface InlineQuestion {
   id: string;
@@ -481,6 +482,7 @@ export default function AdminCoursesPage() {
       </header>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 pt-8 space-y-5 relative z-10">
+        <RoleSimulator />
 
         {/* ── Stats row ──────────────────────────────────────────────────── */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
