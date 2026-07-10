@@ -1193,17 +1193,17 @@ function LessonEditor({ lesson, idx, isRtl, onChange, onDelete }: {
                   <span className="text-[10px] font-bold text-slate-500 uppercase">{isRtl ? 'الخيارات' : 'Choices'}</span>
                   <button type="button" onClick={() => {
                     const newQs = [...(lesson.questions || [])];
-                    newQs[qIdx] = { ...q, choices: [...q.choices, { textAr: '', textEn: '', isCorrect: false }] };
+                    newQs[qIdx] = { ...q, choices: [...(q.choices || []), { textAr: '', textEn: '', isCorrect: false }] };
                     onChange('questions', newQs);
                   }} className="text-[10px] text-brand-400 font-bold hover:underline">
                     + {isRtl ? 'خيار' : 'Choice'}
                   </button>
                 </div>
-                {q.choices.map((c, cIdx) => (
+                {(q.choices || []).map((c, cIdx) => (
                   <div key={cIdx} className="flex gap-2 items-center">
                     <button type="button" onClick={() => {
                       const newQs = [...(lesson.questions || [])];
-                      const newChoices = q.choices.map((ch, idx) => ({ ...ch, isCorrect: idx === cIdx }));
+                      const newChoices = (q.choices || []).map((ch, idx) => ({ ...ch, isCorrect: idx === cIdx }));
                       newQs[qIdx] = { ...q, choices: newChoices };
                       onChange('questions', newQs);
                     }} className={`p-1.5 rounded-md border ${c.isCorrect ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400' : 'bg-slate-950 border-slate-700 text-slate-600'} transition-colors`}>
@@ -1213,7 +1213,7 @@ function LessonEditor({ lesson, idx, isRtl, onChange, onDelete }: {
                       <input dir="rtl" type="text" value={c.textAr} placeholder={isRtl ? "خيار (عربي)" : "Choice (Ar)"}
                         onChange={(e) => {
                           const newQs = [...(lesson.questions || [])];
-                          const newChoices = [...q.choices];
+                          const newChoices = [...(q.choices || [])];
                           newChoices[cIdx] = { ...c, textAr: e.target.value };
                           newQs[qIdx] = { ...q, choices: newChoices };
                           onChange('questions', newQs);
@@ -1221,7 +1221,7 @@ function LessonEditor({ lesson, idx, isRtl, onChange, onDelete }: {
                       <input dir="ltr" type="text" value={c.textEn} placeholder="Choice (En)"
                         onChange={(e) => {
                           const newQs = [...(lesson.questions || [])];
-                          const newChoices = [...q.choices];
+                          const newChoices = [...(q.choices || [])];
                           newChoices[cIdx] = { ...c, textEn: e.target.value };
                           newQs[qIdx] = { ...q, choices: newChoices };
                           onChange('questions', newQs);
@@ -1229,7 +1229,7 @@ function LessonEditor({ lesson, idx, isRtl, onChange, onDelete }: {
                     </div>
                     <button type="button" onClick={() => {
                       const newQs = [...(lesson.questions || [])];
-                      const newChoices = q.choices.filter((_, idx) => idx !== cIdx);
+                      const newChoices = (q.choices || []).filter((_, idx) => idx !== cIdx);
                       newQs[qIdx] = { ...q, choices: newChoices };
                       onChange('questions', newQs);
                     }} className="p-1 text-slate-600 hover:text-rose-400">
