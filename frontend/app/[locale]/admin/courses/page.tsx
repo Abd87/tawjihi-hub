@@ -324,7 +324,9 @@ export default function AdminCoursesPage() {
       saveCourses(updated);
     } else {
       const all = loadCourses();
-      const merged = all.map(c => updated.find(u => u.id === c.id) || c);
+      let merged = all.map(c => updated.find(u => u.id === c.id) || c);
+      const newCourses = updated.filter(u => !all.some(c => c.id === u.id));
+      merged = [...merged, ...newCourses];
       saveCourses(merged);
       setCourses(updated);
     }
