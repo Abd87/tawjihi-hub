@@ -228,7 +228,7 @@ export default function DashboardPage() {
 
       try {
         // 1. Fetch current profile
-        const profileRes = await fetch('http://localhost:5000/api/auth/me', {
+        const profileRes = await fetch('/api/auth/me', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         

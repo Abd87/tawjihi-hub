@@ -136,7 +136,7 @@ export default function StudentQuizPage() {
       }
 
       try {
-        const response = await fetch(`http://localhost:5000/api/quizzes/${quizId}`, {
+        const response = await fetch(`/api/quizzes/${quizId}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
 
@@ -218,7 +218,7 @@ export default function StudentQuizPage() {
     const token = localStorage.getItem('token');
 
     try {
-      const response = await fetch(`http://localhost:5000/api/quizzes/${quizId}/submit`, {
+      const response = await fetch(`/api/quizzes/${quizId}/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

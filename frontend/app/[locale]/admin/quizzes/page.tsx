@@ -93,7 +93,7 @@ export default function AdminQuizPage() {
 
       try {
         // Fetch courses list to map
-        const response = await fetch('http://localhost:5000/api/courses', {
+        const response = await fetch('/api/courses', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
 
@@ -131,7 +131,7 @@ export default function AdminQuizPage() {
     const token = localStorage.getItem('token');
 
     try {
-      const response = await fetch('http://localhost:5000/api/quizzes', {
+      const response = await fetch('/api/quizzes', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -202,7 +202,7 @@ export default function AdminQuizPage() {
     const token = localStorage.getItem('token');
 
     try {
-      const response = await fetch(`http://localhost:5000/api/quizzes/${createdQuizId}/questions`, {
+      const response = await fetch(`/api/quizzes/${createdQuizId}/questions`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

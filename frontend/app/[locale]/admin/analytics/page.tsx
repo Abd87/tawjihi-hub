@@ -144,7 +144,7 @@ export default function AdminAnalyticsPage() {
       setAuthorized(true);
 
       try {
-        const response = await fetch('http://localhost:5000/api/analytics/teacher', {
+        const response = await fetch('/api/analytics/teacher', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
 
