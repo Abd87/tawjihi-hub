@@ -20,6 +20,7 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -220,12 +221,7 @@ export default function ParentDashboardPage() {
       <header className="sticky top-0 z-30 border-b border-slate-800/60 bg-[#020617]/80 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
-            <div className="p-1.5 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl text-white">
-              <GraduationCap className="h-5 w-5" />
-            </div>
-            <span className="text-base font-bold text-white tracking-tight hidden sm:block">
-              {isAr ? 'توجيهي هب' : 'Tawjihi Hub'}
-            </span>
+            <Image src="/logo.png" alt="Tawjihi Hub Logo" width={160} height={60} className="h-12 w-auto object-contain drop-shadow-md" priority />
           </Link>
 
           <div className="flex items-center gap-3">

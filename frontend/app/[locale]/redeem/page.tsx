@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { useRouter } from '@/i18n/routing';
 import Link from 'next/link';
@@ -135,10 +136,7 @@ export default function RedeemCouponPage() {
             }
           </Link>
           <div className="flex items-center gap-2">
-            <div className="p-1.5 bg-gradient-to-br from-brand-500 to-amber-600 rounded-lg text-white">
-              <GraduationCap className="h-5 w-5" />
-            </div>
-            <span className="text-base font-bold text-white">Tawjihi Hub</span>
+            <Image src="/logo.png" alt="Tawjihi Hub Logo" width={160} height={60} className="h-12 w-auto object-contain drop-shadow-md" priority />
           </div>
         </div>
       </header>

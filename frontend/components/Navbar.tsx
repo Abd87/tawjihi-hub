@@ -121,9 +121,9 @@ export default function Navbar() {
             <Image 
               src="/logo.png" 
               alt="Tawjihi Hub Logo" 
-              width={100} 
-              height={40} 
-              className="h-10 w-auto object-contain drop-shadow-md"
+              width={160} 
+              height={60} 
+              className="h-14 w-auto object-contain drop-shadow-md"
               priority
             />
           </Link>

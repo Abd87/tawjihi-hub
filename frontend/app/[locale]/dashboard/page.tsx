@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import { useRouter } from '@/i18n/routing';
 import { useParams } from 'next/navigation';
 import { 
@@ -330,12 +331,7 @@ export default function DashboardPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
           
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-gradient-to-br from-brand-500 to-amber-600 rounded-xl text-white">
-              <GraduationCap className="h-5 w-5" />
-            </div>
-            <span className="text-lg font-bold text-white tracking-tight">
-              {navT('brandName')}
-            </span>
+            <Image src="/logo.png" alt="Tawjihi Hub Logo" width={160} height={60} className="h-12 w-auto object-contain drop-shadow-md" priority />
           </div>
 
           <div className="flex items-center gap-4">

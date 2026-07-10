@@ -244,7 +244,7 @@ export default function LoginPage() {
       {/* Header */}
       <header className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between z-10">
         <Link href="/" className="flex items-center gap-2.5">
-          <Image src="/logo.png" alt="Tawjihi Hub Logo" width={80} height={32} className="h-8 w-auto object-contain drop-shadow-md" priority />
+          <Image src="/logo.png" alt="Tawjihi Hub Logo" width={160} height={60} className="h-12 w-auto object-contain drop-shadow-md" priority />
         </Link>
 
         <button
