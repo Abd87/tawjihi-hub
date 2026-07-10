@@ -187,7 +187,18 @@ export default function DashboardPage() {
     }
 
     return courseList.map((c: any) => {
-      if (c.lessons) {
+      // Special handling for Vocab Course
+      if (c.id === 'vocab-btec') {
+        c.mockLessonsCount = 8;
+        c.mockQuizzesCount = 8;
+        const stored = typeof window !== 'undefined' ? localStorage.getItem('vocab_completed') : null;
+        if (stored) {
+           const completedUnits = JSON.parse(stored);
+           c.mockProgress = Math.round((completedUnits.length / 8) * 100);
+        } else {
+           c.mockProgress = 0;
+        }
+      } else if (c.lessons) {
         c.mockLessonsCount = c.lessons.length;
         c.mockQuizzesCount = c.lessons.reduce((acc: number, l: any) => acc + (l._count?.questions > 0 ? 1 : 0), 0);
         c._pdfCount = c.lessons.filter((l: any) => !!l.pdfUrl).length;

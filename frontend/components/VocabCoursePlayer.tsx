@@ -103,7 +103,9 @@ export default function VocabCoursePlayer({ course }: VocabCoursePlayerProps) {
                   {unit}
                 </h3>
                 <p className="text-sm text-slate-400 mb-4">
-                  {isRtl ? 'تدريب تفاعلي للمصطلحات' : 'Interactive Vocab Training'}
+                  {isRtl 
+                    ? `تتضمن ${(vocabData as any)[unit]?.questions?.length || 0} سؤال` 
+                    : `${(vocabData as any)[unit]?.questions?.length || 0} Questions`}
                 </p>
                 <div className="flex items-center gap-2 text-sm font-semibold text-brand-500 opacity-0 group-hover:opacity-100 transition-opacity">
                   <span>{isRtl ? 'ابدأ التدريب' : 'Start Training'}</span>
