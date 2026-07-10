@@ -14,10 +14,12 @@ export async function POST(request: Request) {
     for (const course of courses) {
       try {
         // Validate teacher exists to avoid foreign key constraints failing on mock data
-        const teacherExists = await prisma.user.findUnique({ where: { id: course.teacherId } });
+        let teacherExists = await prisma.user.findUnique({ where: { id: course.teacherId } });
         if (!teacherExists) {
-          console.warn(`Skipping course ${course.id} because teacher ${course.teacherId} does not exist in DB.`);
-          continue;
+          console.warn(`Teacher ${course.teacherId} not found for course ${course.id}. Assigning to fallback user.`);
+          const fallback = await prisma.user.findFirst({ where: { role: { in: ['ADMIN', 'TEACHER'] } } });
+          if (!fallback) continue;
+          course.teacherId = fallback.id;
         }
 
         // Upsert Course

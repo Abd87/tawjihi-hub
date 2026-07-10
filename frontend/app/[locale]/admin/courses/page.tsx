@@ -192,7 +192,7 @@ export default function AdminCoursesPage() {
   const [filterTrack, setFilterTrack] = useState<'ALL' | 'BTEC' | 'ACADEMIC'>('ALL');
   const [filterSemester, setFilterSemester] = useState<'ALL' | 1 | 2>('ALL');
 
-  /* ── Auth ─────────────────────────────────────────────────────────────── */
+  /* ── Auth & Data Load ─────────────────────────────────────────────────── */
   useEffect(() => {
     const token = localStorage.getItem('token');
     let user: AppUser | null = null;
@@ -201,29 +201,36 @@ export default function AdminCoursesPage() {
     if (!token || !user) { router.replace('/login'); return; }
     if (user.role !== 'ADMIN' && user.role !== 'TEACHER') { router.replace('/dashboard'); return; }
 
-    const allCourses = loadCourses();
-
     setCurrentUser(user);
     setIsAdmin(user.role === 'ADMIN');
 
+    // Fetch teachers first
     fetch('/api/admin/users', { headers: { Authorization: `Bearer ${token}` } })
       .then(res => res.json())
-      .then(data => {
-        const teacherList = data.users ? data.users.filter((u: any) => u.role === 'TEACHER') : [];
+      .then(userData => {
+        const teacherList = userData.users ? userData.users.filter((u: any) => u.role === 'TEACHER') : [];
         setTeachers(teacherList);
+        setNewCourse(emptyCourse(teacherList));
 
-        // ADMIN sees all; TEACHER sees only their own
-        const visible = user.role === 'ADMIN'
+        // Fetch courses from DB instead of localStorage
+        return fetch('/api/admin/courses', { headers: { Authorization: `Bearer ${token}` } });
+      })
+      .then(res => res.json())
+      .then(courseData => {
+        const allCourses = courseData.courses || [];
+        // Save to localStorage as a cache for sync operations
+        localStorage.setItem('admin-courses', JSON.stringify(allCourses));
+
+        const visible = user!.role === 'ADMIN'
           ? allCourses
           : allCourses.filter((c: any) => c.teacherId === user!.id);
 
         setCourses(visible);
-        setNewCourse(emptyCourse(teacherList));
         setAuthorized(true);
         setLoading(false);
       })
       .catch(err => {
-        console.error(err);
+        console.error('Data load error:', err);
         setAuthorized(true);
         setLoading(false);
       });
@@ -235,18 +242,37 @@ export default function AdminCoursesPage() {
   };
 
   /* ── CRUD ──────────────────────────────────────────────────────────────── */
-  const persist = (updated: Course[]) => {
-    // ADMIN saves all; teacher only sees their own slice, but we must merge with full list
-    if (isAdmin) {
-      setCourses(updated);
-      saveCourses(updated);
-    } else {
-      const all = loadCourses();
-      let merged = all.map(c => updated.find(u => u.id === c.id) || c);
-      const newCourses = updated.filter(u => !all.some(c => c.id === u.id));
+  const persist = async (updated: Course[]) => {
+    // Optimistic UI Update
+    setCourses(updated);
+
+    let merged = updated;
+    if (!isAdmin) {
+      const allStr = localStorage.getItem('admin-courses');
+      const all = allStr ? JSON.parse(allStr) : [];
+      merged = all.map((c: any) => updated.find(u => u.id === c.id) || c);
+      const newCourses = updated.filter(u => !all.some((c: any) => c.id === u.id));
       merged = [...merged, ...newCourses];
-      saveCourses(merged);
-      setCourses(updated);
+    }
+    
+    // Save to cache for offline availability
+    localStorage.setItem('admin-courses', JSON.stringify(merged));
+
+    // Force await sync to ensure DB has it
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch('/api/admin/courses/sync', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ courses: merged })
+      });
+      if (!res.ok) throw new Error('Database sync failed');
+    } catch (err) {
+      console.error('Failed to sync to database:', err);
+      showToast(isRtl ? 'فشل حفظ بعض التغييرات في قاعدة البيانات' : 'Failed to save to database', 'error');
     }
   };
 
