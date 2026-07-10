@@ -140,10 +140,6 @@ export default function AdminCouponsPage() {
 
   const decodeToken = (token: string) => {
     try {
-      if (token.startsWith('mock-')) {
-        const userStr = localStorage.getItem('user');
-        return userStr ? JSON.parse(userStr) : null;
-      }
       const base64Url = token.split('.')[1];
       const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
       const jsonPayload = decodeURIComponent(
@@ -177,8 +173,8 @@ export default function AdminCouponsPage() {
       setAuthorized(true);
 
       try {
-        // Fetch courses list
-        const coursesRes = await fetch('http://localhost:5000/api/courses', {
+        // Fetch courses list from admin API (to get all courses in DB)
+        const coursesRes = await fetch('/api/admin/courses', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (coursesRes.ok) {
@@ -190,7 +186,7 @@ export default function AdminCouponsPage() {
         }
 
         // Fetch coupons list
-        const couponsRes = await fetch('http://localhost:5000/api/coupons', {
+        const couponsRes = await fetch('/api/coupons', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (couponsRes.ok) {
@@ -198,68 +194,7 @@ export default function AdminCouponsPage() {
           setCoupons(couponsData.coupons);
         }
       } catch (err) {
-        // Offline / Unreachable fallback
-        // ── BTEC Stream (4 Ministry subjects) ──────────────────────────────
-        const allMockCourses: Course[] = [
-          // BTEC mandatory subjects
-          { id: 'mock-btec-arabic',   titleAr: '── مسار BTEC ── اللغة العربية', titleEn: '── BTEC ── Arabic Language', track: 'BTEC' },
-          { id: 'mock-btec-english',  titleAr: 'اللغة الإنجليزية المشتركة BTEC', titleEn: 'Core English for BTEC', track: 'BTEC' },
-          { id: 'mock-btec-history',  titleAr: 'تاريخ الأردن والعرب - BTEC', titleEn: 'Jordan & Arab History - BTEC', track: 'BTEC' },
-          { id: 'mock-btec-islamic',  titleAr: 'التربية الإسلامية - BTEC', titleEn: 'Islamic Education - BTEC', track: 'BTEC' },
-          // Academic Stream – Scientific branch
-          { id: 'mock-acad-arabic',   titleAr: '── مسار أكاديمي ── اللغة العربية', titleEn: '── Academic ── Arabic Language', track: 'ACADEMIC' },
-          { id: 'mock-acad-english',  titleAr: 'اللغة الإنجليزية الأكاديمي', titleEn: 'English Language - Academic', track: 'ACADEMIC' },
-          { id: 'mock-acad-math',     titleAr: 'الرياضيات العلمية', titleEn: 'Scientific Mathematics', track: 'ACADEMIC' },
-          { id: 'mock-acad-physics',  titleAr: 'الفيزياء - الكهرباء والمغناطيسية', titleEn: 'Physics - Electromagnetism', track: 'ACADEMIC' },
-          { id: 'mock-acad-chem',     titleAr: 'الكيمياء التخصصية', titleEn: 'Advanced Chemistry', track: 'ACADEMIC' },
-          { id: 'mock-acad-bio',      titleAr: 'الأحياء والوراثة', titleEn: 'Biology & Genetics', track: 'ACADEMIC' },
-          { id: 'mock-acad-geology',  titleAr: 'علم الأرض والبيئة', titleEn: 'Earth Science & Environment', track: 'ACADEMIC' },
-          { id: 'mock-acad-history',  titleAr: 'تاريخ الأردن والعرب - أكاديمي', titleEn: 'Jordan & Arab History - Academic', track: 'ACADEMIC' },
-          { id: 'mock-acad-islamic',  titleAr: 'التربية الإسلامية - أكاديمي', titleEn: 'Islamic Education - Academic', track: 'ACADEMIC' },
-          { id: 'mock-acad-national', titleAr: 'التربية الوطنية والمدنية', titleEn: 'National & Civic Education', track: 'ACADEMIC' },
-          { id: 'mock-acad-lit-arab', titleAr: 'الأدب العربي - الأدبي', titleEn: 'Arabic Literature - Literary Branch', track: 'ACADEMIC' },
-          { id: 'mock-acad-socio',    titleAr: 'الاجتماعيات والجغرافيا', titleEn: 'Social Studies & Geography', track: 'ACADEMIC' },
-        ];
-        const customSubjects = loadCustomSubjects();
-        setCourses([...allMockCourses, ...customSubjects]);
-        setSelectedCourseId('mock-btec-arabic');
-        setSelectedStream('BTEC');
-
-        const stored = localStorage.getItem('admin-coupons');
-        if (stored) {
-          setCoupons(JSON.parse(stored));
-        } else {
-          const initialMockCoupons: Coupon[] = [
-            {
-              id: 'c1',
-              code: 'HUB-BTEC-2026',
-              courseId: 'mock-btec-1',
-              course: { titleAr: 'تاريخ الأردن للتوجيهي والمهني BTEC', titleEn: 'Jordan History for Grade 12 BTEC' },
-              isActive: true,
-              createdAt: new Date().toISOString()
-            },
-            {
-              id: 'c2',
-              code: 'HUB-MATH-2026',
-              courseId: 'mock-acad-1',
-              course: { titleAr: 'الرياضيات العلمية - الفصل الأول', titleEn: 'Scientific Calculus - Term 1' },
-              isActive: true,
-              createdAt: new Date().toISOString()
-            },
-            {
-              id: 'c3',
-              code: 'TAWJIHI2026',
-              courseId: 'mock-acad-1',
-              course: { titleAr: 'الرياضيات العلمية - الفصل الأول', titleEn: 'Scientific Calculus - Term 1' },
-              isActive: false,
-              usedBy: { nameAr: 'خالد التوجيهي', email: 'khaled@tawjihi.jo' },
-              usedAt: new Date(Date.now() - 3600000).toISOString(),
-              createdAt: new Date(Date.now() - 7200000).toISOString()
-            }
-          ];
-          setCoupons(initialMockCoupons);
-          localStorage.setItem('admin-coupons', JSON.stringify(initialMockCoupons));
-        }
+        console.error('Failed to load data:', err);
       } finally {
         setLoading(false);
       }
@@ -280,7 +215,7 @@ export default function AdminCouponsPage() {
     
     try {
       if (token) {
-        const res = await fetch('http://localhost:5000/api/coupons', {
+        const res = await fetch('/api/coupons', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -288,7 +223,8 @@ export default function AdminCouponsPage() {
           },
           body: JSON.stringify({
             courseId: selectedCourseId,
-            code: customCode.trim() || undefined
+            code: customCode.trim() || undefined,
+            expiresAt: COUPON_EXPIRY
           })
         });
 
@@ -297,48 +233,14 @@ export default function AdminCouponsPage() {
         if (res.ok) {
           setSuccess(tAnalytics('generateSuccess'));
           setCustomCode('');
-          // Refresh list
-          const refreshRes = await fetch('http://localhost:5000/api/coupons', {
-            headers: { 'Authorization': `Bearer ${token}` }
-          });
-          if (refreshRes.ok) {
-            const refreshData = await refreshRes.json();
-            setCoupons(refreshData.coupons);
-          }
-          return;
+          setCoupons([data.coupon, ...coupons]);
         } else {
           setError(data.error || 'Failed to generate coupon');
         }
       }
-      throw new Error('Offline');
     } catch (err) {
-      const cleanTitle = (title: string) => title.replace(/^──[^──]*──\s*/, '');
-      const course = courses.find(c => c.id === selectedCourseId);
-      if (!course) { setFormLoading(false); return; }
-
-      const shortCode = course.titleEn.replace(/[^A-Z]/gi, '').substring(0, 4).toUpperCase() || 'SUBJ';
-      const newCode = customCode.trim().toUpperCase() || `HUB-${shortCode}-${Math.floor(1000 + Math.random() * 9000)}`;
-      const cleanedAr = cleanTitle(course.titleAr);
-      const cleanedEn = cleanTitle(course.titleEn);
-      
-      const newCoupon: Coupon = {
-        id: `c-mock-${Date.now()}`,
-        code: newCode,
-        courseId: selectedCourseId,
-        course: {
-          titleAr: cleanedAr,
-          titleEn: cleanedEn,
-        },
-        isActive: true,
-        expiresAt: COUPON_EXPIRY,
-        createdAt: new Date().toISOString()
-      };
-
-      const updated = [newCoupon, ...coupons];
-      setCoupons(updated);
-      localStorage.setItem('admin-coupons', JSON.stringify(updated));
-      setSuccess(tAnalytics('generateSuccess'));
-      setCustomCode('');
+      console.error(err);
+      setError('Connection error');
     } finally {
       setFormLoading(false);
     }
@@ -358,11 +260,9 @@ export default function AdminCouponsPage() {
   return (
     <div className="relative min-h-screen bg-[#020617] font-sans pb-16 selection:bg-brand-500/30 selection:text-brand-300">
       
-      {/* Decorative Glows */}
       <div className="absolute top-[-10%] start-[-10%] w-[45vw] h-[45vw] rounded-full bg-brand-500/5 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] end-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-500/5 blur-[100px] pointer-events-none" />
 
-      {/* Header */}
       <header className="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-900 shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
           <Link href="/dashboard" className="group flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-400 hover:text-white transition-colors">
@@ -380,10 +280,8 @@ export default function AdminCouponsPage() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="max-w-4xl mx-auto px-4 pt-10 z-10 relative space-y-8">
         
-        {/* Page Title */}
         <div className="flex items-center gap-3">
           <div className="p-3 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded-2xl">
             <Key className="h-6 w-6" />
@@ -398,7 +296,6 @@ export default function AdminCouponsPage() {
           </div>
         </div>
 
-        {/* Generate Form Box */}
         <div className="bg-slate-900/10 border border-slate-900 rounded-2xl p-5 sm:p-6 shadow-xl relative overflow-visible">
           <div className="absolute top-0 start-0 w-[3px] h-full bg-brand-500 rounded-s-2xl" />
           
@@ -407,7 +304,6 @@ export default function AdminCouponsPage() {
             <span>{tAnalytics('createCouponBtn')}</span>
           </h2>
 
-          {/* ── Step 1: Stream Toggle ─────────────────────────────── */}
           <div className="mb-5">
             <p className="text-xs font-bold text-slate-400 mb-2">
               {isRtl ? 'الخطوة 1 — اختر المسار التعليمي' : 'Step 1 — Choose Stream'}
@@ -448,16 +344,12 @@ export default function AdminCouponsPage() {
             </div>
           </div>
 
-          {/* ── Step 2: Subject + Code + Generate ─────────────────── */}
           <form onSubmit={handleGenerateCoupon} className="space-y-4">
-
-            {/* Subject picker — inline expand, no floating/clipping issues */}
             <div>
               <p className="text-xs font-bold text-slate-400 mb-2">
                 {isRtl ? 'الخطوة 2 — اختر المادة الدراسية' : 'Step 2 — Choose Subject'}
               </p>
 
-              {/* Selected subject display + toggle */}
               <button
                 type="button"
                 onClick={() => setSubjectOpen(prev => !prev)}
@@ -475,7 +367,7 @@ export default function AdminCouponsPage() {
                   {(() => {
                     const sel = courses.find(c => c.id === selectedCourseId);
                     if (!sel) return isRtl ? '— اختر المادة الدراسية —' : '— Select a subject —';
-                    return (isRtl ? sel.titleAr : sel.titleEn).replace(/^──[^──]*──\s*/, '');
+                    return (isRtl ? sel.titleAr : sel.titleEn);
                   })()}
                 </span>
                 <ChevronDown className={`h-4 w-4 shrink-0 transition-transform duration-200 ${
@@ -599,172 +491,6 @@ export default function AdminCouponsPage() {
             )}
 
           </form>
-        </div>
-
-        {/* ── Manage Subjects Card ─────────────────────────────────── */}
-        <div className="bg-slate-900/10 border border-slate-900 rounded-2xl shadow-xl overflow-hidden">
-          {/* Header toggle */}
-          <button
-            type="button"
-            onClick={() => setManageOpen(prev => !prev)}
-            className="w-full px-5 sm:px-6 py-4 flex items-center justify-between gap-3 hover:bg-slate-900/20 transition-colors"
-          >
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-violet-500/10 border border-violet-500/20 text-violet-400 rounded-xl">
-                <BookOpen className="h-4.5 w-4.5" />
-              </div>
-              <div className="text-start">
-                <p className="text-sm font-extrabold text-white">
-                  {isRtl ? 'إدارة المواد الدراسية' : 'Manage Subjects'}
-                </p>
-                <p className="text-xs text-slate-500 mt-0.5">
-                  {isRtl
-                    ? `${courses.filter(c => !c.id.startsWith('mock-')).length} مادة مضافة • اضغط لإضافة أو حذف المواد`
-                    : `${courses.filter(c => !c.id.startsWith('mock-')).length} custom subject(s) • click to add or remove`
-                  }
-                </p>
-              </div>
-            </div>
-            <ChevronDown className={`h-4 w-4 text-slate-400 transition-transform duration-200 ${manageOpen ? 'rotate-180' : ''}`} />
-          </button>
-
-          {manageOpen && (
-            <div className="border-t border-slate-900 p-5 sm:p-6 space-y-6">
-
-              {/* Add new subject form */}
-              <div className="space-y-3">
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-                  {isRtl ? 'إضافة مادة جديدة' : 'Add New Subject'}
-                </p>
-
-                {/* Stream selector for new subject */}
-                <div className="flex gap-2">
-                  {(['BTEC', 'ACADEMIC'] as const).map(s => (
-                    <button
-                      key={s}
-                      type="button"
-                      onClick={() => setNewSubjectStream(s)}
-                      className={`flex-1 py-2 px-3 rounded-lg text-xs font-bold border transition-all ${
-                        newSubjectStream === s
-                          ? s === 'BTEC'
-                            ? 'bg-brand-500 border-brand-500 text-white'
-                            : 'bg-blue-600 border-blue-500 text-white'
-                          : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-600'
-                      }`}
-                    >
-                      {s === 'BTEC' ? '🟠 BTEC' : isRtl ? '🔵 أكاديمي' : '🔵 Academic'}
-                    </button>
-                  ))}
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-500">
-                      {isRtl ? 'اسم المادة بالعربية *' : 'Arabic Name *'}
-                    </label>
-                    <input
-                      type="text"
-                      dir="rtl"
-                      placeholder={isRtl ? 'مثال: الكيمياء التحليلية' : 'e.g. الكيمياء التحليلية'}
-                      value={newSubjectAr}
-                      onChange={e => setNewSubjectAr(e.target.value)}
-                      className="w-full py-2.5 px-3 text-sm bg-slate-950 border border-slate-800 rounded-xl text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500 transition-colors"
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-500">
-                      {isRtl ? 'اسم المادة بالإنجليزية *' : 'English Name *'}
-                    </label>
-                    <input
-                      type="text"
-                      dir="ltr"
-                      placeholder="e.g. Analytical Chemistry"
-                      value={newSubjectEn}
-                      onChange={e => setNewSubjectEn(e.target.value)}
-                      className="w-full py-2.5 px-3 text-sm bg-slate-950 border border-slate-800 rounded-xl text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500 transition-colors"
-                    />
-                  </div>
-                </div>
-
-                {subjectError && (
-                  <p className="text-xs text-rose-400 font-semibold">{subjectError}</p>
-                )}
-
-                <button
-                  type="button"
-                  onClick={handleAddSubject}
-                  className="flex items-center gap-2 px-4 py-2.5 bg-violet-600 hover:bg-violet-500 text-white text-sm font-bold rounded-xl transition-all shadow-md shadow-violet-500/20"
-                >
-                  <PlusCircle className="h-4 w-4" />
-                  <span>{isRtl ? 'إضافة المادة' : 'Add Subject'}</span>
-                </button>
-              </div>
-
-              {/* Existing subjects list */}
-              <div className="space-y-3">
-                {(['BTEC', 'ACADEMIC'] as const).map(stream => {
-                  const streamCourses = courses.filter(c =>
-                    c.track === stream || c.id.startsWith(`mock-${stream.toLowerCase()}-`)
-                  );
-                  return (
-                    <div key={stream}>
-                      <p className={`text-xs font-extrabold uppercase tracking-widest mb-2 ${
-                        stream === 'BTEC' ? 'text-brand-400' : 'text-blue-400'
-                      }`}>
-                        {stream === 'BTEC'
-                          ? (isRtl ? '🟠 مسار BTEC المهني' : '🟠 BTEC Vocational')
-                          : (isRtl ? '🔵 المسار الأكاديمي' : '🔵 Academic Stream')
-                        }
-                        {' '}({streamCourses.length})
-                      </p>
-                      <div className="space-y-1">
-                        {streamCourses.map(course => {
-                          const label = (isRtl ? course.titleAr : course.titleEn).replace(/^──[^──]*──\s*/, '');
-                          return (
-                            <div
-                              key={course.id}
-                              className={`flex items-center justify-between gap-3 px-4 py-2.5 rounded-xl border ${
-                                course.custom
-                                  ? 'border-violet-500/20 bg-violet-500/5'
-                                  : 'border-slate-800/60 bg-slate-900/20'
-                              }`}
-                            >
-                              <div className="flex items-center gap-2 min-w-0">
-                                <BookOpen className={`h-3.5 w-3.5 shrink-0 ${
-                                  course.custom ? 'text-violet-400' : 'text-slate-500'
-                                }`} />
-                                <span className="text-xs font-semibold text-slate-300 truncate">{label}</span>
-                                {course.custom && (
-                                  <span className="text-3xs font-bold px-1.5 py-0.5 rounded bg-violet-500/20 text-violet-400 shrink-0">
-                                    {isRtl ? 'مضافة' : 'custom'}
-                                  </span>
-                                )}
-                              </div>
-                              {course.custom ? (
-                                <button
-                                  type="button"
-                                  onClick={() => handleDeleteSubject(course.id)}
-                                  className="p-1.5 rounded-lg text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 transition-all shrink-0"
-                                  title={isRtl ? 'حذف المادة' : 'Delete subject'}
-                                >
-                                  <X className="h-3.5 w-3.5" />
-                                </button>
-                              ) : (
-                                <span className="text-3xs text-slate-600 font-bold shrink-0">
-                                  {isRtl ? 'افتراضي' : 'default'}
-                                </span>
-                              )}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-            </div>
-          )}
         </div>
 
         {/* Coupons List Table */}

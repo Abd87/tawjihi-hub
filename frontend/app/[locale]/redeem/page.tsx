@@ -68,65 +68,29 @@ export default function RedeemCouponPage() {
     localStorage.setItem(globalKey, JSON.stringify(global));
   };
 
-  const redeemOffline = (trimmedCode: string) => {
-    const EXPIRY = new Date('2026-07-31T23:59:59.000Z');
-    const now = new Date();
+  const [studentCoupons, setStudentCoupons] = useState<any[]>([]);
+
+  const fetchStudentCoupons = async () => {
     try {
-      const stored = localStorage.getItem('admin-coupons');
-      const coupons: Coupon[] = stored ? JSON.parse(stored) : [];
-      const coupon = coupons.find(c => c.code.toUpperCase() === trimmedCode);
-
-      if (!coupon) {
-        setErrorMsg(isRtl ? 'الكود غير موجود أو غير صحيح' : 'Code not found or invalid');
-        setStatus('error');
-        return;
-      }
-
-      const expiresAt = coupon.expiresAt ? new Date(coupon.expiresAt) : EXPIRY;
-      if (now > expiresAt) {
-        setErrorMsg(isRtl ? 'انتهت صلاحية هذا الكوبون' : 'This coupon expired');
-        setStatus('error');
-        return;
-      }
-
-      if (!coupon.isActive) {
-        if (coupon.usedBy?.studentId === user?.id) {
-          setRedeemedCourse(coupon.course);
-          addCourseToStudentLocally(coupon.courseId, coupon.course);
-          setStatus('success');
-          return;
-        }
-        setErrorMsg(isRtl ? 'تم استخدام هذا الكوبون بالفعل من قِبل طالب آخر' : 'This coupon has already been used by another student');
-        setStatus('error');
-        return;
-      }
-
-      const updatedCoupons = coupons.map(c => {
-        if (c.id === coupon.id) {
-          return {
-            ...c,
-            isActive: false,
-            usedBy: {
-              studentId: user!.id,
-              nameAr: user!.nameAr,
-              nameEn: user!.nameEn,
-              email: user!.email
-            },
-            usedAt: new Date().toISOString()
-          };
-        }
-        return c;
+      const token = localStorage.getItem('token');
+      if (!token) return;
+      const res = await fetch('/api/student/coupons', {
+        headers: { 'Authorization': `Bearer ${token}` }
       });
-
-      localStorage.setItem('admin-coupons', JSON.stringify(updatedCoupons));
-      addCourseToStudentLocally(coupon.courseId, coupon.course);
-      setRedeemedCourse(coupon.course);
-      setStatus('success');
-    } catch {
-      setErrorMsg(isRtl ? 'خطأ في التحقق. حاول مرة أخرى.' : 'Verification error. Please try again.');
-      setStatus('error');
+      if (res.ok) {
+        const data = await res.json();
+        setStudentCoupons(data.coupons || []);
+      }
+    } catch (e) {
+      console.error(e);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      fetchStudentCoupons();
+    }
+  }, [user]);
 
   const handleRedeem = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -146,17 +110,16 @@ export default function RedeemCouponPage() {
         setRedeemedCourse(data.course);
         addCourseToStudentLocally(data.courseId, data.course);
         setStatus('success');
+        fetchStudentCoupons(); // Refresh the list
         return;
       }
       setErrorMsg(data.error || (isRtl ? 'كود غير صحيح' : 'Invalid code'));
       setStatus('error');
-      return;
-    } catch {}
-    redeemOffline(trimmedCode);
+    } catch (err) {
+      setErrorMsg(isRtl ? 'خطأ في الاتصال بالسيرفر' : 'Connection error');
+      setStatus('error');
+    }
   };
-
-  const EXPIRY_DATE = new Date('2026-07-31T23:59:59.000Z');
-  const isExpired = new Date() > EXPIRY_DATE;
 
   return (
     <div className={`min-h-screen bg-[#020617] font-sans ${isRtl ? 'rtl' : 'ltr'}`}>
@@ -193,10 +156,10 @@ export default function RedeemCouponPage() {
           </p>
         </div>
 
-        <div className={`flex items-center gap-3 p-4 rounded-2xl border mb-6 ${isExpired ? 'bg-rose-500/5 border-rose-500/20 text-rose-300' : 'bg-amber-500/5 border-amber-500/20 text-amber-300'}`}>
+        <div className={`flex items-center gap-3 p-4 rounded-2xl border mb-6 bg-amber-500/5 border-amber-500/20 text-amber-300`}>
           <Calendar className="h-4 w-4 shrink-0" />
           <p className="text-xs font-semibold">
-            {isExpired ? (isRtl ? 'انتهت صلاحية جميع الكوبونات في 31 يوليو 2026' : 'All coupons expired on July 31, 2026') : (isRtl ? 'صلاحية الكوبونات تنتهي في 31 يوليو 2026' : 'Coupons are valid until July 31, 2026')}
+            {isRtl ? 'الكوبون صالح لغاية تاريخ الانتهاء المحدد له' : 'Coupons are valid until their specified expiration date'}
           </p>
         </div>
 
@@ -249,12 +212,58 @@ export default function RedeemCouponPage() {
                 <p className="text-xs font-bold text-slate-300 mb-2">{isRtl ? 'ملاحظات مهمة:' : 'Important Notes:'}</p>
                 <ul className="text-xs text-slate-500 space-y-1">
                   <li>{isRtl ? '• كل كوبون يُستخدم مرة واحدة فقط' : '• Each coupon can only be used once'}</li>
-                  <li>{isRtl ? '• الكوبونات تنتهي صلاحيتها في نهاية يوليو 2026' : '• Coupons expire at end of July 2026'}</li>
+                  <li>{isRtl ? '• الكوبونات تنتهي صلاحيتها في تاريخ الانتهاء المحدد لها' : '• Coupons expire on their specified expiration date'}</li>
                   <li>{isRtl ? '• الكوبون مرتبط بمادة دراسية واحدة' : '• Each coupon unlocks one specific course'}</li>
                   <li>{isRtl ? '• لا يمكن نقل الكوبون لطالب آخر' : '• Coupons cannot be transferred to another student'}</li>
                 </ul>
               </div>
+              </div>
             </div>
+          </div>
+        )}
+
+        {/* Active Codes Section */}
+        {user && (
+          <div className="mt-12">
+            <h2 className="text-lg font-bold text-white mb-4">
+              {isRtl ? 'الكوبونات المفعلة الخاصة بك' : 'Your Redeemed Coupons'}
+            </h2>
+            {studentCoupons.length === 0 ? (
+              <div className="p-6 bg-slate-900/40 border border-slate-800 rounded-2xl text-center text-sm text-slate-500">
+                {isRtl ? 'لا توجد كوبونات مفعلة حتى الآن' : 'No redeemed coupons yet'}
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {studentCoupons.map((coupon, idx) => {
+                  const endsAt = coupon.expiresAt 
+                    ? new Date(coupon.expiresAt).toLocaleDateString(isRtl ? 'ar-JO' : 'en-US', { dateStyle: 'long' })
+                    : (isRtl ? 'غير محدد' : 'Not specified');
+                  
+                  return (
+                    <div key={idx} className="p-4 bg-slate-900 border border-slate-800 rounded-2xl flex items-center justify-between gap-4">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <BookOpen className="h-4 w-4 text-brand-500 shrink-0" />
+                          <h3 className="text-sm font-bold text-white truncate">
+                            {isRtl ? coupon.course?.titleAr : coupon.course?.titleEn}
+                          </h3>
+                        </div>
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-400">
+                          <span className="font-mono text-slate-300">{coupon.code}</span>
+                          <span className="flex items-center gap-1">
+                            <Calendar className="h-3 w-3" />
+                            {isRtl ? `ينتهي في: ${endsAt}` : `Ends at: ${endsAt}`}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-3xs font-bold uppercase tracking-wider shrink-0">
+                        {isRtl ? 'مفعل' : 'Active'}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         )}
       </main>

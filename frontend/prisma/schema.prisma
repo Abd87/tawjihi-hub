@@ -193,6 +193,7 @@ model Coupon {
   usedById   String?
   usedBy     User?     @relation("UsedCoupons", fields: [usedById], references: [id])
   usedAt     DateTime?
+  expiresAt  DateTime?
   
   createdAt  DateTime  @default(now())
 
