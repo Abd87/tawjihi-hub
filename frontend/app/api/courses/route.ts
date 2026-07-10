@@ -6,7 +6,16 @@ export const revalidate = 60;
 export async function GET() {
   try {
     const courses = await prisma.course.findMany({
-      include: { teacher: true, liveSessions: true },
+      include: { 
+        teacher: true, 
+        liveSessions: true,
+        _count: {
+          select: {
+            lessons: true,
+            exams: true
+          }
+        }
+      },
     });
 
     return NextResponse.json({ courses });
