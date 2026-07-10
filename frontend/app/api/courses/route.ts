@@ -1,10 +1,31 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
+import jwt from 'jsonwebtoken';
+import { cookies } from 'next/headers';
 
-export const revalidate = 60;
+export const dynamic = 'force-dynamic';
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    // 1. Get user from token if available
+    const authHeader = request.headers.get('authorization');
+    const token = authHeader?.split(' ')[1] || cookies().get('token')?.value;
+    
+    let userId = null;
+    let userRole = 'STUDENT';
+
+    if (token) {
+      try {
+        const secret = process.env.JWT_SECRET || 'tawjihi-hub-secret-key-for-jwt-2024';
+        const decoded = jwt.verify(token, secret) as any;
+        userId = decoded.userId;
+        userRole = decoded.role;
+      } catch (e) {
+        console.error('Invalid token during courses fetch');
+      }
+    }
+
+    // 2. Fetch all courses
     const coursesRaw = await prisma.course.findMany({
       include: { 
         teacher: true, 
@@ -26,10 +47,32 @@ export async function GET() {
       },
     });
 
-    const courses = coursesRaw.map(c => ({
-      ...c,
-      lessons: c.units.flatMap(u => u.lessons)
-    }));
+    // 3. Fetch user enrollments if student
+    let enrolledCourseIds = new Set<string>();
+    if (userId && userRole === 'STUDENT') {
+      const enrollments = await prisma.enrollment.findMany({
+        where: { studentId: userId },
+        select: { courseId: true }
+      });
+      enrollments.forEach(e => enrolledCourseIds.add(e.courseId));
+    }
+
+    // 4. Map and apply lock logic
+    const courses = coursesRaw.map(c => {
+      // Determine effective lock status
+      let isLocked = c.locked;
+      if (userRole === 'ADMIN' || userRole === 'TEACHER') {
+        isLocked = false; // Admins and teachers bypass locks
+      } else if (enrolledCourseIds.has(c.id)) {
+        isLocked = false; // Enrolled students bypass locks
+      }
+
+      return {
+        ...c,
+        locked: isLocked, // Override DB lock with effective lock
+        lessons: c.units.flatMap(u => u.lessons)
+      };
+    });
 
     return NextResponse.json({ courses });
   } catch (error) {
