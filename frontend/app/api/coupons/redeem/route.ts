@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     }
 
     // Update coupon and create enrollment
-    const result = await prisma.$transaction(async (tx) => {
+    const result = await prisma.$transaction(async (tx: any) => {
       const updatedCoupon = await tx.coupon.update({
         where: { id: coupon.id },
         data: {
