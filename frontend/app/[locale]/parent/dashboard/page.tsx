@@ -313,20 +313,48 @@ export default function ParentDashboardPage() {
               </div>
             </div>
 
-            {/* Overall progress bar */}
-            <div className="mt-5">
-              <div className="flex justify-between text-xs text-slate-500 mb-1.5">
-                <span>{isAr ? 'التقدم الكلي في المقررات' : 'Overall course completion'}</span>
-                <span className="font-bold text-teal-400">{overallProgress}%</span>
-              </div>
-              <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full transition-all duration-700"
-                  style={{ width: `${overallProgress}%` }}
-                />
-              </div>
+            {/* Overall progress ring (replaces bar) */}
+            <div className="hidden sm:block absolute -end-6 -bottom-10 opacity-20 pointer-events-none">
+              <svg className="w-64 h-64" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" stroke="currentColor" strokeWidth="8" fill="none" className="text-teal-500" strokeDasharray="251.2" strokeDashoffset={251.2 - (251.2 * overallProgress) / 100} />
+              </svg>
             </div>
           </div>
+        )}
+
+        {/* ── Actionable Insights / Recommendations ── */}
+        {student && (
+          <section className="mb-8">
+            <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+               <AlertCircle className="h-5 w-5 text-amber-400" />
+               {isAr ? 'توصيات وملاحظات' : 'Recommendations'}
+            </h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {overallProgress < 20 && courses.length > 0 ? (
+                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 border-s-4 border-s-amber-500">
+                  <p className="text-sm font-semibold text-white mb-1">{isAr ? 'تحفيز إضافي مطلوب' : 'Extra motivation needed'}</p>
+                  <p className="text-xs text-slate-400">{isAr ? 'الطالب في بداية رحلته، يحتاج للتشجيع للبدء في إنهاء الدروس.' : 'Student is just starting out. Needs encouragement to begin lessons.'}</p>
+                </div>
+              ) : (
+                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 border-s-4 border-s-teal-500">
+                  <p className="text-sm font-semibold text-white mb-1">{isAr ? 'تقدم ممتاز' : 'Great Progress'}</p>
+                  <p className="text-xs text-slate-400">{isAr ? 'الطالب مستمر في حضور الدروس بشكل جيد.' : 'The student is consistently taking lessons.'}</p>
+                </div>
+              )}
+              {quizAttempts.some(a => (a.score / a.maxScore) < 0.6) && (
+                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 border-s-4 border-s-red-500">
+                  <p className="text-sm font-semibold text-white mb-1">{isAr ? 'مراجعة للاختبارات' : 'Review Quizzes'}</p>
+                  <p className="text-xs text-slate-400">{isAr ? 'بعض الاختبارات درجاتها منخفضة. يرجى متابعة دراسة بنك الأخطاء.' : 'Some quiz scores are low. Please review the mistake bank.'}</p>
+                </div>
+              )}
+              {quizAttempts.length > 0 && quizAttempts.some(a => (a.score / a.maxScore) > 0.9) && (
+                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 border-s-4 border-s-blue-500">
+                  <p className="text-sm font-semibold text-white mb-1">{isAr ? 'أداء مبهر في الاختبارات' : 'Impressive Quiz Performance'}</p>
+                  <p className="text-xs text-slate-400">{isAr ? 'حصل الطالب على درجات عالية في اختباراته الأخيرة.' : 'The student achieved high marks in recent quizzes.'}</p>
+                </div>
+              )}
+            </div>
+          </section>
         )}
 
         {/* ── Course Progress Grid ── */}

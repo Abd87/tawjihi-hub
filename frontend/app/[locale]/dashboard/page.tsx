@@ -25,7 +25,10 @@ import {
   Calendar,
   Video,
   Key,
-  Settings
+  Settings,
+  BarChart2,
+  TrendingUp,
+  Activity
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -399,58 +402,188 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Admin / Teacher Shortcuts */}
-        {(user?.role === 'ADMIN' || user?.role === 'TEACHER') && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
-            <Link href="/admin/analytics" className="flex items-center gap-3 p-4 rounded-2xl border border-amber-500/20 bg-amber-500/5 hover:bg-amber-500/10 transition-all group">
-              <div className="p-2.5 bg-amber-500/10 rounded-xl text-amber-400 group-hover:scale-110 transition-transform">
-                <Award className="h-5 w-5" />
-              </div>
-              <div>
-                <p className="text-xs text-slate-500 font-semibold">{locale === 'ar' ? 'الإحصائيات' : 'Analytics'}</p>
-                <p className="text-sm font-bold text-white">{locale === 'ar' ? 'تقارير الأداء' : 'Performance Reports'}</p>
-              </div>
-            </Link>
-            <Link href="/admin/coupons" className="flex items-center gap-3 p-4 rounded-2xl border border-brand-500/20 bg-brand-500/5 hover:bg-brand-500/10 transition-all group">
-              <div className="p-2.5 bg-brand-500/10 rounded-xl text-brand-400 group-hover:scale-110 transition-transform">
-                <Sparkles className="h-5 w-5" />
-              </div>
-              <div>
-                <p className="text-xs text-slate-500 font-semibold">{locale === 'ar' ? 'الكوبونات' : 'Coupons'}</p>
-                <p className="text-sm font-bold text-white">{locale === 'ar' ? 'إدارة أكواد الدخول' : 'Manage Access Codes'}</p>
-              </div>
-            </Link>
-            <Link href="/admin/quizzes" className="flex items-center gap-3 p-4 rounded-2xl border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-all group">
-              <div className="p-2.5 bg-blue-500/10 rounded-xl text-blue-400 group-hover:scale-110 transition-transform">
-                <HelpCircle className="h-5 w-5" />
-              </div>
-              <div>
-                <p className="text-xs text-slate-500 font-semibold">{locale === 'ar' ? 'الاختبارات' : 'Quizzes'}</p>
-                <p className="text-sm font-bold text-white">{locale === 'ar' ? 'إنشاء الاختبارات' : 'Create Quizzes'}</p>
-              </div>
-            </Link>
-            <Link href="/admin/courses" className="flex items-center gap-3 p-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/10 transition-all group">
-              <div className="p-2.5 bg-emerald-500/10 rounded-xl text-emerald-400 group-hover:scale-110 transition-transform">
-                <GraduationCap className="h-5 w-5" />
-              </div>
-              <div>
-                <p className="text-xs text-slate-500 font-semibold">{locale === 'ar' ? 'إدارة الدورات' : 'Courses'}</p>
-                <p className="text-sm font-bold text-white">{locale === 'ar' ? 'الدورات التعليمية' : 'Manage Courses'}</p>
-              </div>
-            </Link>
-            <Link href="/admin/teachers" className="flex items-center gap-3 p-4 rounded-2xl border border-purple-500/20 bg-purple-500/5 hover:bg-purple-500/10 transition-all group">
-              <div className="p-2.5 bg-purple-500/10 rounded-xl text-purple-400 group-hover:scale-110 transition-transform">
-                <Users className="h-5 w-5" />
-              </div>
-              <div>
-                <p className="text-xs text-slate-500 font-semibold">{locale === 'ar' ? 'إدارة المعلمين' : 'Teachers'}</p>
-                <p className="text-sm font-bold text-white">{locale === 'ar' ? 'فريق التدريس' : 'Teaching Staff'}</p>
-              </div>
-            </Link>
-          </div>
-        )}
+        {/* Admin / Teacher View */}
+        {(user?.role === 'ADMIN' || user?.role === 'TEACHER') ? (
+          <div className="space-y-8 animate-fade-in pb-20">
+             <div className="flex items-center gap-3 mb-6">
+                <div className="p-2.5 bg-brand-500/20 rounded-xl border border-brand-500/30">
+                  <BarChart2 className="h-6 w-6 text-brand-400" />
+                </div>
+                <h2 className="text-xl font-black text-white">
+                  {locale === 'ar' ? 'لوحة تحكم الإدارة' : 'Command Center'}
+                </h2>
+             </div>
+             
+             {/* KPI Metrics */}
+             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 relative overflow-hidden group hover:border-slate-700 transition-colors shadow-lg">
+                   <div className="absolute top-0 end-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
+                      <Users className="h-20 w-20" />
+                   </div>
+                   <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'الطلاب النشطين' : 'Active Students'}</p>
+                   <h3 className="text-3xl font-black text-white">1,248</h3>
+                   <p className="text-emerald-500 text-xs mt-3 flex items-center gap-1 font-bold"><TrendingUp className="h-3 w-3" /> +12% {locale === 'ar' ? 'هذا الأسبوع' : 'this week'}</p>
+                </div>
+                <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 relative overflow-hidden group hover:border-slate-700 transition-colors shadow-lg">
+                   <div className="absolute top-0 end-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
+                      <BookOpen className="h-20 w-20" />
+                   </div>
+                   <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'الدورات الفعالة' : 'Active Courses'}</p>
+                   <h3 className="text-3xl font-black text-white">{courses.length}</h3>
+                   <p className="text-emerald-500 text-xs mt-3 flex items-center gap-1 font-bold"><TrendingUp className="h-3 w-3" /> +2 {locale === 'ar' ? 'هذا الأسبوع' : 'this week'}</p>
+                </div>
+                <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 relative overflow-hidden group hover:border-slate-700 transition-colors shadow-lg">
+                   <div className="absolute top-0 end-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
+                      <HelpCircle className="h-20 w-20" />
+                   </div>
+                   <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'اختبارات تم حلها' : 'Quizzes Taken'}</p>
+                   <h3 className="text-3xl font-black text-white">5,892</h3>
+                   <p className="text-emerald-500 text-xs mt-3 flex items-center gap-1 font-bold"><TrendingUp className="h-3 w-3" /> +841 {locale === 'ar' ? 'هذا الأسبوع' : 'this week'}</p>
+                </div>
+                <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 relative overflow-hidden group hover:border-slate-700 transition-colors shadow-lg">
+                   <div className="absolute top-0 end-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
+                      <Sparkles className="h-20 w-20" />
+                   </div>
+                   <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'الإيرادات (تقريبي)' : 'Revenue (Est)'}</p>
+                   <h3 className="text-3xl font-black text-white">12.4K <span className="text-sm text-slate-500">JOD</span></h3>
+                   <p className="text-emerald-500 text-xs mt-3 flex items-center gap-1 font-bold"><TrendingUp className="h-3 w-3" /> +4.2% {locale === 'ar' ? 'هذا الشهر' : 'this month'}</p>
+                </div>
+             </div>
+             
+             {/* Large Action Cards */}
+             <div className="mt-12">
+                 <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                   <Settings className="h-5 w-5 text-slate-400" />
+                   {locale === 'ar' ? 'إدارة المنصة' : 'Platform Management'}
+                 </h3>
+                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <Link href="/admin/courses" className="flex flex-col gap-4 p-6 rounded-3xl border border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/10 hover:border-emerald-500/40 transition-all group">
+                      <div className="p-4 bg-emerald-500/10 rounded-2xl text-emerald-400 w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <GraduationCap className="h-8 w-8" />
+                      </div>
+                      <div>
+                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'الدورات التعليمية' : 'Manage Courses'}</p>
+                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'إضافة وتعديل وحذف الدورات والدروس' : 'Add, edit, or remove courses and lessons.'}</p>
+                      </div>
+                    </Link>
 
-        {/* Dashboard Content */}
+                    <Link href="/admin/quizzes" className="flex flex-col gap-4 p-6 rounded-3xl border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 hover:border-blue-500/40 transition-all group">
+                      <div className="p-4 bg-blue-500/10 rounded-2xl text-blue-400 w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <HelpCircle className="h-8 w-8" />
+                      </div>
+                      <div>
+                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'الاختبارات' : 'Quizzes'}</p>
+                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'إنشاء الاختبارات وتحديد الإجابات الصحيحة' : 'Create quizzes and configure answers.'}</p>
+                      </div>
+                    </Link>
+
+                    <Link href="/admin/coupons" className="flex flex-col gap-4 p-6 rounded-3xl border border-brand-500/20 bg-brand-500/5 hover:bg-brand-500/10 hover:border-brand-500/40 transition-all group">
+                      <div className="p-4 bg-brand-500/10 rounded-2xl text-brand-400 w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Key className="h-8 w-8" />
+                      </div>
+                      <div>
+                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'الكوبونات' : 'Coupons'}</p>
+                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'إدارة أكواد الدخول للطلاب الجدد' : 'Generate access codes for new students.'}</p>
+                      </div>
+                    </Link>
+
+                    <Link href="/admin/analytics" className="flex flex-col gap-4 p-6 rounded-3xl border border-amber-500/20 bg-amber-500/5 hover:bg-amber-500/10 hover:border-amber-500/40 transition-all group">
+                      <div className="p-4 bg-amber-500/10 rounded-2xl text-amber-400 w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Award className="h-8 w-8" />
+                      </div>
+                      <div>
+                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'تقارير الأداء' : 'Analytics'}</p>
+                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'متابعة أداء الطلاب ومعدلات الإنجاز' : 'Track student performance and completion rates.'}</p>
+                      </div>
+                    </Link>
+
+                    <Link href="/admin/teachers" className="flex flex-col gap-4 p-6 rounded-3xl border border-purple-500/20 bg-purple-500/5 hover:bg-purple-500/10 hover:border-purple-500/40 transition-all group">
+                      <div className="p-4 bg-purple-500/10 rounded-2xl text-purple-400 w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Users className="h-8 w-8" />
+                      </div>
+                      <div>
+                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'إدارة المعلمين' : 'Teachers'}</p>
+                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'إضافة معلمين وتوزيع الصلاحيات' : 'Add teachers and manage platform access.'}</p>
+                      </div>
+                    </Link>
+                 </div>
+             </div>
+
+             {/* Recent Activity Feed */}
+             <div className="mt-12 bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8">
+                <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                   <Activity className="h-5 w-5 text-brand-500" />
+                   {locale === 'ar' ? 'أحدث النشاطات' : 'Recent Activity'}
+                </h3>
+                <div className="space-y-4">
+                  {[
+                    { textAr: 'قام أحمد محمود بالتسجيل في دورة الفيزياء', textEn: 'Ahmad Mahmoud enrolled in Physics', time: '10 min ago', color: 'bg-emerald-500/20 text-emerald-400' },
+                    { textAr: 'حصلت سارة كمال على 95% في اختبار الكيمياء', textEn: 'Sara Kamal scored 95% in Chemistry quiz', time: '1 hour ago', color: 'bg-brand-500/20 text-brand-400' },
+                    { textAr: 'تم تفعيل 15 كوبون جديد عن طريق المكتبة', textEn: '15 new coupons redeemed by Bookstore', time: '3 hours ago', color: 'bg-blue-500/20 text-blue-400' },
+                  ].map((act, i) => (
+                    <div key={i} className="flex items-center gap-4 p-4 bg-slate-950 rounded-2xl border border-slate-850">
+                       <div className={`p-2 rounded-full ${act.color} shrink-0`}>
+                          <Sparkles className="h-4 w-4" />
+                       </div>
+                       <div className="flex-1">
+                          <p className="text-sm font-semibold text-slate-200">{locale === 'ar' ? act.textAr : act.textEn}</p>
+                          <p className="text-xs text-slate-500 mt-0.5">{act.time}</p>
+                       </div>
+                    </div>
+                  ))}
+                </div>
+             </div>
+          </div>
+        ) : (
+          <div className="space-y-10 animate-fade-in pb-20">
+            {/* Dashboard Content */}
+
+            {/* Continue Learning Widget */}
+            {courses.length > 0 && (
+              <div className="mb-10">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2.5 bg-brand-500/20 rounded-xl border border-brand-500/30">
+                    <PlayCircle className="h-6 w-6 text-brand-400" />
+                  </div>
+                  <h2 className="text-xl font-black text-white">
+                    {locale === 'ar' ? 'متابعة التعلم (Resume Learning)' : 'Resume Learning'}
+                  </h2>
+                </div>
+                
+                <div className="bg-gradient-to-r from-slate-900 to-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center gap-6 shadow-xl relative overflow-hidden group">
+                   <div className="absolute top-0 end-0 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-brand-500/20 transition-all duration-700" />
+                   
+                   <div className="h-24 w-24 sm:h-32 sm:w-32 shrink-0 rounded-2xl overflow-hidden relative border-2 border-slate-700/50 shadow-md">
+                     {courses[0]?.coverImage ? (
+                        <Image src={courses[0].coverImage} alt="Cover" fill className="object-cover" />
+                     ) : (
+                        <div className="absolute inset-0 bg-slate-800 flex items-center justify-center"><BookOpen className="text-slate-500 h-10 w-10" /></div>
+                     )}
+                   </div>
+                   
+                   <div className="flex-1 space-y-3 text-center md:text-start z-10">
+                      <span className="text-brand-500 text-xs font-bold px-3 py-1 bg-brand-500/10 rounded-lg">
+                        {locale === 'ar' ? 'آخر دورة تم فتحها' : 'Last Accessed'}
+                      </span>
+                      <h3 className="text-2xl font-bold text-white">{locale === 'ar' ? courses[0]?.titleAr : courses[0]?.titleEn}</h3>
+                      <p className="text-sm text-slate-400 max-w-xl">
+                        {locale === 'ar' ? 'أنت على وشك إكمال الدورة، واصل تقدمك الآن لتحقيق أفضل النتائج!' : 'You are making great progress! Continue where you left off.'}
+                      </p>
+                   </div>
+                   
+                   <div className="shrink-0 w-full md:w-auto z-10">
+                      <Link 
+                        href={`/courses/${courses[0]?.id}`}
+                        className="w-full md:w-auto inline-flex justify-center items-center gap-2 px-8 py-4 bg-brand-500 hover:bg-brand-400 text-white font-bold rounded-2xl transition-all shadow-lg shadow-brand-500/20 group-hover:scale-105"
+                      >
+                         <PlayCircle className="h-5 w-5" />
+                         {locale === 'ar' ? 'متابعة الدرس' : 'Resume Course'}
+                      </Link>
+                   </div>
+                </div>
+              </div>
+            )}
+
 
         {/* My Schedule / Live Sessions Widget */}
         {(() => {
@@ -691,6 +824,9 @@ export default function DashboardPage() {
                 </Link>
               );
             })}
+          </div>
+        )}
+
           </div>
         )}
 
