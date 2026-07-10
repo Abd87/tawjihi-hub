@@ -99,7 +99,7 @@ const QUICK_ACCOUNTS = [
 // Role → redirect path
 // ---------------------------------------------------------------------------
 function getRedirectPath(role: string, locale: string): string {
-  if (role === 'ADMIN' || role === 'TEACHER') return `/${locale}/admin/courses`;
+  if (role === 'TEACHER') return `/${locale}/admin/courses`;
   if (role === 'PARENT') return `/${locale}/parent/dashboard`;
   return `/${locale}/dashboard`;
 }

@@ -41,7 +41,7 @@ export default function RoleSimulator() {
         window.dispatchEvent(new Event('local-storage-update'));
         
         let redirectPath = `/${currentLocale}/dashboard`;
-        if (targetRole === 'ADMIN' || targetRole === 'TEACHER') redirectPath = `/${currentLocale}/admin/courses`;
+        if (targetRole === 'TEACHER') redirectPath = `/${currentLocale}/admin/courses`;
         if (targetRole === 'PARENT') redirectPath = `/${currentLocale}/parent/dashboard`;
         
         window.location.href = redirectPath;

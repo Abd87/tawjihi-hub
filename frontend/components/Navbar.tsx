@@ -87,7 +87,7 @@ export default function Navbar() {
         window.dispatchEvent(new Event('local-storage-update'));
         
         let redirectPath = `/${currentLocale}/dashboard`;
-        if (targetRole === 'ADMIN' || targetRole === 'TEACHER') redirectPath = `/${currentLocale}/admin/courses`;
+        if (targetRole === 'TEACHER') redirectPath = `/${currentLocale}/admin/courses`;
         if (targetRole === 'PARENT') redirectPath = `/${currentLocale}/parent/dashboard`;
         
         window.location.href = redirectPath;
@@ -283,7 +283,7 @@ export default function Navbar() {
                   <span>{currentLocale === 'ar' ? 'الإعدادات' : 'Settings'}</span>
                 </Link>
                 <Link 
-                  href={isParent ? '/parent/dashboard' : (isAdminOrTeacher ? '/admin/courses' : '/dashboard')} 
+                  href={isParent ? '/parent/dashboard' : (isTeacher ? '/admin/courses' : '/dashboard')} 
                   className="inline-flex items-center gap-1.5 justify-center px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 shadow-lg shadow-brand-500/25 hover:shadow-brand-500/35 transition-all"
                 >
                   <LayoutDashboard className="h-4 w-4" />
@@ -424,7 +424,7 @@ export default function Navbar() {
                     </>
                   )}
                   <Link
-                    href={isParent ? '/parent/dashboard' : (isAdminOrTeacher ? '/admin/courses' : '/dashboard')}
+                    href={isParent ? '/parent/dashboard' : (isTeacher ? '/admin/courses' : '/dashboard')}
                     className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-brand-500 to-amber-600"
                   >
                     <LayoutDashboard className="h-4 w-4" />

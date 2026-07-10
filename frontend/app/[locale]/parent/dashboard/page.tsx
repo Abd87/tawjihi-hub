@@ -138,7 +138,7 @@ export default function ParentDashboardPage() {
 
     if (u.role !== 'PARENT') {
       // Redirect based on role
-      if (u.role === 'ADMIN' || u.role === 'TEACHER') {
+      if (u.role === 'TEACHER') {
         window.location.href = `/${locale}/admin/courses`;
       } else {
         window.location.href = `/${locale}/dashboard`;
