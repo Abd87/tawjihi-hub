@@ -188,7 +188,7 @@ export default function AdminCouponsPage() {
       } catch (err) {
         // Offline / Unreachable fallback
         // ── BTEC Stream (4 Ministry subjects) ──────────────────────────────
-        const allMockCourses = [
+        const allMockCourses: Course[] = [
           // BTEC mandatory subjects
           { id: 'mock-btec-arabic',   titleAr: '── مسار BTEC ── اللغة العربية', titleEn: '── BTEC ── Arabic Language', track: 'BTEC' },
           { id: 'mock-btec-english',  titleAr: 'اللغة الإنجليزية المشتركة BTEC', titleEn: 'Core English for BTEC', track: 'BTEC' },
