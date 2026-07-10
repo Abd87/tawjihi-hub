@@ -585,36 +585,41 @@ export default function DashboardPage() {
                 >
                   <div>
                     {/* Course Banner Cover */}
-                    {course.coverImage && (
-                      <div className="h-44 w-full overflow-hidden relative bg-slate-950">
+                    <div className="h-32 sm:h-36 w-full overflow-hidden relative bg-slate-950 group-hover:bg-slate-900 transition-colors duration-500">
+                      {course.coverImage ? (
                         <Image 
                           src={course.coverImage} 
                           alt={locale === 'ar' ? course.titleAr : course.titleEn} 
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
+                          className="object-cover group-hover:scale-110 group-hover:-rotate-1 transition-all duration-700 opacity-80 group-hover:opacity-100"
                         />
-                        {/* Shading overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
-                        
-                        {/* Locked overlay */}
-                        {course.locked && (
-                          <div className="absolute inset-0 bg-slate-950/60 flex items-center justify-center" />
-                        )}
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-brand-900/20 to-slate-950 group-hover:from-brand-800/40 transition-all duration-700">
+                           <BookOpen className="h-10 w-10 text-brand-500/40 group-hover:text-brand-400 group-hover:scale-125 group-hover:rotate-6 transition-all duration-700" />
+                        </div>
+                      )}
+                      
+                      {/* Shading overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none" />
+                      
+                      {/* Locked overlay */}
+                      {course.locked && (
+                        <div className="absolute inset-0 bg-slate-950/60 flex items-center justify-center pointer-events-none" />
+                      )}
 
-                        {/* Lock badge (top-right) */}
-                        {course.locked && (
-                          <div className="absolute top-3 end-3 p-2 bg-slate-950/80 border border-slate-700 rounded-xl">
-                            <Lock className="h-4 w-4 text-slate-300" />
-                          </div>
-                        )}
+                      {/* Lock badge (top-right) */}
+                      {course.locked && (
+                        <div className="absolute top-3 end-3 p-2 bg-slate-950/80 border border-slate-700 rounded-xl pointer-events-none">
+                          <Lock className="h-4 w-4 text-slate-300" />
+                        </div>
+                      )}
 
-                        {/* Subject Tag */}
-                        <span className="absolute bottom-4 start-4 text-xs font-semibold px-2.5 py-1 rounded bg-brand-500 text-white shadow-md">
-                          {locale === 'ar' ? course.subjectAr : course.subjectEn}
-                        </span>
-                      </div>
-                    )}
+                      {/* Subject Tag */}
+                      <span className="absolute bottom-4 start-4 text-xs font-semibold px-2.5 py-1 rounded bg-brand-500 text-white shadow-md pointer-events-none">
+                        {locale === 'ar' ? course.subjectAr : course.subjectEn}
+                      </span>
+                    </div>
 
                     {/* Course Info */}
                     <div className="p-6">
