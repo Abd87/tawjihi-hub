@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/routing';
 import { useParams } from 'next/navigation';
+import PromoPopup from '@/components/PromoPopup';
 import { 
   GraduationCap, 
   LogOut, 
@@ -324,11 +325,11 @@ export default function DashboardPage() {
       
       {/* Background neon glows */}
       <div className="absolute top-[-10%] start-[-10%] w-[45vw] h-[45vw] rounded-full bg-brand-500/5 blur-[120px] pointer-events-none" />
-      <div className="absolute top-[30%] end-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-500/5 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] end-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-500/5 blur-[100px] pointer-events-none" />
 
+      <PromoPopup />
 
-
-      {/* Dashboard container */}
+      {/* Main Container */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 z-10 relative">
         <RoleSimulator />
         

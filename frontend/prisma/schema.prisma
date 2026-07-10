@@ -214,6 +214,15 @@ model Progress {
   @@map("progress")
 }
 
+model Setting {
+  id        String   @id @default("promo")
+  key       String   @unique
+  value     String   // JSON stringified value
+  updatedAt DateTime @updatedAt
+
+  @@map("settings")
+}
+
 model Comment {
   id        String   @id @default(uuid())
   content   String

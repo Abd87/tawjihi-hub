@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import Navbar from '@/components/Navbar';
+import PromoPopup from '@/components/PromoPopup';
 import { Link } from '@/i18n/routing';
 import { 
   ArrowRight, 
@@ -44,7 +45,7 @@ export default function HomePage({ params: { locale } }: PageProps) {
       <div className="absolute top-[20%] end-[-15%] w-[45vw] h-[45vw] rounded-full bg-blue-500/5 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[10%] start-[20%] w-[40vw] h-[40vw] rounded-full bg-brand-600/5 blur-[120px] pointer-events-none" />
 
-
+      <PromoPopup />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
