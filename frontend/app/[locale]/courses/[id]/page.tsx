@@ -1,0 +1,366 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { useRouter } from '@/i18n/routing';
+import { useParams } from 'next/navigation';
+import { 
+  PlayCircle, 
+  FileText, 
+  Star, 
+  Lock, 
+  CheckCircle2, 
+  Award, 
+  ArrowRight, 
+  ArrowLeft,
+  Loader2, 
+  BookOpen
+} from 'lucide-react';
+import Link from 'next/link';
+
+interface InlineQuestion {
+  id: string;
+  textAr: string;
+  textEn: string;
+  choices: { textAr: string; textEn: string; isCorrect: boolean }[];
+  explanationAr: string;
+  explanationEn: string;
+}
+
+interface Lesson {
+  id: string;
+  titleAr: string;
+  titleEn: string;
+  videoUrl: string;
+  pdfUrl?: string;
+  durationMinutes: number;
+  order: number;
+  locked: boolean;
+  questions?: InlineQuestion[];
+}
+
+interface LiveSession {
+  id: string;
+  titleAr: string;
+  titleEn: string;
+  zoomLink: string;
+  startTime: string;
+  durationMinutes: number;
+}
+
+interface Exam {
+  id: string;
+  titleAr: string;
+  titleEn: string;
+  pdfUrl: string;
+}
+
+interface Course {
+  id: string;
+  titleAr: string;
+  titleEn: string;
+  descriptionAr: string;
+  descriptionEn: string;
+  track: 'BTEC' | 'ACADEMIC';
+  semester?: 1 | 2;
+  subjectAr: string;
+  subjectEn: string;
+  teacherNameAr: string;
+  teacherNameEn: string;
+  thumbnailUrl: string;
+  coverImage?: string;
+  published: boolean;
+  locked: boolean;
+  lessons: Lesson[];
+  liveSessions?: LiveSession[];
+  exams?: Exam[];
+}
+
+export default function CourseSyllabusPage() {
+  const t = useTranslations('courses');
+  const router = useRouter();
+  const params = useParams();
+  const locale = (params?.locale as string) || 'ar';
+  const courseId = params?.id as string;
+  const isRtl = locale === 'ar';
+
+  const [loading, setLoading] = useState(true);
+  const [course, setCourse] = useState<Course | null>(null);
+  const [completedItems, setCompletedItems] = useState<string[]>([]);
+  const [authorized, setAuthorized] = useState(false);
+
+  useEffect(() => {
+    const fetchCourse = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const userStr = localStorage.getItem('user');
+        
+        if (!token || !userStr) {
+          router.replace('/login');
+          return;
+        }
+        
+        setAuthorized(true);
+
+        const res = await fetch(`/api/courses/${courseId}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        
+        if (res.ok) {
+          const found = await res.json();
+          setCourse(found);
+          
+          // Load completed items (videos and practices)
+          const completed = localStorage.getItem(`completed-items-${userStr ? JSON.parse(userStr).id : ''}-${courseId}`);
+          if (completed) {
+            setCompletedItems(JSON.parse(completed));
+          }
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourse();
+  }, [courseId, router]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center text-slate-400">
+        <Loader2 className="h-8 w-8 text-brand-500 animate-spin mb-4" />
+        <span>{isRtl ? 'جاري تحميل خطة المادة...' : 'Loading Syllabus...'}</span>
+      </div>
+    );
+  }
+
+  if (!course) {
+    return (
+      <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center text-slate-400 p-6">
+        <h3 className="text-lg font-bold text-slate-200">Course Not Found</h3>
+        <Link href="/dashboard" className="mt-4 px-4 py-2 bg-brand-500 text-white rounded-xl text-sm font-semibold">
+          Back to Dashboard
+        </Link>
+      </div>
+    );
+  }
+
+  // Course lock gate
+  if (course.locked) {
+    return (
+      <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center text-center px-4">
+        <div className="p-6 bg-brand-500/10 border border-brand-500/20 rounded-3xl mb-6">
+          <Lock className="h-16 w-16 text-brand-500" />
+        </div>
+        <h1 className="text-2xl font-black text-white mb-3">
+          {isRtl ? 'هذه الدورة مقفلة حالياً' : 'This course is currently locked'}
+        </h1>
+        <p className="text-slate-400 mb-6">
+          {isRtl ? 'يرجى التواصل مع إدارة المنصة' : 'Please contact platform administration'}
+        </p>
+        <Link href="/dashboard" className="px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl transition-all">
+          {isRtl ? 'العودة للوحة التحكم' : 'Return to Dashboard'}
+        </Link>
+      </div>
+    );
+  }
+
+  const courseTitle = isRtl ? course.titleAr : course.titleEn;
+  const courseDesc = isRtl ? course.descriptionAr : course.descriptionEn;
+
+  // Calculate mastery
+  let totalItems = 0;
+  course.lessons.forEach(l => {
+    if (l.videoUrl) totalItems++;
+    if (l.pdfUrl) totalItems++;
+    if (l.questions && l.questions.length > 0) totalItems++;
+  });
+  const masteredItems = completedItems.length;
+  const progressPercent = totalItems > 0 ? Math.round((masteredItems / totalItems) * 100) : 0;
+
+  // Find first uncompleted lesson for "Up Next"
+  const upNextLesson = course.lessons.find(l => {
+    const vidKey = `${l.id}-video`;
+    const pracKey = `${l.id}-practice`;
+    const hasVid = !!l.videoUrl;
+    const hasPrac = l.questions && l.questions.length > 0;
+    
+    if (hasVid && !completedItems.includes(vidKey)) return true;
+    if (hasPrac && !completedItems.includes(pracKey)) return true;
+    return false;
+  }) || course.lessons[0];
+
+  const upNextLink = upNextLesson 
+    ? (!completedItems.includes(`${upNextLesson.id}-video`) && upNextLesson.videoUrl
+        ? `/${locale}/courses/${courseId}/video/${upNextLesson.id}`
+        : `/${locale}/courses/${courseId}/practice/${upNextLesson.id}`)
+    : '#';
+
+  return (
+    <div className="min-h-screen bg-[#020617] pt-24 pb-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Header Breadcrumb */}
+        <div className="flex items-center gap-2 text-sm text-slate-400 mb-8">
+          <Link href="/dashboard" className="hover:text-brand-500 transition-colors">
+            {isRtl ? 'لوحة التحكم' : 'Dashboard'}
+          </Link>
+          <span className="opacity-50">/</span>
+          <span className="text-white font-medium">{courseTitle}</span>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          
+          {/* LEFT SIDEBAR: Mastery & Info */}
+          <div className="lg:col-span-4 space-y-8">
+            <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-xl">
+              <div className="w-16 h-16 bg-gradient-to-br from-brand-500 to-amber-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-brand-500/20">
+                <BookOpen className="h-8 w-8 text-white" />
+              </div>
+              
+              <h1 className="text-2xl sm:text-3xl font-black text-white mb-3 leading-tight">
+                {courseTitle}
+              </h1>
+              <p className="text-sm text-slate-400 leading-relaxed mb-8">
+                {courseDesc || (isRtl ? 'لا يوجد وصف متاح.' : 'No description available.')}
+              </p>
+
+              {/* Progress Bar */}
+              <div className="space-y-3 mb-8">
+                <div className="flex justify-between items-end">
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                    {isRtl ? 'إتقان المادة' : 'Course Mastery'}
+                  </span>
+                  <span className="text-lg font-black text-brand-500">{progressPercent}%</span>
+                </div>
+                <div className="h-3 w-full bg-slate-950 rounded-full overflow-hidden border border-slate-800">
+                  <div 
+                    className="h-full bg-gradient-to-r from-brand-500 to-amber-500 rounded-full transition-all duration-1000"
+                    style={{ width: `${progressPercent}%` }}
+                  />
+                </div>
+                <p className="text-xs text-slate-500 text-center">
+                  {masteredItems} {isRtl ? 'من' : 'out of'} {totalItems} {isRtl ? 'دروس مكتملة' : 'items mastered'}
+                </p>
+              </div>
+
+              {/* Up Next Button */}
+              {totalItems > 0 && progressPercent < 100 && (
+                <Link 
+                  href={upNextLink}
+                  className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-2xl transition-all shadow-lg shadow-brand-500/25 group"
+                >
+                  <PlayCircle className="h-5 w-5" />
+                  <span>{isRtl ? 'متابعة التعلم' : 'Up Next'}</span>
+                  {isRtl ? <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" /> : <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />}
+                </Link>
+              )}
+            </div>
+          </div>
+
+          {/* RIGHT SIDEBAR: Syllabus List */}
+          <div className="lg:col-span-8">
+            <div className="mb-6">
+              <h2 className="text-xl font-black text-white">
+                {isRtl ? 'خطة المادة (Syllabus)' : 'Course Syllabus'}
+              </h2>
+            </div>
+
+            <div className="space-y-6">
+              {course.lessons.map((lesson, idx) => {
+                const isLessonLocked = lesson.locked;
+                
+                return (
+                  <div key={lesson.id} className="bg-slate-900/50 border border-slate-800 rounded-2xl overflow-hidden">
+                    {/* Lesson Header */}
+                    <div className="px-6 py-5 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <div className="h-8 w-8 rounded-full bg-slate-950 border border-slate-800 flex items-center justify-center text-sm font-bold text-slate-400">
+                          {idx + 1}
+                        </div>
+                        <h3 className="text-lg font-bold text-white">
+                          {isRtl ? lesson.titleAr : lesson.titleEn}
+                        </h3>
+                      </div>
+                      {isLessonLocked && <Lock className="h-5 w-5 text-slate-500" />}
+                    </div>
+
+                    {/* Items List */}
+                    <div className="divide-y divide-slate-800/50">
+                      
+                      {/* 1. Video Item */}
+                      {lesson.videoUrl && (
+                        <Link 
+                          href={isLessonLocked ? '#' : `/${locale}/courses/${courseId}/video/${lesson.id}`}
+                          className={`flex items-center gap-4 px-6 py-4 transition-colors ${
+                            isLessonLocked ? 'opacity-50 cursor-not-allowed' : 'hover:bg-slate-800/50'
+                          }`}
+                        >
+                          <div className={`shrink-0 ${completedItems.includes(`${lesson.id}-video`) ? 'text-emerald-500' : 'text-brand-500'}`}>
+                            {completedItems.includes(`${lesson.id}-video`) ? <CheckCircle2 className="h-6 w-6" /> : <PlayCircle className="h-6 w-6" />}
+                          </div>
+                          <div className="flex-1">
+                            <h4 className={`font-semibold ${completedItems.includes(`${lesson.id}-video`) ? 'text-slate-300' : 'text-blue-400'}`}>
+                              {isRtl ? 'فيديو الشرح' : 'Instructional Video'}
+                            </h4>
+                            <p className="text-xs text-slate-500 mt-0.5">{lesson.durationMinutes} {isRtl ? 'دقيقة' : 'minutes'}</p>
+                          </div>
+                        </Link>
+                      )}
+
+                      {/* 2. PDF Item */}
+                      {lesson.pdfUrl && (
+                        <a 
+                          href={isLessonLocked ? '#' : lesson.pdfUrl}
+                          target={isLessonLocked ? '_self' : '_blank'}
+                          rel="noreferrer"
+                          className={`flex items-center gap-4 px-6 py-4 transition-colors ${
+                            isLessonLocked ? 'opacity-50 cursor-not-allowed' : 'hover:bg-slate-800/50'
+                          }`}
+                        >
+                          <div className="shrink-0 text-slate-400">
+                            <FileText className="h-6 w-6" />
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-slate-300">
+                              {isRtl ? 'ملف المادة (PDF)' : 'Study Material (PDF)'}
+                            </h4>
+                            <p className="text-xs text-slate-500 mt-0.5">{isRtl ? 'ملخص وملاحظات' : 'Summary and notes'}</p>
+                          </div>
+                        </a>
+                      )}
+
+                      {/* 3. Practice Item */}
+                      {lesson.questions && lesson.questions.length > 0 && (
+                        <Link 
+                          href={isLessonLocked ? '#' : `/${locale}/courses/${courseId}/practice/${lesson.id}`}
+                          className={`flex items-center gap-4 px-6 py-4 transition-colors ${
+                            isLessonLocked ? 'opacity-50 cursor-not-allowed' : 'hover:bg-slate-800/50'
+                          }`}
+                        >
+                          <div className={`shrink-0 ${completedItems.includes(`${lesson.id}-practice`) ? 'text-emerald-500' : 'text-amber-500'}`}>
+                            {completedItems.includes(`${lesson.id}-practice`) ? <CheckCircle2 className="h-6 w-6" /> : <Star className="h-6 w-6" />}
+                          </div>
+                          <div className="flex-1">
+                            <h4 className={`font-semibold ${completedItems.includes(`${lesson.id}-practice`) ? 'text-slate-300' : 'text-amber-400'}`}>
+                              {isRtl ? 'تمرين تفاعلي' : 'Practice Exercise'}
+                            </h4>
+                            <p className="text-xs text-slate-500 mt-0.5">
+                              {lesson.questions.length} {isRtl ? 'أسئلة' : 'questions'}
+                            </p>
+                          </div>
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,559 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { useRouter } from '@/i18n/routing';
+import { useParams } from 'next/navigation';
+import { 
+  GraduationCap, 
+  LogOut, 
+  BookOpen, 
+  PlayCircle, 
+  FileText, 
+  HelpCircle, 
+  Compass, 
+  User, 
+  Clock, 
+  Award,
+  ChevronLeft,
+  ChevronRight,
+  Loader2,
+  Sparkles,
+  Lock,
+  Users
+} from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
+
+interface Course {
+  id: string;
+  titleAr: string;
+  titleEn: string;
+  descriptionAr?: string;
+  descriptionEn?: string;
+  coverImage?: string;
+  subject: {
+    nameAr: string;
+    nameEn: string;
+  };
+  teacher: {
+    nameAr: string;
+    nameEn: string;
+  };
+  _count?: {
+    lessons: number;
+    quizzes: number;
+  };
+  // Client mock specific
+  mockProgress?: number;
+  mockLessonsCount?: number;
+  mockQuizzesCount?: number;
+  locked?: boolean;
+  semester?: 1 | 2;
+  track?: string;
+  published?: boolean;
+}
+
+export default function DashboardPage() {
+  const t = useTranslations('dashboard');
+  const navT = useTranslations('navigation');
+  const router = useRouter();
+  const params = useParams();
+  const locale = (params?.locale as string) || 'ar';
+
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<{ nameAr: string; nameEn?: string; role: string; trackType: 'ACADEMIC' | 'BTEC' } | null>(null);
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [activeSemester, setActiveSemester] = useState<1 | 2>(1);
+
+  // Fallback Mock Courses in case local PostgreSQL is offline
+  const getMockCourses = (track: 'ACADEMIC' | 'BTEC'): Course[] => {
+    if (track === 'BTEC') {
+      return [
+        {
+          id: 'mock-btec-1',
+          titleAr: 'تاريخ الأردن للتوجيهي والمهني BTEC',
+          titleEn: 'Jordan History for Grade 12 BTEC',
+          descriptionAr: 'دورة شاملة ومبسطة لشرح منهاج تاريخ الأردن المعتمد لطلبة المسار المهني والتقني.',
+          descriptionEn: 'Comprehensive guide covering historical milestones tailored for technical students.',
+          coverImage: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600&auto=format&fit=crop&q=60',
+          subject: { nameAr: 'تاريخ الأردن (المشترك)', nameEn: 'Jordan History' },
+          teacher: { nameAr: 'أ. محمد المهني', nameEn: 'Mr. Mohammad BTEC' },
+          mockLessonsCount: 12,
+          mockQuizzesCount: 6,
+          mockProgress: 45
+        },
+        {
+          id: 'mock-btec-2',
+          titleAr: 'اللغة الإنجليزية المشتركة BTEC',
+          titleEn: 'Core English for Grade 12 BTEC',
+          descriptionAr: 'منهاج اللغة الإنجليزية المشترك لتعزيز مهارات القراءة والكتابة والمحادثة المهنية.',
+          descriptionEn: 'Focus on communication, core grammar structures and vocational English writing.',
+          coverImage: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&auto=format&fit=crop&q=60',
+          subject: { nameAr: 'اللغة الإنجليزية (المشتركة)', nameEn: 'Core English' },
+          teacher: { nameAr: 'أ. رانيا شحاتة', nameEn: 'Mrs. Rania Shehata' },
+          mockLessonsCount: 15,
+          mockQuizzesCount: 5,
+          mockProgress: 75
+        },
+        {
+          id: 'mock-btec-3',
+          titleAr: 'التربية الإسلامية - المستوى الثالث',
+          titleEn: 'Islamic Studies for Grade 12 BTEC',
+          descriptionAr: 'شرح مبسط وواضح للمنهاج المقرر للتربية الإسلامية والثقافة الدينية.',
+          descriptionEn: 'Islamic concepts, jurisprudence, and ethical structures for core education.',
+          coverImage: 'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?w=600&auto=format&fit=crop&q=60',
+          subject: { nameAr: 'التربية الإسلامية (المشتركة)', nameEn: 'Islamic Studies' },
+          teacher: { nameAr: 'أ. إبراهيم خليل', nameEn: 'Mr. Ibrahim Khalil' },
+          mockLessonsCount: 10,
+          mockQuizzesCount: 4,
+          mockProgress: 15
+        }
+      ];
+    } else {
+      return [
+        {
+          id: 'mock-acad-1',
+          titleAr: 'الرياضيات العلمية - الفصل الأول',
+          titleEn: 'Scientific Calculus - Term 1',
+          descriptionAr: 'شرح مكثف وتفصيلي للنهايات والاشتقاق وتطبيقات التفاضل المتقدمة.',
+          descriptionEn: 'Advanced topics in differentiation, limits and rate of change.',
+          coverImage: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&auto=format&fit=crop&q=60',
+          subject: { nameAr: 'الرياضيات العلمية', nameEn: 'Scientific Mathematics' },
+          teacher: { nameAr: 'أ. أحمد العلمي', nameEn: 'Dr. Ahmad Academic' },
+          mockLessonsCount: 24,
+          mockQuizzesCount: 12,
+          mockProgress: 30
+        },
+        {
+          id: 'mock-acad-2',
+          titleAr: 'الفيزياء العلمية - الكهرباء والمغناطيسية',
+          titleEn: 'Scientific Physics - Electromagnetism',
+          descriptionAr: 'تغطية شاملة لقوانين كيرشوف، المجال المغناطيسي، والتيار المتردد.',
+          descriptionEn: 'Complete breakdown of electrical circuits and electromagnetic induction.',
+          coverImage: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&auto=format&fit=crop&q=60',
+          subject: { nameAr: 'الفيزياء التخصصية', nameEn: 'Advanced Physics' },
+          teacher: { nameAr: 'أ. يوسف ريان', nameEn: 'Mr. Yousef Rayan' },
+          mockLessonsCount: 20,
+          mockQuizzesCount: 10,
+          mockProgress: 10
+        },
+        {
+          id: 'mock-acad-3',
+          titleAr: 'الكيمياء التخصصية - سرعة التفاعلات',
+          titleEn: 'Advanced Chemistry - Reaction Rates',
+          descriptionAr: 'دراسة سرعة التفاعلات الكيميائية، الاتزان الديناميكي وحسابات الأحماض والقواعد.',
+          descriptionEn: 'Chemical kinetics, dynamic equilibrium, and pH calculation guides.',
+          coverImage: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop&q=60',
+          subject: { nameAr: 'الكيمياء التخصصية', nameEn: 'Advanced Chemistry' },
+          teacher: { nameAr: 'أ. سارة الكيماوي', nameEn: 'Mrs. Sara Chemistry' },
+          mockLessonsCount: 18,
+          mockQuizzesCount: 8,
+          mockProgress: 55
+        }
+      ];
+    }
+  };
+
+  // Extracted to avoid duplication between try/catch blocks
+  const computeCourseProgress = (courseList: Course[]) => {
+    return courseList.map((c: Course) => {
+      const stored = localStorage.getItem(`progress-${c.id}`);
+      if (stored) {
+        const completedIds: string[] = JSON.parse(stored);
+        const total = c.mockLessonsCount ?? c._count?.lessons ?? 1;
+        const percent = Math.round((completedIds.length / total) * 100);
+        return { ...c, mockProgress: percent };
+      }
+      return c;
+    });
+  };
+
+  useEffect(() => {
+    const fetchDashboardData = async () => {
+      const token = localStorage.getItem('token');
+      
+      if (!token) {
+        // Auth Guard check failed
+        router.replace('/login');
+        return;
+      }
+
+      // Parent role redirect
+      const cachedForRoleCheck = localStorage.getItem('user');
+      if (cachedForRoleCheck) {
+        const parsedForRoleCheck = JSON.parse(cachedForRoleCheck);
+        if (parsedForRoleCheck?.role === 'PARENT') {
+          router.replace('/parent/dashboard');
+          return;
+        }
+      }
+
+      try {
+        // 1. Fetch current profile
+        const profileRes = await fetch('http://localhost:5000/api/auth/me', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        
+        if (!profileRes.ok) {
+          throw new Error('Authentication expired');
+        }
+        
+        const profileData = await profileRes.json();
+        const activeUser = profileData.user;
+        setUser(activeUser);
+
+        // 2. Fetch track-segregated courses
+        const coursesRes = await fetch('/api/courses', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        // computeCourseProgress is defined above the useEffect (DRY)
+
+        if (coursesRes.ok) {
+          const coursesData = await coursesRes.json();
+          setCourses(computeCourseProgress(coursesData.courses));
+        } else {
+          // Fallback to local mock data if database connection error occurs
+          setCourses(computeCourseProgress(getMockCourses(activeUser.trackType)));
+        }
+
+      } catch (err: any) {
+        // Fallback for offline/unreachable server using localstorage cached credentials
+        const cachedUser = localStorage.getItem('user');
+        if (cachedUser) {
+          const parsedUser = JSON.parse(cachedUser);
+          setUser(parsedUser);
+
+          // Try admin-courses from localStorage first, else fall back to mock
+          const storedCourses = localStorage.getItem('admin-courses');
+          if (storedCourses) {
+            const allCourses = JSON.parse(storedCourses);
+            const filtered = allCourses.filter((c: any) =>
+              c.published && c.track === (parsedUser?.trackType || 'ACADEMIC')
+            );
+            setCourses(computeCourseProgress(filtered));
+          } else {
+            setCourses(computeCourseProgress(getMockCourses(parsedUser.trackType)));
+          }
+        } else {
+          localStorage.removeItem('token');
+          router.replace('/login');
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDashboardData();
+  }, [router]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    window.dispatchEvent(new Event('local-storage-update'));
+    router.replace('/login');
+  };
+
+  const toggleLanguage = () => {
+    const nextLocale = locale === 'ar' ? 'en' : 'ar';
+    router.replace('/dashboard', { locale: nextLocale });
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center text-slate-400">
+        <Loader2 className="h-8 w-8 text-brand-500 animate-spin mb-4" />
+        <span>{locale === 'ar' ? 'جاري تحميل لوحة التحكم...' : 'Loading your dashboard...'}</span>
+      </div>
+    );
+  }
+
+  const welcomeName = locale === 'ar' ? user?.nameAr : (user?.nameEn || user?.nameAr);
+  const isBtec = user?.trackType === 'BTEC';
+
+  return (
+    <div className="relative min-h-screen bg-[#020617] overflow-x-hidden font-sans pb-16 selection:bg-brand-500/30 selection:text-brand-300">
+      
+      {/* Background neon glows */}
+      <div className="absolute top-[-10%] start-[-10%] w-[45vw] h-[45vw] rounded-full bg-brand-500/5 blur-[120px] pointer-events-none" />
+      <div className="absolute top-[30%] end-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-500/5 blur-[120px] pointer-events-none" />
+
+      {/* Navigation Header */}
+      <header className="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-900 shadow-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+          
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-gradient-to-br from-brand-500 to-amber-600 rounded-xl text-white">
+              <GraduationCap className="h-5 w-5" />
+            </div>
+            <span className="text-lg font-bold text-white tracking-tight">
+              {navT('brandName')}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {/* Locale switch */}
+            <button
+              onClick={toggleLanguage}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-white hover:border-slate-600 transition-all text-xs font-semibold"
+            >
+              <span>{locale === 'ar' ? 'English' : 'العربية'}</span>
+            </button>
+
+            {/* Logout button */}
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-400 hover:bg-rose-500 hover:text-white transition-all text-xs font-semibold"
+            >
+              <LogOut className="h-3.5 w-3.5" />
+              <span>{t('logOut')}</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Dashboard container */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 z-10 relative">
+        
+        {/* Welcome Section */}
+        <div className="bg-slate-900/20 border border-slate-850 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-xl mb-10 overflow-hidden relative">
+          <div className="absolute top-0 end-0 w-32 h-32 bg-gradient-to-bl from-brand-500/10 to-transparent blur-2xl pointer-events-none rounded-full" />
+          
+          <div className="space-y-2.5">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-brand-500/20 bg-brand-500/5 text-brand-400 text-xs font-semibold">
+              <Sparkles className="h-3 w-3" />
+              <span>{t('syllabusHeader')}</span>
+            </div>
+            <h1 className="text-2xl sm:text-4xl font-extrabold text-white">
+              {t('welcomeTitle', { name: welcomeName })}
+            </h1>
+            <p className="text-sm sm:text-base text-slate-400">
+              {t('welcomeSub')}
+            </p>
+          </div>
+
+          {/* Current Track indicator badge */}
+          <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-4.5 min-w-[240px] shrink-0">
+            <span className="text-xs text-slate-500 font-semibold">{t('currentTrack')}</span>
+            <div className="flex items-center gap-3 mt-2">
+              <div className={`p-2.5 rounded-xl ${isBtec ? 'bg-brand-500/10 text-brand-400' : 'bg-blue-500/10 text-blue-400'}`}>
+                {isBtec ? <Compass className="h-5 w-5" /> : <BookOpen className="h-5 w-5" />}
+              </div>
+              <span className="text-sm sm:text-base font-bold text-white">
+                {isBtec ? t('btecBadge') : t('acadBadge')}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Admin / Teacher Shortcuts */}
+        {(user?.role === 'ADMIN' || user?.role === 'TEACHER') && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+            <Link href="/admin/analytics" className="flex items-center gap-3 p-4 rounded-2xl border border-amber-500/20 bg-amber-500/5 hover:bg-amber-500/10 transition-all group">
+              <div className="p-2.5 bg-amber-500/10 rounded-xl text-amber-400 group-hover:scale-110 transition-transform">
+                <Award className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-xs text-slate-500 font-semibold">{locale === 'ar' ? 'الإحصائيات' : 'Analytics'}</p>
+                <p className="text-sm font-bold text-white">{locale === 'ar' ? 'تقارير الأداء' : 'Performance Reports'}</p>
+              </div>
+            </Link>
+            <Link href="/admin/coupons" className="flex items-center gap-3 p-4 rounded-2xl border border-brand-500/20 bg-brand-500/5 hover:bg-brand-500/10 transition-all group">
+              <div className="p-2.5 bg-brand-500/10 rounded-xl text-brand-400 group-hover:scale-110 transition-transform">
+                <Sparkles className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-xs text-slate-500 font-semibold">{locale === 'ar' ? 'الكوبونات' : 'Coupons'}</p>
+                <p className="text-sm font-bold text-white">{locale === 'ar' ? 'إدارة أكواد الدخول' : 'Manage Access Codes'}</p>
+              </div>
+            </Link>
+            <Link href="/admin/quizzes" className="flex items-center gap-3 p-4 rounded-2xl border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-all group">
+              <div className="p-2.5 bg-blue-500/10 rounded-xl text-blue-400 group-hover:scale-110 transition-transform">
+                <HelpCircle className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-xs text-slate-500 font-semibold">{locale === 'ar' ? 'الاختبارات' : 'Quizzes'}</p>
+                <p className="text-sm font-bold text-white">{locale === 'ar' ? 'إنشاء الاختبارات' : 'Create Quizzes'}</p>
+              </div>
+            </Link>
+            <Link href="/admin/courses" className="flex items-center gap-3 p-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/10 transition-all group">
+              <div className="p-2.5 bg-emerald-500/10 rounded-xl text-emerald-400 group-hover:scale-110 transition-transform">
+                <GraduationCap className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-xs text-slate-500 font-semibold">{locale === 'ar' ? 'إدارة الدورات' : 'Courses'}</p>
+                <p className="text-sm font-bold text-white">{locale === 'ar' ? 'الدورات التعليمية' : 'Manage Courses'}</p>
+              </div>
+            </Link>
+            <Link href="/admin/teachers" className="flex items-center gap-3 p-4 rounded-2xl border border-purple-500/20 bg-purple-500/5 hover:bg-purple-500/10 transition-all group">
+              <div className="p-2.5 bg-purple-500/10 rounded-xl text-purple-400 group-hover:scale-110 transition-transform">
+                <Users className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-xs text-slate-500 font-semibold">{locale === 'ar' ? 'إدارة المعلمين' : 'Teachers'}</p>
+                <p className="text-sm font-bold text-white">{locale === 'ar' ? 'فريق التدريس' : 'Teaching Staff'}</p>
+              </div>
+            </Link>
+          </div>
+        )}
+
+        {/* Dashboard Content */}
+        {/* Semester Tabs */}
+        <div className="flex items-center gap-2 mb-6">
+          <button
+            onClick={() => setActiveSemester(1)}
+            className={`px-5 py-2 rounded-xl text-sm font-bold transition-all border ${
+              activeSemester === 1
+                ? 'bg-brand-500 border-brand-500 text-white shadow-md shadow-brand-500/20'
+                : 'bg-slate-900/40 border-slate-800 text-slate-400 hover:text-white hover:border-slate-600'
+            }`}
+          >
+            {locale === 'ar' ? 'الفصل الأول' : 'Semester 1'}
+          </button>
+          <button
+            onClick={() => setActiveSemester(2)}
+            className={`px-5 py-2 rounded-xl text-sm font-bold transition-all border ${
+              activeSemester === 2
+                ? 'bg-brand-500 border-brand-500 text-white shadow-md shadow-brand-500/20'
+                : 'bg-slate-900/40 border-slate-800 text-slate-400 hover:text-white hover:border-slate-600'
+            }`}
+          >
+            {locale === 'ar' ? 'الفصل الثاني' : 'Semester 2'}
+          </button>
+        </div>
+
+        {courses.filter(c => !c.semester || c.semester === activeSemester).length === 0 ? (
+          <div className="text-center py-20 bg-slate-900/10 border border-slate-900 rounded-3xl p-8">
+            <div className="h-16 w-16 mx-auto flex items-center justify-center rounded-full bg-slate-900 border border-slate-800 text-slate-600 mb-4">
+              <BookOpen className="h-8 w-8" />
+            </div>
+            <h3 className="text-lg font-bold text-slate-300">{t('noCoursesTitle')}</h3>
+            <p className="text-sm text-slate-500 mt-2">{t('noCoursesDesc')}</p>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {courses.filter(c => !c.semester || c.semester === activeSemester).map((course) => {
+              const lessonsVal = course.mockLessonsCount ?? course._count?.lessons ?? 0;
+              const quizzesVal = course.mockQuizzesCount ?? course._count?.quizzes ?? 0;
+              const progressVal = course.mockProgress ?? 0;
+
+              return (
+                <Link
+                  key={course.id}
+                  href={course.locked ? '#' : `/courses/${course.id}`}
+                  onClick={course.locked ? (e) => e.preventDefault() : undefined}
+                  className={`group relative rounded-2xl border border-slate-850 bg-slate-900/15 hover:bg-slate-900/35 hover:border-slate-800/80 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg block ${course.locked ? 'cursor-not-allowed' : ''}`}
+                >
+                  <div>
+                    {/* Course Banner Cover */}
+                    {course.coverImage && (
+                      <div className="h-44 w-full overflow-hidden relative bg-slate-950">
+                        <Image 
+                          src={course.coverImage} 
+                          alt={locale === 'ar' ? course.titleAr : course.titleEn} 
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
+                        />
+                        {/* Shading overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                        
+                        {/* Locked overlay */}
+                        {course.locked && (
+                          <div className="absolute inset-0 bg-slate-950/60 flex items-center justify-center" />
+                        )}
+
+                        {/* Lock badge (top-right) */}
+                        {course.locked && (
+                          <div className="absolute top-3 end-3 p-2 bg-slate-950/80 border border-slate-700 rounded-xl">
+                            <Lock className="h-4 w-4 text-slate-300" />
+                          </div>
+                        )}
+
+                        {/* Subject Tag */}
+                        <span className="absolute bottom-4 start-4 text-xs font-semibold px-2.5 py-1 rounded bg-brand-500 text-white shadow-md">
+                          {locale === 'ar' ? course.subjectAr : course.subjectEn}
+                        </span>
+                      </div>
+                    )}
+
+                    {/* Course Info */}
+                    <div className="p-6">
+                      {/* Teacher name */}
+                      <span className="text-xs text-slate-500 font-semibold mb-2 block">
+                        {locale === 'ar' ? course.teacherNameAr : course.teacherNameEn}
+                      </span>
+                      
+                      {/* Course Title */}
+                      <h3 className="text-base sm:text-lg font-bold text-white leading-snug group-hover:text-brand-400 transition-colors mb-3">
+                        {locale === 'ar' ? course.titleAr : course.titleEn}
+                      </h3>
+                      
+                      {/* Course Description */}
+                      <p className="text-slate-400 text-xs sm:text-sm leading-relaxed line-clamp-2 mb-6">
+                        {locale === 'ar' ? course.descriptionAr : course.descriptionEn}
+                      </p>
+
+                      {/* Course Metadata Stats */}
+                      <div className="grid grid-cols-3 gap-4 border-y border-slate-850/60 py-4.5 mb-6 text-xs text-slate-400">
+                        <div className="flex items-center gap-1.5">
+                          <PlayCircle className="h-4 w-4 text-brand-500 shrink-0" />
+                          <span>{t('lessonsCount', { count: lessonsVal })}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <HelpCircle className="h-4 w-4 text-brand-500 shrink-0" />
+                          <span>{t('quizzesCount', { count: quizzesVal })}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <FileText className="h-4 w-4 text-brand-500 shrink-0" />
+                          <span>{locale === 'ar' ? 'ملفات PDF' : 'PDFs'}</span>
+                        </div>
+                      </div>
+
+                      {/* Progress Bar widget */}
+                      <div className="space-y-2">
+                        <div className="flex justify-between text-xs font-bold">
+                          <span className="text-slate-400">{t('progressLabel')}</span>
+                          <span className="text-brand-500">{progressVal}%</span>
+                        </div>
+                        <div className="h-1.5 w-full bg-slate-950 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-gradient-to-r from-brand-500 to-amber-600 rounded-full"
+                            style={{ width: `${progressVal}%` }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Course Action */}
+                  <div className="p-6 pt-0">
+                    {course.locked ? (
+                      <div className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-bold text-slate-500 bg-slate-900 border border-slate-800 cursor-not-allowed">
+                        <Lock className="h-4 w-4" />
+                        <span>{locale === 'ar' ? 'مقفل / Locked' : 'Locked / مقفل'}</span>
+                      </div>
+                    ) : (
+                      <div className="group/btn w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-bold text-white bg-slate-950 border border-slate-850 hover:bg-brand-500 hover:border-brand-500 transition-all duration-300 cursor-pointer">
+                        <span>{t('resumeBtn')}</span>
+                        {locale === 'ar' ? (
+                          <ChevronLeft className="h-4 w-4 transition-transform group-hover/btn:-translate-x-1" />
+                        ) : (
+                          <ChevronRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        )}
+
+      </main>
+
+    </div>
+  );
+}

@@ -1,0 +1,211 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  TEACHER
+  ADMIN
+  PARENT
+}
+
+enum TrackType {
+  ACADEMIC
+  BTEC
+}
+
+model User {
+  id            String        @id @default(uuid())
+  email         String        @unique
+  passwordHash  String
+  nameAr        String
+  nameEn        String?
+  role          Role          @default(STUDENT)
+  trackType     TrackType?
+  parentEmail   String?       // For parent accounts linking
+  
+  enrollments   Enrollment[]
+  createdCourses Course[]     @relation("TeacherCourses")
+  comments      Comment[]
+  usedCoupons   Coupon[]      @relation("UsedCoupons")
+  progress      Progress[]
+  
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@map("users")
+}
+
+model Course {
+  id            String       @id @default(uuid())
+  titleAr       String
+  titleEn       String
+  descriptionAr String?
+  descriptionEn String?
+  track         TrackType    @default(ACADEMIC)
+  semester      Int?         // 1 or 2
+  subjectAr     String
+  subjectEn     String
+  thumbnailUrl  String?
+  coverImage    String?
+  published     Boolean      @default(false)
+  locked        Boolean      @default(false)
+  
+  teacherId     String
+  teacher       User         @relation("TeacherCourses", fields: [teacherId], references: [id])
+  
+  lessons       Lesson[]
+  liveSessions  LiveSession[]
+  exams         Exam[]
+  enrollments   Enrollment[]
+  coupons       Coupon[]
+  
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@map("courses")
+}
+
+model Lesson {
+  id              String           @id @default(uuid())
+  titleAr         String
+  titleEn         String
+  videoUrl        String?
+  durationMinutes Int              @default(45)
+  pdfUrl          String?
+  order           Int
+  locked          Boolean          @default(false)
+  
+  courseId        String
+  course          Course           @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  
+  questions       InlineQuestion[]
+  comments        Comment[]
+  
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  @@map("lessons")
+}
+
+model InlineQuestion {
+  id            String   @id @default(uuid())
+  lessonId      String
+  lesson        Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  
+  textAr        String
+  textEn        String
+  explanationAr String?
+  explanationEn String?
+  
+  choices       Choice[]
+
+  @@map("inline_questions")
+}
+
+model Choice {
+  id            String         @id @default(uuid())
+  questionId    String
+  question      InlineQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  
+  textAr        String
+  textEn        String
+  isCorrect     Boolean        @default(false)
+
+  @@map("choices")
+}
+
+model LiveSession {
+  id              String   @id @default(uuid())
+  courseId        String
+  course          Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  
+  titleAr         String
+  titleEn         String
+  zoomLink        String
+  startTime       DateTime
+  durationMinutes Int      @default(60)
+
+  @@map("live_sessions")
+}
+
+model Exam {
+  id         String   @id @default(uuid())
+  courseId   String
+  course     Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  
+  titleAr    String
+  titleEn    String
+  pdfUrl     String
+
+  @@map("exams")
+}
+
+model Enrollment {
+  id         String   @id @default(uuid())
+  studentId  String
+  student    User     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  
+  courseId   String
+  course     Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  
+  enrolledAt DateTime @default(now())
+
+  @@unique([studentId, courseId])
+  @@map("enrollments")
+}
+
+model Coupon {
+  id         String    @id @default(uuid())
+  code       String    @unique
+  isActive   Boolean   @default(true)
+  
+  courseId   String
+  course     Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  
+  usedById   String?
+  usedBy     User?     @relation("UsedCoupons", fields: [usedById], references: [id])
+  usedAt     DateTime?
+  
+  createdAt  DateTime  @default(now())
+
+  @@map("coupons")
+}
+
+model Progress {
+  id        String   @id @default(uuid())
+  studentId String
+  student   User     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  
+  itemId    String   // could be lessonId-video or lessonId-practice
+  courseId  String
+  
+  completedAt DateTime @default(now())
+
+  @@unique([studentId, itemId])
+  @@map("progress")
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  content   String
+  
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  
+  lessonId  String
+  lesson    Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  
+  parentId  String?
+  parent    Comment? @relation("Replies", fields: [parentId], references: [id])
+  replies   Comment[] @relation("Replies")
+
+  createdAt DateTime @default(now())
+
+  @@map("comments")
+}

@@ -1,0 +1,255 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  TEACHER
+  ADMIN
+}
+
+enum TrackType {
+  ACADEMIC
+  BTEC
+}
+
+enum QuestionType {
+  MCQ
+  SHORT_ANSWER
+}
+
+model User {
+  id            String        @id @default(uuid())
+  email         String        @unique
+  passwordHash  String
+  nameAr        String
+  nameEn        String?
+  role          Role          @default(STUDENT)
+  trackType     TrackType?    // Optional for Admins/Teachers, required for Students
+  
+  // Relations
+  enrollments   Enrollment[]
+  createdCourses Course[]     @relation("TeacherCourses")
+  quizAttempts  QuizAttempt[]
+  lessonProgress LessonProgress[]
+  comments      Comment[]
+  usedCoupons   Coupon[]      @relation("UsedCoupons")
+  
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@map("users")
+}
+
+model Track {
+  id          String      @id @default(uuid())
+  key         TrackType   @unique
+  nameAr      String      @map("name_ar")
+  nameEn      String      @map("name_en")
+  
+  subjects    Subject[]
+
+  @@map("tracks")
+}
+
+model Subject {
+  id          String      @id @default(uuid())
+  key         String      @unique // e.g. "ARABIC", "JORDAN_HISTORY", "MATHEMATICS"
+  nameAr      String      @map("name_ar")
+  nameEn      String      @map("name_en")
+  
+  trackId     String
+  track       Track       @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  courses     Course[]
+
+  @@map("subjects")
+}
+
+model Course {
+  id            String       @id @default(uuid())
+  titleAr       String       @map("title_ar")
+  titleEn       String       @map("title_en")
+  descriptionAr String?      @map("description_ar")
+  descriptionEn String?      @map("description_en")
+  coverImage    String?
+  
+  teacherId     String
+  teacher       User         @relation("TeacherCourses", fields: [teacherId], references: [id])
+  
+  subjectId     String
+  subject       Subject      @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  
+  lessons       Lesson[]
+  quizzes       Quiz[]
+  enrollments   Enrollment[]
+  coupons       Coupon[]
+  
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@map("courses")
+}
+
+model Lesson {
+  id            String           @id @default(uuid())
+  titleAr       String           @map("title_ar")
+  titleEn       String           @map("title_en")
+  videoUrl      String?          // URL to high-quality hosted lecture
+  videoDuration Int?             // Duration in seconds
+  pdfUrl        String?          // Study sheets (e.g. Pearson, ministry materials)
+  order         Int
+  
+  courseId      String
+  course        Course           @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  
+  quizzes       Quiz[]
+  progress      LessonProgress[]
+  comments      Comment[]
+  
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+
+  @@map("lessons")
+}
+
+model Quiz {
+  id             String        @id @default(uuid())
+  titleAr        String        @map("title_ar")
+  titleEn        String        @map("title_en")
+  descriptionAr  String?       @map("description_ar")
+  descriptionEn  String?       @map("description_en")
+  cefrLevel      String?       // Assessment CEFR level (e.g. A2, B2) for curriculum alignment
+  durationMinutes Int?
+  
+  courseId       String?
+  course         Course?       @relation(fields: [courseId], references: [id], onDelete: SetNull)
+  
+  lessonId       String?
+  lesson         Lesson?       @relation(fields: [lessonId], references: [id], onDelete: SetNull)
+  
+  questions      Question[]
+  attempts       QuizAttempt[]
+  
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@map("quizzes")
+}
+
+model Question {
+  id            String       @id @default(uuid())
+  quizId        String
+  quiz          Quiz         @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  
+  textAr        String       @map("text_ar")
+  textEn        String       @map("text_en")
+  type          QuestionType @default(MCQ)
+  
+  choices       Choice[]     // MCQs choices
+  correctAnswer String?      // Expected exact answer for SHORT_ANSWER questions
+  explanationAr String?      @map("explanation_ar")
+  explanationEn String?      @map("explanation_en")
+
+  @@map("questions")
+}
+
+model Choice {
+  id            String   @id @default(uuid())
+  questionId    String
+  question      Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  
+  textAr        String   @map("text_ar")
+  textEn        String   @map("text_en")
+  isCorrect     Boolean  @default(false)
+
+  @@map("choices")
+}
+
+model Enrollment {
+  id         String   @id @default(uuid())
+  studentId  String
+  student    User     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  
+  courseId   String
+  course     Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  
+  enrolledAt DateTime @default(now())
+
+  @@unique([studentId, courseId])
+  @@map("enrollments")
+}
+
+model LessonProgress {
+  id               String   @id @default(uuid())
+  studentId        String
+  student          User     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  
+  lessonId         String
+  lesson           Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  
+  completed        Boolean  @default(false)
+  watchedSeconds   Int      @default(0)
+  
+  updatedAt        DateTime @updatedAt
+
+  @@unique([studentId, lessonId])
+  @@map("lesson_progresses")
+}
+
+model QuizAttempt {
+  id          String   @id @default(uuid())
+  studentId   String
+  student     User     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  
+  quizId      String
+  quiz        Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  
+  score       Float
+  maxScore    Float
+  
+  submittedAt DateTime @default(now())
+
+  @@map("quiz_attempts")
+}
+
+model Coupon {
+  id        String    @id @default(uuid())
+  code      String    @unique
+  courseId  String    @map("course_id")
+  course    Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  isActive  Boolean   @default(true) @map("is_active")
+  
+  usedById  String?   @map("used_by_id")
+  usedBy    User?     @relation("UsedCoupons", fields: [usedById], references: [id], onDelete: SetNull)
+  usedAt    DateTime? @map("used_at")
+  
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  @@map("coupons")
+}
+
+model Comment {
+  id        String    @id @default(uuid())
+  content   String
+  lessonId  String    @map("lesson_id")
+  lesson    Lesson    @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  userId    String    @map("user_id")
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  parentId  String?   @map("parent_id")
+  parent    Comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies   Comment[] @relation("CommentReplies")
+  
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+
+  @@map("comments")
+}
