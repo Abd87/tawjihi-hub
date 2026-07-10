@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tawjihi English — Unit 7 Vocabulary (Exact Book Questions)</title>
+<style>
+  :root{
+    --primary:#0d9488; --primary-dark:#0f766e; --navy:#0f172a;
+    --bg:#f1f5f9; --card:#ffffff; --muted:#64748b;
+    --good:#16a34a; --bad:#dc2626; --warn:#d97706; --danger:#b91c1c;
+    --border:#e2e8f0;
+    --sec-A:#0d9488;
+    --sec-B:#2563eb;
+    --sec-C:#9333ea;
+    --sec-D:#d97706;
+    --sec-E:#db2777;
+    --sec-F:#16a34a;
+    --sec-G:#0891b2;
+    --sec-H:#ea580c;
+    --sec-I:#e11d48;
+    --sec-J:#4f46e5;
+    --sec-K:#059669;
+    --sec-L:#ca8a04;
+    --sec-M:#7c3aed;
+    --sec-N:#dc2626;
+    --sec-O:#65a30d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+       background:var(--bg);color:var(--navy);line-height:1.5;min-height:100vh}
+  header{background:var(--navy);color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;
+         position:sticky;top:0;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+  header h1{margin:0;font-size:17px;font-weight:600}
+  header .home-btn{background:var(--primary);color:#fff;border:none;padding:8px 14px;border-radius:8px;
+                   cursor:pointer;font-weight:500;font-size:14px}
+  header .home-btn:hover{background:var(--primary-dark)}
+  main{max-width:880px;margin:0 auto;padding:24px 16px}
+  .card{background:var(--card);border-radius:12px;padding:24px;box-shadow:0 2px 10px rgba(15,23,42,.06);
+        margin-bottom:18px;border:1px solid var(--border)}
+  h2{margin-top:0;color:var(--navy);font-size:22px}
+  h3{color:var(--navy);font-size:17px;margin:0 0 12px 0}
+  .intro{color:var(--muted);font-size:15px}
+  .mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
+  .mode-btn{background:#fff;border:2px solid var(--border);border-radius:12px;padding:18px;cursor:pointer;
+            text-align:left;transition:.2s;font-family:inherit}
+  .mode-btn:hover:not(:disabled){border-color:var(--primary);transform:translateY(-2px);box-shadow:0 6px 16px rgba(13,148,136,.15)}
+  .mode-btn:disabled{opacity:.5;cursor:not-allowed}
+  .mode-btn .icon{font-size:28px;margin-bottom:6px;display:block}
+  .mode-btn .title{font-weight:600;font-size:16px;color:var(--navy);display:block;margin-bottom:4px}
+  .mode-btn .desc{font-size:13px;color:var(--muted)}
+  .progress-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden;margin-bottom:14px}
+  .progress-fill{height:100%;background:var(--primary);transition:width .3s}
+  .badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:8px;color:#fff}
+  .badge.A{background:var(--sec-A)}
+  .badge.B{background:var(--sec-B)}
+  .badge.C{background:var(--sec-C)}
+  .badge.D{background:var(--sec-D)}
+  .badge.E{background:var(--sec-E)}
+  .badge.F{background:var(--sec-F)}
+  .badge.G{background:var(--sec-G)}
+  .badge.H{background:var(--sec-H)}
+  .badge.I{background:var(--sec-I)}
+  .badge.J{background:var(--sec-J)}
+  .badge.K{background:var(--sec-K)}
+  .badge.L{background:var(--sec-L)}
+  .badge.M{background:var(--sec-M)}
+  .badge.N{background:var(--sec-N)}
+  .badge.O{background:var(--sec-O)}
+  .question-text{font-size:17px;font-weight:500;margin:8px 0 18px 0;color:var(--navy)}
+  .options{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+  .option{background:#fff;border:2px solid var(--border);border-radius:10px;padding:13px 16px;
+          cursor:pointer;text-align:left;font-family:inherit;font-size:15px;transition:.15s;display:flex;align-items:center;gap:12px}
+  .option:hover:not(.locked){border-color:var(--primary);background:#f0fdfa}
+  .option.selected{border-color:var(--primary);background:#ccfbf1}
+  .option.correct{border-color:var(--good);background:#dcfce7;color:#14532d}
+  .option.wrong{border-color:var(--bad);background:#fee2e2;color:#7f1d1d}
+  .option .letter{background:var(--navy);color:#fff;width:28px;height:28px;border-radius:50%;
+                  display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0;font-size:13px}
+  .option.correct .letter{background:var(--good)}
+  .option.wrong .letter{background:var(--bad)}
+  .confidence{background:#f8fafc;border-radius:10px;padding:14px;margin-bottom:14px;border:1px solid var(--border)}
+  .confidence-label{font-weight:600;font-size:14px;margin-bottom:8px;color:var(--navy)}
+  .confidence-options{display:flex;gap:10px;flex-wrap:wrap}
+  .conf-opt{background:#fff;border:2px solid var(--border);border-radius:8px;padding:8px 14px;cursor:pointer;font-size:14px;transition:.15s}
+  .conf-opt.selected{border-color:var(--primary);background:#ccfbf1;font-weight:600}
+  .btn{background:var(--primary);color:#fff;border:none;padding:11px 20px;border-radius:10px;
+       cursor:pointer;font-weight:600;font-size:15px;font-family:inherit;transition:.2s}
+  .btn:hover:not(:disabled){background:var(--primary-dark)}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .btn.secondary{background:#fff;color:var(--navy);border:2px solid var(--border)}
+  .btn.secondary:hover{border-color:var(--primary)}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap}
+  .explanation{background:#f0fdfa;border-left:4px solid var(--primary);padding:13px 16px;
+               border-radius:6px;margin-top:14px;font-size:14px;line-height:1.6}
+  .explanation strong{color:var(--primary-dark)}
+  .ref{font-size:12px;color:var(--muted);margin-top:8px;display:block;font-weight:500}
+  .results-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:18px 0}
+  .stat{background:#f8fafc;padding:14px;border-radius:10px;text-align:center;border:1px solid var(--border)}
+  .stat .value{font-size:26px;font-weight:700;color:var(--navy)}
+  .stat .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+  .stat.good .value{color:var(--good)}
+  .stat.bad .value{color:var(--bad)}
+  .stat.warn .value{color:var(--warn)}
+  .stat.danger .value{color:var(--danger)}
+  .readiness{padding:18px;border-radius:10px;text-align:center;font-weight:600;font-size:17px;margin:14px 0}
+  .readiness.r1{background:#fee2e2;color:var(--bad)}
+  .readiness.r2{background:#ffedd5;color:#9a3412}
+  .readiness.r3{background:#fef9c3;color:#854d0e}
+  .readiness.r4{background:#dcfce7;color:#14532d}
+  .readiness.r5{background:#ccfbf1;color:var(--primary-dark)}
+  .mistake-item{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px}
+  .study-section{margin-bottom:22px}
+  .study-header{position:sticky;top:60px;background:#fff;padding:12px 16px;border-radius:10px;
+                border-left:6px solid var(--primary);box-shadow:0 2px 6px rgba(0,0,0,.06);
+                margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;z-index:5}
+  .study-header.A{border-left-color:var(--sec-A)}
+  .study-header.B{border-left-color:var(--sec-B)}
+  .study-header.C{border-left-color:var(--sec-C)}
+  .study-header.D{border-left-color:var(--sec-D)}
+  .study-header.E{border-left-color:var(--sec-E)}
+  .study-header.F{border-left-color:var(--sec-F)}
+  .study-header.G{border-left-color:var(--sec-G)}
+  .study-header.H{border-left-color:var(--sec-H)}
+  .study-header.I{border-left-color:var(--sec-I)}
+  .study-header.J{border-left-color:var(--sec-J)}
+  .study-header.K{border-left-color:var(--sec-K)}
+  .study-header.L{border-left-color:var(--sec-L)}
+  .study-header.M{border-left-color:var(--sec-M)}
+  .study-header.N{border-left-color:var(--sec-N)}
+  .study-header.O{border-left-color:var(--sec-O)}
+  .study-header h3{margin:0;font-size:16px}
+  .study-header .src{font-size:12px;color:var(--muted);font-weight:500;margin-top:3px}
+  .study-q{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px}
+  .study-q .qnum{font-weight:600;color:var(--muted);font-size:13px;margin-bottom:6px}
+  .study-q .qtext{font-size:15px;margin-bottom:10px;color:var(--navy)}
+  .study-opt{padding:8px 12px;border:1px solid var(--border);border-radius:6px;margin-bottom:6px;font-size:14px;display:flex;align-items:center;gap:10px}
+  .study-opt.correct{background:#dcfce7;border-color:var(--good);color:#14532d;font-weight:500}
+  .study-opt .letter-sm{background:#e2e8f0;color:var(--navy);width:22px;height:22px;border-radius:50%;
+                        display:flex;align-items:center;justify-content:center;font-weight:600;font-size:11px;flex-shrink:0}
+  .study-opt.correct .letter-sm{background:var(--good);color:#fff}
+  .study-exp{background:#f0fdfa;border-left:3px solid var(--primary);padding:10px 14px;
+             border-radius:4px;font-size:13px;margin-top:10px;line-height:1.5}
+  .section-pick{display:grid;grid-template-columns:1fr;gap:10px;margin:14px 0}
+  @media print{
+    header,.home-btn,#print-btn,.btn{display:none !important}
+    body{background:#fff}
+    .study-header{position:static;box-shadow:none;border:1px solid #ccc}
+    .study-q{break-inside:avoid;page-break-inside:avoid}
+  }
+  @media(max-width:600px){
+    .question-text{font-size:16px}
+    header h1{font-size:14px}
+    main{padding:16px 10px}
+    .card{padding:16px}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>⚖️ Tawjihi English — Unit 7 Vocabulary</h1>
+  <button class="home-btn" onclick="goHome()">🏠 Home</button>
+</header>
+<main id="app"></main>
+<script>
+const SECTIONS = {
+  A: {title:"Section A \u2014 Charity Collocations",source:"\ud83d\udcd6 SB p.16 \u00b7 L1A \u00b7 Ex 3",instruction:"Complete each charity-related collocation with the right word.",color:"A"},
+  B: {title:"Section B \u2014 Identify the Social Issue",source:"\ud83d\udcd6 SB p.18 \u00b7 L2A \u00b7 Ex 1",instruction:"Choose the social issue described in each fact.",color:"B"},
+  C: {title:"Section C \u2014 Royal Family Fact File",source:"\ud83d\udcd6 SB p.18 \u00b7 L2A \u00b7 Ex 2",instruction:"Complete the Jordanian Royal Family fact file with the right word.",color:"C"},
+  D: {title:"Section D \u2014 Word Forms (Verb / Noun / Adjective)",source:"\ud83d\udcd6 SB p.18 \u00b7 L2A \u00b7 Ex 3",instruction:"Choose the correct word form for each sentence.",color:"D"},
+  E: {title:"Section E \u2014 University Equality Policy",source:"\ud83d\udcd6 SB p.18 \u00b7 L2A \u00b7 Ex 4",instruction:"Complete the University Equality text with the correct word form.",color:"E"},
+  F: {title:"Section F \u2014 Kindness Article Definitions",source:"\ud83d\udcd6 SB p.20 \u00b7 L4A \u00b7 Ex 2",instruction:"Match each kindness-article word with its definition.",color:"F"},
+  G: {title:"Section G \u2014 Reporting Verbs (Forms)",source:"\ud83d\udcd6 SB p.22 \u00b7 L5A \u00b7 Ex 4",instruction:"Complete each reporting-verb sentence with the right form.",color:"G"},
+  H: {title:"Section H \u2014 Patterns After Reporting Verbs",source:"\ud83d\udcd6 SB p.22 \u00b7 L5A \u00b7 Ex 5",instruction:"Choose the right pattern after each reporting verb.",color:"H"},
+  I: {title:"Section I \u2014 Opinion Phrases",source:"\ud83d\udcd6 SB p.23 \u00b7 L6A \u00b7 Ex 3",instruction:"Complete each opinion phrase with the right word.",color:"I"},
+  J: {title:"Section J \u2014 said / told / asked",source:"\ud83d\udcd3 WB p.12 \u00b7 L1B \u00b7 Ex 3",instruction:"Complete each sentence with said, told, or asked.",color:"J"},
+  K: {title:"Section K \u2014 Social Issues Sentence Halves",source:"\ud83d\udcd3 WB p.14 \u00b7 L2B \u00b7 Ex 1",instruction:"Complete each social-issues sentence with the correct word.",color:"K"},
+  L: {title:"Section L \u2014 Word Forms (Workbook)",source:"\ud83d\udcd3 WB p.14 \u00b7 L2B \u00b7 Ex 3",instruction:"Choose the correct word form for each sentence.",color:"L"},
+  M: {title:"Section M \u2014 University Equality Policy (Workbook)",source:"\ud83d\udcd3 WB p.14 \u00b7 L2B \u00b7 Ex 4",instruction:"Complete the University Equality Policy text with the correct word form.",color:"M"},
+  N: {title:"Section N \u2014 Reporting Verb Patterns (Workbook)",source:"\ud83d\udcd3 WB p.16 \u00b7 L5B \u00b7 Ex 3",instruction:"Choose the right pattern after each reporting verb.",color:"N"},
+  O: {title:"Section O \u2014 Revision: Social Issues",source:"\ud83d\udcd3 WB p.18 \u00b7 Revision \u00b7 Ex 1",instruction:"Complete each revision sentence with the correct word.",color:"O"}
+};
+
+const QUESTIONS = [
+  {sec:"A",num:1,q:"provide fresh water _____",opts:["supplies", "filters", "problems", "disasters"],correct:0,exp:"<strong>provide fresh water supplies</strong> = charity work giving people clean water.",ref:"SB p.16 \u00b7 L1A Ex 3 #1"},
+  {sec:"A",num:2,q:"install water _____",opts:["pipes", "filters", "disasters", "toilets"],correct:1,exp:"<strong>install water filters</strong> = put in equipment that cleans water.",ref:"SB p.16 \u00b7 L1A Ex 3 #2"},
+  {sec:"A",num:3,q:"_____ problems (= problems affecting the environment)",opts:["natural", "environmental", "broken", "contaminate"],correct:1,exp:"<strong>environmental problems</strong> = pollution, climate change, etc.",ref:"SB p.16 \u00b7 L1A Ex 3 #3"},
+  {sec:"A",num:4,q:"_____ pipes (= pipes that are damaged and need fixing)",opts:["broken", "natural", "environmental", "install"],correct:0,exp:"<strong>broken pipes</strong> often cause water contamination problems.",ref:"SB p.16 \u00b7 L1A Ex 3 #4"},
+  {sec:"A",num:5,q:"provide new _____ (= one of the things the charity gives to communities)",opts:["filters", "pipes", "toilets", "disasters"],correct:2,exp:"<strong>provide new toilets</strong> = build sanitation facilities.",ref:"SB p.16 \u00b7 L1A Ex 3 #5"},
+  {sec:"A",num:6,q:"_____ disasters (= events like earthquakes, floods, hurricanes)",opts:["broken", "environmental", "natural", "contaminate"],correct:2,exp:"<strong>natural disasters</strong> = earthquakes, floods, etc.",ref:"SB p.16 \u00b7 L1A Ex 3 #6"},
+  {sec:"B",num:1,q:"Which social issue is described: \"helps to move people out of poor housing conditions\"?",opts:["homelessness", "gender equality", "racism", "unemployment"],correct:0,exp:"<strong>homelessness</strong> = lacking proper housing.",ref:"SB p.18 \u00b7 L2A Ex 1 #1"},
+  {sec:"B",num:2,q:"Which social issue is described: \"aims to give better work opportunities to women\"?",opts:["gender equality", "poverty", "health", "immigration"],correct:0,exp:"<strong>gender equality</strong> = equal opportunities for men and women.",ref:"SB p.18 \u00b7 L2A Ex 1 #2"},
+  {sec:"B",num:3,q:"Which social issue is described: \"promotes sustainable development that does not harm nature\"?",opts:["environmental problems", "racism", "unemployment", "poverty"],correct:0,exp:"<strong>environmental problems</strong> = pollution, climate damage, etc.",ref:"SB p.18 \u00b7 L2A Ex 1 #3"},
+  {sec:"B",num:4,q:"Which social issue is described: \"helps refugees find homes, education and jobs\"?",opts:["racism", "immigration", "unemployment", "health"],correct:1,exp:"<strong>immigration</strong> covers refugees needing new homes.",ref:"SB p.18 \u00b7 L2A Ex 1 #4"},
+  {sec:"B",num:5,q:"Which social issue is described: \"the state of lacking enough money or basic necessities\"?",opts:["poverty", "racism", "health", "gender equality"],correct:0,exp:"<strong>poverty</strong> = lacking money and basic needs.",ref:"SB p.18 \u00b7 L2A Ex 1 #5"},
+  {sec:"B",num:6,q:"Which social issue is described: \"discrimination based on someone's skin colour or ethnic origin\"?",opts:["racism", "poverty", "gender equality", "unemployment"],correct:0,exp:"<strong>racism</strong> = unfair treatment based on race.",ref:"SB p.18 \u00b7 L2A Ex 1 #6"},
+  {sec:"C",num:1,q:"The Jordanian Royal Family helps to move people out of _____.",opts:["poverty", "facilities", "opportunities", "environment"],correct:0,exp:"<strong>poverty</strong> = the state of being poor.",ref:"SB p.18 \u00b7 L2A Ex 2 #1"},
+  {sec:"C",num:2,q:"...aims to give better work _____ to women and young people.",opts:["facilities", "opportunities", "homes", "poverty"],correct:1,exp:"<strong>opportunities</strong> = chances to do something (e.g. get a job).",ref:"SB p.18 \u00b7 L2A Ex 2 #2"},
+  {sec:"C",num:3,q:"...helps to improve health _____.",opts:["opportunities", "homes", "facilities", "environment"],correct:2,exp:"<strong>health facilities</strong> = clinics, hospitals, medical centres.",ref:"SB p.18 \u00b7 L2A Ex 2 #3"},
+  {sec:"C",num:4,q:"...helps refugees to find _____ as well as with their education, finance and work opportunities.",opts:["homes", "facilities", "environment", "poverty"],correct:0,exp:"<strong>homes</strong> = places to live.",ref:"SB p.18 \u00b7 L2A Ex 2 #4"},
+  {sec:"C",num:5,q:"...promotes sustainable development that does not harm the _____.",opts:["opportunities", "facilities", "environment", "homes"],correct:2,exp:"<strong>environment</strong> = the natural world.",ref:"SB p.18 \u00b7 L2A Ex 2 #5"},
+  {sec:"D",num:1,q:"This is a good law, but I'm not sure it is _____.",opts:["enforce", "enforceable", "enforcement", "enforced"],correct:1,exp:"After <em>is</em>, we need an adjective: <strong>enforceable</strong> = able to be enforced.",ref:"SB p.18 \u00b7 L2A Ex 3 #1"},
+  {sec:"D",num:2,q:"The factory has grown recently, and has been more successful since the _____.",opts:["expanse", "expansion", "expansive", "expanded"],correct:1,exp:"After <em>the</em>, we need a noun: <strong>expansion</strong> = growth.",ref:"SB p.18 \u00b7 L2A Ex 3 #2"},
+  {sec:"D",num:3,q:"The university in our city is an important _____.",opts:["institution", "institutionalise", "institutional", "institute"],correct:0,exp:"After <em>an important</em>, we need a noun: <strong>institution</strong>.",ref:"SB p.18 \u00b7 L2A Ex 3 #3"},
+  {sec:"D",num:4,q:"How can the factory _____ polluting the river like that?",opts:["justify", "justifiable", "justification", "justly"],correct:0,exp:"After <em>can</em>, we need a base verb: <strong>justify</strong> = give a good reason for.",ref:"SB p.18 \u00b7 L2A Ex 3 #4"},
+  {sec:"D",num:5,q:"It is good that men and women get _____ pay in this business.",opts:["equal", "equality", "equally", "equalise"],correct:0,exp:"Before a noun (<em>pay</em>), we need an adjective: <strong>equal</strong>.",ref:"SB p.18 \u00b7 L2A Ex 3 #5"},
+  {sec:"D",num:6,q:"Keep your argument simple and try not to _____ it.",opts:["complicate", "complicated", "complication", "complicatedly"],correct:0,exp:"After <em>to</em>, we need a base verb: <strong>complicate</strong>.",ref:"SB p.18 \u00b7 L2A Ex 3 #6"},
+  {sec:"E",num:1,q:"At this university, we reject any and all _____ based on race, gender, religion or age. (DISCRIMINATE)",opts:["discrimination", "discriminate", "discriminatory", "discriminator"],correct:0,exp:"After <em>all</em>, we need a noun: <strong>discrimination</strong>.",ref:"SB p.18 \u00b7 L2A Ex 4 #1"},
+  {sec:"E",num:2,q:"We believe in _____ of speech. (FREE)",opts:["free", "freely", "freedom", "freer"],correct:2,exp:"After <em>in</em>, we need a noun: <strong>freedom</strong>.",ref:"SB p.18 \u00b7 L2A Ex 4 #2"},
+  {sec:"E",num:3,q:"...will never accept any _____ of individuals based on their personal beliefs. (PERSECUTE)",opts:["persecute", "persecuted", "persecuting", "persecution"],correct:3,exp:"After <em>any</em>, we need a noun: <strong>persecution</strong> = unfair treatment.",ref:"SB p.18 \u00b7 L2A Ex 4 #3"},
+  {sec:"E",num:4,q:"...based on their _____ beliefs. (PERSON)",opts:["person", "personal", "personally", "personality"],correct:1,exp:"Before a noun (<em>beliefs</em>), we need an adjective: <strong>personal</strong>.",ref:"SB p.18 \u00b7 L2A Ex 4 #4"},
+  {sec:"E",num:5,q:"Should anybody feel they have suffered _____. (VICTIM)",opts:["victim", "victimise", "victimised", "victimisation"],correct:3,exp:"After <em>suffered</em>, we need a noun: <strong>victimisation</strong> = being treated as a victim.",ref:"SB p.18 \u00b7 L2A Ex 4 #5"},
+  {sec:"E",num:6,q:"...an _____ will be carried out and suitable disciplinary action will be taken. (INVESTIGATE)",opts:["investigate", "investigation", "investigator", "investigative"],correct:1,exp:"After <em>an</em>, we need a noun: <strong>investigation</strong>.",ref:"SB p.18 \u00b7 L2A Ex 4 #6"},
+  {sec:"F",num:1,q:"Which word means <em>being busy or working very hard</em>?",opts:["industrious", "ill-equipped", "anonymous", "integral"],correct:0,exp:"<strong>industrious</strong> = hard-working.",ref:"SB p.20 \u00b7 L4A Ex 2 #1"},
+  {sec:"F",num:2,q:"Which word means <em>money that is paid to a salesperson for selling something</em>?",opts:["proceeds", "commission", "foundation", "intern"],correct:1,exp:"<strong>commission</strong> = payment based on sales.",ref:"SB p.20 \u00b7 L4A Ex 2 #2"},
+  {sec:"F",num:3,q:"Which word means <em>a (usually young) person who does a job to get experience and to learn</em>?",opts:["intern", "industrious", "ill-equipped", "anonymous"],correct:0,exp:"<strong>intern</strong> = a trainee gaining work experience.",ref:"SB p.20 \u00b7 L4A Ex 2 #3"},
+  {sec:"F",num:4,q:"Which word means <em>very important to, or an essential part of, something</em>?",opts:["proceeds", "integral", "industrious", "foundation"],correct:1,exp:"<strong>integral</strong> = essential, central.",ref:"SB p.20 \u00b7 L4A Ex 2 #4"},
+  {sec:"F",num:5,q:"Which phrase means <em>not having the correct tools or skills to do something</em>?",opts:["ill-equipped", "industrious", "anonymous", "integral"],correct:0,exp:"<strong>ill-equipped</strong> = without the necessary tools/skills.",ref:"SB p.20 \u00b7 L4A Ex 2 #5"},
+  {sec:"F",num:6,q:"Which word means <em>referring to someone whose name is not known or made public</em>?",opts:["anonymous", "integral", "ill-equipped", "industrious"],correct:0,exp:"<strong>anonymous</strong> = name not revealed.",ref:"SB p.20 \u00b7 L4A Ex 2 #6"},
+  {sec:"F",num:7,q:"Which word means <em>the total money received from selling or organising something</em>?",opts:["commission", "proceeds", "intern", "foundation"],correct:1,exp:"<strong>proceeds</strong> = total money earned from an event/sale.",ref:"SB p.20 \u00b7 L4A Ex 2 #7"},
+  {sec:"F",num:8,q:"Which word means <em>an organisation started for a specific purpose, such as research or charity</em>?",opts:["intern", "proceeds", "foundation", "commission"],correct:2,exp:"<strong>foundation</strong> = an established charitable or research organisation.",ref:"SB p.20 \u00b7 L4A Ex 2 #8"},
+  {sec:"G",num:1,q:"The university where he worked _____ that he had to make him leave before he was 69.",opts:["admitted", "agreed", "criticised", "regretted"],correct:0,exp:"<strong>admitted</strong> = confessed/acknowledged.",ref:"SB p.22 \u00b7 L5A Ex 4 #1"},
+  {sec:"G",num:2,q:"But they _____ to let him continue working until he was 69.",opts:["admitted", "agreed", "criticised", "advised"],correct:1,exp:"<strong>agreed to</strong> + infinitive = consented to do.",ref:"SB p.22 \u00b7 L5A Ex 4 #2"},
+  {sec:"G",num:3,q:"I'm not surprised the professor _____ them for sacking him.",opts:["agreed", "admitted", "criticised", "advised"],correct:2,exp:"<strong>criticised somebody for</strong> + gerund = blamed them.",ref:"SB p.22 \u00b7 L5A Ex 4 #3"},
+  {sec:"G",num:4,q:"Maybe they _____ agreeing that he could work for longer.",opts:["agreed", "regretted", "admitted", "advised"],correct:1,exp:"<strong>regretted</strong> + gerund = felt sorry about a past decision.",ref:"SB p.22 \u00b7 L5A Ex 4 #4"},
+  {sec:"G",num:5,q:"It's a pity someone didn't _____ them not to sack him for being too old.",opts:["admit", "regret", "agree", "advise"],correct:3,exp:"<strong>advised somebody (not) to</strong> + infinitive = recommended.",ref:"SB p.22 \u00b7 L5A Ex 4 #5"},
+  {sec:"H",num:1,q:"Mazen agreed _____ the old man was discriminated against.",opts:["that", "to", "for", "against"],correct:0,exp:"<strong>agree that</strong> + clause.",ref:"SB p.22 \u00b7 L5A Ex 5 #1"},
+  {sec:"H",num:2,q:"The man at the information desk advised _____ to leave our phone number.",opts:["that", "we", "us", "for"],correct:2,exp:"<strong>advise + object + to</strong>-infinitive: advised <em>us</em> to leave.",ref:"SB p.22 \u00b7 L5A Ex 5 #2"},
+  {sec:"H",num:3,q:"Nader offered _____ lend Maher his car for the weekend.",opts:["to", "for", "that", "he would"],correct:0,exp:"<strong>offer to</strong> + infinitive = volunteer to do.",ref:"SB p.22 \u00b7 L5A Ex 5 #3"},
+  {sec:"H",num:4,q:"The musician objected _____ playing only his hits at the concert.",opts:["that", "to", "for", "against"],correct:1,exp:"<strong>object to</strong> + gerund = oppose doing something.",ref:"SB p.22 \u00b7 L5A Ex 5 #4"},
+  {sec:"H",num:5,q:"The police praised Imad _____ saving the man's life.",opts:["on", "of", "for", "with"],correct:2,exp:"<strong>praise somebody for</strong> + gerund = compliment them.",ref:"SB p.22 \u00b7 L5A Ex 5 #5"},
+  {sec:"I",num:1,q:"It _____ without saying that\u2026",opts:["sees", "goes", "tends", "feels"],correct:1,exp:"<strong>It goes without saying that\u2026</strong> = obviously.",ref:"SB p.23 \u00b7 L6A Ex 3 #1"},
+  {sec:"I",num:2,q:"Without a _____ of a doubt, \u2026",opts:["shadow", "sign", "trace", "hint"],correct:0,exp:"<strong>without a shadow of a doubt</strong> = absolutely certain.",ref:"SB p.23 \u00b7 L6A Ex 3 #2"},
+  {sec:"I",num:3,q:"_____ , I think it's obvious that\u2026",opts:["Honestly", "Frankly", "Personally", "Surely"],correct:1,exp:"<strong>Frankly</strong> = speaking honestly/directly.",ref:"SB p.23 \u00b7 L6A Ex 3 #3"},
+  {sec:"I",num:4,q:"As far as I'm _____ , \u2026",opts:["worried", "involved", "concerned", "interested"],correct:2,exp:"<strong>As far as I'm concerned</strong> = in my opinion.",ref:"SB p.23 \u00b7 L6A Ex 3 #4"},
+  {sec:"I",num:5,q:"It's a good idea in _____ , but\u2026",opts:["theory", "principle", "practice", "fact"],correct:1,exp:"<strong>in principle</strong> = in theory (but maybe not in practice).",ref:"SB p.23 \u00b7 L6A Ex 3 #5"},
+  {sec:"I",num:6,q:"I can _____ where they're coming from, but\u2026",opts:["see", "feel", "tell", "know"],correct:0,exp:"<strong>I can see where you're coming from</strong> = I understand your view.",ref:"SB p.23 \u00b7 L6A Ex 3 #6"},
+  {sec:"I",num:7,q:"I'm no _____ , but\u2026",opts:["specialist", "expert", "master", "professional"],correct:1,exp:"<strong>I'm no expert, but\u2026</strong> = a way to soften an opinion.",ref:"SB p.23 \u00b7 L6A Ex 3 #7"},
+  {sec:"I",num:8,q:"I _____ to think (that)\u2026",opts:["like", "tend", "feel", "seem"],correct:1,exp:"<strong>I tend to think that\u2026</strong> = I usually believe (tentative).",ref:"SB p.23 \u00b7 L6A Ex 3 #8"},
+  {sec:"I",num:9,q:"I'm _____ to think (that)\u2026",opts:["inclined", "tended", "liked", "disposed"],correct:0,exp:"<strong>I'm inclined to think that\u2026</strong> = I'm leaning toward thinking.",ref:"SB p.23 \u00b7 L6A Ex 3 #9"},
+  {sec:"I",num:10,q:"That's _____ , isn't it?",opts:["debatable", "arguable", "questionable", "doubtful"],correct:0,exp:"<strong>That's debatable</strong> = challenges another's opinion.",ref:"SB p.23 \u00b7 L6A Ex 3 #10"},
+  {sec:"I",num:11,q:"You're _____ to your opinion, but\u2026",opts:["entitled", "allowed", "permitted", "authorised"],correct:0,exp:"<strong>entitled to your opinion</strong> = have the right to it (but I disagree).",ref:"SB p.23 \u00b7 L6A Ex 3 #11"},
+  {sec:"I",num:12,q:"Are you _____ that\u2026?",opts:["telling", "saying", "speaking", "talking"],correct:1,exp:"<strong>Are you saying that\u2026?</strong> = challenging/clarifying.",ref:"SB p.23 \u00b7 L6A Ex 3 #12"},
+  {sec:"J",num:1,q:"The police officers _____ me whether I was 18 years old.",opts:["asked", "said", "told", "spoke"],correct:0,exp:"<strong>asked</strong> = used to report questions.",ref:"WB p.12 \u00b7 L1B Ex 3 #1"},
+  {sec:"J",num:2,q:"The security guard _____ us not to enter the building.",opts:["asked", "said", "told", "spoke"],correct:2,exp:"<strong>told</strong> + object + to-infinitive = gave an instruction.",ref:"WB p.12 \u00b7 L1B Ex 3 #2"},
+  {sec:"J",num:3,q:"The firefighters _____ we had to stay behind the barriers.",opts:["asked", "said", "told", "spoke"],correct:1,exp:"<strong>said</strong> + that-clause (no object needed).",ref:"WB p.12 \u00b7 L1B Ex 3 #3"},
+  {sec:"J",num:4,q:"The conductor _____ if he could see our tickets.",opts:["said", "told", "asked", "spoke"],correct:2,exp:"<strong>asked if</strong> = used for yes/no questions in reported speech.",ref:"WB p.12 \u00b7 L1B Ex 3 #4"},
+  {sec:"J",num:5,q:"The driving instructor _____ you that you needed to slow down.",opts:["said", "told", "asked", "spoke"],correct:1,exp:"<strong>told + object + that</strong>-clause.",ref:"WB p.12 \u00b7 L1B Ex 3 #5"},
+  {sec:"K",num:1,q:"Businesses are now very aware of the importance of gender _____",opts:["equality", "unemployment", "poverty", "discrimination"],correct:0,exp:"<strong>gender equality</strong> = equal pay/opportunities for men and women.",ref:"WB p.14 \u00b7 L2B Ex 1 #1"},
+  {sec:"K",num:2,q:"The city is trying to do more about the problem of _____,",opts:["unemployment", "homelessness", "racism", "poverty"],correct:1,exp:"<strong>homelessness</strong> = lacking proper housing.",ref:"WB p.14 \u00b7 L2B Ex 1 #2"},
+  {sec:"K",num:3,q:"Youth _____ is a problem in many countries.",opts:["equality", "poverty", "unemployment", "racism"],correct:2,exp:"<strong>youth unemployment</strong> = young people without jobs.",ref:"WB p.14 \u00b7 L2B Ex 1 #3"},
+  {sec:"K",num:4,q:"Climate change doesn't need to be a problem if all countries work _____ it.",opts:["with", "against", "for", "through"],correct:1,exp:"<strong>work against</strong> = take action to oppose.",ref:"WB p.14 \u00b7 L2B Ex 1 #4"},
+  {sec:"K",num:5,q:"The university is against _____, and will help people of any nationality.",opts:["poverty", "unemployment", "racism", "homelessness"],correct:2,exp:"<strong>racism</strong> = discrimination based on race.",ref:"WB p.14 \u00b7 L2B Ex 1 #5"},
+  {sec:"K",num:6,q:"We are hoping to reduce _____ by giving more people better paid jobs.",opts:["racism", "poverty", "equality", "homelessness"],correct:1,exp:"<strong>poverty</strong> is reduced by providing employment.",ref:"WB p.14 \u00b7 L2B Ex 1 #6"},
+  {sec:"L",num:1,q:"This is a good law, but I am not sure it is _____.",opts:["enforce", "enforceable", "enforcement", "enforced"],correct:1,exp:"After <em>is</em>, we need an adjective: <strong>enforceable</strong>.",ref:"WB p.14 \u00b7 L2B Ex 3 #1"},
+  {sec:"L",num:2,q:"The factory has grown recently, and has been more successful since the _____.",opts:["expanse", "expansion", "expansive", "expanded"],correct:1,exp:"After <em>the</em>, we need a noun: <strong>expansion</strong>.",ref:"WB p.14 \u00b7 L2B Ex 3 #2"},
+  {sec:"L",num:3,q:"The university in our city is an important _____.",opts:["institution", "institutionalise", "institutional", "institute"],correct:0,exp:"After <em>an important</em>, we need a noun: <strong>institution</strong>.",ref:"WB p.14 \u00b7 L2B Ex 3 #3"},
+  {sec:"L",num:4,q:"How can the factory _____ polluting the river like that?",opts:["justify", "justifiable", "justification", "justly"],correct:0,exp:"After <em>can</em>, we need a base verb: <strong>justify</strong>.",ref:"WB p.14 \u00b7 L2B Ex 3 #4"},
+  {sec:"L",num:5,q:"It is good that men and women get _____ pay in this business.",opts:["equal", "equality", "equally", "equalise"],correct:0,exp:"Before a noun, we need an adjective: <strong>equal</strong>.",ref:"WB p.14 \u00b7 L2B Ex 3 #5"},
+  {sec:"L",num:6,q:"Keep your argument simple and try not to _____ it.",opts:["complicate", "complicated", "complication", "complicatedly"],correct:0,exp:"After <em>to</em>, we need a base verb: <strong>complicate</strong>.",ref:"WB p.14 \u00b7 L2B Ex 3 #6"},
+  {sec:"M",num:1,q:"At this university, we reject any and all _____ based on race, gender, religion or age.",opts:["discrimination", "discriminate", "discriminatory", "discriminator"],correct:0,exp:"After <em>any and all</em>, we need a noun: <strong>discrimination</strong>.",ref:"WB p.14 \u00b7 L2B Ex 4 #1"},
+  {sec:"M",num:2,q:"We believe in _____ of speech.",opts:["free", "freely", "freedom", "freer"],correct:2,exp:"After <em>in</em>, a noun: <strong>freedom</strong>.",ref:"WB p.14 \u00b7 L2B Ex 4 #2"},
+  {sec:"M",num:3,q:"...will never accept any _____ of individuals based on their personal beliefs.",opts:["persecute", "persecuted", "persecuting", "persecution"],correct:3,exp:"After <em>any</em>, a noun: <strong>persecution</strong>.",ref:"WB p.14 \u00b7 L2B Ex 4 #3"},
+  {sec:"M",num:4,q:"...based on their _____ beliefs.",opts:["person", "personal", "personally", "personality"],correct:1,exp:"Before a noun (<em>beliefs</em>), an adjective: <strong>personal</strong>.",ref:"WB p.14 \u00b7 L2B Ex 4 #4"},
+  {sec:"M",num:5,q:"Should anybody feel they have suffered _____.",opts:["victim", "victimise", "victimised", "victimisation"],correct:3,exp:"After <em>suffered</em>, a noun: <strong>victimisation</strong>.",ref:"WB p.14 \u00b7 L2B Ex 4 #5"},
+  {sec:"M",num:6,q:"...an _____ will be carried out and suitable disciplinary action will be taken.",opts:["investigate", "investigation", "investigator", "investigative"],correct:1,exp:"After <em>an</em>, a noun: <strong>investigation</strong>.",ref:"WB p.14 \u00b7 L2B Ex 4 #6"},
+  {sec:"N",num:1,q:"Mazen agreed _____ the old man was discriminated against.",opts:["that", "to", "for", "against"],correct:0,exp:"<strong>agreed that</strong> + clause.",ref:"WB p.16 \u00b7 L5B Ex 3 #1"},
+  {sec:"N",num:2,q:"The man at the information desk advised _____ to leave our phone number.",opts:["that", "we", "us", "for"],correct:2,exp:"<strong>advise + object + to</strong>-infinitive: advised <em>us</em>.",ref:"WB p.16 \u00b7 L5B Ex 3 #2"},
+  {sec:"N",num:3,q:"Nader offered _____ lend Maher his car for the weekend.",opts:["to", "for", "that", "he would"],correct:0,exp:"<strong>offer to</strong> + infinitive.",ref:"WB p.16 \u00b7 L5B Ex 3 #3"},
+  {sec:"N",num:4,q:"The musician objected _____ playing only his hits at the concert.",opts:["that", "to", "for", "against"],correct:1,exp:"<strong>object to</strong> + gerund.",ref:"WB p.16 \u00b7 L5B Ex 3 #4"},
+  {sec:"N",num:5,q:"The police praised Imad _____ saving the man's life.",opts:["on", "of", "for", "with"],correct:2,exp:"<strong>praise somebody for</strong> + gerund.",ref:"WB p.16 \u00b7 L5B Ex 3 #5"},
+  {sec:"O",num:1,q:"He _____ how many sandwiches he would need for the family party and didn't make enough.",opts:["misjudged", "discriminated", "employed", "equalled"],correct:0,exp:"<strong>misjudged</strong> = made a wrong estimate.",ref:"WB p.18 \u00b7 Rev Ex 1 #1"},
+  {sec:"O",num:2,q:"We think some of the boss's attitudes are _____ as he tends to give men more opportunities than women.",opts:["unemployment", "discriminatory", "equality", "acceptable"],correct:1,exp:"<strong>discriminatory</strong> = treating people unfairly (e.g., gender bias).",ref:"WB p.18 \u00b7 Rev Ex 1 #2"},
+  {sec:"O",num:3,q:"The school called the boy's parents because his behaviour in class was completely _____.",opts:["misjudged", "discriminatory", "unacceptable", "equal"],correct:2,exp:"<strong>unacceptable</strong> = not acceptable; cannot be allowed.",ref:"WB p.18 \u00b7 Rev Ex 1 #3"},
+  {sec:"O",num:4,q:"_____ means that everyone has exactly the same rights.",opts:["Discrimination", "Equality", "Unemployment", "Persecution"],correct:1,exp:"<strong>Equality</strong> = the state of having equal rights.",ref:"WB p.18 \u00b7 Rev Ex 1 #4"},
+  {sec:"O",num:5,q:"Some countries have very high _____ and it is difficult for young people to find a job.",opts:["equality", "employment", "discrimination", "unemployment"],correct:3,exp:"<strong>unemployment</strong> = the situation when many people don't have jobs.",ref:"WB p.18 \u00b7 Rev Ex 1 #5"}
+];
+
+let state = {mode:null,questions:[],idx:0,answers:[],startTime:0,selected:null,confidence:null,locked:false,section:null};
+
+const STORAGE_KEY = "tawjihi_u7_exact_v1";
+function loadStore(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch(e){return{}}}
+function saveStore(s){localStorage.setItem(STORAGE_KEY,JSON.stringify(s))}
+function getMistakeBank(){return loadStore().mistakes||[]}
+function setMistakeBank(b){const s=loadStore();s.mistakes=b;saveStore(s)}
+
+function goHome(){
+  if(state.mode && state.mode!=='study' && state.answers.length>0 &&
+     !confirm("Return to home? Your current progress will be lost.")) return;
+  renderHome();
+}
+
+function renderHome(){
+  state = {mode:null,questions:[],idx:0,answers:[],startTime:0,selected:null,confidence:null,locked:false,section:null};
+  const store = loadStore();
+  const bank = getMistakeBank();
+  const bestMastery = store.bestMastery || 0;
+  const attempts = store.attempts || 0;
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>⚖️ Unit 7 — "Is it fair?"</h2>
+      <p class="intro">
+        This trainer uses the <strong>exact questions</strong> from your Jordan High Note Grade 11 books —
+        Unit 7 "Is it fair?" (Semester 2) — covering charity vocabulary, social issues, reported speech,
+        reporting verbs, kindness articles, opinion phrases, and word building
+        from Lessons 1A, 2A, 4A, 5A, 6A (Student's Book) and Lessons 1B, 2B, 5B + Revision (Workbook).
+        <strong>${QUESTIONS.length} vocabulary questions across 15 sections.</strong>
+      </p>
+      <div class="results-grid">
+        <div class="stat"><div class="value">${attempts}</div><div class="label">Attempts</div></div>
+        <div class="stat good"><div class="value">${bestMastery}%</div><div class="label">Best Mastery</div></div>
+        <div class="stat warn"><div class="value">${bank.length}</div><div class="label">Mistake Bank</div></div>
+        <div class="stat"><div class="value">${QUESTIONS.length}</div><div class="label">Total Questions</div></div>
+      </div>
+      <div class="mode-grid">
+        <button class="mode-btn" onclick="renderStudy()">
+          <span class="icon">📖</span>
+          <span class="title">Study Mode</span>
+          <span class="desc">See all ${QUESTIONS.length} questions WITH the correct answers and explanations upfront. Printable answer key.</span>
+        </button>
+        <button class="mode-btn" onclick="startMode('practice')">
+          <span class="icon">🎓</span>
+          <span class="title">Practice (with feedback)</span>
+          <span class="desc">All ${QUESTIONS.length} questions in MCQ format with instant feedback after each.</span>
+        </button>
+        <button class="mode-btn" onclick="startMode('test')">
+          <span class="icon">📝</span>
+          <span class="title">Full Unit Test</span>
+          <span class="desc">All ${QUESTIONS.length} questions. No feedback until the end. Simulates exam conditions.</span>
+        </button>
+        <button class="mode-btn" onclick="renderSectionPicker()">
+          <span class="icon">🎯</span>
+          <span class="title">Section Test</span>
+          <span class="desc">Focus on one of the 15 book exercises (A–O).</span>
+        </button>
+        <button class="mode-btn" onclick="startMode('mistakes')" ${bank.length===0?'disabled':''}>
+          <span class="icon">⚠️</span>
+          <span class="title">Mistake Bank Review</span>
+          <span class="desc">${bank.length===0?'Empty — complete a test first.':bank.length+' question(s) to review.'}</span>
+        </button>
+      </div>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function renderSectionPicker(){
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>🎯 Choose a Section</h2>
+      <div class="section-pick">
+        ${Object.entries(SECTIONS).map(([k,s])=>{
+          const count = QUESTIONS.filter(q=>q.sec===k).length;
+          return `<button class="mode-btn" onclick="startMode('section','${k}')">
+            <span class="badge ${k}">${k} · ${count} Q</span>
+            <span class="title">${s.title}</span>
+            <span class="desc">${s.source}<br>${s.instruction}</span>
+          </button>`;
+        }).join("")}
+      </div>
+      <button class="btn secondary" onclick="renderHome()">← Back to Home</button>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function renderStudy(){
+  state.mode = 'study';
+  let html = `
+    <div class="card">
+      <h2>📖 Study Mode — Answer Key</h2>
+      <p class="intro">All ${QUESTIONS.length} questions from Unit 7 with the correct answer highlighted in green.
+      Read through, then practise.</p>
+      <div class="btn-row">
+        <button class="btn" id="print-btn" onclick="window.print()">🖨️ Print Answer Key</button>
+        <button class="btn secondary" onclick="renderHome()">← Back to Home</button>
+      </div>
+    </div>
+  `;
+  Object.entries(SECTIONS).forEach(([secKey,sec])=>{
+    const qs = QUESTIONS.filter(q=>q.sec===secKey);
+    html += `
+      <div class="study-section">
+        <div class="study-header ${secKey}">
+          <div>
+            <h3>${sec.title}</h3>
+            <div class="src">${sec.source} · ${sec.instruction}</div>
+          </div>
+          <span class="badge ${secKey}">${qs.length} Q</span>
+        </div>
+        ${qs.map((q,i)=>`
+          <div class="study-q">
+            <div class="qnum">Question ${i+1} · ${q.ref}</div>
+            <div class="qtext">${q.q}</div>
+            ${q.opts.map((opt,j)=>`
+              <div class="study-opt ${j===q.correct?'correct':''}">
+                <span class="letter-sm">${String.fromCharCode(65+j)}</span>
+                <span>${opt}${j===q.correct?' ✅':''}</span>
+              </div>
+            `).join("")}
+            <div class="study-exp">💡 ${q.exp}</div>
+          </div>
+        `).join("")}
+      </div>
+    `;
+  });
+  document.getElementById("app").innerHTML = html;
+  window.scrollTo(0,0);
+}
+
+function shuffle(a){return a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(x=>x[1])}
+
+function startMode(mode, section=null){
+  state.mode = mode;
+  state.idx = 0; state.answers = []; state.startTime = Date.now();
+  state.selected = null; state.confidence = null; state.locked = false;
+  state.section = section;
+  if(mode==='practice' || mode==='test'){
+    state.questions = [...QUESTIONS];
+  } else if(mode==='section'){
+    state.questions = QUESTIONS.filter(q=>q.sec===section);
+  } else if(mode==='mistakes'){
+    const bank = getMistakeBank();
+    const refs = bank.map(m=>m.qRef);
+    state.questions = shuffle(refs.map(r=>QUESTIONS.find(q=>q.ref===r)).filter(Boolean));
+  }
+  renderQuestion();
+}
+
+function renderQuestion(){
+  if(state.idx >= state.questions.length){renderResults(); return;}
+  const q = state.questions[state.idx];
+  const total = state.questions.length;
+  const progress = ((state.idx)/total)*100;
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <div class="progress-bar"><div class="progress-fill" style="width:${progress}%"></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <span class="badge ${q.sec}">Section ${q.sec} · #${q.num}</span>
+        <span style="color:var(--muted);font-size:13px">Question ${state.idx+1} of ${total}</span>
+      </div>
+      <div class="question-text">${q.q}</div>
+      <div class="options" id="options">
+        ${q.opts.map((o,i)=>`
+          <button class="option" onclick="selectOption(${i})" id="opt-${i}">
+            <span class="letter">${String.fromCharCode(65+i)}</span>
+            <span>${o}</span>
+          </button>
+        `).join("")}
+      </div>
+      <div class="confidence">
+        <div class="confidence-label">How sure are you?</div>
+        <div class="confidence-options">
+          <div class="conf-opt" onclick="selectConf('sure',this)">✅ Sure</div>
+          <div class="conf-opt" onclick="selectConf('guess',this)">🤔 Guess</div>
+          <div class="conf-opt" onclick="selectConf('dontknow',this)">❓ Don't know</div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="submitBtn" onclick="submitAnswer()" disabled>Submit</button>
+      </div>
+      <div id="feedback"></div>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function selectOption(i){
+  if(state.locked) return;
+  state.selected = i;
+  document.querySelectorAll(".option").forEach((el,idx)=>{
+    el.classList.toggle("selected", idx===i);
+  });
+  updateSubmit();
+}
+function selectConf(c, el){
+  if(state.locked) return;
+  state.confidence = c;
+  document.querySelectorAll(".conf-opt").forEach(x=>x.classList.remove("selected"));
+  el.classList.add("selected");
+  updateSubmit();
+}
+function updateSubmit(){
+  const btn = document.getElementById("submitBtn");
+  if(btn) btn.disabled = !(state.selected!==null && state.confidence!==null);
+}
+
+function submitAnswer(){
+  if(state.selected===null || state.confidence===null) return;
+  const q = state.questions[state.idx];
+  const correct = state.selected === q.correct;
+  state.locked = true;
+  state.answers.push({qRef:q.ref, selected:state.selected, confidence:state.confidence, correct});
+  updateMistakeBank(q.ref, state.selected, state.confidence, correct);
+  if(state.mode==='practice' || state.mode==='mistakes' || state.mode==='section'){
+    document.querySelectorAll(".option").forEach((el,idx)=>{
+      el.classList.add("locked");
+      if(idx===q.correct) el.classList.add("correct");
+      else if(idx===state.selected) el.classList.add("wrong");
+    });
+    const fb = document.getElementById("feedback");
+    fb.innerHTML = `
+      <div class="explanation">
+        <div><strong>${correct?'✅ Correct!':'❌ Not quite.'}</strong> The answer is <strong>${String.fromCharCode(65+q.correct)}. ${q.opts[q.correct]}</strong>.</div>
+        <div style="margin-top:6px">${q.exp}</div>
+        <span class="ref">📖 ${q.ref}</span>
+      </div>
+      <div class="btn-row" style="margin-top:14px">
+        <button class="btn" onclick="nextQuestion()">${state.idx+1===state.questions.length?'Finish →':'Next →'}</button>
+      </div>
+    `;
+    document.getElementById("submitBtn").style.display="none";
+  } else {
+    nextQuestion();
+  }
+}
+
+function nextQuestion(){
+  state.idx++;
+  state.selected = null; state.confidence = null; state.locked = false;
+  if(state.idx >= state.questions.length) renderResults();
+  else renderQuestion();
+}
+
+function updateMistakeBank(qRef, selected, conf, correct){
+  let bank = getMistakeBank();
+  const existing = bank.find(m=>m.qRef===qRef);
+  if(correct && conf==='sure'){
+    if(existing) bank = bank.filter(m=>m.qRef!==qRef);
+    setMistakeBank(bank); return;
+  }
+  let reason = null;
+  if(!correct && conf==='sure') reason='danger';
+  else if(!correct) reason='wrong';
+  else if(correct && conf==='guess') reason='guess';
+  else if(correct && conf==='dontknow') reason='dontknow';
+  if(reason){
+    if(existing){
+      existing.reason = reason;
+      existing.repeats = (existing.repeats||1)+1;
+      existing.lastSelected = selected;
+    } else {
+      bank.push({qRef, reason, repeats:1, lastSelected:selected});
+    }
+    setMistakeBank(bank);
+  }
+}
+
+function renderResults(){
+  const ans = state.answers;
+  const total = ans.length;
+  const correct = ans.filter(a=>a.correct).length;
+  const guessed = ans.filter(a=>a.confidence==='guess').length;
+  const dontknow = ans.filter(a=>a.confidence==='dontknow').length;
+  const wrongSure = ans.filter(a=>!a.correct && a.confidence==='sure').length;
+
+  let mastery = 0;
+  ans.forEach(a=>{
+    if(a.correct){
+      if(a.confidence==='sure') mastery+=1;
+      else if(a.confidence==='guess') mastery+=0.5;
+      else mastery+=0.25;
+    }
+  });
+  const masteryPct = Math.round((mastery/total)*100);
+  const scorePct = Math.round((correct/total)*100);
+
+  const secStats = {};
+  ans.forEach(a=>{
+    const q = QUESTIONS.find(x=>x.ref===a.qRef);
+    if(!q) return;
+    if(!secStats[q.sec]) secStats[q.sec]={right:0,total:0};
+    secStats[q.sec].total++;
+    if(a.correct) secStats[q.sec].right++;
+  });
+  let weakSec = null, weakRate = 1.1;
+  Object.entries(secStats).forEach(([s,v])=>{
+    const r = v.right/v.total;
+    if(r<weakRate){weakRate=r; weakSec=s;}
+  });
+
+  let readiness, rClass, recommend;
+  if(scorePct<=50){readiness="Not Ready — needs serious review"; rClass="r1";
+    recommend="Re-read Lessons 1A, 2A, 4A, 5A & 6A and use Study Mode before retaking.";}
+  else if(scorePct<=70){readiness="Needs Review"; rClass="r2";
+    recommend="Focus on Section <strong>"+(weakSec||"")+"</strong> using Section Test mode.";}
+  else if(scorePct<=85){readiness="Good — Close to Mastery"; rClass="r3";
+    recommend="Clear your Mistake Bank and retake the Full Test.";}
+  else if(scorePct<=94){readiness="Ready for Unit Test"; rClass="r4";
+    recommend="Strong performance. One more round to push mastery higher.";}
+  else if(wrongSure>0){readiness="Ready for Unit Test"; rClass="r4";
+    recommend="Excellent score, but you have "+wrongSure+" wrong-with-confidence answer(s). Review those carefully.";}
+  else {readiness="🌟 Ready for Full Mark!"; rClass="r5";
+    recommend="Perfect mastery on Unit 7 vocabulary. Ready to move to Unit 8!";}
+
+  const sec = Math.floor((Date.now()-state.startTime)/1000);
+  const timeStr = Math.floor(sec/60)+":"+String(sec%60).padStart(2,'0');
+
+  const store = loadStore();
+  store.attempts = (store.attempts||0)+1;
+  store.lastScore = scorePct;
+  store.bestMastery = Math.max(store.bestMastery||0, masteryPct);
+  saveStore(store);
+
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>📊 Results</h2>
+      <div class="readiness ${rClass}">${readiness}</div>
+      <div class="results-grid">
+        <div class="stat ${scorePct>=80?'good':scorePct>=60?'warn':'bad'}">
+          <div class="value">${correct}/${total}</div><div class="label">Score (${scorePct}%)</div>
+        </div>
+        <div class="stat good"><div class="value">${masteryPct}%</div><div class="label">Mastery</div></div>
+        <div class="stat warn"><div class="value">${guessed}</div><div class="label">Guesses</div></div>
+        <div class="stat"><div class="value">${dontknow}</div><div class="label">Don't Know</div></div>
+        <div class="stat danger"><div class="value">${wrongSure}</div><div class="label">⚠️ Wrong + Sure</div></div>
+        <div class="stat"><div class="value">${timeStr}</div><div class="label">Time</div></div>
+      </div>
+      <div class="explanation"><strong>💡 Recommendation:</strong> ${recommend}</div>
+      ${weakSec && weakRate<1 ? `<p style="margin-top:12px"><strong>Weakest section:</strong> ${weakSec} (${Math.round(weakRate*100)}% correct)</p>`:''}
+      <div class="btn-row" style="margin-top:18px">
+        <button class="btn" onclick="reviewWrong()">📖 Review Wrong Answers</button>
+        <button class="btn secondary" onclick="startMode('${state.mode}'${state.section?",'"+state.section+"'":""})">🔄 Retake</button>
+        <button class="btn secondary" onclick="renderHome()">🏠 Home</button>
+      </div>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function reviewWrong(){
+  const wrongAns = state.answers.filter(a=>!a.correct);
+  if(wrongAns.length===0){
+    document.getElementById("app").innerHTML = `
+      <div class="card">
+        <h2>🎉 No wrong answers to review!</h2>
+        <p>You got everything correct. Great work!</p>
+        <button class="btn" onclick="renderHome()">🏠 Back to Home</button>
+      </div>`;
+    return;
+  }
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>📖 Review Wrong Answers (${wrongAns.length})</h2>
+      ${wrongAns.map(a=>{
+        const q = QUESTIONS.find(x=>x.ref===a.qRef);
+        if(!q) return '';
+        return `<div class="mistake-item">
+          <span class="badge ${q.sec}">Section ${q.sec}</span>
+          <div class="question-text" style="font-size:15px">${q.q}</div>
+          <div>❌ Your answer: <strong>${q.opts[a.selected]}</strong></div>
+          <div>✅ Correct: <strong>${q.opts[q.correct]}</strong></div>
+          <div class="explanation" style="margin-top:10px">${q.exp}<span class="ref">📖 ${q.ref}</span></div>
+        </div>`;
+      }).join("")}
+      <button class="btn" onclick="renderHome()">🏠 Back to Home</button>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+renderHome();
+</script>
+</body>
+</html>

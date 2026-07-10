@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tawjihi English — Unit 5 Vocabulary (Exact Book Questions)</title>
+<style>
+  :root{
+    --primary:#0d9488; --primary-dark:#0f766e; --navy:#0f172a;
+    --bg:#f1f5f9; --card:#ffffff; --muted:#64748b;
+    --good:#16a34a; --bad:#dc2626; --warn:#d97706; --danger:#b91c1c;
+    --border:#e2e8f0;
+    --sec-A:#0d9488;
+    --sec-B:#2563eb;
+    --sec-C:#9333ea;
+    --sec-D:#d97706;
+    --sec-E:#db2777;
+    --sec-F:#16a34a;
+    --sec-G:#0891b2;
+    --sec-H:#ea580c;
+    --sec-I:#e11d48;
+    --sec-J:#4f46e5;
+    --sec-K:#059669;
+    --sec-L:#ca8a04;
+    --sec-M:#7c3aed;
+    --sec-N:#dc2626;
+    --sec-O:#65a30d;
+    --sec-P:#0284c7;
+    --sec-Q:#be185d;
+    --sec-R:#0f766e;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+       background:var(--bg);color:var(--navy);line-height:1.5;min-height:100vh}
+  header{background:var(--navy);color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;
+         position:sticky;top:0;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+  header h1{margin:0;font-size:17px;font-weight:600}
+  header .home-btn{background:var(--primary);color:#fff;border:none;padding:8px 14px;border-radius:8px;
+                   cursor:pointer;font-weight:500;font-size:14px}
+  header .home-btn:hover{background:var(--primary-dark)}
+  main{max-width:880px;margin:0 auto;padding:24px 16px}
+  .card{background:var(--card);border-radius:12px;padding:24px;box-shadow:0 2px 10px rgba(15,23,42,.06);
+        margin-bottom:18px;border:1px solid var(--border)}
+  h2{margin-top:0;color:var(--navy);font-size:22px}
+  h3{color:var(--navy);font-size:17px;margin:0 0 12px 0}
+  .intro{color:var(--muted);font-size:15px}
+  .mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
+  .mode-btn{background:#fff;border:2px solid var(--border);border-radius:12px;padding:18px;cursor:pointer;
+            text-align:left;transition:.2s;font-family:inherit}
+  .mode-btn:hover:not(:disabled){border-color:var(--primary);transform:translateY(-2px);box-shadow:0 6px 16px rgba(13,148,136,.15)}
+  .mode-btn:disabled{opacity:.5;cursor:not-allowed}
+  .mode-btn .icon{font-size:28px;margin-bottom:6px;display:block}
+  .mode-btn .title{font-weight:600;font-size:16px;color:var(--navy);display:block;margin-bottom:4px}
+  .mode-btn .desc{font-size:13px;color:var(--muted)}
+  .progress-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden;margin-bottom:14px}
+  .progress-fill{height:100%;background:var(--primary);transition:width .3s}
+  .badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:8px;color:#fff}
+  .badge.A{background:var(--sec-A)}
+  .badge.B{background:var(--sec-B)}
+  .badge.C{background:var(--sec-C)}
+  .badge.D{background:var(--sec-D)}
+  .badge.E{background:var(--sec-E)}
+  .badge.F{background:var(--sec-F)}
+  .badge.G{background:var(--sec-G)}
+  .badge.H{background:var(--sec-H)}
+  .badge.I{background:var(--sec-I)}
+  .badge.J{background:var(--sec-J)}
+  .badge.K{background:var(--sec-K)}
+  .badge.L{background:var(--sec-L)}
+  .badge.M{background:var(--sec-M)}
+  .badge.N{background:var(--sec-N)}
+  .badge.O{background:var(--sec-O)}
+  .badge.P{background:var(--sec-P)}
+  .badge.Q{background:var(--sec-Q)}
+  .badge.R{background:var(--sec-R)}
+  .question-text{font-size:17px;font-weight:500;margin:8px 0 18px 0;color:var(--navy)}
+  .options{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+  .option{background:#fff;border:2px solid var(--border);border-radius:10px;padding:13px 16px;
+          cursor:pointer;text-align:left;font-family:inherit;font-size:15px;transition:.15s;display:flex;align-items:center;gap:12px}
+  .option:hover:not(.locked){border-color:var(--primary);background:#f0fdfa}
+  .option.selected{border-color:var(--primary);background:#ccfbf1}
+  .option.correct{border-color:var(--good);background:#dcfce7;color:#14532d}
+  .option.wrong{border-color:var(--bad);background:#fee2e2;color:#7f1d1d}
+  .option .letter{background:var(--navy);color:#fff;width:28px;height:28px;border-radius:50%;
+                  display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0;font-size:13px}
+  .option.correct .letter{background:var(--good)}
+  .option.wrong .letter{background:var(--bad)}
+  .confidence{background:#f8fafc;border-radius:10px;padding:14px;margin-bottom:14px;border:1px solid var(--border)}
+  .confidence-label{font-weight:600;font-size:14px;margin-bottom:8px;color:var(--navy)}
+  .confidence-options{display:flex;gap:10px;flex-wrap:wrap}
+  .conf-opt{background:#fff;border:2px solid var(--border);border-radius:8px;padding:8px 14px;cursor:pointer;font-size:14px;transition:.15s}
+  .conf-opt.selected{border-color:var(--primary);background:#ccfbf1;font-weight:600}
+  .btn{background:var(--primary);color:#fff;border:none;padding:11px 20px;border-radius:10px;
+       cursor:pointer;font-weight:600;font-size:15px;font-family:inherit;transition:.2s}
+  .btn:hover:not(:disabled){background:var(--primary-dark)}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .btn.secondary{background:#fff;color:var(--navy);border:2px solid var(--border)}
+  .btn.secondary:hover{border-color:var(--primary)}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap}
+  .explanation{background:#f0fdfa;border-left:4px solid var(--primary);padding:13px 16px;
+               border-radius:6px;margin-top:14px;font-size:14px;line-height:1.6}
+  .explanation strong{color:var(--primary-dark)}
+  .ref{font-size:12px;color:var(--muted);margin-top:8px;display:block;font-weight:500}
+  .results-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:18px 0}
+  .stat{background:#f8fafc;padding:14px;border-radius:10px;text-align:center;border:1px solid var(--border)}
+  .stat .value{font-size:26px;font-weight:700;color:var(--navy)}
+  .stat .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+  .stat.good .value{color:var(--good)}
+  .stat.bad .value{color:var(--bad)}
+  .stat.warn .value{color:var(--warn)}
+  .stat.danger .value{color:var(--danger)}
+  .readiness{padding:18px;border-radius:10px;text-align:center;font-weight:600;font-size:17px;margin:14px 0}
+  .readiness.r1{background:#fee2e2;color:var(--bad)}
+  .readiness.r2{background:#ffedd5;color:#9a3412}
+  .readiness.r3{background:#fef9c3;color:#854d0e}
+  .readiness.r4{background:#dcfce7;color:#14532d}
+  .readiness.r5{background:#ccfbf1;color:var(--primary-dark)}
+  .mistake-item{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px}
+  .study-section{margin-bottom:22px}
+  .study-header{position:sticky;top:60px;background:#fff;padding:12px 16px;border-radius:10px;
+                border-left:6px solid var(--primary);box-shadow:0 2px 6px rgba(0,0,0,.06);
+                margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;z-index:5}
+  .study-header.A{border-left-color:var(--sec-A)}
+  .study-header.B{border-left-color:var(--sec-B)}
+  .study-header.C{border-left-color:var(--sec-C)}
+  .study-header.D{border-left-color:var(--sec-D)}
+  .study-header.E{border-left-color:var(--sec-E)}
+  .study-header.F{border-left-color:var(--sec-F)}
+  .study-header.G{border-left-color:var(--sec-G)}
+  .study-header.H{border-left-color:var(--sec-H)}
+  .study-header.I{border-left-color:var(--sec-I)}
+  .study-header.J{border-left-color:var(--sec-J)}
+  .study-header.K{border-left-color:var(--sec-K)}
+  .study-header.L{border-left-color:var(--sec-L)}
+  .study-header.M{border-left-color:var(--sec-M)}
+  .study-header.N{border-left-color:var(--sec-N)}
+  .study-header.O{border-left-color:var(--sec-O)}
+  .study-header.P{border-left-color:var(--sec-P)}
+  .study-header.Q{border-left-color:var(--sec-Q)}
+  .study-header.R{border-left-color:var(--sec-R)}
+  .study-header h3{margin:0;font-size:16px}
+  .study-header .src{font-size:12px;color:var(--muted);font-weight:500;margin-top:3px}
+  .study-q{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px}
+  .study-q .qnum{font-weight:600;color:var(--muted);font-size:13px;margin-bottom:6px}
+  .study-q .qtext{font-size:15px;margin-bottom:10px;color:var(--navy)}
+  .study-opt{padding:8px 12px;border:1px solid var(--border);border-radius:6px;margin-bottom:6px;font-size:14px;display:flex;align-items:center;gap:10px}
+  .study-opt.correct{background:#dcfce7;border-color:var(--good);color:#14532d;font-weight:500}
+  .study-opt .letter-sm{background:#e2e8f0;color:var(--navy);width:22px;height:22px;border-radius:50%;
+                        display:flex;align-items:center;justify-content:center;font-weight:600;font-size:11px;flex-shrink:0}
+  .study-opt.correct .letter-sm{background:var(--good);color:#fff}
+  .study-exp{background:#f0fdfa;border-left:3px solid var(--primary);padding:10px 14px;
+             border-radius:4px;font-size:13px;margin-top:10px;line-height:1.5}
+  .section-pick{display:grid;grid-template-columns:1fr;gap:10px;margin:14px 0}
+  @media print{
+    header,.home-btn,#print-btn,.btn{display:none !important}
+    body{background:#fff}
+    .study-header{position:static;box-shadow:none;border:1px solid #ccc}
+    .study-q{break-inside:avoid;page-break-inside:avoid}
+  }
+  @media(max-width:600px){
+    .question-text{font-size:16px}
+    header h1{font-size:14px}
+    main{padding:16px 10px}
+    .card{padding:16px}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>🌶️ Tawjihi English — Unit 5 Vocabulary</h1>
+  <button class="home-btn" onclick="goHome()">🏠 Home</button>
+</header>
+<main id="app"></main>
+<script>
+const SECTIONS = {
+  A: {title:"Section A \u2014 The Senses Vocabulary",source:"\ud83d\udcd6 SB p.49 \u00b7 L1A \u00b7 Ex 3",instruction:"Complete each sentence with the highlighted word or phrase.",color:"A"},
+  B: {title:"Section B \u2014 Words for Smells and Tastes",source:"\ud83d\udcd6 SB p.50 \u00b7 L2A \u00b7 Ex 3",instruction:"Match the description with the correct word.",color:"B"},
+  C: {title:"Section C \u2014 Sounds (Verb Forms)",source:"\ud83d\udcd6 SB p.50 \u00b7 L2A \u00b7 Ex 4",instruction:"Identify the verb that describes each sound.",color:"C"},
+  D: {title:"Section D \u2014 Texture Adjectives",source:"\ud83d\udcd6 SB p.50 \u00b7 L2A \u00b7 Ex 6",instruction:"Match each texture adjective with its definition.",color:"D"},
+  E: {title:"Section E \u2014 Wildlife Collocations",source:"\ud83d\udcd6 SB p.53 \u00b7 L4A \u00b7 Ex 5",instruction:"Complete each sentence with the correct word.",color:"E"},
+  F: {title:"Section F \u2014 Prepositions (Disability Vocabulary)",source:"\ud83d\udcd6 SB p.53 \u00b7 L4A \u00b7 Ex 6",instruction:"Complete each sentence with the correct preposition.",color:"F"},
+  G: {title:"Section G \u2014 Tomato Ketchup Recipe",source:"\ud83d\udcd6 SB p.54 \u00b7 L5A \u00b7 Ex 1",instruction:"Complete each gap in the recipe with the correct cooking word.",color:"G"},
+  H: {title:"Section H \u2014 Food Adjectives (Opposites)",source:"\ud83d\udcd6 SB p.54 \u00b7 L5A \u00b7 Ex 4",instruction:"Choose the adjective that is the opposite of the given one.",color:"H"},
+  I: {title:"Section I \u2014 Adjective Intensifiers",source:"\ud83d\udcd6 SB p.57 \u00b7 L7A \u00b7 Ex 5",instruction:"Choose the right adjective for the intensifier.",color:"I"},
+  J: {title:"Section J \u2014 Pleasant vs Unpleasant Smells",source:"\ud83d\udcd3 WB p.38 \u00b7 L2B \u00b7 Ex 1",instruction:"Decide whether each smell word is pleasant or unpleasant.",color:"J"},
+  K: {title:"Section K \u2014 Caf\u00e9 Description",source:"\ud83d\udcd3 WB p.38 \u00b7 L2B \u00b7 Ex 2",instruction:"Choose the correct word in the caf\u00e9 description.",color:"K"},
+  L: {title:"Section L \u2014 Sound Verbs Match-Up",source:"\ud83d\udcd3 WB p.38 \u00b7 L2B \u00b7 Ex 3",instruction:"Match each sound verb with what makes that sound.",color:"L"},
+  M: {title:"Section M \u2014 Complete with Texture Adjectives",source:"\ud83d\udcd3 WB p.38 \u00b7 L2B \u00b7 Ex 4",instruction:"Complete each sentence with the correct texture adjective.",color:"M"},
+  N: {title:"Section N \u2014 Campsite Mini-Conversations",source:"\ud83d\udcd3 WB p.38 \u00b7 L2B \u00b7 Ex 5",instruction:"Choose the correct word in each mini-conversation.",color:"N"},
+  O: {title:"Section O \u2014 Match Food with Adjectives",source:"\ud83d\udcd3 WB p.40 \u00b7 L5B \u00b7 Ex 1",instruction:"Match each food word with the adjective that describes it.",color:"O"},
+  P: {title:"Section P \u2014 Cabbage Soup Recipe",source:"\ud83d\udcd3 WB p.40 \u00b7 L5B \u00b7 Ex 3",instruction:"Complete each gap in the cabbage soup recipe.",color:"P"},
+  Q: {title:"Section Q \u2014 Revision: Restaurant Story",source:"\ud83d\udcd3 WB p.42 \u00b7 Revision \u00b7 Ex 1",instruction:"Complete each gap in the restaurant story.",color:"Q"},
+  R: {title:"Section R \u2014 Revision: Choose the Correct Word",source:"\ud83d\udcd3 WB p.42 \u00b7 Revision \u00b7 Ex 2",instruction:"Choose the correct word in each sentence.",color:"R"}
+};
+
+const QUESTIONS = [
+  {sec:"A",num:1,q:"Your _____ is your ability to see.",opts:["eyesight", "hearing loss", "taste buds", "perception"],correct:0,exp:"<strong>eyesight</strong> = your ability to see.",ref:"SB p.49 \u00b7 L1A Ex 3 #1"},
+  {sec:"A",num:2,q:"If you are _____, you can't tell the difference between some colours.",opts:["short-sighted", "colour-blind", "tone-deaf", "near-sighted"],correct:1,exp:"<strong>colour-blind</strong> = unable to distinguish certain colours.",ref:"SB p.49 \u00b7 L1A Ex 3 #2"},
+  {sec:"A",num:3,q:"If you _____ something, you can see, hear, or understand someone or something with some difficulty.",opts:["take in", "pick up", "make out", "perceive"],correct:2,exp:"<strong>make out</strong> = perceive with difficulty.",ref:"SB p.49 \u00b7 L1A Ex 3 #3"},
+  {sec:"A",num:4,q:"_____ is another word for 'notice'.",opts:["Perceive", "Detect", "Spot", "Observe"],correct:0,exp:"<strong>Perceive</strong> = to notice or become aware of something.",ref:"SB p.49 \u00b7 L1A Ex 3 #4"},
+  {sec:"A",num:5,q:"_____ are the tiny bumps on your tongue that allow you to recognise flavours.",opts:["Taste buds", "Tongue tips", "Mouth glands", "Flavour bumps"],correct:0,exp:"<strong>Taste buds</strong> = tiny bumps on the tongue that detect flavour.",ref:"SB p.49 \u00b7 L1A Ex 3 #5"},
+  {sec:"A",num:6,q:"_____ is another way of saying 'deafness'.",opts:["Eyesight", "Make out", "Hearing loss", "Colour-blind"],correct:2,exp:"<strong>Hearing loss</strong> = another term for deafness.",ref:"SB p.49 \u00b7 L1A Ex 3 #6"},
+  {sec:"B",num:1,q:"Which word describes <em>the smell of something delicious cooking</em>?",opts:["aroma", "stench", "subtle", "scent"],correct:0,exp:"<strong>aroma</strong> = pleasant smell, often of food.",ref:"SB p.50 \u00b7 L2A Ex 3 #1"},
+  {sec:"B",num:2,q:"Which word describes <em>something difficult to detect</em>?",opts:["overpowering", "mouth-watering", "subtle", "smelly"],correct:2,exp:"<strong>subtle</strong> = faint, hard to detect.",ref:"SB p.50 \u00b7 L2A Ex 3 #2"},
+  {sec:"B",num:3,q:"Which word describes <em>something which is too strong</em>?",opts:["subtle", "overpowering", "aroma", "scent"],correct:1,exp:"<strong>overpowering</strong> = too strong (e.g., a smell).",ref:"SB p.50 \u00b7 L2A Ex 3 #3"},
+  {sec:"B",num:4,q:"Which word describes <em>really bad smells</em>?",opts:["aroma", "scent", "stench", "subtle"],correct:2,exp:"<strong>stench</strong> and <strong>stink</strong> describe very bad smells.",ref:"SB p.50 \u00b7 L2A Ex 3 #4"},
+  {sec:"B",num:5,q:"Which word describes <em>delicious-tasting food</em>?",opts:["mouth-watering", "overpowering", "stench", "subtle"],correct:0,exp:"<strong>mouth-watering</strong> = makes your mouth water; very tasty.",ref:"SB p.50 \u00b7 L2A Ex 3 #5"},
+  {sec:"B",num:6,q:"Which word describes <em>a pleasant smell of flowers</em>?",opts:["stench", "scent", "stink", "overpowering"],correct:1,exp:"<strong>scent</strong> = a pleasant, often floral, smell.",ref:"SB p.50 \u00b7 L2A Ex 3 #6"},
+  {sec:"C",num:1,q:"What verb describes <em>the sound of snow underfoot</em>?",opts:["crunching", "popping", "humming", "sizzling"],correct:0,exp:"<strong>crunching</strong> = the sound of snow being walked on.",ref:"SB p.50 \u00b7 L2A Ex 4 a"},
+  {sec:"C",num:2,q:"What verb describes <em>the sound of a balloon when it bursts</em>?",opts:["humming", "popping", "screeching", "rustling"],correct:1,exp:"<strong>popping</strong> = the sharp sound of a balloon bursting.",ref:"SB p.50 \u00b7 L2A Ex 4 b"},
+  {sec:"C",num:3,q:"What verb describes <em>the sound of paper being moved</em>?",opts:["roar", "rustling", "buzzing", "thud"],correct:1,exp:"<strong>rustling</strong> = the soft sound of paper or leaves moving.",ref:"SB p.50 \u00b7 L2A Ex 4 c"},
+  {sec:"C",num:4,q:"What verb describes <em>the sound of meat in a hot pan</em>?",opts:["sizzling", "chirping", "humming", "screeching"],correct:0,exp:"<strong>sizzling</strong> = the hissing sound of frying food.",ref:"SB p.50 \u00b7 L2A Ex 4 d"},
+  {sec:"C",num:5,q:"What verb describes <em>the sound birds make</em>?",opts:["screeching", "chirping", "buzzing", "popping"],correct:1,exp:"<strong>chirping</strong> = the short, sharp sound birds make.",ref:"SB p.50 \u00b7 L2A Ex 4 e"},
+  {sec:"C",num:6,q:"What verb describes <em>the continuous low sound of a washing machine</em>?",opts:["humming", "rustling", "sizzling", "chirping"],correct:0,exp:"<strong>humming</strong> = a continuous low sound.",ref:"SB p.50 \u00b7 L2A Ex 4 f"},
+  {sec:"C",num:7,q:"What word describes <em>the dull heavy sound of something falling</em>?",opts:["roar", "thud", "pop", "crunch"],correct:1,exp:"<strong>thud</strong> = the dull heavy sound of something falling.",ref:"SB p.50 \u00b7 L2A Ex 4 g"},
+  {sec:"C",num:8,q:"What verb describes <em>the high, harsh sound of a parrot</em>?",opts:["screeching", "humming", "buzzing", "crunching"],correct:0,exp:"<strong>screeching</strong> = a high, harsh sound.",ref:"SB p.50 \u00b7 L2A Ex 4 h"},
+  {sec:"C",num:9,q:"What word describes <em>the loud deep sound of an engine</em>?",opts:["chirp", "roar", "rustle", "pop"],correct:1,exp:"<strong>roar</strong> = a deep, loud sound (engine, lion).",ref:"SB p.50 \u00b7 L2A Ex 4 i"},
+  {sec:"C",num:10,q:"What verb describes <em>the sound a bee makes</em>?",opts:["popping", "buzzing", "crunching", "screeching"],correct:1,exp:"<strong>buzzing</strong> = the sound bees make.",ref:"SB p.50 \u00b7 L2A Ex 4 j"},
+  {sec:"D",num:1,q:"Which texture adjective means <em>rough, with a slightly uneven surface</em>?",opts:["coarse", "silky", "squishy", "smooth"],correct:0,exp:"<strong>coarse</strong> = rough to the touch.",ref:"SB p.50 \u00b7 L2A Ex 6 #1"},
+  {sec:"D",num:2,q:"Which texture adjective means <em>soft, light and full of air</em>?",opts:["sticky", "fluffy", "spiky", "prickly"],correct:1,exp:"<strong>fluffy</strong> = soft and full of air (e.g. a chick, a cloud).",ref:"SB p.50 \u00b7 L2A Ex 6 #2"},
+  {sec:"D",num:3,q:"Which texture adjective means <em>covered in lots of small sharp points</em>?",opts:["prickly", "silky", "smooth", "squishy"],correct:0,exp:"<strong>prickly</strong> = with sharp points (e.g., a cactus).",ref:"SB p.50 \u00b7 L2A Ex 6 #3"},
+  {sec:"D",num:4,q:"Which texture adjective means <em>very smooth and soft, like silk</em>?",opts:["coarse", "spiky", "silky", "sticky"],correct:2,exp:"<strong>silky</strong> = smooth and soft like silk.",ref:"SB p.50 \u00b7 L2A Ex 6 #4"},
+  {sec:"D",num:5,q:"Which texture adjective means <em>flat and even, with no bumps</em>?",opts:["spiky", "smooth", "prickly", "fluffy"],correct:1,exp:"<strong>smooth</strong> = flat and even, no bumps.",ref:"SB p.50 \u00b7 L2A Ex 6 #5"},
+  {sec:"D",num:6,q:"Which texture adjective means <em>with sharp pointed ends</em>?",opts:["smooth", "silky", "spiky", "squishy"],correct:2,exp:"<strong>spiky</strong> = pointed and sharp (e.g., hair, a hedgehog).",ref:"SB p.50 \u00b7 L2A Ex 6 #6"},
+  {sec:"D",num:7,q:"Which texture adjective means <em>soft and easy to squeeze</em>?",opts:["squishy", "coarse", "spiky", "sticky"],correct:0,exp:"<strong>squishy</strong> = soft and squeezable.",ref:"SB p.50 \u00b7 L2A Ex 6 #7"},
+  {sec:"D",num:8,q:"Which texture adjective means <em>tending to attach to surfaces (like glue)</em>?",opts:["silky", "smooth", "sticky", "fluffy"],correct:2,exp:"<strong>sticky</strong> = tending to attach (glue, syrup).",ref:"SB p.50 \u00b7 L2A Ex 6 #8"},
+  {sec:"E",num:1,q:"Animals that are classified as 'endangered' are at risk of becoming _____.",opts:["extinct", "natural", "critical", "endangered"],correct:0,exp:"<strong>becoming extinct</strong> = dying out completely.",ref:"SB p.53 \u00b7 L4A Ex 5 #1"},
+  {sec:"E",num:2,q:"Tigers \u2014 the largest living cats on Earth \u2014 are at the top of their food chain so they have no _____ predators.",opts:["critical", "natural", "extinct", "endangered"],correct:1,exp:"<strong>natural predators</strong> = predators that hunt them in the wild.",ref:"SB p.53 \u00b7 L4A Ex 5 #2"},
+  {sec:"E",num:3,q:"The orangutan and black rhino are _____ endangered which means they are facing a very high risk of extinction.",opts:["naturally", "extinctly", "critically", "subtly"],correct:2,exp:"<strong>critically endangered</strong> = at very high risk of extinction.",ref:"SB p.53 \u00b7 L4A Ex 5 #3"},
+  {sec:"F",num:1,q:"It wasn't until she went to boarding school for the blind that she finally came to terms _____ her blindness.",opts:["of", "to", "with", "about"],correct:2,exp:"<strong>come to terms with</strong> = accept (a difficult situation).",ref:"SB p.53 \u00b7 L4A Ex 6 #1"},
+  {sec:"F",num:2,q:"She decided to travel to rural Tibet, to spread the word _____ her Braille system.",opts:["to", "about", "of", "with"],correct:1,exp:"<strong>spread the word about</strong> = tell others about something.",ref:"SB p.53 \u00b7 L4A Ex 6 #2"},
+  {sec:"F",num:3,q:"Sabriye wanted to prove to the world that she was as capable _____ doing things as anyone else.",opts:["of", "to", "with", "about"],correct:0,exp:"<strong>capable of</strong> = able to do something.",ref:"SB p.53 \u00b7 L4A Ex 6 #3"},
+  {sec:"F",num:4,q:"Sabriye explains that to adjust _____ her blindness, she had to make herself focus on what she could rather than couldn't do.",opts:["with", "of", "to", "about"],correct:2,exp:"<strong>adjust to</strong> = get used to (a new situation).",ref:"SB p.53 \u00b7 L4A Ex 6 #4"},
+  {sec:"F",num:5,q:"Desperate _____ fit in, she did all she could to hide her blindness.",opts:["to", "of", "with", "about"],correct:0,exp:"<strong>desperate to</strong> + infinitive = strongly wanting to.",ref:"SB p.53 \u00b7 L4A Ex 6 #5"},
+  {sec:"G",num:1,q:"Take 2 kg of tomatoes and _____ them in half.",opts:["slice", "peel", "stir", "whizz"],correct:0,exp:"<strong>slice</strong> = cut into pieces.",ref:"SB p.54 \u00b7 L5A Ex 1 #1"},
+  {sec:"G",num:2,q:"(no need to _____ them)",opts:["chill", "peel", "puree", "simmer"],correct:1,exp:"<strong>peel</strong> = remove the skin.",ref:"SB p.54 \u00b7 L5A Ex 1 #2"},
+  {sec:"G",num:3,q:"Place in a large _____,",opts:["pan", "food processor", "puree", "boil"],correct:0,exp:"<strong>pan</strong> = cooking vessel for stovetop.",ref:"SB p.54 \u00b7 L5A Ex 1 #3"},
+  {sec:"G",num:4,q:"then _____ in 500 ml of vinegar, 300 g of sugar and some salt and pepper.",opts:["chill", "stir", "peel", "simmer"],correct:1,exp:"<strong>stir in</strong> = mix in by stirring.",ref:"SB p.54 \u00b7 L5A Ex 1 #4"},
+  {sec:"G",num:5,q:"Bring to the _____,",opts:["boil", "simmer", "chill", "puree"],correct:0,exp:"<strong>bring to the boil</strong> = heat until boiling.",ref:"SB p.54 \u00b7 L5A Ex 1 #5"},
+  {sec:"G",num:6,q:"then reduce the heat and _____ gently for about 20 mins.",opts:["whizz", "peel", "simmer", "slice"],correct:2,exp:"<strong>simmer</strong> = cook gently just below boiling.",ref:"SB p.54 \u00b7 L5A Ex 1 #6"},
+  {sec:"G",num:7,q:"Transfer to a blender or _____",opts:["pan", "food processor", "puree", "boil"],correct:1,exp:"<strong>food processor</strong> = electric appliance for chopping/blending.",ref:"SB p.54 \u00b7 L5A Ex 1 #7"},
+  {sec:"G",num:8,q:"and _____ until you have a smooth puree.",opts:["chill", "peel", "whizz", "stir"],correct:2,exp:"<strong>whizz</strong> = blend rapidly until smooth.",ref:"SB p.54 \u00b7 L5A Ex 1 #8"},
+  {sec:"G",num:9,q:"...until you have a smooth _____.",opts:["puree", "slice", "boil", "simmer"],correct:0,exp:"<strong>puree</strong> = a smooth thick liquid food.",ref:"SB p.54 \u00b7 L5A Ex 1 #9"},
+  {sec:"G",num:10,q:"_____ before serving.",opts:["Boil", "Stir", "Slice", "Chill"],correct:3,exp:"<strong>Chill</strong> = make cold in the fridge.",ref:"SB p.54 \u00b7 L5A Ex 1 #10"},
+  {sec:"H",num:1,q:"Which adjective is the opposite of <strong>thick</strong>?",opts:["sweet", "runny/watery", "crunchy", "mild"],correct:1,exp:"<strong>thick</strong> \u2194 <strong>runny/watery</strong>.",ref:"SB p.54 \u00b7 L5A Ex 4 #1"},
+  {sec:"H",num:2,q:"Which adjective is the opposite of <strong>crunchy</strong>?",opts:["smooth", "spicy", "tasty", "sweet"],correct:0,exp:"<strong>crunchy</strong> \u2194 <strong>smooth</strong>.",ref:"SB p.54 \u00b7 L5A Ex 4 #2"},
+  {sec:"H",num:3,q:"Which adjective is the opposite of <strong>savoury</strong>?",opts:["mild", "sweet", "watery", "crunchy"],correct:1,exp:"<strong>savoury</strong> (salty/non-sweet) \u2194 <strong>sweet</strong>.",ref:"SB p.54 \u00b7 L5A Ex 4 #3"},
+  {sec:"H",num:4,q:"Which adjective is the opposite of <strong>bland</strong>?",opts:["mild", "watery", "tasty", "smooth"],correct:2,exp:"<strong>bland</strong> (flavourless) \u2194 <strong>tasty</strong>.",ref:"SB p.54 \u00b7 L5A Ex 4 #4"},
+  {sec:"H",num:5,q:"Which adjective is the opposite of <strong>spicy</strong>?",opts:["mild", "sweet", "crunchy", "smooth"],correct:0,exp:"<strong>spicy</strong> \u2194 <strong>mild</strong>.",ref:"SB p.54 \u00b7 L5A Ex 4 #5"},
+  {sec:"I",num:1,q:"I was seriously _____ when we walked across the tight rope.",opts:["scared", "petrified", "fascinating", "mind-blowing"],correct:0,exp:"<strong>scared</strong> = gradable adjective with <em>seriously</em>.",ref:"SB p.57 \u00b7 L7A Ex 5 #1a"},
+  {sec:"I",num:2,q:"I was totally _____.",opts:["scared", "petrified", "interesting", "loud"],correct:1,exp:"<strong>petrified</strong> = non-gradable; pairs with <em>totally/absolutely</em>.",ref:"SB p.57 \u00b7 L7A Ex 5 #1b"},
+  {sec:"I",num:3,q:"The sound effects were incredibly _____.",opts:["deafening", "loud", "silly", "impressive"],correct:1,exp:"<strong>loud</strong> = gradable; pairs with <em>incredibly</em>.",ref:"SB p.57 \u00b7 L7A Ex 5 #2a"},
+  {sec:"I",num:4,q:"Yes, they were really _____!",opts:["loud", "deafening", "ridiculous", "fascinating"],correct:1,exp:"<strong>deafening</strong> = non-gradable extreme of loud.",ref:"SB p.57 \u00b7 L7A Ex 5 #2b"},
+  {sec:"I",num:5,q:"I look completely _____ in this photo. How embarrassing!",opts:["silly", "ridiculous", "scared", "mind-blowing"],correct:1,exp:"<strong>ridiculous</strong> = non-gradable; pairs with <em>completely</em>.",ref:"SB p.57 \u00b7 L7A Ex 5 #3a"},
+  {sec:"I",num:6,q:"Yes, you do look pretty _____.",opts:["ridiculous", "silly", "deafening", "impressive"],correct:1,exp:"<strong>silly</strong> = gradable; pairs with <em>pretty</em>.",ref:"SB p.57 \u00b7 L7A Ex 5 #3b"},
+  {sec:"I",num:7,q:"The interactive displays were utterly _____.",opts:["interesting", "fascinating", "loud", "silly"],correct:1,exp:"<strong>fascinating</strong> = non-gradable; pairs with <em>utterly</em>.",ref:"SB p.57 \u00b7 L7A Ex 5 #4a"},
+  {sec:"I",num:8,q:"Yes, I found them very _____ too.",opts:["fascinating", "interesting", "deafening", "mind-blowing"],correct:1,exp:"<strong>interesting</strong> = gradable; pairs with <em>very</em>.",ref:"SB p.57 \u00b7 L7A Ex 5 #4b"},
+  {sec:"I",num:9,q:"The Dead Sea scrolls were extremely _____.",opts:["mind-blowing", "impressive", "silly", "loud"],correct:1,exp:"<strong>impressive</strong> = gradable; pairs with <em>extremely</em>.",ref:"SB p.57 \u00b7 L7A Ex 5 #5a"},
+  {sec:"I",num:10,q:"I thought they were totally _____.",opts:["impressive", "mind-blowing", "interesting", "scared"],correct:1,exp:"<strong>mind-blowing</strong> = non-gradable; pairs with <em>totally</em>.",ref:"SB p.57 \u00b7 L7A Ex 5 #5b"},
+  {sec:"J",num:1,q:"Is <strong>aroma</strong> a pleasant or unpleasant smell?",opts:["Pleasant", "Unpleasant"],correct:0,exp:"<strong>aroma</strong> = pleasant smell (often of food).",ref:"WB p.38 \u00b7 L2B Ex 1 #1"},
+  {sec:"J",num:2,q:"Is <strong>mouth-watering</strong> a pleasant or unpleasant smell?",opts:["Pleasant", "Unpleasant"],correct:0,exp:"<strong>mouth-watering</strong> = pleasant; makes you hungry.",ref:"WB p.38 \u00b7 L2B Ex 1 #2"},
+  {sec:"J",num:3,q:"Is <strong>overpowering</strong> a pleasant or unpleasant smell?",opts:["Pleasant", "Unpleasant"],correct:1,exp:"<strong>overpowering</strong> = unpleasant; too strong.",ref:"WB p.38 \u00b7 L2B Ex 1 #3"},
+  {sec:"J",num:4,q:"Is <strong>scent</strong> a pleasant or unpleasant smell?",opts:["Pleasant", "Unpleasant"],correct:0,exp:"<strong>scent</strong> = pleasant smell (e.g., flowers, perfume).",ref:"WB p.38 \u00b7 L2B Ex 1 #4"},
+  {sec:"J",num:5,q:"Is <strong>smelly</strong> a pleasant or unpleasant smell?",opts:["Pleasant", "Unpleasant"],correct:1,exp:"<strong>smelly</strong> = unpleasant; bad-smelling.",ref:"WB p.38 \u00b7 L2B Ex 1 #5"},
+  {sec:"J",num:6,q:"Is <strong>stench</strong> a pleasant or unpleasant smell?",opts:["Pleasant", "Unpleasant"],correct:1,exp:"<strong>stench</strong> = unpleasant; a very strong bad smell.",ref:"WB p.38 \u00b7 L2B Ex 1 #6"},
+  {sec:"J",num:7,q:"Is <strong>stink</strong> a pleasant or unpleasant smell?",opts:["Pleasant", "Unpleasant"],correct:1,exp:"<strong>stink</strong> = unpleasant; bad smell (also a verb).",ref:"WB p.38 \u00b7 L2B Ex 1 #7"},
+  {sec:"J",num:8,q:"Is <strong>subtle</strong> a pleasant or unpleasant smell?",opts:["Pleasant", "Unpleasant"],correct:0,exp:"<strong>subtle</strong> = pleasant; gentle, not too strong.",ref:"WB p.38 \u00b7 L2B Ex 1 #8"},
+  {sec:"K",num:1,q:"When I walked into the caf\u00e9 near the river, I smelled the _____ of fresh coffee as soon as I opened the door.",opts:["stink", "aroma", "stench", "overpowering"],correct:1,exp:"<strong>aroma</strong> = pleasant smell of food/drink.",ref:"WB p.38 \u00b7 L2B Ex 2 #1"},
+  {sec:"K",num:2,q:"whatever they were preparing in the kitchen smelled _____.",opts:["mouth-watering", "overpowering", "smelly", "subtle"],correct:0,exp:"<strong>mouth-watering</strong> = smelled delicious.",ref:"WB p.38 \u00b7 L2B Ex 2 #2"},
+  {sec:"K",num:3,q:"The honey was delicious; it was very _____",opts:["spiky", "smooth", "sticky", "prickly"],correct:1,exp:"<strong>smooth</strong> = soft texture (in this case, honey).",ref:"WB p.38 \u00b7 L2B Ex 2 #3"},
+  {sec:"K",num:4,q:"with a _____ hint of lavender.",opts:["subtle", "smelly", "overpowering", "stench"],correct:0,exp:"<strong>subtle</strong> = faint and pleasant.",ref:"WB p.38 \u00b7 L2B Ex 2 #4"},
+  {sec:"K",num:5,q:"The lovely _____ of the flower garden at the rear of the caf\u00e9 came in through the window.",opts:["stench", "stink", "scent", "aroma"],correct:2,exp:"<strong>scent</strong> = pleasant smell, especially of flowers.",ref:"WB p.38 \u00b7 L2B Ex 2 #5"},
+  {sec:"L",num:1,q:"What sound do <em>steaks under the grill</em> make?",opts:["sizzle", "hum", "crunch", "pop"],correct:0,exp:"<strong>sizzle</strong> = the sound of frying/grilling food.",ref:"WB p.38 \u00b7 L2B Ex 3 #1"},
+  {sec:"L",num:2,q:"What sound does <em>a room full of switched-on computers</em> make?",opts:["chirp", "hum", "screech", "thud"],correct:1,exp:"<strong>hum</strong> = a continuous low sound from machines.",ref:"WB p.38 \u00b7 L2B Ex 3 #2"},
+  {sec:"L",num:3,q:"What sound does <em>biting into a slice of well-toasted bread</em> make?",opts:["rustle", "pop", "crunch", "sizzle"],correct:2,exp:"<strong>crunch</strong> = the sound of biting into something hard.",ref:"WB p.38 \u00b7 L2B Ex 3 #3"},
+  {sec:"L",num:4,q:"What sound does <em>a person putting a pin in a balloon</em> make?",opts:["pop", "thud", "hum", "chirp"],correct:0,exp:"<strong>pop</strong> = a short, sharp sound (balloon bursting).",ref:"WB p.38 \u00b7 L2B Ex 3 #4"},
+  {sec:"L",num:5,q:"What sound does <em>a heavy book dropped on a wooden floor</em> make?",opts:["screech", "thud", "chirp", "rustle"],correct:1,exp:"<strong>thud</strong> = the dull, heavy sound of something falling.",ref:"WB p.38 \u00b7 L2B Ex 3 #5"},
+  {sec:"L",num:6,q:"What sound do <em>a car's tyres as the driver takes a corner too fast</em> make?",opts:["hum", "screech", "sizzle", "crunch"],correct:1,exp:"<strong>screech</strong> = a high, sharp sound (tyres, brakes).",ref:"WB p.38 \u00b7 L2B Ex 3 #6"},
+  {sec:"L",num:7,q:"What sound do <em>hungry baby birds</em> make?",opts:["chirp", "thud", "hum", "pop"],correct:0,exp:"<strong>chirp</strong> = short, high-pitched sound birds make.",ref:"WB p.38 \u00b7 L2B Ex 3 #7"},
+  {sec:"L",num:8,q:"What sound does <em>a bag of sweets in the cinema</em> make?",opts:["sizzle", "hum", "rustle", "thud"],correct:2,exp:"<strong>rustle</strong> = the soft sound of paper or plastic moving.",ref:"WB p.38 \u00b7 L2B Ex 3 #8"},
+  {sec:"M",num:1,q:"The jar's paper label came off in the dishwasher, but the _____ glue remained on the glass.",opts:["sticky", "spiky", "silky", "fluffy"],correct:0,exp:"<strong>sticky</strong> = tending to attach to surfaces (glue).",ref:"WB p.38 \u00b7 L2B Ex 4 #1"},
+  {sec:"M",num:2,q:"The children decided the hedgehog was simply too _____ to pick up.",opts:["smooth", "spiky", "silky", "squishy"],correct:1,exp:"<strong>spiky</strong> = with sharp points (like a hedgehog).",ref:"WB p.38 \u00b7 L2B Ex 4 #2"},
+  {sec:"M",num:3,q:"The _____ cloth hurt the little girl's face as her mother wiped her clean.",opts:["silky", "fluffy", "coarse", "sticky"],correct:2,exp:"<strong>coarse</strong> = rough to the touch.",ref:"WB p.38 \u00b7 L2B Ex 4 #3"},
+  {sec:"M",num:4,q:"The _____ material of Amina's new dress felt wonderful.",opts:["silky", "spiky", "sticky", "prickly"],correct:0,exp:"<strong>silky</strong> = smooth and soft like silk.",ref:"WB p.38 \u00b7 L2B Ex 4 #4"},
+  {sec:"M",num:5,q:"The _____ young chick weighed almost nothing in her hand.",opts:["coarse", "prickly", "fluffy", "sticky"],correct:2,exp:"<strong>fluffy</strong> = soft and full of air (baby chicks, clouds).",ref:"WB p.38 \u00b7 L2B Ex 4 #5"},
+  {sec:"M",num:6,q:"Manal didn't believe that the cream would make her skin look young and _____.",opts:["coarse", "smooth", "spiky", "sticky"],correct:1,exp:"<strong>smooth</strong> = even and soft (skin).",ref:"WB p.38 \u00b7 L2B Ex 4 #6"},
+  {sec:"N",num:1,q:"Sami: \"What's that awful _____?\"",opts:["aroma", "scent", "stench", "subtle"],correct:2,exp:"<strong>stench</strong> = a very bad smell (an awful one).",ref:"WB p.38 \u00b7 L2B Ex 5 #1"},
+  {sec:"N",num:2,q:"Rakan: \"I don't know, but it really _____.\"",opts:["stinks", "chirps", "thuds", "hums"],correct:0,exp:"<strong>stinks</strong> = smells very bad.",ref:"WB p.38 \u00b7 L2B Ex 5 #2"},
+  {sec:"N",num:3,q:"Nada: \"Can you hear the _____ of the meat I'm frying for our breakfast?\"",opts:["sizzle", "crunch", "hum", "rustle"],correct:0,exp:"<strong>sizzle</strong> = the sound of frying meat.",ref:"WB p.38 \u00b7 L2B Ex 5 #3"},
+  {sec:"N",num:4,q:"\"Plus the whole campsite can probably smell that _____ smell.\"",opts:["overpowering", "fluffy", "mouth-watering", "sticky"],correct:2,exp:"<strong>mouth-watering</strong> = smells delicious (the friend is being playful).",ref:"WB p.38 \u00b7 L2B Ex 5 #4"},
+  {sec:"O",num:1,q:"Which adjective best describes <strong>yoghurt</strong>?",opts:["spicy", "smooth", "crunchy", "sweet"],correct:1,exp:"<strong>yoghurt</strong> is typically <strong>smooth</strong>.",ref:"WB p.40 \u00b7 L5B Ex 1 #1"},
+  {sec:"O",num:2,q:"Which adjective best describes <strong>chilli sauce</strong>?",opts:["smooth", "crunchy", "spicy", "runny"],correct:2,exp:"<strong>chilli sauce</strong> is <strong>spicy</strong>.",ref:"WB p.40 \u00b7 L5B Ex 1 #2"},
+  {sec:"O",num:3,q:"Which adjective best describes <strong>nuts</strong>?",opts:["smooth", "crunchy", "runny", "sweet"],correct:1,exp:"<strong>nuts</strong> are <strong>crunchy</strong>.",ref:"WB p.40 \u00b7 L5B Ex 1 #3"},
+  {sec:"O",num:4,q:"Which adjective best describes <strong>soup</strong>?",opts:["spicy", "sweet", "runny", "crunchy"],correct:2,exp:"<strong>soup</strong> is typically <strong>runny</strong>.",ref:"WB p.40 \u00b7 L5B Ex 1 #4"},
+  {sec:"O",num:5,q:"Which adjective best describes <strong>chocolate</strong>?",opts:["sweet", "spicy", "crunchy", "runny"],correct:0,exp:"<strong>chocolate</strong> is <strong>sweet</strong>.",ref:"WB p.40 \u00b7 L5B Ex 1 #5"},
+  {sec:"P",num:1,q:"First, _____ one garlic and an onion.",opts:["slice", "peel", "simmer", "whiz"],correct:1,exp:"<strong>peel</strong> = remove the outer skin.",ref:"WB p.40 \u00b7 L5B Ex 3 #1"},
+  {sec:"P",num:2,q:"Chop them finely and cook them in a _____ until they are soft.",opts:["pan", "processor", "slice", "boil"],correct:0,exp:"<strong>pan</strong> = cooking vessel.",ref:"WB p.40 \u00b7 L5B Ex 3 #2"},
+  {sec:"P",num:3,q:"_____ some cabbage into small pieces and add it to the garlic and onions.",opts:["Peel", "Slice", "Whiz", "Simmer"],correct:1,exp:"<strong>Slice</strong> = cut into pieces.",ref:"WB p.40 \u00b7 L5B Ex 3 #3"},
+  {sec:"P",num:4,q:"_____ some water and add it to the mixture.",opts:["Boiled", "Peel", "Slice", "Whiz"],correct:0,exp:"<strong>Boiled</strong> water = water that has been boiled.",ref:"WB p.40 \u00b7 L5B Ex 3 #4"},
+  {sec:"P",num:5,q:"_____ the mixture for a few minutes.",opts:["Peel", "Slice", "Whiz", "Simmer"],correct:3,exp:"<strong>Simmer</strong> = cook gently just below boiling.",ref:"WB p.40 \u00b7 L5B Ex 3 #5"},
+  {sec:"P",num:6,q:"Then pour the mixture into a food _____.",opts:["pan", "peel", "processor", "simmer"],correct:2,exp:"<strong>food processor</strong> = electric blending appliance.",ref:"WB p.40 \u00b7 L5B Ex 3 #6"},
+  {sec:"P",num:7,q:"_____ the mixture until you have a nice, smooth soup.",opts:["Peel", "Slice", "Whiz", "Simmer"],correct:2,exp:"<strong>Whiz</strong> = blend rapidly until smooth.",ref:"WB p.40 \u00b7 L5B Ex 3 #7"},
+  {sec:"Q",num:1,q:"I have a keen sense of _____.",opts:["smell", "aroma", "scent", "stench"],correct:0,exp:"<strong>sense of smell</strong> = ability to detect odours.",ref:"WB p.42 \u00b7 Rev Ex 1 #1"},
+  {sec:"Q",num:2,q:"The _____ when someone opened the bins was so overpowering that we felt sick.",opts:["scent", "stench", "aroma", "subtle"],correct:1,exp:"<strong>stench</strong> = very bad smell (from bins).",ref:"WB p.42 \u00b7 Rev Ex 1 #2"},
+  {sec:"Q",num:3,q:"The stench was so _____ that we felt sick.",opts:["subtle", "mouth-watering", "overpowering", "smooth"],correct:2,exp:"<strong>overpowering</strong> = too strong.",ref:"WB p.42 \u00b7 Rev Ex 1 #3"},
+  {sec:"Q",num:4,q:"I am _____, so I couldn't tell.",opts:["short-sighted", "colour-blind", "tone-deaf", "near-sighted"],correct:1,exp:"<strong>colour-blind</strong> = can't distinguish certain colours.",ref:"WB p.42 \u00b7 Rev Ex 1 #4"},
+  {sec:"Q",num:5,q:"so I couldn't _____.",opts:["tell", "see", "make", "perceive"],correct:0,exp:"<strong>tell</strong> = distinguish (the colours).",ref:"WB p.42 \u00b7 Rev Ex 1 #5"},
+  {sec:"Q",num:6,q:"My friend said the colour green was putting her _____ any food.",opts:["off", "away from", "aside", "apart"],correct:0,exp:"<strong>put off</strong> = make someone lose interest/appetite.",ref:"WB p.42 \u00b7 Rev Ex 1 #6"},
+  {sec:"Q",num:7,q:"I don't like strong, _____ food so I ordered a mild curry.",opts:["savoury", "spicy", "sweet", "bland"],correct:1,exp:"<strong>spicy</strong> = strong/hot flavour.",ref:"WB p.42 \u00b7 Rev Ex 1 #7"},
+  {sec:"Q",num:8,q:"It looked _____ enough, but the reality was disappointing.",opts:["sweet", "tasty", "mouth-watering", "smooth"],correct:1,exp:"<strong>tasty</strong> = looking like it would taste good.",ref:"WB p.42 \u00b7 Rev Ex 1 #8"},
+  {sec:"Q",num:9,q:"It was _____ and had very little taste.",opts:["mouth-watering", "tasty", "bland", "spicy"],correct:2,exp:"<strong>bland</strong> = without much flavour.",ref:"WB p.42 \u00b7 Rev Ex 1 #9"},
+  {sec:"R",num:1,q:"Don't touch that cactus. It's super _____.",opts:["prickly", "silky", "squishy", "fluffy"],correct:0,exp:"<strong>prickly</strong> = covered in sharp points (cactus).",ref:"WB p.42 \u00b7 Rev Ex 2 #1"},
+  {sec:"R",num:2,q:"The child's hands are very _____ because she has been sticking things with glue.",opts:["sticky", "coarse", "spiky", "smooth"],correct:0,exp:"<strong>sticky</strong> = tending to attach (from glue).",ref:"WB p.42 \u00b7 Rev Ex 2 #2"},
+  {sec:"R",num:3,q:"We could smell the subtle _____ of roses as we entered the room.",opts:["scent", "aroma", "stink", "stench"],correct:0,exp:"<strong>scent</strong> = the pleasant smell of flowers.",ref:"WB p.42 \u00b7 Rev Ex 2 #3"},
+  {sec:"R",num:4,q:"The Maths exam was really _____ but I managed to get a good grade.",opts:["smooth", "tough", "bland", "silky"],correct:1,exp:"<strong>tough</strong> = difficult.",ref:"WB p.42 \u00b7 Rev Ex 2 #4"},
+  {sec:"R",num:5,q:"There was no noise except for the _____ of paper as the students began the test.",opts:["humming", "buzzing", "rustling", "sizzling"],correct:2,exp:"<strong>rustling</strong> = soft sound of paper moving.",ref:"WB p.42 \u00b7 Rev Ex 2 #5"}
+];
+
+let state = {mode:null,questions:[],idx:0,answers:[],startTime:0,selected:null,confidence:null,locked:false,section:null};
+
+const STORAGE_KEY = "tawjihi_u5_exact_v1";
+function loadStore(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch(e){return{}}}
+function saveStore(s){localStorage.setItem(STORAGE_KEY,JSON.stringify(s))}
+function getMistakeBank(){return loadStore().mistakes||[]}
+function setMistakeBank(b){const s=loadStore();s.mistakes=b;saveStore(s)}
+
+function goHome(){
+  if(state.mode && state.mode!=='study' && state.answers.length>0 &&
+     !confirm("Return to home? Your current progress will be lost.")) return;
+  renderHome();
+}
+
+function renderHome(){
+  state = {mode:null,questions:[],idx:0,answers:[],startTime:0,selected:null,confidence:null,locked:false,section:null};
+  const store = loadStore();
+  const bank = getMistakeBank();
+  const bestMastery = store.bestMastery || 0;
+  const attempts = store.attempts || 0;
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>🌶️ Unit 5 — "Making sense of the senses"</h2>
+      <p class="intro">
+        This trainer uses the <strong>exact questions</strong> from your Jordan High Note Grade 11 books —
+        Unit 5 "Making sense of the senses" — covering the five senses, smells, sounds, textures,
+        food and cooking, and review adjectives from Lessons 1A, 2A, 4A, 5A, 7A (Student's Book)
+        and Lessons 2B, 5B + Revision (Workbook).
+        <strong>${QUESTIONS.length} vocabulary questions across 18 sections.</strong>
+      </p>
+      <div class="results-grid">
+        <div class="stat"><div class="value">${attempts}</div><div class="label">Attempts</div></div>
+        <div class="stat good"><div class="value">${bestMastery}%</div><div class="label">Best Mastery</div></div>
+        <div class="stat warn"><div class="value">${bank.length}</div><div class="label">Mistake Bank</div></div>
+        <div class="stat"><div class="value">${QUESTIONS.length}</div><div class="label">Total Questions</div></div>
+      </div>
+      <div class="mode-grid">
+        <button class="mode-btn" onclick="renderStudy()">
+          <span class="icon">📖</span>
+          <span class="title">Study Mode</span>
+          <span class="desc">See all ${QUESTIONS.length} questions WITH the correct answers and explanations upfront. Printable answer key.</span>
+        </button>
+        <button class="mode-btn" onclick="startMode('practice')">
+          <span class="icon">🎓</span>
+          <span class="title">Practice (with feedback)</span>
+          <span class="desc">All ${QUESTIONS.length} questions in MCQ format with instant feedback after each.</span>
+        </button>
+        <button class="mode-btn" onclick="startMode('test')">
+          <span class="icon">📝</span>
+          <span class="title">Full Unit Test</span>
+          <span class="desc">All ${QUESTIONS.length} questions. No feedback until the end. Simulates exam conditions.</span>
+        </button>
+        <button class="mode-btn" onclick="renderSectionPicker()">
+          <span class="icon">🎯</span>
+          <span class="title">Section Test</span>
+          <span class="desc">Focus on one of the 18 book exercises (A–R).</span>
+        </button>
+        <button class="mode-btn" onclick="startMode('mistakes')" ${bank.length===0?'disabled':''}>
+          <span class="icon">⚠️</span>
+          <span class="title">Mistake Bank Review</span>
+          <span class="desc">${bank.length===0?'Empty — complete a test first.':bank.length+' question(s) to review.'}</span>
+        </button>
+      </div>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function renderSectionPicker(){
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>🎯 Choose a Section</h2>
+      <div class="section-pick">
+        ${Object.entries(SECTIONS).map(([k,s])=>{
+          const count = QUESTIONS.filter(q=>q.sec===k).length;
+          return `<button class="mode-btn" onclick="startMode('section','${k}')">
+            <span class="badge ${k}">${k} · ${count} Q</span>
+            <span class="title">${s.title}</span>
+            <span class="desc">${s.source}<br>${s.instruction}</span>
+          </button>`;
+        }).join("")}
+      </div>
+      <button class="btn secondary" onclick="renderHome()">← Back to Home</button>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function renderStudy(){
+  state.mode = 'study';
+  let html = `
+    <div class="card">
+      <h2>📖 Study Mode — Answer Key</h2>
+      <p class="intro">All ${QUESTIONS.length} questions from Unit 5 with the correct answer highlighted in green.
+      Read through, then practise.</p>
+      <div class="btn-row">
+        <button class="btn" id="print-btn" onclick="window.print()">🖨️ Print Answer Key</button>
+        <button class="btn secondary" onclick="renderHome()">← Back to Home</button>
+      </div>
+    </div>
+  `;
+  Object.entries(SECTIONS).forEach(([secKey,sec])=>{
+    const qs = QUESTIONS.filter(q=>q.sec===secKey);
+    html += `
+      <div class="study-section">
+        <div class="study-header ${secKey}">
+          <div>
+            <h3>${sec.title}</h3>
+            <div class="src">${sec.source} · ${sec.instruction}</div>
+          </div>
+          <span class="badge ${secKey}">${qs.length} Q</span>
+        </div>
+        ${qs.map((q,i)=>`
+          <div class="study-q">
+            <div class="qnum">Question ${i+1} · ${q.ref}</div>
+            <div class="qtext">${q.q}</div>
+            ${q.opts.map((opt,j)=>`
+              <div class="study-opt ${j===q.correct?'correct':''}">
+                <span class="letter-sm">${String.fromCharCode(65+j)}</span>
+                <span>${opt}${j===q.correct?' ✅':''}</span>
+              </div>
+            `).join("")}
+            <div class="study-exp">💡 ${q.exp}</div>
+          </div>
+        `).join("")}
+      </div>
+    `;
+  });
+  document.getElementById("app").innerHTML = html;
+  window.scrollTo(0,0);
+}
+
+function shuffle(a){return a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(x=>x[1])}
+
+function startMode(mode, section=null){
+  state.mode = mode;
+  state.idx = 0; state.answers = []; state.startTime = Date.now();
+  state.selected = null; state.confidence = null; state.locked = false;
+  state.section = section;
+  if(mode==='practice' || mode==='test'){
+    state.questions = [...QUESTIONS];
+  } else if(mode==='section'){
+    state.questions = QUESTIONS.filter(q=>q.sec===section);
+  } else if(mode==='mistakes'){
+    const bank = getMistakeBank();
+    const refs = bank.map(m=>m.qRef);
+    state.questions = shuffle(refs.map(r=>QUESTIONS.find(q=>q.ref===r)).filter(Boolean));
+  }
+  renderQuestion();
+}
+
+function renderQuestion(){
+  if(state.idx >= state.questions.length){renderResults(); return;}
+  const q = state.questions[state.idx];
+  const total = state.questions.length;
+  const progress = ((state.idx)/total)*100;
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <div class="progress-bar"><div class="progress-fill" style="width:${progress}%"></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <span class="badge ${q.sec}">Section ${q.sec} · #${q.num}</span>
+        <span style="color:var(--muted);font-size:13px">Question ${state.idx+1} of ${total}</span>
+      </div>
+      <div class="question-text">${q.q}</div>
+      <div class="options" id="options">
+        ${q.opts.map((o,i)=>`
+          <button class="option" onclick="selectOption(${i})" id="opt-${i}">
+            <span class="letter">${String.fromCharCode(65+i)}</span>
+            <span>${o}</span>
+          </button>
+        `).join("")}
+      </div>
+      <div class="confidence">
+        <div class="confidence-label">How sure are you?</div>
+        <div class="confidence-options">
+          <div class="conf-opt" onclick="selectConf('sure',this)">✅ Sure</div>
+          <div class="conf-opt" onclick="selectConf('guess',this)">🤔 Guess</div>
+          <div class="conf-opt" onclick="selectConf('dontknow',this)">❓ Don't know</div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="submitBtn" onclick="submitAnswer()" disabled>Submit</button>
+      </div>
+      <div id="feedback"></div>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function selectOption(i){
+  if(state.locked) return;
+  state.selected = i;
+  document.querySelectorAll(".option").forEach((el,idx)=>{
+    el.classList.toggle("selected", idx===i);
+  });
+  updateSubmit();
+}
+function selectConf(c, el){
+  if(state.locked) return;
+  state.confidence = c;
+  document.querySelectorAll(".conf-opt").forEach(x=>x.classList.remove("selected"));
+  el.classList.add("selected");
+  updateSubmit();
+}
+function updateSubmit(){
+  const btn = document.getElementById("submitBtn");
+  if(btn) btn.disabled = !(state.selected!==null && state.confidence!==null);
+}
+
+function submitAnswer(){
+  if(state.selected===null || state.confidence===null) return;
+  const q = state.questions[state.idx];
+  const correct = state.selected === q.correct;
+  state.locked = true;
+  state.answers.push({qRef:q.ref, selected:state.selected, confidence:state.confidence, correct});
+  updateMistakeBank(q.ref, state.selected, state.confidence, correct);
+  if(state.mode==='practice' || state.mode==='mistakes' || state.mode==='section'){
+    document.querySelectorAll(".option").forEach((el,idx)=>{
+      el.classList.add("locked");
+      if(idx===q.correct) el.classList.add("correct");
+      else if(idx===state.selected) el.classList.add("wrong");
+    });
+    const fb = document.getElementById("feedback");
+    fb.innerHTML = `
+      <div class="explanation">
+        <div><strong>${correct?'✅ Correct!':'❌ Not quite.'}</strong> The answer is <strong>${String.fromCharCode(65+q.correct)}. ${q.opts[q.correct]}</strong>.</div>
+        <div style="margin-top:6px">${q.exp}</div>
+        <span class="ref">📖 ${q.ref}</span>
+      </div>
+      <div class="btn-row" style="margin-top:14px">
+        <button class="btn" onclick="nextQuestion()">${state.idx+1===state.questions.length?'Finish →':'Next →'}</button>
+      </div>
+    `;
+    document.getElementById("submitBtn").style.display="none";
+  } else {
+    nextQuestion();
+  }
+}
+
+function nextQuestion(){
+  state.idx++;
+  state.selected = null; state.confidence = null; state.locked = false;
+  if(state.idx >= state.questions.length) renderResults();
+  else renderQuestion();
+}
+
+function updateMistakeBank(qRef, selected, conf, correct){
+  let bank = getMistakeBank();
+  const existing = bank.find(m=>m.qRef===qRef);
+  if(correct && conf==='sure'){
+    if(existing) bank = bank.filter(m=>m.qRef!==qRef);
+    setMistakeBank(bank); return;
+  }
+  let reason = null;
+  if(!correct && conf==='sure') reason='danger';
+  else if(!correct) reason='wrong';
+  else if(correct && conf==='guess') reason='guess';
+  else if(correct && conf==='dontknow') reason='dontknow';
+  if(reason){
+    if(existing){
+      existing.reason = reason;
+      existing.repeats = (existing.repeats||1)+1;
+      existing.lastSelected = selected;
+    } else {
+      bank.push({qRef, reason, repeats:1, lastSelected:selected});
+    }
+    setMistakeBank(bank);
+  }
+}
+
+function renderResults(){
+  const ans = state.answers;
+  const total = ans.length;
+  const correct = ans.filter(a=>a.correct).length;
+  const guessed = ans.filter(a=>a.confidence==='guess').length;
+  const dontknow = ans.filter(a=>a.confidence==='dontknow').length;
+  const wrongSure = ans.filter(a=>!a.correct && a.confidence==='sure').length;
+
+  let mastery = 0;
+  ans.forEach(a=>{
+    if(a.correct){
+      if(a.confidence==='sure') mastery+=1;
+      else if(a.confidence==='guess') mastery+=0.5;
+      else mastery+=0.25;
+    }
+  });
+  const masteryPct = Math.round((mastery/total)*100);
+  const scorePct = Math.round((correct/total)*100);
+
+  const secStats = {};
+  ans.forEach(a=>{
+    const q = QUESTIONS.find(x=>x.ref===a.qRef);
+    if(!q) return;
+    if(!secStats[q.sec]) secStats[q.sec]={right:0,total:0};
+    secStats[q.sec].total++;
+    if(a.correct) secStats[q.sec].right++;
+  });
+  let weakSec = null, weakRate = 1.1;
+  Object.entries(secStats).forEach(([s,v])=>{
+    const r = v.right/v.total;
+    if(r<weakRate){weakRate=r; weakSec=s;}
+  });
+
+  let readiness, rClass, recommend;
+  if(scorePct<=50){readiness="Not Ready — needs serious review"; rClass="r1";
+    recommend="Re-read Lessons 1A, 2A, 4A, 5A & 7A and use Study Mode before retaking.";}
+  else if(scorePct<=70){readiness="Needs Review"; rClass="r2";
+    recommend="Focus on Section <strong>"+(weakSec||"")+"</strong> using Section Test mode.";}
+  else if(scorePct<=85){readiness="Good — Close to Mastery"; rClass="r3";
+    recommend="Clear your Mistake Bank and retake the Full Test.";}
+  else if(scorePct<=94){readiness="Ready for Unit Test"; rClass="r4";
+    recommend="Strong performance. One more round to push mastery higher.";}
+  else if(wrongSure>0){readiness="Ready for Unit Test"; rClass="r4";
+    recommend="Excellent score, but you have "+wrongSure+" wrong-with-confidence answer(s). Review those carefully.";}
+  else {readiness="🌟 Ready for Full Mark!"; rClass="r5";
+    recommend="Perfect mastery on Unit 5 vocabulary. You're done with Semester 1 vocabulary — well done!";}
+
+  const sec = Math.floor((Date.now()-state.startTime)/1000);
+  const timeStr = Math.floor(sec/60)+":"+String(sec%60).padStart(2,'0');
+
+  const store = loadStore();
+  store.attempts = (store.attempts||0)+1;
+  store.lastScore = scorePct;
+  store.bestMastery = Math.max(store.bestMastery||0, masteryPct);
+  saveStore(store);
+
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>📊 Results</h2>
+      <div class="readiness ${rClass}">${readiness}</div>
+      <div class="results-grid">
+        <div class="stat ${scorePct>=80?'good':scorePct>=60?'warn':'bad'}">
+          <div class="value">${correct}/${total}</div><div class="label">Score (${scorePct}%)</div>
+        </div>
+        <div class="stat good"><div class="value">${masteryPct}%</div><div class="label">Mastery</div></div>
+        <div class="stat warn"><div class="value">${guessed}</div><div class="label">Guesses</div></div>
+        <div class="stat"><div class="value">${dontknow}</div><div class="label">Don't Know</div></div>
+        <div class="stat danger"><div class="value">${wrongSure}</div><div class="label">⚠️ Wrong + Sure</div></div>
+        <div class="stat"><div class="value">${timeStr}</div><div class="label">Time</div></div>
+      </div>
+      <div class="explanation"><strong>💡 Recommendation:</strong> ${recommend}</div>
+      ${weakSec && weakRate<1 ? `<p style="margin-top:12px"><strong>Weakest section:</strong> ${weakSec} (${Math.round(weakRate*100)}% correct)</p>`:''}
+      <div class="btn-row" style="margin-top:18px">
+        <button class="btn" onclick="reviewWrong()">📖 Review Wrong Answers</button>
+        <button class="btn secondary" onclick="startMode('${state.mode}'${state.section?",'"+state.section+"'":""})">🔄 Retake</button>
+        <button class="btn secondary" onclick="renderHome()">🏠 Home</button>
+      </div>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function reviewWrong(){
+  const wrongAns = state.answers.filter(a=>!a.correct);
+  if(wrongAns.length===0){
+    document.getElementById("app").innerHTML = `
+      <div class="card">
+        <h2>🎉 No wrong answers to review!</h2>
+        <p>You got everything correct. Great work!</p>
+        <button class="btn" onclick="renderHome()">🏠 Back to Home</button>
+      </div>`;
+    return;
+  }
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>📖 Review Wrong Answers (${wrongAns.length})</h2>
+      ${wrongAns.map(a=>{
+        const q = QUESTIONS.find(x=>x.ref===a.qRef);
+        if(!q) return '';
+        return `<div class="mistake-item">
+          <span class="badge ${q.sec}">Section ${q.sec}</span>
+          <div class="question-text" style="font-size:15px">${q.q}</div>
+          <div>❌ Your answer: <strong>${q.opts[a.selected]}</strong></div>
+          <div>✅ Correct: <strong>${q.opts[q.correct]}</strong></div>
+          <div class="explanation" style="margin-top:10px">${q.exp}<span class="ref">📖 ${q.ref}</span></div>
+        </div>`;
+      }).join("")}
+      <button class="btn" onclick="renderHome()">🏠 Back to Home</button>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+renderHome();
+</script>
+</body>
+</html>

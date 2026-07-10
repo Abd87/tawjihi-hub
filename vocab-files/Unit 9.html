@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tawjihi English — Unit 9 Vocabulary (Exact Book Questions)</title>
+<style>
+  :root{
+    --primary:#0d9488; --primary-dark:#0f766e; --navy:#0f172a;
+    --bg:#f1f5f9; --card:#ffffff; --muted:#64748b;
+    --good:#16a34a; --bad:#dc2626; --warn:#d97706; --danger:#b91c1c;
+    --border:#e2e8f0;
+    --sec-A:#0d9488;
+    --sec-B:#2563eb;
+    --sec-C:#9333ea;
+    --sec-D:#d97706;
+    --sec-E:#db2777;
+    --sec-F:#16a34a;
+    --sec-G:#0891b2;
+    --sec-H:#ea580c;
+    --sec-I:#e11d48;
+    --sec-J:#4f46e5;
+    --sec-K:#059669;
+    --sec-L:#ca8a04;
+    --sec-M:#7c3aed;
+    --sec-N:#dc2626;
+    --sec-O:#65a30d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+       background:var(--bg);color:var(--navy);line-height:1.5;min-height:100vh}
+  header{background:var(--navy);color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;
+         position:sticky;top:0;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+  header h1{margin:0;font-size:17px;font-weight:600}
+  header .home-btn{background:var(--primary);color:#fff;border:none;padding:8px 14px;border-radius:8px;
+                   cursor:pointer;font-weight:500;font-size:14px}
+  header .home-btn:hover{background:var(--primary-dark)}
+  main{max-width:880px;margin:0 auto;padding:24px 16px}
+  .card{background:var(--card);border-radius:12px;padding:24px;box-shadow:0 2px 10px rgba(15,23,42,.06);
+        margin-bottom:18px;border:1px solid var(--border)}
+  h2{margin-top:0;color:var(--navy);font-size:22px}
+  h3{color:var(--navy);font-size:17px;margin:0 0 12px 0}
+  .intro{color:var(--muted);font-size:15px}
+  .mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
+  .mode-btn{background:#fff;border:2px solid var(--border);border-radius:12px;padding:18px;cursor:pointer;
+            text-align:left;transition:.2s;font-family:inherit}
+  .mode-btn:hover:not(:disabled){border-color:var(--primary);transform:translateY(-2px);box-shadow:0 6px 16px rgba(13,148,136,.15)}
+  .mode-btn:disabled{opacity:.5;cursor:not-allowed}
+  .mode-btn .icon{font-size:28px;margin-bottom:6px;display:block}
+  .mode-btn .title{font-weight:600;font-size:16px;color:var(--navy);display:block;margin-bottom:4px}
+  .mode-btn .desc{font-size:13px;color:var(--muted)}
+  .progress-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden;margin-bottom:14px}
+  .progress-fill{height:100%;background:var(--primary);transition:width .3s}
+  .badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:8px;color:#fff}
+  .badge.A{background:var(--sec-A)}
+  .badge.B{background:var(--sec-B)}
+  .badge.C{background:var(--sec-C)}
+  .badge.D{background:var(--sec-D)}
+  .badge.E{background:var(--sec-E)}
+  .badge.F{background:var(--sec-F)}
+  .badge.G{background:var(--sec-G)}
+  .badge.H{background:var(--sec-H)}
+  .badge.I{background:var(--sec-I)}
+  .badge.J{background:var(--sec-J)}
+  .badge.K{background:var(--sec-K)}
+  .badge.L{background:var(--sec-L)}
+  .badge.M{background:var(--sec-M)}
+  .badge.N{background:var(--sec-N)}
+  .badge.O{background:var(--sec-O)}
+  .question-text{font-size:17px;font-weight:500;margin:8px 0 18px 0;color:var(--navy)}
+  .options{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+  .option{background:#fff;border:2px solid var(--border);border-radius:10px;padding:13px 16px;
+          cursor:pointer;text-align:left;font-family:inherit;font-size:15px;transition:.15s;display:flex;align-items:center;gap:12px}
+  .option:hover:not(.locked){border-color:var(--primary);background:#f0fdfa}
+  .option.selected{border-color:var(--primary);background:#ccfbf1}
+  .option.correct{border-color:var(--good);background:#dcfce7;color:#14532d}
+  .option.wrong{border-color:var(--bad);background:#fee2e2;color:#7f1d1d}
+  .option .letter{background:var(--navy);color:#fff;width:28px;height:28px;border-radius:50%;
+                  display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0;font-size:13px}
+  .option.correct .letter{background:var(--good)}
+  .option.wrong .letter{background:var(--bad)}
+  .confidence{background:#f8fafc;border-radius:10px;padding:14px;margin-bottom:14px;border:1px solid var(--border)}
+  .confidence-label{font-weight:600;font-size:14px;margin-bottom:8px;color:var(--navy)}
+  .confidence-options{display:flex;gap:10px;flex-wrap:wrap}
+  .conf-opt{background:#fff;border:2px solid var(--border);border-radius:8px;padding:8px 14px;cursor:pointer;font-size:14px;transition:.15s}
+  .conf-opt.selected{border-color:var(--primary);background:#ccfbf1;font-weight:600}
+  .btn{background:var(--primary);color:#fff;border:none;padding:11px 20px;border-radius:10px;
+       cursor:pointer;font-weight:600;font-size:15px;font-family:inherit;transition:.2s}
+  .btn:hover:not(:disabled){background:var(--primary-dark)}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .btn.secondary{background:#fff;color:var(--navy);border:2px solid var(--border)}
+  .btn.secondary:hover{border-color:var(--primary)}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap}
+  .explanation{background:#f0fdfa;border-left:4px solid var(--primary);padding:13px 16px;
+               border-radius:6px;margin-top:14px;font-size:14px;line-height:1.6}
+  .explanation strong{color:var(--primary-dark)}
+  .ref{font-size:12px;color:var(--muted);margin-top:8px;display:block;font-weight:500}
+  .results-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:18px 0}
+  .stat{background:#f8fafc;padding:14px;border-radius:10px;text-align:center;border:1px solid var(--border)}
+  .stat .value{font-size:26px;font-weight:700;color:var(--navy)}
+  .stat .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+  .stat.good .value{color:var(--good)}
+  .stat.bad .value{color:var(--bad)}
+  .stat.warn .value{color:var(--warn)}
+  .stat.danger .value{color:var(--danger)}
+  .readiness{padding:18px;border-radius:10px;text-align:center;font-weight:600;font-size:17px;margin:14px 0}
+  .readiness.r1{background:#fee2e2;color:var(--bad)}
+  .readiness.r2{background:#ffedd5;color:#9a3412}
+  .readiness.r3{background:#fef9c3;color:#854d0e}
+  .readiness.r4{background:#dcfce7;color:#14532d}
+  .readiness.r5{background:#ccfbf1;color:var(--primary-dark)}
+  .mistake-item{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px}
+  .study-section{margin-bottom:22px}
+  .study-header{position:sticky;top:60px;background:#fff;padding:12px 16px;border-radius:10px;
+                border-left:6px solid var(--primary);box-shadow:0 2px 6px rgba(0,0,0,.06);
+                margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;z-index:5}
+  .study-header.A{border-left-color:var(--sec-A)}
+  .study-header.B{border-left-color:var(--sec-B)}
+  .study-header.C{border-left-color:var(--sec-C)}
+  .study-header.D{border-left-color:var(--sec-D)}
+  .study-header.E{border-left-color:var(--sec-E)}
+  .study-header.F{border-left-color:var(--sec-F)}
+  .study-header.G{border-left-color:var(--sec-G)}
+  .study-header.H{border-left-color:var(--sec-H)}
+  .study-header.I{border-left-color:var(--sec-I)}
+  .study-header.J{border-left-color:var(--sec-J)}
+  .study-header.K{border-left-color:var(--sec-K)}
+  .study-header.L{border-left-color:var(--sec-L)}
+  .study-header.M{border-left-color:var(--sec-M)}
+  .study-header.N{border-left-color:var(--sec-N)}
+  .study-header.O{border-left-color:var(--sec-O)}
+  .study-header h3{margin:0;font-size:16px}
+  .study-header .src{font-size:12px;color:var(--muted);font-weight:500;margin-top:3px}
+  .study-q{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px}
+  .study-q .qnum{font-weight:600;color:var(--muted);font-size:13px;margin-bottom:6px}
+  .study-q .qtext{font-size:15px;margin-bottom:10px;color:var(--navy)}
+  .study-opt{padding:8px 12px;border:1px solid var(--border);border-radius:6px;margin-bottom:6px;font-size:14px;display:flex;align-items:center;gap:10px}
+  .study-opt.correct{background:#dcfce7;border-color:var(--good);color:#14532d;font-weight:500}
+  .study-opt .letter-sm{background:#e2e8f0;color:var(--navy);width:22px;height:22px;border-radius:50%;
+                        display:flex;align-items:center;justify-content:center;font-weight:600;font-size:11px;flex-shrink:0}
+  .study-opt.correct .letter-sm{background:var(--good);color:#fff}
+  .study-exp{background:#f0fdfa;border-left:3px solid var(--primary);padding:10px 14px;
+             border-radius:4px;font-size:13px;margin-top:10px;line-height:1.5}
+  .section-pick{display:grid;grid-template-columns:1fr;gap:10px;margin:14px 0}
+  @media print{
+    header,.home-btn,#print-btn,.btn{display:none !important}
+    body{background:#fff}
+    .study-header{position:static;box-shadow:none;border:1px solid #ccc}
+    .study-q{break-inside:avoid;page-break-inside:avoid}
+  }
+  @media(max-width:600px){
+    .question-text{font-size:16px}
+    header h1{font-size:14px}
+    main{padding:16px 10px}
+    .card{padding:16px}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>📈 Tawjihi English — Unit 9 Vocabulary</h1>
+  <button class="home-btn" onclick="goHome()">🏠 Home</button>
+</header>
+<main id="app"></main>
+<script>
+const SECTIONS = {
+  A: {title:"Section A \u2014 Money & Wealth Adjectives",source:"\ud83d\udcd6 SB p.38 \u00b7 L1A \u00b7 Ex 3",instruction:"Complete each sentence with affluent / costly / extravagant / lucrative / splash out / well-off.",color:"A"},
+  B: {title:"Section B \u2014 Sort Success / Failure Words",source:"\ud83d\udcd6 SB p.40 \u00b7 L2A \u00b7 Ex 4",instruction:"Decide whether each word means success or failure.",color:"B"},
+  C: {title:"Section C \u2014 Success/Failure Story Extracts",source:"\ud83d\udcd6 SB p.40 \u00b7 L2A \u00b7 Ex 5",instruction:"Complete each extract with the right success/failure word.",color:"C"},
+  D: {title:"Section D \u2014 Binomials (Missing Word)",source:"\ud83d\udcd6 SB p.41 \u00b7 L3A \u00b7 Ex 2",instruction:"Complete each binomial with the missing word.",color:"D"},
+  E: {title:"Section E \u2014 Replace Underlined Phrase with Binomial",source:"\ud83d\udcd6 SB p.41 \u00b7 L3A \u00b7 Ex 3",instruction:"Choose the binomial that replaces the underlined phrase.",color:"E"},
+  F: {title:"Section F \u2014 chance / risk / opportunity / luck",source:"\ud83d\udcd6 SB p.41 \u00b7 L3A \u00b7 Ex 5",instruction:"Complete each sentence with chance, risk, opportunity, or luck.",color:"F"},
+  G: {title:"Section G \u2014 Easily Confused: chance / risk / luck / opportunity",source:"\ud83d\udcd6 SB p.41 \u00b7 L3A \u00b7 Watch Out",instruction:"Choose what the word 'chance' means in each context.",color:"G"},
+  H: {title:"Section H \u2014 Resilience Collocations (Aldi story)",source:"\ud83d\udcd6 SB p.42 \u00b7 L4A \u00b7 Ex 5",instruction:"Match each collocation with its definition.",color:"H"},
+  I: {title:"Section I \u2014 wish / if only / past modals \u2014 Meaning",source:"\ud83d\udcd6 SB p.44 \u00b7 L5A \u00b7 Ex 1",instruction:"Choose what each sentence really means.",color:"I"},
+  J: {title:"Section J \u2014 Past Modals in the Article",source:"\ud83d\udcd6 SB p.44 \u00b7 L5A \u00b7 Ex 4",instruction:"Match each past-modal sentence with its meaning.",color:"J"},
+  K: {title:"Section K \u2014 Highs & Lows Vocabulary",source:"\ud83d\udcd3 WB p.28 \u00b7 L1B \u00b7 Ex 3",instruction:"Complete each sentence with the right highs/lows word.",color:"K"},
+  L: {title:"Section L \u2014 Binomials in Sentences",source:"\ud83d\udcd3 WB p.30 \u00b7 L3B \u00b7 Ex 1",instruction:"Choose the binomial that fits each sentence.",color:"L"},
+  M: {title:"Section M \u2014 Revision: Choose the Correct Word",source:"\ud83d\udcd3 WB p.32 \u00b7 Revision \u00b7 Ex 1",instruction:"Choose the correct word in each revision sentence.",color:"M"},
+  N: {title:"Section N \u2014 Revision: Lost Key Dialogue",source:"\ud83d\udcd3 WB p.32 \u00b7 Revision \u00b7 Ex 2",instruction:"Complete each gap in the dialogue.",color:"N"},
+  O: {title:"Section O \u2014 Revision: Binomials",source:"\ud83d\udcd3 WB p.32 \u00b7 Revision \u00b7 Ex 3",instruction:"Complete each binomial phrase.",color:"O"}
+};
+
+const QUESTIONS = [
+  {sec:"A",num:1,q:"People are always looking for new and _____ ideas for new attractions.",opts:["affluent", "lucrative", "costly", "extravagant"],correct:1,exp:"<strong>lucrative</strong> = profitable / making a lot of money.",ref:"SB p.38 \u00b7 L1A Ex 3 #1"},
+  {sec:"A",num:2,q:"The Marble Arch Mound was an _____ idea to build a small hill in the centre of London.",opts:["affluent", "well-off", "extravagant", "lucrative"],correct:2,exp:"<strong>extravagant</strong> = costing a lot of money; over-the-top.",ref:"SB p.38 \u00b7 L1A Ex 3 #2"},
+  {sec:"A",num:3,q:"The \u00a36 million was a lot more _____ than the organisers thought it would be.",opts:["affluent", "costly", "well-off", "extravagant"],correct:1,exp:"<strong>costly</strong> = expensive.",ref:"SB p.38 \u00b7 L1A Ex 3 #3"},
+  {sec:"A",num:4,q:"Perhaps more people would have wanted to climb it if they hadn't had to _____ on an entrance fee.",opts:["splash out", "well-off", "affluent", "lucrative"],correct:0,exp:"<strong>splash out (on)</strong> = spend a lot of money on something.",ref:"SB p.38 \u00b7 L1A Ex 3 #4"},
+  {sec:"A",num:5,q:"They wanted to get tourists to visit an area that was not very _____.",opts:["lucrative", "costly", "extravagant", "affluent"],correct:3,exp:"<strong>affluent</strong> = wealthy / having a lot of money.",ref:"SB p.38 \u00b7 L1A Ex 3 #5"},
+  {sec:"A",num:6,q:"The hotels, restaurant and shop owners have become more _____ because of the route.",opts:["splash out", "well-off", "extravagant", "costly"],correct:1,exp:"<strong>well-off</strong> = wealthy/comfortably rich.",ref:"SB p.38 \u00b7 L1A Ex 3 #6"},
+  {sec:"B",num:1,q:"Is <strong>blunder</strong> a word for success or failure?",opts:["Success", "Failure"],correct:1,exp:"<strong>blunder</strong> = a serious careless mistake.",ref:"SB p.40 \u00b7 L2A Ex 4 #1"},
+  {sec:"B",num:2,q:"Is <strong>flop</strong> a word for success or failure?",opts:["Success", "Failure"],correct:1,exp:"<strong>flop</strong> = a complete failure (especially a product/film).",ref:"SB p.40 \u00b7 L2A Ex 4 #2"},
+  {sec:"B",num:3,q:"Is <strong>flourish</strong> a word for success or failure?",opts:["Success", "Failure"],correct:0,exp:"<strong>flourish</strong> = to do very well, grow/succeed strongly.",ref:"SB p.40 \u00b7 L2A Ex 4 #3"},
+  {sec:"B",num:4,q:"Is <strong>get nowhere</strong> a phrase for success or failure?",opts:["Success", "Failure"],correct:1,exp:"<strong>get nowhere</strong> = make no progress at all.",ref:"SB p.40 \u00b7 L2A Ex 4 #4"},
+  {sec:"B",num:5,q:"Is <strong>masterstroke</strong> a word for success or failure?",opts:["Success", "Failure"],correct:0,exp:"<strong>masterstroke</strong> = a very clever, successful action.",ref:"SB p.40 \u00b7 L2A Ex 4 #5"},
+  {sec:"B",num:6,q:"Is <strong>mess up</strong> a phrasal verb for success or failure?",opts:["Success", "Failure"],correct:1,exp:"<strong>mess up</strong> = to make a mistake / do badly.",ref:"SB p.40 \u00b7 L2A Ex 4 #6"},
+  {sec:"B",num:7,q:"Is <strong>pay off</strong> a phrasal verb for success or failure?",opts:["Success", "Failure"],correct:0,exp:"<strong>pay off</strong> = (effort) to be rewarded / produce good results.",ref:"SB p.40 \u00b7 L2A Ex 4 #7"},
+  {sec:"B",num:8,q:"Is <strong>setback</strong> a word for success or failure?",opts:["Success", "Failure"],correct:1,exp:"<strong>setback</strong> = a problem that delays or prevents progress.",ref:"SB p.40 \u00b7 L2A Ex 4 #8"},
+  {sec:"C",num:1,q:"I was embarrassed and felt like I'd really _____.",opts:["paid off", "flopped", "messed up", "flourished"],correct:2,exp:"<strong>mess up</strong> = make a mistake / do something badly.",ref:"SB p.40 \u00b7 L2A Ex 5 #1"},
+  {sec:"C",num:2,q:"It was a huge _____ and I didn't get the marks I needed to go to that university.",opts:["masterstroke", "setback", "flourish", "pay off"],correct:1,exp:"<strong>setback</strong> = a major obstacle to progress.",ref:"SB p.40 \u00b7 L2A Ex 5 #2"},
+  {sec:"C",num:3,q:"In the end, I _____ there and got a great degree.",opts:["messed up", "flopped", "flourished", "blundered"],correct:2,exp:"<strong>flourish</strong> = to thrive / do very well.",ref:"SB p.40 \u00b7 L2A Ex 5 #3"},
+  {sec:"C",num:4,q:"I had what I thought was a really good idea \u2014 a _____.",opts:["setback", "masterstroke", "blunder", "flop"],correct:1,exp:"<strong>masterstroke</strong> = a brilliant, clever idea/action.",ref:"SB p.40 \u00b7 L2A Ex 5 #4"},
+  {sec:"C",num:5,q:"I really tried, but just _____ , and in the end I gave up.",opts:["paid off", "flourished", "got nowhere", "messed up"],correct:2,exp:"<strong>got nowhere</strong> = made no progress.",ref:"SB p.40 \u00b7 L2A Ex 5 #5"},
+  {sec:"C",num:6,q:"If I'd invested a few weeks in finding out about my business idea, it would have really _____.",opts:["paid off", "flopped", "messed up", "got nowhere"],correct:0,exp:"<strong>pay off</strong> = (effort) be rewarded.",ref:"SB p.40 \u00b7 L2A Ex 5 #6"},
+  {sec:"C",num:7,q:"But I did learn something from the _____ \u2014 do your market research first.",opts:["masterstroke", "flourish", "blunder", "pay off"],correct:2,exp:"<strong>blunder</strong> = a serious careless mistake.",ref:"SB p.40 \u00b7 L2A Ex 5 #7"},
+  {sec:"C",num:8,q:"The idea did not succeed and was a complete _____.",opts:["masterstroke", "flourish", "flop", "setback"],correct:2,exp:"<strong>flop</strong> = a complete failure.",ref:"SB p.40 \u00b7 L2A Ex 5 #8"},
+  {sec:"D",num:1,q:"_____ and downs (= the good and bad times)",opts:["pick", "ups", "sooner", "more"],correct:1,exp:"<strong>ups and downs</strong> = the good and bad times.",ref:"SB p.41 \u00b7 L3A Ex 2 #1"},
+  {sec:"D",num:2,q:"give and _____ (= compromise in a relationship)",opts:["take", "leave", "go", "sound"],correct:0,exp:"<strong>give and take</strong> = mutual compromise.",ref:"SB p.41 \u00b7 L3A Ex 2 #2"},
+  {sec:"D",num:3,q:"_____ and go (= uncertain, could go either way)",opts:["touch", "more", "safe", "sooner"],correct:0,exp:"<strong>touch and go</strong> = uncertain outcome.",ref:"SB p.41 \u00b7 L3A Ex 2 #3"},
+  {sec:"D",num:4,q:"take it or _____ it (= accept it or refuse it)",opts:["pick", "leave", "sound", "more"],correct:1,exp:"<strong>take it or leave it</strong> = a final offer.",ref:"SB p.41 \u00b7 L3A Ex 2 #4"},
+  {sec:"D",num:5,q:"_____ and then (= occasionally; from time to time)",opts:["sooner", "there", "now", "more"],correct:2,exp:"<strong>now and then</strong> = occasionally.",ref:"SB p.41 \u00b7 L3A Ex 2 #5"},
+  {sec:"D",num:6,q:"safe and _____ (= unharmed and well)",opts:["sure", "sound", "secure", "steady"],correct:1,exp:"<strong>safe and sound</strong> = unharmed.",ref:"SB p.41 \u00b7 L3A Ex 2 #6"},
+  {sec:"D",num:7,q:"more or _____ (= approximately; nearly)",opts:["less", "more", "later", "sooner"],correct:0,exp:"<strong>more or less</strong> = approximately.",ref:"SB p.41 \u00b7 L3A Ex 2 #7"},
+  {sec:"D",num:8,q:"sooner or _____ (= eventually; at some point)",opts:["sound", "less", "later", "now"],correct:2,exp:"<strong>sooner or later</strong> = eventually.",ref:"SB p.41 \u00b7 L3A Ex 2 #8"},
+  {sec:"E",num:1,q:"Wherever my cat has disappeared to, I just hope he'll come home <u>with no problems</u>.",opts:["safe and sound", "ups and downs", "more or less", "touch and go"],correct:0,exp:"<strong>safe and sound</strong> = unharmed.",ref:"SB p.41 \u00b7 L3A Ex 3 #1"},
+  {sec:"E",num:2,q:"Visitors to the museum can <u>select from</u> over 100 arcade games from the 1980s and 1990s.",opts:["give and take", "pick and choose", "now and then", "sooner or later"],correct:1,exp:"<strong>pick and choose</strong> = select carefully from many options.",ref:"SB p.41 \u00b7 L3A Ex 3 #2"},
+  {sec:"E",num:3,q:"Don't be too hard on yourself. After all, most people fail at something <u>at some point</u>.",opts:["touch and go", "more or less", "sooner or later", "safe and sound"],correct:2,exp:"<strong>sooner or later</strong> = at some point / eventually.",ref:"SB p.41 \u00b7 L3A Ex 3 #3"},
+  {sec:"E",num:4,q:"Like every business we have our <u>good and bad times</u> but generally we are successful.",opts:["ups and downs", "give and take", "now and then", "more or less"],correct:0,exp:"<strong>ups and downs</strong> = the good and bad times.",ref:"SB p.41 \u00b7 L3A Ex 3 #4"},
+  {sec:"E",num:5,q:"I can't sell it for less than 100 JOD. That's my lowest price \u2014 <u>accept it or don't</u>.",opts:["pick and choose", "sooner or later", "take it or leave it", "touch and go"],correct:2,exp:"<strong>take it or leave it</strong> = a final, non-negotiable offer.",ref:"SB p.41 \u00b7 L3A Ex 3 #5"},
+  {sec:"E",num:6,q:"We are <u>almost</u> finished here so I can meet you in about half an hour.",opts:["safe and sound", "more or less", "ups and downs", "now and then"],correct:1,exp:"<strong>more or less</strong> = approximately/nearly.",ref:"SB p.41 \u00b7 L3A Ex 3 #6"},
+  {sec:"E",num:7,q:"It was uncertain whether the rescue team would be able to save the man in the cave.",opts:["touch and go", "safe and sound", "sooner or later", "pick and choose"],correct:0,exp:"<strong>touch and go</strong> = uncertain outcome.",ref:"SB p.41 \u00b7 L3A Ex 3 #7"},
+  {sec:"F",num:1,q:"Given the _____ , I'd love to take a sports car out for a drive.",opts:["risk", "luck", "chance", "opportunity"],correct:2,exp:"<strong>given the chance</strong> = if I had the opportunity.",ref:"SB p.41 \u00b7 L3A Ex 5 #1"},
+  {sec:"F",num:2,q:"I'd like to take this _____ to thank you for all your help.",opts:["chance", "luck", "risk", "opportunity"],correct:3,exp:"<strong>take this opportunity</strong> = use this occasion.",ref:"SB p.41 \u00b7 L3A Ex 5 #2"},
+  {sec:"F",num:3,q:"As soon as I heard about the trip, I grabbed the _____ to go on it.",opts:["luck", "opportunity", "risk", "chance"],correct:1,exp:"<strong>grab the opportunity</strong> = quickly take the chance.",ref:"SB p.41 \u00b7 L3A Ex 5 #3"},
+  {sec:"F",num:4,q:"This is your last _____ ; I won't make the offer again.",opts:["chance", "luck", "risk", "opportunity"],correct:0,exp:"<strong>last chance</strong> = final opportunity.",ref:"SB p.41 \u00b7 L3A Ex 5 #4"},
+  {sec:"F",num:5,q:"I'm sure parachuting would be exciting, but it wouldn't be worth the _____.",opts:["luck", "opportunity", "chance", "risk"],correct:3,exp:"<strong>worth the risk</strong> = worth the danger.",ref:"SB p.41 \u00b7 L3A Ex 5 #5"},
+  {sec:"G",num:1,q:"I'd love to have the _____ (= opportunity) to bungee jump.",opts:["chance", "risk", "luck", "opportunity"],correct:0,exp:"<strong>chance</strong> here means <em>opportunity</em>.",ref:"SB p.41 \u00b7 L3A WatchOut #1"},
+  {sec:"G",num:2,q:"There's a slim _____ (= possibility) that we might succeed.",opts:["luck", "risk", "chance", "opportunity"],correct:2,exp:"<strong>chance</strong> here means <em>possibility</em>.",ref:"SB p.41 \u00b7 L3A WatchOut #2"},
+  {sec:"G",num:3,q:"If you do sports, there's always a _____ (= risk) of injury.",opts:["luck", "opportunity", "chance", "risk"],correct:2,exp:"<strong>chance</strong> here means <em>risk</em>.",ref:"SB p.41 \u00b7 L3A WatchOut #3"},
+  {sec:"G",num:4,q:"It was pure _____ (= luck) that we met.",opts:["chance", "risk", "opportunity", "luck"],correct:0,exp:"<strong>chance</strong> here means <em>luck</em>.",ref:"SB p.41 \u00b7 L3A WatchOut #4"},
+  {sec:"H",num:1,q:"Which collocation means <em>believed something without even thinking about it</em>?",opts:["took it for granted", "spread the word", "made himself understood", "got off lightly"],correct:0,exp:"<strong>take something for granted</strong> = assume it without thinking.",ref:"SB p.42 \u00b7 L4A Ex 5 #1"},
+  {sec:"H",num:2,q:"Which collocation means <em>communicate effectively</em>?",opts:["spread the word", "made himself understood", "took its toll", "kept him going"],correct:1,exp:"<strong>make oneself understood</strong> = communicate clearly.",ref:"SB p.42 \u00b7 L4A Ex 5 #2"},
+  {sec:"H",num:3,q:"Which phrase means <em>was forced to do something</em>?",opts:["had no choice but to", "took it for granted", "kept him going", "got off lightly"],correct:0,exp:"<strong>had no choice but to</strong> = was forced.",ref:"SB p.42 \u00b7 L4A Ex 5 #3"},
+  {sec:"H",num:4,q:"Which phrase means <em>experienced less harm than might be expected</em>?",opts:["went through", "got off lightly", "took its toll", "did the trick"],correct:1,exp:"<strong>got off lightly</strong> = suffered less harm than expected.",ref:"SB p.42 \u00b7 L4A Ex 5 #4"},
+  {sec:"H",num:5,q:"Which phrase means <em>had the necessary result he wanted</em>?",opts:["did the trick", "made himself understood", "took its toll", "considered his options"],correct:0,exp:"<strong>do the trick</strong> = produce the desired result.",ref:"SB p.42 \u00b7 L4A Ex 5 #5"},
+  {sec:"H",num:6,q:"Which phrase means <em>caused harm or suffering</em>?",opts:["did the trick", "got off lightly", "took its toll", "kept him going"],correct:2,exp:"<strong>take its toll (on)</strong> = cause damage/suffering.",ref:"SB p.42 \u00b7 L4A Ex 5 #6"},
+  {sec:"H",num:7,q:"Which phrase means <em>be able to guess something</em>?",opts:["have a clue", "spread the word", "take for granted", "do the trick"],correct:0,exp:"<strong>have a clue</strong> = have any idea / be able to guess.",ref:"SB p.42 \u00b7 L4A Ex 5 #7"},
+  {sec:"H",num:8,q:"Which phrase means <em>stop him from worrying about something</em>?",opts:["did the trick", "take his mind off", "go through", "get off lightly"],correct:1,exp:"<strong>take somebody's mind off</strong> = distract from worry.",ref:"SB p.42 \u00b7 L4A Ex 5 #8"},
+  {sec:"H",num:9,q:"Which phrase means <em>had a very difficult or painful experience</em>?",opts:["went through the ordeal", "made himself understood", "took for granted", "considered his options"],correct:0,exp:"<strong>go through</strong> (an ordeal) = experience a difficult time.",ref:"SB p.42 \u00b7 L4A Ex 5 #9"},
+  {sec:"H",num:10,q:"Which phrase means <em>thought carefully about what to do</em>?",opts:["did the trick", "considered his options", "got off lightly", "took its toll"],correct:1,exp:"<strong>consider one's options</strong> = think about possible choices.",ref:"SB p.42 \u00b7 L4A Ex 5 #10"},
+  {sec:"H",num:11,q:"Which phrase means <em>helped him to continue, despite the difficult situation</em>?",opts:["did the trick", "took its toll", "kept him going", "got off lightly"],correct:2,exp:"<strong>kept him going</strong> = gave him the strength to continue.",ref:"SB p.42 \u00b7 L4A Ex 5 #11"},
+  {sec:"I",num:1,q:"\"I wish I could stop eating crisps.\" \u2014 The speaker:",opts:["can stop eating crisps", "can't stop eating crisps", "has stopped eating crisps", "doesn't eat crisps"],correct:1,exp:"<strong>I wish I could\u2026</strong> = a present regret about inability.",ref:"SB p.44 \u00b7 L5A Ex 1 #1"},
+  {sec:"I",num:2,q:"\"If only Alia knew how I felt about it.\" \u2014 Alia:",opts:["knows how the speaker feels", "doesn't know how the speaker feels", "used to know", "is asking how"],correct:1,exp:"<strong>If only X knew</strong> = X doesn't know (present regret).",ref:"SB p.44 \u00b7 L5A Ex 1 #2"},
+  {sec:"I",num:3,q:"\"They shouldn't have bought it.\" \u2014 The speaker is talking about someone who:",opts:["did buy something", "didn't buy something", "might buy it", "will buy it"],correct:0,exp:"<strong>shouldn't have</strong> + past participle = past regret about something that DID happen.",ref:"SB p.44 \u00b7 L5A Ex 1 #3"},
+  {sec:"I",num:4,q:"\"It was sunny so we didn't need to wear our raincoats.\" \u2014 The speakers:",opts:["did wear raincoats", "didn't wear raincoats", "wished they had", "forgot raincoats"],correct:1,exp:"<strong>didn't need to</strong> = it wasn't necessary, so they didn't.",ref:"SB p.44 \u00b7 L5A Ex 1 #4"},
+  {sec:"I",num:5,q:"\"I should have asked if the boy needed any help.\" \u2014 It was a good idea to ask\u2026",opts:["so the speaker did", "but the speaker didn't", "but the speaker forgot", "but the boy refused"],correct:1,exp:"<strong>should have</strong> + past participle = regret about NOT doing something.",ref:"SB p.44 \u00b7 L5A Ex 1 #5"},
+  {sec:"I",num:6,q:"\"Ali could have given Fadi a lift into town.\" \u2014 Fadi:",opts:["did get a lift from Ali", "didn't get a lift from Ali", "was offered a lift", "refused a lift"],correct:1,exp:"<strong>could have</strong> + past participle = it was possible but didn't happen.",ref:"SB p.44 \u00b7 L5A Ex 1 #6"},
+  {sec:"J",num:1,q:"\"I needn't have worried because most people aren't judging anyone else.\" \u2014 Which meaning?",opts:["I did something, but it wasn't necessary", "I didn't do something because it wasn't necessary", "It was a good idea to do something, but I didn't", "Something was possible, but I didn't do it"],correct:0,exp:"<strong>needn't have</strong> + past participle = I DID worry, but it wasn't necessary.",ref:"SB p.44 \u00b7 L5A Ex 4 #1"},
+  {sec:"J",num:2,q:"\"I should at least have tried.\" \u2014 Which meaning?",opts:["I tried, but it wasn't necessary", "I didn't do something because it wasn't necessary", "It was a good idea to do something, but I didn't", "It wasn't a good idea, but I did it"],correct:2,exp:"<strong>should have</strong> = good idea but I didn't do it (regret).",ref:"SB p.44 \u00b7 L5A Ex 4 #2"},
+  {sec:"J",num:3,q:"\"I shouldn't have listened to my friend who told me I would never go to university.\" \u2014 Which meaning?",opts:["It was a good idea, but I didn't", "It wasn't a good idea for me to do something, but I did", "Something was possible, but I didn't do it", "I didn't do it because it wasn't necessary"],correct:1,exp:"<strong>shouldn't have</strong> = it was a bad idea but I did it (past regret).",ref:"SB p.44 \u00b7 L5A Ex 4 #3"},
+  {sec:"J",num:4,q:"\"I should have played more sports.\" \u2014 Which meaning?",opts:["I did, but it wasn't necessary", "I didn't, but I should have", "I did, but it was a bad idea", "I never had the chance"],correct:1,exp:"<strong>should have</strong> + past participle = a regret about not doing.",ref:"SB p.44 \u00b7 L5A Ex 4 #4"},
+  {sec:"J",num:5,q:"\"He might have been a better player.\" \u2014 Which meaning?",opts:["Something was a possibility, but it didn't happen", "He definitely was", "It wasn't necessary", "He didn't try"],correct:0,exp:"<strong>might have</strong> + past participle = a past possibility that didn't happen.",ref:"SB p.44 \u00b7 L5A Ex 4 #5"},
+  {sec:"K",num:1,q:"I am a thrill-seeker \u2014 I love taking _____.",opts:["chances", "blunders", "setbacks", "masterstrokes"],correct:0,exp:"<strong>take chances</strong> = take risks.",ref:"WB p.28 \u00b7 L1B Ex 3 #1"},
+  {sec:"K",num:2,q:"Hard work usually _____ in the end.",opts:["messes up", "pays off", "gets nowhere", "sets back"],correct:1,exp:"<strong>pay off</strong> = (effort) be rewarded.",ref:"WB p.28 \u00b7 L1B Ex 3 #2"},
+  {sec:"K",num:3,q:"The team had several minor _____ at the beginning of the project, but in the end it went well.",opts:["setbacks", "masterstrokes", "blunders", "flops"],correct:0,exp:"<strong>setbacks</strong> = problems that delay progress.",ref:"WB p.28 \u00b7 L1B Ex 3 #3"},
+  {sec:"K",num:4,q:"What a _____! Putting the company logo on every product was a brilliant move.",opts:["flop", "blunder", "masterstroke", "setback"],correct:2,exp:"<strong>masterstroke</strong> = a brilliant successful action.",ref:"WB p.28 \u00b7 L1B Ex 3 #4"},
+  {sec:"K",num:5,q:"His hard work paid _____ and he did really well in the final exams.",opts:["up", "off", "out", "back"],correct:1,exp:"<strong>paid off</strong> = was rewarded.",ref:"WB p.28 \u00b7 L1B Ex 3 #5"},
+  {sec:"L",num:1,q:"At some point, you will have to make a decision.",opts:["pick and choose", "take it or leave it", "sooner or later", "safe and sound"],correct:2,exp:"<strong>sooner or later</strong> = at some point.",ref:"WB p.30 \u00b7 L3B Ex 1 #1"},
+  {sec:"L",num:2,q:"The best universities can select which students to accept.",opts:["pick and choose", "ups and downs", "take it or leave it", "more or less"],correct:0,exp:"<strong>pick and choose</strong> = select from many options.",ref:"WB p.30 \u00b7 L3B Ex 1 #2"},
+  {sec:"L",num:3,q:"They wanted me to sign up for the course immediately, with no time at all to consider.",opts:["sooner or later", "there and then", "safe and sound", "ups and downs"],correct:1,exp:"<strong>there and then</strong> = immediately, on the spot.",ref:"WB p.30 \u00b7 L3B Ex 1 #3"},
+  {sec:"L",num:4,q:"Although she was ten years older, she looked about the same age as me.",opts:["take it or leave it", "more or less", "safe and sound", "pick and choose"],correct:1,exp:"<strong>more or less</strong> = approximately.",ref:"WB p.30 \u00b7 L3B Ex 1 #4"},
+  {sec:"L",num:5,q:"After a hazardous journey, they were relieved to get home with no problems.",opts:["pick and choose", "ups and downs", "safe and sound", "more or less"],correct:2,exp:"<strong>safe and sound</strong> = unharmed.",ref:"WB p.30 \u00b7 L3B Ex 1 #5"},
+  {sec:"M",num:1,q:"There were some minor _____ at the beginning of the project, but in the end it went well.",opts:["setbacks", "flops", "masterstrokes", "blunders"],correct:0,exp:"<strong>setbacks</strong> = problems that delay progress.",ref:"WB p.32 \u00b7 Rev Ex 1 #1"},
+  {sec:"M",num:2,q:"His hard work paid _____ and he did really well in the final exams.",opts:["up", "off", "out", "back"],correct:1,exp:"<strong>paid off</strong> = was rewarded.",ref:"WB p.32 \u00b7 Rev Ex 1 #2"},
+  {sec:"M",num:3,q:"He took a digital presentation to the interview and they loved it. What a _____!",opts:["blunder", "masterstroke", "flop", "setback"],correct:1,exp:"<strong>masterstroke</strong> = a clever, brilliantly successful move.",ref:"WB p.32 \u00b7 Rev Ex 1 #3"},
+  {sec:"M",num:4,q:"This is not worth the _____. I always prefer to be safe.",opts:["chance", "risk", "opportunity", "luck"],correct:1,exp:"<strong>worth the risk</strong> = worth the danger.",ref:"WB p.32 \u00b7 Rev Ex 1 #4"},
+  {sec:"N",num:1,q:"Oh no! I've really _____ \u2014 I've lost the house key.",opts:["messed up", "paid off", "considered", "flourished"],correct:0,exp:"<strong>messed up</strong> = made a serious mistake.",ref:"WB p.32 \u00b7 Rev Ex 2 #1"},
+  {sec:"N",num:2,q:"Well, let's _____ our options;",opts:["mess up", "take", "consider", "do"],correct:2,exp:"<strong>consider options</strong> = think about choices.",ref:"WB p.32 \u00b7 Rev Ex 2 #2"},
+  {sec:"N",num:3,q:"I haven't a _____ .",opts:["choice", "clue", "chance", "luck"],correct:1,exp:"<strong>haven't a clue</strong> = have no idea.",ref:"WB p.32 \u00b7 Rev Ex 2 #3"},
+  {sec:"N",num:4,q:"Now I realise how much I _____ my house for granted.",opts:["take", "mess", "consider", "pay"],correct:0,exp:"<strong>take something for granted</strong> = assume without appreciating.",ref:"WB p.32 \u00b7 Rev Ex 2 #4"},
+  {sec:"N",num:5,q:"Have a chocolate. It should take your mind _____ the cold.",opts:["up", "off", "over", "out"],correct:1,exp:"<strong>take your mind off</strong> = distract you from.",ref:"WB p.32 \u00b7 Rev Ex 2 #5"},
+  {sec:"N",num:6,q:"Thanks! That should _____ the trick.",opts:["do", "make", "take", "mess"],correct:0,exp:"<strong>do the trick</strong> = produce the desired result.",ref:"WB p.32 \u00b7 Rev Ex 2 #6"},
+  {sec:"N",num:7,q:"Well, I think we have no _____ but to break the window.",opts:["chance", "choice", "clue", "risk"],correct:1,exp:"<strong>have no choice but to</strong> = be forced to.",ref:"WB p.32 \u00b7 Rev Ex 2 #7"},
+  {sec:"O",num:1,q:"You must try to be flexible. There should be some give and _____ in any friendship.",opts:["take", "go", "sound", "then"],correct:0,exp:"<strong>give and take</strong> = mutual compromise.",ref:"WB p.32 \u00b7 Rev Ex 3 #1"},
+  {sec:"O",num:2,q:"I think it's more or _____ certain you'll get the job.",opts:["more", "less", "sound", "later"],correct:1,exp:"<strong>more or less</strong> = approximately.",ref:"WB p.32 \u00b7 Rev Ex 3 #2"},
+  {sec:"O",num:3,q:"I had to decide if I wanted the job _____ and then. They said they couldn't wait.",opts:["here", "there", "now", "sooner"],correct:1,exp:"<strong>there and then</strong> = immediately, on the spot.",ref:"WB p.32 \u00b7 Rev Ex 3 #3"},
+  {sec:"O",num:4,q:"The team has had its _____ and downs but they're doing very well now.",opts:["ins", "ups", "ons", "goes"],correct:1,exp:"<strong>ups and downs</strong> = good and bad times.",ref:"WB p.32 \u00b7 Rev Ex 3 #4"},
+  {sec:"O",num:5,q:"We got lost in the desert but in the end got home safe and _____.",opts:["sure", "sound", "secure", "steady"],correct:1,exp:"<strong>safe and sound</strong> = unharmed.",ref:"WB p.32 \u00b7 Rev Ex 3 #5"}
+];
+
+let state = {mode:null,questions:[],idx:0,answers:[],startTime:0,selected:null,confidence:null,locked:false,section:null};
+
+const STORAGE_KEY = "tawjihi_u9_exact_v1";
+function loadStore(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch(e){return{}}}
+function saveStore(s){localStorage.setItem(STORAGE_KEY,JSON.stringify(s))}
+function getMistakeBank(){return loadStore().mistakes||[]}
+function setMistakeBank(b){const s=loadStore();s.mistakes=b;saveStore(s)}
+
+function goHome(){
+  if(state.mode && state.mode!=='study' && state.answers.length>0 &&
+     !confirm("Return to home? Your current progress will be lost.")) return;
+  renderHome();
+}
+
+function renderHome(){
+  state = {mode:null,questions:[],idx:0,answers:[],startTime:0,selected:null,confidence:null,locked:false,section:null};
+  const store = loadStore();
+  const bank = getMistakeBank();
+  const bestMastery = store.bestMastery || 0;
+  const attempts = store.attempts || 0;
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>📈 Unit 9 — "Highs and lows"</h2>
+      <p class="intro">
+        This trainer uses the <strong>exact questions</strong> from your Jordan High Note Grade 11 books —
+        Unit 9 "Highs and lows" (Semester 2) — covering ups-and-downs stories, success and failure vocabulary,
+        chance and risk, binomials, resilience collocations, and wish/if only with past modals
+        from Lessons 1A, 2A, 3A, 4A, 5A (Student's Book) and Lessons 1B, 3B + Revision (Workbook).
+        <strong>${QUESTIONS.length} vocabulary questions across 15 sections.</strong>
+      </p>
+      <div class="results-grid">
+        <div class="stat"><div class="value">${attempts}</div><div class="label">Attempts</div></div>
+        <div class="stat good"><div class="value">${bestMastery}%</div><div class="label">Best Mastery</div></div>
+        <div class="stat warn"><div class="value">${bank.length}</div><div class="label">Mistake Bank</div></div>
+        <div class="stat"><div class="value">${QUESTIONS.length}</div><div class="label">Total Questions</div></div>
+      </div>
+      <div class="mode-grid">
+        <button class="mode-btn" onclick="renderStudy()">
+          <span class="icon">📖</span>
+          <span class="title">Study Mode</span>
+          <span class="desc">See all ${QUESTIONS.length} questions WITH the correct answers and explanations upfront. Printable answer key.</span>
+        </button>
+        <button class="mode-btn" onclick="startMode('practice')">
+          <span class="icon">🎓</span>
+          <span class="title">Practice (with feedback)</span>
+          <span class="desc">All ${QUESTIONS.length} questions in MCQ format with instant feedback after each.</span>
+        </button>
+        <button class="mode-btn" onclick="startMode('test')">
+          <span class="icon">📝</span>
+          <span class="title">Full Unit Test</span>
+          <span class="desc">All ${QUESTIONS.length} questions. No feedback until the end. Simulates exam conditions.</span>
+        </button>
+        <button class="mode-btn" onclick="renderSectionPicker()">
+          <span class="icon">🎯</span>
+          <span class="title">Section Test</span>
+          <span class="desc">Focus on one of the 15 book exercises (A–O).</span>
+        </button>
+        <button class="mode-btn" onclick="startMode('mistakes')" ${bank.length===0?'disabled':''}>
+          <span class="icon">⚠️</span>
+          <span class="title">Mistake Bank Review</span>
+          <span class="desc">${bank.length===0?'Empty — complete a test first.':bank.length+' question(s) to review.'}</span>
+        </button>
+      </div>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function renderSectionPicker(){
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>🎯 Choose a Section</h2>
+      <div class="section-pick">
+        ${Object.entries(SECTIONS).map(([k,s])=>{
+          const count = QUESTIONS.filter(q=>q.sec===k).length;
+          return `<button class="mode-btn" onclick="startMode('section','${k}')">
+            <span class="badge ${k}">${k} · ${count} Q</span>
+            <span class="title">${s.title}</span>
+            <span class="desc">${s.source}<br>${s.instruction}</span>
+          </button>`;
+        }).join("")}
+      </div>
+      <button class="btn secondary" onclick="renderHome()">← Back to Home</button>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function renderStudy(){
+  state.mode = 'study';
+  let html = `
+    <div class="card">
+      <h2>📖 Study Mode — Answer Key</h2>
+      <p class="intro">All ${QUESTIONS.length} questions from Unit 9 with the correct answer highlighted in green.
+      Read through, then practise.</p>
+      <div class="btn-row">
+        <button class="btn" id="print-btn" onclick="window.print()">🖨️ Print Answer Key</button>
+        <button class="btn secondary" onclick="renderHome()">← Back to Home</button>
+      </div>
+    </div>
+  `;
+  Object.entries(SECTIONS).forEach(([secKey,sec])=>{
+    const qs = QUESTIONS.filter(q=>q.sec===secKey);
+    html += `
+      <div class="study-section">
+        <div class="study-header ${secKey}">
+          <div>
+            <h3>${sec.title}</h3>
+            <div class="src">${sec.source} · ${sec.instruction}</div>
+          </div>
+          <span class="badge ${secKey}">${qs.length} Q</span>
+        </div>
+        ${qs.map((q,i)=>`
+          <div class="study-q">
+            <div class="qnum">Question ${i+1} · ${q.ref}</div>
+            <div class="qtext">${q.q}</div>
+            ${q.opts.map((opt,j)=>`
+              <div class="study-opt ${j===q.correct?'correct':''}">
+                <span class="letter-sm">${String.fromCharCode(65+j)}</span>
+                <span>${opt}${j===q.correct?' ✅':''}</span>
+              </div>
+            `).join("")}
+            <div class="study-exp">💡 ${q.exp}</div>
+          </div>
+        `).join("")}
+      </div>
+    `;
+  });
+  document.getElementById("app").innerHTML = html;
+  window.scrollTo(0,0);
+}
+
+function shuffle(a){return a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(x=>x[1])}
+
+function startMode(mode, section=null){
+  state.mode = mode;
+  state.idx = 0; state.answers = []; state.startTime = Date.now();
+  state.selected = null; state.confidence = null; state.locked = false;
+  state.section = section;
+  if(mode==='practice' || mode==='test'){
+    state.questions = [...QUESTIONS];
+  } else if(mode==='section'){
+    state.questions = QUESTIONS.filter(q=>q.sec===section);
+  } else if(mode==='mistakes'){
+    const bank = getMistakeBank();
+    const refs = bank.map(m=>m.qRef);
+    state.questions = shuffle(refs.map(r=>QUESTIONS.find(q=>q.ref===r)).filter(Boolean));
+  }
+  renderQuestion();
+}
+
+function renderQuestion(){
+  if(state.idx >= state.questions.length){renderResults(); return;}
+  const q = state.questions[state.idx];
+  const total = state.questions.length;
+  const progress = ((state.idx)/total)*100;
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <div class="progress-bar"><div class="progress-fill" style="width:${progress}%"></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <span class="badge ${q.sec}">Section ${q.sec} · #${q.num}</span>
+        <span style="color:var(--muted);font-size:13px">Question ${state.idx+1} of ${total}</span>
+      </div>
+      <div class="question-text">${q.q}</div>
+      <div class="options" id="options">
+        ${q.opts.map((o,i)=>`
+          <button class="option" onclick="selectOption(${i})" id="opt-${i}">
+            <span class="letter">${String.fromCharCode(65+i)}</span>
+            <span>${o}</span>
+          </button>
+        `).join("")}
+      </div>
+      <div class="confidence">
+        <div class="confidence-label">How sure are you?</div>
+        <div class="confidence-options">
+          <div class="conf-opt" onclick="selectConf('sure',this)">✅ Sure</div>
+          <div class="conf-opt" onclick="selectConf('guess',this)">🤔 Guess</div>
+          <div class="conf-opt" onclick="selectConf('dontknow',this)">❓ Don't know</div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="submitBtn" onclick="submitAnswer()" disabled>Submit</button>
+      </div>
+      <div id="feedback"></div>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function selectOption(i){
+  if(state.locked) return;
+  state.selected = i;
+  document.querySelectorAll(".option").forEach((el,idx)=>{
+    el.classList.toggle("selected", idx===i);
+  });
+  updateSubmit();
+}
+function selectConf(c, el){
+  if(state.locked) return;
+  state.confidence = c;
+  document.querySelectorAll(".conf-opt").forEach(x=>x.classList.remove("selected"));
+  el.classList.add("selected");
+  updateSubmit();
+}
+function updateSubmit(){
+  const btn = document.getElementById("submitBtn");
+  if(btn) btn.disabled = !(state.selected!==null && state.confidence!==null);
+}
+
+function submitAnswer(){
+  if(state.selected===null || state.confidence===null) return;
+  const q = state.questions[state.idx];
+  const correct = state.selected === q.correct;
+  state.locked = true;
+  state.answers.push({qRef:q.ref, selected:state.selected, confidence:state.confidence, correct});
+  updateMistakeBank(q.ref, state.selected, state.confidence, correct);
+  if(state.mode==='practice' || state.mode==='mistakes' || state.mode==='section'){
+    document.querySelectorAll(".option").forEach((el,idx)=>{
+      el.classList.add("locked");
+      if(idx===q.correct) el.classList.add("correct");
+      else if(idx===state.selected) el.classList.add("wrong");
+    });
+    const fb = document.getElementById("feedback");
+    fb.innerHTML = `
+      <div class="explanation">
+        <div><strong>${correct?'✅ Correct!':'❌ Not quite.'}</strong> The answer is <strong>${String.fromCharCode(65+q.correct)}. ${q.opts[q.correct]}</strong>.</div>
+        <div style="margin-top:6px">${q.exp}</div>
+        <span class="ref">📖 ${q.ref}</span>
+      </div>
+      <div class="btn-row" style="margin-top:14px">
+        <button class="btn" onclick="nextQuestion()">${state.idx+1===state.questions.length?'Finish →':'Next →'}</button>
+      </div>
+    `;
+    document.getElementById("submitBtn").style.display="none";
+  } else {
+    nextQuestion();
+  }
+}
+
+function nextQuestion(){
+  state.idx++;
+  state.selected = null; state.confidence = null; state.locked = false;
+  if(state.idx >= state.questions.length) renderResults();
+  else renderQuestion();
+}
+
+function updateMistakeBank(qRef, selected, conf, correct){
+  let bank = getMistakeBank();
+  const existing = bank.find(m=>m.qRef===qRef);
+  if(correct && conf==='sure'){
+    if(existing) bank = bank.filter(m=>m.qRef!==qRef);
+    setMistakeBank(bank); return;
+  }
+  let reason = null;
+  if(!correct && conf==='sure') reason='danger';
+  else if(!correct) reason='wrong';
+  else if(correct && conf==='guess') reason='guess';
+  else if(correct && conf==='dontknow') reason='dontknow';
+  if(reason){
+    if(existing){
+      existing.reason = reason;
+      existing.repeats = (existing.repeats||1)+1;
+      existing.lastSelected = selected;
+    } else {
+      bank.push({qRef, reason, repeats:1, lastSelected:selected});
+    }
+    setMistakeBank(bank);
+  }
+}
+
+function renderResults(){
+  const ans = state.answers;
+  const total = ans.length;
+  const correct = ans.filter(a=>a.correct).length;
+  const guessed = ans.filter(a=>a.confidence==='guess').length;
+  const dontknow = ans.filter(a=>a.confidence==='dontknow').length;
+  const wrongSure = ans.filter(a=>!a.correct && a.confidence==='sure').length;
+
+  let mastery = 0;
+  ans.forEach(a=>{
+    if(a.correct){
+      if(a.confidence==='sure') mastery+=1;
+      else if(a.confidence==='guess') mastery+=0.5;
+      else mastery+=0.25;
+    }
+  });
+  const masteryPct = Math.round((mastery/total)*100);
+  const scorePct = Math.round((correct/total)*100);
+
+  const secStats = {};
+  ans.forEach(a=>{
+    const q = QUESTIONS.find(x=>x.ref===a.qRef);
+    if(!q) return;
+    if(!secStats[q.sec]) secStats[q.sec]={right:0,total:0};
+    secStats[q.sec].total++;
+    if(a.correct) secStats[q.sec].right++;
+  });
+  let weakSec = null, weakRate = 1.1;
+  Object.entries(secStats).forEach(([s,v])=>{
+    const r = v.right/v.total;
+    if(r<weakRate){weakRate=r; weakSec=s;}
+  });
+
+  let readiness, rClass, recommend;
+  if(scorePct<=50){readiness="Not Ready — needs serious review"; rClass="r1";
+    recommend="Re-read Lessons 1A, 2A, 3A, 4A & 5A and use Study Mode before retaking.";}
+  else if(scorePct<=70){readiness="Needs Review"; rClass="r2";
+    recommend="Focus on Section <strong>"+(weakSec||"")+"</strong> using Section Test mode.";}
+  else if(scorePct<=85){readiness="Good — Close to Mastery"; rClass="r3";
+    recommend="Clear your Mistake Bank and retake the Full Test.";}
+  else if(scorePct<=94){readiness="Ready for Unit Test"; rClass="r4";
+    recommend="Strong performance. One more round to push mastery higher.";}
+  else if(wrongSure>0){readiness="Ready for Unit Test"; rClass="r4";
+    recommend="Excellent score, but you have "+wrongSure+" wrong-with-confidence answer(s). Review those carefully.";}
+  else {readiness="🌟 Ready for Full Mark!"; rClass="r5";
+    recommend="Perfect mastery on Unit 9 vocabulary. Ready to move to Unit 10 — the last one!";}
+
+  const sec = Math.floor((Date.now()-state.startTime)/1000);
+  const timeStr = Math.floor(sec/60)+":"+String(sec%60).padStart(2,'0');
+
+  const store = loadStore();
+  store.attempts = (store.attempts||0)+1;
+  store.lastScore = scorePct;
+  store.bestMastery = Math.max(store.bestMastery||0, masteryPct);
+  saveStore(store);
+
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>📊 Results</h2>
+      <div class="readiness ${rClass}">${readiness}</div>
+      <div class="results-grid">
+        <div class="stat ${scorePct>=80?'good':scorePct>=60?'warn':'bad'}">
+          <div class="value">${correct}/${total}</div><div class="label">Score (${scorePct}%)</div>
+        </div>
+        <div class="stat good"><div class="value">${masteryPct}%</div><div class="label">Mastery</div></div>
+        <div class="stat warn"><div class="value">${guessed}</div><div class="label">Guesses</div></div>
+        <div class="stat"><div class="value">${dontknow}</div><div class="label">Don't Know</div></div>
+        <div class="stat danger"><div class="value">${wrongSure}</div><div class="label">⚠️ Wrong + Sure</div></div>
+        <div class="stat"><div class="value">${timeStr}</div><div class="label">Time</div></div>
+      </div>
+      <div class="explanation"><strong>💡 Recommendation:</strong> ${recommend}</div>
+      ${weakSec && weakRate<1 ? `<p style="margin-top:12px"><strong>Weakest section:</strong> ${weakSec} (${Math.round(weakRate*100)}% correct)</p>`:''}
+      <div class="btn-row" style="margin-top:18px">
+        <button class="btn" onclick="reviewWrong()">📖 Review Wrong Answers</button>
+        <button class="btn secondary" onclick="startMode('${state.mode}'${state.section?",'"+state.section+"'":""})">🔄 Retake</button>
+        <button class="btn secondary" onclick="renderHome()">🏠 Home</button>
+      </div>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function reviewWrong(){
+  const wrongAns = state.answers.filter(a=>!a.correct);
+  if(wrongAns.length===0){
+    document.getElementById("app").innerHTML = `
+      <div class="card">
+        <h2>🎉 No wrong answers to review!</h2>
+        <p>You got everything correct. Great work!</p>
+        <button class="btn" onclick="renderHome()">🏠 Back to Home</button>
+      </div>`;
+    return;
+  }
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>📖 Review Wrong Answers (${wrongAns.length})</h2>
+      ${wrongAns.map(a=>{
+        const q = QUESTIONS.find(x=>x.ref===a.qRef);
+        if(!q) return '';
+        return `<div class="mistake-item">
+          <span class="badge ${q.sec}">Section ${q.sec}</span>
+          <div class="question-text" style="font-size:15px">${q.q}</div>
+          <div>❌ Your answer: <strong>${q.opts[a.selected]}</strong></div>
+          <div>✅ Correct: <strong>${q.opts[q.correct]}</strong></div>
+          <div class="explanation" style="margin-top:10px">${q.exp}<span class="ref">📖 ${q.ref}</span></div>
+        </div>`;
+      }).join("")}
+      <button class="btn" onclick="renderHome()">🏠 Back to Home</button>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+renderHome();
+</script>
+</body>
+</html>

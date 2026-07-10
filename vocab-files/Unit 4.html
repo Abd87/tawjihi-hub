@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tawjihi English — Unit 4 Vocabulary (Exact Book Questions)</title>
+<style>
+  :root{
+    --primary:#0d9488; --primary-dark:#0f766e; --navy:#0f172a;
+    --bg:#f1f5f9; --card:#ffffff; --muted:#64748b;
+    --good:#16a34a; --bad:#dc2626; --warn:#d97706; --danger:#b91c1c;
+    --border:#e2e8f0;
+    --sec-A:#0d9488;
+    --sec-B:#2563eb;
+    --sec-C:#9333ea;
+    --sec-D:#d97706;
+    --sec-E:#db2777;
+    --sec-F:#16a34a;
+    --sec-G:#0891b2;
+    --sec-H:#ea580c;
+    --sec-I:#e11d48;
+    --sec-J:#4f46e5;
+    --sec-K:#059669;
+    --sec-L:#ca8a04;
+    --sec-M:#7c3aed;
+    --sec-N:#dc2626;
+    --sec-O:#65a30d;
+    --sec-P:#0284c7;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+       background:var(--bg);color:var(--navy);line-height:1.5;min-height:100vh}
+  header{background:var(--navy);color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;
+         position:sticky;top:0;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+  header h1{margin:0;font-size:17px;font-weight:600}
+  header .home-btn{background:var(--primary);color:#fff;border:none;padding:8px 14px;border-radius:8px;
+                   cursor:pointer;font-weight:500;font-size:14px}
+  header .home-btn:hover{background:var(--primary-dark)}
+  main{max-width:880px;margin:0 auto;padding:24px 16px}
+  .card{background:var(--card);border-radius:12px;padding:24px;box-shadow:0 2px 10px rgba(15,23,42,.06);
+        margin-bottom:18px;border:1px solid var(--border)}
+  h2{margin-top:0;color:var(--navy);font-size:22px}
+  h3{color:var(--navy);font-size:17px;margin:0 0 12px 0}
+  .intro{color:var(--muted);font-size:15px}
+  .mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
+  .mode-btn{background:#fff;border:2px solid var(--border);border-radius:12px;padding:18px;cursor:pointer;
+            text-align:left;transition:.2s;font-family:inherit}
+  .mode-btn:hover:not(:disabled){border-color:var(--primary);transform:translateY(-2px);box-shadow:0 6px 16px rgba(13,148,136,.15)}
+  .mode-btn:disabled{opacity:.5;cursor:not-allowed}
+  .mode-btn .icon{font-size:28px;margin-bottom:6px;display:block}
+  .mode-btn .title{font-weight:600;font-size:16px;color:var(--navy);display:block;margin-bottom:4px}
+  .mode-btn .desc{font-size:13px;color:var(--muted)}
+  .progress-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden;margin-bottom:14px}
+  .progress-fill{height:100%;background:var(--primary);transition:width .3s}
+  .badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:8px;color:#fff}
+  .badge.A{background:var(--sec-A)}
+  .badge.B{background:var(--sec-B)}
+  .badge.C{background:var(--sec-C)}
+  .badge.D{background:var(--sec-D)}
+  .badge.E{background:var(--sec-E)}
+  .badge.F{background:var(--sec-F)}
+  .badge.G{background:var(--sec-G)}
+  .badge.H{background:var(--sec-H)}
+  .badge.I{background:var(--sec-I)}
+  .badge.J{background:var(--sec-J)}
+  .badge.K{background:var(--sec-K)}
+  .badge.L{background:var(--sec-L)}
+  .badge.M{background:var(--sec-M)}
+  .badge.N{background:var(--sec-N)}
+  .badge.O{background:var(--sec-O)}
+  .badge.P{background:var(--sec-P)}
+  .question-text{font-size:17px;font-weight:500;margin:8px 0 18px 0;color:var(--navy)}
+  .options{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+  .option{background:#fff;border:2px solid var(--border);border-radius:10px;padding:13px 16px;
+          cursor:pointer;text-align:left;font-family:inherit;font-size:15px;transition:.15s;display:flex;align-items:center;gap:12px}
+  .option:hover:not(.locked){border-color:var(--primary);background:#f0fdfa}
+  .option.selected{border-color:var(--primary);background:#ccfbf1}
+  .option.correct{border-color:var(--good);background:#dcfce7;color:#14532d}
+  .option.wrong{border-color:var(--bad);background:#fee2e2;color:#7f1d1d}
+  .option .letter{background:var(--navy);color:#fff;width:28px;height:28px;border-radius:50%;
+                  display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0;font-size:13px}
+  .option.correct .letter{background:var(--good)}
+  .option.wrong .letter{background:var(--bad)}
+  .confidence{background:#f8fafc;border-radius:10px;padding:14px;margin-bottom:14px;border:1px solid var(--border)}
+  .confidence-label{font-weight:600;font-size:14px;margin-bottom:8px;color:var(--navy)}
+  .confidence-options{display:flex;gap:10px;flex-wrap:wrap}
+  .conf-opt{background:#fff;border:2px solid var(--border);border-radius:8px;padding:8px 14px;cursor:pointer;font-size:14px;transition:.15s}
+  .conf-opt.selected{border-color:var(--primary);background:#ccfbf1;font-weight:600}
+  .btn{background:var(--primary);color:#fff;border:none;padding:11px 20px;border-radius:10px;
+       cursor:pointer;font-weight:600;font-size:15px;font-family:inherit;transition:.2s}
+  .btn:hover:not(:disabled){background:var(--primary-dark)}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .btn.secondary{background:#fff;color:var(--navy);border:2px solid var(--border)}
+  .btn.secondary:hover{border-color:var(--primary)}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap}
+  .explanation{background:#f0fdfa;border-left:4px solid var(--primary);padding:13px 16px;
+               border-radius:6px;margin-top:14px;font-size:14px;line-height:1.6}
+  .explanation strong{color:var(--primary-dark)}
+  .ref{font-size:12px;color:var(--muted);margin-top:8px;display:block;font-weight:500}
+  .results-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:18px 0}
+  .stat{background:#f8fafc;padding:14px;border-radius:10px;text-align:center;border:1px solid var(--border)}
+  .stat .value{font-size:26px;font-weight:700;color:var(--navy)}
+  .stat .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+  .stat.good .value{color:var(--good)}
+  .stat.bad .value{color:var(--bad)}
+  .stat.warn .value{color:var(--warn)}
+  .stat.danger .value{color:var(--danger)}
+  .readiness{padding:18px;border-radius:10px;text-align:center;font-weight:600;font-size:17px;margin:14px 0}
+  .readiness.r1{background:#fee2e2;color:var(--bad)}
+  .readiness.r2{background:#ffedd5;color:#9a3412}
+  .readiness.r3{background:#fef9c3;color:#854d0e}
+  .readiness.r4{background:#dcfce7;color:#14532d}
+  .readiness.r5{background:#ccfbf1;color:var(--primary-dark)}
+  .mistake-item{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px}
+  .study-section{margin-bottom:22px}
+  .study-header{position:sticky;top:60px;background:#fff;padding:12px 16px;border-radius:10px;
+                border-left:6px solid var(--primary);box-shadow:0 2px 6px rgba(0,0,0,.06);
+                margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;z-index:5}
+  .study-header.A{border-left-color:var(--sec-A)}
+  .study-header.B{border-left-color:var(--sec-B)}
+  .study-header.C{border-left-color:var(--sec-C)}
+  .study-header.D{border-left-color:var(--sec-D)}
+  .study-header.E{border-left-color:var(--sec-E)}
+  .study-header.F{border-left-color:var(--sec-F)}
+  .study-header.G{border-left-color:var(--sec-G)}
+  .study-header.H{border-left-color:var(--sec-H)}
+  .study-header.I{border-left-color:var(--sec-I)}
+  .study-header.J{border-left-color:var(--sec-J)}
+  .study-header.K{border-left-color:var(--sec-K)}
+  .study-header.L{border-left-color:var(--sec-L)}
+  .study-header.M{border-left-color:var(--sec-M)}
+  .study-header.N{border-left-color:var(--sec-N)}
+  .study-header.O{border-left-color:var(--sec-O)}
+  .study-header.P{border-left-color:var(--sec-P)}
+  .study-header h3{margin:0;font-size:16px}
+  .study-header .src{font-size:12px;color:var(--muted);font-weight:500;margin-top:3px}
+  .study-q{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px}
+  .study-q .qnum{font-weight:600;color:var(--muted);font-size:13px;margin-bottom:6px}
+  .study-q .qtext{font-size:15px;margin-bottom:10px;color:var(--navy)}
+  .study-opt{padding:8px 12px;border:1px solid var(--border);border-radius:6px;margin-bottom:6px;font-size:14px;display:flex;align-items:center;gap:10px}
+  .study-opt.correct{background:#dcfce7;border-color:var(--good);color:#14532d;font-weight:500}
+  .study-opt .letter-sm{background:#e2e8f0;color:var(--navy);width:22px;height:22px;border-radius:50%;
+                        display:flex;align-items:center;justify-content:center;font-weight:600;font-size:11px;flex-shrink:0}
+  .study-opt.correct .letter-sm{background:var(--good);color:#fff}
+  .study-exp{background:#f0fdfa;border-left:3px solid var(--primary);padding:10px 14px;
+             border-radius:4px;font-size:13px;margin-top:10px;line-height:1.5}
+  .section-pick{display:grid;grid-template-columns:1fr;gap:10px;margin:14px 0}
+  @media print{
+    header,.home-btn,#print-btn,.btn{display:none !important}
+    body{background:#fff}
+    .study-header{position:static;box-shadow:none;border:1px solid #ccc}
+    .study-q{break-inside:avoid;page-break-inside:avoid}
+  }
+  @media(max-width:600px){
+    .question-text{font-size:16px}
+    header h1{font-size:14px}
+    main{padding:16px 10px}
+    .card{padding:16px}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>📰 Tawjihi English — Unit 4 Vocabulary</h1>
+  <button class="home-btn" onclick="goHome()">🏠 Home</button>
+</header>
+<main id="app"></main>
+<script>
+const SECTIONS = {
+  A: {title:"Section A \u2014 Find Synonyms in the Word Box",source:"\ud83d\udcd6 SB p.36 \u00b7 L1A \u00b7 Ex 3",instruction:"Choose the synonym for each highlighted word.",color:"A"},
+  B: {title:"Section B \u2014 Complete the News Questions",source:"\ud83d\udcd6 SB p.36 \u00b7 L1A \u00b7 Ex 4",instruction:"Complete each news question with the right word.",color:"B"},
+  C: {title:"Section C \u2014 News Reporting Collocations",source:"\ud83d\udcd6 SB p.38 \u00b7 L2A \u00b7 Ex 4",instruction:"Complete the radio interview gaps about the clickbait journalist.",color:"C"},
+  D: {title:"Section D \u2014 Match News Adjectives with Definitions",source:"\ud83d\udcd6 SB p.38 \u00b7 L2A \u00b7 Ex 5",instruction:"Match each news adjective with its correct definition.",color:"D"},
+  E: {title:"Section E \u2014 Noun Forms (Word Building)",source:"\ud83d\udcd6 SB p.40 \u00b7 L4A \u00b7 Ex 6",instruction:"Complete each sentence with the correct noun form of the verb in brackets.",color:"E"},
+  F: {title:"Section F \u2014 Verb + Noun Collocations",source:"\ud83d\udcd6 SB p.41 \u00b7 L4A \u00b7 Ex 7",instruction:"Complete each collocation with the correct verb.",color:"F"},
+  G: {title:"Section G \u2014 Comment Adverbs",source:"\ud83d\udcd6 SB p.43 \u00b7 L6A \u00b7 Ex 5",instruction:"Choose the most suitable comment adverb for each sentence.",color:"G"},
+  H: {title:"Section H \u2014 Story Verbs (Looking, Speaking, Moving)",source:"\ud83d\udcd6 SB p.47 \u00b7 L7A \u00b7 Ex 6",instruction:"Match each definition with the correct verb from the story.",color:"H"},
+  I: {title:"Section I \u2014 Match the Sentence Halves (News)",source:"\ud83d\udcd3 WB p.30 \u00b7 L2B \u00b7 Ex 1",instruction:"Choose the correct second half for each news sentence.",color:"I"},
+  J: {title:"Section J \u2014 Choose the Adjective (Radio Show)",source:"\ud83d\udcd3 WB p.30 \u00b7 L2B \u00b7 Ex 2",instruction:"Choose the correct adjective in the radio show extract.",color:"J"},
+  K: {title:"Section K \u2014 Complete 'The Daily Target' Core Values",source:"\ud83d\udcd3 WB p.30 \u00b7 L2B \u00b7 Ex 3",instruction:"Complete each gap in the newspaper's core values text.",color:"K"},
+  L: {title:"Section L \u2014 Photography Vocabulary Definitions",source:"\ud83d\udcd3 WB p.32 \u00b7 L5B \u00b7 Ex 1",instruction:"Match each photography term with its definition.",color:"L"},
+  M: {title:"Section M \u2014 Complete the Photography Sentences",source:"\ud83d\udcd3 WB p.32 \u00b7 L5B \u00b7 Ex 2",instruction:"Complete each sentence with the correct photography word.",color:"M"},
+  N: {title:"Section N \u2014 Revision: Choose the Correct Word",source:"\ud83d\udcd3 WB p.34 \u00b7 Revision \u00b7 Ex 1",instruction:"Choose the correct word in each sentence.",color:"N"},
+  O: {title:"Section O \u2014 Revision: Complete the Journalism Dialogue",source:"\ud83d\udcd3 WB p.34 \u00b7 Revision \u00b7 Ex 2",instruction:"Complete each gap in the dialogue about journalism.",color:"O"},
+  P: {title:"Section P \u2014 Revision: Odd One Out",source:"\ud83d\udcd3 WB p.34 \u00b7 Revision \u00b7 Ex 3",instruction:"Choose the word that doesn't belong with the others.",color:"P"}
+};
+
+const QUESTIONS = [
+  {sec:"A",num:1,q:"Which word is a synonym of <strong>drop (v)</strong>?",opts:["decrease", "expose", "hoax", "weird"],correct:0,exp:"<strong>decrease</strong> and <strong>go down</strong> both mean 'drop'.",ref:"SB p.36 \u00b7 L1A Ex 3 #1"},
+  {sec:"A",num:2,q:"Which word is a synonym of <strong>fake (n)</strong>?",opts:["clues", "hoax", "enigma", "dependable"],correct:1,exp:"<strong>hoax</strong> and <strong>fraud</strong> both mean a fake.",ref:"SB p.36 \u00b7 L1A Ex 3 #2"},
+  {sec:"A",num:3,q:"Which word is a synonym of <strong>reliable</strong>?",opts:["bizarre", "decrease", "dependable", "hints"],correct:2,exp:"<strong>dependable</strong> and <strong>trustworthy</strong> both mean reliable.",ref:"SB p.36 \u00b7 L1A Ex 3 #3"},
+  {sec:"A",num:4,q:"Which word is a synonym of <strong>mystery</strong>?",opts:["reveal", "fraud", "enigma", "claim"],correct:2,exp:"<strong>enigma</strong> and <strong>puzzle</strong> both mean a mystery.",ref:"SB p.36 \u00b7 L1A Ex 3 #4"},
+  {sec:"A",num:5,q:"Which word is a synonym of <strong>signs</strong>?",opts:["maintain", "clues", "weird", "go down"],correct:1,exp:"<strong>clues</strong> and <strong>hints</strong> both mean signs.",ref:"SB p.36 \u00b7 L1A Ex 3 #5"},
+  {sec:"A",num:6,q:"Which word is a synonym of <strong>state (v)</strong>?",opts:["claim", "expose", "puzzle", "decrease"],correct:0,exp:"<strong>claim</strong> and <strong>maintain</strong> both mean to state.",ref:"SB p.36 \u00b7 L1A Ex 3 #6"},
+  {sec:"A",num:7,q:"Which word is a synonym of <strong>strange</strong>?",opts:["trustworthy", "hints", "bizarre", "fraud"],correct:2,exp:"<strong>bizarre</strong> and <strong>weird</strong> both mean strange.",ref:"SB p.36 \u00b7 L1A Ex 3 #7"},
+  {sec:"A",num:8,q:"Which word is a synonym of <strong>uncover</strong>?",opts:["hoax", "reveal", "dependable", "puzzle"],correct:1,exp:"<strong>reveal</strong> and <strong>expose</strong> both mean to uncover.",ref:"SB p.36 \u00b7 L1A Ex 3 #8"},
+  {sec:"B",num:1,q:"Why did a news report _____ that social media accounts would close if users made a spelling mistake?",opts:["claim", "drop", "hoax", "expose"],correct:0,exp:"<strong>claim</strong> = to state something as a fact.",ref:"SB p.36 \u00b7 L1A Ex 4 #1"},
+  {sec:"B",num:2,q:"Why do you think a newspaper reported _____ animals living on the moon?",opts:["reliable", "bizarre", "dependable", "hints"],correct:1,exp:"<strong>bizarre</strong> = very strange.",ref:"SB p.36 \u00b7 L1A Ex 4 #2"},
+  {sec:"B",num:3,q:"Why did egg companies want the newspaper to say egg prices had _____?",opts:["gone down", "gone up", "gone viral", "gone bizarre"],correct:0,exp:"<strong>gone down</strong> = dropped/decreased.",ref:"SB p.36 \u00b7 L1A Ex 4 #3"},
+  {sec:"B",num:4,q:"How did the city newspaper _____ the truth that the other city newspaper was copying its stories?",opts:["claim", "maintain", "expose", "decrease"],correct:2,exp:"<strong>expose</strong> = uncover/reveal the truth.",ref:"SB p.36 \u00b7 L1A Ex 4 #4"},
+  {sec:"B",num:5,q:"Which of the _____ news stories in the podcast do you think is the best one?",opts:["hoax", "reliable", "dependable", "trustworthy"],correct:0,exp:"<strong>hoax</strong> = fake (used as adjective).",ref:"SB p.36 \u00b7 L1A Ex 4 #5"},
+  {sec:"C",num:1,q:"I'm responsible for creating all those _____ headlines that attract attention.",opts:["clickbait", "balanced", "exclusive", "sensational"],correct:0,exp:"<strong>clickbait headlines</strong> are designed to attract clicks.",ref:"SB p.38 \u00b7 L2A Ex 4 #1"},
+  {sec:"C",num:2,q:"If the posts I write _____ viral, that could mean hundreds of thousands of page views...",opts:["go", "hit", "run", "become"],correct:0,exp:"<strong>go viral</strong> = spread rapidly online.",ref:"SB p.38 \u00b7 L2A Ex 4 #2"},
+  {sec:"C",num:3,q:"...which _____ more advertising revenue for the news site.",opts:["generates", "exposes", "verifies", "presents"],correct:0,exp:"<strong>generate revenue</strong> = produce income.",ref:"SB p.38 \u00b7 L2A Ex 4 #3"},
+  {sec:"C",num:4,q:"Articles published online need to be very brief because everyone has such a short _____ span these days.",opts:["attention", "public", "light", "click"],correct:0,exp:"<strong>attention span</strong> = how long you can focus.",ref:"SB p.38 \u00b7 L2A Ex 4 #4"},
+  {sec:"C",num:5,q:"The articles I write rarely shed much _____ on the key issues...",opts:["light", "attention", "public", "hit"],correct:0,exp:"<strong>shed light on</strong> = make something clearer.",ref:"SB p.38 \u00b7 L2A Ex 4 #5a"},
+  {sec:"C",num:6,q:"...that have _____ the headlines.",opts:["hit", "gone", "generated", "presented"],correct:0,exp:"<strong>hit the headlines</strong> = become major news.",ref:"SB p.38 \u00b7 L2A Ex 4 #5b"},
+  {sec:"C",num:7,q:"I'd love to cover traditional news stories which are in the _____ interest...",opts:["public", "attention", "light", "viral"],correct:0,exp:"<strong>in the public interest</strong> = matters to society.",ref:"SB p.38 \u00b7 L2A Ex 4 #6a"},
+  {sec:"C",num:8,q:"...where I could expose _____.",opts:["corruption", "light", "clickbait", "attention"],correct:0,exp:"<strong>expose corruption</strong> = reveal dishonest practices.",ref:"SB p.38 \u00b7 L2A Ex 4 #6b"},
+  {sec:"C",num:9,q:"I'd also prefer to have the time to _____ my sources...",opts:["verify", "generate", "hit", "present"],correct:0,exp:"<strong>verify sources</strong> = check that they are reliable.",ref:"SB p.38 \u00b7 L2A Ex 4 #7a"},
+  {sec:"C",num:10,q:"...or the space to _____ both sides of the story.",opts:["present", "verify", "generate", "expose"],correct:0,exp:"<strong>present both sides of the story</strong> = give a balanced view.",ref:"SB p.38 \u00b7 L2A Ex 4 #7b"},
+  {sec:"D",num:1,q:"Which adjective means: <em>includes strong criticism</em>?",opts:["hard-hitting", "quirky", "heartwarming", "balanced"],correct:0,exp:"<strong>hard-hitting</strong> = strongly critical.",ref:"SB p.38 \u00b7 L2A Ex 5 #1"},
+  {sec:"D",num:2,q:"Which adjective means: <em>unusual in an interesting way</em>?",opts:["topical", "quirky", "exclusive", "sensational"],correct:1,exp:"<strong>quirky</strong> = unusual and interesting.",ref:"SB p.38 \u00b7 L2A Ex 5 #2"},
+  {sec:"D",num:3,q:"Which adjective means: <em>very sad</em>?",opts:["newsworthy", "hard-hitting", "heartbreaking", "balanced"],correct:2,exp:"<strong>heartbreaking</strong> = causing great sadness.",ref:"SB p.38 \u00b7 L2A Ex 5 #3"},
+  {sec:"D",num:4,q:"Which adjective means: <em>interesting enough to be reported</em>?",opts:["newsworthy", "heartwarming", "off the record", "exclusive"],correct:0,exp:"<strong>newsworthy</strong> = worth reporting in news.",ref:"SB p.38 \u00b7 L2A Ex 5 #4"},
+  {sec:"D",num:5,q:"Which adjective means: <em>considering all sides equally</em>?",opts:["sensational", "balanced", "quirky", "topical"],correct:1,exp:"<strong>balanced</strong> = fair and even-handed.",ref:"SB p.38 \u00b7 L2A Ex 5 #5"},
+  {sec:"D",num:6,q:"Which adjective means: <em>related to things that are happening</em>?",opts:["topical", "heartbreaking", "exclusive", "hard-hitting"],correct:0,exp:"<strong>topical</strong> = currently relevant.",ref:"SB p.38 \u00b7 L2A Ex 5 #6"},
+  {sec:"D",num:7,q:"Which adjective means: <em>not meant to be publicly reported</em>?",opts:["balanced", "off the record", "newsworthy", "sensational"],correct:1,exp:"<strong>off the record</strong> = not for public reporting.",ref:"SB p.38 \u00b7 L2A Ex 5 #7"},
+  {sec:"D",num:8,q:"Which adjective means: <em>shocking and exciting, not serious</em>?",opts:["heartwarming", "quirky", "sensational", "topical"],correct:2,exp:"<strong>sensational</strong> = shocking and exciting.",ref:"SB p.38 \u00b7 L2A Ex 5 #8"},
+  {sec:"D",num:9,q:"Which adjective means: <em>(a news story) published only in one place</em>?",opts:["exclusive", "newsworthy", "balanced", "off the record"],correct:0,exp:"<strong>exclusive</strong> = available only here.",ref:"SB p.38 \u00b7 L2A Ex 5 #9"},
+  {sec:"D",num:10,q:"Which adjective means: <em>causing feelings of happiness</em>?",opts:["hard-hitting", "topical", "heartwarming", "sensational"],correct:2,exp:"<strong>heartwarming</strong> = uplifting/joyful.",ref:"SB p.38 \u00b7 L2A Ex 5 #10"},
+  {sec:"E",num:1,q:"The two sides need to sit down and find a(n) _____. (solve)",opts:["solution", "solver", "solving", "solvent"],correct:0,exp:"Verb <em>solve</em> \u2192 noun <strong>solution</strong>.",ref:"SB p.40 \u00b7 L4A Ex 6 #1"},
+  {sec:"E",num:2,q:"It will be difficult to find a suitable _____ for Laila when she leaves her post. (replace)",opts:["replacing", "replacer", "replacement", "replaceable"],correct:2,exp:"Verb <em>replace</em> \u2192 noun <strong>replacement</strong>.",ref:"SB p.40 \u00b7 L4A Ex 6 #2"},
+  {sec:"E",num:3,q:"The _____ against him are shocking, but he denies all of them. (allege)",opts:["alleger", "allegations", "alleging", "allegedly"],correct:1,exp:"Verb <em>allege</em> \u2192 noun <strong>allegations</strong>.",ref:"SB p.40 \u00b7 L4A Ex 6 #3"},
+  {sec:"E",num:4,q:"There has been a(n) _____ in the standard of living in my country. (improve)",opts:["improver", "improving", "improvement", "improvable"],correct:2,exp:"Verb <em>improve</em> \u2192 noun <strong>improvement</strong>.",ref:"SB p.40 \u00b7 L4A Ex 6 #4"},
+  {sec:"F",num:1,q:"The accident was bad enough for them to _____ the incident to the police.",opts:["report", "refute", "release", "come up with"],correct:0,exp:"<strong>report something to the police</strong>.",ref:"SB p.41 \u00b7 L4A Ex 7 #1"},
+  {sec:"F",num:2,q:"Locals living on the street _____ the allegation that they did anything illegal.",opts:["release", "refute", "report", "come up with"],correct:1,exp:"<strong>refute the allegation</strong> = deny it.",ref:"SB p.41 \u00b7 L4A Ex 7 #2"},
+  {sec:"F",num:3,q:"Perhaps they can try to _____ a solution.",opts:["refute", "report", "come up with", "release"],correct:2,exp:"<strong>come up with a solution</strong> = think of one.",ref:"SB p.41 \u00b7 L4A Ex 7 #3"},
+  {sec:"F",num:4,q:"The developers _____ a statement about their 'improvement' scheme.",opts:["came up with", "refuted", "reported", "released"],correct:3,exp:"<strong>release a statement</strong> = publish it officially.",ref:"SB p.41 \u00b7 L4A Ex 7 #4"},
+  {sec:"G",num:1,q:"_____, you don't need any help with this \u2014 you're doing brilliantly!",opts:["Obviously", "Theoretically", "Foolishly", "Apparently"],correct:0,exp:"<strong>Obviously</strong> = clearly visible / no doubt.",ref:"SB p.43 \u00b7 L6A Ex 5 #1"},
+  {sec:"G",num:2,q:"_____, I forgot to take an umbrella. I should have known it would rain.",opts:["Disappointingly", "Foolishly", "Surely", "Personally"],correct:1,exp:"<strong>Foolishly</strong> = in a silly way (admitting a mistake).",ref:"SB p.43 \u00b7 L6A Ex 5 #2"},
+  {sec:"G",num:3,q:"_____, attention spans are getting shorter \u2014 I read that somewhere.",opts:["Presumably", "Apparently", "Surely", "Clearly"],correct:1,exp:"<strong>Apparently</strong> = from what I've heard/read.",ref:"SB p.43 \u00b7 L6A Ex 5 #3"},
+  {sec:"G",num:4,q:"_____, you don't expect me to believe that.",opts:["Surely", "Fortunately", "Personally", "Unbelievably"],correct:0,exp:"<strong>Surely</strong> (with negation) shows disbelief.",ref:"SB p.43 \u00b7 L6A Ex 5 #4"},
+  {sec:"G",num:5,q:"_____, he doesn't like vegetables; I've never seen him eating any.",opts:["Presumably", "Unbelievably", "Surely", "Clearly"],correct:0,exp:"<strong>Presumably</strong> = an inference based on observation.",ref:"SB p.43 \u00b7 L6A Ex 5 #5"},
+  {sec:"G",num:6,q:"_____, I like him, but a lot of people can't stand him.",opts:["Personally", "Surely", "Apparently", "Foolishly"],correct:0,exp:"<strong>Personally</strong> = giving your own opinion.",ref:"SB p.43 \u00b7 L6A Ex 5 #6"},
+  {sec:"G",num:7,q:"_____, your job is not important to you, or you wouldn't keep turning up late.",opts:["Theoretically", "Clearly", "Personally", "Surely"],correct:1,exp:"<strong>Clearly</strong> = obvious from the evidence.",ref:"SB p.43 \u00b7 L6A Ex 5 #7"},
+  {sec:"G",num:8,q:"_____, she was rude to a customer not just once, but four times!",opts:["Unbelievably", "Surely", "Apparently", "Theoretically"],correct:0,exp:"<strong>Unbelievably</strong> = expressing shock.",ref:"SB p.43 \u00b7 L6A Ex 5 #8"},
+  {sec:"H",num:1,q:"Which verb means <em>to look at something closely and carefully</em>?",opts:["peer", "glance", "spot", "wander"],correct:0,exp:"<strong>peer</strong> = look carefully (often with difficulty).",ref:"SB p.47 \u00b7 L7A Ex 6 #1"},
+  {sec:"H",num:2,q:"Which verb means <em>to take a quick look at something</em>?",opts:["bellow", "glance", "mutter", "race"],correct:1,exp:"<strong>glance</strong> = a brief look.",ref:"SB p.47 \u00b7 L7A Ex 6 #2"},
+  {sec:"H",num:3,q:"Which verb means <em>to notice something or someone</em>?",opts:["spot", "yell", "peer", "wander"],correct:0,exp:"<strong>spot</strong> = to see/notice.",ref:"SB p.47 \u00b7 L7A Ex 6 #3"},
+  {sec:"H",num:4,q:"Which verb means <em>to shout angrily in a low deep voice</em>?",opts:["bellow", "mutter", "glance", "race"],correct:0,exp:"<strong>bellow</strong> = deep, loud, angry shout.",ref:"SB p.47 \u00b7 L7A Ex 6 #4"},
+  {sec:"H",num:5,q:"Which verb means <em>to shout loudly, because you are excited or angry</em>?",opts:["wander", "yell", "peer", "mutter"],correct:1,exp:"<strong>yell</strong> = shout loudly.",ref:"SB p.47 \u00b7 L7A Ex 6 #5"},
+  {sec:"H",num:6,q:"Which verb means <em>to speak so quietly that you cannot be heard easily</em>?",opts:["bellow", "yell", "mutter", "race"],correct:2,exp:"<strong>mutter</strong> = speak very quietly.",ref:"SB p.47 \u00b7 L7A Ex 6 #6"},
+  {sec:"H",num:7,q:"Which verb means <em>to go somewhere as quickly as possible</em>?",opts:["wander", "peer", "race", "glance"],correct:2,exp:"<strong>race</strong> = move very fast.",ref:"SB p.47 \u00b7 L7A Ex 6 #7"},
+  {sec:"H",num:8,q:"Which verb means <em>to walk in a casual way, often in no particular direction</em>?",opts:["wander", "race", "yell", "spot"],correct:0,exp:"<strong>wander</strong> = walk casually/aimlessly.",ref:"SB p.47 \u00b7 L7A Ex 6 #8"},
+  {sec:"I",num:1,q:"I never click on clickbait _____",opts:["headlines, though sometimes I'm tempted.", "viral before anyone knew who the director was.", "enough revenue to keep their business alive.", "attention spans than goldfish."],correct:0,exp:"<strong>clickbait headlines</strong>.",ref:"WB p.30 \u00b7 L2B Ex 1 #1"},
+  {sec:"I",num:2,q:"The amazing video had gone _____",opts:["headlines, though sometimes I'm tempted.", "viral before anyone knew who the director was.", "the headlines after giving birth to quintuplets.", "corruption in a large international business."],correct:1,exp:"<strong>gone viral</strong>.",ref:"WB p.30 \u00b7 L2B Ex 1 #2"},
+  {sec:"I",num:3,q:"Their app is great, but it will never generate _____",opts:["enough revenue to keep their business alive.", "viral before anyone knew who the director was.", "attention spans than goldfish.", "light on the mysteries of dark matter."],correct:0,exp:"<strong>generate revenue</strong>.",ref:"WB p.30 \u00b7 L2B Ex 1 #3"},
+  {sec:"I",num:4,q:"Scientists have suggested that humans have shorter _____",opts:["headlines, though sometimes I'm tempted.", "attention spans than goldfish.", "sources multiple times on the Internet.", "public interest to reveal the details of the recent crime."],correct:1,exp:"<strong>attention spans</strong>.",ref:"WB p.30 \u00b7 L2B Ex 1 #4"},
+  {sec:"I",num:5,q:"A new experiment could finally shed _____",opts:["the headlines after giving birth to quintuplets.", "light on the mysteries of dark matter.", "corruption in a large international business.", "both sides of a story and give the full picture."],correct:1,exp:"<strong>shed light on</strong>.",ref:"WB p.30 \u00b7 L2B Ex 1 #5"},
+  {sec:"I",num:6,q:"A Singaporean couple have hit _____",opts:["enough revenue to keep their business alive.", "the headlines after giving birth to quintuplets.", "sources multiple times on the Internet.", "viral before anyone knew who the director was."],correct:1,exp:"<strong>hit the headlines</strong>.",ref:"WB p.30 \u00b7 L2B Ex 1 #6"},
+  {sec:"I",num:7,q:"A judge has ruled it is not in the _____",opts:["public interest to reveal the details of the recent crime.", "light on the mysteries of dark matter.", "headlines, though sometimes I'm tempted.", "both sides of a story and give the full picture."],correct:0,exp:"<strong>in the public interest</strong>.",ref:"WB p.30 \u00b7 L2B Ex 1 #7"},
+  {sec:"I",num:8,q:"As a serious newspaper we always attempt to present _____",opts:["sources multiple times on the Internet.", "corruption in a large international business.", "both sides of a story and give the full picture.", "the headlines after giving birth to quintuplets."],correct:2,exp:"<strong>present both sides</strong>.",ref:"WB p.30 \u00b7 L2B Ex 1 #8"},
+  {sec:"I",num:9,q:"I rarely trust a sensational report unless I can verify its _____",opts:["public interest to reveal the details of the recent crime.", "sources multiple times on the Internet.", "light on the mysteries of dark matter.", "attention spans than goldfish."],correct:1,exp:"<strong>verify sources</strong>.",ref:"WB p.30 \u00b7 L2B Ex 1 #9"},
+  {sec:"I",num:10,q:"The journalist had tried to expose _____",opts:["both sides of a story and give the full picture.", "viral before anyone knew who the director was.", "headlines, though sometimes I'm tempted.", "corruption in a large international business."],correct:3,exp:"<strong>expose corruption</strong>.",ref:"WB p.30 \u00b7 L2B Ex 1 #10"},
+  {sec:"J",num:1,q:"The Courier leads with a _____ article about climate change.",opts:["balanced", "off-the-record", "sensational", "exclusive"],correct:0,exp:"<strong>balanced</strong> = giving all sides fairly.",ref:"WB p.30 \u00b7 L2B Ex 2 #1"},
+  {sec:"J",num:2,q:"...the report never tries to be _____.",opts:["balanced", "sensational", "topical", "exclusive"],correct:1,exp:"<strong>sensational</strong> = exaggerated/shocking.",ref:"WB p.30 \u00b7 L2B Ex 2 #2"},
+  {sec:"J",num:3,q:"The Gazette has a _____ report on the thousands of victims of Hurricane Ivona.",opts:["heartwarming", "heartbreaking", "exclusive", "quirky"],correct:1,exp:"<strong>heartbreaking</strong> = very sad.",ref:"WB p.30 \u00b7 L2B Ex 2 #3"},
+  {sec:"J",num:4,q:"The Record also has _____ interview with United manager, Cyriac Jones...",opts:["a topical", "an exclusive", "a heartbreaking", "a balanced"],correct:1,exp:"<strong>an exclusive interview</strong> = only available here.",ref:"WB p.30 \u00b7 L2B Ex 2 #4"},
+  {sec:"J",num:5,q:"And in The Star it's the usual _____ celebrity nonsense.",opts:["balanced", "viral", "sensational", "exclusive"],correct:2,exp:"<strong>sensational</strong> = shocking/exaggerated.",ref:"WB p.30 \u00b7 L2B Ex 2 #5"},
+  {sec:"K",num:1,q:"We believe it is the media's role to act in the _____ interest",opts:["public", "sensational", "balanced", "exclusive"],correct:0,exp:"<strong>public interest</strong>.",ref:"WB p.30 \u00b7 L2B Ex 3 #1"},
+  {sec:"K",num:2,q:"to report a range of _____ stories and relevant opinions",opts:["newsworthy", "hard-hitting", "off-the-record", "sensational"],correct:0,exp:"<strong>newsworthy</strong> = worth reporting.",ref:"WB p.30 \u00b7 L2B Ex 3 #2"},
+  {sec:"K",num:3,q:"The Daily Target will never produce _____, one-sided stories",opts:["balanced", "newsworthy", "sensational", "topical"],correct:2,exp:"<strong>sensational</strong> = exaggerated.",ref:"WB p.30 \u00b7 L2B Ex 3 #3"},
+  {sec:"K",num:4,q:"but instead will seek to raise _____ of important issues",opts:["corruption", "revenue", "awareness", "light"],correct:2,exp:"<strong>raise awareness</strong> = make people aware.",ref:"WB p.30 \u00b7 L2B Ex 3 #4"},
+  {sec:"K",num:5,q:"and only report information from sources we have been able to _____",opts:["verify", "expose", "generate", "present"],correct:0,exp:"<strong>verify sources</strong>.",ref:"WB p.30 \u00b7 L2B Ex 3 #5"},
+  {sec:"K",num:6,q:"We believe in _____ news articles that present all sides of a story.",opts:["sensational", "balanced", "exclusive", "quirky"],correct:1,exp:"<strong>balanced</strong> = fair/even.",ref:"WB p.30 \u00b7 L2B Ex 3 #6"},
+  {sec:"K",num:7,q:"that present all _____ of a story.",opts:["sides", "sources", "awareness", "headlines"],correct:0,exp:"<strong>both sides</strong> of the story.",ref:"WB p.30 \u00b7 L2B Ex 3 #7"},
+  {sec:"K",num:8,q:"In our reporting, we aim to shed _____ on the way in which our country is run",opts:["light", "sides", "public", "verify"],correct:0,exp:"<strong>shed light on</strong>.",ref:"WB p.30 \u00b7 L2B Ex 3 #8"},
+  {sec:"K",num:9,q:"and to expose _____ wherever we find it.",opts:["awareness", "balanced", "corruption", "sides"],correct:2,exp:"<strong>expose corruption</strong>.",ref:"WB p.30 \u00b7 L2B Ex 3 #9"},
+  {sec:"K",num:10,q:"We generate _____ through advertising",opts:["revenue", "corruption", "sides", "light"],correct:0,exp:"<strong>generate revenue</strong>.",ref:"WB p.30 \u00b7 L2B Ex 3 #10"},
+  {sec:"L",num:1,q:"Which word means <em>what people are talking or writing about in art, pictures, etc.</em>?",opts:["subject matter", "landscape", "capture", "evoke"],correct:0,exp:"<strong>subject matter</strong> = the topic of the artwork.",ref:"WB p.32 \u00b7 L5B Ex 1 #1"},
+  {sec:"L",num:2,q:"Which word means <em>causing a feeling of sadness</em>?",opts:["capture", "poignant", "pose", "crop"],correct:1,exp:"<strong>poignant</strong> = emotionally moving (sad).",ref:"WB p.32 \u00b7 L5B Ex 1 #2"},
+  {sec:"L",num:3,q:"Which word means <em>succeed in showing something using pictures</em>?",opts:["crop", "evoke", "capture", "subject matter"],correct:2,exp:"<strong>capture</strong> = catch on camera.",ref:"WB p.32 \u00b7 L5B Ex 1 #3"},
+  {sec:"L",num:4,q:"Which word means <em>a view of the land or countryside</em>?",opts:["landscape", "pose", "capture", "poignant"],correct:0,exp:"<strong>landscape</strong> = countryside view.",ref:"WB p.32 \u00b7 L5B Ex 1 #4"},
+  {sec:"L",num:5,q:"Which word means <em>remove parts of a picture, leaving the most important parts</em>?",opts:["evoke", "crop", "pose", "capture"],correct:1,exp:"<strong>crop</strong> = trim a photo.",ref:"WB p.32 \u00b7 L5B Ex 1 #5"},
+  {sec:"L",num:6,q:"Which word means <em>stay in a particular position for a photo or painting</em>?",opts:["pose", "crop", "landscape", "evoke"],correct:0,exp:"<strong>pose</strong> = hold a position.",ref:"WB p.32 \u00b7 L5B Ex 1 #6"},
+  {sec:"L",num:7,q:"Which word means <em>make someone remember or feel an emotion</em>?",opts:["capture", "poignant", "evoke", "subject matter"],correct:2,exp:"<strong>evoke</strong> = call up a feeling/memory.",ref:"WB p.32 \u00b7 L5B Ex 1 #7"},
+  {sec:"M",num:1,q:"Fadi's grandparents died last year, so this photo of them is very _____.",opts:["poignant", "landscape", "captured", "posed"],correct:0,exp:"<strong>poignant</strong> = emotionally sad.",ref:"WB p.32 \u00b7 L5B Ex 2 #1"},
+  {sec:"M",num:2,q:"The photographer asked the children to _____ in front of the beach.",opts:["crop", "evoke", "pose", "capture"],correct:2,exp:"<strong>pose</strong> = hold a position for a photo.",ref:"WB p.32 \u00b7 L5B Ex 2 #2"},
+  {sec:"M",num:3,q:"The _____ of today's lesson is photographers.",opts:["landscape", "subject matter", "evoke", "crop"],correct:1,exp:"<strong>subject matter</strong> = the topic.",ref:"WB p.32 \u00b7 L5B Ex 2 #3"},
+  {sec:"M",num:4,q:"The photographer wanted to _____ the light on the lake, and does it well.",opts:["evoke", "pose", "capture", "crop"],correct:2,exp:"<strong>capture</strong> light = photograph it well.",ref:"WB p.32 \u00b7 L5B Ex 2 #4"},
+  {sec:"M",num:5,q:"The pictures _____ a feeling of relaxation and calm.",opts:["evoke", "pose", "crop", "capture"],correct:0,exp:"<strong>evoke</strong> a feeling = bring it out.",ref:"WB p.32 \u00b7 L5B Ex 2 #5"},
+  {sec:"M",num:6,q:"You'll need to _____ the passport photo so you can only see your head and shoulders.",opts:["capture", "crop", "evoke", "pose"],correct:1,exp:"<strong>crop</strong> = trim the image.",ref:"WB p.32 \u00b7 L5B Ex 2 #6"},
+  {sec:"M",num:7,q:"We took a _____ photo so that you can see how large the desert is.",opts:["landscape", "poignant", "subject matter", "evoke"],correct:0,exp:"<strong>landscape</strong> photo = wide countryside shot.",ref:"WB p.32 \u00b7 L5B Ex 2 #7"},
+  {sec:"N",num:1,q:"The journalist _____ his story was true, although it is difficult to believe him.",opts:["claimed", "exposed", "refuted", "verified"],correct:0,exp:"<strong>claimed</strong> = stated as true (without proof).",ref:"WB p.34 \u00b7 Rev Ex 1 #1"},
+  {sec:"N",num:2,q:"Tourists love _____ for photos in front of famous buildings.",opts:["peering", "posing", "glancing", "capturing"],correct:1,exp:"<strong>posing</strong> = positioning for a photo.",ref:"WB p.34 \u00b7 Rev Ex 1 #2"},
+  {sec:"N",num:3,q:"She spent four years in prison for _____.",opts:["hoax", "fraud", "enigma", "allegation"],correct:1,exp:"<strong>fraud</strong> = deceptive crime (you go to prison for it).",ref:"WB p.34 \u00b7 Rev Ex 1 #3"},
+  {sec:"N",num:4,q:"No one will ever know what really happened. It remains _____.",opts:["a clue", "an enigma", "a hoax", "a fraud"],correct:1,exp:"<strong>an enigma</strong> = a mystery.",ref:"WB p.34 \u00b7 Rev Ex 1 #4"},
+  {sec:"N",num:5,q:"The men refuted the _____ that they had committed the crime.",opts:["expression", "allegation", "attention", "headline"],correct:1,exp:"<strong>allegation</strong> = an accusation.",ref:"WB p.34 \u00b7 Rev Ex 1 #5"},
+  {sec:"N",num:6,q:"I love taking _____ photos of the countryside.",opts:["composed", "landscape", "poignant", "cropped"],correct:1,exp:"<strong>landscape</strong> photos = wide outdoor views.",ref:"WB p.34 \u00b7 Rev Ex 1 #6"},
+  {sec:"N",num:7,q:"This photo _____ a feeling of nostalgia.",opts:["captures", "evokes", "crops", "exposes"],correct:1,exp:"<strong>evokes</strong> = brings up a feeling.",ref:"WB p.34 \u00b7 Rev Ex 1 #7"},
+  {sec:"O",num:1,q:"I'd like to work in journalism. I think it would be very rewarding to help _____ corruption.",opts:["expose", "refute", "verify", "present"],correct:0,exp:"<strong>expose corruption</strong>.",ref:"WB p.34 \u00b7 Rev Ex 2 #1"},
+  {sec:"O",num:2,q:"Some don't work in the _____ interest.",opts:["public", "news", "exclusive", "balanced"],correct:0,exp:"<strong>public interest</strong>.",ref:"WB p.34 \u00b7 Rev Ex 2 #2"},
+  {sec:"O",num:3,q:"They love exaggerating and write _____ stories",opts:["balanced", "sensational", "exclusive", "newsworthy"],correct:1,exp:"<strong>sensational</strong> = exaggerated.",ref:"WB p.34 \u00b7 Rev Ex 2 #3"},
+  {sec:"O",num:4,q:"People seem to love clicking on their clickbait _____, whatever the story.",opts:["stories", "news", "headlines", "revenue"],correct:2,exp:"<strong>clickbait headlines</strong>.",ref:"WB p.34 \u00b7 Rev Ex 2 #4"},
+  {sec:"O",num:5,q:"Some of them seem to think that stories about absolute rubbish are _____.",opts:["balanced", "newsworthy", "off-the-record", "hard-hitting"],correct:1,exp:"<strong>newsworthy</strong> = worth reporting.",ref:"WB p.34 \u00b7 Rev Ex 2 #5"},
+  {sec:"O",num:6,q:"I'd like to write _____ articles",opts:["sensational", "exclusive", "balanced", "off-the-record"],correct:2,exp:"<strong>balanced</strong> articles = fair.",ref:"WB p.34 \u00b7 Rev Ex 2 #6"},
+  {sec:"O",num:7,q:"presenting both _____ of a story.",opts:["sides", "headlines", "sources", "light"],correct:0,exp:"<strong>both sides</strong>.",ref:"WB p.34 \u00b7 Rev Ex 2 #7"},
+  {sec:"O",num:8,q:"I'd really like to shed _____ on issues of real importance",opts:["light", "attention", "awareness", "sources"],correct:0,exp:"<strong>shed light on</strong>.",ref:"WB p.34 \u00b7 Rev Ex 2 #8"},
+  {sec:"O",num:9,q:"What if you had to write a really sad, _____ story?",opts:["heartwarming", "heartbreaking", "quirky", "balanced"],correct:1,exp:"<strong>heartbreaking</strong> = very sad.",ref:"WB p.34 \u00b7 Rev Ex 2 #9"},
+  {sec:"O",num:10,q:"I'd like to work on happy, _____ ones too which help readers feel good.",opts:["heartwarming", "hard-hitting", "off-the-record", "sensational"],correct:0,exp:"<strong>heartwarming</strong> = makes you feel good.",ref:"WB p.34 \u00b7 Rev Ex 2 #10"},
+  {sec:"P",num:1,q:"Which word doesn't belong with the others (the others relate to looking)?",opts:["glance", "race", "spot", "peer"],correct:1,exp:"<strong>race</strong> = move quickly (the others all relate to looking).",ref:"WB p.34 \u00b7 Rev Ex 3 #1"},
+  {sec:"P",num:2,q:"Which word doesn't belong with the others (the others relate to moving)?",opts:["shuffle", "snap", "wander", "tiptoe"],correct:1,exp:"<strong>snap</strong> = take a photo (the others all relate to moving).",ref:"WB p.34 \u00b7 Rev Ex 3 #2"},
+  {sec:"P",num:3,q:"Which word doesn't belong with the others (the others are loud)?",opts:["bellow", "yell", "shriek", "whisper"],correct:3,exp:"<strong>whisper</strong> = speak very quietly (the others are all loud).",ref:"WB p.34 \u00b7 Rev Ex 3 #3"}
+];
+
+let state = {mode:null,questions:[],idx:0,answers:[],startTime:0,selected:null,confidence:null,locked:false,section:null};
+
+const STORAGE_KEY = "tawjihi_u4_exact_v1";
+function loadStore(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch(e){return{}}}
+function saveStore(s){localStorage.setItem(STORAGE_KEY,JSON.stringify(s))}
+function getMistakeBank(){return loadStore().mistakes||[]}
+function setMistakeBank(b){const s=loadStore();s.mistakes=b;saveStore(s)}
+
+function goHome(){
+  if(state.mode && state.mode!=='study' && state.answers.length>0 &&
+     !confirm("Return to home? Your current progress will be lost.")) return;
+  renderHome();
+}
+
+function renderHome(){
+  state = {mode:null,questions:[],idx:0,answers:[],startTime:0,selected:null,confidence:null,locked:false,section:null};
+  const store = loadStore();
+  const bank = getMistakeBank();
+  const bestMastery = store.bestMastery || 0;
+  const attempts = store.attempts || 0;
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>📰 Unit 4 — "Inside story"</h2>
+      <p class="intro">
+        This trainer uses the <strong>exact questions</strong> from your Jordan High Note Grade 11 books —
+        Unit 4 "Inside story" — covering news reporting, photography, story verbs, and comment adverbs
+        from Lessons 1A, 2A, 4A, 6A, 7A (Student's Book) and Lessons 2B, 5B + Revision (Workbook).
+        <strong>${QUESTIONS.length} vocabulary questions across 16 sections.</strong>
+      </p>
+      <div class="results-grid">
+        <div class="stat"><div class="value">${attempts}</div><div class="label">Attempts</div></div>
+        <div class="stat good"><div class="value">${bestMastery}%</div><div class="label">Best Mastery</div></div>
+        <div class="stat warn"><div class="value">${bank.length}</div><div class="label">Mistake Bank</div></div>
+        <div class="stat"><div class="value">${QUESTIONS.length}</div><div class="label">Total Questions</div></div>
+      </div>
+      <div class="mode-grid">
+        <button class="mode-btn" onclick="renderStudy()">
+          <span class="icon">📖</span>
+          <span class="title">Study Mode</span>
+          <span class="desc">See all ${QUESTIONS.length} questions WITH the correct answers and explanations upfront. Printable answer key.</span>
+        </button>
+        <button class="mode-btn" onclick="startMode('practice')">
+          <span class="icon">🎓</span>
+          <span class="title">Practice (with feedback)</span>
+          <span class="desc">All ${QUESTIONS.length} questions in MCQ format with instant feedback after each.</span>
+        </button>
+        <button class="mode-btn" onclick="startMode('test')">
+          <span class="icon">📝</span>
+          <span class="title">Full Unit Test</span>
+          <span class="desc">All ${QUESTIONS.length} questions. No feedback until the end. Simulates exam conditions.</span>
+        </button>
+        <button class="mode-btn" onclick="renderSectionPicker()">
+          <span class="icon">🎯</span>
+          <span class="title">Section Test</span>
+          <span class="desc">Focus on one of the 16 book exercises (A–P).</span>
+        </button>
+        <button class="mode-btn" onclick="startMode('mistakes')" ${bank.length===0?'disabled':''}>
+          <span class="icon">⚠️</span>
+          <span class="title">Mistake Bank Review</span>
+          <span class="desc">${bank.length===0?'Empty — complete a test first.':bank.length+' question(s) to review.'}</span>
+        </button>
+      </div>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function renderSectionPicker(){
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>🎯 Choose a Section</h2>
+      <div class="section-pick">
+        ${Object.entries(SECTIONS).map(([k,s])=>{
+          const count = QUESTIONS.filter(q=>q.sec===k).length;
+          return `<button class="mode-btn" onclick="startMode('section','${k}')">
+            <span class="badge ${k}">${k} · ${count} Q</span>
+            <span class="title">${s.title}</span>
+            <span class="desc">${s.source}<br>${s.instruction}</span>
+          </button>`;
+        }).join("")}
+      </div>
+      <button class="btn secondary" onclick="renderHome()">← Back to Home</button>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function renderStudy(){
+  state.mode = 'study';
+  let html = `
+    <div class="card">
+      <h2>📖 Study Mode — Answer Key</h2>
+      <p class="intro">All ${QUESTIONS.length} questions from Unit 4 with the correct answer highlighted in green.
+      Read through, then practise.</p>
+      <div class="btn-row">
+        <button class="btn" id="print-btn" onclick="window.print()">🖨️ Print Answer Key</button>
+        <button class="btn secondary" onclick="renderHome()">← Back to Home</button>
+      </div>
+    </div>
+  `;
+  Object.entries(SECTIONS).forEach(([secKey,sec])=>{
+    const qs = QUESTIONS.filter(q=>q.sec===secKey);
+    html += `
+      <div class="study-section">
+        <div class="study-header ${secKey}">
+          <div>
+            <h3>${sec.title}</h3>
+            <div class="src">${sec.source} · ${sec.instruction}</div>
+          </div>
+          <span class="badge ${secKey}">${qs.length} Q</span>
+        </div>
+        ${qs.map((q,i)=>`
+          <div class="study-q">
+            <div class="qnum">Question ${i+1} · ${q.ref}</div>
+            <div class="qtext">${q.q}</div>
+            ${q.opts.map((opt,j)=>`
+              <div class="study-opt ${j===q.correct?'correct':''}">
+                <span class="letter-sm">${String.fromCharCode(65+j)}</span>
+                <span>${opt}${j===q.correct?' ✅':''}</span>
+              </div>
+            `).join("")}
+            <div class="study-exp">💡 ${q.exp}</div>
+          </div>
+        `).join("")}
+      </div>
+    `;
+  });
+  document.getElementById("app").innerHTML = html;
+  window.scrollTo(0,0);
+}
+
+function shuffle(a){return a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(x=>x[1])}
+
+function startMode(mode, section=null){
+  state.mode = mode;
+  state.idx = 0; state.answers = []; state.startTime = Date.now();
+  state.selected = null; state.confidence = null; state.locked = false;
+  state.section = section;
+  if(mode==='practice' || mode==='test'){
+    state.questions = [...QUESTIONS];
+  } else if(mode==='section'){
+    state.questions = QUESTIONS.filter(q=>q.sec===section);
+  } else if(mode==='mistakes'){
+    const bank = getMistakeBank();
+    const refs = bank.map(m=>m.qRef);
+    state.questions = shuffle(refs.map(r=>QUESTIONS.find(q=>q.ref===r)).filter(Boolean));
+  }
+  renderQuestion();
+}
+
+function renderQuestion(){
+  if(state.idx >= state.questions.length){renderResults(); return;}
+  const q = state.questions[state.idx];
+  const total = state.questions.length;
+  const progress = ((state.idx)/total)*100;
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <div class="progress-bar"><div class="progress-fill" style="width:${progress}%"></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <span class="badge ${q.sec}">Section ${q.sec} · #${q.num}</span>
+        <span style="color:var(--muted);font-size:13px">Question ${state.idx+1} of ${total}</span>
+      </div>
+      <div class="question-text">${q.q}</div>
+      <div class="options" id="options">
+        ${q.opts.map((o,i)=>`
+          <button class="option" onclick="selectOption(${i})" id="opt-${i}">
+            <span class="letter">${String.fromCharCode(65+i)}</span>
+            <span>${o}</span>
+          </button>
+        `).join("")}
+      </div>
+      <div class="confidence">
+        <div class="confidence-label">How sure are you?</div>
+        <div class="confidence-options">
+          <div class="conf-opt" onclick="selectConf('sure',this)">✅ Sure</div>
+          <div class="conf-opt" onclick="selectConf('guess',this)">🤔 Guess</div>
+          <div class="conf-opt" onclick="selectConf('dontknow',this)">❓ Don't know</div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="submitBtn" onclick="submitAnswer()" disabled>Submit</button>
+      </div>
+      <div id="feedback"></div>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function selectOption(i){
+  if(state.locked) return;
+  state.selected = i;
+  document.querySelectorAll(".option").forEach((el,idx)=>{
+    el.classList.toggle("selected", idx===i);
+  });
+  updateSubmit();
+}
+function selectConf(c, el){
+  if(state.locked) return;
+  state.confidence = c;
+  document.querySelectorAll(".conf-opt").forEach(x=>x.classList.remove("selected"));
+  el.classList.add("selected");
+  updateSubmit();
+}
+function updateSubmit(){
+  const btn = document.getElementById("submitBtn");
+  if(btn) btn.disabled = !(state.selected!==null && state.confidence!==null);
+}
+
+function submitAnswer(){
+  if(state.selected===null || state.confidence===null) return;
+  const q = state.questions[state.idx];
+  const correct = state.selected === q.correct;
+  state.locked = true;
+  state.answers.push({qRef:q.ref, selected:state.selected, confidence:state.confidence, correct});
+  updateMistakeBank(q.ref, state.selected, state.confidence, correct);
+  if(state.mode==='practice' || state.mode==='mistakes' || state.mode==='section'){
+    document.querySelectorAll(".option").forEach((el,idx)=>{
+      el.classList.add("locked");
+      if(idx===q.correct) el.classList.add("correct");
+      else if(idx===state.selected) el.classList.add("wrong");
+    });
+    const fb = document.getElementById("feedback");
+    fb.innerHTML = `
+      <div class="explanation">
+        <div><strong>${correct?'✅ Correct!':'❌ Not quite.'}</strong> The answer is <strong>${String.fromCharCode(65+q.correct)}. ${q.opts[q.correct]}</strong>.</div>
+        <div style="margin-top:6px">${q.exp}</div>
+        <span class="ref">📖 ${q.ref}</span>
+      </div>
+      <div class="btn-row" style="margin-top:14px">
+        <button class="btn" onclick="nextQuestion()">${state.idx+1===state.questions.length?'Finish →':'Next →'}</button>
+      </div>
+    `;
+    document.getElementById("submitBtn").style.display="none";
+  } else {
+    nextQuestion();
+  }
+}
+
+function nextQuestion(){
+  state.idx++;
+  state.selected = null; state.confidence = null; state.locked = false;
+  if(state.idx >= state.questions.length) renderResults();
+  else renderQuestion();
+}
+
+function updateMistakeBank(qRef, selected, conf, correct){
+  let bank = getMistakeBank();
+  const existing = bank.find(m=>m.qRef===qRef);
+  if(correct && conf==='sure'){
+    if(existing) bank = bank.filter(m=>m.qRef!==qRef);
+    setMistakeBank(bank); return;
+  }
+  let reason = null;
+  if(!correct && conf==='sure') reason='danger';
+  else if(!correct) reason='wrong';
+  else if(correct && conf==='guess') reason='guess';
+  else if(correct && conf==='dontknow') reason='dontknow';
+  if(reason){
+    if(existing){
+      existing.reason = reason;
+      existing.repeats = (existing.repeats||1)+1;
+      existing.lastSelected = selected;
+    } else {
+      bank.push({qRef, reason, repeats:1, lastSelected:selected});
+    }
+    setMistakeBank(bank);
+  }
+}
+
+function renderResults(){
+  const ans = state.answers;
+  const total = ans.length;
+  const correct = ans.filter(a=>a.correct).length;
+  const guessed = ans.filter(a=>a.confidence==='guess').length;
+  const dontknow = ans.filter(a=>a.confidence==='dontknow').length;
+  const wrongSure = ans.filter(a=>!a.correct && a.confidence==='sure').length;
+
+  let mastery = 0;
+  ans.forEach(a=>{
+    if(a.correct){
+      if(a.confidence==='sure') mastery+=1;
+      else if(a.confidence==='guess') mastery+=0.5;
+      else mastery+=0.25;
+    }
+  });
+  const masteryPct = Math.round((mastery/total)*100);
+  const scorePct = Math.round((correct/total)*100);
+
+  const secStats = {};
+  ans.forEach(a=>{
+    const q = QUESTIONS.find(x=>x.ref===a.qRef);
+    if(!q) return;
+    if(!secStats[q.sec]) secStats[q.sec]={right:0,total:0};
+    secStats[q.sec].total++;
+    if(a.correct) secStats[q.sec].right++;
+  });
+  let weakSec = null, weakRate = 1.1;
+  Object.entries(secStats).forEach(([s,v])=>{
+    const r = v.right/v.total;
+    if(r<weakRate){weakRate=r; weakSec=s;}
+  });
+
+  let readiness, rClass, recommend;
+  if(scorePct<=50){readiness="Not Ready — needs serious review"; rClass="r1";
+    recommend="Re-read Lessons 1A, 2A, 4A, 6A & 7A and use Study Mode before retaking.";}
+  else if(scorePct<=70){readiness="Needs Review"; rClass="r2";
+    recommend="Focus on Section <strong>"+(weakSec||"")+"</strong> using Section Test mode.";}
+  else if(scorePct<=85){readiness="Good — Close to Mastery"; rClass="r3";
+    recommend="Clear your Mistake Bank and retake the Full Test.";}
+  else if(scorePct<=94){readiness="Ready for Unit Test"; rClass="r4";
+    recommend="Strong performance. One more round to push mastery higher.";}
+  else if(wrongSure>0){readiness="Ready for Unit Test"; rClass="r4";
+    recommend="Excellent score, but you have "+wrongSure+" wrong-with-confidence answer(s). Review those carefully.";}
+  else {readiness="🌟 Ready for Full Mark!"; rClass="r5";
+    recommend="Perfect mastery on Unit 4 vocabulary. Ready to move to Unit 5!";}
+
+  const sec = Math.floor((Date.now()-state.startTime)/1000);
+  const timeStr = Math.floor(sec/60)+":"+String(sec%60).padStart(2,'0');
+
+  const store = loadStore();
+  store.attempts = (store.attempts||0)+1;
+  store.lastScore = scorePct;
+  store.bestMastery = Math.max(store.bestMastery||0, masteryPct);
+  saveStore(store);
+
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>📊 Results</h2>
+      <div class="readiness ${rClass}">${readiness}</div>
+      <div class="results-grid">
+        <div class="stat ${scorePct>=80?'good':scorePct>=60?'warn':'bad'}">
+          <div class="value">${correct}/${total}</div><div class="label">Score (${scorePct}%)</div>
+        </div>
+        <div class="stat good"><div class="value">${masteryPct}%</div><div class="label">Mastery</div></div>
+        <div class="stat warn"><div class="value">${guessed}</div><div class="label">Guesses</div></div>
+        <div class="stat"><div class="value">${dontknow}</div><div class="label">Don't Know</div></div>
+        <div class="stat danger"><div class="value">${wrongSure}</div><div class="label">⚠️ Wrong + Sure</div></div>
+        <div class="stat"><div class="value">${timeStr}</div><div class="label">Time</div></div>
+      </div>
+      <div class="explanation"><strong>💡 Recommendation:</strong> ${recommend}</div>
+      ${weakSec && weakRate<1 ? `<p style="margin-top:12px"><strong>Weakest section:</strong> ${weakSec} (${Math.round(weakRate*100)}% correct)</p>`:''}
+      <div class="btn-row" style="margin-top:18px">
+        <button class="btn" onclick="reviewWrong()">📖 Review Wrong Answers</button>
+        <button class="btn secondary" onclick="startMode('${state.mode}'${state.section?",'"+state.section+"'":""})">🔄 Retake</button>
+        <button class="btn secondary" onclick="renderHome()">🏠 Home</button>
+      </div>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function reviewWrong(){
+  const wrongAns = state.answers.filter(a=>!a.correct);
+  if(wrongAns.length===0){
+    document.getElementById("app").innerHTML = `
+      <div class="card">
+        <h2>🎉 No wrong answers to review!</h2>
+        <p>You got everything correct. Great work!</p>
+        <button class="btn" onclick="renderHome()">🏠 Back to Home</button>
+      </div>`;
+    return;
+  }
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>📖 Review Wrong Answers (${wrongAns.length})</h2>
+      ${wrongAns.map(a=>{
+        const q = QUESTIONS.find(x=>x.ref===a.qRef);
+        if(!q) return '';
+        return `<div class="mistake-item">
+          <span class="badge ${q.sec}">Section ${q.sec}</span>
+          <div class="question-text" style="font-size:15px">${q.q}</div>
+          <div>❌ Your answer: <strong>${q.opts[a.selected]}</strong></div>
+          <div>✅ Correct: <strong>${q.opts[q.correct]}</strong></div>
+          <div class="explanation" style="margin-top:10px">${q.exp}<span class="ref">📖 ${q.ref}</span></div>
+        </div>`;
+      }).join("")}
+      <button class="btn" onclick="renderHome()">🏠 Back to Home</button>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+renderHome();
+</script>
+</body>
+</html>

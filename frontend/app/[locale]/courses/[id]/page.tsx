@@ -22,6 +22,7 @@ import {
   ChevronUp
 } from 'lucide-react';
 import Link from 'next/link';
+import VocabCoursePlayer from '@/components/VocabCoursePlayer';
 
 interface InlineQuestion {
   id: string;
@@ -148,6 +149,11 @@ export default function CourseSyllabusPage() {
         <span>{isRtl ? 'جاري تحميل خطة المادة...' : 'Loading Syllabus...'}</span>
       </div>
     );
+  }
+
+  // Intercept Vocab BTEC Course
+  if (courseId === 'vocab-btec') {
+    return <VocabCoursePlayer course={course} />;
   }
 
   if (!course) {

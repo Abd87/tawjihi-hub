@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tawjihi English — Unit 2 Vocabulary (Exact Book Questions)</title>
+<style>
+  :root{
+    --primary:#0d9488; --primary-dark:#0f766e; --navy:#0f172a;
+    --bg:#f1f5f9; --card:#ffffff; --muted:#64748b;
+    --good:#16a34a; --bad:#dc2626; --warn:#d97706; --danger:#b91c1c;
+    --border:#e2e8f0;
+    --sec-A:#0d9488; --sec-B:#2563eb; --sec-C:#9333ea;
+    --sec-D:#d97706; --sec-E:#db2777; --sec-F:#16a34a; --sec-G:#0891b2;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+       background:var(--bg);color:var(--navy);line-height:1.5;min-height:100vh}
+  header{background:var(--navy);color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;
+         position:sticky;top:0;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+  header h1{margin:0;font-size:17px;font-weight:600}
+  header .home-btn{background:var(--primary);color:#fff;border:none;padding:8px 14px;border-radius:8px;
+                   cursor:pointer;font-weight:500;font-size:14px}
+  header .home-btn:hover{background:var(--primary-dark)}
+  main{max-width:880px;margin:0 auto;padding:24px 16px}
+  .card{background:var(--card);border-radius:12px;padding:24px;box-shadow:0 2px 10px rgba(15,23,42,.06);
+        margin-bottom:18px;border:1px solid var(--border)}
+  h2{margin-top:0;color:var(--navy);font-size:22px}
+  h3{color:var(--navy);font-size:17px;margin:0 0 12px 0}
+  .intro{color:var(--muted);font-size:15px}
+  .mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
+  .mode-btn{background:#fff;border:2px solid var(--border);border-radius:12px;padding:18px;cursor:pointer;
+            text-align:left;transition:.2s;font-family:inherit}
+  .mode-btn:hover:not(:disabled){border-color:var(--primary);transform:translateY(-2px);box-shadow:0 6px 16px rgba(13,148,136,.15)}
+  .mode-btn:disabled{opacity:.5;cursor:not-allowed}
+  .mode-btn .icon{font-size:28px;margin-bottom:6px;display:block}
+  .mode-btn .title{font-weight:600;font-size:16px;color:var(--navy);display:block;margin-bottom:4px}
+  .mode-btn .desc{font-size:13px;color:var(--muted)}
+  .progress-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden;margin-bottom:14px}
+  .progress-fill{height:100%;background:var(--primary);transition:width .3s}
+  .badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:8px;color:#fff}
+  .badge.A{background:var(--sec-A)} .badge.B{background:var(--sec-B)} .badge.C{background:var(--sec-C)}
+  .badge.D{background:var(--sec-D)} .badge.E{background:var(--sec-E)} .badge.F{background:var(--sec-F)} .badge.G{background:var(--sec-G)}
+  .question-text{font-size:17px;font-weight:500;margin:8px 0 18px 0;color:var(--navy)}
+  .options{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+  .option{background:#fff;border:2px solid var(--border);border-radius:10px;padding:13px 16px;
+          cursor:pointer;text-align:left;font-family:inherit;font-size:15px;transition:.15s;display:flex;align-items:center;gap:12px}
+  .option:hover:not(.locked){border-color:var(--primary);background:#f0fdfa}
+  .option.selected{border-color:var(--primary);background:#ccfbf1}
+  .option.correct{border-color:var(--good);background:#dcfce7;color:#14532d}
+  .option.wrong{border-color:var(--bad);background:#fee2e2;color:#7f1d1d}
+  .option .letter{background:var(--navy);color:#fff;width:28px;height:28px;border-radius:50%;
+                  display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0;font-size:13px}
+  .option.correct .letter{background:var(--good)}
+  .option.wrong .letter{background:var(--bad)}
+  .confidence{background:#f8fafc;border-radius:10px;padding:14px;margin-bottom:14px;border:1px solid var(--border)}
+  .confidence-label{font-weight:600;font-size:14px;margin-bottom:8px;color:var(--navy)}
+  .confidence-options{display:flex;gap:10px;flex-wrap:wrap}
+  .conf-opt{background:#fff;border:2px solid var(--border);border-radius:8px;padding:8px 14px;cursor:pointer;font-size:14px;transition:.15s}
+  .conf-opt.selected{border-color:var(--primary);background:#ccfbf1;font-weight:600}
+  .btn{background:var(--primary);color:#fff;border:none;padding:11px 20px;border-radius:10px;
+       cursor:pointer;font-weight:600;font-size:15px;font-family:inherit;transition:.2s}
+  .btn:hover:not(:disabled){background:var(--primary-dark)}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .btn.secondary{background:#fff;color:var(--navy);border:2px solid var(--border)}
+  .btn.secondary:hover{border-color:var(--primary)}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap}
+  .explanation{background:#f0fdfa;border-left:4px solid var(--primary);padding:13px 16px;
+               border-radius:6px;margin-top:14px;font-size:14px;line-height:1.6}
+  .explanation strong{color:var(--primary-dark)}
+  .ref{font-size:12px;color:var(--muted);margin-top:8px;display:block;font-weight:500}
+  .results-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:18px 0}
+  .stat{background:#f8fafc;padding:14px;border-radius:10px;text-align:center;border:1px solid var(--border)}
+  .stat .value{font-size:26px;font-weight:700;color:var(--navy)}
+  .stat .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+  .stat.good .value{color:var(--good)}
+  .stat.bad .value{color:var(--bad)}
+  .stat.warn .value{color:var(--warn)}
+  .stat.danger .value{color:var(--danger)}
+  .readiness{padding:18px;border-radius:10px;text-align:center;font-weight:600;font-size:17px;margin:14px 0}
+  .readiness.r1{background:#fee2e2;color:var(--bad)}
+  .readiness.r2{background:#ffedd5;color:#9a3412}
+  .readiness.r3{background:#fef9c3;color:#854d0e}
+  .readiness.r4{background:#dcfce7;color:#14532d}
+  .readiness.r5{background:#ccfbf1;color:var(--primary-dark)}
+  .mistake-item{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px}
+
+  /* Study mode */
+  .study-section{margin-bottom:22px}
+  .study-header{position:sticky;top:60px;background:#fff;padding:12px 16px;border-radius:10px;
+                border-left:6px solid var(--primary);box-shadow:0 2px 6px rgba(0,0,0,.06);
+                margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;z-index:5}
+  .study-header.A{border-left-color:var(--sec-A)}
+  .study-header.B{border-left-color:var(--sec-B)}
+  .study-header.C{border-left-color:var(--sec-C)}
+  .study-header.D{border-left-color:var(--sec-D)}
+  .study-header.E{border-left-color:var(--sec-E)}
+  .study-header.F{border-left-color:var(--sec-F)}
+  .study-header.G{border-left-color:var(--sec-G)}
+  .study-header h3{margin:0;font-size:16px}
+  .study-header .src{font-size:12px;color:var(--muted);font-weight:500;margin-top:3px}
+  .study-q{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px}
+  .study-q .qnum{font-weight:600;color:var(--muted);font-size:13px;margin-bottom:6px}
+  .study-q .qtext{font-size:15px;margin-bottom:10px;color:var(--navy)}
+  .study-opt{padding:8px 12px;border:1px solid var(--border);border-radius:6px;margin-bottom:6px;font-size:14px;display:flex;align-items:center;gap:10px}
+  .study-opt.correct{background:#dcfce7;border-color:var(--good);color:#14532d;font-weight:500}
+  .study-opt .letter-sm{background:#e2e8f0;color:var(--navy);width:22px;height:22px;border-radius:50%;
+                        display:flex;align-items:center;justify-content:center;font-weight:600;font-size:11px;flex-shrink:0}
+  .study-opt.correct .letter-sm{background:var(--good);color:#fff}
+  .study-exp{background:#f0fdfa;border-left:3px solid var(--primary);padding:10px 14px;
+             border-radius:4px;font-size:13px;margin-top:10px;line-height:1.5}
+  .section-pick{display:grid;grid-template-columns:1fr;gap:10px;margin:14px 0}
+  @media print{
+    header,.home-btn,#print-btn,.btn{display:none !important}
+    body{background:#fff}
+    .study-header{position:static;box-shadow:none;border:1px solid #ccc}
+    .study-q{break-inside:avoid;page-break-inside:avoid}
+  }
+  @media(max-width:600px){
+    .question-text{font-size:16px}
+    header h1{font-size:14px}
+    main{padding:16px 10px}
+    .card{padding:16px}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>🌍 Tawjihi English — Unit 2 Vocabulary</h1>
+  <button class="home-btn" onclick="goHome()">🏠 Home</button>
+</header>
+<main id="app"></main>
+
+<script>
+/* ============================ EXACT BOOK QUESTIONS — UNIT 2 ============================ */
+
+const SECTIONS = {
+  A: {
+    title: "Section A — Form Compound Nouns (Environment)",
+    source: "📖 Student's Book p.16 · Lesson 2A · Exercise 2",
+    instruction: "Complete each compound noun with the correct second word.",
+    color: "A"
+  },
+  B: {
+    title: "Section B — Complete Sentences with Compound Nouns",
+    source: "📖 Student's Book p.16 · Lesson 2A · Exercise 5",
+    instruction: "Choose the correct compound noun to complete each sentence.",
+    color: "B"
+  },
+  C: {
+    title: "Section C — Weather Collocations",
+    source: "📖 Student's Book p.17 · Lesson 3A · Exercise 2",
+    instruction: "Complete each weather collocation with the correct noun.",
+    color: "C"
+  },
+  D: {
+    title: "Section D — Environmental Vocabulary in Context",
+    source: "📓 Workbook p.14 · Lesson 2B · Exercise 1",
+    instruction: "Complete each sentence with the correct word.",
+    color: "D"
+  },
+  E: {
+    title: "Section E — Match Compound Nouns with Definitions",
+    source: "📓 Workbook p.14 · Lesson 2B · Exercise 2",
+    instruction: "Choose the compound noun that matches each definition.",
+    color: "E"
+  },
+  F: {
+    title: "Section F — Complete the Environmental Signs",
+    source: "📓 Workbook p.14 · Lesson 2B · Exercise 4",
+    instruction: "Complete each sign with the missing word.",
+    color: "F"
+  },
+  G: {
+    title: "Section G — Weather Adjectives in Sentences",
+    source: "📓 Workbook p.15 · Lesson 3B · Exercise 1",
+    instruction: "Complete each sentence with the correct weather adjective.",
+    color: "G"
+  }
+};
+
+const QUESTIONS = [
+  /* ===== SECTION A: SB p.16 L2A Ex 2 — 14 compound nouns ===== */
+  {sec:"A", num:1, q:"acid _____",
+   opts:["fumes","rain","gases","waste"], correct:1,
+   exp:"<strong>acid rain</strong> = rain that contains harmful pollutants.",
+   ref:"SB p.16 · L2A Ex 2 #1"},
+  {sec:"A", num:2, q:"endangered _____",
+   opts:["species","layer","loss","fumes"], correct:0,
+   exp:"<strong>endangered species</strong> = animals at risk of extinction.",
+   ref:"SB p.16 · L2A Ex 2 #2"},
+  {sec:"A", num:3, q:"exhaust _____",
+   opts:["energy","turbine","fumes","layer"], correct:2,
+   exp:"<strong>exhaust fumes</strong> = poisonous gases from vehicle engines.",
+   ref:"SB p.16 · L2A Ex 2 #3"},
+  {sec:"A", num:4, q:"fossil _____",
+   opts:["fuels","gases","rain","loss"], correct:0,
+   exp:"<strong>fossil fuels</strong> = coal, oil, gas — non-renewable energy sources.",
+   ref:"SB p.16 · L2A Ex 2 #4"},
+  {sec:"A", num:5, q:"global _____",
+   opts:["energy","warming","species","layer"], correct:1,
+   exp:"<strong>global warming</strong> = gradual rise in Earth's temperature.",
+   ref:"SB p.16 · L2A Ex 2 #5"},
+  {sec:"A", num:6, q:"greenhouse _____",
+   opts:["fumes","loss","gases","erosion"], correct:2,
+   exp:"<strong>greenhouse gases</strong> = gases trapped in atmosphere that heat the planet.",
+   ref:"SB p.16 · L2A Ex 2 #6"},
+  {sec:"A", num:7, q:"habitat _____",
+   opts:["loss","fumes","rain","energy"], correct:0,
+   exp:"<strong>habitat loss</strong> = destruction of areas where plants/animals live.",
+   ref:"SB p.16 · L2A Ex 2 #7"},
+  {sec:"A", num:8, q:"ozone _____",
+   opts:["waste","layer","scarcity","turbine"], correct:1,
+   exp:"<strong>ozone layer</strong> = part of atmosphere protecting from UV radiation.",
+   ref:"SB p.16 · L2A Ex 2 #8"},
+  {sec:"A", num:9, q:"renewable _____",
+   opts:["fuels","gases","energy","fumes"], correct:2,
+   exp:"<strong>renewable energy</strong> = energy from sources that don't run out (sun, wind).",
+   ref:"SB p.16 · L2A Ex 2 #9"},
+  {sec:"A", num:10, q:"soil _____",
+   opts:["loss","scarcity","warming","erosion"], correct:3,
+   exp:"<strong>soil erosion</strong> = wearing away of soil by wind/water.",
+   ref:"SB p.16 · L2A Ex 2 #10"},
+  {sec:"A", num:11, q:"toxic _____",
+   opts:["layer","waste","gases","rain"], correct:1,
+   exp:"<strong>toxic waste</strong> = poisonous waste materials.",
+   ref:"SB p.16 · L2A Ex 2 #11"},
+  {sec:"A", num:12, q:"vehicle _____",
+   opts:["emissions","fuels","loss","scarcity"], correct:0,
+   exp:"<strong>vehicle emissions</strong> = polluting gases from cars/trucks.",
+   ref:"SB p.16 · L2A Ex 2 #12"},
+  {sec:"A", num:13, q:"water _____",
+   opts:["warming","erosion","scarcity","fumes"], correct:2,
+   exp:"<strong>water scarcity</strong> = lack of fresh water.",
+   ref:"SB p.16 · L2A Ex 2 #13"},
+  {sec:"A", num:14, q:"wind _____",
+   opts:["turbine","energy","gases","layer"], correct:0,
+   exp:"<strong>wind turbine</strong> = machine that uses wind to make electricity.",
+   ref:"SB p.16 · L2A Ex 2 #14"},
+
+  /* ===== SECTION B: SB p.16 L2A Ex 5 — 9 items ===== */
+  {sec:"B", num:1, q:"80 percent of the energy we consume is provided by _____ which pollute the atmosphere.",
+   opts:["greenhouse gases","fossil fuels","wind turbines","exhaust fumes"], correct:1,
+   exp:"<strong>fossil fuels</strong> (coal, oil, gas) provide most of our energy.",
+   ref:"SB p.16 · L2A Ex 5 #1"},
+  {sec:"B", num:2, q:"Deforestation causes _____ because tree roots are no longer in place to bind the earth together.",
+   opts:["habitat loss","water scarcity","soil erosion","acid rain"], correct:2,
+   exp:"<strong>soil erosion</strong> happens when trees that hold soil are removed.",
+   ref:"SB p.16 · L2A Ex 5 #2"},
+  {sec:"B", num:3, q:"It is claimed that _____ from cars kill twice as many people as accidents caused by vehicles.",
+   opts:["exhaust fumes","toxic waste","fossil fuels","greenhouse gases"], correct:0,
+   exp:"<strong>exhaust fumes</strong> from vehicles cause major health problems.",
+   ref:"SB p.16 · L2A Ex 5 #3"},
+  {sec:"B", num:4, q:"Up to 300 homes can be powered by one _____.",
+   opts:["fossil fuel","ozone layer","wind turbine","greenhouse gas"], correct:2,
+   exp:"A single <strong>wind turbine</strong> can power around 300 homes.",
+   ref:"SB p.16 · L2A Ex 5 #4a"},
+  {sec:"B", num:5, q:"Up to 300 homes can be powered by one wind turbine, using _____.",
+   opts:["renewable energy","exhaust fumes","fossil fuels","toxic waste"], correct:0,
+   exp:"Wind power is a form of <strong>renewable energy</strong>.",
+   ref:"SB p.16 · L2A Ex 5 #4b"},
+  {sec:"B", num:6, q:"_____ is the greatest threat to endangered species which are close to extinction.",
+   opts:["Acid rain","Soil erosion","Habitat loss","Water scarcity"], correct:2,
+   exp:"<strong>Habitat loss</strong> is the biggest danger to endangered animals.",
+   ref:"SB p.16 · L2A Ex 5 #5a"},
+  {sec:"B", num:7, q:"Habitat loss is the greatest threat to _____ which are close to extinction.",
+   opts:["greenhouse gases","fossil fuels","endangered species","exhaust fumes"], correct:2,
+   exp:"<strong>endangered species</strong> are animals at risk of disappearing forever.",
+   ref:"SB p.16 · L2A Ex 5 #5b"},
+  {sec:"B", num:8, q:"For safety reasons, _____ must be stored in sealed containers underground.",
+   opts:["renewable energy","toxic waste","soil erosion","ozone layer"], correct:1,
+   exp:"<strong>toxic waste</strong> must be safely contained to avoid contamination.",
+   ref:"SB p.16 · L2A Ex 5 #6"},
+  {sec:"B", num:9, q:"_____ damages buildings, forests, and kills fish.",
+   opts:["Renewable energy","Wind turbine","Habitat loss","Acid rain"], correct:3,
+   exp:"<strong>Acid rain</strong> damages structures and ecosystems.",
+   ref:"SB p.16 · L2A Ex 5 #7"},
+
+  /* ===== SECTION C: SB p.17 L3A Ex 2 — weather collocations (9) ===== */
+  {sec:"C", num:1, q:"blistering _____",
+   opts:["winds","heat","rain","snow"], correct:1,
+   exp:"<strong>blistering heat</strong> = extremely hot weather.",
+   ref:"SB p.17 · L3A Ex 2 #1"},
+  {sec:"C", num:2, q:"freak _____",
+   opts:["weather","fuels","gases","fumes"], correct:0,
+   exp:"<strong>freak weather</strong> = unusual, unexpected weather conditions.",
+   ref:"SB p.17 · L3A Ex 2 #2"},
+  {sec:"C", num:3, q:"gale-force _____",
+   opts:["rain","heat","winds","humidity"], correct:2,
+   exp:"<strong>gale-force winds</strong> = extremely strong winds.",
+   ref:"SB p.17 · L3A Ex 2 #3"},
+  {sec:"C", num:4, q:"heavy _____",
+   opts:["winds","humidity","temperatures","rain"], correct:3,
+   exp:"<strong>heavy rain</strong> (or heavy snow) = a lot of rain falling hard.",
+   ref:"SB p.17 · L3A Ex 2 #4"},
+  {sec:"C", num:5, q:"high _____",
+   opts:["temperatures","rain","winds","weather"], correct:0,
+   exp:"<strong>high temperatures</strong> (or high humidity) = very hot/humid conditions.",
+   ref:"SB p.17 · L3A Ex 2 #5"},
+  {sec:"C", num:6, q:"scorching _____",
+   opts:["winds","rain","temperatures","humidity"], correct:2,
+   exp:"<strong>scorching temperatures</strong> = burning hot weather.",
+   ref:"SB p.17 · L3A Ex 2 #6"},
+  {sec:"C", num:7, q:"soaring _____",
+   opts:["temperatures","rain","winds","snow"], correct:0,
+   exp:"<strong>soaring temperatures</strong> = rapidly rising temperatures.",
+   ref:"SB p.17 · L3A Ex 2 #7"},
+  {sec:"C", num:8, q:"sub-zero _____",
+   opts:["rain","humidity","winds","temperatures"], correct:3,
+   exp:"<strong>sub-zero temperatures</strong> = below 0°C / freezing.",
+   ref:"SB p.17 · L3A Ex 2 #8"},
+  {sec:"C", num:9, q:"torrential _____",
+   opts:["rain","heat","winds","humidity"], correct:0,
+   exp:"<strong>torrential rain</strong> = very heavy, pouring rain.",
+   ref:"SB p.17 · L3A Ex 2 #9"},
+
+  /* ===== SECTION D: WB p.14 L2B Ex 1 — 5 items ===== */
+  {sec:"D", num:1, q:"Rain that contains lots of pollutants is called _____ rain.",
+   opts:["heavy","acid","toxic","greenhouse"], correct:1,
+   exp:"<strong>acid rain</strong> contains pollutants from burning fossil fuels.",
+   ref:"WB p.14 · L2B Ex 1 #1"},
+  {sec:"D", num:2, q:"Coal, oil and gas are examples of _____.",
+   opts:["renewable energy","greenhouse gases","fossil fuels","toxic waste"], correct:2,
+   exp:"<strong>fossil fuels</strong> = coal, oil, and gas — non-renewable.",
+   ref:"WB p.14 · L2B Ex 1 #2"},
+  {sec:"D", num:3, q:"The gradual increase in the Earth's temperature is called global _____.",
+   opts:["warming","heating","scarcity","emissions"], correct:0,
+   exp:"<strong>global warming</strong> = rising temperatures worldwide.",
+   ref:"WB p.14 · L2B Ex 1 #3"},
+  {sec:"D", num:4, q:"The disappearance of areas that are home to plants and animals is called loss of _____.",
+   opts:["species","habitat","ozone","fumes"], correct:1,
+   exp:"<strong>habitat loss</strong> = destruction of natural homes for wildlife.",
+   ref:"WB p.14 · L2B Ex 1 #4"},
+  {sec:"D", num:5, q:"Poisonous gases produced by transport engines are called vehicle _____.",
+   opts:["fuels","loss","emissions","scarcity"], correct:2,
+   exp:"<strong>vehicle emissions</strong> = polluting gases from cars and trucks.",
+   ref:"WB p.14 · L2B Ex 1 #5"},
+
+  /* ===== SECTION E: WB p.14 L2B Ex 2 — 8 definitions ===== */
+  {sec:"E", num:1, q:"Which compound noun means: \"types of animals in danger of extinction\"?",
+   opts:["endangered species","toxic waste","greenhouse gas","wind turbine"], correct:0,
+   exp:"<strong>endangered species</strong> = animals at risk of dying out.",
+   ref:"WB p.14 · L2B Ex 2 #1"},
+  {sec:"E", num:2, q:"Which compound noun means: \"lack of water\"?",
+   opts:["ozone layer","water scarcity","habitat loss","renewable energy"], correct:1,
+   exp:"<strong>water scarcity</strong> = not enough water available.",
+   ref:"WB p.14 · L2B Ex 2 #2"},
+  {sec:"E", num:3, q:"Which compound noun means: \"power produced by wind, sun, etc.\"?",
+   opts:["fossil fuels","exhaust fumes","renewable energy","greenhouse gas"], correct:2,
+   exp:"<strong>renewable energy</strong> = energy from sources that won't run out.",
+   ref:"WB p.14 · L2B Ex 2 #3"},
+  {sec:"E", num:4, q:"Which compound noun means: \"a machine used to produce electric power\"?",
+   opts:["wind turbine","ozone layer","water scarcity","endangered species"], correct:0,
+   exp:"<strong>wind turbine</strong> = a tall machine that converts wind to electricity.",
+   ref:"WB p.14 · L2B Ex 2 #4"},
+  {sec:"E", num:5, q:"Which compound noun means: \"chemicals and other harmful waste products\"?",
+   opts:["greenhouse gas","renewable energy","toxic waste","exhaust fumes"], correct:2,
+   exp:"<strong>toxic waste</strong> = poisonous waste materials.",
+   ref:"WB p.14 · L2B Ex 2 #5"},
+  {sec:"E", num:6, q:"Which compound noun means: \"poisonous gases produced by engines of non-electric vehicles\"?",
+   opts:["renewable energy","exhaust fumes","ozone layer","wind turbine"], correct:1,
+   exp:"<strong>exhaust fumes</strong> = polluting gases from petrol/diesel engines.",
+   ref:"WB p.14 · L2B Ex 2 #6"},
+  {sec:"E", num:7, q:"Which compound noun means: \"part of the stratosphere which limits the amount of ultraviolet radiation reaching the Earth\"?",
+   opts:["greenhouse gas","wind turbine","ozone layer","water scarcity"], correct:2,
+   exp:"<strong>ozone layer</strong> = blocks harmful UV rays from the sun.",
+   ref:"WB p.14 · L2B Ex 2 #7"},
+  {sec:"E", num:8, q:"Which compound noun means: \"something trapped in the atmosphere which causes the planet to heat up\"?",
+   opts:["greenhouse gas","toxic waste","habitat loss","fossil fuels"], correct:0,
+   exp:"<strong>greenhouse gas</strong> = gas that traps heat in the atmosphere (e.g. CO₂).",
+   ref:"WB p.14 · L2B Ex 2 #8"},
+
+  /* ===== SECTION F: WB p.14 L2B Ex 4 — complete the signs (7) ===== */
+  {sec:"F", num:1, q:"SAVE OUR TREES. STOP _____ RAIN!",
+   opts:["HEAVY","ACID","TOXIC","FREAK"], correct:1,
+   exp:"<strong>ACID rain</strong> kills trees and damages forests.",
+   ref:"WB p.14 · L2B Ex 4 #1"},
+  {sec:"F", num:2, q:"Burning fossil fuels = a hole in the ozone _____. Stop the cycle of destruction!",
+   opts:["GAS","WASTE","LAYER","LOSS"], correct:2,
+   exp:"The <strong>ozone LAYER</strong> protects us from UV radiation.",
+   ref:"WB p.14 · L2B Ex 4 #2"},
+  {sec:"F", num:3, q:"MAKE PUBLIC TRANSPORT FREE TO REDUCE VEHICLE _____.",
+   opts:["EMISSIONS","FUELS","LOSS","WARMING"], correct:0,
+   exp:"<strong>vehicle EMISSIONS</strong> are the polluting gases from cars.",
+   ref:"WB p.14 · L2B Ex 4 #3"},
+  {sec:"F", num:4, q:"CLOSE FACTORIES THAT PRODUCE _____ WASTE NOW!",
+   opts:["FOSSIL","ACID","TOXIC","SOIL"], correct:2,
+   exp:"<strong>TOXIC waste</strong> from factories is a serious pollutant.",
+   ref:"WB p.14 · L2B Ex 4 #4"},
+  {sec:"F", num:5, q:"The planet belongs to all living things: protect _____ species and stop habitat loss.",
+   opts:["endangered","renewable","greenhouse","exhaust"], correct:0,
+   exp:"<strong>endangered species</strong> need protection from extinction.",
+   ref:"WB p.14 · L2B Ex 4 #5a"},
+  {sec:"F", num:6, q:"The planet belongs to all living things: protect endangered species and stop habitat _____.",
+   opts:["loss","gas","layer","fumes"], correct:0,
+   exp:"<strong>habitat loss</strong> threatens many endangered species.",
+   ref:"WB p.14 · L2B Ex 4 #5b"},
+  {sec:"F", num:7, q:"WATER _____ WILL LEAD TO WAR! WE ARE THIRSTY FOR CHANGE!",
+   opts:["WARMING","SCARCITY","WASTE","EROSION"], correct:1,
+   exp:"<strong>water SCARCITY</strong> = lack of fresh water.",
+   ref:"WB p.14 · L2B Ex 4 #6"},
+
+  /* ===== SECTION G: WB p.15 L3B Ex 1 — weather adjectives (7) ===== */
+  {sec:"G", num:1, q:"If you go to the desert in the summer, you can expect _____ temperatures.",
+   opts:["sub-zero","scorching","torrential","gale-force"], correct:1,
+   exp:"<strong>scorching</strong> temperatures = burning hot.",
+   ref:"WB p.15 · L3B Ex 1 #1"},
+  {sec:"G", num:2, q:"The coast was hit last night by _____ winds which damaged many houses.",
+   opts:["gale-force","torrential","blistering","soaring"], correct:0,
+   exp:"<strong>gale-force</strong> winds = extremely strong, damaging winds.",
+   ref:"WB p.15 · L3B Ex 1 #2"},
+  {sec:"G", num:3, q:"There will be _____ temperatures next week as we move into the summer.",
+   opts:["sub-zero","torrential","soaring","gale-force"], correct:2,
+   exp:"<strong>soaring</strong> temperatures = rapidly rising heat.",
+   ref:"WB p.15 · L3B Ex 1 #3"},
+  {sec:"G", num:4, q:"The north of Africa can be cold in the winter, although _____ temperatures are unusual.",
+   opts:["scorching","blistering","sub-zero","soaring"], correct:2,
+   exp:"<strong>sub-zero</strong> temperatures = below freezing (0°C).",
+   ref:"WB p.15 · L3B Ex 1 #4"},
+  {sec:"G", num:5, q:"_____ rain caused flooding in much of the country yesterday morning.",
+   opts:["Torrential","Scorching","Soaring","Blistering"], correct:0,
+   exp:"<strong>Torrential</strong> rain = very heavy, pouring rain.",
+   ref:"WB p.15 · L3B Ex 1 #5"},
+  {sec:"G", num:6, q:"People who live in the desert are used to the _____ heat.",
+   opts:["torrential","sub-zero","gale-force","blistering"], correct:3,
+   exp:"<strong>blistering</strong> heat = extremely intense, burning heat.",
+   ref:"WB p.15 · L3B Ex 1 #6"},
+  {sec:"G", num:7, q:"I don't mind hot countries, but I find the high _____ of countries like Thailand difficult to enjoy.",
+   opts:["humidity","scarcity","emissions","erosion"], correct:0,
+   exp:"<strong>humidity</strong> = the amount of water vapour in the air.",
+   ref:"WB p.15 · L3B Ex 1 #7"},
+];
+
+/* ============================ STATE ============================ */
+let state = {
+  mode:null, questions:[], idx:0, answers:[], startTime:0,
+  selected:null, confidence:null, locked:false, section:null
+};
+
+const STORAGE_KEY = "tawjihi_u2_exact_v1";
+function loadStore(){ try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch(e){return{}} }
+function saveStore(s){ localStorage.setItem(STORAGE_KEY, JSON.stringify(s)) }
+function getMistakeBank(){ return loadStore().mistakes || [] }
+function setMistakeBank(b){ const s=loadStore(); s.mistakes=b; saveStore(s) }
+
+/* ============================ NAV ============================ */
+function goHome(){
+  if(state.mode && state.mode!=='study' && state.answers.length>0 &&
+     !confirm("Return to home? Your current progress will be lost.")) return;
+  renderHome();
+}
+
+function renderHome(){
+  state = {mode:null,questions:[],idx:0,answers:[],startTime:0,selected:null,confidence:null,locked:false,section:null};
+  const store = loadStore();
+  const bank = getMistakeBank();
+  const bestMastery = store.bestMastery || 0;
+  const attempts = store.attempts || 0;
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>🌍 Unit 2 — "Looking ahead"</h2>
+      <p class="intro">
+        This trainer uses the <strong>exact questions</strong> from Jordan High Note Grade 11 Semester 1 —
+        Unit 2 "Looking ahead" — covering compound nouns about environmental threats and weather
+        collocations from Lessons 2A, 2B, 3A and 3B. Start with <strong>Study Mode</strong> to see the answers, then practise.
+      </p>
+      <div class="results-grid">
+        <div class="stat"><div class="value">${attempts}</div><div class="label">Attempts</div></div>
+        <div class="stat good"><div class="value">${bestMastery}%</div><div class="label">Best Mastery</div></div>
+        <div class="stat warn"><div class="value">${bank.length}</div><div class="label">Mistake Bank</div></div>
+        <div class="stat"><div class="value">${QUESTIONS.length}</div><div class="label">Total Questions</div></div>
+      </div>
+      <div class="mode-grid">
+        <button class="mode-btn" onclick="renderStudy()">
+          <span class="icon">📖</span>
+          <span class="title">Study Mode</span>
+          <span class="desc">See all ${QUESTIONS.length} questions WITH the correct answers and explanations upfront. Printable answer key.</span>
+        </button>
+        <button class="mode-btn" onclick="startMode('practice')">
+          <span class="icon">🎓</span>
+          <span class="title">Practice (with feedback)</span>
+          <span class="desc">All ${QUESTIONS.length} questions in MCQ format with instant feedback after each.</span>
+        </button>
+        <button class="mode-btn" onclick="startMode('test')">
+          <span class="icon">📝</span>
+          <span class="title">Full Unit Test</span>
+          <span class="desc">All ${QUESTIONS.length} questions. No feedback until the end. Simulates exam conditions.</span>
+        </button>
+        <button class="mode-btn" onclick="renderSectionPicker()">
+          <span class="icon">🎯</span>
+          <span class="title">Section Test</span>
+          <span class="desc">Focus on one of the 7 book exercises (A–G).</span>
+        </button>
+        <button class="mode-btn" onclick="startMode('mistakes')" ${bank.length===0?'disabled':''}>
+          <span class="icon">⚠️</span>
+          <span class="title">Mistake Bank Review</span>
+          <span class="desc">${bank.length===0?'Empty — complete a test first.':bank.length+' question(s) to review.'}</span>
+        </button>
+      </div>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function renderSectionPicker(){
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>🎯 Choose a Section</h2>
+      <div class="section-pick">
+        ${Object.entries(SECTIONS).map(([k,s])=>{
+          const count = QUESTIONS.filter(q=>q.sec===k).length;
+          return `<button class="mode-btn" onclick="startMode('section','${k}')">
+            <span class="badge ${k}">${k} · ${count} Q</span>
+            <span class="title">${s.title}</span>
+            <span class="desc">${s.source}<br>${s.instruction}</span>
+          </button>`;
+        }).join("")}
+      </div>
+      <button class="btn secondary" onclick="renderHome()">← Back to Home</button>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+/* ============================ STUDY MODE ============================ */
+function renderStudy(){
+  state.mode = 'study';
+  let html = `
+    <div class="card">
+      <h2>📖 Study Mode — Answer Key</h2>
+      <p class="intro">All ${QUESTIONS.length} questions from Unit 2 with the correct answer highlighted in green.
+      This is the "know-the-answer-ahead-of-time" mode. Read through, then practise.</p>
+      <div class="btn-row">
+        <button class="btn" id="print-btn" onclick="window.print()">🖨️ Print Answer Key</button>
+        <button class="btn secondary" onclick="renderHome()">← Back to Home</button>
+      </div>
+    </div>
+  `;
+
+  Object.entries(SECTIONS).forEach(([secKey,sec])=>{
+    const qs = QUESTIONS.filter(q=>q.sec===secKey);
+    html += `
+      <div class="study-section">
+        <div class="study-header ${secKey}">
+          <div>
+            <h3>${sec.title}</h3>
+            <div class="src">${sec.source} · ${sec.instruction}</div>
+          </div>
+          <span class="badge ${secKey}">${qs.length} Q</span>
+        </div>
+        ${qs.map((q,i)=>`
+          <div class="study-q">
+            <div class="qnum">Question ${i+1} · ${q.ref}</div>
+            <div class="qtext">${q.q}</div>
+            ${q.opts.map((opt,j)=>`
+              <div class="study-opt ${j===q.correct?'correct':''}">
+                <span class="letter-sm">${String.fromCharCode(65+j)}</span>
+                <span>${opt}${j===q.correct?' ✅':''}</span>
+              </div>
+            `).join("")}
+            <div class="study-exp">💡 ${q.exp}</div>
+          </div>
+        `).join("")}
+      </div>
+    `;
+  });
+
+  document.getElementById("app").innerHTML = html;
+  window.scrollTo(0,0);
+}
+
+/* ============================ TEST/PRACTICE FLOW ============================ */
+function shuffle(a){ return a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(x=>x[1]) }
+
+function startMode(mode, section=null){
+  state.mode = mode;
+  state.idx = 0; state.answers = []; state.startTime = Date.now();
+  state.selected = null; state.confidence = null; state.locked = false;
+  state.section = section;
+
+  if(mode==='practice' || mode==='test'){
+    state.questions = [...QUESTIONS];
+  } else if(mode==='section'){
+    state.questions = QUESTIONS.filter(q=>q.sec===section);
+  } else if(mode==='mistakes'){
+    const bank = getMistakeBank();
+    const refs = bank.map(m=>m.qRef);
+    state.questions = shuffle(refs.map(r=>QUESTIONS.find(q=>q.ref===r)).filter(Boolean));
+  }
+  renderQuestion();
+}
+
+function renderQuestion(){
+  if(state.idx >= state.questions.length){ renderResults(); return; }
+  const q = state.questions[state.idx];
+  const total = state.questions.length;
+  const progress = ((state.idx)/total)*100;
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <div class="progress-bar"><div class="progress-fill" style="width:${progress}%"></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <span class="badge ${q.sec}">Section ${q.sec} · #${q.num}</span>
+        <span style="color:var(--muted);font-size:13px">Question ${state.idx+1} of ${total}</span>
+      </div>
+      <div class="question-text">${q.q}</div>
+      <div class="options" id="options">
+        ${q.opts.map((o,i)=>`
+          <button class="option" onclick="selectOption(${i})" id="opt-${i}">
+            <span class="letter">${String.fromCharCode(65+i)}</span>
+            <span>${o}</span>
+          </button>
+        `).join("")}
+      </div>
+      <div class="confidence">
+        <div class="confidence-label">How sure are you?</div>
+        <div class="confidence-options">
+          <div class="conf-opt" onclick="selectConf('sure',this)">✅ Sure</div>
+          <div class="conf-opt" onclick="selectConf('guess',this)">🤔 Guess</div>
+          <div class="conf-opt" onclick="selectConf('dontknow',this)">❓ Don't know</div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="submitBtn" onclick="submitAnswer()" disabled>Submit</button>
+      </div>
+      <div id="feedback"></div>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function selectOption(i){
+  if(state.locked) return;
+  state.selected = i;
+  document.querySelectorAll(".option").forEach((el,idx)=>{
+    el.classList.toggle("selected", idx===i);
+  });
+  updateSubmit();
+}
+function selectConf(c, el){
+  if(state.locked) return;
+  state.confidence = c;
+  document.querySelectorAll(".conf-opt").forEach(x=>x.classList.remove("selected"));
+  el.classList.add("selected");
+  updateSubmit();
+}
+function updateSubmit(){
+  const btn = document.getElementById("submitBtn");
+  if(btn) btn.disabled = !(state.selected!==null && state.confidence!==null);
+}
+
+function submitAnswer(){
+  if(state.selected===null || state.confidence===null) return;
+  const q = state.questions[state.idx];
+  const correct = state.selected === q.correct;
+  state.locked = true;
+  state.answers.push({qRef:q.ref, selected:state.selected, confidence:state.confidence, correct});
+  updateMistakeBank(q.ref, state.selected, state.confidence, correct);
+
+  if(state.mode==='practice' || state.mode==='mistakes' || state.mode==='section'){
+    document.querySelectorAll(".option").forEach((el,idx)=>{
+      el.classList.add("locked");
+      if(idx===q.correct) el.classList.add("correct");
+      else if(idx===state.selected) el.classList.add("wrong");
+    });
+    const fb = document.getElementById("feedback");
+    fb.innerHTML = `
+      <div class="explanation">
+        <div><strong>${correct?'✅ Correct!':'❌ Not quite.'}</strong> The answer is <strong>${String.fromCharCode(65+q.correct)}. ${q.opts[q.correct]}</strong>.</div>
+        <div style="margin-top:6px">${q.exp}</div>
+        <span class="ref">📖 ${q.ref}</span>
+      </div>
+      <div class="btn-row" style="margin-top:14px">
+        <button class="btn" onclick="nextQuestion()">${state.idx+1===state.questions.length?'Finish →':'Next →'}</button>
+      </div>
+    `;
+    document.getElementById("submitBtn").style.display="none";
+  } else {
+    nextQuestion();
+  }
+}
+
+function nextQuestion(){
+  state.idx++;
+  state.selected = null; state.confidence = null; state.locked = false;
+  if(state.idx >= state.questions.length) renderResults();
+  else renderQuestion();
+}
+
+function updateMistakeBank(qRef, selected, conf, correct){
+  let bank = getMistakeBank();
+  const existing = bank.find(m=>m.qRef===qRef);
+  if(correct && conf==='sure'){
+    if(existing) bank = bank.filter(m=>m.qRef!==qRef);
+    setMistakeBank(bank); return;
+  }
+  let reason = null;
+  if(!correct && conf==='sure') reason='danger';
+  else if(!correct) reason='wrong';
+  else if(correct && conf==='guess') reason='guess';
+  else if(correct && conf==='dontknow') reason='dontknow';
+  if(reason){
+    if(existing){
+      existing.reason = reason;
+      existing.repeats = (existing.repeats||1)+1;
+      existing.lastSelected = selected;
+    } else {
+      bank.push({qRef, reason, repeats:1, lastSelected:selected});
+    }
+    setMistakeBank(bank);
+  }
+}
+
+/* ============================ RESULTS ============================ */
+function renderResults(){
+  const ans = state.answers;
+  const total = ans.length;
+  const correct = ans.filter(a=>a.correct).length;
+  const guessed = ans.filter(a=>a.confidence==='guess').length;
+  const dontknow = ans.filter(a=>a.confidence==='dontknow').length;
+  const wrongSure = ans.filter(a=>!a.correct && a.confidence==='sure').length;
+
+  let mastery = 0;
+  ans.forEach(a=>{
+    if(a.correct){
+      if(a.confidence==='sure') mastery+=1;
+      else if(a.confidence==='guess') mastery+=0.5;
+      else mastery+=0.25;
+    }
+  });
+  const masteryPct = Math.round((mastery/total)*100);
+  const scorePct = Math.round((correct/total)*100);
+
+  const secStats = {};
+  ans.forEach(a=>{
+    const q = QUESTIONS.find(x=>x.ref===a.qRef);
+    if(!q) return;
+    if(!secStats[q.sec]) secStats[q.sec]={right:0,total:0};
+    secStats[q.sec].total++;
+    if(a.correct) secStats[q.sec].right++;
+  });
+  let weakSec = null, weakRate = 1.1;
+  Object.entries(secStats).forEach(([s,v])=>{
+    const r = v.right/v.total;
+    if(r<weakRate){weakRate=r; weakSec=s;}
+  });
+
+  let readiness, rClass, recommend;
+  if(scorePct<=50){readiness="Not Ready — needs serious review"; rClass="r1";
+    recommend="Re-read Lessons 2A & 3A and use Study Mode before retaking.";}
+  else if(scorePct<=70){readiness="Needs Review"; rClass="r2";
+    recommend="Focus on Section <strong>"+(weakSec||"")+"</strong> using Section Test mode.";}
+  else if(scorePct<=85){readiness="Good — Close to Mastery"; rClass="r3";
+    recommend="Clear your Mistake Bank and retake the Full Test.";}
+  else if(scorePct<=94){readiness="Ready for Unit Test"; rClass="r4";
+    recommend="Strong performance. One more round to push mastery higher.";}
+  else if(wrongSure>0){readiness="Ready for Unit Test"; rClass="r4";
+    recommend="Excellent score, but you have "+wrongSure+" wrong-with-confidence answer(s). Review those carefully.";}
+  else {readiness="🌟 Ready for Full Mark!"; rClass="r5";
+    recommend="Perfect mastery on Unit 2 vocabulary. Ready to move to Unit 3!";}
+
+  const sec = Math.floor((Date.now()-state.startTime)/1000);
+  const timeStr = Math.floor(sec/60)+":"+String(sec%60).padStart(2,'0');
+
+  const store = loadStore();
+  store.attempts = (store.attempts||0)+1;
+  store.lastScore = scorePct;
+  store.bestMastery = Math.max(store.bestMastery||0, masteryPct);
+  saveStore(store);
+
+  const secNames = {A:"A · Compound Nouns (form)",B:"B · Compound Nouns (sentences)",
+                    C:"C · Weather Collocations",D:"D · Environmental Vocab",
+                    E:"E · Match Definitions",F:"F · Environmental Signs",
+                    G:"G · Weather Adjectives"};
+
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>📊 Results</h2>
+      <div class="readiness ${rClass}">${readiness}</div>
+      <div class="results-grid">
+        <div class="stat ${scorePct>=80?'good':scorePct>=60?'warn':'bad'}">
+          <div class="value">${correct}/${total}</div><div class="label">Score (${scorePct}%)</div>
+        </div>
+        <div class="stat good"><div class="value">${masteryPct}%</div><div class="label">Mastery</div></div>
+        <div class="stat warn"><div class="value">${guessed}</div><div class="label">Guesses</div></div>
+        <div class="stat"><div class="value">${dontknow}</div><div class="label">Don't Know</div></div>
+        <div class="stat danger"><div class="value">${wrongSure}</div><div class="label">⚠️ Wrong + Sure</div></div>
+        <div class="stat"><div class="value">${timeStr}</div><div class="label">Time</div></div>
+      </div>
+      <div class="explanation"><strong>💡 Recommendation:</strong> ${recommend}</div>
+      ${weakSec && weakRate<1 ? `<p style="margin-top:12px"><strong>Weakest section:</strong> ${secNames[weakSec]} (${Math.round(weakRate*100)}% correct)</p>`:''}
+      <div class="btn-row" style="margin-top:18px">
+        <button class="btn" onclick="reviewWrong()">📖 Review Wrong Answers</button>
+        <button class="btn secondary" onclick="startMode('${state.mode}'${state.section?",'"+state.section+"'":""})">🔄 Retake</button>
+        <button class="btn secondary" onclick="renderHome()">🏠 Home</button>
+      </div>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function reviewWrong(){
+  const wrongAns = state.answers.filter(a=>!a.correct);
+  if(wrongAns.length===0){
+    document.getElementById("app").innerHTML = `
+      <div class="card">
+        <h2>🎉 No wrong answers to review!</h2>
+        <p>You got everything correct. Great work!</p>
+        <button class="btn" onclick="renderHome()">🏠 Back to Home</button>
+      </div>`;
+    return;
+  }
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>📖 Review Wrong Answers (${wrongAns.length})</h2>
+      ${wrongAns.map(a=>{
+        const q = QUESTIONS.find(x=>x.ref===a.qRef);
+        if(!q) return '';
+        return `<div class="mistake-item">
+          <span class="badge ${q.sec}">Section ${q.sec}</span>
+          <div class="question-text" style="font-size:15px">${q.q}</div>
+          <div>❌ Your answer: <strong>${q.opts[a.selected]}</strong></div>
+          <div>✅ Correct: <strong>${q.opts[q.correct]}</strong></div>
+          <div class="explanation" style="margin-top:10px">${q.exp}<span class="ref">📖 ${q.ref}</span></div>
+        </div>`;
+      }).join("")}
+      <button class="btn" onclick="renderHome()">🏠 Back to Home</button>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+renderHome();
+</script>
+</body>
+</html>

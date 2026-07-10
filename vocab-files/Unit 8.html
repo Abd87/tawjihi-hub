@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tawjihi English — Unit 8 Vocabulary (Exact Book Questions)</title>
+<style>
+  :root{
+    --primary:#0d9488; --primary-dark:#0f766e; --navy:#0f172a;
+    --bg:#f1f5f9; --card:#ffffff; --muted:#64748b;
+    --good:#16a34a; --bad:#dc2626; --warn:#d97706; --danger:#b91c1c;
+    --border:#e2e8f0;
+    --sec-A:#0d9488;
+    --sec-B:#2563eb;
+    --sec-C:#9333ea;
+    --sec-D:#d97706;
+    --sec-E:#db2777;
+    --sec-F:#16a34a;
+    --sec-G:#0891b2;
+    --sec-H:#ea580c;
+    --sec-I:#e11d48;
+    --sec-J:#4f46e5;
+    --sec-K:#059669;
+    --sec-L:#ca8a04;
+    --sec-M:#7c3aed;
+    --sec-N:#dc2626;
+    --sec-O:#65a30d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+       background:var(--bg);color:var(--navy);line-height:1.5;min-height:100vh}
+  header{background:var(--navy);color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;
+         position:sticky;top:0;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+  header h1{margin:0;font-size:17px;font-weight:600}
+  header .home-btn{background:var(--primary);color:#fff;border:none;padding:8px 14px;border-radius:8px;
+                   cursor:pointer;font-weight:500;font-size:14px}
+  header .home-btn:hover{background:var(--primary-dark)}
+  main{max-width:880px;margin:0 auto;padding:24px 16px}
+  .card{background:var(--card);border-radius:12px;padding:24px;box-shadow:0 2px 10px rgba(15,23,42,.06);
+        margin-bottom:18px;border:1px solid var(--border)}
+  h2{margin-top:0;color:var(--navy);font-size:22px}
+  h3{color:var(--navy);font-size:17px;margin:0 0 12px 0}
+  .intro{color:var(--muted);font-size:15px}
+  .mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
+  .mode-btn{background:#fff;border:2px solid var(--border);border-radius:12px;padding:18px;cursor:pointer;
+            text-align:left;transition:.2s;font-family:inherit}
+  .mode-btn:hover:not(:disabled){border-color:var(--primary);transform:translateY(-2px);box-shadow:0 6px 16px rgba(13,148,136,.15)}
+  .mode-btn:disabled{opacity:.5;cursor:not-allowed}
+  .mode-btn .icon{font-size:28px;margin-bottom:6px;display:block}
+  .mode-btn .title{font-weight:600;font-size:16px;color:var(--navy);display:block;margin-bottom:4px}
+  .mode-btn .desc{font-size:13px;color:var(--muted)}
+  .progress-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden;margin-bottom:14px}
+  .progress-fill{height:100%;background:var(--primary);transition:width .3s}
+  .badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:8px;color:#fff}
+  .badge.A{background:var(--sec-A)}
+  .badge.B{background:var(--sec-B)}
+  .badge.C{background:var(--sec-C)}
+  .badge.D{background:var(--sec-D)}
+  .badge.E{background:var(--sec-E)}
+  .badge.F{background:var(--sec-F)}
+  .badge.G{background:var(--sec-G)}
+  .badge.H{background:var(--sec-H)}
+  .badge.I{background:var(--sec-I)}
+  .badge.J{background:var(--sec-J)}
+  .badge.K{background:var(--sec-K)}
+  .badge.L{background:var(--sec-L)}
+  .badge.M{background:var(--sec-M)}
+  .badge.N{background:var(--sec-N)}
+  .badge.O{background:var(--sec-O)}
+  .question-text{font-size:17px;font-weight:500;margin:8px 0 18px 0;color:var(--navy)}
+  .options{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+  .option{background:#fff;border:2px solid var(--border);border-radius:10px;padding:13px 16px;
+          cursor:pointer;text-align:left;font-family:inherit;font-size:15px;transition:.15s;display:flex;align-items:center;gap:12px}
+  .option:hover:not(.locked){border-color:var(--primary);background:#f0fdfa}
+  .option.selected{border-color:var(--primary);background:#ccfbf1}
+  .option.correct{border-color:var(--good);background:#dcfce7;color:#14532d}
+  .option.wrong{border-color:var(--bad);background:#fee2e2;color:#7f1d1d}
+  .option .letter{background:var(--navy);color:#fff;width:28px;height:28px;border-radius:50%;
+                  display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0;font-size:13px}
+  .option.correct .letter{background:var(--good)}
+  .option.wrong .letter{background:var(--bad)}
+  .confidence{background:#f8fafc;border-radius:10px;padding:14px;margin-bottom:14px;border:1px solid var(--border)}
+  .confidence-label{font-weight:600;font-size:14px;margin-bottom:8px;color:var(--navy)}
+  .confidence-options{display:flex;gap:10px;flex-wrap:wrap}
+  .conf-opt{background:#fff;border:2px solid var(--border);border-radius:8px;padding:8px 14px;cursor:pointer;font-size:14px;transition:.15s}
+  .conf-opt.selected{border-color:var(--primary);background:#ccfbf1;font-weight:600}
+  .btn{background:var(--primary);color:#fff;border:none;padding:11px 20px;border-radius:10px;
+       cursor:pointer;font-weight:600;font-size:15px;font-family:inherit;transition:.2s}
+  .btn:hover:not(:disabled){background:var(--primary-dark)}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .btn.secondary{background:#fff;color:var(--navy);border:2px solid var(--border)}
+  .btn.secondary:hover{border-color:var(--primary)}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap}
+  .explanation{background:#f0fdfa;border-left:4px solid var(--primary);padding:13px 16px;
+               border-radius:6px;margin-top:14px;font-size:14px;line-height:1.6}
+  .explanation strong{color:var(--primary-dark)}
+  .ref{font-size:12px;color:var(--muted);margin-top:8px;display:block;font-weight:500}
+  .results-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:18px 0}
+  .stat{background:#f8fafc;padding:14px;border-radius:10px;text-align:center;border:1px solid var(--border)}
+  .stat .value{font-size:26px;font-weight:700;color:var(--navy)}
+  .stat .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+  .stat.good .value{color:var(--good)}
+  .stat.bad .value{color:var(--bad)}
+  .stat.warn .value{color:var(--warn)}
+  .stat.danger .value{color:var(--danger)}
+  .readiness{padding:18px;border-radius:10px;text-align:center;font-weight:600;font-size:17px;margin:14px 0}
+  .readiness.r1{background:#fee2e2;color:var(--bad)}
+  .readiness.r2{background:#ffedd5;color:#9a3412}
+  .readiness.r3{background:#fef9c3;color:#854d0e}
+  .readiness.r4{background:#dcfce7;color:#14532d}
+  .readiness.r5{background:#ccfbf1;color:var(--primary-dark)}
+  .mistake-item{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px}
+  .study-section{margin-bottom:22px}
+  .study-header{position:sticky;top:60px;background:#fff;padding:12px 16px;border-radius:10px;
+                border-left:6px solid var(--primary);box-shadow:0 2px 6px rgba(0,0,0,.06);
+                margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;z-index:5}
+  .study-header.A{border-left-color:var(--sec-A)}
+  .study-header.B{border-left-color:var(--sec-B)}
+  .study-header.C{border-left-color:var(--sec-C)}
+  .study-header.D{border-left-color:var(--sec-D)}
+  .study-header.E{border-left-color:var(--sec-E)}
+  .study-header.F{border-left-color:var(--sec-F)}
+  .study-header.G{border-left-color:var(--sec-G)}
+  .study-header.H{border-left-color:var(--sec-H)}
+  .study-header.I{border-left-color:var(--sec-I)}
+  .study-header.J{border-left-color:var(--sec-J)}
+  .study-header.K{border-left-color:var(--sec-K)}
+  .study-header.L{border-left-color:var(--sec-L)}
+  .study-header.M{border-left-color:var(--sec-M)}
+  .study-header.N{border-left-color:var(--sec-N)}
+  .study-header.O{border-left-color:var(--sec-O)}
+  .study-header h3{margin:0;font-size:16px}
+  .study-header .src{font-size:12px;color:var(--muted);font-weight:500;margin-top:3px}
+  .study-q{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px}
+  .study-q .qnum{font-weight:600;color:var(--muted);font-size:13px;margin-bottom:6px}
+  .study-q .qtext{font-size:15px;margin-bottom:10px;color:var(--navy)}
+  .study-opt{padding:8px 12px;border:1px solid var(--border);border-radius:6px;margin-bottom:6px;font-size:14px;display:flex;align-items:center;gap:10px}
+  .study-opt.correct{background:#dcfce7;border-color:var(--good);color:#14532d;font-weight:500}
+  .study-opt .letter-sm{background:#e2e8f0;color:var(--navy);width:22px;height:22px;border-radius:50%;
+                        display:flex;align-items:center;justify-content:center;font-weight:600;font-size:11px;flex-shrink:0}
+  .study-opt.correct .letter-sm{background:var(--good);color:#fff}
+  .study-exp{background:#f0fdfa;border-left:3px solid var(--primary);padding:10px 14px;
+             border-radius:4px;font-size:13px;margin-top:10px;line-height:1.5}
+  .section-pick{display:grid;grid-template-columns:1fr;gap:10px;margin:14px 0}
+  @media print{
+    header,.home-btn,#print-btn,.btn{display:none !important}
+    body{background:#fff}
+    .study-header{position:static;box-shadow:none;border:1px solid #ccc}
+    .study-q{break-inside:avoid;page-break-inside:avoid}
+  }
+  @media(max-width:600px){
+    .question-text{font-size:16px}
+    header h1{font-size:14px}
+    main{padding:16px 10px}
+    .card{padding:16px}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>💻 Tawjihi English — Unit 8 Vocabulary</h1>
+  <button class="home-btn" onclick="goHome()">🏠 Home</button>
+</header>
+<main id="app"></main>
+<script>
+const SECTIONS = {
+  A: {title:"Section A \u2014 Internet of Things Vocabulary",source:"\ud83d\udcd6 SB p.26 \u00b7 L1A \u00b7 Ex 2",instruction:"Complete each IoT sentence with the right tech word.",color:"A"},
+  B: {title:"Section B \u2014 Describing IoT Trends",source:"\ud83d\udcd6 SB p.28 \u00b7 L2A \u00b7 Ex 2",instruction:"Complete sentences about the IoT graph with the right trend phrase.",color:"B"},
+  C: {title:"Section C \u2014 Describing Trends (Speaking Box)",source:"\ud83d\udcd6 SB p.28 \u00b7 L2A \u00b7 Speaking Box",instruction:"Match each verb/noun/adverb for describing change.",color:"C"},
+  D: {title:"Section D \u2014 Tech Synonyms (Early Adopter)",source:"\ud83d\udcd6 SB p.29 \u00b7 L3A \u00b7 Ex 3",instruction:"Match each tech word with its definition.",color:"D"},
+  E: {title:"Section E \u2014 Old-Fashioned Synonyms",source:"\ud83d\udcd6 SB p.29 \u00b7 L3A \u00b7 Ex 4",instruction:"Choose the right synonym (dated / outdated / old-fashioned).",color:"E"},
+  F: {title:"Section F \u2014 VR Article Phrasal Verbs",source:"\ud83d\udcd6 SB p.31 \u00b7 L4A \u00b7 Ex 4",instruction:"Replace each underlined part with the matching phrasal verb.",color:"F"},
+  G: {title:"Section G \u2014 Selfies Vocabulary",source:"\ud83d\udcd6 SB p.32 \u00b7 L5A \u00b7 Ex 4",instruction:"Complete each selfies extract with the right word.",color:"G"},
+  H: {title:"Section H \u2014 Passive Forms",source:"\ud83d\udcd3 WB p.20 \u00b7 L1B \u00b7 Ex 4",instruction:"Complete each sentence with the correct passive form.",color:"H"},
+  I: {title:"Section I \u2014 Tech Synonyms Crossword",source:"\ud83d\udcd3 WB p.22 \u00b7 L3B \u00b7 Ex 1",instruction:"Match each crossword definition with the right word.",color:"I"},
+  J: {title:"Section J \u2014 Tech Words in Sentences",source:"\ud83d\udcd3 WB p.22 \u00b7 L3B \u00b7 Ex 2",instruction:"Choose the correct tech word in each sentence.",color:"J"},
+  K: {title:"Section K \u2014 Tech Mini-Conversations",source:"\ud83d\udcd3 WB p.22 \u00b7 L3B \u00b7 Ex 3",instruction:"Complete each conversation gap with the right tech word.",color:"K"},
+  L: {title:"Section L \u2014 Adjectives Vocabulary Extension",source:"\ud83d\udcd3 WB p.23 \u00b7 L5B \u00b7 Vocab Ext Ex 1",instruction:"Match each adjective with its definition.",color:"L"},
+  M: {title:"Section M \u2014 Adjectives in Sentences",source:"\ud83d\udcd3 WB p.23 \u00b7 L5B \u00b7 Vocab Ext Ex 2",instruction:"Complete each sentence with the right adjective.",color:"M"},
+  N: {title:"Section N \u2014 Revision: Choose the Correct Word",source:"\ud83d\udcd3 WB p.26 \u00b7 Revision \u00b7 Ex 1",instruction:"Choose the correct word in each revision sentence.",color:"N"},
+  O: {title:"Section O \u2014 Revision: Sentence Transformations",source:"\ud83d\udcd3 WB p.26 \u00b7 Revision \u00b7 Ex 4",instruction:"Choose the correct transformation using the key word.",color:"O"}
+};
+
+const QUESTIONS = [
+  {sec:"A",num:1,q:"Wearables and other _____ , such as clothing, could be used to track your body's fat and water content.",opts:["smart devices", "sensors", "household appliances", "wearables"],correct:0,exp:"<strong>smart devices</strong> = connected electronic devices.",ref:"SB p.26 \u00b7 L1A Ex 2 #1"},
+  {sec:"A",num:2,q:"Sensors which can monitor your heart rate could be _____ in your body and alert the doctor if there are any problems.",opts:["tracked", "embedded", "hacked", "sensed"],correct:1,exp:"<strong>embedded</strong> = placed inside (e.g., inside the body).",ref:"SB p.26 \u00b7 L1A Ex 2 #2a"},
+  {sec:"A",num:3,q:"Some people are concerned that it is easy to _____ into a self-driving car, or that there might be a malfunction causing an accident.",opts:["embed", "hack", "track", "alert"],correct:1,exp:"<strong>hack</strong> into = break into a computer system.",ref:"SB p.26 \u00b7 L1A Ex 2 #3a"},
+  {sec:"A",num:4,q:"...or that there might be a _____ causing an accident.",opts:["sensor", "wearable", "malfunction", "appliance"],correct:2,exp:"<strong>malfunction</strong> = a fault when something doesn't work properly.",ref:"SB p.26 \u00b7 L1A Ex 2 #3b"},
+  {sec:"A",num:5,q:"Increasingly, smart devices use a digital fingerprint or _____ rather than a PIN.",opts:["facial recognition software", "household appliance", "wearables", "malfunction"],correct:0,exp:"<strong>facial recognition software</strong> = identifies a person by their face.",ref:"SB p.26 \u00b7 L1A Ex 2 #4"},
+  {sec:"A",num:6,q:"A smart fridge that keeps grocery lists is one example of a _____.",opts:["wearable", "sensor", "household appliance", "malfunction"],correct:2,exp:"<strong>household appliance</strong> = a domestic device (fridge, oven, etc.).",ref:"SB p.26 \u00b7 L1A Ex 2 #5"},
+  {sec:"B",num:1,q:"Overall, there has been a _____ in the number of IoT devices used globally.",opts:["went up quite dramatically", "steady rise", "stayed the same", "grew slightly"],correct:1,exp:"<strong>steady rise</strong> = a gradual continuous increase.",ref:"SB p.28 \u00b7 L2A Ex 2 #1"},
+  {sec:"B",num:2,q:"In Eastern Europe, the number of devices pretty much _____ between 2015 and 2018.",opts:["went up quite dramatically", "grew slightly", "stayed the same", "steady rise"],correct:2,exp:"<strong>stayed the same</strong> = no change.",ref:"SB p.28 \u00b7 L2A Ex 2 #2"},
+  {sec:"B",num:3,q:"The number of devices in the Middle East and Africa _____ between 2018 and 2021.",opts:["grew slightly", "stayed the same", "steady rise", "went up quite dramatically"],correct:0,exp:"<strong>grew slightly</strong> = a small increase.",ref:"SB p.28 \u00b7 L2A Ex 2 #3"},
+  {sec:"B",num:4,q:"Western Europe and the United States and Canada had a similar number of devices until 2018 when the number of devices in Western Europe _____.",opts:["stayed the same", "grew slightly", "steady rise", "went up quite dramatically"],correct:3,exp:"<strong>went up quite dramatically</strong> = increased sharply.",ref:"SB p.28 \u00b7 L2A Ex 2 #4"},
+  {sec:"C",num:1,q:"Which verb means \"to go up\" (increase)?",opts:["declined", "rose", "dropped", "stayed"],correct:1,exp:"<strong>rose</strong> / increased / grew / went up = movement upward.",ref:"SB p.28 \u00b7 L2A Speaking Box #1"},
+  {sec:"C",num:2,q:"Which verb means \"to go down\" (decrease)?",opts:["grew", "rose", "declined", "increased"],correct:2,exp:"<strong>declined</strong> / decreased / went down / dropped = movement downward.",ref:"SB p.28 \u00b7 L2A Speaking Box #2"},
+  {sec:"C",num:3,q:"Which adverb means \"by a small amount\"?",opts:["sharply", "slightly", "dramatically", "steadily"],correct:1,exp:"<strong>slightly</strong> = by a small amount (a small change).",ref:"SB p.28 \u00b7 L2A Speaking Box #3"},
+  {sec:"C",num:4,q:"Which adverb means \"by a very large/sudden amount\"?",opts:["gradually", "slightly", "sharply", "steadily"],correct:2,exp:"<strong>sharply</strong> / dramatically = by a very large/sudden amount.",ref:"SB p.28 \u00b7 L2A Speaking Box #4"},
+  {sec:"C",num:5,q:"Which noun means an \"increase\"?",opts:["fall", "drop", "rise", "decline"],correct:2,exp:"<strong>rise</strong> / growth / increase = an upward movement.",ref:"SB p.28 \u00b7 L2A Speaking Box #5"},
+  {sec:"C",num:6,q:"Which noun means a \"decrease\"?",opts:["growth", "rise", "drop", "increase"],correct:2,exp:"<strong>drop</strong> / fall / decrease / decline = a downward movement.",ref:"SB p.28 \u00b7 L2A Speaking Box #6"},
+  {sec:"C",num:7,q:"Which adverb means \"slowly and continuously over time\"?",opts:["sharply", "steadily", "dramatically", "slightly"],correct:1,exp:"<strong>steadily</strong> / gradually = slow and continuous change.",ref:"SB p.28 \u00b7 L2A Speaking Box #7"},
+  {sec:"C",num:8,q:"Which summary phrase introduces the overall pattern?",opts:["Overall, the trend is\u2026", "During the period\u2026", "It is noticeable that\u2026", "The graph illustrates\u2026"],correct:0,exp:"<strong>Overall, the trend is upwards/downwards</strong> = used to summarise the whole graph.",ref:"SB p.28 \u00b7 L2A Speaking Box #8"},
+  {sec:"D",num:1,q:"Which word means <em>not in use any more because a newer invention exists</em>?",opts:["obsolete", "outdated", "dated", "old-fashioned"],correct:0,exp:"<strong>obsolete</strong> = no longer used because something newer exists.",ref:"SB p.29 \u00b7 L3A Ex 3 #1"},
+  {sec:"D",num:2,q:"Which word means <em>small problems that prevent a device from working well</em>?",opts:["bugs", "glitches", "crashes", "issues"],correct:1,exp:"<strong>glitches</strong> = small technical problems.",ref:"SB p.29 \u00b7 L3A Ex 3 #2"},
+  {sec:"D",num:3,q:"Which word means <em>everything a piece of software can do</em>?",opts:["compatibility", "functionality", "handle", "upgrade"],correct:1,exp:"<strong>functionality</strong> = what a piece of software can do.",ref:"SB p.29 \u00b7 L3A Ex 3 #3"},
+  {sec:"D",num:4,q:"Which word means <em>old-fashioned</em>?",opts:["latest", "obsolete", "dated", "newest"],correct:2,exp:"<strong>dated</strong> = old-fashioned (negative connotation).",ref:"SB p.29 \u00b7 L3A Ex 3 #4"},
+  {sec:"D",num:5,q:"Which word means <em>most modern</em>?",opts:["dated", "obsolete", "outdated", "latest"],correct:3,exp:"<strong>latest</strong> = newest / most modern.",ref:"SB p.29 \u00b7 L3A Ex 3 #5"},
+  {sec:"D",num:6,q:"Which phrase means <em>using the most recent ideas and methods</em>?",opts:["state-of-the-art", "obsolete", "dated", "outdated"],correct:0,exp:"<strong>state-of-the-art</strong> = very modern/advanced.",ref:"SB p.29 \u00b7 L3A Ex 3 #6"},
+  {sec:"D",num:7,q:"Which verb means <em>deal with</em>?",opts:["upgrade", "handle", "back up", "embed"],correct:1,exp:"<strong>handle</strong> = deal with/manage.",ref:"SB p.29 \u00b7 L3A Ex 3 #7"},
+  {sec:"D",num:8,q:"Which word means <em>the ability of one piece of equipment/software to be used with another</em>?",opts:["functionality", "compatibility", "upgrade", "handle"],correct:1,exp:"<strong>compatibility</strong> = whether two things can work together.",ref:"SB p.29 \u00b7 L3A Ex 3 #8"},
+  {sec:"D",num:9,q:"Which verb means <em>change for something newer or better</em>?",opts:["handle", "upgrade", "back up", "embed"],correct:1,exp:"<strong>upgrade</strong> = replace with a newer/better version.",ref:"SB p.29 \u00b7 L3A Ex 3 #9"},
+  {sec:"D",num:10,q:"Which phrase means <em>stored on a computer/other device so it won't be lost</em>?",opts:["upgraded", "handled", "backed up", "embedded"],correct:2,exp:"<strong>backed up</strong> = saved as a copy in case original is lost.",ref:"SB p.29 \u00b7 L3A Ex 3 #10"},
+  {sec:"E",num:1,q:"That style of trousers looks really _____ now. (negative tone \u2014 about fashion/style)",opts:["outdated", "dated", "old-fashioned", "obsolete"],correct:1,exp:"<strong>dated</strong> = old-fashioned with a negative tone \u2014 often used for fashion/style.",ref:"SB p.29 \u00b7 L3A Ex 4 #1"},
+  {sec:"E",num:2,q:"The software isn't working very well because it's rather _____.",opts:["outdated", "dated", "old-fashioned", "modern"],correct:0,exp:"<strong>outdated</strong> = old and no longer effective (for software).",ref:"SB p.29 \u00b7 L3A Ex 4 #2"},
+  {sec:"E",num:3,q:"The telephone is very large and _____, with a wire connecting it to the wall.",opts:["outdated", "obsolete", "old-fashioned", "latest"],correct:2,exp:"<strong>old-fashioned</strong> = belonging to an older time (neutral tone).",ref:"SB p.29 \u00b7 L3A Ex 4 #3"},
+  {sec:"F",num:1,q:"You can't expect to <u>keep</u> a job if you're always late!",opts:["hold down", "fit in", "eat away at", "break off"],correct:0,exp:"<strong>hold down</strong> a job = keep a job.",ref:"SB p.31 \u00b7 L4A Ex 4 #1"},
+  {sec:"F",num:2,q:"I have never really <u>felt part of</u> the group at school.",opts:["come up against", "fit in", "bump into", "calm down"],correct:1,exp:"<strong>fit in</strong> = feel part of / belong to a group.",ref:"SB p.31 \u00b7 L4A Ex 4 #2"},
+  {sec:"F",num:3,q:"Every time she thought about it, the anxiety made her <u>feel very bad</u>.",opts:["fit in", "hold down", "ate away at her", "came up against"],correct:2,exp:"<strong>eat away at</strong> = make you feel very bad inside.",ref:"SB p.31 \u00b7 L4A Ex 4 #3"},
+  {sec:"F",num:4,q:"He <u>stopped what he was doing</u> to talk to his friend.",opts:["fit in", "broke off", "came up against", "ended up"],correct:1,exp:"<strong>break off</strong> = stop doing something temporarily.",ref:"SB p.31 \u00b7 L4A Ex 4 #4"},
+  {sec:"F",num:5,q:"The noise was too much for her and she <u>finished by</u> running from the room.",opts:["bumped into", "ended up", "held down", "calmed down"],correct:1,exp:"<strong>end up</strong> + gerund = finish by doing something.",ref:"SB p.31 \u00b7 L4A Ex 4 #5"},
+  {sec:"F",num:6,q:"I didn't expect to <u>see</u> you here!",opts:["bump into", "fit in", "calm down", "hold down"],correct:0,exp:"<strong>bump into</strong> = meet unexpectedly.",ref:"SB p.31 \u00b7 L4A Ex 4 #6"},
+  {sec:"F",num:7,q:"Relax \u2014 it's going to be OK.",opts:["fit in", "calm down", "hold down", "bump into"],correct:1,exp:"<strong>calm down</strong> = relax / stop being anxious.",ref:"SB p.31 \u00b7 L4A Ex 4 #7"},
+  {sec:"F",num:8,q:"If you <u>encounter</u> any problems, let me know.",opts:["come up against", "fit in", "bump into", "end up"],correct:0,exp:"<strong>come up against</strong> = encounter / meet (difficulties).",ref:"SB p.31 \u00b7 L4A Ex 4 #8"},
+  {sec:"G",num:1,q:"People started taking selfies not just to present a _____ picture of themselves...",opts:["flattering", "deceptive", "superficial", "enhanced"],correct:0,exp:"<strong>flattering</strong> = making someone look more attractive than they really are.",ref:"SB p.32 \u00b7 L5A Ex 4 #1"},
+  {sec:"G",num:2,q:"...but also to manage and _____ what they wanted to tell the world.",opts:["curate", "enhance", "feature", "flatter"],correct:0,exp:"<strong>curate</strong> = select and present (a collection/image).",ref:"SB p.32 \u00b7 L5A Ex 4 #2"},
+  {sec:"G",num:3,q:"...about their physical _____, their personality, their relationships...",opts:["flaws", "attributes", "features", "flatters"],correct:1,exp:"<strong>attributes</strong> = qualities or characteristics.",ref:"SB p.32 \u00b7 L5A Ex 4 #3"},
+  {sec:"G",num:4,q:"On a _____ level, their holiday photos look relaxed and natural...",opts:["deceptive", "flattering", "superficial", "enhanced"],correct:2,exp:"<strong>superficial</strong> = on the surface only / not deep.",ref:"SB p.32 \u00b7 L5A Ex 4 #4"},
+  {sec:"G",num:5,q:"Appearances can be _____.",opts:["flattering", "deceptive", "superficial", "curated"],correct:1,exp:"<strong>deceptive</strong> = misleading; not what it appears to be.",ref:"SB p.32 \u00b7 L5A Ex 4 #5"},
+  {sec:"G",num:6,q:"You can add filters to _____ how you look...",opts:["enhance", "curate", "feature", "flaw"],correct:0,exp:"<strong>enhance</strong> = improve / make better.",ref:"SB p.32 \u00b7 L5A Ex 4 #6"},
+  {sec:"G",num:7,q:"...remove any _____ ...",opts:["features", "attributes", "flaws", "filters"],correct:2,exp:"<strong>flaws</strong> = small defects/imperfections.",ref:"SB p.32 \u00b7 L5A Ex 4 #7"},
+  {sec:"G",num:8,q:"...or even change the shape or size of your facial _____.",opts:["flaws", "attributes", "filters", "features"],correct:3,exp:"<strong>features</strong> = parts of the face (eyes, nose, mouth, etc.).",ref:"SB p.32 \u00b7 L5A Ex 4 #8"},
+  {sec:"H",num:1,q:"I regret _____ to buy this phone.",opts:["being persuaded", "persuading", "to be persuaded", "persuaded"],correct:0,exp:"<strong>being persuaded</strong> = passive gerund after <em>regret</em>.",ref:"WB p.20 \u00b7 L1B Ex 4 #1"},
+  {sec:"H",num:2,q:"I would really like _____ by one of the giant tech companies.",opts:["to be employed", "being employed", "employing", "to employ"],correct:0,exp:"<strong>to be employed</strong> = passive infinitive after <em>would like</em>.",ref:"WB p.20 \u00b7 L1B Ex 4 #2"},
+  {sec:"H",num:3,q:"Young people don't need _____ how to use new devices, they just know instinctively.",opts:["telling", "being told", "to be told", "told"],correct:2,exp:"<strong>to be told</strong> = passive infinitive after <em>need</em>.",ref:"WB p.20 \u00b7 L1B Ex 4 #3"},
+  {sec:"H",num:4,q:"The new phone implants are going to _____ in all kinds of shops.",opts:["be sold", "sell", "sold", "being sold"],correct:0,exp:"<strong>be sold</strong> = passive infinitive after <em>going to</em>.",ref:"WB p.20 \u00b7 L1B Ex 4 #4"},
+  {sec:"H",num:5,q:"The teacher congratulated them on _____ to take part in the science fair next week.",opts:["inviting", "being invited", "to be invited", "invited"],correct:1,exp:"<strong>being invited</strong> = passive gerund after <em>on</em>.",ref:"WB p.20 \u00b7 L1B Ex 4 #5"},
+  {sec:"I",num:1,q:"Crossword: <em>Everything a computer or piece of software can do</em>.",opts:["compatibility", "functionality", "upgrade", "handle"],correct:1,exp:"<strong>functionality</strong> = what software can do.",ref:"WB p.22 \u00b7 L3B Ex 1 across 6"},
+  {sec:"I",num:2,q:"Crossword: <em>Make a copy of information held on a computer or other device</em>.",opts:["upgrade", "handle", "back up", "embed"],correct:2,exp:"<strong>back up</strong> = save a copy.",ref:"WB p.22 \u00b7 L3B Ex 1 across 8"},
+  {sec:"I",num:3,q:"Crossword: <em>Small problems or faults that prevent something from working well</em>.",opts:["bugs", "glitches", "crashes", "handles"],correct:1,exp:"<strong>glitches</strong> = small problems/faults.",ref:"WB p.22 \u00b7 L3B Ex 1 across 9"},
+  {sec:"I",num:4,q:"Crossword: <em>The ability for one piece of equipment or software to be used with another</em>.",opts:["compatibility", "functionality", "upgrade", "handle"],correct:0,exp:"<strong>compatibility</strong> = ability of two devices/software to work together.",ref:"WB p.22 \u00b7 L3B Ex 1 down 1"},
+  {sec:"I",num:5,q:"Crossword: <em>Not in use any more because something newer has been invented</em>.",opts:["dated", "old-fashioned", "obsolete", "outdated"],correct:2,exp:"<strong>obsolete</strong> = replaced by something newer.",ref:"WB p.22 \u00b7 L3B Ex 1 down 2"},
+  {sec:"I",num:6,q:"Crossword: <em>Newest or most modern</em>.",opts:["latest", "state-of-the-art", "upgrade", "handle"],correct:0,exp:"<strong>latest</strong> = newest.",ref:"WB p.22 \u00b7 L3B Ex 1 down 3"},
+  {sec:"I",num:7,q:"Crossword: <em>Deal with something</em>.",opts:["upgrade", "handle", "back up", "compatibility"],correct:1,exp:"<strong>handle</strong> = deal with/manage.",ref:"WB p.22 \u00b7 L3B Ex 1 down 4"},
+  {sec:"I",num:8,q:"Crossword: <em>Old-fashioned</em>.",opts:["obsolete", "latest", "dated", "upgrade"],correct:2,exp:"<strong>dated</strong> = old-fashioned.",ref:"WB p.22 \u00b7 L3B Ex 1 down 5"},
+  {sec:"I",num:9,q:"Crossword: <em>Change for something newer or better</em>.",opts:["upgrade", "handle", "back up", "compatibility"],correct:0,exp:"<strong>upgrade</strong> = change to a newer version.",ref:"WB p.22 \u00b7 L3B Ex 1 down 7"},
+  {sec:"J",num:1,q:"Very few of our new laptops have CD drives as CDs are virtually _____.",opts:["obsolete", "dated", "old-fashioned", "outdated"],correct:0,exp:"<strong>obsolete</strong> = no longer in use (CDs replaced by streaming).",ref:"WB p.22 \u00b7 L3B Ex 2 #1"},
+  {sec:"J",num:2,q:"This shop is full of clever little _____ that make excellent presents.",opts:["gadgets", "glitches", "devices", "appliances"],correct:0,exp:"<strong>gadgets</strong> = small clever devices.",ref:"WB p.22 \u00b7 L3B Ex 2 #2"},
+  {sec:"J",num:3,q:"The app is designed to work on handheld _____ rather than laptops.",opts:["gadgets", "glitches", "devices", "appliances"],correct:2,exp:"<strong>devices</strong> = electronic equipment (phones, tablets) \u2014 more formal than 'gadgets'.",ref:"WB p.22 \u00b7 L3B Ex 2 #3"},
+  {sec:"K",num:1,q:"Alia: \"Are you still using those _____ old headphones, Maha?\"",opts:["outdated", "latest", "upgrade", "handle"],correct:0,exp:"<strong>outdated</strong> = old/no longer current.",ref:"WB p.22 \u00b7 L3B Ex 3 #1"},
+  {sec:"K",num:2,q:"Maha: \"...I'm not the kind of person who has to have the _____ model of everything.\"",opts:["outdated", "latest", "upgrade", "handle"],correct:1,exp:"<strong>latest</strong> = the newest/most recent.",ref:"WB p.22 \u00b7 L3B Ex 3 #2"},
+  {sec:"K",num:3,q:"Alia: \"...it seems a shame not to have headphones that can _____ the bass better.\"",opts:["outdated", "latest", "upgrade", "handle"],correct:3,exp:"<strong>handle</strong> = manage/deal with (the bass).",ref:"WB p.22 \u00b7 L3B Ex 3 #3"},
+  {sec:"K",num:4,q:"Talal: \"Have you thought about _____?\"",opts:["gadgets", "state-of-the-art", "dated", "compatibility"],correct:3,exp:"<strong>compatibility</strong> = whether your old games will work with the new console.",ref:"WB p.22 \u00b7 L3B Ex 3 #4"},
+  {sec:"K",num:5,q:"Kamal: \"But all my games are so _____ now that it probably doesn't matter.\"",opts:["gadgets", "state-of-the-art", "dated", "compatibility"],correct:2,exp:"<strong>dated</strong> = old-fashioned.",ref:"WB p.22 \u00b7 L3B Ex 3 #5"},
+  {sec:"K",num:6,q:"Kamal: \"...I'm going to invest in a _____ console.\"",opts:["gadgets", "state-of-the-art", "dated", "compatibility"],correct:1,exp:"<strong>state-of-the-art</strong> = very modern/advanced.",ref:"WB p.22 \u00b7 L3B Ex 3 #6"},
+  {sec:"K",num:7,q:"Faten: \"This laptop is full of _____ \u2014 things go wrong every minute!\"",opts:["back up", "bugs", "upgrade", "appliances"],correct:1,exp:"<strong>bugs</strong> = errors/glitches in software.",ref:"WB p.22 \u00b7 L3B Ex 3 #7"},
+  {sec:"K",num:8,q:"Laila: \"Make sure you _____ your work then. You really don't want to lose your project.\"",opts:["back up", "bug", "upgrade", "appliance"],correct:0,exp:"<strong>back up</strong> = save a copy.",ref:"WB p.22 \u00b7 L3B Ex 3 #8"},
+  {sec:"K",num:9,q:"Faten: \"...I think it's time for a(n) _____ \u2014 this one is nearly ten years old.\"",opts:["back up", "bugs", "upgrade", "appliance"],correct:2,exp:"<strong>upgrade</strong> = replace with a newer model.",ref:"WB p.22 \u00b7 L3B Ex 3 #9"},
+  {sec:"K",num:10,q:"Laila: \"Well, yes, it looks kind of _____, and it weighs a ton!\"",opts:["backed up", "buggy", "upgraded", "old-fashioned"],correct:3,exp:"<strong>old-fashioned</strong> = belonging to an earlier time.",ref:"WB p.22 \u00b7 L3B Ex 3 #10"},
+  {sec:"L",num:1,q:"Which adjective means <em>Able to change what people do or think</em>?",opts:["appealing", "endless", "envious", "influential"],correct:3,exp:"<strong>influential</strong> = able to influence others.",ref:"WB p.23 \u00b7 L5B VE Ex 1 #1"},
+  {sec:"L",num:2,q:"Which adjective means <em>Attractive or interesting</em>?",opts:["appealing", "endless", "envious", "upbeat"],correct:0,exp:"<strong>appealing</strong> = attractive / appealing to people.",ref:"WB p.23 \u00b7 L5B VE Ex 1 #2"},
+  {sec:"L",num:3,q:"Which adjective means <em>Positive and cheerful</em>?",opts:["envious", "appealing", "upbeat", "endless"],correct:2,exp:"<strong>upbeat</strong> = positive and cheerful.",ref:"WB p.23 \u00b7 L5B VE Ex 1 #3"},
+  {sec:"L",num:4,q:"Which adjective means <em>Wanting something that someone else has</em>?",opts:["upbeat", "envious", "appealing", "influential"],correct:1,exp:"<strong>envious</strong> = jealous / wanting what someone else has.",ref:"WB p.23 \u00b7 L5B VE Ex 1 #4"},
+  {sec:"L",num:5,q:"Which adjective means <em>In large quantities or for a long time</em>?",opts:["envious", "upbeat", "endless", "appealing"],correct:2,exp:"<strong>endless</strong> = never-ending / in huge amounts.",ref:"WB p.23 \u00b7 L5B VE Ex 1 #5"},
+  {sec:"M",num:1,q:"I find the architecture of the city _____.",opts:["appealing", "endless", "envious", "influential"],correct:0,exp:"<strong>appealing</strong> = attractive.",ref:"WB p.23 \u00b7 L5B VE Ex 2 #1"},
+  {sec:"M",num:2,q:"He's very _____ and so he should act responsibly.",opts:["appealing", "endless", "influential", "upbeat"],correct:2,exp:"<strong>influential</strong> = having power/influence over others.",ref:"WB p.23 \u00b7 L5B VE Ex 2 #2"},
+  {sec:"M",num:3,q:"I'm _____ of people who learn Maths easily.",opts:["envious", "endless", "upbeat", "appealing"],correct:0,exp:"<strong>envious of</strong> = wanting what others have.",ref:"WB p.23 \u00b7 L5B VE Ex 2 #3"},
+  {sec:"M",num:4,q:"My piano teacher was very _____ about my progress, which made me feel great.",opts:["endless", "envious", "upbeat", "influential"],correct:2,exp:"<strong>upbeat about</strong> = positive/cheerful about.",ref:"WB p.23 \u00b7 L5B VE Ex 2 #4"},
+  {sec:"M",num:5,q:"I've done _____ revision, so I should pass my exams with good grades.",opts:["appealing", "endless", "envious", "upbeat"],correct:1,exp:"<strong>endless revision</strong> = a lot of revision (large quantity).",ref:"WB p.23 \u00b7 L5B VE Ex 2 #5"},
+  {sec:"N",num:1,q:"Some of them _____ their image like this for fun.",opts:["feature", "curate", "enhance", "embed"],correct:1,exp:"<strong>curate</strong> = carefully select and present.",ref:"WB p.26 \u00b7 Rev Ex 1 #1"},
+  {sec:"N",num:2,q:"...others just want to _____ with a certain group of friends.",opts:["fit in", "hold down", "bump into", "break off"],correct:0,exp:"<strong>fit in</strong> = feel part of a group.",ref:"WB p.26 \u00b7 Rev Ex 1 #2"},
+  {sec:"N",num:3,q:"Teens use their smart _____ to blog, comment and communicate their ideas.",opts:["gadgets", "devices", "appliances", "sensors"],correct:1,exp:"<strong>smart devices</strong> = phones, tablets, watches.",ref:"WB p.26 \u00b7 Rev Ex 1 #3"},
+  {sec:"N",num:4,q:"...often post photos that have been _____ with the latest app.",opts:["embedded", "enhanced", "curated", "featured"],correct:1,exp:"<strong>enhanced</strong> = improved (with filters).",ref:"WB p.26 \u00b7 Rev Ex 1 #4"},
+  {sec:"N",num:5,q:"...the _____ app installed on their phones.",opts:["latest", "outdated", "obsolete", "dated"],correct:0,exp:"<strong>latest</strong> = newest/most modern.",ref:"WB p.26 \u00b7 Rev Ex 1 #5"},
+  {sec:"O",num:1,q:"The number of users increased dramatically. (DRAMATIC) \u2014 There was a _____ the number of users.",opts:["dramatic increase in", "dramatic rise to", "dramatically increased", "dramatic decrease in"],correct:0,exp:"<strong>a dramatic increase in</strong> = noun phrase form.",ref:"WB p.26 \u00b7 Rev Ex 4 #1"},
+  {sec:"O",num:2,q:"I met an old friend by chance yesterday. (BUMPED) \u2014 I _____ an old friend yesterday.",opts:["bumped into", "bumped on", "bumped against", "bumped at"],correct:0,exp:"<strong>bumped into</strong> = met by chance.",ref:"WB p.26 \u00b7 Rev Ex 4 #2"},
+  {sec:"O",num:3,q:"There has been a slight drop in the number of sales recently. (DROPPED) \u2014 The number of sales _____ .",opts:["has dropped slightly recently", "has slightly dropped", "dropped recently slightly", "has been dropped"],correct:0,exp:"<strong>has dropped slightly recently</strong> = verb form.",ref:"WB p.26 \u00b7 Rev Ex 4 #3"},
+  {sec:"O",num:4,q:"Some people find it difficult to keep a job. (DOWN) \u2014 Some people find it difficult to _____ .",opts:["hold down a job", "hold up a job", "hold off a job", "hold on a job"],correct:0,exp:"<strong>hold down a job</strong> = keep a job.",ref:"WB p.26 \u00b7 Rev Ex 4 #4"}
+];
+
+let state = {mode:null,questions:[],idx:0,answers:[],startTime:0,selected:null,confidence:null,locked:false,section:null};
+
+const STORAGE_KEY = "tawjihi_u8_exact_v1";
+function loadStore(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch(e){return{}}}
+function saveStore(s){localStorage.setItem(STORAGE_KEY,JSON.stringify(s))}
+function getMistakeBank(){return loadStore().mistakes||[]}
+function setMistakeBank(b){const s=loadStore();s.mistakes=b;saveStore(s)}
+
+function goHome(){
+  if(state.mode && state.mode!=='study' && state.answers.length>0 &&
+     !confirm("Return to home? Your current progress will be lost.")) return;
+  renderHome();
+}
+
+function renderHome(){
+  state = {mode:null,questions:[],idx:0,answers:[],startTime:0,selected:null,confidence:null,locked:false,section:null};
+  const store = loadStore();
+  const bank = getMistakeBank();
+  const bestMastery = store.bestMastery || 0;
+  const attempts = store.attempts || 0;
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>💻 Unit 8 — "Digital perspectives"</h2>
+      <p class="intro">
+        This trainer uses the <strong>exact questions</strong> from your Jordan High Note Grade 11 books —
+        Unit 8 "Digital perspectives" (Semester 2) — covering the Internet of Things, describing trends,
+        technology synonyms, virtual reality, selfies, the passive, and easily-confused tech adjectives
+        from Lessons 1A, 2A, 3A, 4A, 5A (Student's Book) and Lessons 1B, 3B, 5B + Revision (Workbook).
+        <strong>${QUESTIONS.length} vocabulary questions across 15 sections.</strong>
+      </p>
+      <div class="results-grid">
+        <div class="stat"><div class="value">${attempts}</div><div class="label">Attempts</div></div>
+        <div class="stat good"><div class="value">${bestMastery}%</div><div class="label">Best Mastery</div></div>
+        <div class="stat warn"><div class="value">${bank.length}</div><div class="label">Mistake Bank</div></div>
+        <div class="stat"><div class="value">${QUESTIONS.length}</div><div class="label">Total Questions</div></div>
+      </div>
+      <div class="mode-grid">
+        <button class="mode-btn" onclick="renderStudy()">
+          <span class="icon">📖</span>
+          <span class="title">Study Mode</span>
+          <span class="desc">See all ${QUESTIONS.length} questions WITH the correct answers and explanations upfront. Printable answer key.</span>
+        </button>
+        <button class="mode-btn" onclick="startMode('practice')">
+          <span class="icon">🎓</span>
+          <span class="title">Practice (with feedback)</span>
+          <span class="desc">All ${QUESTIONS.length} questions in MCQ format with instant feedback after each.</span>
+        </button>
+        <button class="mode-btn" onclick="startMode('test')">
+          <span class="icon">📝</span>
+          <span class="title">Full Unit Test</span>
+          <span class="desc">All ${QUESTIONS.length} questions. No feedback until the end. Simulates exam conditions.</span>
+        </button>
+        <button class="mode-btn" onclick="renderSectionPicker()">
+          <span class="icon">🎯</span>
+          <span class="title">Section Test</span>
+          <span class="desc">Focus on one of the 15 book exercises (A–O).</span>
+        </button>
+        <button class="mode-btn" onclick="startMode('mistakes')" ${bank.length===0?'disabled':''}>
+          <span class="icon">⚠️</span>
+          <span class="title">Mistake Bank Review</span>
+          <span class="desc">${bank.length===0?'Empty — complete a test first.':bank.length+' question(s) to review.'}</span>
+        </button>
+      </div>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function renderSectionPicker(){
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>🎯 Choose a Section</h2>
+      <div class="section-pick">
+        ${Object.entries(SECTIONS).map(([k,s])=>{
+          const count = QUESTIONS.filter(q=>q.sec===k).length;
+          return `<button class="mode-btn" onclick="startMode('section','${k}')">
+            <span class="badge ${k}">${k} · ${count} Q</span>
+            <span class="title">${s.title}</span>
+            <span class="desc">${s.source}<br>${s.instruction}</span>
+          </button>`;
+        }).join("")}
+      </div>
+      <button class="btn secondary" onclick="renderHome()">← Back to Home</button>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function renderStudy(){
+  state.mode = 'study';
+  let html = `
+    <div class="card">
+      <h2>📖 Study Mode — Answer Key</h2>
+      <p class="intro">All ${QUESTIONS.length} questions from Unit 8 with the correct answer highlighted in green.
+      Read through, then practise.</p>
+      <div class="btn-row">
+        <button class="btn" id="print-btn" onclick="window.print()">🖨️ Print Answer Key</button>
+        <button class="btn secondary" onclick="renderHome()">← Back to Home</button>
+      </div>
+    </div>
+  `;
+  Object.entries(SECTIONS).forEach(([secKey,sec])=>{
+    const qs = QUESTIONS.filter(q=>q.sec===secKey);
+    html += `
+      <div class="study-section">
+        <div class="study-header ${secKey}">
+          <div>
+            <h3>${sec.title}</h3>
+            <div class="src">${sec.source} · ${sec.instruction}</div>
+          </div>
+          <span class="badge ${secKey}">${qs.length} Q</span>
+        </div>
+        ${qs.map((q,i)=>`
+          <div class="study-q">
+            <div class="qnum">Question ${i+1} · ${q.ref}</div>
+            <div class="qtext">${q.q}</div>
+            ${q.opts.map((opt,j)=>`
+              <div class="study-opt ${j===q.correct?'correct':''}">
+                <span class="letter-sm">${String.fromCharCode(65+j)}</span>
+                <span>${opt}${j===q.correct?' ✅':''}</span>
+              </div>
+            `).join("")}
+            <div class="study-exp">💡 ${q.exp}</div>
+          </div>
+        `).join("")}
+      </div>
+    `;
+  });
+  document.getElementById("app").innerHTML = html;
+  window.scrollTo(0,0);
+}
+
+function shuffle(a){return a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(x=>x[1])}
+
+function startMode(mode, section=null){
+  state.mode = mode;
+  state.idx = 0; state.answers = []; state.startTime = Date.now();
+  state.selected = null; state.confidence = null; state.locked = false;
+  state.section = section;
+  if(mode==='practice' || mode==='test'){
+    state.questions = [...QUESTIONS];
+  } else if(mode==='section'){
+    state.questions = QUESTIONS.filter(q=>q.sec===section);
+  } else if(mode==='mistakes'){
+    const bank = getMistakeBank();
+    const refs = bank.map(m=>m.qRef);
+    state.questions = shuffle(refs.map(r=>QUESTIONS.find(q=>q.ref===r)).filter(Boolean));
+  }
+  renderQuestion();
+}
+
+function renderQuestion(){
+  if(state.idx >= state.questions.length){renderResults(); return;}
+  const q = state.questions[state.idx];
+  const total = state.questions.length;
+  const progress = ((state.idx)/total)*100;
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <div class="progress-bar"><div class="progress-fill" style="width:${progress}%"></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <span class="badge ${q.sec}">Section ${q.sec} · #${q.num}</span>
+        <span style="color:var(--muted);font-size:13px">Question ${state.idx+1} of ${total}</span>
+      </div>
+      <div class="question-text">${q.q}</div>
+      <div class="options" id="options">
+        ${q.opts.map((o,i)=>`
+          <button class="option" onclick="selectOption(${i})" id="opt-${i}">
+            <span class="letter">${String.fromCharCode(65+i)}</span>
+            <span>${o}</span>
+          </button>
+        `).join("")}
+      </div>
+      <div class="confidence">
+        <div class="confidence-label">How sure are you?</div>
+        <div class="confidence-options">
+          <div class="conf-opt" onclick="selectConf('sure',this)">✅ Sure</div>
+          <div class="conf-opt" onclick="selectConf('guess',this)">🤔 Guess</div>
+          <div class="conf-opt" onclick="selectConf('dontknow',this)">❓ Don't know</div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="submitBtn" onclick="submitAnswer()" disabled>Submit</button>
+      </div>
+      <div id="feedback"></div>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function selectOption(i){
+  if(state.locked) return;
+  state.selected = i;
+  document.querySelectorAll(".option").forEach((el,idx)=>{
+    el.classList.toggle("selected", idx===i);
+  });
+  updateSubmit();
+}
+function selectConf(c, el){
+  if(state.locked) return;
+  state.confidence = c;
+  document.querySelectorAll(".conf-opt").forEach(x=>x.classList.remove("selected"));
+  el.classList.add("selected");
+  updateSubmit();
+}
+function updateSubmit(){
+  const btn = document.getElementById("submitBtn");
+  if(btn) btn.disabled = !(state.selected!==null && state.confidence!==null);
+}
+
+function submitAnswer(){
+  if(state.selected===null || state.confidence===null) return;
+  const q = state.questions[state.idx];
+  const correct = state.selected === q.correct;
+  state.locked = true;
+  state.answers.push({qRef:q.ref, selected:state.selected, confidence:state.confidence, correct});
+  updateMistakeBank(q.ref, state.selected, state.confidence, correct);
+  if(state.mode==='practice' || state.mode==='mistakes' || state.mode==='section'){
+    document.querySelectorAll(".option").forEach((el,idx)=>{
+      el.classList.add("locked");
+      if(idx===q.correct) el.classList.add("correct");
+      else if(idx===state.selected) el.classList.add("wrong");
+    });
+    const fb = document.getElementById("feedback");
+    fb.innerHTML = `
+      <div class="explanation">
+        <div><strong>${correct?'✅ Correct!':'❌ Not quite.'}</strong> The answer is <strong>${String.fromCharCode(65+q.correct)}. ${q.opts[q.correct]}</strong>.</div>
+        <div style="margin-top:6px">${q.exp}</div>
+        <span class="ref">📖 ${q.ref}</span>
+      </div>
+      <div class="btn-row" style="margin-top:14px">
+        <button class="btn" onclick="nextQuestion()">${state.idx+1===state.questions.length?'Finish →':'Next →'}</button>
+      </div>
+    `;
+    document.getElementById("submitBtn").style.display="none";
+  } else {
+    nextQuestion();
+  }
+}
+
+function nextQuestion(){
+  state.idx++;
+  state.selected = null; state.confidence = null; state.locked = false;
+  if(state.idx >= state.questions.length) renderResults();
+  else renderQuestion();
+}
+
+function updateMistakeBank(qRef, selected, conf, correct){
+  let bank = getMistakeBank();
+  const existing = bank.find(m=>m.qRef===qRef);
+  if(correct && conf==='sure'){
+    if(existing) bank = bank.filter(m=>m.qRef!==qRef);
+    setMistakeBank(bank); return;
+  }
+  let reason = null;
+  if(!correct && conf==='sure') reason='danger';
+  else if(!correct) reason='wrong';
+  else if(correct && conf==='guess') reason='guess';
+  else if(correct && conf==='dontknow') reason='dontknow';
+  if(reason){
+    if(existing){
+      existing.reason = reason;
+      existing.repeats = (existing.repeats||1)+1;
+      existing.lastSelected = selected;
+    } else {
+      bank.push({qRef, reason, repeats:1, lastSelected:selected});
+    }
+    setMistakeBank(bank);
+  }
+}
+
+function renderResults(){
+  const ans = state.answers;
+  const total = ans.length;
+  const correct = ans.filter(a=>a.correct).length;
+  const guessed = ans.filter(a=>a.confidence==='guess').length;
+  const dontknow = ans.filter(a=>a.confidence==='dontknow').length;
+  const wrongSure = ans.filter(a=>!a.correct && a.confidence==='sure').length;
+
+  let mastery = 0;
+  ans.forEach(a=>{
+    if(a.correct){
+      if(a.confidence==='sure') mastery+=1;
+      else if(a.confidence==='guess') mastery+=0.5;
+      else mastery+=0.25;
+    }
+  });
+  const masteryPct = Math.round((mastery/total)*100);
+  const scorePct = Math.round((correct/total)*100);
+
+  const secStats = {};
+  ans.forEach(a=>{
+    const q = QUESTIONS.find(x=>x.ref===a.qRef);
+    if(!q) return;
+    if(!secStats[q.sec]) secStats[q.sec]={right:0,total:0};
+    secStats[q.sec].total++;
+    if(a.correct) secStats[q.sec].right++;
+  });
+  let weakSec = null, weakRate = 1.1;
+  Object.entries(secStats).forEach(([s,v])=>{
+    const r = v.right/v.total;
+    if(r<weakRate){weakRate=r; weakSec=s;}
+  });
+
+  let readiness, rClass, recommend;
+  if(scorePct<=50){readiness="Not Ready — needs serious review"; rClass="r1";
+    recommend="Re-read Lessons 1A, 2A, 3A, 4A & 5A and use Study Mode before retaking.";}
+  else if(scorePct<=70){readiness="Needs Review"; rClass="r2";
+    recommend="Focus on Section <strong>"+(weakSec||"")+"</strong> using Section Test mode.";}
+  else if(scorePct<=85){readiness="Good — Close to Mastery"; rClass="r3";
+    recommend="Clear your Mistake Bank and retake the Full Test.";}
+  else if(scorePct<=94){readiness="Ready for Unit Test"; rClass="r4";
+    recommend="Strong performance. One more round to push mastery higher.";}
+  else if(wrongSure>0){readiness="Ready for Unit Test"; rClass="r4";
+    recommend="Excellent score, but you have "+wrongSure+" wrong-with-confidence answer(s). Review those carefully.";}
+  else {readiness="🌟 Ready for Full Mark!"; rClass="r5";
+    recommend="Perfect mastery on Unit 8 vocabulary. Ready to move to Unit 9!";}
+
+  const sec = Math.floor((Date.now()-state.startTime)/1000);
+  const timeStr = Math.floor(sec/60)+":"+String(sec%60).padStart(2,'0');
+
+  const store = loadStore();
+  store.attempts = (store.attempts||0)+1;
+  store.lastScore = scorePct;
+  store.bestMastery = Math.max(store.bestMastery||0, masteryPct);
+  saveStore(store);
+
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>📊 Results</h2>
+      <div class="readiness ${rClass}">${readiness}</div>
+      <div class="results-grid">
+        <div class="stat ${scorePct>=80?'good':scorePct>=60?'warn':'bad'}">
+          <div class="value">${correct}/${total}</div><div class="label">Score (${scorePct}%)</div>
+        </div>
+        <div class="stat good"><div class="value">${masteryPct}%</div><div class="label">Mastery</div></div>
+        <div class="stat warn"><div class="value">${guessed}</div><div class="label">Guesses</div></div>
+        <div class="stat"><div class="value">${dontknow}</div><div class="label">Don't Know</div></div>
+        <div class="stat danger"><div class="value">${wrongSure}</div><div class="label">⚠️ Wrong + Sure</div></div>
+        <div class="stat"><div class="value">${timeStr}</div><div class="label">Time</div></div>
+      </div>
+      <div class="explanation"><strong>💡 Recommendation:</strong> ${recommend}</div>
+      ${weakSec && weakRate<1 ? `<p style="margin-top:12px"><strong>Weakest section:</strong> ${weakSec} (${Math.round(weakRate*100)}% correct)</p>`:''}
+      <div class="btn-row" style="margin-top:18px">
+        <button class="btn" onclick="reviewWrong()">📖 Review Wrong Answers</button>
+        <button class="btn secondary" onclick="startMode('${state.mode}'${state.section?",'"+state.section+"'":""})">🔄 Retake</button>
+        <button class="btn secondary" onclick="renderHome()">🏠 Home</button>
+      </div>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+function reviewWrong(){
+  const wrongAns = state.answers.filter(a=>!a.correct);
+  if(wrongAns.length===0){
+    document.getElementById("app").innerHTML = `
+      <div class="card">
+        <h2>🎉 No wrong answers to review!</h2>
+        <p>You got everything correct. Great work!</p>
+        <button class="btn" onclick="renderHome()">🏠 Back to Home</button>
+      </div>`;
+    return;
+  }
+  document.getElementById("app").innerHTML = `
+    <div class="card">
+      <h2>📖 Review Wrong Answers (${wrongAns.length})</h2>
+      ${wrongAns.map(a=>{
+        const q = QUESTIONS.find(x=>x.ref===a.qRef);
+        if(!q) return '';
+        return `<div class="mistake-item">
+          <span class="badge ${q.sec}">Section ${q.sec}</span>
+          <div class="question-text" style="font-size:15px">${q.q}</div>
+          <div>❌ Your answer: <strong>${q.opts[a.selected]}</strong></div>
+          <div>✅ Correct: <strong>${q.opts[q.correct]}</strong></div>
+          <div class="explanation" style="margin-top:10px">${q.exp}<span class="ref">📖 ${q.ref}</span></div>
+        </div>`;
+      }).join("")}
+      <button class="btn" onclick="renderHome()">🏠 Back to Home</button>
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+renderHome();
+</script>
+</body>
+</html>
