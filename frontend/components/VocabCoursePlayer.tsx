@@ -39,7 +39,7 @@ export default function VocabCoursePlayer({ course }: VocabCoursePlayerProps) {
 
   if (activeUnit) {
     return (
-      <div className="min-h-screen bg-[#020617] pt-24 pb-20">
+      <div className="min-h-screen bg-[#020617] pt-36 pb-8">
         <VocabUnitPlayer 
           unitKey={activeUnit} 
           unitData={(vocabData as any)[activeUnit]} 
@@ -52,7 +52,7 @@ export default function VocabCoursePlayer({ course }: VocabCoursePlayerProps) {
   }
 
   return (
-    <div className="min-h-screen bg-[#020617] pt-24 pb-20">
+    <div className="min-h-screen bg-[#020617] pt-36 pb-8">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-slate-400 mb-8">
@@ -243,7 +243,7 @@ function VocabUnitPlayer({ unitKey, unitData, onClose, onComplete, isRtl }: any)
   if (mode === 'menu') {
     return (
       <div className="max-w-4xl mx-auto px-4 sm:px-6" style={{ direction: isRtl ? 'rtl' : 'ltr' }}>
-        <button onClick={() => onClose()} className="relative z-10 flex items-center gap-2 text-slate-400 hover:text-white mb-6 transition-colors">
+        <button onClick={() => onClose()} className="relative z-50 flex items-center gap-2 text-slate-400 hover:text-white mb-4 transition-colors">
           <ArrowLeft className="h-4 w-4" style={{ transform: isRtl ? 'rotate(180deg)' : 'none' }} /> 
           <span>{isRtl ? 'العودة للوحدات' : 'Back to Units'}</span>
         </button>
@@ -295,8 +295,8 @@ function VocabUnitPlayer({ unitKey, unitData, onClose, onComplete, isRtl }: any)
 
     return (
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center mb-6" style={{ direction: isRtl ? 'rtl' : 'ltr' }}>
-          <button onClick={() => setMode('menu')} className="relative z-10 text-slate-400 hover:text-white flex items-center gap-2 transition-colors">
+        <div className="flex justify-between items-center mb-4" style={{ direction: isRtl ? 'rtl' : 'ltr' }}>
+          <button onClick={() => setMode('menu')} className="relative z-50 text-slate-400 hover:text-white flex items-center gap-2 transition-colors">
             <ArrowLeft className="h-4 w-4" style={{ transform: isRtl ? 'rotate(180deg)' : 'none' }} /> 
             {isRtl ? 'العودة للقائمة الرئيسية' : 'Back to Menu'}
           </button>
@@ -349,9 +349,9 @@ function VocabUnitPlayer({ unitKey, unitData, onClose, onComplete, isRtl }: any)
     const currentQ = testQuestions[qIndex];
     return (
       <div className="max-w-2xl mx-auto px-4">
-        <div className="mb-8" style={{ direction: isRtl ? 'rtl' : 'ltr' }}>
-          <div className="flex justify-between text-sm text-slate-400 mb-4 items-center">
-            <button onClick={() => setMode('menu')} className="relative z-10 flex items-center gap-2 hover:text-white transition-colors bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
+        <div className="mb-4" style={{ direction: isRtl ? 'rtl' : 'ltr' }}>
+          <div className="flex justify-between text-sm text-slate-400 mb-2 items-center">
+            <button onClick={() => setMode('menu')} className="relative z-50 flex items-center gap-2 hover:text-white transition-colors bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
               <Save className="h-4 w-4" />
               {isRtl ? 'حفظ والخروج' : 'Save & Exit'}
             </button>
@@ -362,18 +362,18 @@ function VocabUnitPlayer({ unitKey, unitData, onClose, onComplete, isRtl }: any)
           </div>
         </div>
 
-        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 mb-6" dir="ltr">
-          <span className="text-xs font-bold text-slate-500 bg-slate-800 px-2 py-1 rounded mb-4 inline-block">Section {currentQ.sec}</span>
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-5 md:p-6 mb-4" dir="ltr">
+          <span className="text-xs font-bold text-slate-500 bg-slate-800 px-2 py-1 rounded mb-3 inline-block">Section {currentQ.sec}</span>
           <h3 
-            className="text-xl md:text-2xl font-medium text-white mb-8 leading-relaxed" 
+            className="text-lg md:text-xl font-medium text-white mb-4 leading-normal" 
             dangerouslySetInnerHTML={{ __html: currentQ.q }} 
           />
-          <div className="space-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {currentQ.opts.map((opt: string, i: number) => (
               <button
                 key={i}
                 onClick={() => handleAnswer(i)}
-                className="w-full text-left p-4 rounded-xl border border-slate-700 bg-slate-800/50 hover:bg-slate-800 hover:border-brand-500 transition-colors text-slate-200 text-lg"
+                className="w-full text-left p-3 rounded-xl border border-slate-700 bg-slate-800/50 hover:bg-slate-800 hover:border-brand-500 transition-colors text-slate-200 text-sm md:text-base"
                 dangerouslySetInnerHTML={{ __html: opt }}
               />
             ))}
@@ -388,8 +388,8 @@ function VocabUnitPlayer({ unitKey, unitData, onClose, onComplete, isRtl }: any)
 
     return (
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center mb-6" style={{ direction: isRtl ? 'rtl' : 'ltr' }}>
-          <button onClick={() => setMode('menu')} className="relative z-10 text-slate-400 hover:text-white flex items-center gap-2 transition-colors">
+        <div className="flex justify-between items-center mb-4" style={{ direction: isRtl ? 'rtl' : 'ltr' }}>
+          <button onClick={() => setMode('menu')} className="relative z-50 text-slate-400 hover:text-white flex items-center gap-2 transition-colors">
             <ArrowLeft className="h-4 w-4" style={{ transform: isRtl ? 'rotate(180deg)' : 'none' }} /> 
             {isRtl ? 'العودة للقائمة' : 'Back to Menu'}
           </button>
