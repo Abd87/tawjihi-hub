@@ -24,11 +24,11 @@ import {
   Users,
   Calendar,
   Video,
-  Key,
   Settings,
   BarChart2,
   TrendingUp,
-  Activity
+  Activity,
+  ShieldCheck
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -504,6 +504,16 @@ export default function DashboardPage() {
                       <div>
                         <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'إدارة المعلمين' : 'Teachers'}</p>
                         <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'إضافة معلمين وتوزيع الصلاحيات' : 'Add teachers and manage platform access.'}</p>
+                      </div>
+                    </Link>
+
+                    <Link href="/admin/users" className="flex flex-col gap-4 p-6 rounded-3xl border border-rose-500/20 bg-rose-500/5 hover:bg-rose-500/10 hover:border-rose-500/40 transition-all group">
+                      <div className="p-4 bg-rose-500/10 rounded-2xl text-rose-400 w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <ShieldCheck className="h-8 w-8" />
+                      </div>
+                      <div>
+                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'إدارة المستخدمين' : 'User Management'}</p>
+                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'ترقية حسابات الطلاب أو المعلمين لمدراء' : 'Promote student or teacher accounts to Admins.'}</p>
                       </div>
                     </Link>
                  </div>
