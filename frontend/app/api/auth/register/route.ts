@@ -7,7 +7,7 @@ export async function POST(request: Request) {
   try {
     const { nameAr, nameEn, email, password, role, phoneNumber, trackType } = await request.json();
 
-    if (!email || !password || !nameAr) {
+    if (!email || !password || !nameAr || !phoneNumber) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
@@ -38,7 +38,7 @@ export async function POST(request: Request) {
         nameEn,
         role: role || 'STUDENT',
         trackType: role === 'STUDENT' ? trackType : null,
-        phoneNumber: phoneNumber || null,
+        phoneNumber,
         isMasterAdmin,
       }
     });
