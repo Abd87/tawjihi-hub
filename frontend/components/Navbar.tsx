@@ -5,6 +5,7 @@ import { useRouter, usePathname, Link } from '@/i18n/routing';
 import { useParams } from 'next/navigation';
 import { Globe, GraduationCap, LogOut, LayoutDashboard, Menu, X, BarChart2, Key, BookOpen, ShieldCheck, Users, Settings } from 'lucide-react';
 import { useState, useEffect, useLayoutEffect } from 'react';
+import Image from 'next/image';
 
 export default function Navbar() {
   const t = useTranslations('navigation');
@@ -117,12 +118,14 @@ export default function Navbar() {
           
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 cursor-pointer z-10">
-            <div className="p-2.5 bg-gradient-to-br from-brand-500 to-amber-600 rounded-xl shadow-md shadow-brand-500/20 text-white">
-              <GraduationCap className="h-6 w-6" />
-            </div>
-            <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-100 to-brand-300 bg-clip-text text-transparent">
-              {t('brandName')}
-            </span>
+            <Image 
+              src="/logo.png" 
+              alt="Tawjihi Hub Logo" 
+              width={100} 
+              height={40} 
+              className="h-10 w-auto object-contain drop-shadow-md"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation Links */}
