@@ -283,23 +283,32 @@ export default function AdminCoursesPage() {
     if (!token || !user) { router.replace('/login'); return; }
     if (user.role !== 'ADMIN' && user.role !== 'TEACHER') { router.replace('/dashboard'); return; }
 
-    const allUsers = loadUsers();
     const allCourses = loadCourses();
-    const teacherList = allUsers.filter(u => u.role === 'TEACHER');
 
     setCurrentUser(user);
     setIsAdmin(user.role === 'ADMIN');
-    setTeachers(teacherList);
 
-    // ADMIN sees all; TEACHER sees only their own
-    const visible = user.role === 'ADMIN'
-      ? allCourses
-      : allCourses.filter(c => c.teacherId === user!.id);
+    fetch('/api/admin/users', { headers: { Authorization: `Bearer ${token}` } })
+      .then(res => res.json())
+      .then(data => {
+        const teacherList = data.users ? data.users.filter((u: any) => u.role === 'TEACHER') : [];
+        setTeachers(teacherList);
 
-    setCourses(visible);
-    setNewCourse(emptyCourse(teacherList));
-    setAuthorized(true);
-    setLoading(false);
+        // ADMIN sees all; TEACHER sees only their own
+        const visible = user.role === 'ADMIN'
+          ? allCourses
+          : allCourses.filter((c: any) => c.teacherId === user!.id);
+
+        setCourses(visible);
+        setNewCourse(emptyCourse(teacherList));
+        setAuthorized(true);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setAuthorized(true);
+        setLoading(false);
+      });
   }, [router]);
 
   const showToast = (msg: string, type: 'success' | 'error' = 'success') => {

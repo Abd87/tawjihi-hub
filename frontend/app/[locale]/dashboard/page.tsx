@@ -75,7 +75,13 @@ export default function DashboardPage() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [activeSemester, setActiveSemester] = useState<1 | 2>(1);
-  const [selectedTrack, setSelectedTrack] = useState<'ACADEMIC' | 'BTEC' | null>(null);
+  const [selectedTrack, setSelectedTrack] = useState<'ACADEMIC' | 'BTEC' | null>(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('dashboardTrack');
+      if (stored === 'ACADEMIC' || stored === 'BTEC') return stored;
+    }
+    return null;
+  });
 
   // Fallback Mock Courses in case local PostgreSQL is offline
   const getMockCourses = (track: 'ACADEMIC' | 'BTEC'): Course[] => {
@@ -359,7 +365,11 @@ export default function DashboardPage() {
               <span className="text-xs text-slate-500 font-semibold">{t('currentTrack')}</span>
               {(user?.role === 'TEACHER' || user?.role === 'ADMIN') && (
                 <button 
-                  onClick={() => setSelectedTrack(isBtec ? 'ACADEMIC' : 'BTEC')}
+                  onClick={() => {
+                    const next = isBtec ? 'ACADEMIC' : 'BTEC';
+                    setSelectedTrack(next);
+                    localStorage.setItem('dashboardTrack', next);
+                  }}
                   className="text-xs font-bold text-brand-500 hover:text-brand-400 bg-brand-500/10 px-2 py-1 rounded-lg transition-colors"
                 >
                   {locale === 'ar' ? 'تبديل المسار' : 'Switch Track'}
