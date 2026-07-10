@@ -32,6 +32,15 @@ interface Lesson {
   questions?: InlineQuestion[];
 }
 
+interface LiveSession {
+  id: string;
+  titleAr: string;
+  titleEn: string;
+  zoomLink: string;
+  startTime: string; // ISO string
+  durationMinutes: number;
+}
+
 interface Course {
   id: string;
   titleAr: string;
@@ -47,6 +56,7 @@ interface Course {
   teacherNameEn: string;
   thumbnailUrl: string;
   lessons: Lesson[];
+  liveSessions?: LiveSession[];
   published: boolean;
   locked: boolean;
   createdAt: string;
@@ -220,6 +230,11 @@ const emptyLesson = (): Lesson => ({
   questions: [],
 });
 
+const emptyLiveSession = (): LiveSession => ({
+  id: `live-${Date.now()}-${Math.random().toString(36).slice(2)}`,
+  titleAr: '', titleEn: '', zoomLink: '', startTime: new Date().toISOString().slice(0, 16), durationMinutes: 60,
+});
+
 const emptyCourse = (teachers: AppUser[]): Course => ({
   id: `course-${Date.now()}`,
   titleAr: '', titleEn: '', descriptionAr: '', descriptionEn: '',
@@ -229,7 +244,7 @@ const emptyCourse = (teachers: AppUser[]): Course => ({
   teacherNameAr: teachers[0]?.nameAr || '',
   teacherNameEn: teachers[0]?.nameEn || '',
   thumbnailUrl: '', published: false, locked: false,
-  createdAt: new Date().toISOString(), lessons: [],
+  createdAt: new Date().toISOString(), lessons: [], liveSessions: [],
 });
 
 /* ─── Toast ─────────────────────────────────────────────────────────────── */
@@ -571,6 +586,9 @@ export default function AdminCoursesPage() {
               onAddLesson={addLessonToNew}
               onUpdateLesson={updateNewLesson}
               onDeleteLesson={deleteNewLesson}
+              onAddLiveSession={() => setNewCourse({ ...newCourse, liveSessions: [...(newCourse.liveSessions || []), emptyLiveSession()] })}
+              onUpdateLiveSession={(id, field, val) => setNewCourse({ ...newCourse, liveSessions: (newCourse.liveSessions || []).map(ls => ls.id === id ? { ...ls, [field]: val } : ls) })}
+              onDeleteLiveSession={(id) => setNewCourse({ ...newCourse, liveSessions: (newCourse.liveSessions || []).filter(ls => ls.id !== id) })}
             />
 
             <div className="flex gap-3 pt-2">
@@ -735,6 +753,9 @@ export default function AdminCoursesPage() {
                           onAddLesson={addLessonToDraft}
                           onUpdateLesson={updateDraftLesson}
                           onDeleteLesson={deleteDraftLesson}
+                          onAddLiveSession={() => setEditDraft({ ...draft, liveSessions: [...(draft.liveSessions || []), emptyLiveSession()] })}
+                          onUpdateLiveSession={(id, field, val) => setEditDraft({ ...draft, liveSessions: (draft.liveSessions || []).map(ls => ls.id === id ? { ...ls, [field]: val } : ls) })}
+                          onDeleteLiveSession={(id) => setEditDraft({ ...draft, liveSessions: (draft.liveSessions || []).filter(ls => ls.id !== id) })}
                         />
                         <div className="flex gap-3 pt-2">
                           <button onClick={saveEdit}
@@ -807,6 +828,7 @@ export default function AdminCoursesPage() {
 function CourseForm({
   course, onChange, teachers, isRtl,
   onAddLesson, onUpdateLesson, onDeleteLesson,
+  onAddLiveSession, onUpdateLiveSession, onDeleteLiveSession,
 }: {
   course: Course;
   onChange: (c: Course) => void;
@@ -815,6 +837,9 @@ function CourseForm({
   onAddLesson: () => void;
   onUpdateLesson: (id: string, field: keyof Lesson, val: any) => void;
   onDeleteLesson: (id: string) => void;
+  onAddLiveSession: () => void;
+  onUpdateLiveSession: (id: string, field: keyof LiveSession, val: any) => void;
+  onDeleteLiveSession: (id: string) => void;
 }) {
   const setField = <K extends keyof Course>(key: K, val: Course[K]) => onChange({ ...course, [key]: val });
 
@@ -932,6 +957,27 @@ function CourseForm({
             key={lesson.id} lesson={lesson} idx={idx} isRtl={isRtl}
             onChange={(field, val) => onUpdateLesson(lesson.id, field, val)}
             onDelete={() => onDeleteLesson(lesson.id)}
+          />
+        ))}
+      </div>
+
+      {/* Live Sessions builder */}
+      <div className="space-y-3 pt-4 border-t border-slate-800/50">
+        <div className="flex items-center justify-between">
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+            <Video className="h-3.5 w-3.5 text-blue-400" />
+            {isRtl ? `الجلسات المباشرة (Zoom) (${course.liveSessions?.length || 0})` : `Live Sessions (Zoom) (${course.liveSessions?.length || 0})`}
+          </p>
+          <button onClick={onAddLiveSession}
+            className="flex items-center gap-1.5 text-xs font-bold text-blue-400 hover:text-blue-300 transition-colors px-2.5 py-1 rounded-lg hover:bg-blue-500/10">
+            <Plus className="h-3.5 w-3.5" />{isRtl ? 'إضافة جلسة' : 'Add Session'}
+          </button>
+        </div>
+        {(course.liveSessions || []).map((session, idx) => (
+          <LiveSessionEditor
+            key={session.id} session={session} idx={idx} isRtl={isRtl}
+            onChange={(field, val) => onUpdateLiveSession(session.id, field, val)}
+            onDelete={() => onDeleteLiveSession(session.id)}
           />
         ))}
       </div>
@@ -1158,6 +1204,56 @@ function LessonEditor({ lesson, idx, isRtl, onChange, onDelete }: {
             </div>
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+function LiveSessionEditor({
+  session, idx, isRtl, onChange, onDelete
+}: {
+  session: LiveSession; idx: number; isRtl: boolean;
+  onChange: (field: keyof LiveSession, val: any) => void;
+  onDelete: () => void;
+}) {
+  return (
+    <div className="p-4 bg-slate-950/70 border border-slate-800/70 rounded-xl space-y-3">
+      <div className="flex items-center justify-between">
+        <span className="text-xs font-bold text-slate-500 flex items-center gap-1.5">
+          <Calendar className="h-3 w-3" />
+          {isRtl ? `جلسة مباشرة ${idx + 1}` : `Live Session ${idx + 1}`}
+        </span>
+        <button onClick={onDelete} className="p-1.5 rounded-lg text-slate-600 hover:text-rose-400 hover:bg-rose-500/10 transition-all">
+          <Trash2 className="h-3.5 w-3.5" />
+        </button>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <LessonInput dir="rtl" value={session.titleAr} placeholder={isRtl ? 'عنوان الجلسة (عربي)' : 'Session title (Arabic)'}
+          onChange={v => onChange('titleAr', v)} />
+        <LessonInput dir="ltr" value={session.titleEn} placeholder="Session title (English)"
+          onChange={v => onChange('titleEn', v)} />
+      </div>
+
+      <div className="space-y-1">
+        <label className="text-3xs text-slate-600 flex items-center gap-1"><Video className="h-2.5 w-2.5 text-blue-400" />{isRtl ? 'رابط Zoom' : 'Zoom Link'}</label>
+        <LessonInput dir="ltr" value={session.zoomLink} placeholder="https://zoom.us/j/..."
+          onChange={v => onChange('zoomLink', v)} />
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <div className="space-y-1">
+          <label className="text-3xs text-slate-600 flex items-center gap-1">{isRtl ? 'وقت البدء' : 'Start Time'}</label>
+          <input type="datetime-local" value={session.startTime.slice(0, 16)}
+            onChange={e => onChange('startTime', new Date(e.target.value).toISOString())}
+            className="w-full py-1.5 px-2.5 text-xs bg-slate-900 border border-slate-800 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-3xs text-slate-600">{isRtl ? 'المدة (دقيقة)' : 'Duration (min)'}</label>
+          <input type="number" min="1" value={session.durationMinutes}
+            onChange={e => onChange('durationMinutes', parseInt(e.target.value) || 1)}
+            className="w-full py-1.5 px-2.5 text-xs bg-slate-900 border border-slate-800 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors" />
+        </div>
       </div>
     </div>
   );

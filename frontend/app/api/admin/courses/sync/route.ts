@@ -48,8 +48,23 @@ export async function POST(request: Request) {
         }
       });
 
-      // To handle nested data simply in this migration, we will clear existing lessons and recreate them.
+      // To handle nested data simply in this migration, we will clear existing lessons and live sessions and recreate them.
       await prisma.lesson.deleteMany({ where: { courseId: course.id } });
+      await prisma.liveSession.deleteMany({ where: { courseId: course.id } });
+
+      if (course.liveSessions && course.liveSessions.length > 0) {
+        await prisma.liveSession.createMany({
+          data: course.liveSessions.map((session: any) => ({
+            id: session.id,
+            courseId: course.id,
+            titleAr: session.titleAr,
+            titleEn: session.titleEn,
+            zoomLink: session.zoomLink,
+            startTime: new Date(session.startTime),
+            durationMinutes: session.durationMinutes,
+          }))
+        });
+      }
 
       for (const lesson of course.lessons || []) {
         const createdLesson = await prisma.lesson.create({

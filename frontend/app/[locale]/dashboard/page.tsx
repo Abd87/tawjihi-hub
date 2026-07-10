@@ -20,10 +20,21 @@ import {
   Loader2,
   Sparkles,
   Lock,
-  Users
+  Users,
+  Calendar,
+  Video
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+
+interface LiveSession {
+  id: string;
+  titleAr: string;
+  titleEn: string;
+  zoomLink: string;
+  startTime: string;
+  durationMinutes: number;
+}
 
 interface Course {
   id: string;
@@ -45,6 +56,7 @@ interface Course {
   mockProgress?: number;
   mockLessonsCount?: number;
   mockQuizzesCount?: number;
+  liveSessions?: LiveSession[];
   locked?: boolean;
   semester?: 1 | 2;
   track?: string;
@@ -397,6 +409,66 @@ export default function DashboardPage() {
         )}
 
         {/* Dashboard Content */}
+
+        {/* My Schedule / Live Sessions Widget */}
+        {(() => {
+          // Extract all live sessions from enrolled courses
+          const allSessions: (LiveSession & { courseTitleAr: string; courseTitleEn: string })[] = [];
+          courses.forEach(c => {
+            if (c.liveSessions) {
+              c.liveSessions.forEach(ls => {
+                allSessions.push({ ...ls, courseTitleAr: c.titleAr, courseTitleEn: c.titleEn });
+              });
+            }
+          });
+
+          // Sort chronologically
+          allSessions.sort((a, b) => new Date(a.startTime).getTime() - new Date(b.startTime).getTime());
+
+          if (allSessions.length === 0) return null;
+
+          return (
+            <div className="mb-10">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-2.5 bg-blue-500/20 rounded-xl border border-blue-500/30">
+                  <Calendar className="h-6 w-6 text-blue-400" />
+                </div>
+                <h2 className="text-xl font-black text-white">
+                  {locale === 'ar' ? 'جدول المواعيد (My Schedule)' : 'My Schedule'}
+                </h2>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {allSessions.map(session => (
+                  <div key={session.id} className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-slate-700 transition-colors relative overflow-hidden group">
+                    <div className="absolute top-0 start-0 w-1 h-full bg-blue-500"></div>
+                    <div>
+                      <span className="text-xs font-bold text-blue-400 mb-2 block">
+                        {locale === 'ar' ? session.courseTitleAr : session.courseTitleEn}
+                      </span>
+                      <h3 className="text-base font-bold text-white mb-3">
+                        {locale === 'ar' ? session.titleAr : session.titleEn}
+                      </h3>
+                      <div className="flex items-center gap-2 text-sm text-slate-400 mb-5">
+                        <Clock className="h-4 w-4" />
+                        <span>
+                          {new Date(session.startTime).toLocaleString(locale === 'ar' ? 'ar-JO' : 'en-US', {
+                            weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
+                          })}
+                        </span>
+                      </div>
+                    </div>
+                    <a href={session.zoomLink} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all">
+                      <Video className="h-4 w-4" />
+                      {locale === 'ar' ? 'انضمام عبر Zoom' : 'Join via Zoom'}
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
+
         {/* Semester Tabs */}
         <div className="flex items-center gap-2 mb-6">
           <button

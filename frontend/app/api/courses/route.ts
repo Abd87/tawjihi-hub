@@ -1,10 +1,12 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const courses = await prisma.course.findMany({
-      include: { teacher: true },
+      include: { teacher: true, liveSessions: true },
     });
 
     return NextResponse.json({ courses });

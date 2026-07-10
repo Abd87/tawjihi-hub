@@ -14,7 +14,9 @@ import {
   ArrowRight, 
   ArrowLeft,
   Loader2, 
-  BookOpen
+  BookOpen,
+  Calendar,
+  Video
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -261,9 +263,54 @@ export default function CourseSyllabusPage() {
 
           {/* RIGHT SIDEBAR: Syllabus List */}
           <div className="lg:col-span-8">
-            <div className="mb-6">
+            {/* Live Classes Section */}
+            {course.liveSessions && course.liveSessions.length > 0 && (
+              <div className="mb-10">
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="p-2.5 bg-blue-500/20 rounded-xl border border-blue-500/30">
+                    <Video className="h-6 w-6 text-blue-400" />
+                  </div>
+                  <h2 className="text-xl font-black text-white">
+                    {isRtl ? 'الجلسات المباشرة (Zoom)' : 'Live Classes (Zoom)'}
+                  </h2>
+                </div>
+                
+                <div className="space-y-4">
+                  {course.liveSessions.map((session, idx) => (
+                    <div key={session.id} className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 transition-colors hover:border-slate-700 relative overflow-hidden">
+                      <div className="absolute top-0 start-0 w-1 h-full bg-blue-500"></div>
+                      <div className="flex-1 space-y-2">
+                        <h3 className="text-lg font-bold text-white">
+                          {isRtl ? session.titleAr : session.titleEn}
+                        </h3>
+                        <div className="flex items-center gap-4 text-xs font-semibold text-slate-400">
+                          <span className="flex items-center gap-1.5 text-blue-400">
+                            <Calendar className="h-4 w-4" />
+                            {new Date(session.startTime).toLocaleString(isRtl ? 'ar-JO' : 'en-US', {
+                              weekday: 'long', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
+                            })}
+                          </span>
+                          <span className="flex items-center gap-1.5 text-slate-500">
+                            {session.durationMinutes} {isRtl ? 'دقيقة' : 'mins'}
+                          </span>
+                        </div>
+                      </div>
+                      <a href={session.zoomLink} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-blue-500/20">
+                        <Video className="h-4 w-4" />
+                        {isRtl ? 'انضمام عبر Zoom' : 'Join via Zoom'}
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="mb-6 flex items-center gap-3">
+              <div className="p-2.5 bg-brand-500/20 rounded-xl border border-brand-500/30">
+                <FileText className="h-6 w-6 text-brand-500" />
+              </div>
               <h2 className="text-xl font-black text-white">
-                {isRtl ? 'خطة المادة (Syllabus)' : 'Course Syllabus'}
+                {isRtl ? 'خطة المادة المترددة (Syllabus)' : 'Recorded Syllabus'}
               </h2>
             </div>
 

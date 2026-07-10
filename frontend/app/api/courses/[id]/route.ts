@@ -13,6 +13,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
       where: { id: courseId },
       include: {
         teacher: true,
+        liveSessions: true,
         lessons: {
           include: {
             questions: {
