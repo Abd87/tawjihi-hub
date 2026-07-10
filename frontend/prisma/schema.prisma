@@ -28,6 +28,8 @@ model User {
   role          Role          @default(STUDENT)
   trackType     TrackType?
   parentEmail   String?       // For parent accounts linking
+  phoneNumber   String?
+  isMasterAdmin Boolean       @default(false)
   
   enrollments   Enrollment[]
   createdCourses Course[]     @relation("TeacherCourses")

@@ -26,11 +26,21 @@ export async function POST(request: Request) {
     }
 
     const secret = process.env.JWT_SECRET || 'tawjihi-hub-secret-key-for-jwt-2024';
-    const token = jwt.sign({ userId: user.id, email: user.email, role: user.role }, secret, { expiresIn: '7d' });
+    const token = jwt.sign({ userId: user.id, email: user.email, role: user.role, isMasterAdmin: user.isMasterAdmin }, secret, { expiresIn: '7d' });
 
     const { passwordHash, ...userWithoutPassword } = user;
 
-    return NextResponse.json({ token, user: userWithoutPassword });
+    const response = NextResponse.json({ token, user: userWithoutPassword });
+    
+    response.cookies.set('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 60 * 60 * 24 * 7, // 7 days
+      path: '/',
+    });
+
+    return response;
   } catch (error) {
     console.error('Login error:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

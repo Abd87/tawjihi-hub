@@ -16,7 +16,8 @@ import {
   Loader2, 
   BookOpen,
   Calendar,
-  Video
+  Video,
+  Download
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -404,6 +405,47 @@ export default function CourseSyllabusPage() {
                 );
               })}
             </div>
+
+            {/* Exams Section */}
+            {course.exams && course.exams.length > 0 && (
+              <div className="mt-10 mb-6">
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="p-2.5 bg-rose-500/20 rounded-xl border border-rose-500/30">
+                    <FileText className="h-6 w-6 text-rose-400" />
+                  </div>
+                  <h2 className="text-xl font-black text-white">
+                    {isRtl ? 'ملفات وامتحانات (PDF)' : 'PDF Exams & Resources'}
+                  </h2>
+                </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {course.exams.map((exam: any) => (
+                    <a 
+                      key={exam.id}
+                      href={exam.pdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex items-center justify-between gap-4 hover:bg-slate-800/80 hover:border-slate-700 transition-colors group"
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 group-hover:border-rose-500/50 transition-colors">
+                          <FileText className="h-5 w-5 text-rose-400" />
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-white line-clamp-1">
+                            {isRtl ? exam.titleAr : exam.titleEn}
+                          </h3>
+                          <p className="text-xs text-slate-500 mt-1 font-semibold">
+                            {isRtl ? 'انقر للتحميل' : 'Click to download'}
+                          </p>
+                        </div>
+                      </div>
+                      <Download className="h-5 w-5 text-slate-500 group-hover:text-rose-400 transition-colors shrink-0" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
         </div>

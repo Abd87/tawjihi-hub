@@ -12,6 +12,7 @@ import {
   Mail,
   Lock,
   User,
+  Phone,
   Users,
   Compass,
   Layers,
@@ -70,6 +71,7 @@ function RegisterForm() {
   const [nameEn, setNameEn] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [linkedStudentEmail, setLinkedStudentEmail] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -144,6 +146,7 @@ function RegisterForm() {
       password,
       nameAr,
       nameEn: nameEn || undefined,
+      phoneNumber: phoneNumber || undefined,
       role,
     };
     if (role === 'STUDENT') bodyPayload.trackType = trackType;
@@ -585,6 +588,27 @@ function RegisterForm() {
                         onChange={(e) => setPassword(e.target.value)}
                         className="block w-full rounded-xl border border-slate-800 bg-slate-950/80 py-3 ps-11 pe-4 text-xs sm:text-sm text-slate-200 placeholder-slate-600 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 focus:outline-none transition-all"
                         placeholder={t('passwordPlaceholder')}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Phone Number */}
+                  <div className="space-y-1.5">
+                    <label htmlFor="phoneNumber" className="block text-xs sm:text-sm font-semibold text-slate-300">
+                      {locale === 'ar' ? 'رقم الهاتف (اختياري)' : 'Phone Number (Optional)'}
+                    </label>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 start-0 ps-3.5 flex items-center pointer-events-none text-slate-500">
+                        <Phone className="h-4 w-4" />
+                      </div>
+                      <input
+                        type="tel"
+                        id="phoneNumber"
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        className="block w-full rounded-xl border border-slate-800 bg-slate-950/80 py-3 ps-11 pe-4 text-xs sm:text-sm text-slate-200 placeholder-slate-600 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 focus:outline-none transition-all"
+                        placeholder={locale === 'ar' ? '079XXXXXXX' : '079XXXXXXX'}
+                        dir="ltr"
                       />
                     </div>
                   </div>

@@ -14,6 +14,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
       include: {
         teacher: true,
         liveSessions: true,
+        exams: true,
         lessons: {
           include: {
             questions: {

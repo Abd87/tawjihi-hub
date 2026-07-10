@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { useRouter, usePathname, Link } from '@/i18n/routing';
 import { useParams } from 'next/navigation';
-import { Globe, GraduationCap, LogOut, LayoutDashboard, Menu, X, BarChart2, Key, BookOpen, ShieldCheck, Users } from 'lucide-react';
+import { Globe, GraduationCap, LogOut, LayoutDashboard, Menu, X, BarChart2, Key, BookOpen, ShieldCheck, Users, Settings } from 'lucide-react';
 import { useState, useEffect, useLayoutEffect } from 'react';
 
 export default function Navbar() {
@@ -15,7 +15,8 @@ export default function Navbar() {
   
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [user, setUser] = useState<{ nameAr: string; role: string } | null>(null);
+  const [user, setUser] = useState<{ nameAr: string; role: string; isMasterAdmin?: boolean } | null>(null);
+  const [switchingRole, setSwitchingRole] = useState(false);
 
   // Read auth state synchronously before paint to avoid flash
   useLayoutEffect(() => {
@@ -55,13 +56,46 @@ export default function Navbar() {
     router.replace(pathname, { locale: nextLocale });
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+    } catch (e) {
+      console.error('Logout failed', e);
+    }
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     window.dispatchEvent(new Event('local-storage-update'));
     setUser(null);
     setMobileOpen(false);
-    window.location.href = `/${currentLocale}`;
+    window.location.href = `/${currentLocale}/login`;
+  };
+
+  const handleRoleSwitch = async (targetRole: string) => {
+    if (targetRole === user?.role) return;
+    setSwitchingRole(true);
+    try {
+      const res = await fetch('/api/auth/switch-role', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ targetRole }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        window.dispatchEvent(new Event('local-storage-update'));
+        
+        let redirectPath = `/${currentLocale}/dashboard`;
+        if (targetRole === 'ADMIN' || targetRole === 'TEACHER') redirectPath = `/${currentLocale}/admin/courses`;
+        if (targetRole === 'PARENT') redirectPath = `/${currentLocale}/parent/dashboard`;
+        
+        window.location.href = redirectPath;
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setSwitchingRole(false);
+    }
   };
 
   const isAdmin = user?.role === 'ADMIN';
@@ -166,6 +200,36 @@ export default function Navbar() {
 
             {user ? (
               <>
+                {user.isMasterAdmin && (
+                  <div className="relative group">
+                    <button 
+                      disabled={switchingRole}
+                      className="inline-flex items-center gap-1.5 text-sm font-bold text-amber-500 hover:text-amber-400 transition-colors px-4 py-2 border border-amber-500/20 rounded-lg bg-amber-500/5"
+                    >
+                      <span>{currentLocale === 'ar' ? `محاكاة دور: ${user.role}` : `Simulate: ${user.role}`}</span>
+                      <svg className="h-3 w-3 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                    </button>
+                    <div className="absolute top-full start-0 mt-1 w-32 bg-slate-950 border border-slate-800 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-1 z-50">
+                      {['STUDENT', 'PARENT', 'TEACHER', 'ADMIN'].map(r => (
+                        <button
+                          key={r}
+                          onClick={() => handleRoleSwitch(r)}
+                          className={`w-full text-start px-4 py-2 text-xs font-bold transition-colors ${user.role === r ? 'text-brand-500 bg-slate-900' : 'text-slate-300 hover:text-white hover:bg-slate-900'}`}
+                        >
+                          {r}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                
+                <Link 
+                  href="/dashboard/settings"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-400 hover:text-white transition-colors px-4 py-2"
+                >
+                  <Settings className="h-4 w-4 text-slate-500 hover:text-white" />
+                  <span>{currentLocale === 'ar' ? 'الإعدادات' : 'Settings'}</span>
+                </Link>
                 <button 
                   onClick={handleLogout}
                   className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-400 hover:text-white transition-colors px-4 py-2"

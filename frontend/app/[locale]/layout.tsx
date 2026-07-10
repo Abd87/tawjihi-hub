@@ -26,8 +26,45 @@ export function generateStaticParams() {
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const messages = (await import(`../../messages/${locale}.json`)).default;
   return {
-    title: messages.meta.title,
+    title: {
+      template: `%s | ${messages.navigation.brandName}`,
+      default: messages.meta.title,
+    },
     description: messages.meta.description,
+    keywords: locale === 'ar' 
+      ? ['توجيهي', 'الأردن', 'BTEC', 'تعليم', 'منصة دراسية', 'توجيهي هب'] 
+      : ['Tawjihi', 'Jordan', 'BTEC', 'Education', 'E-learning', 'Tawjihi Hub'],
+    openGraph: {
+      title: messages.meta.title,
+      description: messages.meta.description,
+      url: 'https://tawjihihub.com', // Replace with real domain when available
+      siteName: messages.navigation.brandName,
+      images: [
+        {
+          url: 'https://tawjihihub.com/og-image.jpg', // Placeholder for actual OG image
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: locale === 'ar' ? 'ar_JO' : 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: messages.meta.title,
+      description: messages.meta.description,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
   };
 }
 

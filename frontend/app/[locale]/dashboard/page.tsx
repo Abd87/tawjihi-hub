@@ -75,6 +75,7 @@ export default function DashboardPage() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [activeSemester, setActiveSemester] = useState<1 | 2>(1);
+  const [selectedTrack, setSelectedTrack] = useState<'ACADEMIC' | 'BTEC' | null>(null);
 
   // Fallback Mock Courses in case local PostgreSQL is offline
   const getMockCourses = (track: 'ACADEMIC' | 'BTEC'): Course[] => {
@@ -222,10 +223,13 @@ export default function DashboardPage() {
 
         if (coursesRes.ok) {
           const coursesData = await coursesRes.json();
-          setCourses(computeCourseProgress(coursesData.courses));
+          const filtered = coursesData.courses.filter((c: any) => 
+            c.published && c.track === (selectedTrack || activeUser.trackType || 'ACADEMIC')
+          );
+          setCourses(computeCourseProgress(filtered));
         } else {
           // Fallback to local mock data if database connection error occurs
-          setCourses(computeCourseProgress(getMockCourses(activeUser.trackType)));
+          setCourses(computeCourseProgress(getMockCourses(selectedTrack || activeUser.trackType)));
         }
 
       } catch (err: any) {
@@ -240,11 +244,11 @@ export default function DashboardPage() {
           if (storedCourses) {
             const allCourses = JSON.parse(storedCourses);
             const filtered = allCourses.filter((c: any) =>
-              c.published && c.track === (parsedUser?.trackType || 'ACADEMIC')
+              c.published && c.track === (selectedTrack || parsedUser?.trackType || 'ACADEMIC')
             );
             setCourses(computeCourseProgress(filtered));
           } else {
-            setCourses(computeCourseProgress(getMockCourses(parsedUser.trackType)));
+            setCourses(computeCourseProgress(getMockCourses(selectedTrack || parsedUser.trackType)));
           }
         } else {
           localStorage.removeItem('token');
@@ -256,9 +260,14 @@ export default function DashboardPage() {
     };
 
     fetchDashboardData();
-  }, [router]);
+  }, [router, selectedTrack]);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+    } catch (e) {
+      console.error('Logout failed', e);
+    }
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     window.dispatchEvent(new Event('local-storage-update'));
@@ -280,7 +289,8 @@ export default function DashboardPage() {
   }
 
   const welcomeName = locale === 'ar' ? user?.nameAr : (user?.nameEn || user?.nameAr);
-  const isBtec = user?.trackType === 'BTEC';
+  const currentTrack = selectedTrack || user?.trackType || 'ACADEMIC';
+  const isBtec = currentTrack === 'BTEC';
 
   return (
     <div className="relative min-h-screen bg-[#020617] overflow-x-hidden font-sans pb-16 selection:bg-brand-500/30 selection:text-brand-300">
@@ -345,8 +355,18 @@ export default function DashboardPage() {
 
           {/* Current Track indicator badge */}
           <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-4.5 min-w-[240px] shrink-0">
-            <span className="text-xs text-slate-500 font-semibold">{t('currentTrack')}</span>
-            <div className="flex items-center gap-3 mt-2">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs text-slate-500 font-semibold">{t('currentTrack')}</span>
+              {(user?.role === 'TEACHER' || user?.role === 'ADMIN') && (
+                <button 
+                  onClick={() => setSelectedTrack(isBtec ? 'ACADEMIC' : 'BTEC')}
+                  className="text-xs font-bold text-brand-500 hover:text-brand-400 bg-brand-500/10 px-2 py-1 rounded-lg transition-colors"
+                >
+                  {locale === 'ar' ? 'تبديل المسار' : 'Switch Track'}
+                </button>
+              )}
+            </div>
+            <div className="flex items-center gap-3">
               <div className={`p-2.5 rounded-xl ${isBtec ? 'bg-brand-500/10 text-brand-400' : 'bg-blue-500/10 text-blue-400'}`}>
                 {isBtec ? <Compass className="h-5 w-5" /> : <BookOpen className="h-5 w-5" />}
               </div>
