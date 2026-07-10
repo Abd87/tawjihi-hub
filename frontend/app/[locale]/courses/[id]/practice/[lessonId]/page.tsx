@@ -229,7 +229,7 @@ export default function PracticeSessionPage() {
       <main className="flex-1 overflow-y-auto pb-32">
         <div className="max-w-3xl mx-auto px-4 py-8 sm:py-12 flex flex-col min-h-full">
           
-          <div className="mb-8">
+          <div className="mb-8" dir="auto">
             <h2 className="text-xl sm:text-2xl font-bold text-white leading-relaxed">
               { (isRtl ? currentQuestion.textAr : currentQuestion.textEn) || (isRtl ? currentQuestion.textEn : currentQuestion.textAr) }
             </h2>
@@ -274,7 +274,7 @@ export default function PracticeSessionPage() {
                     {isSelected && !isCorrect && <X className="w-3.5 h-3.5 text-white" />}
                     {!isSelected && hasChecked && choice.isCorrect && <Check className="w-3.5 h-3.5 text-emerald-400" />}
                   </div>
-                  <span className="text-base sm:text-lg font-medium">
+                  <span className="text-base sm:text-lg font-medium" dir="auto">
                     { (isRtl ? choice.textAr : choice.textEn) || (isRtl ? choice.textEn : choice.textAr) }
                   </span>
                 </button>
@@ -289,7 +289,7 @@ export default function PracticeSessionPage() {
                 <Lightbulb className="w-4 h-4 text-brand-400" />
                 {isRtl ? 'الشرح' : 'Explanation'}
               </h4>
-              <p className="text-slate-200 leading-relaxed text-sm sm:text-base">
+              <p className="text-slate-200 leading-relaxed text-sm sm:text-base" dir="auto">
                 { (isRtl ? currentQuestion.explanationAr : currentQuestion.explanationEn) || (isRtl ? currentQuestion.explanationEn : currentQuestion.explanationAr) }
               </p>
             </div>

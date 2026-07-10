@@ -445,7 +445,7 @@ export default function StudentQuizPage() {
                     </div>
 
                     {/* Question text */}
-                    <h4 className="text-white text-sm sm:text-base font-semibold leading-relaxed mb-4">
+                    <h4 className="text-white text-sm sm:text-base font-semibold leading-relaxed mb-4" dir="auto">
                       {questionText}
                     </h4>
 
@@ -523,7 +523,7 @@ export default function StudentQuizPage() {
                   </div>
 
                   {/* Question Title */}
-                  <h3 className="text-slate-100 text-sm sm:text-base font-bold leading-relaxed mb-6">
+                  <h3 className="text-slate-100 text-sm sm:text-base font-bold leading-relaxed mb-6" dir="auto">
                     {questionText}
                   </h3>
 
@@ -549,7 +549,7 @@ export default function StudentQuizPage() {
                             }`}>
                               {isSelected && <div className="h-2 w-2 rounded-full bg-brand-500" />}
                             </div>
-                            <span>{choiceText}</span>
+                            <span dir="auto" className="flex-1 text-start">{choiceText}</span>
                           </div>
                         );
                       })}
