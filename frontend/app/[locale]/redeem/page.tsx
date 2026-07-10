@@ -127,21 +127,7 @@ export default function RedeemCouponPage() {
       <div className="absolute top-[-10%] start-[-10%] w-[45vw] h-[45vw] rounded-full bg-brand-500/5 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] end-[-10%] w-[40vw] h-[40vw] rounded-full bg-amber-500/5 blur-[100px] pointer-events-none" />
 
-      <header className="fixed top-0 inset-x-0 z-50 bg-[#020617]/80 backdrop-blur-md border-b border-slate-800">
-        <div className="max-w-2xl mx-auto px-4 py-4 sm:py-6 flex items-center justify-between">
-          <Link href="/dashboard" className="group flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-white transition-colors">
-            {isRtl
-              ? <><ArrowRight className="h-4 w-4" /><span>لوحة التحكم</span></>
-              : <><ArrowLeft className="h-4 w-4" /><span>Dashboard</span></>
-            }
-          </Link>
-          <div className="flex items-center gap-2">
-            <Image src="/logo.png" alt="Tawjihi Hub Logo" width={320} height={120} className="h-20 sm:h-24 w-auto object-contain drop-shadow-md" priority />
-          </div>
-        </div>
-      </header>
-
-      <main className="max-w-md mx-auto px-4 pt-12 pb-20 relative z-10">
+      <main className="max-w-md mx-auto px-4 pt-32 pb-20 relative z-10">
         <div className="text-center mb-10">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-500/20 to-amber-500/20 border border-brand-500/30 mb-4">
             <Key className="h-8 w-8 text-brand-400" />

@@ -481,33 +481,9 @@ export default function AdminCoursesPage() {
         </div>
       )}
 
-      {/* ── Header ───────────────────────────────────────────────────────── */}
-      <header className="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-xl border-b border-slate-800/60">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
-          <Link href="/dashboard" className="group flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-white transition-colors">
-            {isRtl
-              ? <><ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /><span>لوحة القيادة</span></>
-              : <><ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" /><span>Dashboard</span></>}
-          </Link>
-          <div className="flex items-center gap-2.5">
-            <div className="p-1.5 rounded-lg bg-brand-500/15">
-              <GraduationCap className="h-5 w-5 text-brand-400" />
-            </div>
-            <h1 className="text-base font-black text-white">{isRtl ? 'إدارة الدورات التعليمية' : 'Course Manager'}</h1>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className={`text-xs font-bold px-2.5 py-1 rounded-lg border ${
-              isAdmin
-                ? 'bg-rose-500/10 border-rose-500/25 text-rose-400'
-                : 'bg-blue-500/10 border-blue-500/25 text-blue-400'
-            }`}>
-              {isAdmin ? 'Admin' : (isRtl ? 'معلم' : 'Teacher')}
-            </span>
-          </div>
-        </div>
-      </header>
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 pt-8 space-y-5 relative z-10">
+
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 pt-32 space-y-5 relative z-10">
         <RoleSimulator />
 
         {/* ── Stats row ──────────────────────────────────────────────────── */}

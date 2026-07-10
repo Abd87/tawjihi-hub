@@ -107,6 +107,42 @@ export default function Navbar() {
   // Navigate to home page with anchor (works from any page)
   const homeAnchor = (anchor: string) => `/${currentLocale}#${anchor}`;
 
+  // Path helpers
+  const isHome = pathname === `/${currentLocale}` || pathname === `/${currentLocale}/`;
+  const isAuthPage = pathname.endsWith('/login') || pathname.endsWith('/register');
+  const isSimplifiedHeader = isAuthPage || (isHome && !user);
+
+  if (isSimplifiedHeader) {
+    return (
+      <header className="fixed top-0 inset-x-0 z-50 bg-transparent pointer-events-none">
+        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex items-center justify-between pointer-events-auto">
+          <Link href="/" className="flex items-center gap-2.5">
+            <Image src="/logo.png" alt="Tawjihi Hub Logo" width={320} height={120} className="h-20 sm:h-24 w-auto object-contain drop-shadow-md" priority />
+          </Link>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={toggleLanguage}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900/60 text-slate-300 hover:text-white hover:border-slate-600 transition-all text-sm font-medium"
+            >
+              <Globe className="h-4 w-4 text-brand-500" />
+              <span>{currentLocale === 'ar' ? 'English' : 'العربية'}</span>
+            </button>
+            {isHome && !user && (
+              <div className="hidden sm:flex items-center gap-2 ml-2">
+                <Link href="/login" className="text-sm font-medium text-slate-300 hover:text-white transition-colors px-4 py-2">
+                  {t('login') || (currentLocale === 'ar' ? 'تسجيل الدخول' : 'Log In')}
+                </Link>
+                <Link href="/register" className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 shadow-lg shadow-brand-500/25 hover:shadow-brand-500/35 transition-all">
+                  {t('register') || (currentLocale === 'ar' ? 'إنشاء حساب' : 'Register')}
+                </Link>
+              </div>
+            )}
+          </div>
+        </div>
+      </header>
+    );
+  }
+
   return (
     <>
       <header className={`fixed top-0 start-0 end-0 z-50 transition-all duration-300 ${

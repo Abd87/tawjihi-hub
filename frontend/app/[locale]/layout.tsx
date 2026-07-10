@@ -4,6 +4,8 @@ import { ReactNode } from 'react';
 import { Cairo, Inter } from 'next/font/google';
 import '../globals.css';
 import { Metadata } from 'next';
+import Navbar from '@/components/Navbar';
+import SocialFloatingButtons from '@/components/SocialFloatingButtons';
 
 const cairo = Cairo({
   subsets: ['arabic'],
@@ -85,7 +87,9 @@ export default async function LocaleLayout({
     <html lang={locale} dir={dir} className={`${cairo.variable} ${inter.variable}`}>
       <body className={`bg-[#020617] text-slate-100 ${locale === 'ar' ? 'font-arabic' : 'font-sans'} antialiased`}>
         <NextIntlClientProvider messages={messages}>
+          <Navbar />
           {children}
+          <SocialFloatingButtons />
         </NextIntlClientProvider>
       </body>
     </html>

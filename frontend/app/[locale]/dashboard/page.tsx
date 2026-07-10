@@ -23,7 +23,8 @@ import {
   Users,
   Calendar,
   Video,
-  Key
+  Key,
+  Settings
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -325,37 +326,10 @@ export default function DashboardPage() {
       <div className="absolute top-[-10%] start-[-10%] w-[45vw] h-[45vw] rounded-full bg-brand-500/5 blur-[120px] pointer-events-none" />
       <div className="absolute top-[30%] end-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-500/5 blur-[120px] pointer-events-none" />
 
-      {/* Navigation Header */}
-      <header className="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-900 shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex items-center justify-between">
-          
-          <div className="flex items-center gap-3">
-            <Image src="/logo.png" alt="Tawjihi Hub Logo" width={320} height={120} className="h-20 sm:h-24 w-auto object-contain drop-shadow-md" priority />
-          </div>
 
-          <div className="flex items-center gap-4">
-            {/* Locale switch */}
-            <button
-              onClick={toggleLanguage}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-white hover:border-slate-600 transition-all text-xs font-semibold"
-            >
-              <span>{locale === 'ar' ? 'English' : 'العربية'}</span>
-            </button>
-
-            {/* Logout button */}
-            <button
-              onClick={handleLogout}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-400 hover:bg-rose-500 hover:text-white transition-all text-xs font-semibold"
-            >
-              <LogOut className="h-3.5 w-3.5" />
-              <span>{t('logOut')}</span>
-            </button>
-          </div>
-        </div>
-      </header>
 
       {/* Dashboard container */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 z-10 relative">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 z-10 relative">
         <RoleSimulator />
         
         {/* Welcome Section */}
@@ -375,8 +349,17 @@ export default function DashboardPage() {
             </p>
           </div>
 
-          {/* Current Track indicator badge */}
-          <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-4.5 min-w-[240px] shrink-0">
+          <div className="flex items-center gap-4">
+            <Link 
+              href="/dashboard/settings"
+              className="flex items-center gap-2 px-4 py-3 sm:p-4.5 bg-slate-950/80 border border-slate-800 hover:border-brand-500/50 hover:bg-slate-900 rounded-2xl transition-all shadow-sm"
+              title={locale === 'ar' ? 'الإعدادات' : 'Settings'}
+            >
+              <Settings className="h-5 w-5 text-slate-400" />
+            </Link>
+
+            {/* Current Track indicator badge */}
+            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-4.5 min-w-[240px] shrink-0">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs text-slate-500 font-semibold">{t('currentTrack')}</span>
               {(user?.role === 'TEACHER' || user?.role === 'ADMIN') && (
@@ -399,6 +382,7 @@ export default function DashboardPage() {
               <span className="text-sm sm:text-base font-bold text-white">
                 {isBtec ? t('btecBadge') : t('acadBadge')}
               </span>
+            </div>
             </div>
           </div>
         </div>

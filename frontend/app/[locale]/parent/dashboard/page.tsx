@@ -18,6 +18,7 @@ import {
   AlertCircle,
   Eye,
   TrendingUp,
+  Settings
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -217,58 +218,33 @@ export default function ParentDashboardPage() {
       <div className="fixed top-[-15%] start-[-10%] w-[50vw] h-[50vw] rounded-full bg-teal-500/5 blur-[130px] pointer-events-none" />
       <div className="fixed bottom-[-15%] end-[-10%] w-[50vw] h-[50vw] rounded-full bg-cyan-500/5 blur-[130px] pointer-events-none" />
 
-      {/* ── Header ── */}
-      <header className="sticky top-0 z-30 border-b border-slate-800/60 bg-[#020617]/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5">
-            <Image src="/logo.png" alt="Tawjihi Hub Logo" width={320} height={120} className="h-20 sm:h-24 w-auto object-contain drop-shadow-md" priority />
-          </Link>
 
+
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-10 space-y-10">
+
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            {/* Parent View badge */}
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-xs font-semibold">
-              <Eye className="h-3 w-3" />
-              <span>{isAr ? 'عرض ولي الأمر' : 'Parent View'}</span>
+            <div className="p-2 rounded-xl bg-teal-500/10 border border-teal-500/20">
+              <Users className="h-6 w-6 text-teal-400" />
             </div>
-
-            <button
-              onClick={toggleLanguage}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-800 bg-slate-900/60 text-slate-300 hover:text-white hover:border-slate-600 transition-all text-xs font-medium"
-            >
-              <Globe className="h-3.5 w-3.5 text-teal-500" />
-              <span>{isAr ? 'English' : 'العربية'}</span>
-            </button>
-
-            <button
-              onClick={() => {
-                localStorage.removeItem('token');
-                localStorage.removeItem('user');
-                window.location.href = `/${locale}/login`;
-              }}
-              className="text-xs text-slate-500 hover:text-rose-400 transition-colors px-2 py-1"
-            >
-              {isAr ? 'تسجيل الخروج' : 'Logout'}
-            </button>
+            <div>
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                {isAr ? 'لوحة تحكم ولي الأمر' : 'Parent Dashboard'}
+              </h1>
+              <p className="text-sm text-slate-400 mt-1">
+                {isAr ? 'تابع تقدم أبنائك الأكاديمي' : 'Track your students academic progress'}
+              </p>
+            </div>
           </div>
-        </div>
-      </header>
-
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
-
-        {/* ── Page title ── */}
-        <div className="flex items-center gap-3">
-          <div className="p-2 rounded-xl bg-teal-500/10 border border-teal-500/20">
-            <Users className="h-6 w-6 text-teal-400" />
-          </div>
-          <div>
-            <h1 className="text-xl sm:text-2xl font-extrabold text-white">
-              {isAr ? 'لوحة متابعة ولي الأمر' : 'Parent Dashboard'}
-            </h1>
-            <p className="text-xs text-slate-400 mt-0.5">
-              {isAr
-                ? `مرحباً ${parent?.nameAr ?? ''} — متابعة تقدم الطالب`
-                : `Welcome ${parent?.nameEn ?? parent?.nameAr ?? ''} — Tracking student progress`}
-            </p>
+          
+          <div className="flex items-center gap-4">
+            <Link 
+              href="/dashboard/settings"
+              className="flex items-center gap-2 px-4 py-3 sm:p-4.5 bg-slate-950/80 border border-slate-800 hover:border-teal-500/50 hover:bg-slate-900 rounded-2xl transition-all shadow-sm"
+              title={isAr ? 'الإعدادات' : 'Settings'}
+            >
+              <Settings className="h-5 w-5 text-slate-400" />
+            </Link>
           </div>
         </div>
 

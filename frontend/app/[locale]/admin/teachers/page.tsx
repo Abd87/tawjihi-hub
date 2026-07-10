@@ -344,34 +344,9 @@ export default function AdminTeachersPage() {
         </div>
       )}
 
-      {/* ── Header ───────────────────────────────────────────────────── */}
-      <header className="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-xl border-b border-slate-800/60">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
-          <Link href="/dashboard" className="group flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-white transition-colors">
-            {isRtl
-              ? <><ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /><span>لوحة القيادة</span></>
-              : <><ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" /><span>Dashboard</span></>}
-          </Link>
-          <div className="flex items-center gap-2.5">
-            <div className="p-1.5 rounded-lg bg-violet-500/15">
-              <Users className="h-5 w-5 text-violet-400" />
-            </div>
-            <h1 className="text-base font-black text-white">{isRtl ? 'إدارة المعلمين' : 'Teachers Manager'}</h1>
-          </div>
-          <div className="flex items-center gap-2">
-            <Link
-              href={`/${locale}/admin/courses`}
-              className="text-xs font-bold px-2.5 py-1 rounded-lg border border-brand-500/25 bg-brand-500/10 text-brand-400 hover:bg-brand-500/20 transition-all flex items-center gap-1.5"
-            >
-              <GraduationCap className="h-3.5 w-3.5" />
-              {isRtl ? 'الدورات' : 'Courses'}
-            </Link>
-            <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-rose-500/10 border border-rose-500/25 text-rose-400">Admin</span>
-          </div>
-        </div>
-      </header>
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 pt-8 space-y-6 relative z-10">
+
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 pt-32 space-y-6 relative z-10">
 
         {/* ── Stats row ──────────────────────────────────────────────── */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">

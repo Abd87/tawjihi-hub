@@ -241,23 +241,10 @@ export default function LoginPage() {
       <div className="absolute top-[-10%] start-[-10%] w-[40vw] h-[40vw] rounded-full bg-brand-500/5 blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[-10%] end-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-500/5 blur-[100px] pointer-events-none" />
 
-      {/* Header */}
-      <header className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex items-center justify-between z-10">
-        <Link href="/" className="flex items-center gap-2.5">
-          <Image src="/logo.png" alt="Tawjihi Hub Logo" width={320} height={120} className="h-20 sm:h-24 w-auto object-contain drop-shadow-md" priority />
-        </Link>
 
-        <button
-          onClick={toggleLanguage}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900/60 text-slate-300 hover:text-white hover:border-slate-600 transition-all text-sm font-medium"
-        >
-          <Globe className="h-4 w-4 text-brand-500" />
-          <span>{locale === 'ar' ? 'English' : 'العربية'}</span>
-        </button>
-      </header>
 
       {/* Main card */}
-      <main className="flex-grow flex items-center justify-center p-4 z-10">
+      <main className="flex-grow flex items-center justify-center p-4 pt-32 z-10">
         <div className="relative w-full max-w-md">
           {/* Neon glow border */}
           <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-br from-brand-500 to-amber-600 opacity-20 blur pointer-events-none" />

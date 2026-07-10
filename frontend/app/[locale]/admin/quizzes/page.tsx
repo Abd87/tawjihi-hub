@@ -285,26 +285,10 @@ export default function AdminQuizPage() {
       <div className="absolute top-[-10%] start-[-10%] w-[45vw] h-[45vw] rounded-full bg-brand-500/5 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] end-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-500/5 blur-[100px] pointer-events-none" />
 
-      {/* Header */}
-      <header className="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-900 shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
-          <Link href="/dashboard" className="group flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-400 hover:text-white transition-colors">
-            {isRtl ? (
-              <><ArrowRight className="h-4.5 w-4.5 transition-transform group-hover:translate-x-1" /><span>لوحة القيادة</span></>
-            ) : (
-              <><ArrowLeft className="h-4.5 w-4.5 transition-transform group-hover:-translate-x-1" /><span>Dashboard</span></>
-            )}
-          </Link>
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold px-2.5 py-1 rounded bg-rose-500/10 border border-rose-500/20 text-rose-450 text-rose-400">
-              Admin Mode
-            </span>
-          </div>
-        </div>
-      </header>
+
 
       {/* Admin Panel Body */}
-      <main className="max-w-4xl mx-auto px-4 pt-10 z-10 relative">
+      <main className="max-w-4xl mx-auto px-4 pt-32 z-10 relative">
         
         {/* Title */}
         <div className="mb-10 text-center md:text-start">
