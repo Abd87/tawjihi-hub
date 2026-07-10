@@ -9,17 +9,21 @@ export async function GET(request: Request, { params }: { params: { id: string }
       return NextResponse.json({ error: 'Course ID is required' }, { status: 400 });
     }
 
-    const course = await prisma.course.findUnique({
+    const courseRaw = await prisma.course.findUnique({
       where: { id: courseId },
       include: {
         teacher: true,
         liveSessions: true,
         exams: true,
-        lessons: {
+        units: {
           include: {
-            questions: {
+            lessons: {
               include: {
-                choices: true,
+                questions: {
+                  include: {
+                    choices: true,
+                  },
+                },
               },
             },
           },
@@ -27,10 +31,14 @@ export async function GET(request: Request, { params }: { params: { id: string }
       },
     });
 
-    if (!course) {
+    if (!courseRaw) {
       return NextResponse.json({ error: 'Course not found' }, { status: 404 });
     }
 
+    const course = {
+      ...courseRaw,
+      lessons: courseRaw.units.flatMap(u => u.lessons)
+    };
     return NextResponse.json(course);
   } catch (error) {
     console.error('Fetch course error:', error);

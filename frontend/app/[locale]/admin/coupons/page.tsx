@@ -24,7 +24,11 @@ import {
   ChevronDown,
   BookOpen,
   X,
-  PlusCircle
+  PlusCircle,
+  Printer,
+  Calendar,
+  Clock,
+  AlertTriangle
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -45,8 +49,11 @@ interface Coupon {
     titleEn: string;
   };
   isActive: boolean;
+  expiresAt?: string;
   usedBy?: {
+    studentId?: string;
     nameAr: string;
+    nameEn?: string;
     email: string;
   } | null;
   usedAt?: string | null;
@@ -66,6 +73,8 @@ export default function AdminCouponsPage() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [coupons, setCoupons] = useState<Coupon[]>([]);
   const [loading, setLoading] = useState(true);
+  const [printMode, setPrintMode] = useState(false);
+  const [selectedForPrint, setSelectedForPrint] = useState<string[]>([]);
   
   // Form states
   const [selectedCourseId, setSelectedCourseId] = useState('');
@@ -76,6 +85,8 @@ export default function AdminCouponsPage() {
   const [success, setSuccess] = useState<string | null>(null);
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
   const [subjectOpen, setSubjectOpen] = useState(false);
+
+  const COUPON_EXPIRY = '2026-07-31T23:59:59.000Z';
 
   // Manage Subjects panel
   const [manageOpen, setManageOpen] = useState(false);
@@ -318,6 +329,7 @@ export default function AdminCouponsPage() {
           titleEn: cleanedEn,
         },
         isActive: true,
+        expiresAt: COUPON_EXPIRY,
         createdAt: new Date().toISOString()
       };
 
@@ -733,88 +745,170 @@ export default function AdminCouponsPage() {
         {/* Coupons List Table */}
         <div className="bg-slate-900/10 border border-slate-900 rounded-2xl p-5 sm:p-6 shadow-xl space-y-4">
           
-          <h2 className="text-sm sm:text-base font-extrabold text-white flex items-center gap-2">
-            <Layers className="h-4.5 w-4.5 text-brand-500" />
-            <span>{tAnalytics('viewCoupons')}</span>
-          </h2>
+          <div className="flex items-center justify-between flex-wrap gap-3">
+            <h2 className="text-sm sm:text-base font-extrabold text-white flex items-center gap-2">
+              <Layers className="h-4.5 w-4.5 text-brand-500" />
+              <span>{tAnalytics('viewCoupons')}</span>
+              <span className="text-xs font-normal text-slate-500 ml-1">({coupons.length})</span>
+            </h2>
+
+            {/* Print Cards Button */}
+            <div className="flex items-center gap-2">
+              {printMode && (
+                <span className="text-xs text-amber-400 font-semibold">
+                  {selectedForPrint.length} {locale === 'ar' ? 'محدد' : 'selected'}
+                </span>
+              )}
+              <button
+                onClick={() => {
+                  if (!printMode) {
+                    setPrintMode(true);
+                    setSelectedForPrint(coupons.filter(c => c.isActive).map(c => c.id));
+                  } else {
+                    if (selectedForPrint.length === 0) { setPrintMode(false); return; }
+                    window.print();
+                  }
+                }}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-violet-600/10 border border-violet-500/20 text-violet-400 hover:bg-violet-600/20 transition-all"
+              >
+                <Printer className="h-4 w-4" />
+                {printMode
+                  ? (locale === 'ar' ? 'طباعة الكروت المحددة' : 'Print Selected Cards')
+                  : (locale === 'ar' ? 'طباعة الكروت' : 'Print Cards')
+                }
+              </button>
+              {printMode && (
+                <button
+                  onClick={() => { setPrintMode(false); setSelectedForPrint([]); }}
+                  className="p-2 rounded-xl text-slate-400 hover:text-white transition-colors border border-slate-800 hover:border-slate-600"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
+            </div>
+          </div>
 
           <div className="overflow-x-auto">
             <table className="w-full text-start border-collapse text-xs sm:text-sm">
               <thead>
                 <tr className="border-b border-slate-900 text-slate-500 text-2xs font-extrabold uppercase tracking-wider">
+                  {printMode && <th className="py-3 px-3 text-start w-8"></th>}
                   <th className="py-3 px-4 text-start">{tAnalytics('code')}</th>
                   <th className="py-3 px-4 text-start">{tAnalytics('courseTitle')}</th>
                   <th className="py-3 px-4 text-start">{tAnalytics('status')}</th>
+                  <th className="py-3 px-4 text-start">{locale === 'ar' ? 'الصلاحية' : 'Expiry'}</th>
                   <th className="py-3 px-4 text-start">{tAnalytics('redeemedBy')}</th>
                   <th className="py-3 px-4 text-start">{tAnalytics('redeemedAt')}</th>
                   <th className="py-3 px-4 text-start">{locale === 'ar' ? 'إجراءات' : 'Actions'}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-950/40">
-                {coupons.map((coupon) => (
-                  <tr key={coupon.id} className="hover:bg-slate-900/5 transition-colors">
-                    <td className="py-3.5 px-4">
-                      <div className="flex items-center gap-2">
-                        <span className="font-black text-brand-400 uppercase tracking-wide text-xs sm:text-sm">{coupon.code}</span>
-                        <button
-                          onClick={() => handleCopyCode(coupon.code)}
-                          className="p-1 rounded text-slate-600 hover:text-brand-400 transition-colors"
-                          title={locale === 'ar' ? 'نسخ الكود' : 'Copy code'}
-                        >
-                          {copiedCode === coupon.code ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
-                        </button>
-                      </div>
-                    </td>
-                    <td className="py-3.5 px-4 text-slate-300 font-semibold max-w-[200px] truncate">
-                      {isRtl ? coupon.course.titleAr : coupon.course.titleEn}
-                    </td>
-                    <td className="py-3.5 px-4">
-                      {coupon.isActive ? (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded border border-emerald-500/20 bg-emerald-500/5 text-emerald-400 font-bold text-3xs uppercase tracking-wider">
-                          <ShieldCheck className="h-3 w-3" />
-                          <span>{tAnalytics('active')}</span>
-                        </span>
-                      ) : (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded border border-slate-800 bg-slate-900 text-slate-500 font-bold text-3xs uppercase tracking-wider">
-                          <span>{tAnalytics('used')}</span>
-                        </span>
+                {coupons.map((coupon) => {
+                  const isExpired = coupon.expiresAt ? new Date() > new Date(coupon.expiresAt) : false;
+                  const expiryDisplay = coupon.expiresAt
+                    ? new Date(coupon.expiresAt).toLocaleDateString(isRtl ? 'ar-JO' : 'en-US', { day: 'numeric', month: 'short', year: 'numeric' })
+                    : '31 Jul 2026';
+
+                  return (
+                    <tr key={coupon.id} className={`hover:bg-slate-900/5 transition-colors ${printMode && selectedForPrint.includes(coupon.id) ? 'bg-violet-500/5' : ''}`}>
+                      {printMode && (
+                        <td className="py-3 px-3">
+                          <input
+                            type="checkbox"
+                            checked={selectedForPrint.includes(coupon.id)}
+                            onChange={e => {
+                              if (e.target.checked) setSelectedForPrint(prev => [...prev, coupon.id]);
+                              else setSelectedForPrint(prev => prev.filter(id => id !== coupon.id));
+                            }}
+                            className="rounded border-slate-600 bg-slate-900 text-brand-500 focus:ring-brand-500"
+                          />
+                        </td>
                       )}
-                    </td>
-                    <td className="py-3.5 px-4 text-slate-400 font-medium">
-                      {coupon.usedBy ? (
-                        <div className="flex items-center gap-1.5">
-                          <UserCheck className="h-3.5 w-3.5 text-slate-500" />
-                          <span>{coupon.usedBy.nameAr}</span>
+                      <td className="py-3.5 px-4">
+                        <div className="flex items-center gap-2">
+                          <span className="font-black text-brand-400 uppercase tracking-wide text-xs sm:text-sm">{coupon.code}</span>
+                          <button
+                            onClick={() => handleCopyCode(coupon.code)}
+                            className="p-1 rounded text-slate-600 hover:text-brand-400 transition-colors"
+                            title={locale === 'ar' ? 'نسخ الكود' : 'Copy code'}
+                          >
+                            {copiedCode === coupon.code ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+                          </button>
                         </div>
-                      ) : '-'}
-                    </td>
-                    <td className="py-3.5 px-4 text-slate-500 font-medium text-xs">
-                      {coupon.usedAt 
-                        ? new Date(coupon.usedAt).toLocaleDateString(isRtl ? 'ar-JO' : 'en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) 
-                        : '-'}
-                    </td>
-                    <td className="py-3.5 px-4">
-                      {coupon.isActive && (
-                        <button
-                          onClick={() => {
-                            const updated = coupons.map(c =>
-                              c.id === coupon.id ? { ...c, isActive: false } : c
-                            );
-                            setCoupons(updated);
-                            localStorage.setItem('admin-coupons', JSON.stringify(updated));
-                          }}
-                          className="px-2.5 py-1 rounded-lg text-2xs font-bold text-rose-400 border border-rose-500/20 hover:bg-rose-500/10 transition-all"
-                        >
-                          {locale === 'ar' ? 'إلغاء التفعيل' : 'Revoke'}
-                        </button>
-                      )}
-                    </td>
-                  </tr>
-                ))}
+                      </td>
+                      <td className="py-3.5 px-4 text-slate-300 font-semibold max-w-[180px] truncate">
+                        {isRtl ? coupon.course.titleAr : coupon.course.titleEn}
+                      </td>
+                      <td className="py-3.5 px-4">
+                        {coupon.isActive && !isExpired ? (
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded border border-emerald-500/20 bg-emerald-500/5 text-emerald-400 font-bold text-3xs uppercase tracking-wider">
+                            <ShieldCheck className="h-3 w-3" />
+                            <span>{tAnalytics('active')}</span>
+                          </span>
+                        ) : isExpired ? (
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded border border-rose-500/20 bg-rose-500/5 text-rose-400 font-bold text-3xs uppercase tracking-wider">
+                            <AlertTriangle className="h-3 w-3" />
+                            <span>{locale === 'ar' ? 'منتهي' : 'Expired'}</span>
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded border border-slate-800 bg-slate-900 text-slate-500 font-bold text-3xs uppercase tracking-wider">
+                            <span>{tAnalytics('used')}</span>
+                          </span>
+                        )}
+                      </td>
+                      <td className="py-3.5 px-4">
+                        <div className={`flex items-center gap-1.5 text-xs font-semibold ${isExpired ? 'text-rose-400' : 'text-slate-400'}`}>
+                          <Calendar className="h-3 w-3 shrink-0" />
+                          <span>{expiryDisplay}</span>
+                        </div>
+                      </td>
+                      <td className="py-3.5 px-4 text-slate-400 font-medium">
+                        {coupon.usedBy ? (
+                          <div className="space-y-0.5">
+                            <div className="flex items-center gap-1.5">
+                              <UserCheck className="h-3.5 w-3.5 text-slate-500 shrink-0" />
+                              <span className="text-xs font-bold text-slate-300">{coupon.usedBy.nameAr}</span>
+                            </div>
+                            <p className="text-xs text-slate-600 ps-5">{coupon.usedBy.email}</p>
+                          </div>
+                        ) : (
+                          <span className="text-slate-700">—</span>
+                        )}
+                      </td>
+                      <td className="py-3.5 px-4 text-slate-500 font-medium text-xs">
+                        {coupon.usedAt ? (
+                          <div className="space-y-0.5">
+                            <div className="flex items-center gap-1 text-slate-400">
+                              <Clock className="h-3 w-3 shrink-0" />
+                              <span>{new Date(coupon.usedAt).toLocaleDateString(isRtl ? 'ar-JO' : 'en-US', { month: 'short', day: 'numeric' })}</span>
+                            </div>
+                            <p className="ps-4">{new Date(coupon.usedAt).toLocaleTimeString(isRtl ? 'ar-JO' : 'en-US', { hour: '2-digit', minute: '2-digit' })}</p>
+                          </div>
+                        ) : '—'}
+                      </td>
+                      <td className="py-3.5 px-4">
+                        {coupon.isActive && !isExpired && (
+                          <button
+                            onClick={() => {
+                              const updated = coupons.map(c =>
+                                c.id === coupon.id ? { ...c, isActive: false } : c
+                              );
+                              setCoupons(updated);
+                              localStorage.setItem('admin-coupons', JSON.stringify(updated));
+                            }}
+                            className="px-2.5 py-1 rounded-lg text-2xs font-bold text-rose-400 border border-rose-500/20 hover:bg-rose-500/10 transition-all"
+                          >
+                            {locale === 'ar' ? 'إلغاء' : 'Revoke'}
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
 
                 {coupons.length === 0 && (
                   <tr>
-                    <td colSpan={6} className="py-10 text-center text-slate-650 font-semibold">
+                    <td colSpan={8} className="py-10 text-center text-slate-600 font-semibold">
                       {locale === 'ar' ? 'لم يتم إنشاء أي كوبونات بعد. اختر مادة من الأعلى.' : 'No coupon keys generated yet. Select a subject above to generate one.'}
                     </td>
                   </tr>
@@ -825,8 +919,70 @@ export default function AdminCouponsPage() {
 
         </div>
 
+        {/* ═══════════════════════════════════════════════════════════ */}
+        {/* PRINT CARDS — hidden in normal view, shown only on print   */}
+        {/* ═══════════════════════════════════════════════════════════ */}
+        <div className="print-only hidden">
+          <div style={{ fontFamily: 'Arial, sans-serif', padding: '20px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', pageBreakInside: 'avoid' }}>
+              {coupons
+                .filter(c => !printMode || selectedForPrint.includes(c.id))
+                .map(coupon => (
+                  <div key={`print-${coupon.id}`} style={{
+                    border: '2px dashed #4B5563',
+                    borderRadius: '16px',
+                    padding: '20px',
+                    background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
+                    color: 'white',
+                    pageBreakInside: 'avoid',
+                    position: 'relative',
+                    overflow: 'hidden'
+                  }}>
+                    {/* Decorative top strip */}
+                    <div style={{ height: '4px', background: 'linear-gradient(90deg, #ea580c, #f59e0b)', borderRadius: '4px', marginBottom: '16px' }} />
+                    
+                    {/* Platform name */}
+                    <p style={{ fontSize: '11px', fontWeight: 900, color: '#94a3b8', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '4px' }}>
+                      🎓 TAWJIHI HUB
+                    </p>
+                    
+                    {/* Subject */}
+                    <p style={{ fontSize: '13px', fontWeight: 700, color: '#f1f5f9', marginBottom: '2px' }}>
+                      {coupon.course.titleAr}
+                    </p>
+                    <p style={{ fontSize: '11px', color: '#64748b', marginBottom: '16px' }}>
+                      {coupon.course.titleEn}
+                    </p>
+                    
+                    {/* Code */}
+                    <div style={{ background: 'rgba(234, 88, 12, 0.1)', border: '1px solid rgba(234, 88, 12, 0.3)', borderRadius: '12px', padding: '12px', textAlign: 'center', marginBottom: '12px' }}>
+                      <p style={{ fontSize: '9px', color: '#94a3b8', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '4px' }}>كود الدخول / Access Code</p>
+                      <p style={{ fontSize: '18px', fontWeight: 900, color: '#fb923c', letterSpacing: '4px', fontFamily: 'monospace' }}>{coupon.code}</p>
+                    </div>
+                    
+                    {/* Expiry */}
+                    <p style={{ fontSize: '10px', color: '#ef4444', textAlign: 'center' }}>
+                      ⏰ {locale === 'ar' ? 'ينتهي في' : 'Expires'}: 31 يوليو / July 2026
+                    </p>
+                    
+                    {/* Footer */}
+                    <div style={{ marginTop: '12px', paddingTop: '10px', borderTop: '1px dashed #374151' }}>
+                      <p style={{ fontSize: '9px', color: '#475569', textAlign: 'center' }}>
+                        {locale === 'ar' ? 'كوبون شخصي • لاستخدام واحد فقط' : 'Personal Coupon • Single Use Only'}
+                      </p>
+                      <p style={{ fontSize: '9px', color: '#475569', textAlign: 'center', marginTop: '2px' }}>
+                        tawjihi-hub.vercel.app/redeem
+                      </p>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        </div>
+
       </main>
 
     </div>
   );
 }
+

@@ -22,7 +22,8 @@ import {
   Lock,
   Users,
   Calendar,
-  Video
+  Video,
+  Key
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -516,6 +517,31 @@ export default function DashboardPage() {
             </div>
           );
         })()}
+
+        {/* Student Coupon CTA */}
+        {user?.role === 'STUDENT' && (
+          <div className="mb-6">
+            <Link
+              href="/redeem"
+              className="flex items-center gap-4 p-4 rounded-2xl border border-brand-500/20 bg-gradient-to-r from-brand-500/5 to-amber-500/5 hover:from-brand-500/10 hover:to-amber-500/10 hover:border-brand-500/40 transition-all group"
+            >
+              <div className="p-3 bg-gradient-to-br from-brand-500/20 to-amber-500/20 rounded-xl text-brand-400 group-hover:scale-110 transition-transform shrink-0">
+                <Key className="h-5 w-5" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-xs text-slate-500 font-semibold mb-0.5">
+                  {locale === 'ar' ? 'هل لديك كوبون دخول؟' : 'Have an access coupon?'}
+                </p>
+                <p className="text-sm font-bold text-white">
+                  {locale === 'ar' ? 'أدخل الكود لفتح مادتك الدراسية' : 'Enter your code to unlock a course'}
+                </p>
+              </div>
+              <div className="text-slate-500 group-hover:text-brand-400 transition-colors">
+                {locale === 'ar' ? <ChevronLeft className="h-5 w-5" /> : <ChevronRight className="h-5 w-5" />}
+              </div>
+            </Link>
+          </div>
+        )}
 
         {/* Semester Tabs */}
         <div className="flex items-center gap-2 mb-6">

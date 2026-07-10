@@ -17,7 +17,9 @@ import {
   BookOpen,
   Calendar,
   Video,
-  Download
+  Download,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -58,6 +60,14 @@ interface Exam {
   pdfUrl: string;
 }
 
+interface Unit {
+  id: string;
+  titleAr: string;
+  titleEn: string;
+  order: number;
+  lessons: Lesson[];
+}
+
 interface Course {
   id: string;
   titleAr: string;
@@ -74,7 +84,8 @@ interface Course {
   coverImage?: string;
   published: boolean;
   locked: boolean;
-  lessons: Lesson[];
+  units: Unit[];
+  lessons: Lesson[]; // Flat array maintained for backward compatibility in progress calculations
   liveSessions?: LiveSession[];
   exams?: Exam[];
 }
@@ -91,6 +102,7 @@ export default function CourseSyllabusPage() {
   const [course, setCourse] = useState<Course | null>(null);
   const [completedItems, setCompletedItems] = useState<string[]>([]);
   const [authorized, setAuthorized] = useState(false);
+  const [expandedUnits, setExpandedUnits] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -316,91 +328,132 @@ export default function CourseSyllabusPage() {
             </div>
 
             <div className="space-y-6">
-              {course.lessons.map((lesson, idx) => {
-                const isLessonLocked = lesson.locked;
+              {course.units && course.units.map((unit, unitIdx) => {
+                const isExpanded = expandedUnits.includes(unit.id);
                 
                 return (
-                  <div key={lesson.id} className="bg-slate-900/50 border border-slate-800 rounded-2xl overflow-hidden">
-                    {/* Lesson Header */}
-                    <div className="px-6 py-5 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+                  <div key={unit.id} className="bg-slate-900/50 border border-slate-800 rounded-2xl overflow-hidden">
+                    {/* Unit Header */}
+                    <button 
+                      onClick={() => {
+                        setExpandedUnits(prev => 
+                          prev.includes(unit.id) ? prev.filter(id => id !== unit.id) : [...prev, unit.id]
+                        );
+                      }}
+                      className="w-full px-6 py-5 bg-slate-900 border-b border-slate-800 flex items-center justify-between hover:bg-slate-800/80 transition-colors"
+                    >
                       <div className="flex items-center gap-4">
-                        <div className="h-8 w-8 rounded-full bg-slate-950 border border-slate-800 flex items-center justify-center text-sm font-bold text-slate-400">
-                          {idx + 1}
+                        <div className="h-10 w-10 rounded-full bg-slate-950 border border-slate-700 flex items-center justify-center text-lg font-bold text-brand-500">
+                          {unitIdx + 1}
                         </div>
-                        <h3 className="text-lg font-bold text-white">
-                          {isRtl ? lesson.titleAr : lesson.titleEn}
-                        </h3>
+                        <div className="text-start">
+                          <h3 className="text-xl font-bold text-white">
+                            {isRtl ? unit.titleAr : unit.titleEn}
+                          </h3>
+                          <p className="text-sm text-slate-400 mt-1">
+                            {unit.lessons.length} {isRtl ? 'دروس' : 'lessons'}
+                          </p>
+                        </div>
                       </div>
-                      {isLessonLocked && <Lock className="h-5 w-5 text-slate-500" />}
-                    </div>
-
-                    {/* Items List */}
-                    <div className="divide-y divide-slate-800/50">
-                      
-                      {/* 1. Video Item */}
-                      {lesson.videoUrl && (
-                        <Link 
-                          href={isLessonLocked ? '#' : `/${locale}/courses/${courseId}/video/${lesson.id}`}
-                          className={`flex items-center gap-4 px-6 py-4 transition-colors ${
-                            isLessonLocked ? 'opacity-50 cursor-not-allowed' : 'hover:bg-slate-800/50'
-                          }`}
-                        >
-                          <div className={`shrink-0 ${completedItems.includes(`${lesson.id}-video`) ? 'text-emerald-500' : 'text-brand-500'}`}>
-                            {completedItems.includes(`${lesson.id}-video`) ? <CheckCircle2 className="h-6 w-6" /> : <PlayCircle className="h-6 w-6" />}
-                          </div>
-                          <div className="flex-1">
-                            <h4 className={`font-semibold ${completedItems.includes(`${lesson.id}-video`) ? 'text-slate-300' : 'text-blue-400'}`}>
-                              {isRtl ? 'فيديو الشرح' : 'Instructional Video'}
-                            </h4>
-                            <p className="text-xs text-slate-500 mt-0.5">{lesson.durationMinutes} {isRtl ? 'دقيقة' : 'minutes'}</p>
-                          </div>
-                        </Link>
+                      {isExpanded ? (
+                        <ChevronUp className="h-6 w-6 text-slate-400" />
+                      ) : (
+                        <ChevronDown className="h-6 w-6 text-slate-400" />
                       )}
+                    </button>
 
-                      {/* 2. PDF Item */}
-                      {lesson.pdfUrl && (
-                        <a 
-                          href={isLessonLocked ? '#' : lesson.pdfUrl}
-                          target={isLessonLocked ? '_self' : '_blank'}
-                          rel="noreferrer"
-                          className={`flex items-center gap-4 px-6 py-4 transition-colors ${
-                            isLessonLocked ? 'opacity-50 cursor-not-allowed' : 'hover:bg-slate-800/50'
-                          }`}
-                        >
-                          <div className="shrink-0 text-slate-400">
-                            <FileText className="h-6 w-6" />
-                          </div>
-                          <div className="flex-1">
-                            <h4 className="font-semibold text-slate-300">
-                              {isRtl ? 'ملف المادة (PDF)' : 'Study Material (PDF)'}
-                            </h4>
-                            <p className="text-xs text-slate-500 mt-0.5">{isRtl ? 'ملخص وملاحظات' : 'Summary and notes'}</p>
-                          </div>
-                        </a>
-                      )}
+                    {/* Lessons List (Collapsible) */}
+                    {isExpanded && (
+                      <div className="divide-y divide-slate-800/50 bg-slate-900/30">
+                        {unit.lessons.map((lesson, lessonIdx) => {
+                          const isLessonLocked = lesson.locked;
+                          
+                          return (
+                            <div key={lesson.id} className="pl-6 pr-4 py-2 relative">
+                              <div className="absolute top-0 start-4 w-px h-full bg-slate-800"></div>
+                              {/* Lesson Sub-header */}
+                              <div className="px-4 py-3 flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                  <div className="h-6 w-6 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-bold text-slate-400 relative z-10">
+                                    {lessonIdx + 1}
+                                  </div>
+                                  <h4 className="text-md font-bold text-slate-200">
+                                    {isRtl ? lesson.titleAr : lesson.titleEn}
+                                  </h4>
+                                </div>
+                                {isLessonLocked && <Lock className="h-4 w-4 text-slate-500" />}
+                              </div>
 
-                      {/* 3. Practice Item */}
-                      {lesson.questions && lesson.questions.length > 0 && (
-                        <Link 
-                          href={isLessonLocked ? '#' : `/${locale}/courses/${courseId}/practice/${lesson.id}`}
-                          className={`flex items-center gap-4 px-6 py-4 transition-colors ${
-                            isLessonLocked ? 'opacity-50 cursor-not-allowed' : 'hover:bg-slate-800/50'
-                          }`}
-                        >
-                          <div className={`shrink-0 ${completedItems.includes(`${lesson.id}-practice`) ? 'text-emerald-500' : 'text-amber-500'}`}>
-                            {completedItems.includes(`${lesson.id}-practice`) ? <CheckCircle2 className="h-6 w-6" /> : <Star className="h-6 w-6" />}
-                          </div>
-                          <div className="flex-1">
-                            <h4 className={`font-semibold ${completedItems.includes(`${lesson.id}-practice`) ? 'text-slate-300' : 'text-amber-400'}`}>
-                              {isRtl ? 'تمرين تفاعلي' : 'Practice Exercise'}
-                            </h4>
-                            <p className="text-xs text-slate-500 mt-0.5">
-                              {lesson.questions.length} {isRtl ? 'أسئلة' : 'questions'}
-                            </p>
-                          </div>
-                        </Link>
-                      )}
-                    </div>
+                              {/* Lesson Items */}
+                              <div className="ps-8 pe-2 pb-4 space-y-2">
+                                {/* 1. Video Item */}
+                                {lesson.videoUrl && (
+                                  <Link 
+                                    href={isLessonLocked ? '#' : `/${locale}/courses/${courseId}/video/${lesson.id}`}
+                                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors bg-slate-900/50 border border-slate-800 hover:border-slate-700 ${
+                                      isLessonLocked ? 'opacity-50 cursor-not-allowed' : 'hover:bg-slate-800/80'
+                                    }`}
+                                  >
+                                    <div className={`shrink-0 ${completedItems.includes(`${lesson.id}-video`) ? 'text-emerald-500' : 'text-brand-500'}`}>
+                                      {completedItems.includes(`${lesson.id}-video`) ? <CheckCircle2 className="h-5 w-5" /> : <PlayCircle className="h-5 w-5" />}
+                                    </div>
+                                    <div className="flex-1">
+                                      <h5 className={`font-semibold text-sm ${completedItems.includes(`${lesson.id}-video`) ? 'text-slate-300' : 'text-blue-400'}`}>
+                                        {isRtl ? 'فيديو الشرح' : 'Instructional Video'}
+                                      </h5>
+                                      <p className="text-xs text-slate-500 mt-0.5">{lesson.durationMinutes} {isRtl ? 'دقيقة' : 'minutes'}</p>
+                                    </div>
+                                  </Link>
+                                )}
+
+                                {/* 2. PDF Item */}
+                                {lesson.pdfUrl && (
+                                  <a 
+                                    href={isLessonLocked ? '#' : lesson.pdfUrl}
+                                    target={isLessonLocked ? '_self' : '_blank'}
+                                    rel="noreferrer"
+                                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors bg-slate-900/50 border border-slate-800 hover:border-slate-700 ${
+                                      isLessonLocked ? 'opacity-50 cursor-not-allowed' : 'hover:bg-slate-800/80'
+                                    }`}
+                                  >
+                                    <div className="shrink-0 text-slate-400">
+                                      <FileText className="h-5 w-5" />
+                                    </div>
+                                    <div className="flex-1">
+                                      <h5 className="font-semibold text-sm text-slate-300">
+                                        {isRtl ? 'ملف المادة (PDF)' : 'Study Material (PDF)'}
+                                      </h5>
+                                    </div>
+                                  </a>
+                                )}
+
+                                {/* 3. Practice Item */}
+                                {lesson.questions && lesson.questions.length > 0 && (
+                                  <Link 
+                                    href={isLessonLocked ? '#' : `/${locale}/courses/${courseId}/practice/${lesson.id}`}
+                                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors bg-slate-900/50 border border-slate-800 hover:border-slate-700 ${
+                                      isLessonLocked ? 'opacity-50 cursor-not-allowed' : 'hover:bg-slate-800/80'
+                                    }`}
+                                  >
+                                    <div className={`shrink-0 ${completedItems.includes(`${lesson.id}-practice`) ? 'text-emerald-500' : 'text-amber-500'}`}>
+                                      {completedItems.includes(`${lesson.id}-practice`) ? <CheckCircle2 className="h-5 w-5" /> : <Star className="h-5 w-5" />}
+                                    </div>
+                                    <div className="flex-1">
+                                      <h5 className={`font-semibold text-sm ${completedItems.includes(`${lesson.id}-practice`) ? 'text-slate-300' : 'text-amber-400'}`}>
+                                        {isRtl ? 'تمرين تفاعلي' : 'Practice Exercise'}
+                                      </h5>
+                                      <p className="text-xs text-slate-500 mt-0.5">
+                                        {lesson.questions.length} {isRtl ? 'أسئلة' : 'questions'}
+                                      </p>
+                                    </div>
+                                  </Link>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
                 );
               })}

@@ -25,10 +25,19 @@ interface Lesson {
   order: number;
 }
 
+interface Unit {
+  id: string;
+  titleAr: string;
+  titleEn: string;
+  order: number;
+  lessons: Lesson[];
+}
+
 interface Course {
   id: string;
   titleAr: string;
   titleEn: string;
+  units: Unit[];
   lessons: Lesson[];
 }
 
@@ -159,51 +168,60 @@ export default function DedicatedVideoPlayerPage() {
           </Link>
         </div>
         
-        <div className="flex-1 overflow-y-auto p-4 space-y-2">
-          {course.lessons?.sort((a,b) => a.order - b.order).map((lesson, idx) => {
-            const isActive = lesson.id === lessonId;
-            const isCompleted = completedLessons.includes(lesson.id);
-            
-            return (
-              <div key={lesson.id} className={`p-3 rounded-xl border ${isActive ? 'bg-brand-500/10 border-brand-500/30' : 'bg-slate-900/50 border-slate-800 hover:bg-slate-800'} transition-colors`}>
-                <div className="flex items-start gap-3">
-                  <div className="mt-1">
-                    {isCompleted ? (
-                      <CheckCircle2 className="h-5 w-5 text-emerald-500" />
-                    ) : (
-                      <div className={`h-5 w-5 rounded-full border-2 flex items-center justify-center text-[10px] font-bold ${isActive ? 'border-brand-500 text-brand-400' : 'border-slate-600 text-slate-400'}`}>
-                        {idx + 1}
+        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          {course.units?.sort((a,b) => a.order - b.order).map((unit, unitIdx) => (
+            <div key={unit.id} className="space-y-2">
+              <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider px-2">
+                {isRtl ? unit.titleAr : unit.titleEn}
+              </h3>
+              <div className="space-y-2">
+                {unit.lessons?.sort((a,b) => a.order - b.order).map((lesson, idx) => {
+                  const isActive = lesson.id === lessonId;
+                  const isCompleted = completedLessons.includes(lesson.id);
+                  
+                  return (
+                    <div key={lesson.id} className={`p-3 rounded-xl border ${isActive ? 'bg-brand-500/10 border-brand-500/30' : 'bg-slate-900/50 border-slate-800 hover:bg-slate-800'} transition-colors`}>
+                      <div className="flex items-start gap-3">
+                        <div className="mt-1">
+                          {isCompleted ? (
+                            <CheckCircle2 className="h-5 w-5 text-emerald-500" />
+                          ) : (
+                            <div className={`h-5 w-5 rounded-full border-2 flex items-center justify-center text-[10px] font-bold ${isActive ? 'border-brand-500 text-brand-400' : 'border-slate-600 text-slate-400'}`}>
+                              {idx + 1}
+                            </div>
+                          )}
+                        </div>
+                        <div className="flex-1">
+                          <h4 className={`text-sm font-semibold mb-2 ${isActive ? 'text-brand-400' : 'text-slate-200'}`}>
+                            {isRtl ? lesson.titleAr : lesson.titleEn}
+                          </h4>
+                          
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <Link href={`/${locale}/courses/${courseId}/video/${lesson.id}`} className={`flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium ${isActive ? 'bg-brand-500 text-white' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'} transition-colors`}>
+                              <Play className="h-3 w-3" />
+                              <span>{isRtl ? 'الفيديو' : 'Video'}</span>
+                            </Link>
+                            
+                            {lesson.pdfUrl && (
+                              <Link href={lesson.pdfUrl} target="_blank" className="flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors">
+                                <FileText className="h-3 w-3" />
+                                <span>{isRtl ? 'الملخصات' : 'Notes'}</span>
+                              </Link>
+                            )}
+                            
+                            <Link href={`/${locale}/courses/${courseId}/practice/${lesson.id}`} className="flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium bg-slate-800 text-amber-400 hover:bg-slate-700 transition-colors">
+                              <Star className="h-3 w-3" />
+                              <span>{isRtl ? 'التدريب' : 'Practice'}</span>
+                            </Link>
+                          </div>
+                        </div>
                       </div>
-                    )}
-                  </div>
-                  <div className="flex-1">
-                    <h4 className={`text-sm font-semibold mb-2 ${isActive ? 'text-brand-400' : 'text-slate-200'}`}>
-                      {isRtl ? lesson.titleAr : lesson.titleEn}
-                    </h4>
-                    
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <Link href={`/${locale}/courses/${courseId}/video/${lesson.id}`} className={`flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium ${isActive ? 'bg-brand-500 text-white' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'} transition-colors`}>
-                        <Play className="h-3 w-3" />
-                        <span>{isRtl ? 'الفيديو' : 'Video'}</span>
-                      </Link>
-                      
-                      {lesson.pdfUrl && (
-                        <Link href={lesson.pdfUrl} target="_blank" className="flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors">
-                          <FileText className="h-3 w-3" />
-                          <span>{isRtl ? 'الملخصات' : 'Notes'}</span>
-                        </Link>
-                      )}
-                      
-                      <Link href={`/${locale}/courses/${courseId}/practice/${lesson.id}`} className="flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium bg-slate-800 text-amber-400 hover:bg-slate-700 transition-colors">
-                        <Star className="h-3 w-3" />
-                        <span>{isRtl ? 'التدريب' : 'Practice'}</span>
-                      </Link>
                     </div>
-                  </div>
-                </div>
+                  );
+                })}
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </aside>
 

@@ -61,7 +61,7 @@ model Course {
   teacherId     String
   teacher       User         @relation("TeacherCourses", fields: [teacherId], references: [id])
   
-  lessons       Lesson[]
+  units         Unit[]
   liveSessions  LiveSession[]
   exams         Exam[]
   enrollments   Enrollment[]
@@ -71,6 +71,23 @@ model Course {
   updatedAt     DateTime     @updatedAt
 
   @@map("courses")
+}
+
+model Unit {
+  id        String   @id @default(uuid())
+  titleAr   String
+  titleEn   String
+  order     Int
+  
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  
+  lessons   Lesson[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("units")
 }
 
 model Lesson {
@@ -83,8 +100,11 @@ model Lesson {
   order           Int
   locked          Boolean          @default(false)
   
-  courseId        String
-  course          Course           @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  explanationAr   String?          @db.Text
+  explanationEn   String?          @db.Text
+  
+  unitId          String
+  unit            Unit             @relation(fields: [unitId], references: [id], onDelete: Cascade)
   
   questions       InlineQuestion[]
   comments        Comment[]

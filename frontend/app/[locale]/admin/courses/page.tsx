@@ -25,11 +25,21 @@ interface Lesson {
   titleAr: string;
   titleEn: string;
   videoUrl: string;
-  pdfUrl: string;
+  pdfUrl?: string;
   durationMinutes: number;
   order: number;
   locked: boolean;
   questions?: InlineQuestion[];
+  explanationAr?: string;
+  explanationEn?: string;
+}
+
+interface Unit {
+  id: string;
+  titleAr: string;
+  titleEn: string;
+  order: number;
+  lessons: Lesson[];
 }
 
 interface LiveSession {
@@ -55,7 +65,9 @@ interface Course {
   teacherNameAr: string;
   teacherNameEn: string;
   thumbnailUrl: string;
-  lessons: Lesson[];
+  coverImage?: string;
+  units: Unit[];
+  lessons?: Lesson[]; // Backward compatibility placeholder
   liveSessions?: LiveSession[];
   published: boolean;
   locked: boolean;
@@ -69,109 +81,14 @@ interface AppUser {
   email: string;
   password: string;
   role: 'ADMIN' | 'TEACHER' | 'STUDENT' | 'PARENT';
-  trackType?: 'BTEC' | 'ACADEMIC';
   assignedCourseIds?: string[];
   createdAt: string;
 }
 
-/* ─── Storage keys ──────────────────────────────────────────────────────── */
-const COURSES_KEY = 'admin-courses';
-const USERS_KEY = 'admin-users';
+const COURSES_KEY = 'tawjihi_courses';
+const USERS_KEY = 'tawjihi_users';
 
-/* ─── Default seed data ─────────────────────────────────────────────────── */
 const defaultCourses: Course[] = [
-  {
-    id: 'mock-btec-arabic-s1',
-    titleAr: 'اللغة العربية - BTEC الفصل الأول',
-    titleEn: 'Arabic Language - BTEC S1',
-    descriptionAr: 'دورة شاملة في اللغة العربية لطلاب مسار BTEC للفصل الدراسي الأول.',
-    descriptionEn: 'Comprehensive Arabic course for BTEC track - First Semester.',
-    track: 'BTEC', semester: 1, subjectAr: 'اللغة العربية', subjectEn: 'Arabic Language',
-    teacherId: 'teacher-001', teacherNameAr: 'أ. محمد المهني', teacherNameEn: 'Mr. Mohammad',
-    thumbnailUrl: '', published: true, locked: false,
-    createdAt: new Date().toISOString(),
-    lessons: [
-      { id: 'l-ba1', titleAr: 'مقدمة في الأدب العربي', titleEn: 'Intro to Arabic Literature', videoUrl: '', pdfUrl: '', durationMinutes: 45, order: 1, locked: false },
-      { id: 'l-ba2', titleAr: 'النحو والصرف', titleEn: 'Grammar & Morphology', videoUrl: '', pdfUrl: '', durationMinutes: 60, order: 2, locked: false },
-    ],
-  },
-  {
-    id: 'mock-btec-english-s1',
-    titleAr: 'اللغة الإنجليزية - BTEC الفصل الأول',
-    titleEn: 'English Language - BTEC S1',
-    descriptionAr: 'دورة اللغة الإنجليزية لطلاب مسار BTEC للفصل الدراسي الأول.',
-    descriptionEn: 'English Language course for BTEC track - First Semester.',
-    track: 'BTEC', semester: 1, subjectAr: 'اللغة الإنجليزية', subjectEn: 'English Language',
-    teacherId: 'teacher-001', teacherNameAr: 'أ. محمد المهني', teacherNameEn: 'Mr. Mohammad',
-    thumbnailUrl: '', published: true, locked: false,
-    createdAt: new Date().toISOString(),
-    lessons: [
-      { id: 'l-be1', titleAr: 'المهارات الأربع', titleEn: 'The Four Skills', videoUrl: '', pdfUrl: '', durationMinutes: 50, order: 1, locked: false },
-    ],
-  },
-  {
-    id: 'mock-btec-history-s1',
-    titleAr: 'التاريخ الأردني - BTEC الفصل الأول',
-    titleEn: 'Jordan History - BTEC S1',
-    descriptionAr: 'التاريخ الأردني والحضارة لطلاب مسار BTEC للفصل الأول.',
-    descriptionEn: 'Jordanian History and Civilization for BTEC - Semester 1.',
-    track: 'BTEC', semester: 1, subjectAr: 'التاريخ', subjectEn: 'History',
-    teacherId: 'teacher-001', teacherNameAr: 'أ. محمد المهني', teacherNameEn: 'Mr. Mohammad',
-    thumbnailUrl: '', published: false, locked: false,
-    createdAt: new Date().toISOString(), lessons: [],
-  },
-  {
-    id: 'mock-btec-islamic-s2',
-    titleAr: 'التربية الإسلامية - BTEC الفصل الثاني',
-    titleEn: 'Islamic Education - BTEC S2',
-    descriptionAr: 'التربية الإسلامية لطلاب مسار BTEC للفصل الدراسي الثاني.',
-    descriptionEn: 'Islamic Education for BTEC track - Second Semester.',
-    track: 'BTEC', semester: 2, subjectAr: 'التربية الإسلامية', subjectEn: 'Islamic Education',
-    teacherId: 'teacher-001', teacherNameAr: 'أ. محمد المهني', teacherNameEn: 'Mr. Mohammad',
-    thumbnailUrl: '', published: false, locked: true,
-    createdAt: new Date().toISOString(), lessons: [],
-  },
-  {
-    id: 'mock-acad-math-s1',
-    titleAr: 'الرياضيات العلمية - أكاديمي الفصل الأول',
-    titleEn: 'Mathematics - Academic S1',
-    descriptionAr: 'الرياضيات للصف الثاني عشر العلمي — التفاضل والتكامل والجبر.',
-    descriptionEn: 'Grade 12 Scientific Math — Calculus, Algebra, and more.',
-    track: 'ACADEMIC', semester: 1, subjectAr: 'الرياضيات', subjectEn: 'Mathematics',
-    teacherId: 'teacher-002', teacherNameAr: 'أ. أحمد العلمي', teacherNameEn: 'Dr. Ahmad',
-    thumbnailUrl: '', published: true, locked: false,
-    createdAt: new Date().toISOString(),
-    lessons: [
-      { id: 'l-am1', titleAr: 'حدود الدوال', titleEn: 'Limits of Functions', videoUrl: '', pdfUrl: '', durationMinutes: 50, order: 1, locked: false },
-      { id: 'l-am2', titleAr: 'المشتقات والتفاضل', titleEn: 'Derivatives & Differentiation', videoUrl: '', pdfUrl: '', durationMinutes: 55, order: 2, locked: false },
-      { id: 'l-am3', titleAr: 'التكامل', titleEn: 'Integration', videoUrl: '', pdfUrl: '', durationMinutes: 60, order: 3, locked: true },
-    ],
-  },
-  {
-    id: 'mock-acad-physics-s1',
-    titleAr: 'الفيزياء - أكاديمي الفصل الأول',
-    titleEn: 'Physics - Academic S1',
-    descriptionAr: 'الفيزياء للصف الثاني عشر العلمي — الميكانيكا والحركة والطاقة.',
-    descriptionEn: 'Grade 12 Physics — Mechanics, Motion, and Energy.',
-    track: 'ACADEMIC', semester: 1, subjectAr: 'الفيزياء', subjectEn: 'Physics',
-    teacherId: 'teacher-002', teacherNameAr: 'أ. أحمد العلمي', teacherNameEn: 'Dr. Ahmad',
-    thumbnailUrl: '', published: true, locked: false,
-    createdAt: new Date().toISOString(),
-    lessons: [
-      { id: 'l-ap1', titleAr: 'قوانين نيوتن', titleEn: "Newton's Laws", videoUrl: '', pdfUrl: '', durationMinutes: 55, order: 1, locked: false },
-    ],
-  },
-  {
-    id: 'mock-acad-chemistry-s1',
-    titleAr: 'الكيمياء - أكاديمي الفصل الأول',
-    titleEn: 'Chemistry - Academic S1',
-    descriptionAr: 'الكيمياء العضوية وغير العضوية للصف الثاني عشر.',
-    descriptionEn: 'Organic and Inorganic Chemistry for Grade 12.',
-    track: 'ACADEMIC', semester: 1, subjectAr: 'الكيمياء', subjectEn: 'Chemistry',
-    teacherId: 'teacher-002', teacherNameAr: 'أ. أحمد العلمي', teacherNameEn: 'Dr. Ahmad',
-    thumbnailUrl: '', published: false, locked: false,
-    createdAt: new Date().toISOString(), lessons: [],
-  },
   {
     id: 'mock-acad-biology-s2',
     titleAr: 'الأحياء - أكاديمي الفصل الثاني',
@@ -181,7 +98,7 @@ const defaultCourses: Course[] = [
     track: 'ACADEMIC', semester: 2, subjectAr: 'الأحياء', subjectEn: 'Biology',
     teacherId: 'teacher-002', teacherNameAr: 'أ. أحمد العلمي', teacherNameEn: 'Dr. Ahmad',
     thumbnailUrl: '', published: false, locked: true,
-    createdAt: new Date().toISOString(), lessons: [],
+    createdAt: new Date().toISOString(), units: [], lessons: [],
   },
 ];
 
@@ -244,7 +161,7 @@ const emptyCourse = (teachers: AppUser[]): Course => ({
   teacherNameAr: teachers[0]?.nameAr || '',
   teacherNameEn: teachers[0]?.nameEn || '',
   thumbnailUrl: '', published: false, locked: false,
-  createdAt: new Date().toISOString(), lessons: [], liveSessions: [],
+  createdAt: new Date().toISOString(), units: [], lessons: [], liveSessions: [],
 });
 
 /* ─── Toast ─────────────────────────────────────────────────────────────── */
@@ -377,19 +294,48 @@ export default function AdminCoursesPage() {
     showToast(isRtl ? 'تم حفظ التغييرات' : 'Changes saved');
   };
 
-  /* Draft lesson helpers */
-  const addLessonToDraft = () => {
+  /* Draft helpers */
+  const addUnitToDraft = () => {
     if (!editDraft) return;
-    const l = emptyLesson(); l.order = editDraft.lessons.length + 1;
-    setEditDraft({ ...editDraft, lessons: [...editDraft.lessons, l] });
+    const u: Unit = { id: `unit-${Date.now()}`, titleAr: '', titleEn: '', order: (editDraft.units?.length || 0) + 1, lessons: [] };
+    setEditDraft({ ...editDraft, units: [...(editDraft.units || []), u] });
   };
-  const updateDraftLesson = (lid: string, field: keyof Lesson, value: any) => {
+  const updateDraftUnit = (uid: string, field: keyof Unit, value: any) => {
     if (!editDraft) return;
-    setEditDraft({ ...editDraft, lessons: editDraft.lessons.map(l => l.id === lid ? { ...l, [field]: value } : l) });
+    setEditDraft({ ...editDraft, units: (editDraft.units || []).map(u => u.id === uid ? { ...u, [field]: value } : u) });
   };
-  const deleteDraftLesson = (lid: string) => {
+  const deleteDraftUnit = (uid: string) => {
     if (!editDraft) return;
-    setEditDraft({ ...editDraft, lessons: editDraft.lessons.filter(l => l.id !== lid) });
+    setEditDraft({ ...editDraft, units: (editDraft.units || []).filter(u => u.id !== uid) });
+  };
+
+  const addLessonToDraft = (unitId: string) => {
+    if (!editDraft) return;
+    const u = editDraft.units?.find(unit => unit.id === unitId);
+    if (!u) return;
+    const l = emptyLesson(); l.order = (u.lessons?.length || 0) + 1;
+    setEditDraft({
+      ...editDraft,
+      units: editDraft.units!.map(unit => unit.id === unitId ? { ...unit, lessons: [...(unit.lessons || []), l] } : unit)
+    });
+  };
+  const updateDraftLesson = (unitId: string, lid: string, field: keyof Lesson, value: any) => {
+    if (!editDraft) return;
+    setEditDraft({
+      ...editDraft,
+      units: editDraft.units!.map(unit => unit.id === unitId ? {
+        ...unit, lessons: unit.lessons.map(l => l.id === lid ? { ...l, [field]: value } : l)
+      } : unit)
+    });
+  };
+  const deleteDraftLesson = (unitId: string, lid: string) => {
+    if (!editDraft) return;
+    setEditDraft({
+      ...editDraft,
+      units: editDraft.units!.map(unit => unit.id === unitId ? {
+        ...unit, lessons: unit.lessons.filter(l => l.id !== lid)
+      } : unit)
+    });
   };
 
   /* Add course */
@@ -425,18 +371,48 @@ export default function AdminCoursesPage() {
     showToast(isRtl ? 'تمت إضافة الدورة بنجاح' : 'Course added successfully');
   };
 
-  const addLessonToNew = () => {
+  /* New course helpers */
+  const addUnitToNew = () => {
     if (!newCourse) return;
-    const l = emptyLesson(); l.order = newCourse.lessons.length + 1;
-    setNewCourse({ ...newCourse, lessons: [...newCourse.lessons, l] });
+    const u: Unit = { id: `unit-${Date.now()}`, titleAr: '', titleEn: '', order: (newCourse.units?.length || 0) + 1, lessons: [] };
+    setNewCourse({ ...newCourse, units: [...(newCourse.units || []), u] });
   };
-  const updateNewLesson = (lid: string, field: keyof Lesson, value: any) => {
+  const updateNewUnit = (uid: string, field: keyof Unit, value: any) => {
     if (!newCourse) return;
-    setNewCourse({ ...newCourse, lessons: newCourse.lessons.map(l => l.id === lid ? { ...l, [field]: value } : l) });
+    setNewCourse({ ...newCourse, units: (newCourse.units || []).map(u => u.id === uid ? { ...u, [field]: value } : u) });
   };
-  const deleteNewLesson = (lid: string) => {
+  const deleteNewUnit = (uid: string) => {
     if (!newCourse) return;
-    setNewCourse({ ...newCourse, lessons: newCourse.lessons.filter(l => l.id !== lid) });
+    setNewCourse({ ...newCourse, units: (newCourse.units || []).filter(u => u.id !== uid) });
+  };
+
+  const addLessonToNew = (unitId: string) => {
+    if (!newCourse) return;
+    const u = newCourse.units?.find(unit => unit.id === unitId);
+    if (!u) return;
+    const l = emptyLesson(); l.order = (u.lessons?.length || 0) + 1;
+    setNewCourse({
+      ...newCourse,
+      units: newCourse.units!.map(unit => unit.id === unitId ? { ...unit, lessons: [...(unit.lessons || []), l] } : unit)
+    });
+  };
+  const updateNewLesson = (unitId: string, lid: string, field: keyof Lesson, value: any) => {
+    if (!newCourse) return;
+    setNewCourse({
+      ...newCourse,
+      units: newCourse.units!.map(unit => unit.id === unitId ? {
+        ...unit, lessons: unit.lessons.map(l => l.id === lid ? { ...l, [field]: value } : l)
+      } : unit)
+    });
+  };
+  const deleteNewLesson = (unitId: string, lid: string) => {
+    if (!newCourse) return;
+    setNewCourse({
+      ...newCourse,
+      units: newCourse.units!.map(unit => unit.id === unitId ? {
+        ...unit, lessons: unit.lessons.filter(l => l.id !== lid)
+      } : unit)
+    });
   };
 
   /* ── Loading / Unauth ──────────────────────────────────────────────────── */
@@ -594,6 +570,9 @@ export default function AdminCoursesPage() {
               onChange={setNewCourse}
               teachers={teachers}
               isRtl={isRtl}
+              onAddUnit={addUnitToNew}
+              onUpdateUnit={updateNewUnit}
+              onDeleteUnit={deleteNewUnit}
               onAddLesson={addLessonToNew}
               onUpdateLesson={updateNewLesson}
               onDeleteLesson={deleteNewLesson}
@@ -679,7 +658,7 @@ export default function AdminCoursesPage() {
                       {isRtl ? course.titleAr : course.titleEn}
                     </p>
                     <p className="text-xs text-slate-500 mt-0.5 flex items-center gap-2 flex-wrap">
-                      <span>{isRtl ? `${course.lessons.length} درس` : `${course.lessons.length} lesson(s)`}</span>
+                      <span>{isRtl ? `${(course.units || []).reduce((acc, u) => acc + (u.lessons?.length || 0), 0)} درس` : `${(course.units || []).reduce((acc, u) => acc + (u.lessons?.length || 0), 0)} lesson(s)`}</span>
                       {(course.subjectAr || course.subjectEn) && <span className="text-slate-700">•</span>}
                       {(course.subjectAr || course.subjectEn) && (
                         <span>{isRtl ? course.subjectAr : course.subjectEn}</span>
@@ -761,6 +740,9 @@ export default function AdminCoursesPage() {
                           onChange={setEditDraft}
                           teachers={teachers}
                           isRtl={isRtl}
+                          onAddUnit={addUnitToDraft}
+                          onUpdateUnit={updateDraftUnit}
+                          onDeleteUnit={deleteDraftUnit}
                           onAddLesson={addLessonToDraft}
                           onUpdateLesson={updateDraftLesson}
                           onDeleteLesson={deleteDraftLesson}
@@ -796,30 +778,40 @@ export default function AdminCoursesPage() {
                         )}
 
                         {/* Lesson list */}
-                        <div className="space-y-2">
+                        <div className="space-y-4">
                           <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-                            {isRtl ? 'قائمة الدروس' : 'Lessons'}
+                            {isRtl ? 'قائمة الدروس (حسب الوحدة)' : 'Lessons by Unit'}
                           </p>
-                          {course.lessons.length === 0 ? (
+                          {(!course.units || course.units.length === 0) ? (
                             <p className="text-xs text-slate-600 italic">
-                              {isRtl ? 'لا توجد دروس. اضغط تعديل لإضافة دروس.' : 'No lessons yet. Click edit to add lessons.'}
+                              {isRtl ? 'لا توجد وحدات. اضغط تعديل لإضافة وحدات ودروس.' : 'No units yet. Click edit to add units and lessons.'}
                             </p>
                           ) : (
-                            course.lessons
-                              .slice()
-                              .sort((a, b) => a.order - b.order)
-                              .map((lesson, idx) => (
-                                <div key={lesson.id} className="flex items-center gap-3 px-4 py-2.5 bg-slate-950/50 border border-slate-800/50 rounded-xl hover:border-slate-700 transition-all">
-                                  <span className="text-xs font-black text-slate-600 w-5 shrink-0 text-center">{idx + 1}</span>
-                                  <Video className="h-3.5 w-3.5 text-slate-500 shrink-0" />
-                                  <span className="text-xs font-semibold text-slate-300 flex-1 truncate">
-                                    {isRtl ? lesson.titleAr : lesson.titleEn}
-                                  </span>
-                                  {lesson.pdfUrl && <FileText className="h-3 w-3 text-blue-400 shrink-0" />}
-                                  {lesson.locked && <Lock className="h-3 w-3 text-amber-400 shrink-0" />}
-                                  <span className="text-xs text-slate-600 shrink-0">{lesson.durationMinutes}m</span>
-                                </div>
-                              ))
+                            course.units.slice().sort((a, b) => a.order - b.order).map((unit, uIdx) => (
+                              <div key={unit.id} className="space-y-2">
+                                <p className="text-sm font-bold text-white flex items-center gap-2">
+                                  <span className="text-brand-400">{uIdx + 1}.</span> {isRtl ? unit.titleAr : unit.titleEn}
+                                </p>
+                                {(!unit.lessons || unit.lessons.length === 0) ? (
+                                  <p className="text-xs text-slate-600 italic px-4">
+                                    {isRtl ? 'لا توجد دروس في هذه الوحدة.' : 'No lessons in this unit.'}
+                                  </p>
+                                ) : (
+                                  unit.lessons.slice().sort((a, b) => a.order - b.order).map((lesson, idx) => (
+                                    <div key={lesson.id} className="flex items-center gap-3 px-4 py-2.5 bg-slate-950/50 border border-slate-800/50 rounded-xl hover:border-slate-700 transition-all ms-4">
+                                      <span className="text-xs font-black text-slate-600 w-5 shrink-0 text-center">{idx + 1}</span>
+                                      <Video className="h-3.5 w-3.5 text-slate-500 shrink-0" />
+                                      <span className="text-xs font-semibold text-slate-300 flex-1 truncate">
+                                        {isRtl ? lesson.titleAr : lesson.titleEn}
+                                      </span>
+                                      {lesson.pdfUrl && <FileText className="h-3 w-3 text-blue-400 shrink-0" />}
+                                      {lesson.locked && <Lock className="h-3 w-3 text-amber-400 shrink-0" />}
+                                      <span className="text-xs text-slate-600 shrink-0">{lesson.durationMinutes}m</span>
+                                    </div>
+                                  ))
+                                )}
+                              </div>
+                            ))
                           )}
                         </div>
                       </>
@@ -838,6 +830,7 @@ export default function AdminCoursesPage() {
 /* ─── CourseForm sub-component ──────────────────────────────────────────── */
 function CourseForm({
   course, onChange, teachers, isRtl,
+  onAddUnit, onUpdateUnit, onDeleteUnit,
   onAddLesson, onUpdateLesson, onDeleteLesson,
   onAddLiveSession, onUpdateLiveSession, onDeleteLiveSession,
 }: {
@@ -845,13 +838,18 @@ function CourseForm({
   onChange: (c: Course) => void;
   teachers: AppUser[];
   isRtl: boolean;
-  onAddLesson: () => void;
-  onUpdateLesson: (id: string, field: keyof Lesson, val: any) => void;
-  onDeleteLesson: (id: string) => void;
+  onAddUnit: () => void;
+  onUpdateUnit: (uid: string, field: keyof Unit, val: any) => void;
+  onDeleteUnit: (uid: string) => void;
+  onAddLesson: (unitId: string) => void;
+  onUpdateLesson: (unitId: string, lid: string, field: keyof Lesson, val: any) => void;
+  onDeleteLesson: (unitId: string, lid: string) => void;
   onAddLiveSession: () => void;
   onUpdateLiveSession: (id: string, field: keyof LiveSession, val: any) => void;
   onDeleteLiveSession: (id: string) => void;
 }) {
+  const [expandedUnits, setExpandedUnits] = useState<Record<string, boolean>>({});
+  const toggleUnit = (uid: string) => setExpandedUnits(p => ({ ...p, [uid]: !p[uid] }));
   const setField = <K extends keyof Course>(key: K, val: Course[K]) => onChange({ ...course, [key]: val });
 
   const handleTeacherChange = (tid: string) => {
@@ -952,24 +950,56 @@ function CourseForm({
         />
       </div>
 
-      {/* Lessons builder */}
-      <div className="space-y-3 pt-1">
-        <div className="flex items-center justify-between">
+      {/* Units & Lessons builder */}
+      <div className="space-y-4 pt-1">
+        <div className="flex items-center justify-between border-b border-slate-800/50 pb-2">
           <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-            {isRtl ? `الدروس (${course.lessons.length})` : `Lessons (${course.lessons.length})`}
+            {isRtl ? `الوحدات والدروس` : `Units & Lessons`}
           </p>
-          <button onClick={onAddLesson}
+          <button onClick={onAddUnit} type="button"
             className="flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 transition-colors px-2.5 py-1 rounded-lg hover:bg-brand-500/10">
-            <Plus className="h-3.5 w-3.5" />{isRtl ? 'إضافة درس' : 'Add Lesson'}
+            <Plus className="h-3.5 w-3.5" />{isRtl ? 'إضافة وحدة' : 'Add Unit'}
           </button>
         </div>
-        {course.lessons.map((lesson, idx) => (
-          <LessonEditor
-            key={lesson.id} lesson={lesson} idx={idx} isRtl={isRtl}
-            onChange={(field, val) => onUpdateLesson(lesson.id, field, val)}
-            onDelete={() => onDeleteLesson(lesson.id)}
-          />
-        ))}
+        {(course.units || []).map((unit, uIdx) => {
+          const isExpanded = expandedUnits[unit.id] !== false; // expanded by default
+          return (
+            <div key={unit.id} className="border border-slate-800/60 rounded-xl bg-slate-900/40 overflow-hidden">
+              <div className="p-3 flex flex-wrap items-center gap-3 bg-slate-900/60">
+                <button type="button" onClick={() => toggleUnit(unit.id)} className="p-1.5 rounded-lg text-slate-500 hover:text-white hover:bg-slate-800 transition-all">
+                  <ChevronDown className={`h-4 w-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                </button>
+                <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-2 min-w-[200px]">
+                  <LessonInput dir="rtl" value={unit.titleAr} placeholder={isRtl ? 'عنوان الوحدة (عربي)' : 'Unit Title (Arabic)'} onChange={v => onUpdateUnit(unit.id, 'titleAr', v)} />
+                  <LessonInput dir="ltr" value={unit.titleEn} placeholder="Unit Title (English)" onChange={v => onUpdateUnit(unit.id, 'titleEn', v)} />
+                </div>
+                <div className="flex items-center gap-1 shrink-0">
+                  <button type="button" onClick={() => onAddLesson(unit.id)} className="flex items-center gap-1 px-2.5 py-1.5 text-xs font-bold text-brand-400 bg-brand-500/10 hover:bg-brand-500/20 rounded-lg transition-colors">
+                    <Plus className="h-3.5 w-3.5" />{isRtl ? 'درس' : 'Lesson'}
+                  </button>
+                  <button type="button" onClick={() => onDeleteUnit(unit.id)} className="p-1.5 rounded-lg text-slate-600 hover:text-rose-400 hover:bg-rose-500/10 transition-all">
+                    <Trash2 className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
+              {isExpanded && (
+                <div className="p-4 space-y-3 border-t border-slate-800/60 bg-slate-950/30">
+                  {(!unit.lessons || unit.lessons.length === 0) ? (
+                    <p className="text-xs text-slate-500 italic text-center py-2">{isRtl ? 'لا توجد دروس في هذه الوحدة' : 'No lessons in this unit'}</p>
+                  ) : (
+                    unit.lessons.map((lesson, idx) => (
+                      <LessonEditor
+                        key={lesson.id} lesson={lesson} idx={idx} isRtl={isRtl}
+                        onChange={(field, val) => onUpdateLesson(unit.id, lesson.id, field, val)}
+                        onDelete={() => onDeleteLesson(unit.id, lesson.id)}
+                      />
+                    ))
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
 
       {/* Live Sessions builder */}
@@ -1077,7 +1107,7 @@ function LessonEditor({ lesson, idx, isRtl, onChange, onDelete }: {
         </div>
         <div className="space-y-1">
           <label className="text-3xs text-slate-600 flex items-center gap-1"><FileText className="h-2.5 w-2.5" />{isRtl ? 'رابط PDF' : 'PDF URL'}</label>
-          <LessonInput dir="ltr" value={lesson.pdfUrl} placeholder="https://..."
+          <LessonInput dir="ltr" value={lesson.pdfUrl || ''} placeholder="https://..."
             onChange={v => onChange('pdfUrl', v)} />
         </div>
         <div className="space-y-1">
@@ -1102,6 +1132,12 @@ function LessonEditor({ lesson, idx, isRtl, onChange, onDelete }: {
           {lesson.locked ? <Lock className="h-3 w-3" /> : <Unlock className="h-3 w-3" />}
           {lesson.locked ? (isRtl ? 'مقفول' : 'Locked') : (isRtl ? 'مفتوح' : 'Unlocked')}
         </button>
+      </div>
+
+      {/* Lesson Explanations */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3">
+        <TextAreaField dir="rtl" label={isRtl ? 'الشرح (عربي)' : 'Explanation (Arabic)'} value={lesson.explanationAr || ''} onChange={v => onChange('explanationAr', v)} />
+        <TextAreaField dir="ltr" label={isRtl ? 'الشرح (إنجليزي)' : 'Explanation (English)'} value={lesson.explanationEn || ''} onChange={v => onChange('explanationEn', v)} />
       </div>
 
       {/* Questions section */}

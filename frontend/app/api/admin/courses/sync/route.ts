@@ -56,8 +56,9 @@ export async function POST(request: Request) {
         }
       });
 
-      // To handle nested data simply in this migration, we will clear existing lessons and live sessions and recreate them.
-      await prisma.lesson.deleteMany({ where: { courseId: course.id } });
+      // To handle nested data simply in this migration, we will clear existing units and live sessions and recreate them.
+      // Deleting units cascades to lessons
+      await prisma.unit.deleteMany({ where: { courseId: course.id } });
       await prisma.liveSession.deleteMany({ where: { courseId: course.id } });
 
       if (course.liveSessions && course.liveSessions.length > 0) {
@@ -74,20 +75,33 @@ export async function POST(request: Request) {
         });
       }
 
-      for (const lesson of course.lessons || []) {
-        const createdLesson = await prisma.lesson.create({
+      for (const unit of course.units || []) {
+        const createdUnit = await prisma.unit.create({
           data: {
-            id: lesson.id,
+            id: unit.id,
             courseId: course.id,
-            titleAr: lesson.titleAr,
-            titleEn: lesson.titleEn,
-            videoUrl: lesson.videoUrl,
-            pdfUrl: lesson.pdfUrl,
-            durationMinutes: lesson.durationMinutes,
-            order: lesson.order,
-            locked: lesson.locked,
+            titleAr: unit.titleAr,
+            titleEn: unit.titleEn,
+            order: unit.order,
           }
         });
+
+        for (const lesson of unit.lessons || []) {
+          const createdLesson = await prisma.lesson.create({
+            data: {
+              id: lesson.id,
+              unitId: createdUnit.id,
+              titleAr: lesson.titleAr,
+              titleEn: lesson.titleEn,
+              videoUrl: lesson.videoUrl,
+              pdfUrl: lesson.pdfUrl,
+              durationMinutes: lesson.durationMinutes,
+              order: lesson.order,
+              locked: lesson.locked,
+              explanationAr: lesson.explanationAr,
+              explanationEn: lesson.explanationEn,
+            }
+          });
 
         if (lesson.questions && lesson.questions.length > 0) {
           for (const q of lesson.questions) {
@@ -114,7 +128,8 @@ export async function POST(request: Request) {
             }
           }
         }
-      }
+        } // Close lesson loop
+      } // Close unit loop
       } catch (err) {
         console.error(`Failed to sync course ${course.id}:`, err);
         // Continue to the next course instead of failing the entire sync request
