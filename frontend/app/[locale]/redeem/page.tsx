@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
@@ -77,14 +77,14 @@ export default function RedeemCouponPage() {
       const coupon = coupons.find(c => c.code.toUpperCase() === trimmedCode);
 
       if (!coupon) {
-        setErrorMsg(isRtl ? 'Ø§Ù„ÙƒÙˆØ¯ ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯ Ø§Ùˆ ØºÙŠØ± ØµØ­ÙŠØ­' : 'Code not found or invalid');
+        setErrorMsg(isRtl ? 'الكود غير موجود أو غير صحيح' : 'Code not found or invalid');
         setStatus('error');
         return;
       }
 
       const expiresAt = coupon.expiresAt ? new Date(coupon.expiresAt) : EXPIRY;
       if (now > expiresAt) {
-        setErrorMsg(isRtl ? 'Ø§Ù†ØªÙ‡Øª ØµÙ„Ø§Ø­ÙŠØ© Ù‡Ø°Ø§ Ø§Ù„ÙƒÙˆØ¨ÙˆÙ† ÙÙŠ 31 ÙŠÙˆÙ„ÙŠÙˆ 2026' : 'This coupon expired on July 31, 2026');
+        setErrorMsg(isRtl ? 'انتهت صلاحية هذا الكوبون' : 'This coupon expired');
         setStatus('error');
         return;
       }
@@ -96,7 +96,7 @@ export default function RedeemCouponPage() {
           setStatus('success');
           return;
         }
-        setErrorMsg(isRtl ? 'ØªÙ… Ø§Ø³ØªØ®Ø¯Ø§Ù… Ù‡Ø°Ø§ Ø§Ù„ÙƒÙˆØ¨ÙˆÙ† Ø¨Ø§Ù„ÙØ¹Ù„ Ù…Ù† Ù‚ÙØ¨Ù„ Ø·Ø§Ù„Ø¨ Ø¢Ø®Ø±' : 'This coupon has already been used by another student');
+        setErrorMsg(isRtl ? 'تم استخدام هذا الكوبون بالفعل من قِبل طالب آخر' : 'This coupon has already been used by another student');
         setStatus('error');
         return;
       }
@@ -123,7 +123,7 @@ export default function RedeemCouponPage() {
       setRedeemedCourse(coupon.course);
       setStatus('success');
     } catch {
-      setErrorMsg(isRtl ? 'Ø®Ø·Ø§ ÙÙŠ Ø§Ù„ØªØ­Ù‚Ù‚. Ø­Ø§ÙˆÙ„ Ù…Ø±Ø© Ø§Ø®Ø±Ù‰.' : 'Verification error. Please try again.');
+      setErrorMsg(isRtl ? 'خطأ في التحقق. حاول مرة أخرى.' : 'Verification error. Please try again.');
       setStatus('error');
     }
   };
@@ -148,7 +148,7 @@ export default function RedeemCouponPage() {
         setStatus('success');
         return;
       }
-      setErrorMsg(data.error || (isRtl ? 'ÙƒÙˆØ¯ ØºÙŠØ± ØµØ­ÙŠØ­' : 'Invalid code'));
+      setErrorMsg(data.error || (isRtl ? 'كود غير صحيح' : 'Invalid code'));
       setStatus('error');
       return;
     } catch {}
@@ -167,7 +167,7 @@ export default function RedeemCouponPage() {
         <div className="max-w-2xl mx-auto px-4 h-16 flex items-center justify-between">
           <Link href="/dashboard" className="group flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-white transition-colors">
             {isRtl
-              ? <><ArrowRight className="h-4 w-4" /><span>Ù„ÙˆØ­Ø© Ø§Ù„ØªØ­ÙƒÙ…</span></>
+              ? <><ArrowRight className="h-4 w-4" /><span>لوحة التحكم</span></>
               : <><ArrowLeft className="h-4 w-4" /><span>Dashboard</span></>
             }
           </Link>
@@ -186,17 +186,17 @@ export default function RedeemCouponPage() {
             <Key className="h-8 w-8 text-brand-400" />
           </div>
           <h1 className="text-2xl sm:text-3xl font-black text-white mb-2">
-            {isRtl ? 'Ø§Ø³ØªØ®Ø¯Ù… ÙƒÙˆØ¨ÙˆÙ† Ø§Ù„Ø¯Ø®ÙˆÙ„' : 'Redeem Access Coupon'}
+            {isRtl ? 'استخدم كوبون الدخول' : 'Redeem Access Coupon'}
           </h1>
           <p className="text-slate-400 text-sm leading-relaxed">
-            {isRtl ? 'Ø§Ø¯Ø®Ù„ ÙƒÙˆØ¯ Ø§Ù„ÙƒÙˆØ¨ÙˆÙ† Ø§Ù„Ø®Ø§Øµ Ø¨Ùƒ Ù„Ù„ÙˆØµÙˆÙ„ Ø§Ù„Ù‰ Ø§Ù„Ù…Ø§Ø¯Ø© Ø§Ù„Ø¯Ø±Ø§Ø³ÙŠØ©' : 'Enter your coupon code to unlock access to your course'}
+            {isRtl ? 'أدخل كود الكوبون الخاص بك للوصول إلى المادة الدراسية' : 'Enter your coupon code to unlock access to your course'}
           </p>
         </div>
 
         <div className={`flex items-center gap-3 p-4 rounded-2xl border mb-6 ${isExpired ? 'bg-rose-500/5 border-rose-500/20 text-rose-300' : 'bg-amber-500/5 border-amber-500/20 text-amber-300'}`}>
           <Calendar className="h-4 w-4 shrink-0" />
           <p className="text-xs font-semibold">
-            {isExpired ? (isRtl ? 'Ø§Ù†ØªÙ‡Øª ØµÙ„Ø§Ø­ÙŠØ© Ø¬Ù…ÙŠØ¹ Ø§Ù„ÙƒÙˆØ¨ÙˆÙ†Ø§Øª ÙÙŠ 31 ÙŠÙˆÙ„ÙŠÙˆ 2026' : 'All coupons expired on July 31, 2026') : (isRtl ? 'ØµÙ„Ø§Ø­ÙŠØ© Ø§Ù„ÙƒÙˆØ¨ÙˆÙ†Ø§Øª ØªÙ†ØªÙ‡ÙŠ ÙÙŠ 31 ÙŠÙˆÙ„ÙŠÙˆ 2026' : 'Coupons are valid until July 31, 2026')}
+            {isExpired ? (isRtl ? 'انتهت صلاحية جميع الكوبونات في 31 يوليو 2026' : 'All coupons expired on July 31, 2026') : (isRtl ? 'صلاحية الكوبونات تنتهي في 31 يوليو 2026' : 'Coupons are valid until July 31, 2026')}
           </p>
         </div>
 
@@ -205,17 +205,17 @@ export default function RedeemCouponPage() {
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-500/20 mb-4">
               <CheckCircle2 className="h-8 w-8 text-emerald-400" />
             </div>
-            <h2 className="text-xl font-black text-emerald-400 mb-2">{isRtl ? 'ØªÙ… ØªÙØ¹ÙŠÙ„ Ø§Ù„ÙƒÙˆØ¨ÙˆÙ†!' : 'Coupon Activated!'}</h2>
-            <p className="text-slate-300 text-sm mb-1">{isRtl ? 'ØªÙ… ÙØªØ­ Ø§Ù„ÙˆØµÙˆÙ„ Ø§Ù„Ù‰:' : 'Access unlocked for:'}</p>
+            <h2 className="text-xl font-black text-emerald-400 mb-2">{isRtl ? 'تم تفعيل الكوبون!' : 'Coupon Activated!'}</h2>
+            <p className="text-slate-300 text-sm mb-1">{isRtl ? 'تم فتح الوصول إلى:' : 'Access unlocked for:'}</p>
             <p className="text-white font-bold text-base mb-6">{isRtl ? redeemedCourse.titleAr : redeemedCourse.titleEn}</p>
             <div className="flex flex-col gap-3">
               <Link href="/dashboard" className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl transition-all">
                 <BookOpen className="h-4 w-4" />
-                {isRtl ? 'Ø§Ø¨Ø¯Ø§ Ø§Ù„Ø¯Ø±Ø§Ø³Ø© Ø§Ù„Ø§Ù†' : 'Start Learning Now'}
+                {isRtl ? 'ابدأ الدراسة الآن' : 'Start Learning Now'}
               </Link>
               <button onClick={() => { setStatus('idle'); setCode(''); setRedeemedCourse(null); }} className="w-full flex items-center justify-center gap-2 px-6 py-3 border border-slate-700 text-slate-300 hover:text-white font-semibold rounded-xl transition-all">
                 <Sparkles className="h-4 w-4" />
-                {isRtl ? 'Ø§Ø³ØªØ®Ø¯Ø§Ù… ÙƒÙˆØ¨ÙˆÙ† Ø§Ø®Ø±' : 'Redeem Another Coupon'}
+                {isRtl ? 'استخدام كوبون آخر' : 'Redeem Another Coupon'}
               </button>
             </div>
           </div>
@@ -225,9 +225,9 @@ export default function RedeemCouponPage() {
           <form onSubmit={handleRedeem} className="space-y-4">
             <div className="space-y-2">
               <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-                {isRtl ? 'ÙƒÙˆØ¯ Ø§Ù„ÙƒÙˆØ¨ÙˆÙ†' : 'Coupon Code'}
+                {isRtl ? 'كود الكوبون' : 'Coupon Code'}
               </label>
-              <input type="text" value={code} onChange={e => { setCode(e.target.value.toUpperCase()); if (status === 'error') setStatus('idle'); }} placeholder={isRtl ? 'Ù…Ø«Ø§Ù„: HUB-MATH-2026' : 'e.g. HUB-MATH-2026'} dir="ltr" className={`w-full py-4 px-5 text-center text-xl font-black font-mono tracking-[0.2em] bg-slate-900 border-2 rounded-2xl text-white placeholder:text-slate-700 focus:outline-none transition-all ${status === 'error' ? 'border-rose-500/60' : 'border-slate-700 focus:border-brand-500'}`} autoComplete="off" spellCheck={false} />
+              <input type="text" value={code} onChange={e => { setCode(e.target.value.toUpperCase()); if (status === 'error') setStatus('idle'); }} placeholder={isRtl ? 'مثال: HUB-MATH-2026' : 'e.g. HUB-MATH-2026'} dir="ltr" className={`w-full py-4 px-5 text-center text-xl font-black font-mono tracking-[0.2em] bg-slate-900 border-2 rounded-2xl text-white placeholder:text-slate-700 focus:outline-none transition-all ${status === 'error' ? 'border-rose-500/60' : 'border-slate-700 focus:border-brand-500'}`} autoComplete="off" spellCheck={false} />
             </div>
             {status === 'error' && errorMsg && (
               <div className="flex items-start gap-3 p-4 bg-rose-500/5 border border-rose-500/20 rounded-xl">
@@ -236,7 +236,7 @@ export default function RedeemCouponPage() {
               </div>
             )}
             <button type="submit" disabled={!code.trim() || status === 'loading'} className="w-full flex items-center justify-center gap-2 py-4 px-6 bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 text-white font-black rounded-2xl transition-all shadow-xl shadow-brand-500/25 disabled:opacity-50 disabled:cursor-not-allowed text-base">
-              {status === 'loading' ? <><Loader2 className="h-5 w-5 animate-spin" /><span>{isRtl ? 'Ø¬Ø§Ø±ÙŠ Ø§Ù„ØªØ­Ù‚Ù‚...' : 'Verifying...'}</span></> : <><Key className="h-5 w-5" /><span>{isRtl ? 'ØªÙØ¹ÙŠÙ„ Ø§Ù„ÙƒÙˆØ¨ÙˆÙ†' : 'Activate Coupon'}</span></>}
+              {status === 'loading' ? <><Loader2 className="h-5 w-5 animate-spin" /><span>{isRtl ? 'جاري التحقق...' : 'Verifying...'}</span></> : <><Key className="h-5 w-5" /><span>{isRtl ? 'تفعيل الكوبون' : 'Activate Coupon'}</span></>}
             </button>
           </form>
         )}
@@ -246,12 +246,12 @@ export default function RedeemCouponPage() {
             <div className="flex items-start gap-3">
               <AlertTriangle className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
               <div>
-                <p className="text-xs font-bold text-slate-300 mb-2">{isRtl ? 'Ù…Ù„Ø§Ø­Ø¸Ø§Øª Ù…Ù‡Ù…Ø©:' : 'Important Notes:'}</p>
+                <p className="text-xs font-bold text-slate-300 mb-2">{isRtl ? 'ملاحظات مهمة:' : 'Important Notes:'}</p>
                 <ul className="text-xs text-slate-500 space-y-1">
-                  <li>{isRtl ? '- ÙƒÙ„ ÙƒÙˆØ¨ÙˆÙ† ÙŠØ³ØªØ®Ø¯Ù… Ù…Ø±Ø© ÙˆØ§Ø­Ø¯Ø© ÙÙ‚Ø·' : '- Each coupon can only be used once'}</li>
-                  <li>{isRtl ? '- Ø§Ù„ÙƒÙˆØ¨ÙˆÙ†Ø§Øª ØªÙ†ØªÙ‡ÙŠ ØµÙ„Ø§Ø­ÙŠØªÙ‡Ø§ ÙÙŠ Ù†Ù‡Ø§ÙŠØ© ÙŠÙˆÙ„ÙŠÙˆ 2026' : '- Coupons expire at end of July 2026'}</li>
-                  <li>{isRtl ? '- Ø§Ù„ÙƒÙˆØ¨ÙˆÙ† Ù…Ø±ØªØ¨Ø· Ø¨Ù…Ø§Ø¯Ø© Ø¯Ø±Ø§Ø³ÙŠØ© ÙˆØ§Ø­Ø¯Ø©' : '- Each coupon unlocks one specific course'}</li>
-                  <li>{isRtl ? '- Ù„Ø§ ÙŠÙ…ÙƒÙ† Ù†Ù‚Ù„ Ø§Ù„ÙƒÙˆØ¨ÙˆÙ† Ù„Ø·Ø§Ù„Ø¨ Ø§Ø®Ø±' : '- Coupons cannot be transferred to another student'}</li>
+                  <li>{isRtl ? '• كل كوبون يُستخدم مرة واحدة فقط' : '• Each coupon can only be used once'}</li>
+                  <li>{isRtl ? '• الكوبونات تنتهي صلاحيتها في نهاية يوليو 2026' : '• Coupons expire at end of July 2026'}</li>
+                  <li>{isRtl ? '• الكوبون مرتبط بمادة دراسية واحدة' : '• Each coupon unlocks one specific course'}</li>
+                  <li>{isRtl ? '• لا يمكن نقل الكوبون لطالب آخر' : '• Coupons cannot be transferred to another student'}</li>
                 </ul>
               </div>
             </div>
