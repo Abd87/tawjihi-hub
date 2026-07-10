@@ -173,14 +173,32 @@ export default function DashboardPage() {
   };
 
   // Extracted to avoid duplication between try/catch blocks
-  const computeCourseProgress = (courseList: Course[]) => {
-    return courseList.map((c: Course) => {
-      const stored = localStorage.getItem(`progress-${c.id}`);
-      if (stored) {
-        const completedIds: string[] = JSON.parse(stored);
-        const total = c.mockLessonsCount ?? c._count?.lessons ?? 1;
-        const percent = Math.round((completedIds.length / total) * 100);
-        return { ...c, mockProgress: percent };
+  const computeCourseProgress = (courseList: Course[], userId: string) => {
+    let completedLessonIds: string[] = [];
+    if (typeof window !== 'undefined') {
+      try {
+        const stored = localStorage.getItem(`completed-lessons-${userId}`);
+        if (stored) completedLessonIds = JSON.parse(stored);
+      } catch (e) {}
+    }
+
+    return courseList.map((c: any) => {
+      if (c.lessons) {
+        c.mockLessonsCount = c.lessons.length;
+        c.mockQuizzesCount = c.lessons.reduce((acc: number, l: any) => acc + (l._count?.questions > 0 ? 1 : 0), 0);
+        c._pdfCount = c.lessons.filter((l: any) => !!l.pdfUrl).length;
+        
+        const total = c.lessons.length || 1;
+        const mastered = c.lessons.filter((l: any) => completedLessonIds.includes(l.id)).length;
+        c.mockProgress = Math.round((mastered / total) * 100);
+      } else {
+        // Fallback for mock courses
+        const stored = typeof window !== 'undefined' ? localStorage.getItem(`progress-${c.id}`) : null;
+        if (stored) {
+          const completedIds: string[] = JSON.parse(stored);
+          const total = c.mockLessonsCount ?? 1;
+          c.mockProgress = Math.round((completedIds.length / total) * 100);
+        }
       }
       return c;
     });
@@ -232,10 +250,10 @@ export default function DashboardPage() {
           const filtered = coursesData.courses.filter((c: any) => 
             c.published && c.track === (selectedTrack || activeUser.trackType || 'ACADEMIC')
           );
-          setCourses(computeCourseProgress(filtered));
+          setCourses(computeCourseProgress(filtered, activeUser.id));
         } else {
           // Fallback to local mock data if database connection error occurs
-          setCourses(computeCourseProgress(getMockCourses(selectedTrack || activeUser.trackType)));
+          setCourses(computeCourseProgress(getMockCourses(selectedTrack || activeUser.trackType), activeUser.id));
         }
 
       } catch (err: any) {
@@ -252,9 +270,9 @@ export default function DashboardPage() {
             const filtered = allCourses.filter((c: any) =>
               c.published && c.track === (selectedTrack || parsedUser?.trackType || 'ACADEMIC')
             );
-            setCourses(computeCourseProgress(filtered));
+            setCourses(computeCourseProgress(filtered, parsedUser.id));
           } else {
-            setCourses(computeCourseProgress(getMockCourses(selectedTrack || parsedUser.trackType)));
+            setCourses(computeCourseProgress(getMockCourses(selectedTrack || parsedUser.trackType), parsedUser.id));
           }
         } else {
           localStorage.removeItem('token');
@@ -533,9 +551,10 @@ export default function DashboardPage() {
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {courses.filter(c => !c.semester || c.semester === activeSemester).map((course) => {
-              const lessonsVal = course.mockLessonsCount ?? course._count?.lessons ?? 0;
-              const quizzesVal = course.mockQuizzesCount ?? course._count?.quizzes ?? 0;
+            {courses.filter(c => !c.semester || c.semester === activeSemester).map((course: any) => {
+              const lessonsVal = course.mockLessonsCount ?? 0;
+              const quizzesVal = course.mockQuizzesCount ?? 0;
+              const pdfsVal = course._pdfCount ?? 0;
               const progressVal = course.mockProgress ?? 0;
 
               return (
@@ -607,7 +626,7 @@ export default function DashboardPage() {
                         </div>
                         <div className="flex items-center gap-1.5">
                           <FileText className="h-4 w-4 text-brand-500 shrink-0" />
-                          <span>{locale === 'ar' ? 'ملفات PDF' : 'PDFs'}</span>
+                          <span>{pdfsVal} {locale === 'ar' ? 'ملفات PDF' : 'PDFs'}</span>
                         </div>
                       </div>
 

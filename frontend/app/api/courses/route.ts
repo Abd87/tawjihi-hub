@@ -9,10 +9,14 @@ export async function GET() {
       include: { 
         teacher: true, 
         liveSessions: true,
-        _count: {
+        lessons: {
           select: {
-            lessons: true,
-            exams: true
+            id: true,
+            videoUrl: true,
+            pdfUrl: true,
+            _count: {
+              select: { questions: true }
+            }
           }
         }
       },
