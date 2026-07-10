@@ -24,6 +24,7 @@ import {
   Users,
   Calendar,
   Video,
+  Key,
   Settings,
   BarChart2,
   TrendingUp,
