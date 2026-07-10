@@ -243,7 +243,7 @@ function VocabUnitPlayer({ unitKey, unitData, onClose, onComplete, isRtl }: any)
   if (mode === 'menu') {
     return (
       <div className="max-w-4xl mx-auto px-4 sm:px-6" style={{ direction: isRtl ? 'rtl' : 'ltr' }}>
-        <button onClick={() => onClose()} className="flex items-center gap-2 text-slate-400 hover:text-white mb-6 transition-colors">
+        <button onClick={() => onClose()} className="relative z-10 flex items-center gap-2 text-slate-400 hover:text-white mb-6 transition-colors">
           <ArrowLeft className="h-4 w-4" style={{ transform: isRtl ? 'rotate(180deg)' : 'none' }} /> 
           <span>{isRtl ? 'العودة للوحدات' : 'Back to Units'}</span>
         </button>
@@ -296,7 +296,7 @@ function VocabUnitPlayer({ unitKey, unitData, onClose, onComplete, isRtl }: any)
     return (
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center mb-6" style={{ direction: isRtl ? 'rtl' : 'ltr' }}>
-          <button onClick={() => setMode('menu')} className="text-slate-400 hover:text-white flex items-center gap-2 transition-colors">
+          <button onClick={() => setMode('menu')} className="relative z-10 text-slate-400 hover:text-white flex items-center gap-2 transition-colors">
             <ArrowLeft className="h-4 w-4" style={{ transform: isRtl ? 'rotate(180deg)' : 'none' }} /> 
             {isRtl ? 'العودة للقائمة الرئيسية' : 'Back to Menu'}
           </button>
@@ -337,7 +337,7 @@ function VocabUnitPlayer({ unitKey, unitData, onClose, onComplete, isRtl }: any)
               <button onClick={() => { setMode('review'); localStorage.removeItem(`vocab_test_${unitKey}`); }} className="px-6 py-3 bg-brand-500 text-white rounded-xl hover:bg-brand-600 font-bold">
                 {isRtl ? 'مراجعة الأخطاء' : 'Review Mistakes'}
               </button>
-              <button onClick={() => { setMode('menu'); localStorage.removeItem(`vocab_test_${unitKey}`); }} className="px-6 py-3 bg-slate-800 text-white rounded-xl hover:bg-slate-700 font-bold">
+              <button onClick={() => { setMode('menu'); localStorage.removeItem(`vocab_test_${unitKey}`); }} className="relative z-10 px-6 py-3 bg-slate-800 text-white rounded-xl hover:bg-slate-700 font-bold">
                 {isRtl ? 'العودة للقائمة الرئيسية' : 'Main Menu'}
               </button>
             </div>
@@ -351,7 +351,7 @@ function VocabUnitPlayer({ unitKey, unitData, onClose, onComplete, isRtl }: any)
       <div className="max-w-2xl mx-auto px-4">
         <div className="mb-8" style={{ direction: isRtl ? 'rtl' : 'ltr' }}>
           <div className="flex justify-between text-sm text-slate-400 mb-4 items-center">
-            <button onClick={() => setMode('menu')} className="flex items-center gap-2 hover:text-white transition-colors bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
+            <button onClick={() => setMode('menu')} className="relative z-10 flex items-center gap-2 hover:text-white transition-colors bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
               <Save className="h-4 w-4" />
               {isRtl ? 'حفظ والخروج' : 'Save & Exit'}
             </button>
@@ -389,7 +389,7 @@ function VocabUnitPlayer({ unitKey, unitData, onClose, onComplete, isRtl }: any)
     return (
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center mb-6" style={{ direction: isRtl ? 'rtl' : 'ltr' }}>
-          <button onClick={() => setMode('menu')} className="text-slate-400 hover:text-white flex items-center gap-2 transition-colors">
+          <button onClick={() => setMode('menu')} className="relative z-10 text-slate-400 hover:text-white flex items-center gap-2 transition-colors">
             <ArrowLeft className="h-4 w-4" style={{ transform: isRtl ? 'rotate(180deg)' : 'none' }} /> 
             {isRtl ? 'العودة للقائمة' : 'Back to Menu'}
           </button>
