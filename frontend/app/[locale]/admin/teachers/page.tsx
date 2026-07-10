@@ -139,12 +139,23 @@ export default function AdminTeachersPage() {
     if (!token || !user) { router.replace('/login'); return; }
     if (user.role !== 'ADMIN') { router.replace('/dashboard'); return; }
 
-    const allUsers = loadUsers();
-    const allCourses = loadCourses();
-    setTeachers(allUsers.filter(u => u.role === 'TEACHER'));
-    setCourses(allCourses);
-    setAuthorized(true);
-    setLoading(false);
+    const fetchTeachers = async () => {
+      try {
+        const res = await fetch('/api/admin/users', { headers: { 'Authorization': `Bearer ${token}` } });
+        if (res.ok) {
+          const data = await res.json();
+          setTeachers(data.users.filter((u: any) => u.role === 'TEACHER'));
+        }
+      } catch (err) {
+        console.error(err);
+      }
+      const allCourses = loadCourses();
+      setCourses(allCourses);
+      setAuthorized(true);
+      setLoading(false);
+    };
+
+    fetchTeachers();
   }, [router]);
 
   const showToast = (msg: string, type: 'success' | 'error' = 'success') => {
@@ -165,7 +176,7 @@ export default function AdminTeachersPage() {
     courses.filter(c => c.teacherId === teacherId);
 
   /* ── Add teacher ──────────────────────────────────────────────────── */
-  const handleAddTeacher = () => {
+  const handleAddTeacher = async () => {
     if (!newTeacher.nameAr || !newTeacher.nameEn) {
       showToast(isRtl ? 'يرجى إدخال اسم المعلم' : 'Teacher name is required', 'error'); return;
     }
@@ -175,42 +186,62 @@ export default function AdminTeachersPage() {
     if (!newTeacher.password || newTeacher.password.length < 6) {
       showToast(isRtl ? 'كلمة المرور يجب أن تكون 6 أحرف على الأقل' : 'Password must be at least 6 characters', 'error'); return;
     }
-    // Check email uniqueness
-    const allUsers = loadUsers();
-    if (allUsers.find(u => u.email === newTeacher.email)) {
-      showToast(isRtl ? 'البريد الإلكتروني مستخدم بالفعل' : 'Email already exists', 'error'); return;
-    }
 
-    const teacher: AppUser = {
-      ...newTeacher,
-      id: `teacher-${Date.now()}`,
-      role: 'TEACHER',
-      assignedCourseIds: [],
-      createdAt: new Date().toISOString(),
-    };
-    const updated = [...teachers, teacher];
-    persistUsers(updated);
-    setNewTeacher(emptyTeacher());
-    setShowAddForm(false);
-    showToast(isRtl ? 'تمت إضافة المعلم بنجاح' : 'Teacher added successfully');
+    try {
+      const res = await fetch('/api/admin/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nameAr: newTeacher.nameAr,
+          nameEn: newTeacher.nameEn,
+          email: newTeacher.email,
+          password: newTeacher.password,
+          role: 'TEACHER'
+        })
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        showToast(data.error || (isRtl ? 'حدث خطأ' : 'Error adding teacher'), 'error');
+        return;
+      }
+
+      setTeachers([data.user, ...teachers]);
+      setNewTeacher(emptyTeacher());
+      setShowAddForm(false);
+      showToast(isRtl ? 'تمت إضافة المعلم بنجاح' : 'Teacher added successfully');
+    } catch (err) {
+      showToast(isRtl ? 'حدث خطأ في الاتصال' : 'Connection error', 'error');
+    }
   };
 
   /* ── Delete teacher ───────────────────────────────────────────────── */
-  const handleDeleteTeacher = (id: string) => {
+  const handleDeleteTeacher = async (id: string) => {
     if (!confirm(isRtl ? 'هل أنت متأكد من حذف هذا المعلم؟ سيتم إلغاء تعيين دوراته.' : 'Delete this teacher? Their courses will be unassigned.')) return;
 
-    // Unassign courses from this teacher
-    const updatedCourses = courses.map(c =>
-      c.teacherId === id
-        ? { ...c, teacherId: '', teacherNameAr: '', teacherNameEn: '' }
-        : c
-    );
-    saveCourses(updatedCourses);
-    setCourses(updatedCourses);
+    try {
+      const res = await fetch(`/api/admin/users?id=${id}`, {
+        method: 'DELETE',
+      });
+      if (!res.ok) {
+        showToast(isRtl ? 'حدث خطأ أثناء الحذف' : 'Error deleting teacher', 'error');
+        return;
+      }
 
-    const updated = teachers.filter(t => t.id !== id);
-    persistUsers(updated);
-    showToast(isRtl ? 'تم حذف المعلم' : 'Teacher deleted');
+      // Unassign courses from this teacher locally
+      const updatedCourses = courses.map(c =>
+        c.teacherId === id
+          ? { ...c, teacherId: '', teacherNameAr: '', teacherNameEn: '' }
+          : c
+      );
+      saveCourses(updatedCourses);
+      setCourses(updatedCourses);
+
+      setTeachers(teachers.filter(t => t.id !== id));
+      showToast(isRtl ? 'تم حذف المعلم' : 'Teacher deleted');
+    } catch (err) {
+      showToast(isRtl ? 'حدث خطأ في الاتصال' : 'Connection error', 'error');
+    }
   };
 
   /* ── Assign / unassign course ─────────────────────────────────────── */
