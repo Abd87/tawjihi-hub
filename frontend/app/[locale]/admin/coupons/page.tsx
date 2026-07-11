@@ -655,63 +655,78 @@ export default function AdminCouponsPage() {
 
         </div>
 
-        {/* ═══════════════════════════════════════════════════════════ */}
+                {/* ═══════════════════════════════════════════════════════════ */}
         {/* PRINT CARDS — hidden in normal view, shown only on print   */}
         {/* ═══════════════════════════════════════════════════════════ */}
         <div className="print-only hidden">
-          <div style={{ fontFamily: 'Arial, sans-serif', padding: '20px' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', pageBreakInside: 'avoid' }}>
+          <div style={{ fontFamily: 'Arial, sans-serif', padding: '10px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', pageBreakInside: 'avoid' }}>
               {coupons
                 .filter(c => !printMode || selectedForPrint.includes(c.id))
-                .map(coupon => (
-                  <div key={`print-${coupon.id}`} style={{
-                    border: '2px dashed #4B5563',
-                    borderRadius: '16px',
-                    padding: '20px',
-                    background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
-                    color: 'white',
-                    pageBreakInside: 'avoid',
-                    position: 'relative',
-                    overflow: 'hidden'
-                  }}>
-                    {/* Decorative top strip */}
-                    <div style={{ height: '4px', background: 'linear-gradient(90deg, #ea580c, #f59e0b)', borderRadius: '4px', marginBottom: '16px' }} />
-                    
-                    {/* Platform name */}
-                    <p style={{ fontSize: '11px', fontWeight: 900, color: '#94a3b8', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '4px' }}>
-                      🎓 TAWJIHI HUB
-                    </p>
-                    
-                    {/* Subject */}
-                    <p style={{ fontSize: '13px', fontWeight: 700, color: '#f1f5f9', marginBottom: '2px' }}>
-                      {coupon.course.titleAr}
-                    </p>
-                    <p style={{ fontSize: '11px', color: '#64748b', marginBottom: '16px' }}>
-                      {coupon.course.titleEn}
-                    </p>
-                    
-                    {/* Code */}
-                    <div style={{ background: 'rgba(234, 88, 12, 0.1)', border: '1px solid rgba(234, 88, 12, 0.3)', borderRadius: '12px', padding: '12px', textAlign: 'center', marginBottom: '12px' }}>
-                      <p style={{ fontSize: '9px', color: '#94a3b8', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '4px' }}>كود الدخول / Access Code</p>
-                      <p style={{ fontSize: '18px', fontWeight: 900, color: '#fb923c', letterSpacing: '4px', fontFamily: 'monospace' }}>{coupon.code}</p>
+                .map(coupon => {
+                  const expiryStr = coupon.expiresAt 
+                    ? new Date(coupon.expiresAt).toLocaleDateString(locale === 'ar' ? 'ar-JO' : 'en-US', { day: 'numeric', month: 'short', year: 'numeric' })
+                    : (locale === 'ar' ? 'غير محدد' : 'Never');
+                  
+                  return (
+                    <div key={`print-${coupon.id}`} style={{
+                      border: '2px solid #e2e8f0',
+                      borderRight: '10px solid #f97316',
+                      borderRadius: '16px',
+                      padding: '24px',
+                      background: '#ffffff',
+                      color: '#0f172a',
+                      pageBreakInside: 'avoid',
+                      position: 'relative',
+                      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
+                    }}>
+                      
+                      {/* Header: Logo and Website */}
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '2px solid #f1f5f9', paddingBottom: '12px', marginBottom: '16px' }}>
+                        <img src="/logo.png" alt="Tawjihi Hub" style={{ height: '30px', objectFit: 'contain' }} />
+                        <span style={{ fontSize: '11px', fontWeight: 'bold', color: '#64748b' }}>www.tawjihihub.com</span>
+                      </div>
+                      
+                      {/* Course Information */}
+                      <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+                        <h3 style={{ fontSize: '16px', fontWeight: 900, color: '#0f172a', margin: '0 0 4px 0', direction: 'rtl' }}>
+                          {coupon.course.titleAr}
+                        </h3>
+                        <p style={{ fontSize: '12px', color: '#64748b', margin: 0 }}>
+                          {coupon.course.titleEn}
+                        </p>
+                      </div>
+                      
+                      {/* Code Box */}
+                      <div style={{ 
+                        background: '#fff7ed', 
+                        border: '2px dashed #fdba74', 
+                        borderRadius: '12px', 
+                        padding: '16px', 
+                        textAlign: 'center', 
+                        marginBottom: '20px' 
+                      }}>
+                        <p style={{ fontSize: '10px', color: '#ea580c', fontWeight: 'bold', textTransform: 'uppercase', margin: '0 0 8px 0' }}>
+                          {locale === 'ar' ? 'كود التفعيل / Access Code' : 'Access Code / كود التفعيل'}
+                        </p>
+                        <p style={{ fontSize: '24px', fontWeight: 900, color: '#c2410c', letterSpacing: '4px', fontFamily: 'monospace', margin: 0 }}>
+                          {coupon.code}
+                        </p>
+                      </div>
+                      
+                      {/* Footer: Expiry and Disclaimer */}
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '10px' }}>
+                        <div style={{ color: '#ef4444', fontWeight: 'bold' }}>
+                          ⏰ {locale === 'ar' ? 'ينتهي في:' : 'Expires:'} <span style={{ color: '#0f172a' }}>{expiryStr}</span>
+                        </div>
+                        <div style={{ color: '#94a3b8' }}>
+                          {locale === 'ar' ? 'استخدام لمرة واحدة' : 'Single Use Only'}
+                        </div>
+                      </div>
+
                     </div>
-                    
-                    {/* Expiry */}
-                    <p style={{ fontSize: '10px', color: '#ef4444', textAlign: 'center' }}>
-                      ⏰ {locale === 'ar' ? 'ينتهي في' : 'Expires'}: 31 يوليو / July 2026
-                    </p>
-                    
-                    {/* Footer */}
-                    <div style={{ marginTop: '12px', paddingTop: '10px', borderTop: '1px dashed #374151' }}>
-                      <p style={{ fontSize: '9px', color: '#475569', textAlign: 'center' }}>
-                        {locale === 'ar' ? 'كوبون شخصي • لاستخدام واحد فقط' : 'Personal Coupon • Single Use Only'}
-                      </p>
-                      <p style={{ fontSize: '9px', color: '#475569', textAlign: 'center', marginTop: '2px' }}>
-                        tawjihi-hub.vercel.app/redeem
-                      </p>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
             </div>
           </div>
         </div>
