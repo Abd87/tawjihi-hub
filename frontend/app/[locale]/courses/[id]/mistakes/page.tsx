@@ -242,9 +242,9 @@ export default function MistakesBankPage() {
   }
 
   return (
-    <div className={`min-h-screen pt-20 bg-[#0f172a] flex flex-col font-sans ${isRtl ? 'rtl' : 'ltr'}`}>
+    <div className={`min-h-screen bg-[#0f172a] flex flex-col font-sans ${isRtl ? 'rtl' : 'ltr'}`}>
       {/* Header */}
-      <header className="h-16 border-b border-rose-900/50 bg-rose-950/20 backdrop-blur-md flex items-center px-4 sm:px-8 justify-between sticky top-20 z-40">
+      <header className="h-16 border-b border-rose-900/50 bg-rose-950/20 backdrop-blur-md flex items-center px-4 sm:px-8 justify-between sticky top-0 z-50">
         <Link 
           href={`/${locale}/courses/${courseId}`} 
           className="text-slate-400 hover:text-white transition-colors flex items-center gap-2 font-semibold text-sm"
@@ -285,7 +285,7 @@ export default function MistakesBankPage() {
       {/* Main Content */}
       <main className="flex-1 flex flex-col items-center px-4 py-8 sm:py-12 overflow-y-auto">
         <div className="w-full max-w-3xl">
-          <h2 className="text-xl sm:text-2xl font-black text-white mb-8 leading-relaxed">
+          <h2 className="text-xl sm:text-2xl font-black text-white mb-8 leading-relaxed" dir="auto">
             { (isRtl ? currentQuestion.textAr : currentQuestion.textEn) || (isRtl ? currentQuestion.textEn : currentQuestion.textAr) }
           </h2>
 
@@ -305,7 +305,7 @@ export default function MistakesBankPage() {
                 }`}
                 disabled={!!answers[currentQuestion.id] || hasChecked}
               >
-                <span className="text-base sm:text-lg font-medium">{isRtl ? choice.textAr : choice.textEn}</span>
+                <span className="text-base sm:text-lg font-medium" dir="auto">{ (isRtl ? choice.textAr : choice.textEn) || (isRtl ? choice.textEn : choice.textAr) }</span>
                 
                 {hasChecked && idx === selectedChoiceIndex && (
                   isCorrect ? <Check className="w-6 h-6 text-emerald-500" /> : <X className="w-6 h-6 text-rose-500" />

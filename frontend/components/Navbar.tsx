@@ -105,6 +105,11 @@ export default function Navbar() {
   const isParent = user?.role === 'PARENT';
   const isAdminOrTeacher = isAdmin || isTeacher;
 
+  // Hide Navbar completely on course-related pages
+  if (pathname.includes('/courses/')) {
+    return null;
+  }
+
   // Navigate to home page with anchor (works from any page)
   const homeAnchor = (anchor: string) => `/${currentLocale}#${anchor}`;
 
