@@ -18,7 +18,8 @@ import {
   ShieldAlert, 
   Loader2, 
   CheckCircle2, 
-  HelpCircle 
+  HelpCircle,
+  RefreshCw
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -65,6 +66,54 @@ export default function AdminQuizPage() {
   const [passageEn, setPassageEn] = useState('');
   const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
   const [sections, setSections] = useState<any[]>([]);
+
+  // Tabs & Quizzes list
+  const [activeTab, setActiveTab] = useState<'create' | 'manage'>('create');
+  const [quizzesList, setQuizzesList] = useState<any[]>([]);
+  const [loadingQuizzes, setLoadingQuizzes] = useState(false);
+
+  // Fetch quizzes
+  const fetchQuizzesList = async () => {
+    setLoadingQuizzes(true);
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch('/api/quizzes', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setQuizzesList(data.quizzes || []);
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoadingQuizzes(false);
+    }
+  };
+
+  useEffect(() => {
+    if (authorized && activeTab === 'manage') {
+      fetchQuizzesList();
+    }
+  }, [authorized, activeTab]);
+
+  const handleDeleteQuiz = async (id: string) => {
+    if (!confirm(locale === 'ar' ? 'هل أنت متأكد من حذف هذا الاختبار؟' : 'Are you sure you want to delete this quiz?')) return;
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch(`/api/quizzes/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (response.ok) {
+        setQuizzesList(prev => prev.filter(q => q.id !== id));
+      } else {
+        alert('Failed to delete quiz');
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   // Question Form states
 
@@ -332,15 +381,77 @@ export default function AdminQuizPage() {
       {/* Admin Panel Body */}
       <main className="max-w-4xl mx-auto px-4 pt-32 z-10 relative">
         
-        {/* Title */}
-        <div className="mb-10 text-center md:text-start">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-brand-500/20 bg-brand-500/5 text-brand-400 text-xs font-semibold mb-3">
-            <Sparkles className="h-3 w-3" />
-            <span>Curriculum Creator Engine</span>
+        {/* Title and Tabs */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+          <div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-brand-500/20 bg-brand-500/5 text-brand-400 text-xs font-semibold mb-3">
+              <Sparkles className="h-3 w-3" />
+              <span>Curriculum Creator Engine</span>
+            </div>
+            <h1 className="text-3xl font-extrabold text-white">{t('panelTitle')}</h1>
+            <p className="text-slate-400 mt-2">{t('panelSub')}</p>
           </div>
-          <h1 className="text-3xl font-extrabold text-white">{t('panelTitle')}</h1>
-          <p className="text-slate-400 text-sm mt-1">{t('panelSub')}</p>
+          <div className="flex bg-slate-900 border border-slate-800 rounded-xl p-1 shrink-0">
+            <button
+              onClick={() => setActiveTab('create')}
+              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                activeTab === 'create' ? 'bg-brand-500 text-white shadow-lg' : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              {locale === 'ar' ? 'إنشاء اختبار' : 'Create Quiz'}
+            </button>
+            <button
+              onClick={() => setActiveTab('manage')}
+              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                activeTab === 'manage' ? 'bg-brand-500 text-white shadow-lg' : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              {locale === 'ar' ? 'إدارة الاختبارات' : 'Manage Quizzes'}
+            </button>
+          </div>
         </div>
+
+        {activeTab === 'manage' && (
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8">
+            <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+              <Layers className="h-5 w-5 text-brand-500" />
+              {locale === 'ar' ? 'الاختبارات الحالية' : 'Current Quizzes'}
+            </h2>
+            {loadingQuizzes ? (
+              <div className="flex justify-center p-8"><Loader2 className="h-6 w-6 animate-spin text-brand-500" /></div>
+            ) : quizzesList.length === 0 ? (
+              <p className="text-slate-400 text-center py-8">{locale === 'ar' ? 'لا يوجد اختبارات حالياً.' : 'No quizzes found.'}</p>
+            ) : (
+              <div className="grid gap-4">
+                {quizzesList.map(quiz => (
+                  <div key={quiz.id} className="bg-slate-950 border border-slate-800 rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div>
+                      <h3 className="font-bold text-white text-lg">{(locale === 'ar') ? quiz.titleAr : quiz.titleEn}</h3>
+                      <p className="text-sm text-brand-400">{(locale === 'ar') ? quiz.courseTitleAr : quiz.courseTitleEn}</p>
+                      <div className="flex items-center gap-3 mt-2 text-xs text-slate-500">
+                        <span>{quiz.totalSections} {locale === 'ar' ? 'أقسام' : 'Sections'}</span>
+                        <span>&bull;</span>
+                        <span>{quiz.totalQuestions} {locale === 'ar' ? 'أسئلة' : 'Questions'}</span>
+                        <span>&bull;</span>
+                        <span>{new Date(quiz.createdAt).toLocaleDateString(locale)}</span>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => handleDeleteQuiz(quiz.id)}
+                      className="p-2.5 bg-rose-500/10 hover:bg-rose-500 text-rose-500 hover:text-white rounded-lg transition-colors border border-rose-500/20 hover:border-rose-500"
+                      title={locale === 'ar' ? 'حذف الاختبار' : 'Delete Quiz'}
+                    >
+                      <Trash2 className="h-4.5 w-4.5" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {activeTab === 'create' && (
+          <div className="w-full">
 
         {/* Feedback alerts */}
         {successMessage && (
@@ -648,6 +759,8 @@ export default function AdminQuizPage() {
           )}
 
         </div>
+        </div>
+        )}
 
       </main>
 

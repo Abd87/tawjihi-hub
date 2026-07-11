@@ -41,3 +41,49 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
+
+export async function GET(request: Request) {
+  try {
+    const cookieStore = cookies();
+    const token = cookieStore.get('token')?.value;
+    if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+
+    const secret = process.env.JWT_SECRET || 'tawjihi-hub-secret-key-for-jwt-2024';
+    const decoded = jwt.verify(token, secret) as any;
+    if (decoded.role !== 'ADMIN' && decoded.role !== 'TEACHER') {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    }
+
+    const quizzes = await prisma.quiz.findMany({
+      include: {
+        course: { select: { titleAr: true, titleEn: true } },
+        sections: {
+          include: {
+            questions: true
+          }
+        }
+      },
+      orderBy: { createdAt: 'desc' }
+    });
+
+    // Map stats (total questions, etc)
+    const formattedQuizzes = quizzes.map(q => {
+      const totalQuestions = q.sections.reduce((acc, s) => acc + s.questions.length, 0);
+      return {
+        id: q.id,
+        titleAr: q.titleAr,
+        titleEn: q.titleEn,
+        courseTitleAr: q.course.titleAr,
+        courseTitleEn: q.course.titleEn,
+        totalSections: q.sections.length,
+        totalQuestions,
+        createdAt: q.createdAt
+      };
+    });
+
+    return NextResponse.json({ quizzes: formattedQuizzes });
+  } catch (error) {
+    console.error('Fetch quizzes error:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
