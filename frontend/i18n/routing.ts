@@ -5,7 +5,7 @@ export const routing = defineRouting({
   // Supported locales (Arabic as default, English as toggle)
   locales: ['ar', 'en'],
   defaultLocale: 'ar',
-  localeDetection: true,
+  localeDetection: false,
 });
 
 // Navigation utilities wrapped with the routing locales
