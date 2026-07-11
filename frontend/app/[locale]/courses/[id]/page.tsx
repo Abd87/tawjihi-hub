@@ -353,7 +353,7 @@ export default function CourseSyllabusPage() {
                 <FileText className="h-6 w-6 text-brand-500" />
               </div>
               <h2 className="text-xl font-black text-white">
-                {isRtl ? 'خطة المادة المترددة (Syllabus)' : 'Recorded Syllabus'}
+                {isRtl ? 'خطة المادة' : 'Recorded Syllabus'}
               </h2>
             </div>
 
