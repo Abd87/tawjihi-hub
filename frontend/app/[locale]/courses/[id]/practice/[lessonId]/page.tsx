@@ -66,11 +66,19 @@ export default function PracticeSessionPage() {
   const [correctCount, setCorrectCount] = useState(0);
   const [showExplanation, setShowExplanation] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
+  
+  // New state for persistence and mistake bank
+  const [answers, setAnswers] = useState<Record<string, { choiceIndex: number; isCorrect: boolean }>>({});
+  const [userId, setUserId] = useState<string>('guest');
 
   useEffect(() => {
     const loadData = async () => {
       try {
         const token = localStorage.getItem('token');
+        const userStr = localStorage.getItem('user');
+        const currentUserId = userStr ? JSON.parse(userStr).id : 'guest';
+        setUserId(currentUserId);
+        
         const res = await fetch(`/api/courses/${courseId}`, {
           headers: token ? { 'Authorization': `Bearer ${token}` } : {}
         });
@@ -80,7 +88,26 @@ export default function PracticeSessionPage() {
           const foundLesson = foundCourse.lessons?.find((l: any) => l.id === lessonId);
           if (foundLesson) {
             setLesson(foundLesson);
-            setQuestions(foundLesson.questions || []);
+            const loadedQuestions = foundLesson.questions || [];
+            setQuestions(loadedQuestions);
+            
+            // Load saved progress
+            const savedProgStr = localStorage.getItem(`saved-practice-${currentUserId}-${courseId}-${lessonId}`);
+            if (savedProgStr) {
+              try {
+                const savedProg = JSON.parse(savedProgStr);
+                setAnswers(savedProg.answers || {});
+                setCorrectCount(savedProg.correctCount || 0);
+                const restoredIndex = savedProg.currentIndex || 0;
+                
+                // If they previously finished everything, restore the last question state
+                if (restoredIndex >= loadedQuestions.length && loadedQuestions.length > 0) {
+                   setCurrentIndex(loadedQuestions.length - 1);
+                } else {
+                   setCurrentIndex(restoredIndex);
+                }
+              } catch(e) {}
+            }
           }
         }
       } catch (e) {}
@@ -88,6 +115,28 @@ export default function PracticeSessionPage() {
     };
     loadData();
   }, [courseId, lessonId]);
+
+  // Sync UI state when currentIndex changes (for Back button functionality)
+  useEffect(() => {
+    if (questions.length === 0) return;
+    const currentQ = questions[currentIndex];
+    if (!currentQ) return;
+    
+    if (answers[currentQ.id]) {
+      // Already answered this question
+      setSelectedChoiceIndex(answers[currentQ.id].choiceIndex);
+      setIsCorrect(answers[currentQ.id].isCorrect);
+      setHasChecked(true);
+      setShowExplanation(true);
+    } else {
+      // Not answered yet
+      setSelectedChoiceIndex(null);
+      setIsCorrect(null);
+      setHasChecked(false);
+      setShowExplanation(false);
+    }
+  }, [currentIndex, answers, questions]);
+
 
   if (loading) {
     return (
@@ -114,37 +163,62 @@ export default function PracticeSessionPage() {
   const currentQuestion = questions[currentIndex];
 
   const handleCheck = () => {
-    if (selectedChoiceIndex === null) return;
+    if (selectedChoiceIndex === null || answers[currentQuestion.id]) return; // prevent re-answering
     
     const correct = currentQuestion.choices[selectedChoiceIndex].isCorrect;
     setIsCorrect(correct);
     setHasChecked(true);
-
+    
+    const newCorrectCount = correct ? correctCount + 1 : correctCount;
     if (correct) {
-      setCorrectCount(prev => prev + 1);
-      setShowExplanation(true);
-      // Play a simple success sound (optional, assuming we have one or just rely on visual)
+      setCorrectCount(newCorrectCount);
       try {
-        const audio = new Audio('/sounds/success.mp3'); // We might not have this, so wrap in try/catch
+        const audio = new Audio('/sounds/success.mp3');
         audio.play().catch(() => {});
       } catch (e) {}
     } else {
-      setShowExplanation(false);
+      // Add to Mistake Bank
+      const mistakeKey = `mistakes-${userId}-${courseId}`;
+      const savedMistakes = localStorage.getItem(mistakeKey);
+      let mistakes: string[] = [];
+      if (savedMistakes) {
+        try { mistakes = JSON.parse(savedMistakes); } catch(e){}
+      }
+      if (!mistakes.includes(currentQuestion.id)) {
+        mistakes.push(currentQuestion.id);
+        localStorage.setItem(mistakeKey, JSON.stringify(mistakes));
+      }
     }
+    
+    setShowExplanation(true);
+    
+    // Save to answers and localStorage
+    const updatedAnswers = { 
+      ...answers, 
+      [currentQuestion.id]: { choiceIndex: selectedChoiceIndex, isCorrect: correct } 
+    };
+    setAnswers(updatedAnswers);
+    
+    localStorage.setItem(`saved-practice-${userId}-${courseId}-${lessonId}`, JSON.stringify({
+      currentIndex: currentIndex,
+      correctCount: newCorrectCount,
+      answers: updatedAnswers
+    }));
   };
 
   const handleNext = () => {
     if (currentIndex < questions.length - 1) {
-      setCurrentIndex(prev => prev + 1);
-      setSelectedChoiceIndex(null);
-      setHasChecked(false);
-      setIsCorrect(null);
-      setShowExplanation(false);
+      const nextIndex = currentIndex + 1;
+      setCurrentIndex(nextIndex);
+      
+      // Update saved index
+      localStorage.setItem(`saved-practice-${userId}-${courseId}-${lessonId}`, JSON.stringify({
+        currentIndex: nextIndex,
+        correctCount,
+        answers
+      }));
     } else {
       setIsCompleted(true);
-      // Save progress
-      const userStr = localStorage.getItem('user');
-      const userId = userStr ? JSON.parse(userStr).id : 'guest';
       
       // 1. Save general lesson progress
       const storedProg = localStorage.getItem(`completed-lessons-${userId}`);
@@ -169,6 +243,22 @@ export default function PracticeSessionPage() {
         itemsProg.push(pracItem);
         localStorage.setItem(itemKey, JSON.stringify(itemsProg));
       }
+      
+      // Clear saved practice state since it is completed
+      localStorage.removeItem(`saved-practice-${userId}-${courseId}-${lessonId}`);
+    }
+  };
+  
+  const handleBack = () => {
+    if (currentIndex > 0) {
+      const prevIndex = currentIndex - 1;
+      setCurrentIndex(prevIndex);
+      
+      localStorage.setItem(`saved-practice-${userId}-${courseId}-${lessonId}`, JSON.stringify({
+        currentIndex: prevIndex,
+        correctCount,
+        answers
+      }));
     }
   };
 
@@ -220,7 +310,7 @@ export default function PracticeSessionPage() {
           className="text-slate-400 hover:text-white transition-colors flex items-center gap-2 font-semibold text-sm"
         >
           <X className="w-5 h-5" />
-          <span className="hidden sm:inline">{isRtl ? 'خروج' : 'Exit'}</span>
+          <span className="hidden sm:inline">{isRtl ? 'حفظ وخروج' : 'Save & Exit'}</span>
         </Link>
         
         <div className="flex-1 max-w-md mx-8">

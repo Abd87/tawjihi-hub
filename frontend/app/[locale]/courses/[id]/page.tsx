@@ -10,7 +10,7 @@ import {
   Star, 
   Lock, 
   CheckCircle2, 
-  Award, 
+  Award, AlertOctagon, FileCheck, PlaySquare, 
   ArrowRight, 
   ArrowLeft,
   Loader2, 
@@ -19,7 +19,8 @@ import {
   Video,
   Download,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  Trophy
 } from 'lucide-react';
 import Link from 'next/link';
 import VocabCoursePlayer from '@/components/VocabCoursePlayer';
@@ -291,6 +292,14 @@ export default function CourseSyllabusPage() {
                   {isRtl ? <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" /> : <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />}
                 </Link>
               )}
+              <Link 
+                href={`/${locale}/courses/${courseId}/mistakes`}
+                className="w-full mt-4 flex items-center justify-center gap-2 px-6 py-4 bg-slate-800 hover:bg-rose-500/20 text-rose-400 hover:text-rose-300 border border-slate-700 hover:border-rose-500/50 font-bold rounded-2xl transition-all group"
+              >
+                <AlertOctagon className="h-5 w-5" />
+                <span>{isRtl ? 'بنك الأخطاء' : 'Mistakes Bank'}</span>
+                {isRtl ? <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" /> : <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />}
+              </Link>
             </div>
           </div>
 
@@ -415,7 +424,12 @@ export default function CourseSyllabusPage() {
                                     }`}
                                   >
                                     <div className={`shrink-0 ${completedItems.includes(`${lesson.id}-video`) ? 'text-emerald-500' : 'text-brand-500'}`}>
-                                      {completedItems.includes(`${lesson.id}-video`) ? <CheckCircle2 className="h-5 w-5" /> : <PlayCircle className="h-5 w-5" />}
+                                      {completedItems.includes(`${lesson.id}-video`) ? (
+                                        <div className="relative">
+                                          <PlaySquare className="h-5 w-5" />
+                                          <div className="absolute -bottom-1 -right-1 bg-slate-900 rounded-full"><CheckCircle2 className="h-3 w-3 text-emerald-500" /></div>
+                                        </div>
+                                      ) : <PlayCircle className="h-5 w-5" />}
                                     </div>
                                     <div className="flex-1">
                                       <h5 className={`font-semibold text-sm ${completedItems.includes(`${lesson.id}-video`) ? 'text-slate-300' : 'text-blue-400'}`}>
@@ -438,7 +452,12 @@ export default function CourseSyllabusPage() {
                                     }`}
                                   >
                                     <div className={`shrink-0 ${completedItems.includes(`${lesson.id}-pdf`) ? 'text-emerald-500' : 'text-slate-400'}`}>
-                                      {completedItems.includes(`${lesson.id}-pdf`) ? <CheckCircle2 className="h-5 w-5" /> : <FileText className="h-5 w-5" />}
+                                      {completedItems.includes(`${lesson.id}-pdf`) ? (
+                                        <div className="relative">
+                                          <FileCheck className="h-5 w-5 text-emerald-500" />
+                                          <div className="absolute -bottom-1 -right-1 bg-slate-900 rounded-full"><CheckCircle2 className="h-3 w-3 text-emerald-500" /></div>
+                                        </div>
+                                      ) : <FileText className="h-5 w-5" />}
                                     </div>
                                     <div className="flex-1">
                                       <h5 className={`font-semibold text-sm ${completedItems.includes(`${lesson.id}-pdf`) ? 'text-slate-300' : 'text-slate-300'}`}>
@@ -457,7 +476,12 @@ export default function CourseSyllabusPage() {
                                     }`}
                                   >
                                     <div className={`shrink-0 ${completedItems.includes(`${lesson.id}-practice`) ? 'text-emerald-500' : 'text-amber-500'}`}>
-                                      {completedItems.includes(`${lesson.id}-practice`) ? <CheckCircle2 className="h-5 w-5" /> : <Star className="h-5 w-5" />}
+                                      {completedItems.includes(`${lesson.id}-practice`) ? (
+                                        <div className="relative">
+                                          <Trophy className="h-5 w-5 text-emerald-500" />
+                                          <div className="absolute -bottom-1 -right-1 bg-slate-900 rounded-full"><CheckCircle2 className="h-3 w-3 text-emerald-500" /></div>
+                                        </div>
+                                      ) : <Star className="h-5 w-5" />}
                                     </div>
                                     <div className="flex-1">
                                       <h5 className={`font-semibold text-sm ${completedItems.includes(`${lesson.id}-practice`) ? 'text-slate-300' : 'text-amber-400'}`}>
