@@ -510,6 +510,9 @@ export default function CourseSyllabusPage() {
                                         {lesson.questions.length} {isRtl ? 'أسئلة' : 'questions'}
                                       </p>
                                     </div>
+                                    <div className="shrink-0 ms-auto">
+                                      {completedItems.includes(`${lesson.id}-practice`) ? <CheckCircle2 className="h-6 w-6 text-emerald-500" /> : <Circle className="h-6 w-6 text-slate-700 hover:text-slate-600 transition-colors" />}
+                                    </div>
                                   </Link>
                                 )}
                               </div>

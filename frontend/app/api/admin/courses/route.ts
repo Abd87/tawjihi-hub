@@ -27,7 +27,11 @@ export async function GET(request: Request) {
           include: {
             lessons: {
               include: {
-                questions: true
+                questions: {
+                  include: {
+                    choices: true
+                  }
+                }
               },
               orderBy: { order: 'asc' }
             }
