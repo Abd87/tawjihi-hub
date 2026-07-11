@@ -16,43 +16,42 @@ export async function POST(
 
     const secret = process.env.JWT_SECRET || 'tawjihi-hub-secret-key-for-jwt-2024';
     const decoded = jwt.verify(token, secret) as any;
+    
     if (decoded.role !== 'ADMIN' && decoded.role !== 'TEACHER') {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     }
 
     const quizId = params.id;
     const body = await request.json();
-    const { sectionId, textAr, textEn, type, correctAnswer, explanationAr, explanationEn, choices } = body;
+    const { titleAr, titleEn, passageAr, passageEn, order } = body;
 
-    if (!sectionId) {
-      return NextResponse.json({ error: 'sectionId is required' }, { status: 400 });
+    if (!titleAr || !titleEn) {
+      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    const question = await prisma.quizQuestion.create({
+    // Verify quiz exists
+    const quiz = await prisma.quiz.findUnique({
+      where: { id: quizId }
+    });
+
+    if (!quiz) {
+      return NextResponse.json({ error: 'Quiz not found' }, { status: 404 });
+    }
+
+    const section = await prisma.quizSection.create({
       data: {
-        sectionId,
-        textAr,
-        textEn,
-        type,
-        correctAnswer: type === 'SHORT_ANSWER' ? correctAnswer : null,
-        explanationAr,
-        explanationEn,
-        choices: type === 'MCQ' && choices ? {
-          create: choices.map((c: any) => ({
-            textAr: c.textAr,
-            textEn: c.textEn,
-            isCorrect: c.isCorrect
-          }))
-        } : undefined
-      },
-      include: {
-        choices: true
+        quizId,
+        titleAr,
+        titleEn,
+        passageAr: passageAr || null,
+        passageEn: passageEn || null,
+        order: order || 0
       }
     });
 
-    return NextResponse.json({ question });
+    return NextResponse.json({ section }, { status: 201 });
   } catch (error) {
-    console.error('Add quiz question error:', error);
+    console.error('Create quiz section error:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

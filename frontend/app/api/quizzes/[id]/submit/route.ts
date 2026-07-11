@@ -26,9 +26,13 @@ export async function POST(
     const quiz = await prisma.quiz.findUnique({
       where: { id: quizId },
       include: {
-        questions: {
+        sections: {
           include: {
-            choices: true
+            questions: {
+              include: {
+                choices: true
+              }
+            }
           }
         }
       }
@@ -38,12 +42,14 @@ export async function POST(
       return NextResponse.json({ error: 'Quiz not found' }, { status: 404 });
     }
 
+    const allQuestions = quiz.sections.flatMap(s => s.questions);
+
     let score = 0;
-    const maxScore = quiz.questions.length;
+    const maxScore = allQuestions.length;
     const breakdown = [];
     const answerRecords = [];
 
-    for (const q of quiz.questions) {
+    for (const q of allQuestions) {
       const studentAns = answers.find((a: any) => a.questionId === q.id);
       let isCorrect = false;
       let userSelection = '';

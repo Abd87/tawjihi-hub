@@ -255,7 +255,7 @@ model Quiz {
   cefrLevel       String?        @default("B2")
   durationMinutes Int            @default(30)
   
-  questions       QuizQuestion[]
+  sections        QuizSection[]
   attempts        QuizAttempt[]
   
   createdAt       DateTime       @default(now())
@@ -263,10 +263,28 @@ model Quiz {
   @@map("quizzes")
 }
 
+model QuizSection {
+  id          String         @id @default(uuid())
+  quizId      String
+  quiz        Quiz           @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  
+  titleAr     String
+  titleEn     String
+  passageAr   String?        @db.Text
+  passageEn   String?        @db.Text
+  order       Int            @default(0)
+  
+  questions   QuizQuestion[]
+  
+  createdAt   DateTime       @default(now())
+
+  @@map("quiz_sections")
+}
+
 model QuizQuestion {
   id            String       @id @default(uuid())
-  quizId        String
-  quiz          Quiz         @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  sectionId     String
+  section       QuizSection  @relation(fields: [sectionId], references: [id], onDelete: Cascade)
   
   textAr        String
   textEn        String

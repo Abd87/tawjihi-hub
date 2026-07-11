@@ -57,7 +57,17 @@ export default function AdminQuizPage() {
   const [courseId, setCourseId] = useState('');
   const [createdQuizId, setCreatedQuizId] = useState<string | null>(null);
 
+  
+  // Section Form states
+  const [sectionTitleAr, setSectionTitleAr] = useState('');
+  const [sectionTitleEn, setSectionTitleEn] = useState('');
+  const [passageAr, setPassageAr] = useState('');
+  const [passageEn, setPassageEn] = useState('');
+  const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
+  const [sections, setSections] = useState<any[]>([]);
+
   // Question Form states
+
   const [qTextAr, setQTextAr] = useState('');
   const [qTextEn, setQTextEn] = useState('');
   const [qType, setQType] = useState<'MCQ' | 'SHORT_ANSWER'>('MCQ');
@@ -184,10 +194,54 @@ export default function AdminQuizPage() {
     setChoices(choices.filter((_, idx) => idx !== index));
   };
 
+  
+  // Section submission handler
+  const handleCreateSection = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!activeSectionId) return;
+    setError(null);
+    setSuccessMessage(null);
+    const token = localStorage.getItem('token');
+
+    try {
+      const response = await fetch(`/api/quizzes/${createdQuizId}/sections`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          titleAr: sectionTitleAr,
+          titleEn: sectionTitleEn,
+          passageAr,
+          passageEn,
+          order: sections.length
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to create section');
+      }
+
+      setSections([...sections, data.section]);
+      setActiveSectionId(data.section.id);
+      setSuccessMessage(locale === 'ar' ? 'تم إنشاء القسم بنجاح! يمكنك الآن إضافة أسئلة إليه.' : 'Section created! Now add questions to it.');
+      setSectionTitleAr('');
+      setSectionTitleEn('');
+      setPassageAr('');
+      setPassageEn('');
+    } catch (err: any) {
+      setError(err.message || (locale === 'ar' ? 'فشل إنشاء القسم' : 'Failed to create section'));
+    }
+  };
+
   // Question submission handler
+
   const handleAddQuestion = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!createdQuizId) return;
+    if (!activeSectionId) return;
     setError(null);
     setSuccessMessage(null);
 
@@ -212,7 +266,8 @@ export default function AdminQuizPage() {
           correctAnswer: qType === 'SHORT_ANSWER' ? correctAnswer : undefined,
           explanationAr: qExplanationAr,
           explanationEn: qExplanationEn,
-          choices: qType === 'MCQ' ? choices : undefined
+          choices: qType === 'MCQ' ? choices : undefined,
+          sectionId: activeSectionId
         })
       });
 

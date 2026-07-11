@@ -19,14 +19,18 @@ export async function GET(
     const quiz = await prisma.quiz.findUnique({
       where: { id: quizId },
       include: {
-        questions: {
+        sections: {
+          orderBy: { order: 'asc' },
           include: {
-            choices: {
-              select: {
-                id: true,
-                textAr: true,
-                textEn: true,
-                // NEVER return isCorrect to the frontend!
+            questions: {
+              include: {
+                choices: {
+                  select: {
+                    id: true,
+                    textAr: true,
+                    textEn: true,
+                  }
+                }
               }
             }
           }
@@ -41,13 +45,15 @@ export async function GET(
     // Strip sensitive fields from questions before sending to frontend
     const sanitizedQuiz = {
       ...quiz,
-      questions: quiz.questions.map(q => ({
-        id: q.id,
-        textAr: q.textAr,
-        textEn: q.textEn,
-        type: q.type,
-        choices: q.choices
-        // We DO NOT send correctAnswer, explanationAr, explanationEn
+      sections: quiz.sections.map(section => ({
+        ...section,
+        questions: section.questions.map(q => ({
+          id: q.id,
+          textAr: q.textAr,
+          textEn: q.textEn,
+          type: q.type,
+          choices: q.choices
+        }))
       }))
     };
 
