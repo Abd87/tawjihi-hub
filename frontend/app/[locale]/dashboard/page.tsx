@@ -313,6 +313,7 @@ export default function DashboardPage() {
     }
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('dashboardTrack');
     window.dispatchEvent(new Event('local-storage-update'));
     router.replace('/login');
   };

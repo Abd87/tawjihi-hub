@@ -165,6 +165,7 @@ function RegisterForm() {
 
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
+      localStorage.removeItem('dashboardTrack');
       saveUserToAdminUsers(data.user, password);
       window.dispatchEvent(new Event('local-storage-update'));
 
@@ -190,6 +191,7 @@ function RegisterForm() {
 
           localStorage.setItem('token', token);
           localStorage.setItem('user', stringified);
+          localStorage.removeItem('dashboardTrack');
           saveUserToAdminUsers(mockUser, password);
           window.dispatchEvent(new Event('local-storage-update'));
 

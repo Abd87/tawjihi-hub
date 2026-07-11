@@ -65,6 +65,7 @@ export default function Navbar() {
     }
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('dashboardTrack');
     window.dispatchEvent(new Event('local-storage-update'));
     setUser(null);
     setMobileOpen(false);

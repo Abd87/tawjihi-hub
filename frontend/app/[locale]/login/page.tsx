@@ -196,6 +196,7 @@ export default function LoginPage() {
 
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
+      localStorage.removeItem('dashboardTrack');
       window.dispatchEvent(new Event('local-storage-update'));
 
       const role = data.user?.role || 'STUDENT';
@@ -206,6 +207,7 @@ export default function LoginPage() {
       if (offline) {
         localStorage.setItem('token', offline.token);
         localStorage.setItem('user', JSON.stringify(offline.user));
+        localStorage.removeItem('dashboardTrack');
         window.dispatchEvent(new Event('local-storage-update'));
         const role = (offline.user.role as string) || 'STUDENT';
         window.location.href = getRedirectPath(role, locale);
