@@ -20,7 +20,8 @@ import {
   Download,
   ChevronDown,
   ChevronUp,
-  Trophy
+  Trophy,
+  Circle
 } from 'lucide-react';
 import Link from 'next/link';
 import VocabCoursePlayer from '@/components/VocabCoursePlayer';
@@ -427,7 +428,7 @@ export default function CourseSyllabusPage() {
                                       {completedItems.includes(`${lesson.id}-video`) ? (
                                         <div className="relative">
                                           <PlaySquare className="h-5 w-5" />
-                                          <div className="absolute -bottom-1 -right-1 bg-slate-900 rounded-full"><CheckCircle2 className="h-3 w-3 text-emerald-500" /></div>
+                                          
                                         </div>
                                       ) : <PlayCircle className="h-5 w-5" />}
                                     </div>
@@ -436,6 +437,9 @@ export default function CourseSyllabusPage() {
                                         {isRtl ? 'فيديو الشرح' : 'Instructional Video'}
                                       </h5>
                                       <p className="text-xs text-slate-500 mt-0.5">{lesson.durationMinutes} {isRtl ? 'دقيقة' : 'minutes'}</p>
+                                    </div>
+                                    <div className="shrink-0 ms-auto">
+                                      {completedItems.includes(`${lesson.id}-video`) ? <CheckCircle2 className="h-6 w-6 text-emerald-500" /> : <Circle className="h-6 w-6 text-slate-700 hover:text-slate-600 transition-colors" />}
                                     </div>
                                   </Link>
                                 )}
@@ -455,7 +459,7 @@ export default function CourseSyllabusPage() {
                                       {completedItems.includes(`${lesson.id}-pdf`) ? (
                                         <div className="relative">
                                           <FileCheck className="h-5 w-5 text-emerald-500" />
-                                          <div className="absolute -bottom-1 -right-1 bg-slate-900 rounded-full"><CheckCircle2 className="h-3 w-3 text-emerald-500" /></div>
+                                          
                                         </div>
                                       ) : <FileText className="h-5 w-5" />}
                                     </div>
@@ -463,6 +467,9 @@ export default function CourseSyllabusPage() {
                                       <h5 className={`font-semibold text-sm ${completedItems.includes(`${lesson.id}-pdf`) ? 'text-slate-300' : 'text-slate-300'}`}>
                                         {isRtl ? 'ملف المادة (PDF)' : 'Study Material (PDF)'}
                                       </h5>
+                                    </div>
+                                    <div className="shrink-0 ms-auto">
+                                      {completedItems.includes(`${lesson.id}-pdf`) ? <CheckCircle2 className="h-6 w-6 text-emerald-500" /> : <Circle className="h-6 w-6 text-slate-700 hover:text-slate-600 transition-colors" />}
                                     </div>
                                   </a>
                                 )}
@@ -479,7 +486,7 @@ export default function CourseSyllabusPage() {
                                       {completedItems.includes(`${lesson.id}-practice`) ? (
                                         <div className="relative">
                                           <Trophy className="h-5 w-5 text-emerald-500" />
-                                          <div className="absolute -bottom-1 -right-1 bg-slate-900 rounded-full"><CheckCircle2 className="h-3 w-3 text-emerald-500" /></div>
+                                          
                                         </div>
                                       ) : <Star className="h-5 w-5" />}
                                     </div>

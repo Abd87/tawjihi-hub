@@ -302,9 +302,9 @@ export default function PracticeSessionPage() {
   }
 
   return (
-    <div className={`min-h-screen bg-[#0f172a] flex flex-col font-sans ${isRtl ? 'rtl' : 'ltr'}`}>
+    <div className={`min-h-screen pt-20 bg-[#0f172a] flex flex-col font-sans ${isRtl ? 'rtl' : 'ltr'}`}>
       {/* Header */}
-      <header className="h-16 border-b border-slate-800 bg-slate-900/80 backdrop-blur-md flex items-center px-4 sm:px-8 justify-between sticky top-0 z-50">
+      <header className="h-16 border-b border-slate-800 bg-slate-900/80 backdrop-blur-md flex items-center px-4 sm:px-8 justify-between sticky top-20 z-40">
         <Link 
           href={`/${locale}/courses/${courseId}`} 
           className="text-slate-400 hover:text-white transition-colors flex items-center gap-2 font-semibold text-sm"
