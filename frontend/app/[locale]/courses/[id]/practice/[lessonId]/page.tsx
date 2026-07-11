@@ -310,7 +310,7 @@ export default function PracticeSessionPage() {
           className="text-slate-400 hover:text-white transition-colors flex items-center gap-2 font-semibold text-sm"
         >
           <X className="w-5 h-5" />
-          <span className="hidden sm:inline">{isRtl ? 'حفظ وخروج' : 'Save & Exit'}</span>
+          <span className="font-bold whitespace-nowrap">{isRtl ? 'حفظ وخروج' : 'Save & Exit'}</span>
         </Link>
         
         <div className="flex-1 max-w-md mx-8">

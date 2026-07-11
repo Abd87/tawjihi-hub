@@ -250,7 +250,7 @@ export default function MistakesBankPage() {
           className="text-slate-400 hover:text-white transition-colors flex items-center gap-2 font-semibold text-sm"
         >
           <X className="w-5 h-5" />
-          <span className="hidden sm:inline">{isRtl ? 'حفظ وخروج' : 'Save & Exit'}</span>
+          <span className="font-bold whitespace-nowrap">{isRtl ? 'حفظ وخروج' : 'Save & Exit'}</span>
         </Link>
         
         <div className="flex-1 max-w-md mx-8">
@@ -286,7 +286,7 @@ export default function MistakesBankPage() {
       <main className="flex-1 flex flex-col items-center px-4 py-8 sm:py-12 overflow-y-auto">
         <div className="w-full max-w-3xl">
           <h2 className="text-xl sm:text-2xl font-black text-white mb-8 leading-relaxed">
-            {isRtl ? currentQuestion.textAr : currentQuestion.textEn}
+            { (isRtl ? currentQuestion.textAr : currentQuestion.textEn) || (isRtl ? currentQuestion.textEn : currentQuestion.textAr) }
           </h2>
 
           <div className="space-y-4 mb-8">
