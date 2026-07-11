@@ -260,12 +260,12 @@ export default function AdminCouponsPage() {
   return (
     <div className="relative min-h-screen bg-[#020617] font-sans pb-16 selection:bg-brand-500/30 selection:text-brand-300">
       
-      <div className="absolute top-[-10%] start-[-10%] w-[45vw] h-[45vw] rounded-full bg-brand-500/5 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] end-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-500/5 blur-[100px] pointer-events-none" />
+      <div className="absolute top-[-10%] start-[-10%] w-[45vw] h-[45vw] rounded-full bg-brand-500/5 blur-[120px] pointer-events-none print:hidden" />
+      <div className="absolute bottom-[-10%] end-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-500/5 blur-[100px] pointer-events-none print:hidden" />
 
 
 
-      <main className="max-w-4xl mx-auto px-4 pt-32 z-10 relative space-y-8">
+      <main className="max-w-4xl mx-auto px-4 pt-32 z-10 relative space-y-8 print:hidden">
         
         <div className="flex items-center gap-3">
           <div className="p-3 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded-2xl">
@@ -658,7 +658,7 @@ export default function AdminCouponsPage() {
                 {/* ═══════════════════════════════════════════════════════════ */}
         {/* PRINT CARDS — hidden in normal view, shown only on print   */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <div className="print-only hidden">
+        <div className="hidden print:block w-full bg-white min-h-screen absolute top-0 left-0 z-50 p-8">
           <div style={{ fontFamily: 'Arial, sans-serif', padding: '10px' }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', pageBreakInside: 'avoid' }}>
               {coupons

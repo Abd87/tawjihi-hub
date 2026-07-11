@@ -31,10 +31,3 @@ body {
   background: #ea580c;
 }
 
-/* ══ Print styles — hide UI, show only coupon cards ══ */
-@media print {
-  body > * { display: none !important; }
-  .print-only { display: block !important; }
-  .print-only * { display: revert !important; }
-  @page { margin: 1cm; size: A4; }
-}
