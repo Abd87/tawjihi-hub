@@ -108,6 +108,19 @@ export default function CourseSyllabusPage() {
   const [expandedUnits, setExpandedUnits] = useState<string[]>([]);
 
   useEffect(() => {
+    const handleFocus = () => {
+      const userStr = localStorage.getItem('user');
+      const completed = localStorage.getItem(`completed-items-${userStr ? JSON.parse(userStr).id : ''}-${courseId}`);
+      if (completed) {
+        setCompletedItems(JSON.parse(completed));
+      }
+    };
+    window.addEventListener('focus', handleFocus);
+    handleFocus(); // run once on mount
+    return () => window.removeEventListener('focus', handleFocus);
+  }, [courseId]);
+
+  useEffect(() => {
     const fetchCourse = async () => {
       try {
         const token = localStorage.getItem('token');

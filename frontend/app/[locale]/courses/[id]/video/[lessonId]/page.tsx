@@ -100,6 +100,23 @@ export default function DedicatedVideoPlayerPage() {
     setLoading(false);
   }, [courseId, lessonId]);
 
+  // Instantly mark video as completed when opened
+  useEffect(() => {
+    const userStr = localStorage.getItem('user');
+    const userId = userStr ? JSON.parse(userStr).id : 'guest';
+    const itemKey = `completed-items-${userId}-${courseId}`;
+    const storedItems = localStorage.getItem(itemKey);
+    let itemsProg = [];
+    if (storedItems) {
+      try { itemsProg = JSON.parse(storedItems); } catch(e){}
+    }
+    const vidItem = `${lessonId}-video`;
+    if (!itemsProg.includes(vidItem)) {
+      itemsProg.push(vidItem);
+      localStorage.setItem(itemKey, JSON.stringify(itemsProg));
+    }
+  }, [courseId, lessonId]);
+
   const handleVideoEnd = () => {
     setVideoEnded(true);
     const userId = currentUser?.id || 'guest';
