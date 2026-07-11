@@ -1,11 +1,17 @@
 'use client';
 
 import { Facebook } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 export default function SocialFloatingButtons() {
+  const pathname = usePathname();
   const whatsappNumber = '962790881392';
   const whatsappUrl = `https://wa.me/${whatsappNumber}`;
   const facebookUrl = 'https://www.facebook.com/groups/1648666043099156';
+
+  if (pathname.includes('/courses/')) {
+    return null;
+  }
 
   return (
     <div className="fixed bottom-6 end-6 z-50 flex flex-col gap-4">
