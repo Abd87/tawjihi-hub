@@ -6,6 +6,7 @@ import '../globals.css';
 import { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import SocialFloatingButtons from '@/components/SocialFloatingButtons';
+import { Analytics } from '@vercel/analytics/react';
 
 const cairo = Cairo({
   subsets: ['arabic'],
@@ -92,6 +93,7 @@ export default async function LocaleLayout({
           {children}
           <SocialFloatingButtons />
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
