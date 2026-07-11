@@ -142,7 +142,33 @@ export default function PracticeSessionPage() {
       setShowExplanation(false);
     } else {
       setIsCompleted(true);
-      // Save progress if needed
+      // Save progress
+      const userStr = localStorage.getItem('user');
+      const userId = userStr ? JSON.parse(userStr).id : 'guest';
+      
+      // 1. Save general lesson progress
+      const storedProg = localStorage.getItem(`completed-lessons-${userId}`);
+      let prog = [];
+      if (storedProg) {
+        try { prog = JSON.parse(storedProg); } catch(e){}
+      }
+      if (!prog.includes(lessonId)) {
+        prog.push(lessonId);
+        localStorage.setItem(`completed-lessons-${userId}`, JSON.stringify(prog));
+      }
+
+      // 2. Save specific item progress for syllabus page
+      const itemKey = `completed-items-${userId}-${courseId}`;
+      const storedItems = localStorage.getItem(itemKey);
+      let itemsProg = [];
+      if (storedItems) {
+        try { itemsProg = JSON.parse(storedItems); } catch(e){}
+      }
+      const pracItem = `${lessonId}-practice`;
+      if (!itemsProg.includes(pracItem)) {
+        itemsProg.push(pracItem);
+        localStorage.setItem(itemKey, JSON.stringify(itemsProg));
+      }
     }
   };
 

@@ -113,6 +113,19 @@ export default function DedicatedVideoPlayerPage() {
       localStorage.setItem(`completed-lessons-${userId}`, JSON.stringify(prog));
       setCompletedLessons(prog);
     }
+
+    // Save specific item progress for syllabus page
+    const itemKey = `completed-items-${userId}-${courseId}`;
+    const storedItems = localStorage.getItem(itemKey);
+    let itemsProg = [];
+    if (storedItems) {
+      try { itemsProg = JSON.parse(storedItems); } catch(e){}
+    }
+    const vidItem = `${lessonId}-video`;
+    if (!itemsProg.includes(vidItem)) {
+      itemsProg.push(vidItem);
+      localStorage.setItem(itemKey, JSON.stringify(itemsProg));
+    }
   };
 
   if (loading) {

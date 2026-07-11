@@ -142,6 +142,20 @@ export default function CourseSyllabusPage() {
     fetchCourse();
   }, [courseId, router]);
 
+  const handlePdfClick = (lessonId: string) => {
+    if (course?.locked) return;
+    const userStr = localStorage.getItem('user');
+    const userId = userStr ? JSON.parse(userStr).id : 'guest';
+    const itemKey = `completed-items-${userId}-${courseId}`;
+    const pdfItem = `${lessonId}-pdf`;
+    
+    if (!completedItems.includes(pdfItem)) {
+      const newItems = [...completedItems, pdfItem];
+      setCompletedItems(newItems);
+      localStorage.setItem(itemKey, JSON.stringify(newItems));
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center text-slate-400">
@@ -418,15 +432,16 @@ export default function CourseSyllabusPage() {
                                     href={isLessonLocked ? '#' : lesson.pdfUrl}
                                     target={isLessonLocked ? '_self' : '_blank'}
                                     rel="noreferrer"
+                                    onClick={() => handlePdfClick(lesson.id)}
                                     className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors bg-slate-900/50 border border-slate-800 hover:border-slate-700 ${
                                       isLessonLocked ? 'opacity-50 cursor-not-allowed' : 'hover:bg-slate-800/80'
                                     }`}
                                   >
-                                    <div className="shrink-0 text-slate-400">
-                                      <FileText className="h-5 w-5" />
+                                    <div className={`shrink-0 ${completedItems.includes(`${lesson.id}-pdf`) ? 'text-emerald-500' : 'text-slate-400'}`}>
+                                      {completedItems.includes(`${lesson.id}-pdf`) ? <CheckCircle2 className="h-5 w-5" /> : <FileText className="h-5 w-5" />}
                                     </div>
                                     <div className="flex-1">
-                                      <h5 className="font-semibold text-sm text-slate-300">
+                                      <h5 className={`font-semibold text-sm ${completedItems.includes(`${lesson.id}-pdf`) ? 'text-slate-300' : 'text-slate-300'}`}>
                                         {isRtl ? 'ملف المادة (PDF)' : 'Study Material (PDF)'}
                                       </h5>
                                     </div>
