@@ -43,7 +43,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
       siteName: messages.navigation.brandName,
       images: [
         {
-          url: 'https://tawjihihub.com/og-image.jpg', // Placeholder for actual OG image
+          url: 'https://tawjihihub.com/og-image.png',
           width: 1200,
           height: 630,
         },
@@ -55,6 +55,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
       card: 'summary_large_image',
       title: messages.meta.title,
       description: messages.meta.description,
+      images: ['https://tawjihihub.com/og-image.png'],
     },
     robots: {
       index: true,
