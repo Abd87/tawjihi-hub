@@ -284,7 +284,7 @@ export default function DedicatedVideoPlayerPage() {
               <div className="w-full h-full relative">
                 {/* Invisible Overlays to block YouTube watermark and title clicks */}
                 <div className="absolute top-0 left-0 w-full h-16 z-10" title=" " /> {/* Blocks title link */}
-                <div className="absolute bottom-0 right-0 w-32 h-16 z-10" title=" " /> {/* Blocks bottom right watermark */}
+                <div className="hidden md:block absolute bottom-0 right-0 w-32 h-16 z-10" title=" " /> {/* Blocks bottom right watermark (hidden on mobile so fs works) */}
                 
                 <iframe
                   className="w-full h-full pointer-events-auto"

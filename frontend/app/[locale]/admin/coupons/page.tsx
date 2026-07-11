@@ -203,6 +203,29 @@ export default function AdminCouponsPage() {
     checkAuthAndLoad();
   }, [router]);
 
+  
+  const handleDeleteCoupon = async (id: string) => {
+    const confirmDelete = window.confirm(isRtl ? 'هل أنت متأكد من حذف هذا الكوبون بشكل نهائي؟' : 'Are you sure you want to permanently delete this coupon?');
+    if (!confirmDelete) return;
+
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const res = await fetch(`/api/coupons?id=${id}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (res.ok) {
+          setCoupons(coupons.filter(c => c.id !== id));
+        } else {
+          alert('Failed to delete coupon');
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  };
+
   const handleGenerateCoupon = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedCourseId) return;
@@ -634,20 +657,29 @@ export default function AdminCouponsPage() {
                         ) : '—'}
                       </td>
                       <td className="py-3.5 px-4">
-                        {coupon.isActive && !isExpired && (
+                        <div className="flex items-center gap-2">
+                          {coupon.isActive && !isExpired && (
+                            <button
+                              onClick={() => {
+                                const updated = coupons.map(c =>
+                                  c.id === coupon.id ? { ...c, isActive: false } : c
+                                );
+                                setCoupons(updated);
+                                localStorage.setItem('admin-coupons', JSON.stringify(updated));
+                              }}
+                              className="px-2.5 py-1 rounded-lg text-2xs font-bold text-rose-400 border border-rose-500/20 hover:bg-rose-500/10 transition-all"
+                            >
+                              {locale === 'ar' ? 'إلغاء' : 'Revoke'}
+                            </button>
+                          )}
                           <button
-                            onClick={() => {
-                              const updated = coupons.map(c =>
-                                c.id === coupon.id ? { ...c, isActive: false } : c
-                              );
-                              setCoupons(updated);
-                              localStorage.setItem('admin-coupons', JSON.stringify(updated));
-                            }}
+                            onClick={() => handleDeleteCoupon(coupon.id)}
                             className="px-2.5 py-1 rounded-lg text-2xs font-bold text-rose-400 border border-rose-500/20 hover:bg-rose-500/10 transition-all"
+                            title={locale === 'ar' ? 'حذف الكوبون نهائياً' : 'Delete Coupon'}
                           >
-                            {locale === 'ar' ? 'إلغاء' : 'Revoke'}
+                            {locale === 'ar' ? 'حذف' : 'Delete'}
                           </button>
-                        )}
+                        </div>
                       </td>
                     </tr>
                   );
