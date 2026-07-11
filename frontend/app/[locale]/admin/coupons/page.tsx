@@ -673,9 +673,9 @@ export default function AdminCouponsPage() {
         {/* ═══════════════════════════════════════════════════════════ */}
         {/* PRINT CARDS — hidden in normal view, shown only on print   */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <div className="hidden print:block w-full bg-white min-h-screen absolute top-0 left-0 z-50 p-8">
-          <div style={{ fontFamily: 'Arial, sans-serif', padding: '10px' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', pageBreakInside: 'avoid' }}>
+        <div className="hidden print:flex w-full bg-white min-h-screen absolute top-0 left-0 z-50 p-8 justify-center">
+          <div style={{ fontFamily: 'Arial, sans-serif', width: '100%', maxWidth: '800px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '40px' }}>
               {coupons
                 .filter(c => !printMode || selectedForPrint.includes(c.id))
                 .map(coupon => {
@@ -685,29 +685,30 @@ export default function AdminCouponsPage() {
                   
                   return (
                     <div key={`print-${coupon.id}`} style={{
-                      border: '2px solid #e2e8f0',
-                      borderRight: '10px solid #f97316',
-                      borderRadius: '16px',
-                      padding: '24px',
+                      border: '3px solid #e2e8f0',
+                      borderRight: '16px solid #f97316',
+                      borderRadius: '24px',
+                      padding: '40px',
                       background: '#ffffff',
                       color: '#0f172a',
                       pageBreakInside: 'avoid',
                       position: 'relative',
-                      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
+                      boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                      width: '100%',
                     }}>
                       
                       {/* Header: Logo and Website */}
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '2px solid #f1f5f9', paddingBottom: '12px', marginBottom: '16px' }}>
-                        <img src="/logo.png" alt="Tawjihi Hub" style={{ height: '30px', objectFit: 'contain' }} />
-                        <span style={{ fontSize: '11px', fontWeight: 'bold', color: '#64748b' }}>www.tawjihihub.com</span>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '3px solid #f1f5f9', paddingBottom: '20px', marginBottom: '24px' }}>
+                        <img src="/logo.png" alt="Tawjihi Hub" style={{ height: '48px', objectFit: 'contain' }} />
+                        <span style={{ fontSize: '16px', fontWeight: 'bold', color: '#64748b' }}>www.tawjihihub.com</span>
                       </div>
                       
                       {/* Course Information */}
-                      <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-                        <h3 style={{ fontSize: '16px', fontWeight: 900, color: '#0f172a', margin: '0 0 4px 0', direction: 'rtl' }}>
+                      <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+                        <h3 style={{ fontSize: '28px', fontWeight: 900, color: '#0f172a', margin: '0 0 8px 0', direction: 'rtl' }}>
                           {coupon.course.titleAr}
                         </h3>
-                        <p style={{ fontSize: '12px', color: '#64748b', margin: 0 }}>
+                        <p style={{ fontSize: '18px', color: '#64748b', margin: 0 }}>
                           {coupon.course.titleEn}
                         </p>
                       </div>
@@ -715,22 +716,22 @@ export default function AdminCouponsPage() {
                       {/* Code Box */}
                       <div style={{ 
                         background: '#fff7ed', 
-                        border: '2px dashed #fdba74', 
-                        borderRadius: '12px', 
-                        padding: '16px', 
+                        border: '3px dashed #fdba74', 
+                        borderRadius: '16px', 
+                        padding: '32px', 
                         textAlign: 'center', 
-                        marginBottom: '20px' 
+                        marginBottom: '32px' 
                       }}>
-                        <p style={{ fontSize: '10px', color: '#ea580c', fontWeight: 'bold', textTransform: 'uppercase', margin: '0 0 8px 0' }}>
+                        <p style={{ fontSize: '14px', color: '#ea580c', fontWeight: 'bold', textTransform: 'uppercase', margin: '0 0 12px 0' }}>
                           {locale === 'ar' ? 'كود التفعيل / Access Code' : 'Access Code / كود التفعيل'}
                         </p>
-                        <p style={{ fontSize: '24px', fontWeight: 900, color: '#c2410c', letterSpacing: '4px', fontFamily: 'monospace', margin: 0 }}>
+                        <p style={{ fontSize: '40px', fontWeight: 900, color: '#c2410c', letterSpacing: '8px', fontFamily: 'monospace', margin: 0 }}>
                           {coupon.code}
                         </p>
                       </div>
                       
                       {/* Footer: Expiry and Disclaimer */}
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '10px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '14px' }}>
                         <div style={{ color: '#ef4444', fontWeight: 'bold' }}>
                           ⏰ {locale === 'ar' ? 'ينتهي في:' : 'Expires:'} <span style={{ color: '#0f172a' }}>{expiryStr}</span>
                         </div>
