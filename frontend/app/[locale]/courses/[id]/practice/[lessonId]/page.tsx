@@ -242,6 +242,16 @@ export default function PracticeSessionPage() {
       if (!itemsProg.includes(pracItem)) {
         itemsProg.push(pracItem);
         localStorage.setItem(itemKey, JSON.stringify(itemsProg));
+        
+        // Save to backend
+        const token = localStorage.getItem('token');
+        if (token) {
+          fetch('/api/progress', {
+            method: 'POST',
+            headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ courseId, itemId: pracItem })
+          }).catch(e => console.error(e));
+        }
       }
       
       // Clear saved practice state since it is completed

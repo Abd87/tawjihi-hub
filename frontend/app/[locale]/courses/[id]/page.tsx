@@ -107,13 +107,32 @@ export default function CourseSyllabusPage() {
   const [authorized, setAuthorized] = useState(false);
   const [expandedUnits, setExpandedUnits] = useState<string[]>([]);
 
+
+  // Sync progress from backend
+  const syncProgress = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+      const res = await fetch(`/api/progress?courseId=${courseId}`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setCompletedItems(data.items || []);
+        
+        // Update local cache as well just in case
+        const userStr = localStorage.getItem('user');
+        if (userStr) {
+          const userId = JSON.parse(userStr).id;
+          localStorage.setItem(`completed-items-${userId}-${courseId}`, JSON.stringify(data.items || []));
+        }
+      }
+    } catch (e) { console.error(e); }
+  };
+
   useEffect(() => {
     const handleFocus = () => {
-      const userStr = localStorage.getItem('user');
-      const completed = localStorage.getItem(`completed-items-${userStr ? JSON.parse(userStr).id : ''}-${courseId}`);
-      if (completed) {
-        setCompletedItems(JSON.parse(completed));
-      }
+      syncProgress();
     };
     window.addEventListener('focus', handleFocus);
     handleFocus(); // run once on mount
@@ -141,11 +160,12 @@ export default function CourseSyllabusPage() {
           const found = await res.json();
           setCourse(found);
           
-          // Load completed items (videos and practices)
+          // Initial load from cache to prevent flicker, then sync
           const completed = localStorage.getItem(`completed-items-${userStr ? JSON.parse(userStr).id : ''}-${courseId}`);
           if (completed) {
             setCompletedItems(JSON.parse(completed));
           }
+          syncProgress();
         }
       } catch (err) {
         console.error(err);
@@ -168,6 +188,16 @@ export default function CourseSyllabusPage() {
       const newItems = [...completedItems, pdfItem];
       setCompletedItems(newItems);
       localStorage.setItem(itemKey, JSON.stringify(newItems));
+      
+      // Save to backend
+      const token = localStorage.getItem('token');
+      if (token) {
+        fetch('/api/progress', {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ courseId, itemId: pdfItem })
+        }).catch(e => console.error(e));
+      }
     }
   };
 

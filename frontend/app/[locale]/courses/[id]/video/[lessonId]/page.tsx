@@ -114,6 +114,16 @@ export default function DedicatedVideoPlayerPage() {
     if (!itemsProg.includes(vidItem)) {
       itemsProg.push(vidItem);
       localStorage.setItem(itemKey, JSON.stringify(itemsProg));
+      
+      // Save to backend
+      const token = localStorage.getItem('token');
+      if (token) {
+        fetch('/api/progress', {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ courseId, itemId: vidItem })
+        }).catch(e => console.error(e));
+      }
     }
   }, [courseId, lessonId]);
 
@@ -142,6 +152,16 @@ export default function DedicatedVideoPlayerPage() {
     if (!itemsProg.includes(vidItem)) {
       itemsProg.push(vidItem);
       localStorage.setItem(itemKey, JSON.stringify(itemsProg));
+      
+      // Save to backend
+      const token = localStorage.getItem('token');
+      if (token) {
+        fetch('/api/progress', {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ courseId, itemId: vidItem })
+        }).catch(e => console.error(e));
+      }
     }
   };
 
@@ -186,9 +206,9 @@ export default function DedicatedVideoPlayerPage() {
   // We'll rely on a manual button to mark as completed if it's youtube, or we show the practice button prominently always.
   
   return (
-    <div className="flex flex-col md:flex-row h-[calc(100vh-64px)] mt-16 bg-[#020617] text-slate-200 overflow-hidden font-sans">
+    <div className="flex flex-col md:flex-row min-h-[calc(100vh-64px)] md:h-[calc(100vh-64px)] mt-16 bg-[#020617] text-slate-200 md:overflow-hidden font-sans">
       {/* Left Sidebar Playlist */}
-      <aside className={`w-full md:w-80 lg:w-96 bg-slate-950 border-e border-slate-800 flex flex-col h-full shrink-0 ${isRtl ? 'md:order-1 border-s border-e-0' : ''}`}>
+      <aside className={`w-full md:w-80 lg:w-96 bg-slate-950 border-e border-slate-800 flex flex-col h-auto max-h-[50vh] md:h-full md:max-h-none shrink-0 order-2 ${isRtl ? 'md:order-1 border-s border-e-0' : 'md:order-first'}`}>
         <div className="p-4 border-b border-slate-800 flex items-center justify-between sticky top-0 bg-slate-950 z-10">
           <h2 className="text-lg font-bold text-white truncate pr-4">
             {isRtl ? course.titleAr : course.titleEn}
@@ -256,7 +276,7 @@ export default function DedicatedVideoPlayerPage() {
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 flex flex-col h-full overflow-y-auto relative">
+      <main className="flex-1 flex flex-col h-auto md:h-full overflow-y-auto relative order-1 md:order-none">
         {/* Video Area */}
         <div id="video-wrapper" className="w-full bg-black aspect-video relative shrink-0 shadow-2xl group">
           {currentLesson.videoUrl ? (
