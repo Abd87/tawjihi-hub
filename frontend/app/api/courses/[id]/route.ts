@@ -37,6 +37,15 @@ export async function GET(request: Request, { params }: { params: { id: string }
         teacher: true,
         liveSessions: true,
         exams: true,
+        quizzes: {
+          select: {
+            id: true,
+            titleAr: true,
+            titleEn: true,
+            durationMinutes: true,
+            cefrLevel: true
+          }
+        },
         units: {
           include: {
             lessons: {

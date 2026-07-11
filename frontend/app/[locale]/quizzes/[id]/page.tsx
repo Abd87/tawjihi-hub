@@ -85,47 +85,6 @@ export default function StudentQuizPage() {
     breakdown: GradedBreakdown[];
   } | null>(null);
 
-  // Mock quiz data fallback
-  const getMockQuizData = (id: string): Quiz => {
-    return {
-      id,
-      titleAr: 'اختبار تشخيصي للغة الإنجليزية - مستوى B2',
-      titleEn: 'English Diagnostic Exam - B2 Standard',
-      cefrLevel: 'B2',
-      durationMinutes: 30,
-      questions: [
-        {
-          id: 'q1',
-          textAr: 'اختر الصيغة الصحيحة للفعل لإكمال الجملة التالية:',
-          textEn: 'Choose the correct form of the verb to complete the sentence:',
-          type: 'MCQ',
-          choices: [
-            { id: 'c1_1', textAr: 'finish', textEn: 'finish' },
-            { id: 'c1_2', textAr: 'had finished', textEn: 'had finished' },
-            { id: 'c1_3', textAr: 'will finish', textEn: 'will finish' }
-          ]
-        },
-        {
-          id: 'q2',
-          textAr: 'أكمل الفراغ بالخيار الأنسب للقاعدة الشرطية الأولى:',
-          textEn: 'Fill in the blank for the first conditional structure:',
-          type: 'MCQ',
-          choices: [
-            { id: 'c2_1', textAr: 'dont reduce', textEn: 'don\'t reduce' },
-            { id: 'c2_2', textAr: 'wont reduce', textEn: 'won\'t reduce' },
-            { id: 'c2_3', textAr: 'hadnt reduced', textEn: 'hadn\'t reduced' }
-          ]
-        },
-        {
-          id: 'q3',
-          textAr: 'اكتب الصيغة المفردة للكلمة الجمع "phenomena" باللغة الإنجليزية:',
-          textEn: 'Write the singular form of the plural noun "phenomena" in English:',
-          type: 'SHORT_ANSWER',
-          choices: []
-        }
-      ]
-    };
-  };
 
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -147,11 +106,8 @@ export default function StudentQuizPage() {
         const data = await response.json();
         setQuiz(data.quiz);
         setTimeLeft((data.quiz.durationMinutes || 30) * 60);
-      } catch (err) {
-        // Fallback mockup
-        const mock = getMockQuizData(quizId);
-        setQuiz(mock);
-        setTimeLeft((mock.durationMinutes || 30) * 60);
+      } catch (err: any) {
+        console.error(err);
       } finally {
         setLoading(false);
       }
@@ -233,67 +189,9 @@ export default function StudentQuizPage() {
         throw new Error(data.error || 'Submission failed');
       }
 
-      setGradedResult({
-        score: data.score,
-        maxScore: data.maxScore,
-        percent: data.percent,
-        breakdown: data.breakdown
-      });
+      setGradedResult(data.result);
     } catch (err) {
-      // Mock evaluation offline
-      let mockScore = 0;
-      const mockBreakdown: GradedBreakdown[] = quiz?.questions.map((q, idx) => {
-        const studentAns = submittedAnswers.find(a => a.questionId === q.id);
-        let isCorrect = false;
-        let correctVal = '';
-        let userVal = '';
-        let explanationAr = '';
-        let explanationEn = '';
-
-        if (q.id === 'q1') {
-          isCorrect = studentAns?.selectedChoiceId === 'c1_2';
-          correctVal = 'had finished';
-          userVal = studentAns?.selectedChoiceId === 'c1_2' ? 'had finished' : (studentAns?.selectedChoiceId === 'c1_1' ? 'finish' : (studentAns?.selectedChoiceId === 'c1_3' ? 'will finish' : ''));
-          explanationAr = 'يستخدم الماضي التام للدلالة على حدث تم واكتمل قبل وقوع حدث آخر بالماضي.';
-          explanationEn = 'Past perfect is used to denote an action completed before another action in the past.';
-        } else if (q.id === 'q2') {
-          isCorrect = studentAns?.selectedChoiceId === 'c2_1';
-          correctVal = 'don\'t reduce';
-          userVal = studentAns?.selectedChoiceId === 'c2_1' ? 'don\'t reduce' : (studentAns?.selectedChoiceId === 'c2_2' ? 'won\'t reduce' : (studentAns?.selectedChoiceId === 'c2_3' ? 'hadn\'t reduced' : ''));
-          explanationAr = 'القاعدة الشرطية الأولى تتكون من Simple Present في جملة الشرط.';
-          explanationEn = 'First conditional sentences use if + simple present.';
-        } else if (q.id === 'q3') {
-          const cleanAns = (studentAns?.textAnswer || '').trim().toLowerCase();
-          isCorrect = cleanAns === 'phenomenon';
-          correctVal = 'phenomenon';
-          userVal = studentAns?.textAnswer || '';
-          explanationAr = 'صيغة المفرد للكلمة اللاتينية phenomena هي phenomenon.';
-          explanationEn = 'Phenomenon is the singular form of the plural word phenomena.';
-        }
-
-        if (isCorrect) mockScore++;
-
-        return {
-          questionId: q.id,
-          textAr: q.textAr,
-          textEn: q.textEn,
-          type: q.type,
-          isCorrect,
-          userSelection: userVal,
-          correctSelection: correctVal,
-          explanationAr,
-          explanationEn
-        };
-      }) || [];
-
-      const mockPercent = Math.round((mockScore / (quiz?.questions.length || 1)) * 100);
-
-      setGradedResult({
-        score: mockScore,
-        maxScore: quiz?.questions.length || 0,
-        percent: mockPercent,
-        breakdown: mockBreakdown
-      });
+      console.error(err);
     } finally {
       setSubmitting(false);
     }

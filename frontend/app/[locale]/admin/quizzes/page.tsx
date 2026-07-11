@@ -157,10 +157,7 @@ export default function AdminQuizPage() {
       setCreatedQuizId(data.quiz.id);
       setSuccessMessage(locale === 'ar' ? 'تم إنشاء الاختبار بنجاح! يمكنك الآن إضافة أسئلة.' : 'Quiz created! Now add questions below.');
     } catch (err: any) {
-      // Fallback Mock generation for offline demo
-      const randomId = `mock-quiz-${Math.floor(Math.random() * 1000)}`;
-      setCreatedQuizId(randomId);
-      setSuccessMessage(locale === 'ar' ? 'تم إنشاء اختبار تجريبي (وضع عدم الاتصال). يمكنك إضافة أسئلة.' : 'Demo Quiz created (offline mode). Add questions below.');
+      setError(err.message || (locale === 'ar' ? 'فشل إنشاء الاختبار' : 'Failed to create quiz'));
     }
   };
 
@@ -229,17 +226,7 @@ export default function AdminQuizPage() {
       setSuccessMessage(locale === 'ar' ? 'تمت إضافة السؤال بنجاح!' : 'Question added successfully!');
       resetQuestionFields();
     } catch (err: any) {
-      // Mock question creation offline
-      const mockQuestion = {
-        id: `mock-q-${Math.floor(Math.random() * 1000)}`,
-        textAr: qTextAr,
-        textEn: qTextEn,
-        type: qType,
-        choices: qType === 'MCQ' ? [...choices] : []
-      };
-      setAddedQuestions([...addedQuestions, mockQuestion]);
-      setSuccessMessage(locale === 'ar' ? 'تمت إضافة سؤال تجريبي (وضع عدم الاتصال).' : 'Demo question added (offline mode).');
-      resetQuestionFields();
+      setError(err.message || (locale === 'ar' ? 'فشل إضافة السؤال' : 'Failed to add question'));
     }
   };
 

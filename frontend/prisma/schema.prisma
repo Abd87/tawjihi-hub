@@ -36,6 +36,7 @@ model User {
   comments      Comment[]
   usedCoupons   Coupon[]      @relation("UsedCoupons")
   progress      Progress[]
+  quizAttempts  QuizAttempt[]
   
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
@@ -64,6 +65,7 @@ model Course {
   units         Unit[]
   liveSessions  LiveSession[]
   exams         Exam[]
+  quizzes       Quiz[]
   enrollments   Enrollment[]
   coupons       Coupon[]
   
@@ -240,4 +242,87 @@ model Comment {
   createdAt DateTime @default(now())
 
   @@map("comments")
+}
+
+model Quiz {
+  id              String         @id @default(uuid())
+  courseId        String
+  course          Course         @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  titleAr         String
+  titleEn         String
+  descriptionAr   String?
+  descriptionEn   String?
+  cefrLevel       String?        @default("B2")
+  durationMinutes Int            @default(30)
+  
+  questions       QuizQuestion[]
+  attempts        QuizAttempt[]
+  
+  createdAt       DateTime       @default(now())
+
+  @@map("quizzes")
+}
+
+model QuizQuestion {
+  id            String       @id @default(uuid())
+  quizId        String
+  quiz          Quiz         @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  
+  textAr        String
+  textEn        String
+  type          String       // "MCQ" or "SHORT_ANSWER"
+  explanationAr String?
+  explanationEn String?
+  correctAnswer String?      // For SHORT_ANSWER type
+  
+  choices       QuizChoice[]
+  answers       QuizAnswer[]
+
+  @@map("quiz_questions")
+}
+
+model QuizChoice {
+  id            String       @id @default(uuid())
+  questionId    String
+  question      QuizQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  
+  textAr        String
+  textEn        String
+  isCorrect     Boolean      @default(false)
+
+  @@map("quiz_choices")
+}
+
+model QuizAttempt {
+  id          String       @id @default(uuid())
+  quizId      String
+  quiz        Quiz         @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  
+  studentId   String
+  student     User         @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  
+  score       Float
+  maxScore    Float
+  percent     Float
+  
+  answers     QuizAnswer[]
+  
+  createdAt   DateTime     @default(now())
+
+  @@map("quiz_attempts")
+}
+
+model QuizAnswer {
+  id               String       @id @default(uuid())
+  attemptId        String
+  attempt          QuizAttempt  @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  
+  questionId       String
+  question         QuizQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  
+  selectedChoiceId String?
+  textAnswer       String?
+  isCorrect        Boolean
+
+  @@map("quiz_answers")
 }

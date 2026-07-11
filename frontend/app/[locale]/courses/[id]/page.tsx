@@ -21,7 +21,8 @@ import {
   ChevronDown,
   ChevronUp,
   Trophy,
-  Circle
+  Circle,
+  ClipboardList
 } from 'lucide-react';
 import Link from 'next/link';
 import VocabCoursePlayer from '@/components/VocabCoursePlayer';
@@ -91,6 +92,7 @@ interface Course {
   lessons: Lesson[]; // Flat array maintained for backward compatibility in progress calculations
   liveSessions?: LiveSession[];
   exams?: Exam[];
+  quizzes?: any[];
 }
 
 export default function CourseSyllabusPage() {
@@ -555,6 +557,45 @@ export default function CourseSyllabusPage() {
                 );
               })}
             </div>
+
+            {/* Quizzes Section */}
+            {course.quizzes && course.quizzes.length > 0 && (
+              <div className="mt-10 mb-6">
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="p-2.5 bg-brand-500/20 rounded-xl border border-brand-500/30">
+                    <ClipboardList className="h-6 w-6 text-brand-400" />
+                  </div>
+                  <h2 className="text-xl font-black text-white">
+                    {isRtl ? 'الاختبارات الإلكترونية' : 'Digital Quizzes'}
+                  </h2>
+                </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {course.quizzes.map((quiz: any) => (
+                    <Link 
+                      key={quiz.id}
+                      href={`/${locale}/quizzes/${quiz.id}`}
+                      className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex items-center justify-between gap-4 hover:bg-slate-800/80 hover:border-brand-500/50 transition-colors group cursor-pointer"
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 group-hover:border-brand-500/50 transition-colors">
+                          <ClipboardList className="h-5 w-5 text-brand-400" />
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-white line-clamp-1">
+                            {isRtl ? quiz.titleAr : quiz.titleEn}
+                          </h3>
+                          <p className="text-xs text-slate-500 mt-1 font-semibold">
+                            {quiz.durationMinutes} {isRtl ? 'دقيقة' : 'Minutes'} • {quiz.cefrLevel}
+                          </p>
+                        </div>
+                      </div>
+                      <ArrowRight className={`h-5 w-5 text-slate-500 group-hover:text-brand-400 transition-colors shrink-0 ${isRtl ? 'rotate-180' : ''}`} />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Exams Section */}
             {course.exams && course.exams.length > 0 && (
