@@ -94,8 +94,30 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ error: 'Coupon ID is required' }, { status: 400 });
     }
 
-    await prisma.coupon.delete({
+    const coupon = await prisma.coupon.findUnique({
       where: { id }
+    });
+
+    if (!coupon) {
+      return NextResponse.json({ error: 'Coupon not found' }, { status: 404 });
+    }
+
+    // Use a transaction to ensure both are deleted safely
+    await prisma.$transaction(async (tx) => {
+      // 1. If coupon was used, delete the enrollment for that student + course
+      if (coupon.usedById && coupon.courseId) {
+        await tx.enrollment.deleteMany({
+          where: {
+            studentId: coupon.usedById,
+            courseId: coupon.courseId
+          }
+        });
+      }
+      
+      // 2. Delete the coupon itself
+      await tx.coupon.delete({
+        where: { id }
+      });
     });
 
     return NextResponse.json({ success: true });
