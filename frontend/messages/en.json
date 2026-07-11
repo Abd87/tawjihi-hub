@@ -109,7 +109,7 @@
     "prevLesson": "Previous Lesson",
     "markComplete": "Mark as Complete",
     "speed": "Speed",
-    "completionBanner": "\ud83c\udf89 Excellent! You've completed all lessons in this course"
+    "completionBanner": "🎉 Excellent! You've completed all lessons in this course"
   },
   "quiz": {
     "startQuiz": "Start Quiz Now",
@@ -209,5 +209,19 @@
     "active": "Active",
     "used": "Redeemed",
     "generateSuccess": "Coupon generated successfully"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Our Vision & Mission at Tawjihi Hub",
+    "description": "We are a leading educational platform aiming to revolutionize the way Academic and Vocational (BTEC) Tawjihi students learn in Jordan. We believe education should be interactive, engaging, and accessible to everyone at the highest quality standards.",
+    "missionTitle": "Our Mission",
+    "missionDesc": "To empower students by providing exceptional educational content, interactive classes, and continuous follow-up that ensures their excellence and helps them reach their academic goals with confidence.",
+    "visionTitle": "Our Vision",
+    "visionDesc": "To be the premier and most trusted destination for every Tawjihi student seeking excellence, innovating study methods that keep pace with modern requirements and ministry exams."
+  },
+  "cookies": {
+    "message": "We use cookies to improve your experience on our site. By using our site, you consent to our privacy policy.",
+    "accept": "Accept",
+    "decline": "Decline"
   }
 }

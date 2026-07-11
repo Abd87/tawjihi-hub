@@ -7,6 +7,7 @@ import { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import SocialFloatingButtons from '@/components/SocialFloatingButtons';
 import { Analytics } from '@vercel/analytics/react';
+import CookieBanner from '@/components/CookieBanner';
 
 const cairo = Cairo({
   subsets: ['arabic'],
@@ -92,6 +93,7 @@ export default async function LocaleLayout({
           <Navbar />
           {children}
           <SocialFloatingButtons />
+          <CookieBanner />
         </NextIntlClientProvider>
         <Analytics />
       </body>

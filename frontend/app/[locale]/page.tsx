@@ -404,6 +404,45 @@ export default function HomePage({ params: { locale } }: PageProps) {
         </div>
       </section>
 
+
+      {/* About Us Section */}
+      <section id="about-us-section" className="py-20 md:py-28 relative border-t border-slate-900 bg-[#020617]">
+        <div className="absolute top-[20%] start-[20%] w-[30vw] h-[30vw] rounded-full bg-brand-500/5 blur-[120px] pointer-events-none z-0" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
+            <span className="text-brand-500 text-xs sm:text-sm font-extrabold uppercase tracking-widest bg-brand-500/5 px-4 py-1.5 rounded-full border border-brand-500/10">
+              {t('about.title')}
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mt-4 tracking-tight">
+              {t('about.subtitle')}
+            </h2>
+            <p className="text-slate-400 mt-6 text-base sm:text-lg leading-relaxed">
+              {t('about.description')}
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+            <div className="rounded-3xl p-8 border border-slate-800 bg-slate-900/20 hover:bg-slate-900/40 transition-all duration-500 shadow-xl relative overflow-hidden group">
+              <div className="absolute top-0 end-0 w-32 h-32 bg-brand-500/10 blur-3xl pointer-events-none rounded-full" />
+              <div className="h-14 w-14 flex items-center justify-center rounded-2xl bg-brand-500/10 text-brand-400 mb-6 group-hover:scale-110 transition-transform">
+                <Compass className="h-7 w-7" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">{t('about.visionTitle')}</h3>
+              <p className="text-slate-400 leading-relaxed text-lg">{t('about.visionDesc')}</p>
+            </div>
+            
+            <div className="rounded-3xl p-8 border border-slate-800 bg-slate-900/20 hover:bg-slate-900/40 transition-all duration-500 shadow-xl relative overflow-hidden group">
+              <div className="absolute top-0 end-0 w-32 h-32 bg-blue-500/10 blur-3xl pointer-events-none rounded-full" />
+              <div className="h-14 w-14 flex items-center justify-center rounded-2xl bg-blue-500/10 text-blue-400 mb-6 group-hover:scale-110 transition-transform">
+                <Layers className="h-7 w-7" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">{t('about.missionTitle')}</h3>
+              <p className="text-slate-400 leading-relaxed text-lg">{t('about.missionDesc')}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="border-t border-slate-900 bg-slate-950/40 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-slate-500">
