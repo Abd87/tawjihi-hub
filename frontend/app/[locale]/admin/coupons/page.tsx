@@ -502,7 +502,18 @@ export default function AdminCouponsPage() {
                     setSelectedForPrint(coupons.filter(c => c.isActive).map(c => c.id));
                   } else {
                     if (selectedForPrint.length === 0) { setPrintMode(false); return; }
-                    window.print();
+                    
+                    // Change title for PDF save name
+                    const originalTitle = document.title;
+                    const firstCoupon = coupons.find(c => c.id === selectedForPrint[0]);
+                    if (firstCoupon) {
+                      document.title = `${firstCoupon.course.titleEn || firstCoupon.course.titleAr} Code`;
+                    }
+                    
+                    setTimeout(() => {
+                      window.print();
+                      setTimeout(() => { document.title = originalTitle; }, 100);
+                    }, 50);
                   }
                 }}
                 className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-violet-600/10 border border-violet-500/20 text-violet-400 hover:bg-violet-600/20 transition-all"
@@ -655,7 +666,11 @@ export default function AdminCouponsPage() {
 
         </div>
 
-                {/* ═══════════════════════════════════════════════════════════ */}
+        
+
+      </main>
+
+        {/* ═══════════════════════════════════════════════════════════ */}
         {/* PRINT CARDS — hidden in normal view, shown only on print   */}
         {/* ═══════════════════════════════════════════════════════════ */}
         <div className="hidden print:block w-full bg-white min-h-screen absolute top-0 left-0 z-50 p-8">
@@ -730,8 +745,6 @@ export default function AdminCouponsPage() {
             </div>
           </div>
         </div>
-
-      </main>
 
     </div>
   );

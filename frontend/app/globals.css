@@ -31,3 +31,8 @@ body {
   background: #ea580c;
 }
 
+
+@media print {
+  @page { margin: 0; size: A4; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; margin: 0; padding: 0; }
+}
