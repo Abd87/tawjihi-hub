@@ -186,6 +186,16 @@ export default function AdminQuizPage() {
       });
       if (response.ok) {
         setQuizzesList(prev => prev.filter(q => q.id !== id));
+        if (createdQuizId === id) {
+          setCreatedQuizId(null);
+          setTitleAr('');
+          setTitleEn('');
+          setDescriptionAr('');
+          setDescriptionEn('');
+          setSections([]);
+          setAddedQuestions([]);
+          setActiveSectionId(null);
+        }
       } else {
         alert('Failed to delete quiz');
       }
@@ -566,10 +576,31 @@ export default function AdminQuizPage() {
           
           {/* STEP 1: Quiz Form */}
           <div className="bg-slate-900/10 border border-slate-900 rounded-3xl p-6 sm:p-8 shadow-xl">
-            <h3 className="text-lg font-bold text-white border-b border-slate-850 pb-4 mb-6 flex items-center gap-2">
-              <Layers className="h-5 w-5 text-brand-500" />
-              <span>{t('createQuizHeader')}</span>
-            </h3>
+            <div className="flex justify-between items-center border-b border-slate-850 pb-4 mb-6">
+              <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                <Layers className="h-5 w-5 text-brand-500" />
+                <span>{t('createQuizHeader')}</span>
+              </h3>
+              {createdQuizId && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setCreatedQuizId(null);
+                    setTitleAr('');
+                    setTitleEn('');
+                    setDescriptionAr('');
+                    setDescriptionEn('');
+                    setSections([]);
+                    setAddedQuestions([]);
+                    setActiveSectionId(null);
+                    setSuccessMessage(locale === 'ar' ? 'تمت تهيئة النماذج لاختبار جديد' : 'Ready to create a new quiz');
+                  }}
+                  className="px-3 py-1.5 text-xs font-bold bg-brand-500 hover:bg-brand-600 text-white rounded-lg transition-colors"
+                >
+                  {locale === 'ar' ? 'إنشاء اختبار جديد' : 'Start New Quiz'}
+                </button>
+              )}
+            </div>
 
             <form onSubmit={handleCreateQuiz} className="grid md:grid-cols-2 gap-5">
               <div className="space-y-1.5">
