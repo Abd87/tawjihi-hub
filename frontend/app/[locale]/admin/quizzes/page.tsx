@@ -185,6 +185,10 @@ export default function AdminQuizPage() {
   // Quiz submission handler
   const handleCreateQuiz = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!titleAr && !titleEn) {
+      setError(locale === 'ar' ? 'يجب إدخال عنوان واحد على الأقل (عربي أو إنجليزي)' : 'Please provide at least one title (Ar or En)');
+      return;
+    }
     setError(null);
     setSuccessMessage(null);
     const token = localStorage.getItem('token');
@@ -248,6 +252,10 @@ export default function AdminQuizPage() {
   const handleCreateSection = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!createdQuizId) return;
+    if (!sectionTitleAr && !sectionTitleEn) {
+      setError(locale === 'ar' ? 'يجب إدخال عنوان قسم واحد على الأقل' : 'Please provide at least one section title');
+      return;
+    }
     setError(null);
     setSuccessMessage(null);
     const token = localStorage.getItem('token');
@@ -291,6 +299,10 @@ export default function AdminQuizPage() {
   const handleAddQuestion = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!activeSectionId) return;
+    if (!qTextAr && !qTextEn) {
+      setError(locale === 'ar' ? 'يجب إدخال نص سؤال واحد على الأقل' : 'Please provide at least one question text');
+      return;
+    }
     setError(null);
     setSuccessMessage(null);
 
@@ -475,7 +487,6 @@ export default function AdminQuizPage() {
                 <label className="text-xs font-bold text-slate-300">{t('quizTitleAr')}</label>
                 <input 
                   type="text" 
-                  required
                   value={titleAr}
                   onChange={(e) => setTitleAr(e.target.value)}
                   disabled={createdQuizId !== null}
@@ -488,7 +499,6 @@ export default function AdminQuizPage() {
                 <label className="text-xs font-bold text-slate-300">{t('quizTitleEn')}</label>
                 <input 
                   type="text" 
-                  required
                   value={titleEn}
                   onChange={(e) => setTitleEn(e.target.value)}
                   disabled={createdQuizId !== null}
@@ -563,11 +573,11 @@ export default function AdminQuizPage() {
               <form onSubmit={handleCreateSection} className="grid md:grid-cols-2 gap-5">
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold text-slate-300">{locale === 'ar' ? 'عنوان القسم (عربي)' : 'Section Title (Ar)'}</label>
-                  <input type="text" value={sectionTitleAr} onChange={e => setSectionTitleAr(e.target.value)} required className="w-full rounded-xl border border-slate-800 bg-slate-950 p-3 text-sm text-slate-200 focus:border-brand-500 focus:outline-none" />
+                  <input type="text" value={sectionTitleAr} onChange={e => setSectionTitleAr(e.target.value)} className="w-full rounded-xl border border-slate-800 bg-slate-950 p-3 text-sm text-slate-200 focus:border-brand-500 focus:outline-none" />
                 </div>
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold text-slate-300">{locale === 'ar' ? 'عنوان القسم (انجليزي)' : 'Section Title (En)'}</label>
-                  <input type="text" value={sectionTitleEn} onChange={e => setSectionTitleEn(e.target.value)} required className="w-full rounded-xl border border-slate-800 bg-slate-950 p-3 text-sm text-slate-200 focus:border-brand-500 focus:outline-none" />
+                  <input type="text" value={sectionTitleEn} onChange={e => setSectionTitleEn(e.target.value)} className="w-full rounded-xl border border-slate-800 bg-slate-950 p-3 text-sm text-slate-200 focus:border-brand-500 focus:outline-none" />
                 </div>
                 <div className="md:col-span-2 space-y-1.5">
                   <label className="text-xs font-bold text-slate-300">{locale === 'ar' ? 'النص المقروء (عربي - اختياري)' : 'Reading Passage (Ar - Optional)'}</label>
@@ -631,7 +641,6 @@ export default function AdminQuizPage() {
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold text-slate-300">{t('questionTextAr')}</label>
                     <textarea 
-                      required
                       rows={2}
                       value={qTextAr}
                       onChange={(e) => setQTextAr(e.target.value)}
@@ -642,7 +651,6 @@ export default function AdminQuizPage() {
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold text-slate-300">{t('questionTextEn')}</label>
                     <textarea 
-                      required
                       rows={2}
                       value={qTextEn}
                       onChange={(e) => setQTextEn(e.target.value)}
@@ -664,7 +672,6 @@ export default function AdminQuizPage() {
                           {/* Choice Inputs */}
                           <input 
                             type="text" 
-                            required
                             value={choice.textAr}
                             onChange={(e) => handleChoiceChange(index, 'textAr', e.target.value)}
                             className="flex-grow rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-xs sm:text-sm text-slate-200 focus:border-brand-500 focus:outline-none"
@@ -672,7 +679,6 @@ export default function AdminQuizPage() {
                           />
                           <input 
                             type="text" 
-                            required
                             value={choice.textEn}
                             onChange={(e) => handleChoiceChange(index, 'textEn', e.target.value)}
                             className="flex-grow rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-xs sm:text-sm text-slate-200 focus:border-brand-500 focus:outline-none"

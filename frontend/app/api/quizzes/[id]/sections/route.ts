@@ -25,7 +25,7 @@ export async function POST(
     const body = await request.json();
     const { titleAr, titleEn, passageAr, passageEn, order } = body;
 
-    if (!titleAr || !titleEn) {
+    if (!titleAr && !titleEn) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 

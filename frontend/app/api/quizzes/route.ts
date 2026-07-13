@@ -19,7 +19,7 @@ export async function POST(request: Request) {
 
     const { courseId, titleAr, titleEn, descriptionAr, descriptionEn, cefrLevel, durationMinutes } = await request.json();
 
-    if (!courseId || !titleAr || !titleEn) {
+    if (!courseId || (!titleAr && !titleEn)) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
