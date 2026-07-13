@@ -36,8 +36,8 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     },
     description: messages.meta.description,
     keywords: locale === 'ar' 
-      ? ['توجيهي', 'الأردن', 'BTEC', 'تعليم', 'منصة دراسية', 'توجيهي هب'] 
-      : ['Tawjihi', 'Jordan', 'BTEC', 'Education', 'E-learning', 'Tawjihi Hub'],
+      ? ['توجيهي', 'الأردن', 'BTEC', 'تعليم', 'منصة دراسية', 'توجيهي هب', 'أسئلة سنوات سابقة توجيهي', 'ملخصات توجيهي 2026', 'امتحانات وزارة', 'كيف تدرس للتوجيهي'] 
+      : ['Tawjihi', 'Jordan', 'BTEC', 'Education', 'E-learning', 'Tawjihi Hub', 'Tawjihi biology past papers', 'Tawjihi 2026 mathematics revision notes', 'how to study for chemistry exam'],
     openGraph: {
       title: messages.meta.title,
       description: messages.meta.description,

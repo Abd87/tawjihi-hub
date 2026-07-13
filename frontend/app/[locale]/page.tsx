@@ -47,6 +47,7 @@ export default function HomePage({ params: { locale } }: PageProps) {
           loop 
           muted 
           playsInline
+          poster="/og-image.png"
           className="w-full h-full object-cover opacity-40 scale-105"
         >
           <source src="/hero-bg.mp4" type="video/mp4" />
@@ -440,6 +441,121 @@ export default function HomePage({ params: { locale } }: PageProps) {
               <p className="text-slate-400 leading-relaxed text-lg">{t('about.missionDesc')}</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* SEO Study Resources Hub Section */}
+      <section id="resources-section" className="py-16 border-t border-slate-900 bg-[#020617]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              {locale === 'ar' ? 'أهم مصادر التوجيهي والمراجعات' : 'Top Tawjihi Study Resources'}
+            </h2>
+            <p className="text-slate-400 mt-3">
+              {locale === 'ar' ? 'تصفح أحدث الملخصات، أسئلة السنوات، ونماذج الامتحانات.' : 'Browse the latest revision notes, past papers, and mock exams.'}
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {[
+              { en: "Tawjihi Biology Past Papers", ar: "أسئلة سنوات أحياء توجيهي" },
+              { en: "2026 Mathematics Revision Notes", ar: "ملخصات رياضيات توجيهي 2026" },
+              { en: "How to Study for Chemistry", ar: "كيف تدرس لامتحان الكيمياء" },
+              { en: "BTEC Vocational Syllabus Guide", ar: "دليل تخصص BTEC المهني" },
+              { en: "Tawjihi Physics Formulas PDF", ar: "ملخص قوانين الفيزياء توجيهي" },
+              { en: "Ministry Mock Exams 2025", ar: "امتحانات الوزارة التجريبية 2025" }
+            ].map((resource, i) => (
+              <a 
+                key={i} 
+                href="#tracks-section" 
+                className="flex items-center gap-3 p-4 rounded-xl border border-slate-800 bg-slate-900/30 hover:bg-slate-900/60 hover:border-brand-500/30 transition-all text-slate-300 hover:text-white"
+              >
+                <FileText className="h-5 w-5 text-brand-500 shrink-0" />
+                <span className="text-sm font-semibold">{locale === 'ar' ? resource.ar : resource.en}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SEO FAQ Section with JSON-LD Schema */}
+      <section id="faq-section" className="py-16 border-t border-slate-900 bg-gradient-to-b from-[#020617] to-slate-950/40">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              {locale === 'ar' ? 'الأسئلة الشائعة حول توجيهي هب' : 'Frequently Asked Questions'}
+            </h2>
+          </div>
+
+          <div className="space-y-4">
+            {[
+              {
+                q_en: "Are Tawjihi past papers included?",
+                a_en: "Yes, our platform includes a massive bank of Tawjihi past papers seamlessly integrated into our CEFR-aligned quizzes.",
+                q_ar: "هل تتوفر أسئلة سنوات سابقة للتوجيهي؟",
+                a_ar: "نعم، المنصة تحتوي على بنك ضخم من أسئلة السنوات السابقة مدمجة في نظام الامتحانات الإلكترونية."
+              },
+              {
+                q_en: "Do you support the BTEC vocational track?",
+                a_en: "Absolutely. We are the first platform in Jordan to fully support the modern BTEC technical track with its 4 core ministry subjects.",
+                q_ar: "هل تدعمون تخصص BTEC المهني؟",
+                a_ar: "بالتأكيد، نحن أول منصة في الأردن تدعم مسار BTEC المهني بالكامل بمواده الوزارية الأربعة."
+              },
+              {
+                q_en: "Can I download revision notes as PDF?",
+                a_en: "Yes, all Pearson study guides and summaries are available as downloadable PDFs for offline studying.",
+                q_ar: "هل يمكنني تحميل الملخصات كملفات PDF؟",
+                a_ar: "نعم، جميع ملخصات Pearson وأوراق العمل متاحة للتحميل المباشر والدراسة دون اتصال بالإنترنت."
+              }
+            ].map((faq, i) => (
+              <details key={i} className="group border border-slate-800 bg-slate-900/30 rounded-xl overflow-hidden [&_summary::-webkit-details-marker]:hidden cursor-pointer">
+                <summary className="flex items-center justify-between p-5 text-white font-semibold outline-none hover:bg-slate-900/50 transition-colors">
+                  <span>{locale === 'ar' ? faq.q_ar : faq.q_en}</span>
+                  <ArrowRight className={`h-4 w-4 transition-transform group-open:rotate-90 ${locale === 'ar' ? 'rotate-180 group-open:-rotate-90' : ''}`} />
+                </summary>
+                <div className="px-5 pb-5 text-slate-400 text-sm leading-relaxed border-t border-slate-800/50 pt-4 bg-slate-900/10">
+                  {locale === 'ar' ? faq.a_ar : faq.a_en}
+                </div>
+              </details>
+            ))}
+          </div>
+
+          {/* Inject JSON-LD Schema for SEO FAQ */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                  {
+                    "@type": "Question",
+                    "name": locale === 'ar' ? "هل تتوفر أسئلة سنوات سابقة للتوجيهي؟" : "Are Tawjihi past papers included?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": locale === 'ar' ? "نعم، المنصة تحتوي على بنك ضخم من أسئلة السنوات السابقة مدمجة في نظام الامتحانات الإلكترونية." : "Yes, our platform includes a massive bank of Tawjihi past papers seamlessly integrated into our CEFR-aligned quizzes."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": locale === 'ar' ? "هل تدعمون تخصص BTEC المهني؟" : "Do you support the BTEC vocational track?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": locale === 'ar' ? "بالتأكيد، نحن أول منصة في الأردن تدعم مسار BTEC المهني بالكامل بمواده الوزارية الأربعة." : "Absolutely. We are the first platform in Jordan to fully support the modern BTEC technical track with its 4 core ministry subjects."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": locale === 'ar' ? "هل يمكنني تحميل الملخصات كملفات PDF؟" : "Can I download revision notes as PDF?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": locale === 'ar' ? "نعم، جميع ملخصات Pearson وأوراق العمل متاحة للتحميل المباشر والدراسة دون اتصال بالإنترنت." : "Yes, all Pearson study guides and summaries are available as downloadable PDFs for offline studying."
+                    }
+                  }
+                ]
+              })
+            }}
+          />
         </div>
       </section>
 
