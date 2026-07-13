@@ -247,7 +247,7 @@ export default function AdminQuizPage() {
   // Section submission handler
   const handleCreateSection = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!activeSectionId) return;
+    if (!createdQuizId) return;
     setError(null);
     setSuccessMessage(null);
     const token = localStorage.getItem('token');
@@ -551,8 +551,45 @@ export default function AdminQuizPage() {
             </form>
           </div>
 
-          {/* STEP 2: Questions Form (Only active after Quiz created) */}
+
+          {/* STEP 2: Section Form (Only active after Quiz created) */}
           {createdQuizId !== null && (
+            <div className="bg-slate-900/10 border border-slate-900 rounded-3xl p-6 sm:p-8 shadow-xl">
+              <h3 className="text-lg font-bold text-white border-b border-slate-850 pb-4 mb-6 flex items-center gap-2">
+                <Layers className="h-5 w-5 text-brand-500" />
+                <span>{locale === 'ar' ? 'إضافة قسم جديد (مهم للنص المقروء)' : 'Add New Section (For Reading Passages)'}</span>
+              </h3>
+
+              <form onSubmit={handleCreateSection} className="grid md:grid-cols-2 gap-5">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-slate-300">{locale === 'ar' ? 'عنوان القسم (عربي)' : 'Section Title (Ar)'}</label>
+                  <input type="text" value={sectionTitleAr} onChange={e => setSectionTitleAr(e.target.value)} required className="w-full rounded-xl border border-slate-800 bg-slate-950 p-3 text-sm text-slate-200 focus:border-brand-500 focus:outline-none" />
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-slate-300">{locale === 'ar' ? 'عنوان القسم (انجليزي)' : 'Section Title (En)'}</label>
+                  <input type="text" value={sectionTitleEn} onChange={e => setSectionTitleEn(e.target.value)} required className="w-full rounded-xl border border-slate-800 bg-slate-950 p-3 text-sm text-slate-200 focus:border-brand-500 focus:outline-none" />
+                </div>
+                <div className="md:col-span-2 space-y-1.5">
+                  <label className="text-xs font-bold text-slate-300">{locale === 'ar' ? 'النص المقروء (عربي - اختياري)' : 'Reading Passage (Ar - Optional)'}</label>
+                  <textarea rows={4} value={passageAr} onChange={e => setPassageAr(e.target.value)} className="w-full rounded-xl border border-slate-800 bg-slate-950 p-3 text-sm text-slate-200 focus:border-brand-500 focus:outline-none" />
+                </div>
+                <div className="md:col-span-2 space-y-1.5">
+                  <label className="text-xs font-bold text-slate-300">{locale === 'ar' ? 'النص المقروء (انجليزي - اختياري)' : 'Reading Passage (En - Optional)'}</label>
+                  <textarea rows={4} value={passageEn} onChange={e => setPassageEn(e.target.value)} className="w-full rounded-xl border border-slate-800 bg-slate-950 p-3 text-sm text-slate-200 focus:border-brand-500 focus:outline-none" />
+                </div>
+                <div className="md:col-span-2 pt-3 flex justify-end">
+                  <button type="submit" className="inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl text-sm font-bold text-white bg-slate-800 hover:bg-slate-700 transition-all shadow-md">
+                    <Plus className="h-4.5 w-4.5" />
+                    <span>{locale === 'ar' ? 'إضافة القسم' : 'Add Section'}</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
+
+          {/* STEP 3: Questions Form (Only active after Section created) */}
+          {activeSectionId !== null && (
+
             <div className="bg-slate-900/10 border border-slate-900 rounded-3xl p-6 sm:p-8 shadow-xl">
               <h3 className="text-lg font-bold text-white border-b border-slate-850 pb-4 mb-6 flex items-center gap-2">
                 <HelpCircle className="h-5 w-5 text-brand-500" />
