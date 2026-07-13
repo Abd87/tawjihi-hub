@@ -19,7 +19,10 @@ import {
   Loader2, 
   CheckCircle2, 
   HelpCircle,
-  RefreshCw
+  RefreshCw,
+  Pencil,
+  Eye,
+  X
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -96,6 +99,82 @@ export default function AdminQuizPage() {
       fetchQuizzesList();
     }
   }, [authorized, activeTab]);
+
+
+  const handleEditQuiz = async (quizId: string) => {
+    setLoadingQuizzes(true);
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch(`/api/quizzes/${quizId}`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (response.ok) {
+        const data = await response.json();
+        const quiz = data.quiz;
+        
+        setTitleAr(quiz.titleAr || '');
+        setTitleEn(quiz.titleEn || '');
+        setDescriptionAr(quiz.descriptionAr || '');
+        setDescriptionEn(quiz.descriptionEn || '');
+        setCefrLevel(quiz.cefrLevel || 'B2');
+        setDurationMinutes(quiz.durationMinutes?.toString() || '30');
+        setCourseId(quiz.courseId);
+        
+        setCreatedQuizId(quiz.id);
+        setSections(quiz.sections || []);
+        
+        // Extract all questions from sections
+        let allQuestions: any[] = [];
+        quiz.sections.forEach((s: any) => {
+          if (s.questions) {
+            allQuestions = [...allQuestions, ...s.questions];
+          }
+        });
+        setAddedQuestions(allQuestions);
+        
+        if (quiz.sections && quiz.sections.length > 0) {
+          setActiveSectionId(quiz.sections[quiz.sections.length - 1].id);
+        }
+        
+        setActiveTab('create');
+        setSuccessMessage(locale === 'ar' ? 'تم فتح الاختبار للتعديل' : 'Quiz loaded for editing');
+      }
+    } catch (e) {
+      console.error(e);
+      alert('Failed to load quiz');
+    } finally {
+      setLoadingQuizzes(false);
+    }
+  };
+
+  const handleDeleteSection = async (sectionId: string) => {
+    if (!confirm(locale === 'ar' ? 'هل أنت متأكد من حذف هذا القسم وكل أسئلته؟' : 'Are you sure you want to delete this section and all its questions?')) return;
+    const token = localStorage.getItem('token');
+    try {
+      const res = await fetch(`/api/quizzes/${createdQuizId}/sections/${sectionId}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.ok) {
+        setSections(sections.filter(s => s.id !== sectionId));
+        if (activeSectionId === sectionId) setActiveSectionId(null);
+      }
+    } catch(e) { console.error(e); }
+  };
+
+  const handleDeleteQuestion = async (questionId: string) => {
+    if (!confirm(locale === 'ar' ? 'هل أنت متأكد من حذف هذا السؤال؟' : 'Are you sure you want to delete this question?')) return;
+    const token = localStorage.getItem('token');
+    try {
+      const res = await fetch(`/api/quizzes/${createdQuizId}/questions/${questionId}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.ok) {
+        setAddedQuestions(addedQuestions.filter(q => q.id !== questionId));
+      }
+    } catch(e) { console.error(e); }
+  };
 
   const handleDeleteQuiz = async (id: string) => {
     if (!confirm(locale === 'ar' ? 'هل أنت متأكد من حذف هذا الاختبار؟' : 'Are you sure you want to delete this quiz?')) return;
@@ -391,7 +470,7 @@ export default function AdminQuizPage() {
 
 
       {/* Admin Panel Body */}
-      <main className="max-w-4xl mx-auto px-4 pt-32 z-10 relative">
+      <main className="w-full mx-auto px-4 sm:px-6 lg:px-8 pt-32 z-10 relative">
         
         {/* Title and Tabs */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
@@ -448,13 +527,22 @@ export default function AdminQuizPage() {
                         <span>{new Date(quiz.createdAt).toLocaleDateString(locale)}</span>
                       </div>
                     </div>
-                    <button
-                      onClick={() => handleDeleteQuiz(quiz.id)}
-                      className="p-2.5 bg-rose-500/10 hover:bg-rose-500 text-rose-500 hover:text-white rounded-lg transition-colors border border-rose-500/20 hover:border-rose-500"
-                      title={locale === 'ar' ? 'حذف الاختبار' : 'Delete Quiz'}
-                    >
-                      <Trash2 className="h-4.5 w-4.5" />
-                    </button>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => handleEditQuiz(quiz.id)}
+                        className="p-2.5 bg-brand-500/10 hover:bg-brand-500 text-brand-500 hover:text-white rounded-lg transition-colors border border-brand-500/20 hover:border-brand-500"
+                        title={locale === 'ar' ? 'تعديل الاختبار' : 'Edit Quiz'}
+                      >
+                        <Pencil className="h-4.5 w-4.5" />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteQuiz(quiz.id)}
+                        className="p-2.5 bg-rose-500/10 hover:bg-rose-500 text-rose-500 hover:text-white rounded-lg transition-colors border border-rose-500/20 hover:border-rose-500"
+                        title={locale === 'ar' ? 'حذف الاختبار' : 'Delete Quiz'}
+                      >
+                        <Trash2 className="h-4.5 w-4.5" />
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -463,8 +551,9 @@ export default function AdminQuizPage() {
         )}
 
         {activeTab === 'create' && (
+          <div className="grid lg:grid-cols-2 gap-8 w-full max-w-7xl mx-auto items-start">
+          
           <div className="w-full">
-
         {/* Feedback alerts */}
         {successMessage && (
           <div className="flex items-start gap-3 p-4 rounded-xl border border-emerald-500/30 bg-emerald-500/5 text-emerald-300 text-xs sm:text-sm mb-8">
@@ -801,7 +890,78 @@ export default function AdminQuizPage() {
             </div>
           )}
 
-        </div>
+          </div>
+          </div>
+          
+          {/* LIVE PREVIEW PANEL (RIGHT SIDE) */}
+          <div className="w-full lg:sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-700 pb-20">
+            <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl relative">
+              <div className="sticky top-0 bg-slate-900/90 backdrop-blur-sm pb-4 border-b border-slate-800 mb-6 z-10 flex items-center gap-3">
+                <Eye className="h-6 w-6 text-brand-500" />
+                <h3 className="text-xl font-bold text-white">{locale === 'ar' ? 'معاينة هيكل الاختبار' : 'Exam Structure Preview'}</h3>
+              </div>
+              
+              {!createdQuizId ? (
+                <div className="text-center py-10 text-slate-500">
+                  <Layers className="h-10 w-10 mx-auto mb-3 opacity-20" />
+                  <p>{locale === 'ar' ? 'قم بإنشاء الاختبار أولاً للبدء' : 'Create the quiz first to begin building'}</p>
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  <div className="bg-brand-500/10 border border-brand-500/20 rounded-xl p-4">
+                    <h4 className="font-bold text-white">{locale === 'ar' ? titleAr : titleEn}</h4>
+                    <p className="text-xs text-brand-400 mt-1">{sections.length} {locale === 'ar' ? 'أقسام' : 'Sections'} &bull; {addedQuestions.length} {locale === 'ar' ? 'أسئلة' : 'Questions'}</p>
+                  </div>
+                  
+                  {sections.length === 0 ? (
+                    <p className="text-sm text-slate-500 text-center py-4">{locale === 'ar' ? 'لا يوجد أقسام مضافة بعد' : 'No sections added yet'}</p>
+                  ) : (
+                    sections.map((sec, idx) => (
+                      <div key={sec.id} className={`border rounded-xl p-4 transition-all ${activeSectionId === sec.id ? 'border-brand-500 bg-brand-500/5' : 'border-slate-800 bg-slate-950/50'}`}>
+                        <div className="flex justify-between items-start mb-3 gap-2">
+                          <div 
+                            className="cursor-pointer group flex-1"
+                            onClick={() => setActiveSectionId(sec.id)}
+                          >
+                            <h5 className="font-bold text-slate-200 group-hover:text-brand-400 transition-colors">
+                              {idx + 1}. {locale === 'ar' ? sec.titleAr : sec.titleEn}
+                            </h5>
+                            {activeSectionId === sec.id && <span className="text-[10px] uppercase font-bold text-brand-500 mt-1 block">{locale === 'ar' ? 'القسم النشط' : 'Active Section'}</span>}
+                          </div>
+                          <button onClick={(e) => { e.stopPropagation(); handleDeleteSection(sec.id); }} className="text-rose-500 hover:bg-rose-500/10 p-1.5 rounded transition-colors shrink-0">
+                            <X className="h-4 w-4" />
+                          </button>
+                        </div>
+                        
+                        {(sec.passageAr || sec.passageEn) && (
+                          <div className="bg-slate-900 border border-slate-800 p-3 rounded-lg text-xs text-slate-400 mb-4 line-clamp-3">
+                            {locale === 'ar' ? sec.passageAr : sec.passageEn}
+                          </div>
+                        )}
+                        
+                        <div className="space-y-2 mt-4 pl-4 border-l-2 border-slate-800">
+                          {addedQuestions.filter(q => q.sectionId === sec.id).map((q, qIdx) => (
+                            <div key={q.id} className="bg-slate-900 p-3 rounded-lg text-sm flex justify-between items-start gap-2">
+                              <div>
+                                <span className="font-mono text-xs text-brand-500 font-bold mr-2">Q{qIdx+1}</span>
+                                <span className="text-slate-300">{locale === 'ar' ? q.textAr : q.textEn}</span>
+                              </div>
+                              <button onClick={(e) => { e.stopPropagation(); handleDeleteQuestion(q.id); }} className="text-slate-500 hover:text-rose-500 shrink-0">
+                                <X className="h-3 w-3" />
+                              </button>
+                            </div>
+                          ))}
+                          {addedQuestions.filter(q => q.sectionId === sec.id).length === 0 && (
+                            <p className="text-xs text-slate-500 italic py-1">{locale === 'ar' ? 'لا يوجد أسئلة في هذا القسم' : 'No questions in this section'}</p>
+                          )}
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
         )}
 
