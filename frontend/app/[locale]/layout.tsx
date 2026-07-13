@@ -48,6 +48,11 @@ export async function generateMetadata({ params: { locale } }: { params: { local
       statusBarStyle: 'black-translucent',
       title: messages.navigation.brandName,
     },
+    verification: {
+      other: {
+        'msvalidate.01': 'A667B4E5B55CF7D805DD70BD90E62656',
+      },
+    },
     alternates: {
       canonical: `/${locale}`,
       languages: {
