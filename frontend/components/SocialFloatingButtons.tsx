@@ -9,7 +9,7 @@ export default function SocialFloatingButtons() {
   const whatsappUrl = `https://wa.me/${whatsappNumber}`;
   const facebookUrl = 'https://www.facebook.com/groups/1648666043099156';
 
-  if (pathname.includes('/courses/')) {
+  if (pathname.includes('/courses/') || (pathname.includes('/quizzes/') && !pathname.includes('/admin/'))) {
     return null;
   }
 

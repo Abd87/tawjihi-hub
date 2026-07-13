@@ -72,6 +72,10 @@ export default function Navbar() {
     window.location.href = `/${currentLocale}/login`;
   };
 
+  if (pathname.includes('/quizzes/') && !pathname.includes('/admin/')) {
+    return null;
+  }
+
   const handleRoleSwitch = async (targetRole: string) => {
     if (targetRole === user?.role) return;
     setSwitchingRole(true);

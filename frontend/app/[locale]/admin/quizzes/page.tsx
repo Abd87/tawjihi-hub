@@ -25,6 +25,7 @@ import {
   X
 } from 'lucide-react';
 import Link from 'next/link';
+import RichTextEditor from '@/components/RichTextEditor';
 
 interface Course {
   id: string;
@@ -701,11 +702,11 @@ export default function AdminQuizPage() {
                 </div>
                 <div className="md:col-span-2 space-y-1.5">
                   <label className="text-xs font-bold text-slate-300">{locale === 'ar' ? 'النص المقروء (عربي - اختياري)' : 'Reading Passage (Ar - Optional)'}</label>
-                  <textarea rows={4} value={passageAr} onChange={e => setPassageAr(e.target.value)} className="w-full rounded-xl border border-slate-800 bg-slate-950 p-3 text-sm text-slate-200 focus:border-brand-500 focus:outline-none" />
+                  <RichTextEditor value={passageAr} onChange={setPassageAr} dir="rtl" placeholder="Enter Arabic passage..." />
                 </div>
                 <div className="md:col-span-2 space-y-1.5">
                   <label className="text-xs font-bold text-slate-300">{locale === 'ar' ? 'النص المقروء (انجليزي - اختياري)' : 'Reading Passage (En - Optional)'}</label>
-                  <textarea rows={4} value={passageEn} onChange={e => setPassageEn(e.target.value)} className="w-full rounded-xl border border-slate-800 bg-slate-950 p-3 text-sm text-slate-200 focus:border-brand-500 focus:outline-none" />
+                  <RichTextEditor value={passageEn} onChange={setPassageEn} dir="ltr" placeholder="Enter English passage..." />
                 </div>
                 <div className="md:col-span-2 pt-3 flex justify-end">
                   <button type="submit" className="inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl text-sm font-bold text-white bg-slate-800 hover:bg-slate-700 transition-all shadow-md">
@@ -760,21 +761,19 @@ export default function AdminQuizPage() {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold text-slate-300">{t('questionTextAr')}</label>
-                    <textarea 
-                      rows={2}
+                    <RichTextEditor 
                       value={qTextAr}
-                      onChange={(e) => setQTextAr(e.target.value)}
-                      className="w-full rounded-xl border border-slate-800 bg-slate-950 p-3 text-sm text-slate-200 focus:border-brand-500 focus:outline-none"
+                      onChange={setQTextAr}
+                      dir="rtl"
                       placeholder="ما هي مشتقة الدالة..."
                     />
                   </div>
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold text-slate-300">{t('questionTextEn')}</label>
-                    <textarea 
-                      rows={2}
+                    <RichTextEditor 
                       value={qTextEn}
-                      onChange={(e) => setQTextEn(e.target.value)}
-                      className="w-full rounded-xl border border-slate-800 bg-slate-950 p-3 text-sm text-slate-200 focus:border-brand-500 focus:outline-none"
+                      onChange={setQTextEn}
+                      dir="ltr"
                       placeholder="What is the derivative of..."
                     />
                   </div>
@@ -965,17 +964,21 @@ export default function AdminQuizPage() {
                         </div>
                         
                         {(sec.passageAr || sec.passageEn) && (
-                          <div className="bg-slate-900 border border-slate-800 p-3 rounded-lg text-xs text-slate-400 mb-4 line-clamp-3">
-                            {locale === 'ar' ? (sec.passageAr || sec.passageEn) : (sec.passageEn || sec.passageAr)}
-                          </div>
+                          <div 
+                            className="bg-slate-900 border border-slate-800 p-3 rounded-lg text-xs text-slate-400 mb-4 line-clamp-3 prose prose-invert prose-p:my-0 max-w-none prose-sm"
+                            dangerouslySetInnerHTML={{ __html: (locale === 'ar' ? (sec.passageAr || sec.passageEn) : (sec.passageEn || sec.passageAr)) || '' }}
+                          />
                         )}
                         
                         <div className="space-y-2 mt-4 pl-4 border-l-2 border-slate-800">
                           {addedQuestions.filter(q => q.sectionId === sec.id).map((q, qIdx) => (
                             <div key={q.id} className="bg-slate-900 p-3 rounded-lg text-sm flex justify-between items-start gap-2">
                               <div>
-                                <span className="font-mono text-xs text-brand-500 font-bold mr-2">Q{qIdx+1}</span>
-                                <span className="text-slate-300">{locale === 'ar' ? (q.textAr || q.textEn) : (q.textEn || q.textAr)}</span>
+                                <span className="font-mono text-xs text-brand-500 font-bold mr-2 mt-0.5">Q{qIdx+1}</span>
+                                <div 
+                                  className="text-slate-300 prose prose-invert prose-p:my-0 max-w-none prose-sm" 
+                                  dangerouslySetInnerHTML={{ __html: (locale === 'ar' ? (q.textAr || q.textEn) : (q.textEn || q.textAr)) || '' }} 
+                                />
                               </div>
                               <button onClick={(e) => { e.stopPropagation(); handleDeleteQuestion(q.id); }} className="text-slate-500 hover:text-rose-500 shrink-0">
                                 <X className="h-3 w-3" />

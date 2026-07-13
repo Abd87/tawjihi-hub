@@ -274,29 +274,12 @@ export default function StudentQuizPage() {
               {formatTime(timeLeft)}
             </div>
             
-            {gradedResult ? (
+            {gradedResult && (
               <button
                 onClick={() => router.push(`/${locale}/dashboard`)}
                 className="bg-brand-500 hover:bg-brand-600 text-white px-4 py-2 rounded-lg font-bold text-sm transition-colors"
               >
                 {isRtl ? 'الرجوع إلى لوحة القيادة' : 'Dashboard'}
-              </button>
-            ) : !hasNextSection ? (
-              <button
-                onClick={handleSubmit}
-                disabled={submitting}
-                className="bg-brand-500 hover:bg-brand-600 disabled:opacity-50 text-white px-4 py-2 rounded-lg font-bold text-sm transition-colors flex items-center gap-2"
-              >
-                {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
-                {isRtl ? 'إنهاء الاختبار' : 'Submit Quiz'}
-              </button>
-            ) : (
-              <button
-                onClick={() => setActiveSectionIndex(i => i + 1)}
-                className="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg font-bold text-sm transition-colors flex items-center gap-2"
-              >
-                {isRtl ? 'القسم التالي' : 'Next Section'}
-                <ArrowRight className={`h-4 w-4 ${isRtl ? 'rotate-180' : ''}`} />
               </button>
             )}
           </div>
@@ -379,9 +362,10 @@ export default function StudentQuizPage() {
                 <BookOpen className="h-6 w-6 text-brand-500" />
                 {isRtl ? 'النص المقروء' : 'Reading Passage'}
               </h2>
-              <div className="prose prose-invert max-w-none text-slate-300 leading-relaxed text-lg whitespace-pre-wrap">
-                {isRtl ? (currentSection?.passageAr || currentSection?.passageEn) : (currentSection?.passageEn || currentSection?.passageAr)}
-              </div>
+              <div 
+                className="prose prose-invert max-w-none text-slate-300 leading-relaxed text-lg"
+                dangerouslySetInnerHTML={{ __html: (isRtl ? (currentSection?.passageAr || currentSection?.passageEn) : (currentSection?.passageEn || currentSection?.passageAr)) || '' }}
+              />
             </div>
 
             {/* Right side: Questions */}
@@ -422,6 +406,45 @@ export default function StudentQuizPage() {
         )}
 
       </main>
+
+      {/* Sticky Bottom Navigation */}
+      {!gradedResult && (
+        <footer className="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800 p-4 z-50">
+          <div className="max-w-7xl mx-auto flex items-center justify-between">
+            <button
+              onClick={() => setActiveSectionIndex(i => Math.max(0, i - 1))}
+              disabled={activeSectionIndex === 0}
+              className="bg-slate-800 hover:bg-slate-700 disabled:opacity-30 disabled:hover:bg-slate-800 text-slate-200 px-5 py-3 rounded-xl font-bold text-sm transition-colors flex items-center gap-2"
+            >
+              <ArrowLeft className={`h-4 w-4 ${isRtl ? 'rotate-180' : ''}`} />
+              {isRtl ? 'القسم السابق' : 'Previous Section'}
+            </button>
+            
+            <div className="text-sm font-bold text-slate-400">
+              {activeSectionIndex + 1} / {quiz.sections.length}
+            </div>
+
+            {!hasNextSection ? (
+              <button
+                onClick={handleSubmit}
+                disabled={submitting}
+                className="bg-brand-500 hover:bg-brand-600 disabled:opacity-50 text-white px-8 py-3 rounded-xl font-bold text-sm transition-colors flex items-center gap-2 shadow-lg shadow-brand-500/20"
+              >
+                {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
+                {isRtl ? 'إنهاء الاختبار' : 'Submit Exam'}
+              </button>
+            ) : (
+              <button
+                onClick={() => setActiveSectionIndex(i => i + 1)}
+                className="bg-indigo-500 hover:bg-indigo-600 text-white px-8 py-3 rounded-xl font-bold text-sm transition-colors flex items-center gap-2 shadow-lg shadow-indigo-500/20"
+              >
+                {isRtl ? 'القسم التالي' : 'Next Section'}
+                <ArrowRight className={`h-4 w-4 ${isRtl ? 'rotate-180' : ''}`} />
+              </button>
+            )}
+          </div>
+        </footer>
+      )}
     </div>
   );
 }
@@ -436,9 +459,10 @@ function QuestionCard({ question, index, isRtl, answer, onMcqSelect, onShortAnsw
         <div className="bg-brand-500/20 text-brand-400 font-bold w-10 h-10 rounded-xl flex items-center justify-center shrink-0">
           {index + 1}
         </div>
-        <p className="text-lg font-semibold text-slate-200 pt-1">
-          {isRtl ? (question.textAr || question.textEn) : (question.textEn || question.textAr)}
-        </p>
+        <div 
+          className="text-lg font-semibold text-slate-200 pt-1 prose prose-invert max-w-none prose-p:my-0"
+          dangerouslySetInnerHTML={{ __html: (isRtl ? (question.textAr || question.textEn) : (question.textEn || question.textAr)) || '' }}
+        />
       </div>
 
       {question.type === 'MCQ' ? (
@@ -462,9 +486,10 @@ function QuestionCard({ question, index, isRtl, answer, onMcqSelect, onShortAnsw
                   onChange={() => onMcqSelect(question.id, choice.id)}
                   className="w-5 h-5 accent-brand-500"
                 />
-                <span className={`ms-4 font-medium ${isSelected ? 'text-white' : 'text-slate-300'}`}>
-                  {isRtl ? (choice.textAr || choice.textEn) : (choice.textEn || choice.textAr)}
-                </span>
+                <span 
+                  className={`ms-4 font-medium ${isSelected ? 'text-white' : 'text-slate-300'} prose prose-invert prose-p:my-0 max-w-none`}
+                  dangerouslySetInnerHTML={{ __html: (isRtl ? (choice.textAr || choice.textEn) : (choice.textEn || choice.textAr)) || '' }}
+                />
               </label>
             );
           })}
