@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useRouter, usePathname, Link } from '@/i18n/routing';
 import { useParams } from 'next/navigation';
 import { Globe, GraduationCap, LogOut, LayoutDashboard, Menu, X, BarChart2, Key, BookOpen, ShieldCheck, Users, Settings } from 'lucide-react';
-import { useState, useEffect, useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 export default function Navbar() {
@@ -19,8 +19,8 @@ export default function Navbar() {
   const [user, setUser] = useState<{ nameAr: string; role: string; isMasterAdmin?: boolean } | null>(null);
   const [switchingRole, setSwitchingRole] = useState(false);
 
-  // Read auth state synchronously before paint to avoid flash
-  useLayoutEffect(() => {
+  // Read auth state on client mount (avoids forced layout reflow blocking render)
+  useEffect(() => {
     const checkUser = () => {
       try {
         const storedUser = localStorage.getItem('user');
