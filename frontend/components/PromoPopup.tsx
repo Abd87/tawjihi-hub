@@ -74,7 +74,8 @@ export default function PromoPopup() {
           aria-label={isRtl ? 'إغلاق' : 'Close'}
           className="absolute top-4 end-4 p-2 rounded-full bg-slate-800/50 text-slate-400 hover:text-white hover:bg-slate-700/50 transition-colors z-10"
         >
-          <X className="h-5 w-5" />
+          <span className="sr-only">Close</span>
+          <X className="h-5 w-5" aria-hidden="true" />
         </button>
 
         <div className="relative p-6 sm:p-8 text-center flex flex-col items-center">

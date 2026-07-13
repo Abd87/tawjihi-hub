@@ -194,7 +194,7 @@ export default function HomePage({ params: { locale } }: PageProps) {
               {/* Action Button */}
               <Link 
                 href="/register?track=BTEC" 
-                aria-label={`${t('tracks.exploreAction')} ${t('tracks.btecTitle')}`}
+                aria-label={`${t('tracks.chooseTrack')} ${t('tracks.btecTitle')}`}
                 className="group w-full inline-flex items-center justify-center gap-2 py-4 rounded-xl text-sm font-bold text-white bg-slate-950 border border-slate-800 group-hover:border-brand-500/50 group-hover:bg-brand-500 group-hover:text-white transition-all duration-300">
                 <span>{t('tracks.chooseTrack')}</span>
                 {renderForwardArrow()}
@@ -248,7 +248,7 @@ export default function HomePage({ params: { locale } }: PageProps) {
               {/* Action Button */}
               <Link 
                 href="/register?track=ACADEMIC" 
-                aria-label={`${t('tracks.exploreAction')} ${t('tracks.academicTitle')}`}
+                aria-label={`${t('tracks.chooseTrack')} ${t('tracks.academicTitle')}`}
                 className="group w-full inline-flex items-center justify-center gap-2 py-4 rounded-xl text-sm font-bold text-white bg-slate-950 border border-slate-800 group-hover:border-blue-500/50 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
                 <span>{t('tracks.chooseTrack')}</span>
                 {renderForwardArrow()}
