@@ -36,8 +36,22 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     },
     description: messages.meta.description,
     keywords: locale === 'ar' 
-      ? ['توجيهي', 'الأردن', 'BTEC', 'تعليم', 'منصة دراسية', 'توجيهي هب', 'أسئلة سنوات سابقة توجيهي', 'ملخصات توجيهي 2026', 'امتحانات وزارة', 'كيف تدرس للتوجيهي'] 
-      : ['Tawjihi', 'Jordan', 'BTEC', 'Education', 'E-learning', 'Tawjihi Hub', 'Tawjihi biology past papers', 'Tawjihi 2026 mathematics revision notes', 'how to study for chemistry exam'],
+      ? [
+          'توجيهي الأردن', 'امتحان التوجيهي 2026', 'أسئلة توجيهي سابقة', 'نتائج التوجيهي',
+          'نظام BTEC', 'منهاج BTEC', 'تعليم مهني توجيهي',
+          'مكثف رياضيات توجيهي', 'ملخص أحياء', 'قواعد إنجليزي',
+          'بيتك هندسة', 'بيتك أعمال', 'بيتك تكنولوجيا معلومات', 'بيتك ميديا',
+          'دليل دراسة التوجيهي', 'نماذج امتحانات توجيهي', 'مواد تخصص BTEC',
+          'وزارة التربية والتعليم الأردنية', 'معادلة التوجيهي', 'رقم جلوس التوجيهي', 'توجيهي هب'
+        ] 
+      : [
+          'Tawjihi Jordan', 'Tawjihi exam 2026', 'Tawjihi past papers', 'Tawjihi results',
+          'BTEC Jordan', 'BTEC curriculum', 'Pearson BTEC', 'BTEC vocational',
+          'Tawjihi Math revision', 'Tawjihi Biology summary', 'English grammar',
+          'BTEC Engineering', 'BTEC Business', 'BTEC IT', 'Digital Media BTEC',
+          'Tawjihi study guide', 'Tawjihi model exams', 'BTEC training materials',
+          'Ministry of Education Jordan', 'Tawjihi equivalency', 'Tawjihi seat number', 'Tawjihi Hub'
+        ],
     openGraph: {
       title: messages.meta.title,
       description: messages.meta.description,
