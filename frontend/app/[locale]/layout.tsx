@@ -23,6 +23,17 @@ const inter = Inter({
   weight: ['300', '400', '500', '600', '700', '800'],
 });
 
+import { Viewport } from 'next';
+
+export const viewport: Viewport = {
+  themeColor: '#020617',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false, // Prevents zooming which breaks mobile app feel
+  viewportFit: 'cover', // Ensures full screen on notched phones
+};
+
 export function generateStaticParams() {
   return [{ locale: 'ar' }, { locale: 'en' }];
 }
@@ -31,6 +42,12 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   const messages = (await import(`../../messages/${locale}.json`)).default;
   return {
     metadataBase: new URL('https://tawjihihub.com'),
+    manifest: '/manifest.json',
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: 'black-translucent',
+      title: messages.navigation.brandName,
+    },
     alternates: {
       canonical: `/${locale}`,
       languages: {
