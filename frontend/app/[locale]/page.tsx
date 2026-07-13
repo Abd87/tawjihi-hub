@@ -47,7 +47,7 @@ export default function HomePage({ params: { locale } }: PageProps) {
           loop 
           muted 
           playsInline
-          poster="/_next/image?url=%2Fog-image.png&w=1920&q=75"
+          poster="/_next/image?url=%2Fog-image.png&w=1200&q=40"
           className="w-full h-full object-cover opacity-40 scale-105"
         >
           <source src="/hero-bg.mp4" type="video/mp4" />
