@@ -1,6 +1,5 @@
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
-import Navbar from '@/components/Navbar';
 import { Link } from '@/i18n/routing';
 import {
   Monitor,
@@ -58,8 +57,6 @@ export default function BtecGuidePage({ params: { locale } }: PageProps) {
 
   return (
     <div className="min-h-screen bg-[#020617] font-sans selection:bg-brand-500/30 selection:text-brand-300">
-      <Navbar />
-
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
         {/* Background Gradients */}
