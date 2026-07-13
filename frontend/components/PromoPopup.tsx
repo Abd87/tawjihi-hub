@@ -71,6 +71,7 @@ export default function PromoPopup() {
         {/* Close Button */}
         <button 
           onClick={handleClose}
+          aria-label={isRtl ? 'إغلاق' : 'Close'}
           className="absolute top-4 end-4 p-2 rounded-full bg-slate-800/50 text-slate-400 hover:text-white hover:bg-slate-700/50 transition-colors z-10"
         >
           <X className="h-5 w-5" />

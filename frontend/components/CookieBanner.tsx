@@ -48,7 +48,7 @@ export default function CookieBanner() {
             </button>
             <button
               onClick={handleAccept}
-              className="flex-1 sm:flex-none px-6 py-2 rounded-xl text-sm font-bold text-white bg-brand-500 hover:bg-brand-600 shadow-lg shadow-brand-500/20 transition-all"
+              className="flex-1 sm:flex-none px-6 py-2 rounded-xl text-sm font-bold text-white bg-brand-600 hover:bg-brand-500 shadow-lg shadow-brand-500/20 transition-all"
             >
               {t('accept')}
             </button>

@@ -42,7 +42,7 @@ export default function HomePage({ params: { locale } }: PageProps) {
       
       {/* Video Background */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
-        <video 
+        <video aria-hidden="true"
           autoPlay 
           loop 
           muted 
@@ -192,7 +192,10 @@ export default function HomePage({ params: { locale } }: PageProps) {
               </div>
 
               {/* Action Button */}
-              <Link href="/register?track=BTEC" className="group w-full inline-flex items-center justify-center gap-2 py-4 rounded-xl text-sm font-bold text-white bg-slate-950 border border-slate-800 group-hover:border-brand-500/50 group-hover:bg-brand-500 group-hover:text-white transition-all duration-300">
+              <Link 
+                href="/register?track=BTEC" 
+                aria-label={`${t('tracks.exploreAction')} ${t('tracks.btecTitle')}`}
+                className="group w-full inline-flex items-center justify-center gap-2 py-4 rounded-xl text-sm font-bold text-white bg-slate-950 border border-slate-800 group-hover:border-brand-500/50 group-hover:bg-brand-500 group-hover:text-white transition-all duration-300">
                 <span>{t('tracks.chooseTrack')}</span>
                 {renderForwardArrow()}
               </Link>
@@ -243,7 +246,10 @@ export default function HomePage({ params: { locale } }: PageProps) {
               </div>
 
               {/* Action Button */}
-              <Link href="/register?track=ACADEMIC" className="group w-full inline-flex items-center justify-center gap-2 py-4 rounded-xl text-sm font-bold text-white bg-slate-950 border border-slate-800 group-hover:border-blue-500/50 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+              <Link 
+                href="/register?track=ACADEMIC" 
+                aria-label={`${t('tracks.exploreAction')} ${t('tracks.academicTitle')}`}
+                className="group w-full inline-flex items-center justify-center gap-2 py-4 rounded-xl text-sm font-bold text-white bg-slate-950 border border-slate-800 group-hover:border-blue-500/50 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
                 <span>{t('tracks.chooseTrack')}</span>
                 {renderForwardArrow()}
               </Link>
@@ -308,11 +314,11 @@ export default function HomePage({ params: { locale } }: PageProps) {
               <div className="space-y-4 mb-6">
                 <div className="flex gap-2">
                   <span className="text-xs font-bold text-brand-500 bg-brand-500/10 px-2 py-0.5 rounded h-fit">Q1</span>
-                  <h4 className="text-white text-sm sm:text-base font-semibold">
+                  <h3 className="text-white text-sm sm:text-base font-semibold">
                     {locale === 'ar'
                       ? 'اختر الزمن الصحيح للفعل في الجملة التالية:'
                       : 'Choose the correct form of the verb to complete the sentence:'}
-                  </h4>
+                  </h3>
                 </div>
                 <p className="text-slate-300 italic text-sm ps-7">
                   "By the time the professor arrived, the students ________ the physics lab assignment."
@@ -340,11 +346,11 @@ export default function HomePage({ params: { locale } }: PageProps) {
               <div className="space-y-4 pt-4 border-t border-slate-850">
                 <div className="flex gap-2">
                   <span className="text-xs font-bold text-brand-500 bg-brand-500/10 px-2 py-0.5 rounded h-fit">Q2</span>
-                  <h4 className="text-white text-sm sm:text-base font-semibold">
+                  <h3 className="text-white text-sm sm:text-base font-semibold">
                     {locale === 'ar'
                       ? 'اكتب إجابة موجزة تحدد السبب الرئيسي للثورة العربية الكبرى.'
                       : 'Write a short answer explaining the concept of photosynthesis.'}
-                  </h4>
+                  </h3>
                 </div>
                 
                 <div className="ps-7">
