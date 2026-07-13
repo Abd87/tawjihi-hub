@@ -262,7 +262,7 @@ export default function StudentQuizPage() {
             </button>
             <div>
               <h1 className="font-bold text-white line-clamp-1">{isRtl ? quiz.titleAr : quiz.titleEn}</h1>
-              <p className="text-xs text-brand-400">{isRtl ? currentSection?.titleAr : currentSection?.titleEn}</p>
+              <p className="text-xs text-brand-400">{isRtl ? (currentSection?.titleAr || currentSection?.titleEn) : (currentSection?.titleEn || currentSection?.titleAr)}</p>
             </div>
           </div>
           
@@ -380,7 +380,7 @@ export default function StudentQuizPage() {
                 {isRtl ? 'النص المقروء' : 'Reading Passage'}
               </h2>
               <div className="prose prose-invert max-w-none text-slate-300 leading-relaxed text-lg whitespace-pre-wrap">
-                {isRtl ? currentSection?.passageAr : currentSection?.passageEn}
+                {isRtl ? (currentSection?.passageAr || currentSection?.passageEn) : (currentSection?.passageEn || currentSection?.passageAr)}
               </div>
             </div>
 
@@ -404,7 +404,7 @@ export default function StudentQuizPage() {
           // Standard Centered Layout
           <div className="max-w-3xl mx-auto space-y-6 pb-32">
             <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 mb-8 text-center">
-              <h2 className="text-2xl font-black text-white">{isRtl ? currentSection?.titleAr : currentSection?.titleEn}</h2>
+              <h2 className="text-2xl font-black text-white">{isRtl ? (currentSection?.titleAr || currentSection?.titleEn) : (currentSection?.titleEn || currentSection?.titleAr)}</h2>
             </div>
             
             {currentSection?.questions.map((q, idx) => (
@@ -437,7 +437,7 @@ function QuestionCard({ question, index, isRtl, answer, onMcqSelect, onShortAnsw
           {index + 1}
         </div>
         <p className="text-lg font-semibold text-slate-200 pt-1">
-          {isRtl ? question.textAr : question.textEn}
+          {isRtl ? (question.textAr || question.textEn) : (question.textEn || question.textAr)}
         </p>
       </div>
 
@@ -463,7 +463,7 @@ function QuestionCard({ question, index, isRtl, answer, onMcqSelect, onShortAnsw
                   className="w-5 h-5 accent-brand-500"
                 />
                 <span className={`ms-4 font-medium ${isSelected ? 'text-white' : 'text-slate-300'}`}>
-                  {isRtl ? choice.textAr : choice.textEn}
+                  {isRtl ? (choice.textAr || choice.textEn) : (choice.textEn || choice.textAr)}
                 </span>
               </label>
             );

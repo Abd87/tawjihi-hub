@@ -940,7 +940,7 @@ export default function AdminQuizPage() {
               ) : (
                 <div className="space-y-6">
                   <div className="bg-brand-500/10 border border-brand-500/20 rounded-xl p-4">
-                    <h4 className="font-bold text-white">{locale === 'ar' ? titleAr : titleEn}</h4>
+                    <h4 className="font-bold text-white">{locale === 'ar' ? (titleAr || titleEn) : (titleEn || titleAr)}</h4>
                     <p className="text-xs text-brand-400 mt-1">{sections.length} {locale === 'ar' ? 'أقسام' : 'Sections'} &bull; {addedQuestions.length} {locale === 'ar' ? 'أسئلة' : 'Questions'}</p>
                   </div>
                   
@@ -955,7 +955,7 @@ export default function AdminQuizPage() {
                             onClick={() => setActiveSectionId(sec.id)}
                           >
                             <h5 className="font-bold text-slate-200 group-hover:text-brand-400 transition-colors">
-                              {idx + 1}. {locale === 'ar' ? sec.titleAr : sec.titleEn}
+                              {idx + 1}. {locale === 'ar' ? (sec.titleAr || sec.titleEn) : (sec.titleEn || sec.titleAr)}
                             </h5>
                             {activeSectionId === sec.id && <span className="text-[10px] uppercase font-bold text-brand-500 mt-1 block">{locale === 'ar' ? 'القسم النشط' : 'Active Section'}</span>}
                           </div>
@@ -966,7 +966,7 @@ export default function AdminQuizPage() {
                         
                         {(sec.passageAr || sec.passageEn) && (
                           <div className="bg-slate-900 border border-slate-800 p-3 rounded-lg text-xs text-slate-400 mb-4 line-clamp-3">
-                            {locale === 'ar' ? sec.passageAr : sec.passageEn}
+                            {locale === 'ar' ? (sec.passageAr || sec.passageEn) : (sec.passageEn || sec.passageAr)}
                           </div>
                         )}
                         
@@ -975,7 +975,7 @@ export default function AdminQuizPage() {
                             <div key={q.id} className="bg-slate-900 p-3 rounded-lg text-sm flex justify-between items-start gap-2">
                               <div>
                                 <span className="font-mono text-xs text-brand-500 font-bold mr-2">Q{qIdx+1}</span>
-                                <span className="text-slate-300">{locale === 'ar' ? q.textAr : q.textEn}</span>
+                                <span className="text-slate-300">{locale === 'ar' ? (q.textAr || q.textEn) : (q.textEn || q.textAr)}</span>
                               </div>
                               <button onClick={(e) => { e.stopPropagation(); handleDeleteQuestion(q.id); }} className="text-slate-500 hover:text-rose-500 shrink-0">
                                 <X className="h-3 w-3" />
