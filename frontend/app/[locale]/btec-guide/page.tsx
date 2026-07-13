@@ -28,6 +28,14 @@ export async function generateMetadata({ params: { locale } }: PageProps) {
   const t = await getTranslations({ locale, namespace: 'btecGuide.meta' });
   
   return {
+    metadataBase: new URL('https://tawjihihub.com'),
+    alternates: {
+      canonical: `/${locale}/btec-guide`,
+      languages: {
+        'ar': `/ar/btec-guide`,
+        'en': `/en/btec-guide`,
+      },
+    },
     title: t('title'),
     description: t('description'),
     keywords: ['BTEC Jordan', 'تخصصات BTEC', 'بيتك الأردن', 'التعليم المهني', 'Pearson BTEC'],

@@ -30,6 +30,14 @@ export function generateStaticParams() {
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const messages = (await import(`../../messages/${locale}.json`)).default;
   return {
+    metadataBase: new URL('https://tawjihihub.com'),
+    alternates: {
+      canonical: `/${locale}`,
+      languages: {
+        'ar': '/ar',
+        'en': '/en',
+      },
+    },
     title: {
       template: `%s | ${messages.navigation.brandName}`,
       default: messages.meta.title,
