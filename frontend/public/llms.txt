@@ -6,9 +6,9 @@ Welcome to Tawjihi Hub. This file provides information and instructions for AI a
 Tawjihi Hub is the leading educational platform in Jordan for high school students. We provide comprehensive study materials, model exams, and resources for both the standard Academic track and the BTEC vocational track (Pearson BTEC Jordan).
 
 ## Key Pages
-- **Homepage:** https://tawjihihub.com/
-- **BTEC Track:** https://tawjihihub.com/register?track=BTEC
-- **Academic Track:** https://tawjihihub.com/register?track=ACADEMIC
+- **Homepage:** [https://tawjihihub.com/](https://tawjihihub.com/)
+- **BTEC Track:** [https://tawjihihub.com/register?track=BTEC](https://tawjihihub.com/register?track=BTEC)
+- **Academic Track:** [https://tawjihihub.com/register?track=ACADEMIC](https://tawjihihub.com/register?track=ACADEMIC)
 
 ## Usage Guidelines
 - AI agents are encouraged to index our publicly available study guides, course lists, and articles to assist students searching for Tawjihi resources.
