@@ -11,7 +11,8 @@
     "register": "Register",
     "logout": "Log Out",
     "dashboard": "Dashboard",
-    "adminPanel": "Admin Panel"
+    "adminPanel": "Admin Panel",
+    "btecGuide": "BTEC Guide"
   },
   "hero": {
     "badge": "The #1 Platform Dedicated for Grade 12 in Jordan 🇯🇴",
@@ -223,5 +224,75 @@
     "message": "We use cookies to improve your experience on our site. By using our site, you consent to our privacy policy.",
     "accept": "Accept",
     "decline": "Decline"
+  },
+  "btecGuide": {
+    "meta": {
+      "title": "BTEC Specialties Guide | Tawjihi Hub",
+      "description": "Discover all approved BTEC specialties in Jordan. Prepare your learners for a skills-based career with Pearson BTEC certifications."
+    },
+    "hero": {
+      "badge": "New to BTEC",
+      "title": "The Comprehensive BTEC Guide",
+      "description": "Every year, BTEC serves 1 million learners in 50 countries. Explore the approved specialties and prepare for a future-ready, skills-based career."
+    },
+    "specialties": {
+      "it": {
+        "title": "Information Technology",
+        "description": "Learn programming, data analysis, networking, and AI, alongside cybersecurity and cloud computing for advanced tech careers."
+      },
+      "engineering": {
+        "title": "Engineering",
+        "description": "Principles of engineering design, manufacturing, and mechanical analysis, covering industrial programming and renewable energy."
+      },
+      "tourism": {
+        "title": "Travel and Tourism",
+        "description": "Skills in trip planning, event organization, destination management, and tourism marketing for airlines and travel agencies."
+      },
+      "art": {
+        "title": "Art and Design",
+        "description": "Graphic design, photography, fashion design, digital drawing, animation, and 3D printing techniques."
+      },
+      "beauty": {
+        "title": "Hair and Beauty",
+        "description": "Hair styling techniques, skincare, makeup, therapeutic massage, and aromatherapy for salons and spas."
+      },
+      "agriculture": {
+        "title": "Agriculture",
+        "description": "Modern farming methods, crop production, livestock care, and agricultural project management with a focus on sustainability."
+      },
+      "business": {
+        "title": "Business",
+        "description": "Marketing strategies, financial management, operations, and market analysis for informed business decision-making."
+      },
+      "construction": {
+        "title": "Construction & Built Environment",
+        "description": "Construction techniques, structural planning, site management, architectural drawing, and electrical installations."
+      },
+      "hospitality": {
+        "title": "Hospitality",
+        "description": "Hotel management, food services, event planning, and food safety supervision for airports, hotels, and restaurants."
+      },
+      "media": {
+        "title": "Creative Media",
+        "description": "Digital media editing, video and audio production, and video game development for film production and digital media."
+      },
+      "sports": {
+        "title": "Sports",
+        "description": "Practical skills in personal training, managing fitness centers, and understanding the core concepts of sports science."
+      },
+      "health": {
+        "title": "Health & Social Care",
+        "description": "Practical skills in direct care provision for individuals and communities, suitable for nursing homes and medical clinics."
+      },
+      "childhood": {
+        "title": "Early Childhood Care & Education",
+        "description": "Innovative teaching methods and comprehensive care to build a strong foundation for young children's development."
+      }
+    },
+    "cta": {
+      "title": "Ready to Start Your Vocational Journey?",
+      "description": "Join the BTEC track today and gain access to the latest educational resources available on Tawjihi Hub.",
+      "button": "Register for BTEC Now"
+    }
   }
 }

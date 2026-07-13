@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { useRouter, usePathname, Link } from '@/i18n/routing';
 import { useParams } from 'next/navigation';
-import { Globe, GraduationCap, LogOut, LayoutDashboard, Menu, X, BarChart2, Key, BookOpen, ShieldCheck, Users, Settings } from 'lucide-react';
+import { Globe, GraduationCap, LogOut, LayoutDashboard, Menu, X, BarChart2, Key, BookOpen, ShieldCheck, Users, Settings, Sparkles } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
@@ -183,6 +183,10 @@ export default function Navbar() {
             <a href={homeAnchor('btec-track')} className="text-sm font-medium text-slate-300 hover:text-brand-500 transition-colors">
               {t('btec')}
             </a>
+            <Link href="/btec-guide" className="text-sm font-medium text-slate-300 hover:text-brand-500 transition-colors flex items-center gap-1">
+              <Sparkles className="w-3.5 h-3.5 text-brand-500" />
+              {t('btecGuide') || (currentLocale === 'ar' ? 'دليل BTEC' : 'BTEC Guide')}
+            </Link>
             {isAdminOrTeacher && (
               <div className="relative group">
                 <button className="flex items-center gap-1.5 text-sm font-medium text-amber-400 hover:text-amber-300 transition-colors py-1">
