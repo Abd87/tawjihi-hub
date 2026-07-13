@@ -486,6 +486,10 @@ export default function AdminCoursesPage() {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 pt-32 space-y-5 relative z-10">
         <RoleSimulator />
 
+        <h1 className="text-3xl font-extrabold text-white mb-2">
+          {isRtl ? 'إدارة الدورات' : 'Course Management'}
+        </h1>
+
         {/* ── Stats row ──────────────────────────────────────────────────── */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[

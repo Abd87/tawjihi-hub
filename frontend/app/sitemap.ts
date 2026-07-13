@@ -3,42 +3,45 @@ import { MetadataRoute } from 'next';
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://tawjihihub.com';
 
-  return [
-    {
-      url: `${baseUrl}/ar`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/en`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/ar/login`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/en/login`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/ar/register`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/en/register`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
+  const routes = [
+    '',
+    '/btec-guide',
+    '/login',
+    '/register',
+    '/dashboard',
+    '/redeem',
   ];
+
+  const sitemapEntries: MetadataRoute.Sitemap = [];
+
+  routes.forEach((route) => {
+    // Arabic Version
+    sitemapEntries.push({
+      url: `${baseUrl}/ar${route}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: route === '' ? 1 : 0.8,
+      alternates: {
+        languages: {
+          ar: `${baseUrl}/ar${route}`,
+          en: `${baseUrl}/en${route}`,
+        },
+      },
+    });
+    // English Version
+    sitemapEntries.push({
+      url: `${baseUrl}/en${route}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: route === '' ? 1 : 0.8,
+      alternates: {
+        languages: {
+          ar: `${baseUrl}/ar${route}`,
+          en: `${baseUrl}/en${route}`,
+        },
+      },
+    });
+  });
+
+  return sitemapEntries;
 }

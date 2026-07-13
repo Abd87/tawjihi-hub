@@ -348,6 +348,10 @@ export default function AdminTeachersPage() {
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 pt-32 space-y-6 relative z-10">
 
+        <h1 className="text-3xl font-extrabold text-white mb-2">
+          {isRtl ? 'إدارة المعلمين' : 'Teacher Management'}
+        </h1>
+
         {/* ── Stats row ──────────────────────────────────────────────── */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
