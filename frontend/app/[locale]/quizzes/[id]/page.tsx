@@ -364,6 +364,7 @@ export default function StudentQuizPage() {
               </h2>
               <div 
                 className="prose prose-invert max-w-none text-slate-300 leading-relaxed text-lg"
+                dir="auto"
                 dangerouslySetInnerHTML={{ __html: (isRtl ? (currentSection?.passageAr || currentSection?.passageEn) : (currentSection?.passageEn || currentSection?.passageAr)) || '' }}
               />
             </div>
@@ -461,6 +462,7 @@ function QuestionCard({ question, index, isRtl, answer, onMcqSelect, onShortAnsw
         </div>
         <div 
           className="text-lg font-semibold text-slate-200 pt-1 prose prose-invert max-w-none prose-p:my-0"
+          dir="auto"
           dangerouslySetInnerHTML={{ __html: (isRtl ? (question.textAr || question.textEn) : (question.textEn || question.textAr)) || '' }}
         />
       </div>
@@ -488,6 +490,7 @@ function QuestionCard({ question, index, isRtl, answer, onMcqSelect, onShortAnsw
                 />
                 <span 
                   className={`ms-4 font-medium ${isSelected ? 'text-white' : 'text-slate-300'} prose prose-invert prose-p:my-0 max-w-none`}
+                  dir="auto"
                   dangerouslySetInnerHTML={{ __html: (isRtl ? (choice.textAr || choice.textEn) : (choice.textEn || choice.textAr)) || '' }}
                 />
               </label>
@@ -502,7 +505,7 @@ function QuestionCard({ question, index, isRtl, answer, onMcqSelect, onShortAnsw
             onChange={(e) => onShortAnswerChange(question.id, e.target.value)}
             placeholder={isRtl ? 'اكتب إجابتك هنا...' : 'Type your answer here...'}
             className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all"
-            dir={isRtl ? 'rtl' : 'ltr'}
+            dir="auto"
           />
         </div>
       )}

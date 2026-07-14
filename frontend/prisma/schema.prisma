@@ -344,3 +344,18 @@ model QuizAnswer {
 
   @@map("quiz_answers")
 }
+
+model TeacherApplication {
+  id          String   @id @default(uuid())
+  fullName    String
+  email       String
+  phoneNumber String
+  subject     String
+  experience  String   @db.Text
+  resumeLink  String?
+  status      String   @default("PENDING") // PENDING, APPROVED, REJECTED
+  
+  createdAt   DateTime @default(now())
+
+  @@map("teacher_applications")
+}

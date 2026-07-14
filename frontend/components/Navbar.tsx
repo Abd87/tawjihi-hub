@@ -187,6 +187,10 @@ export default function Navbar() {
               <Sparkles className="w-3.5 h-3.5 text-brand-500" />
               {t('btecGuide') || (currentLocale === 'ar' ? 'دليل BTEC' : 'BTEC Guide')}
             </Link>
+            <Link href="/teach" className="text-sm font-medium text-slate-300 hover:text-brand-500 transition-colors flex items-center gap-1">
+              <Users className="w-3.5 h-3.5 text-brand-500" />
+              {currentLocale === 'ar' ? 'انضم كمعلم' : 'Teach'}
+            </Link>
             {isAdminOrTeacher && (
               <div className="relative group">
                 <button className="flex items-center gap-1.5 text-sm font-medium text-amber-400 hover:text-amber-300 transition-colors py-1">
@@ -215,6 +219,10 @@ export default function Navbar() {
                   <Link href="/admin/teachers" className="flex items-center gap-2.5 px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition-colors rounded-xl mx-1">
                     <Users className="h-4 w-4 text-amber-400" />
                     <span>{currentLocale === 'ar' ? 'المعلمون' : 'Teachers'}</span>
+                  </Link>
+                  <Link href="/admin/applications" className="flex items-center gap-2.5 px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition-colors rounded-xl mx-1 border-t border-slate-800/60 mt-1 pt-2.5">
+                    <Users className="h-4 w-4 text-emerald-400" />
+                    <span>{currentLocale === 'ar' ? 'طلبات التوظيف' : 'Applications'}</span>
                   </Link>
                 </div>
               </div>
@@ -358,6 +366,22 @@ export default function Navbar() {
                 <ShieldCheck className="h-4 w-4 text-brand-500" />
                 {t('btec')}
               </a>
+              <Link
+                href="/btec-guide"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-900/60 transition-all"
+              >
+                <Sparkles className="h-4 w-4 text-brand-500" />
+                {t('btecGuide') || (currentLocale === 'ar' ? 'دليل BTEC' : 'BTEC Guide')}
+              </Link>
+              <Link
+                href="/teach"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-900/60 transition-all"
+              >
+                <Users className="h-4 w-4 text-brand-500" />
+                {currentLocale === 'ar' ? 'انضم كمعلم' : 'Teach'}
+              </Link>
 
               {/* Admin Links */}
               {isAdminOrTeacher && (
@@ -397,6 +421,13 @@ export default function Navbar() {
                   >
                     <Users className="h-4 w-4" />
                     {currentLocale === 'ar' ? 'المعلمون' : 'Teachers'}
+                  </Link>
+                  <Link
+                    href="/admin/applications"
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-emerald-400 hover:text-emerald-300 hover:bg-slate-900/60 transition-all border-t border-slate-800/60 mt-2"
+                  >
+                    <Users className="h-4 w-4" />
+                    {currentLocale === 'ar' ? 'طلبات التوظيف' : 'Applications'}
                   </Link>
                 </>
               )}
