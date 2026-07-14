@@ -301,12 +301,7 @@ export default function Navbar() {
                   <LogOut className="h-4 w-4 text-brand-500" />
                   <span>{t('logout') || (currentLocale === 'ar' ? 'تسجيل الخروج' : 'Log Out')}</span>
                 </button>
-                <Link 
-                  href="/settings" 
-                  className="inline-flex items-center gap-1.5 justify-center px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
-                >
-                  <span>{currentLocale === 'ar' ? 'الإعدادات' : 'Settings'}</span>
-                </Link>
+
                 <Link 
                   href={isParent ? '/parent/dashboard' : (isTeacher ? '/admin/courses' : '/dashboard')} 
                   className="inline-flex items-center gap-1.5 justify-center px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 shadow-lg shadow-brand-500/25 hover:shadow-brand-500/35 transition-all"
