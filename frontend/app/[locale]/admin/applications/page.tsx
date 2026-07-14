@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
-import { Users, Search, CheckCircle2, XCircle, Clock, ExternalLink, Mail, Phone, BookOpen, Loader2 } from 'lucide-react';
+import { Users, Search, CheckCircle2, XCircle, Clock, ExternalLink, Mail, Phone, BookOpen, Loader2, Calendar } from 'lucide-react';
 
 interface Application {
   id: string;
@@ -139,6 +139,14 @@ export default function ApplicationsAdminPage() {
                         </a>
                       </div>
                     )}
+                    <div className="flex items-center gap-2 text-slate-400 text-sm font-medium">
+                      <Calendar className="w-4 h-4 text-slate-500" />
+                      {new Date(app.createdAt).toLocaleDateString(locale === 'ar' ? 'ar-EG' : 'en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </div>
                   </div>
 
                   <div className="bg-slate-950/50 rounded-xl p-4 border border-slate-800">
