@@ -5,7 +5,8 @@ import { cookies } from 'next/headers';
 
 export async function POST(request: Request) {
   try {
-    const { phoneNumber } = await request.json();
+    const body = await request.json();
+    const { phoneNumber, trackType } = body;
 
     const cookieStore = cookies();
     const token = cookieStore.get('token')?.value;
@@ -25,9 +26,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
+    const updateData: any = {};
+    if (phoneNumber !== undefined) updateData.phoneNumber = phoneNumber;
+    if (trackType !== undefined) updateData.trackType = trackType;
+
     const updatedUser = await prisma.user.update({
       where: { id: user.id },
-      data: { phoneNumber },
+      data: updateData,
     });
 
     const { passwordHash: _, ...userWithoutPassword } = updatedUser;

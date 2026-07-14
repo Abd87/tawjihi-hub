@@ -394,10 +394,26 @@ export default function DashboardPage() {
               <span className="text-xs text-slate-500 font-semibold">{t('currentTrack')}</span>
               {(user?.role === 'TEACHER' || user?.role === 'ADMIN') && (
                 <button 
-                  onClick={() => {
+                  onClick={async () => {
                     const next = isBtec ? 'ACADEMIC' : 'BTEC';
                     setSelectedTrack(next);
                     localStorage.setItem('dashboardTrack', next);
+                    try {
+                      const token = localStorage.getItem('token');
+                      if (token) {
+                        await fetch('/api/auth/update-profile', {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({ trackType: next })
+                        });
+                        const cachedUser = localStorage.getItem('user');
+                        if (cachedUser) {
+                          const parsed = JSON.parse(cachedUser);
+                          parsed.trackType = next;
+                          localStorage.setItem('user', JSON.stringify(parsed));
+                        }
+                      }
+                    } catch (e) {}
                   }}
                   className="text-xs font-bold text-brand-500 hover:text-brand-400 bg-brand-500/10 px-2 py-1 rounded-lg transition-colors"
                 >
