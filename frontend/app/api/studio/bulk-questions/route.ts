@@ -25,25 +25,29 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Forbidden. Admin access required.' }, { status: 403 });
     }
 
-    // Map questions to Prisma format
-    const dataToInsert = questions.map(q => ({
-      lessonId,
-      text: q.text,
-      optionA: q.optionA,
-      optionB: q.optionB,
-      optionC: q.optionC,
-      optionD: q.optionD,
-      correctAnswer: q.correctAnswer,
-      explanation: q.explanation || null,
-    }));
-
-    // Use Prisma createMany to insert all at once
-    const result = await prisma.question.createMany({
-      data: dataToInsert,
-      skipDuplicates: true, // Prevents blowing up if unique constraints fail
+    const transactions = questions.map(q => {
+      return prisma.inlineQuestion.create({
+        data: {
+          lessonId,
+          textAr: q.text,
+          textEn: q.text,
+          explanationAr: q.explanation || null,
+          explanationEn: q.explanation || null,
+          choices: {
+            create: [
+              { textAr: q.optionA, textEn: q.optionA, isCorrect: q.correctAnswer === 'A' },
+              { textAr: q.optionB, textEn: q.optionB, isCorrect: q.correctAnswer === 'B' },
+              { textAr: q.optionC, textEn: q.optionC, isCorrect: q.correctAnswer === 'C' },
+              { textAr: q.optionD, textEn: q.optionD, isCorrect: q.correctAnswer === 'D' },
+            ].filter(c => c.textAr) // Only create choices that have text
+          }
+        }
+      });
     });
 
-    return NextResponse.json({ success: true, count: result.count });
+    await prisma.$transaction(transactions);
+
+    return NextResponse.json({ success: true, count: questions.length });
   } catch (error) {
     console.error('Bulk questions error:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
