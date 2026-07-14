@@ -2,9 +2,9 @@
 
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
-import { Beaker, Lock, PlayCircle, ShieldCheck, Maximize } from 'lucide-react';
+import { Beaker, Lock, PlayCircle, ShieldCheck, Maximize, X } from 'lucide-react';
 import Link from 'next/link';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 export default function VirtualLabsPage() {
   const t = useTranslations('navigation');
@@ -12,6 +12,15 @@ export default function VirtualLabsPage() {
   const locale = (params?.locale as string) || 'ar';
   const isRtl = locale === 'ar';
   const labRef = useRef<HTMLDivElement>(null);
+  
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [activeLab, setActiveLab] = useState<{ url: string; title: string } | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsLoggedIn(!!localStorage.getItem('token'));
+    }
+  }, []);
 
   const enterFullscreen = () => {
     if (labRef.current) {
@@ -99,63 +108,74 @@ export default function VirtualLabsPage() {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            {/* Locked Lab 1 */}
-            <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 relative group overflow-hidden">
-              <div className="absolute inset-0 bg-slate-950/60 backdrop-blur-[2px] z-10 flex flex-col items-center justify-center opacity-100 transition-all">
-                <Lock className="h-10 w-10 text-slate-500 mb-3" />
-                <p className="text-slate-300 font-bold mb-4">
-                  {isRtl ? 'متاح للمشتركين فقط' : 'Available for Enrolled Students'}
-                </p>
-                <Link href="/login" className="px-6 py-2 bg-white text-slate-900 rounded-xl font-bold text-sm hover:bg-slate-200 transition-colors">
-                  {isRtl ? 'تسجيل الدخول لفتح المعمل' : 'Login to Unlock'}
-                </Link>
+            {/* Premium Labs Mapping */}
+            {[
+              { id: 1, titleAr: 'حركة المقذوفات', titleEn: 'Projectile Motion', descAr: 'تجارب الزخم وحفظ الطاقة', descEn: 'Momentum and Energy Conservation', url: 'https://phet.colorado.edu/sims/html/projectile-motion/latest/projectile-motion_all.html' },
+              { id: 2, titleAr: 'قانون فاراداي', titleEn: 'Faraday Law', descAr: 'الحث الكهرومغناطيسي', descEn: 'Electromagnetic Induction', url: 'https://phet.colorado.edu/sims/html/faradays-law/latest/faradays-law_all.html' },
+              { id: 3, titleAr: 'التركيز والمحاليل الكيميائية', titleEn: 'Concentration & Solutions', descAr: 'تجارب الكيمياء العضوية', descEn: 'Organic Chemistry Labs', url: 'https://phet.colorado.edu/sims/html/concentration/latest/concentration_all.html' }
+            ].map(lab => (
+              <div key={lab.id} className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 relative group overflow-hidden">
+                <div className={`absolute inset-0 bg-slate-950/60 backdrop-blur-[2px] z-10 flex flex-col items-center justify-center transition-all ${isLoggedIn ? 'opacity-0 hover:opacity-100 group-hover:opacity-100' : 'opacity-100'}`}>
+                  {!isLoggedIn ? (
+                    <>
+                      <Lock className="h-10 w-10 text-slate-500 mb-3" />
+                      <p className="text-slate-300 font-bold mb-4">
+                        {isRtl ? 'متاح للمشتركين فقط' : 'Available for Enrolled Students'}
+                      </p>
+                      <Link href="/login" className="px-6 py-2 bg-white text-slate-900 rounded-xl font-bold text-sm hover:bg-slate-200 transition-colors">
+                        {isRtl ? 'تسجيل الدخول لفتح المعمل' : 'Login to Unlock'}
+                      </Link>
+                    </>
+                  ) : (
+                    <button 
+                      onClick={() => setActiveLab({ url: `${lab.url}?locale=${locale}`, title: isRtl ? lab.titleAr : lab.titleEn })}
+                      className="px-6 py-3 bg-brand-500 text-white rounded-xl font-bold text-sm hover:bg-brand-400 transition-colors flex items-center gap-2 shadow-lg shadow-brand-500/20"
+                    >
+                      <PlayCircle className="h-5 w-5" />
+                      {isRtl ? 'فتح المعمل الان' : 'Open Lab Now'}
+                    </button>
+                  )}
+                </div>
+                <div className={!isLoggedIn ? "opacity-40 blur-sm pointer-events-none" : "opacity-80 group-hover:opacity-40 blur-[1px] group-hover:blur-sm transition-all pointer-events-none"}>
+                  <div className="w-full h-40 bg-slate-800 rounded-2xl mb-4 flex items-center justify-center">
+                    <Beaker className="h-12 w-12 text-slate-600" />
+                  </div>
+                  <h4 className="text-lg font-bold text-white mb-2">{isRtl ? lab.titleAr : lab.titleEn}</h4>
+                  <p className="text-sm text-slate-500">{isRtl ? lab.descAr : lab.descEn}</p>
+                </div>
               </div>
-              <div className="opacity-40 blur-sm pointer-events-none">
-                <div className="w-full h-40 bg-slate-800 rounded-2xl mb-4"></div>
-                <h4 className="text-lg font-bold text-white mb-2">{isRtl ? 'حركة المقذوفات' : 'Projectile Motion'}</h4>
-                <p className="text-sm text-slate-500">{isRtl ? 'تجارب الزخم وحفظ الطاقة' : 'Momentum and Energy Conservation'}</p>
-              </div>
-            </div>
-
-            {/* Locked Lab 2 */}
-            <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 relative group overflow-hidden">
-              <div className="absolute inset-0 bg-slate-950/60 backdrop-blur-[2px] z-10 flex flex-col items-center justify-center opacity-100 transition-all">
-                <Lock className="h-10 w-10 text-slate-500 mb-3" />
-                <p className="text-slate-300 font-bold mb-4">
-                  {isRtl ? 'متاح للمشتركين فقط' : 'Available for Enrolled Students'}
-                </p>
-                <Link href="/login" className="px-6 py-2 bg-white text-slate-900 rounded-xl font-bold text-sm hover:bg-slate-200 transition-colors">
-                  {isRtl ? 'تسجيل الدخول لفتح المعمل' : 'Login to Unlock'}
-                </Link>
-              </div>
-              <div className="opacity-40 blur-sm pointer-events-none">
-                <div className="w-full h-40 bg-slate-800 rounded-2xl mb-4"></div>
-                <h4 className="text-lg font-bold text-white mb-2">{isRtl ? 'قانون فاراداي' : 'Faraday Law'}</h4>
-                <p className="text-sm text-slate-500">{isRtl ? 'الحث الكهرومغناطيسي' : 'Electromagnetic Induction'}</p>
-              </div>
-            </div>
-
-            {/* Locked Lab 3 */}
-            <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 relative group overflow-hidden">
-              <div className="absolute inset-0 bg-slate-950/60 backdrop-blur-[2px] z-10 flex flex-col items-center justify-center opacity-100 transition-all">
-                <Lock className="h-10 w-10 text-slate-500 mb-3" />
-                <p className="text-slate-300 font-bold mb-4">
-                  {isRtl ? 'متاح للمشتركين فقط' : 'Available for Enrolled Students'}
-                </p>
-                <Link href="/login" className="px-6 py-2 bg-white text-slate-900 rounded-xl font-bold text-sm hover:bg-slate-200 transition-colors">
-                  {isRtl ? 'تسجيل الدخول لفتح المعمل' : 'Login to Unlock'}
-                </Link>
-              </div>
-              <div className="opacity-40 blur-sm pointer-events-none">
-                <div className="w-full h-40 bg-slate-800 rounded-2xl mb-4"></div>
-                <h4 className="text-lg font-bold text-white mb-2">{isRtl ? 'التركيز والمحاليل الكيميائية' : 'Concentration & Solutions'}</h4>
-                <p className="text-sm text-slate-500">{isRtl ? 'تجارب الكيمياء العضوية' : 'Organic Chemistry Labs'}</p>
-              </div>
-            </div>
-
+            ))}
           </div>
         </div>
       </div>
+
+      {/* Active Lab Modal */}
+      {activeLab && (
+        <div className="fixed inset-0 z-[100] bg-slate-950 flex flex-col">
+          <div className="h-16 border-b border-slate-800 flex items-center justify-between px-6 bg-slate-900">
+            <div className="flex items-center gap-3">
+              <Beaker className="h-5 w-5 text-brand-500" />
+              <h2 className="text-lg font-bold text-white">{activeLab.title}</h2>
+            </div>
+            <button 
+              onClick={() => setActiveLab(null)}
+              className="p-2 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-white transition-colors"
+            >
+              <X className="h-6 w-6" />
+            </button>
+          </div>
+          <div className="flex-1 bg-black relative">
+            <iframe 
+              src={activeLab.url}
+              width="100%" 
+              height="100%" 
+              allowFullScreen
+              className="border-0 absolute inset-0"
+              title={activeLab.title}
+            ></iframe>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
