@@ -66,6 +66,8 @@ const config: Config = {
         'shake': 'shake 0.4s ease-in-out',
         'fade-in': 'fadeIn 0.3s ease-in-out',
         'slide-down': 'slideDown 0.25s ease-out',
+        'marquee': 'marquee 25s linear infinite',
+        'marquee-rtl': 'marquee-rtl 25s linear infinite',
       },
       keyframes: {
         shake: {
@@ -80,6 +82,14 @@ const config: Config = {
         slideDown: {
           from: { opacity: '0', transform: 'translateY(-8px)' },
           to: { opacity: '1', transform: 'translateY(0)' },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+        'marquee-rtl': {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(100%)' },
         },
       },
     },

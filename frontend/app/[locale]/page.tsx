@@ -17,7 +17,9 @@ import {
   HelpCircle, 
   FileText,
   BadgeAlert,
-  ArrowUpRight
+  ArrowUpRight,
+  Users,
+  User
 } from 'lucide-react';
 
 interface PageProps {
@@ -132,7 +134,7 @@ export default function HomePage({ params: { locale } }: PageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16 md:mb-24">
+          <div className="text-center max-w-3xl mx-auto mb-10">
             <span className="text-brand-500 text-xs sm:text-sm font-extrabold uppercase tracking-widest bg-brand-500/5 px-4 py-1.5 rounded-full border border-brand-500/10">
               {t('tracks.badge')}
             </span>
@@ -142,6 +144,40 @@ export default function HomePage({ params: { locale } }: PageProps) {
             <p className="text-slate-400 mt-4 text-base sm:text-lg">
               {t('tracks.subtitle')}
             </p>
+          </div>
+
+          {/* Features Marquee */}
+          <div className="relative w-full overflow-hidden mb-16 md:mb-20 flex items-center py-5 bg-slate-900/20 border-y border-slate-800/40">
+            {/* Left and Right Gradients for smooth fade */}
+            <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-[#020617] to-transparent z-10" />
+            <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-[#020617] to-transparent z-10" />
+            
+            <div className={`flex w-max items-center space-x-12 px-6 whitespace-nowrap ${locale === 'ar' ? 'animate-marquee-rtl space-x-reverse' : 'animate-marquee'}`}>
+              {[...Array(3)].map((_, i) => (
+                <div key={i} className={`flex items-center space-x-12 ${locale === 'ar' ? 'space-x-reverse' : ''}`}>
+                  <div className="flex items-center gap-3">
+                    <Users className="h-6 w-6 text-brand-500" />
+                    <span className="text-slate-300 font-bold">{locale === 'ar' ? 'نخبة من الأساتذة' : 'Elite Teachers'}</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <BookOpen className="h-6 w-6 text-brand-500" />
+                    <span className="text-slate-300 font-bold">{locale === 'ar' ? 'مناهج Pearson المعتمدة' : 'Certified Pearson Curriculum'}</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle2 className="h-6 w-6 text-brand-500" />
+                    <span className="text-slate-300 font-bold">{locale === 'ar' ? 'أقوى نظام تقييم ذكي' : 'Smart Evaluation System'}</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <FileText className="h-6 w-6 text-brand-500" />
+                    <span className="text-slate-300 font-bold">{locale === 'ar' ? 'ملخصات وأسئلة سنوات' : 'Summaries & Past Papers'}</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <User className="h-6 w-6 text-brand-500" />
+                    <span className="text-slate-300 font-bold">{locale === 'ar' ? 'متابعة شاملة لأولياء الأمور' : 'Parent Tracking'}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Interactive Bridge Grid */}
