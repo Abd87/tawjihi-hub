@@ -131,6 +131,26 @@ export default function PrivacyPolicy({ params: { locale } }: { params: { locale
           </div>
         </section>
 
+        {/* Section 6 */}
+        <section className="bg-slate-900/50 p-8 rounded-2xl border border-slate-800/50 hover:border-brand-500/30 transition-colors">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="p-3 bg-red-500/10 rounded-xl">
+              <Shield className="w-6 h-6 text-red-500" />
+            </div>
+            <h2 className="text-2xl font-bold text-white">
+              {isRtl ? '6. سياسة الاسترجاع وإلغاء الاشتراك (لا يوجد استرداد للأموال)' : '6. Refund & Cancellation Policy (No Refunds)'}
+            </h2>
+          </div>
+          <div className="space-y-4 text-slate-400 leading-relaxed" dir="auto">
+            <p>{isRtl ? 'بموجب سياسة منصة توجيهي هب الصارمة، يُرجى الانتباه إلى ما يلي بخصوص عمليات الدفع والاشتراكات:' : 'Under Tawjihi Hub\'s strict policy, please note the following regarding payments and subscriptions:'}</p>
+            <ul className="list-disc list-inside ml-4 space-y-2 font-semibold text-red-400">
+              <li>{isRtl ? 'لا يوجد استرداد للأموال: جميع عمليات الشراء لبطاقات التفعيل (الكوبونات) أو الدورات هي عمليات نهائية ولا يمكن استرداد قيمتها نقداً بأي حال من الأحوال.' : 'No Refunds: All purchases for activation cards (coupons) or courses are final and non-refundable under any circumstances.'}</li>
+              <li>{isRtl ? 'لا يمكن تبديل الدورات: بمجرد تفعيل الدورة باستخدام الكوبون، لا يمكن استبدالها بدورة أخرى أو إلغاء الاشتراك بها.' : 'No Course Exchanges: Once a course is activated using a coupon, it cannot be exchanged for another course or cancelled.'}</li>
+              <li>{isRtl ? 'مسؤولية المستخدم: تقع مسؤولية الحفاظ على سرية كود البطاقة والتأكد من اختيار الدورة الصحيحة قبل التفعيل على عاتق الطالب (أو ولي الأمر) بالكامل.' : 'User Responsibility: It is solely the student\'s (or parent\'s) responsibility to keep the card code confidential and ensure the correct course is selected before activation.'}</li>
+            </ul>
+          </div>
+        </section>
+
       </div>
 
       <div className="max-w-4xl mx-auto px-6 mt-8 flex justify-center">
