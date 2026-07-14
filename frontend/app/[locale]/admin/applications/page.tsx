@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { Users, Search, CheckCircle2, XCircle, Clock, ExternalLink, Mail, Phone, BookOpen, Loader2 } from 'lucide-react';
-import Navbar from '@/components/Navbar';
 
 interface Application {
   id: string;
@@ -74,7 +73,6 @@ export default function ApplicationsAdminPage() {
 
   return (
     <div className="min-h-screen bg-[#020617] font-sans">
-      <Navbar />
       
       <main className="max-w-7xl mx-auto px-4 pt-32 pb-20">
         <div className="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
