@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
-import { MessageSquare, Send, Reply, User, UserCheck, Trash2 } from 'lucide-react';
+import { MessageSquare, Send, Reply, User, UserCheck, Trash2, ShieldCheck } from 'lucide-react';
 
 interface Author {
   id: string;
