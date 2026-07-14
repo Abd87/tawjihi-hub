@@ -81,6 +81,7 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<{ nameAr: string; nameEn?: string; role: string; trackType: 'ACADEMIC' | 'BTEC' } | null>(null);
   const [courses, setCourses] = useState<Course[]>([]);
+  const [adminStats, setAdminStats] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
   const [activeSemester, setActiveSemester] = useState<1 | 2>(1);
   const [selectedTrack, setSelectedTrack] = useState<'ACADEMIC' | 'BTEC' | null>(() => {
@@ -275,6 +276,17 @@ export default function DashboardPage() {
           setCourses(computeCourseProgress(getMockCourses(selectedTrack || activeUser.trackType), activeUser.id));
         }
 
+        // 3. Fetch admin stats if user is ADMIN
+        if (activeUser.role === 'ADMIN' || activeUser.isMasterAdmin) {
+          const statsRes = await fetch('/api/admin/dashboard-stats', {
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+          if (statsRes.ok) {
+            const statsData = await statsRes.json();
+            setAdminStats(statsData);
+          }
+        }
+
       } catch (err: any) {
         // Fallback for offline/unreachable server using localstorage cached credentials
         const cachedUser = localStorage.getItem('user');
@@ -423,32 +435,32 @@ export default function DashboardPage() {
                       <Users className="h-20 w-20" />
                    </div>
                    <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'الطلاب النشطين' : 'Active Students'}</p>
-                   <h3 className="text-3xl font-black text-white">1,248</h3>
-                   <p className="text-emerald-500 text-xs mt-3 flex items-center gap-1 font-bold"><TrendingUp className="h-3 w-3" /> +12% {locale === 'ar' ? 'هذا الأسبوع' : 'this week'}</p>
+                   <h3 className="text-3xl font-black text-white">{adminStats?.stats?.totalStudents || 0}</h3>
+                   <p className="text-emerald-500 text-xs mt-3 flex items-center gap-1 font-bold"><TrendingUp className="h-3 w-3" /> {locale === 'ar' ? 'إجمالي' : 'Total'}</p>
                 </div>
                 <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 relative overflow-hidden group hover:border-slate-700 transition-colors shadow-lg">
                    <div className="absolute top-0 end-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
                       <BookOpen className="h-20 w-20" />
                    </div>
                    <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'الدورات الفعالة' : 'Active Courses'}</p>
-                   <h3 className="text-3xl font-black text-white">{courses.length}</h3>
-                   <p className="text-emerald-500 text-xs mt-3 flex items-center gap-1 font-bold"><TrendingUp className="h-3 w-3" /> +2 {locale === 'ar' ? 'هذا الأسبوع' : 'this week'}</p>
+                   <h3 className="text-3xl font-black text-white">{adminStats?.stats?.totalCourses || courses.length || 0}</h3>
+                   <p className="text-emerald-500 text-xs mt-3 flex items-center gap-1 font-bold"><TrendingUp className="h-3 w-3" /> {locale === 'ar' ? 'إجمالي' : 'Total'}</p>
                 </div>
                 <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 relative overflow-hidden group hover:border-slate-700 transition-colors shadow-lg">
                    <div className="absolute top-0 end-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
-                      <HelpCircle className="h-20 w-20" />
+                      <Key className="h-20 w-20" />
                    </div>
-                   <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'اختبارات تم حلها' : 'Quizzes Taken'}</p>
-                   <h3 className="text-3xl font-black text-white">5,892</h3>
-                   <p className="text-emerald-500 text-xs mt-3 flex items-center gap-1 font-bold"><TrendingUp className="h-3 w-3" /> +841 {locale === 'ar' ? 'هذا الأسبوع' : 'this week'}</p>
+                   <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'الكوبونات الفعالة' : 'Active Coupons'}</p>
+                   <h3 className="text-3xl font-black text-white">{adminStats?.stats?.activeCoupons || 0}</h3>
+                   <p className="text-slate-500 text-xs mt-3 flex items-center gap-1 font-bold">{locale === 'ar' ? 'جاهزة للاستخدام' : 'Ready to use'}</p>
                 </div>
                 <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 relative overflow-hidden group hover:border-slate-700 transition-colors shadow-lg">
                    <div className="absolute top-0 end-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
-                      <Sparkles className="h-20 w-20" />
+                      <Award className="h-20 w-20" />
                    </div>
-                   <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'الإيرادات (تقريبي)' : 'Revenue (Est)'}</p>
-                   <h3 className="text-3xl font-black text-white">12.4K <span className="text-sm text-slate-500">JOD</span></h3>
-                   <p className="text-emerald-500 text-xs mt-3 flex items-center gap-1 font-bold"><TrendingUp className="h-3 w-3" /> +4.2% {locale === 'ar' ? 'هذا الشهر' : 'this month'}</p>
+                   <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'الاختبارات المنجزة' : 'Completed Quizzes'}</p>
+                   <h3 className="text-3xl font-black text-white">-</h3>
+                   <p className="text-slate-500 text-xs mt-3 flex items-center gap-1 font-bold">{locale === 'ar' ? 'قريباً' : 'Coming soon'}</p>
                 </div>
              </div>
              
@@ -528,21 +540,25 @@ export default function DashboardPage() {
                    {locale === 'ar' ? 'أحدث النشاطات' : 'Recent Activity'}
                 </h3>
                 <div className="space-y-4">
-                  {[
-                    { textAr: 'قام أحمد محمود بالتسجيل في دورة الفيزياء', textEn: 'Ahmad Mahmoud enrolled in Physics', time: '10 min ago', color: 'bg-emerald-500/20 text-emerald-400' },
-                    { textAr: 'حصلت سارة كمال على 95% في اختبار الكيمياء', textEn: 'Sara Kamal scored 95% in Chemistry quiz', time: '1 hour ago', color: 'bg-brand-500/20 text-brand-400' },
-                    { textAr: 'تم تفعيل 15 كوبون جديد عن طريق المكتبة', textEn: '15 new coupons redeemed by Bookstore', time: '3 hours ago', color: 'bg-blue-500/20 text-blue-400' },
-                  ].map((act, i) => (
-                    <div key={i} className="flex items-center gap-4 p-4 bg-slate-950 rounded-2xl border border-slate-850">
-                       <div className={`p-2 rounded-full ${act.color} shrink-0`}>
-                          <Sparkles className="h-4 w-4" />
-                       </div>
-                       <div className="flex-1">
-                          <p className="text-sm font-semibold text-slate-200">{locale === 'ar' ? act.textAr : act.textEn}</p>
-                          <p className="text-xs text-slate-500 mt-0.5">{act.time}</p>
-                       </div>
+                  {adminStats?.recentActivities?.length > 0 ? (
+                    adminStats.recentActivities.map((act: any, i: number) => (
+                      <div key={i} className="flex items-center gap-4 p-4 bg-slate-950 rounded-2xl border border-slate-850">
+                         <div className={`p-2 rounded-full ${act.color} shrink-0`}>
+                            <Sparkles className="h-4 w-4" />
+                         </div>
+                         <div className="flex-1">
+                            <p className="text-sm font-semibold text-slate-200">{locale === 'ar' ? act.textAr : act.textEn}</p>
+                            <p className="text-xs text-slate-500 mt-0.5">
+                              {new Date(act.time).toLocaleString(locale === 'ar' ? 'ar-EG' : 'en-US')}
+                            </p>
+                         </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="text-center py-6 text-slate-500">
+                      {locale === 'ar' ? 'لا يوجد نشاطات حديثة' : 'No recent activities'}
                     </div>
-                  ))}
+                  )}
                 </div>
              </div>
           </div>
