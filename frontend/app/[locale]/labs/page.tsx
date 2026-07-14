@@ -136,7 +136,7 @@ export default function VirtualLabsPage() {
                     </button>
                   )}
                 </div>
-                <div className={!isLoggedIn ? "opacity-40 blur-sm pointer-events-none" : "opacity-80 group-hover:opacity-40 blur-[1px] group-hover:blur-sm transition-all pointer-events-none"}>
+                <div className={!isLoggedIn ? "opacity-40 blur-sm pointer-events-none" : "transition-all duration-300 pointer-events-none group-hover:opacity-30"}>
                   <div className="w-full h-40 bg-slate-800 rounded-2xl mb-4 flex items-center justify-center">
                     <Beaker className="h-12 w-12 text-slate-600" />
                   </div>
