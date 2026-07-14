@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { useRouter, usePathname, Link } from '@/i18n/routing';
 import { useParams } from 'next/navigation';
-import { Globe, GraduationCap, LogOut, LayoutDashboard, Menu, X, BarChart2, Key, BookOpen, ShieldCheck, Users, Settings, Sparkles } from 'lucide-react';
+import { Globe, GraduationCap, LogOut, LayoutDashboard, Menu, X, BarChart2, Key, BookOpen, ShieldCheck, Users, Settings, Sparkles, Beaker } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
@@ -186,6 +186,9 @@ export default function Navbar() {
             <Link href="/btec-guide" className="text-sm font-medium text-slate-300 hover:text-brand-500 transition-colors flex items-center gap-1">
               <Sparkles className="w-3.5 h-3.5 text-brand-500" />
               {t('btecGuide') || (currentLocale === 'ar' ? 'دليل BTEC' : 'BTEC Guide')}
+            </Link>
+            <Link href="/labs" className="text-sm font-medium text-slate-300 hover:text-brand-500 transition-colors flex items-center gap-1">
+              {currentLocale === 'ar' ? 'المختبرات' : 'Labs'}
             </Link>
             {!user && (
               <Link href="/teach" className="text-sm font-medium text-slate-300 hover:text-brand-500 transition-colors flex items-center gap-1">
@@ -370,6 +373,14 @@ export default function Navbar() {
               >
                 <Sparkles className="h-4 w-4 text-brand-500" />
                 {t('btecGuide') || (currentLocale === 'ar' ? 'دليل BTEC' : 'BTEC Guide')}
+              </Link>
+              <Link
+                href="/labs"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-900/60 transition-all"
+              >
+                <Beaker className="h-4 w-4 text-brand-500" />
+                {currentLocale === 'ar' ? 'المختبرات الافتراضية' : 'Virtual Labs'}
               </Link>
               {!user && (
                 <Link
