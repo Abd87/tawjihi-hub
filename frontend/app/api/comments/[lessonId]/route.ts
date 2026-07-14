@@ -1,14 +1,20 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { verifyAuth } from '@/lib/auth';
+import prisma from '@/lib/prisma';
+import jwt from 'jsonwebtoken';
+import { cookies } from 'next/headers';
 
 export async function GET(
   request: Request,
   { params }: { params: { lessonId: string } }
 ) {
   try {
-    const user = await verifyAuth(request);
-    if (!user) {
+    const cookieStore = cookies();
+    const token = cookieStore.get('token')?.value;
+    if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+
+    const secret = process.env.JWT_SECRET || 'tawjihi-hub-secret-key-for-jwt-2024';
+    const decoded = jwt.verify(token, secret) as any;
+    if (!decoded || !decoded.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
