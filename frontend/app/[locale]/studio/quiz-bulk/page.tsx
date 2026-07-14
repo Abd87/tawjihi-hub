@@ -21,7 +21,17 @@ export default function BulkQuizUploader() {
   useEffect(() => {
     if (courseId) {
       const course = courses.find(c => c.id === courseId);
-      setLessons(course?.lessons || []);
+      const allLessons: any[] = [];
+      if (course?.units) {
+        course.units.forEach((u: any) => {
+          if (u.lessons) {
+            u.lessons.forEach((l: any) => {
+              allLessons.push({ ...l, unitTitle: u.titleAr || u.titleEn });
+            });
+          }
+        });
+      }
+      setLessons(allLessons);
       setLessonId('');
     } else {
       setLessons([]);
@@ -164,7 +174,9 @@ export default function BulkQuizUploader() {
           >
             <option value="">-- Choose Lesson --</option>
             {lessons.map(l => (
-              <option key={l.id} value={l.id}>{l.titleAr} / {l.titleEn}</option>
+              <option key={l.id} value={l.id}>
+                {l.unitTitle ? `${l.unitTitle} > ` : ''}{l.titleAr} / {l.titleEn}
+              </option>
             ))}
           </select>
         </div>
