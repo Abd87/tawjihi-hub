@@ -14,6 +14,7 @@ import {
   Send,
   Info
 } from 'lucide-react';
+import LessonQA from '@/components/LessonQA';
 
 interface Lesson {
   id: string;
@@ -372,48 +373,7 @@ export default function DedicatedVideoPlayerPage() {
               </p>
             </section>
 
-            <section className="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 shadow-sm">
-              <h3 className="text-lg font-bold text-white mb-6 flex items-center gap-2">
-                <MessageSquare className="h-5 w-5 text-brand-400" />
-                {isRtl ? 'النقاشات' : 'Discussions'}
-              </h3>
-              
-              <div className="flex items-start gap-3 mb-8">
-                <div className="h-10 w-10 rounded-full bg-brand-500/20 border border-brand-500/40 flex items-center justify-center font-bold text-brand-400 shrink-0 uppercase">
-                  {currentUser?.nameAr ? currentUser.nameAr.charAt(0) : 'U'}
-                </div>
-                <div className="flex-1 relative">
-                  <input 
-                    type="text" 
-                    placeholder={isRtl ? 'أضف تعليقاً أو سؤالاً...' : 'Add a comment or question...'}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 px-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500/30 transition-all text-sm"
-                  />
-                  <button className="absolute end-2 top-2 p-1.5 bg-brand-500 hover:bg-brand-600 transition-colors text-white rounded-lg shadow-sm">
-                    <Send className="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <div className="p-5 rounded-xl border border-slate-800 bg-slate-950/40">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="h-8 w-8 rounded-full bg-slate-800 flex items-center justify-center text-xs font-bold text-slate-300">
-                      T
-                    </div>
-                    <div>
-                      <span className="text-sm font-bold text-white block">Tawjihi Hub</span>
-                      <span className="text-[11px] text-slate-500">System Message</span>
-                    </div>
-                  </div>
-                  <p className="text-sm text-slate-300 leading-relaxed">
-                    {isRtl ? 
-                      'أهلاً بك في قسم النقاشات! يمكنك طرح أسئلتك هنا وسيقوم المعلم أو زملائك بالإجابة عليها.' : 
-                      'Welcome to the discussions! Feel free to ask any questions here and your teacher or peers will answer.'
-                    }
-                  </p>
-                </div>
-              </div>
-            </section>
+            <LessonQA lessonId={lessonId} locale={locale} currentUser={currentUser} />
           </div>
         </div>
       </main>

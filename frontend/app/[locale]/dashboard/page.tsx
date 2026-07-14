@@ -34,6 +34,7 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 import RoleSimulator from '@/components/RoleSimulator';
+import StudyPlanner from '@/components/StudyPlanner';
 
 interface LiveSession {
   id: string;
@@ -564,9 +565,10 @@ export default function DashboardPage() {
           </div>
         ) : (
           <div className="space-y-10 animate-fade-in pb-20">
+            {/* Study Planner Widget */}
+            <StudyPlanner courses={courses} isRtl={locale === 'ar'} />
+
             {/* Dashboard Content */}
-
-
 
 
         {/* My Schedule / Live Sessions Widget */}
