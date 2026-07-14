@@ -20,7 +20,7 @@ export async function GET() {
     // Real Stats
     const totalStudents = await prisma.user.count({ where: { role: 'STUDENT' } });
     const totalCourses = await prisma.course.count();
-    const activeCoupons = await prisma.coupon.count({ where: { status: 'ACTIVE' } });
+    const activeCoupons = await prisma.coupon.count({ where: { isActive: true } });
 
     // Recent Activities (Mix of new users and new teacher applications)
     const recentApplications = await prisma.teacherApplication.findMany({
