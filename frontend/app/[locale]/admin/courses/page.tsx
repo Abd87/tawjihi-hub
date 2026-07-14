@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useRouter } from '@/i18n/routing';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
@@ -8,7 +8,7 @@ import {
   ArrowLeft, ArrowRight, Plus, Trash2, BookOpen, Save,
   ChevronDown, Loader2, CheckCircle2, Video, FileText,
   GraduationCap, Edit3, X, PlusCircle, Eye, EyeOff,
-  Lock, Unlock, AlertCircle, Users, Calendar,
+  Lock, Unlock, AlertCircle, Users, Calendar, Image as ImageIcon, Bold, Underline
 } from 'lucide-react';
 import RoleSimulator from '@/components/RoleSimulator';
 
@@ -1317,8 +1317,58 @@ function LiveSessionEditor({
 function LessonInput({ dir, value, placeholder, onChange }: {
   dir?: string; value: string; placeholder: string; onChange: (v: string) => void;
 }) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const wrapText = (tag: string) => {
+    if (!inputRef.current) return;
+    const start = inputRef.current.selectionStart;
+    const end = inputRef.current.selectionEnd;
+    
+    if (start === null || end === null || start === end) return;
+    
+    const before = value.substring(0, start);
+    const selected = value.substring(start, end);
+    const after = value.substring(end);
+    
+    const newValue = `${before}<${tag}>${selected}</${tag}>${after}`;
+    onChange(newValue);
+    
+    setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+        inputRef.current.setSelectionRange(start + tag.length + 2, end + tag.length + 2);
+      }
+    }, 0);
+  };
+
   return (
-    <input dir={dir} value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder}
-      className="w-full py-1.5 px-2.5 text-xs bg-slate-900 border border-slate-800 rounded-lg text-white placeholder:text-slate-700 focus:outline-none focus:border-brand-500 transition-colors" />
+    <div className="relative group">
+      <input 
+        ref={inputRef}
+        dir={dir} 
+        value={value} 
+        onChange={e => onChange(e.target.value)} 
+        placeholder={placeholder}
+        className="w-full py-1.5 px-2.5 pe-16 text-xs bg-slate-900 border border-slate-800 rounded-lg text-white placeholder:text-slate-700 focus:outline-none focus:border-brand-500 transition-colors" 
+      />
+      <div className={`absolute top-1/2 -translate-y-1/2 flex items-center gap-1 ${dir === 'rtl' ? 'left-2' : 'right-2'}`}>
+        <button 
+          type="button" 
+          onMouseDown={(e) => { e.preventDefault(); wrapText('b'); }}
+          className="p-1 text-slate-500 hover:text-white hover:bg-slate-800 rounded opacity-50 group-hover:opacity-100 transition-all"
+          title="Bold (select text first)"
+        >
+          <Bold className="w-3 h-3" />
+        </button>
+        <button 
+          type="button" 
+          onMouseDown={(e) => { e.preventDefault(); wrapText('u'); }}
+          className="p-1 text-slate-500 hover:text-white hover:bg-slate-800 rounded opacity-50 group-hover:opacity-100 transition-all"
+          title="Underline (select text first)"
+        >
+          <Underline className="w-3 h-3" />
+        </button>
+      </div>
+    </div>
   );
 }
