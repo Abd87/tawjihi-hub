@@ -627,6 +627,22 @@ function RegisterForm() {
                     </div>
                   )}
 
+                  {/* Privacy Policy Checkbox */}
+                  <div className="flex items-start gap-2 pt-2">
+                    <input 
+                      type="checkbox" 
+                      id="privacyPolicy" 
+                      required 
+                      className="mt-0.5 shrink-0 accent-brand-500 w-4 h-4 rounded border-slate-700 bg-slate-900"
+                    />
+                    <label htmlFor="privacyPolicy" className="text-xs text-slate-400 leading-tight">
+                      {locale === 'ar' ? 'لقد قرأت وأوافق على ' : 'I have read and agree to the '}
+                      <Link href={`/${locale}/privacy-policy`} target="_blank" className="text-brand-500 hover:text-brand-400 underline underline-offset-2">
+                        {locale === 'ar' ? 'سياسة الخصوصية' : 'Privacy Policy'}
+                      </Link>
+                    </label>
+                  </div>
+
                   {/* Actions */}
                   <div className="flex gap-4 pt-4">
                     <button
