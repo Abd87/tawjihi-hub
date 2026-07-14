@@ -187,10 +187,12 @@ export default function Navbar() {
               <Sparkles className="w-3.5 h-3.5 text-brand-500" />
               {t('btecGuide') || (currentLocale === 'ar' ? 'دليل BTEC' : 'BTEC Guide')}
             </Link>
-            <Link href="/teach" className="text-sm font-medium text-slate-300 hover:text-brand-500 transition-colors flex items-center gap-1">
-              <Users className="w-3.5 h-3.5 text-brand-500" />
-              {currentLocale === 'ar' ? 'انضم كمعلم' : 'Teach'}
-            </Link>
+            {!user && (
+              <Link href="/teach" className="text-sm font-medium text-slate-300 hover:text-brand-500 transition-colors flex items-center gap-1">
+                <Users className="w-3.5 h-3.5 text-brand-500" />
+                {currentLocale === 'ar' ? 'انضم كمعلم' : 'Teach'}
+              </Link>
+            )}
             {isAdminOrTeacher && (
               <div className="relative group">
                 <button className="flex items-center gap-1.5 text-sm font-medium text-amber-400 hover:text-amber-300 transition-colors py-1">
@@ -374,14 +376,16 @@ export default function Navbar() {
                 <Sparkles className="h-4 w-4 text-brand-500" />
                 {t('btecGuide') || (currentLocale === 'ar' ? 'دليل BTEC' : 'BTEC Guide')}
               </Link>
-              <Link
-                href="/teach"
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-900/60 transition-all"
-              >
-                <Users className="h-4 w-4 text-brand-500" />
-                {currentLocale === 'ar' ? 'انضم كمعلم' : 'Teach'}
-              </Link>
+              {!user && (
+                <Link
+                  href="/teach"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-900/60 transition-all"
+                >
+                  <Users className="h-4 w-4 text-brand-500" />
+                  {currentLocale === 'ar' ? 'انضم كمعلم' : 'Teach'}
+                </Link>
+              )}
 
               {/* Admin Links */}
               {isAdminOrTeacher && (

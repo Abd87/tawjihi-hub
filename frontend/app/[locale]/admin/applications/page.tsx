@@ -63,6 +63,9 @@ export default function ApplicationsAdminPage() {
     }
   };
 
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterStatus, setFilterStatus] = useState('ALL');
+
   if (loading) {
     return (
       <div className="min-h-screen bg-[#020617] flex items-center justify-center">
@@ -70,6 +73,13 @@ export default function ApplicationsAdminPage() {
       </div>
     );
   }
+
+  const filteredApplications = applications.filter(app => {
+    const matchesSearch = app.fullName.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                          app.email.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus = filterStatus === 'ALL' || app.status === filterStatus;
+    return matchesSearch && matchesStatus;
+  });
 
   return (
     <div className="min-h-screen bg-[#020617] font-sans">
@@ -85,15 +95,37 @@ export default function ApplicationsAdminPage() {
               {isRtl ? 'إدارة ومراجعة طلبات الانضمام لفريق توجيهي هب.' : 'Manage and review applications to join Tawjihi Hub.'}
             </p>
           </div>
+          <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+            <div className="relative w-full sm:w-64 shrink-0">
+              <Search className={`absolute ${isRtl ? 'right-3' : 'left-3'} top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500`} />
+              <input
+                type="text"
+                placeholder={isRtl ? 'البحث بالاسم أو الإيميل...' : 'Search by name or email...'}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className={`w-full bg-slate-900 border border-slate-700 rounded-xl py-2 ${isRtl ? 'pr-10 pl-4' : 'pl-10 pr-4'} text-sm text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all`}
+              />
+            </div>
+            <select
+              value={filterStatus}
+              onChange={(e) => setFilterStatus(e.target.value)}
+              className="w-full sm:w-auto bg-slate-900 border border-slate-700 rounded-xl py-2 px-4 text-sm text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all"
+            >
+              <option value="ALL">{isRtl ? 'جميع الحالات' : 'All Status'}</option>
+              <option value="PENDING">{isRtl ? 'قيد الانتظار' : 'Pending'}</option>
+              <option value="APPROVED">{isRtl ? 'مقبول' : 'Approved'}</option>
+              <option value="REJECTED">{isRtl ? 'مرفوض' : 'Rejected'}</option>
+            </select>
+          </div>
         </div>
 
         <div className="space-y-6">
-          {applications.length === 0 ? (
+          {filteredApplications.length === 0 ? (
             <div className="text-center py-20 bg-slate-900/50 border border-slate-800 rounded-2xl">
               <p className="text-slate-400 text-lg">{isRtl ? 'لا يوجد طلبات توظيف حتى الآن.' : 'No applications found.'}</p>
             </div>
           ) : (
-            applications.map((app) => (
+            filteredApplications.map((app) => (
               <div key={app.id} className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-sm flex flex-col lg:flex-row gap-6">
                 
                 {/* Info Section */}
