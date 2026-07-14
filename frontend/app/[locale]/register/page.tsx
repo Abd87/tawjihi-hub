@@ -23,7 +23,7 @@ import {
   CheckCircle2,
   Info,
 } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 
 // ---------------------------------------------------------------------------
@@ -637,7 +637,7 @@ function RegisterForm() {
                     />
                     <label htmlFor="privacyPolicy" className="text-xs text-slate-400 leading-tight">
                       {locale === 'ar' ? 'لقد قرأت وأوافق على ' : 'I have read and agree to the '}
-                      <Link href={`/${locale}/privacy-policy`} target="_blank" className="text-brand-500 hover:text-brand-400 underline underline-offset-2">
+                      <Link href="/privacy-policy" target="_blank" className="text-brand-500 hover:text-brand-400 underline underline-offset-2">
                         {locale === 'ar' ? 'سياسة الخصوصية' : 'Privacy Policy'}
                       </Link>
                     </label>

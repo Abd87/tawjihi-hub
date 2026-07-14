@@ -575,7 +575,7 @@ export default function HomePage({ params: { locale } }: PageProps) {
           <div className="flex gap-6">
             <a href="#tracks-section" className="hover:text-slate-300 transition-colors">{t('navigation.academic')}</a>
             <a href="#tracks-section" className="hover:text-slate-300 transition-colors">{t('navigation.btec')}</a>
-            <Link href={`/${locale}/privacy-policy`} className="hover:text-brand-400 transition-colors">{locale === 'ar' ? 'سياسة الخصوصية' : 'Privacy Policy'}</Link>
+            <Link href="/privacy-policy" className="hover:text-brand-400 transition-colors">{locale === 'ar' ? 'سياسة الخصوصية' : 'Privacy Policy'}</Link>
           </div>
         </div>
       </footer>
