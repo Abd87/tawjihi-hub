@@ -11,7 +11,7 @@ export async function POST(request: Request) {
 
     const secret = process.env.JWT_SECRET || 'tawjihi-hub-secret-key-for-jwt-2024';
     const decoded = jwt.verify(token, secret) as any;
-    if (!decoded || !decoded.id) {
+    if (!decoded || !decoded.userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     const comment = await prisma.comment.create({
       data: {
         content: content,
-        authorId: decoded.id,
+        authorId: decoded.userId,
         lessonId: lessonId,
         parentId: parentId || null,
       },

@@ -352,16 +352,16 @@ export default function PracticeSessionPage() {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto pb-32">
-        <div className="max-w-3xl mx-auto px-4 py-8 sm:py-12 flex flex-col min-h-full">
+      <main className="flex-1 overflow-y-auto pb-24">
+        <div className="max-w-3xl mx-auto px-4 py-4 sm:py-6 flex flex-col min-h-full">
           
-          <div className="mb-8" dir="auto">
-            <h2 className="text-xl sm:text-2xl font-bold text-white leading-relaxed">
+          <div className="mb-4 sm:mb-6" dir="auto">
+            <h2 className="text-lg sm:text-xl font-bold text-white leading-relaxed">
               { (isRtl ? currentQuestion.textAr : currentQuestion.textEn) || (isRtl ? currentQuestion.textEn : currentQuestion.textAr) }
             </h2>
           </div>
 
-          <div className="space-y-3 flex-1">
+          <div className="space-y-2 flex-1">
             {currentQuestion.choices.map((choice, idx) => {
               const isSelected = selectedChoiceIndex === idx;
               let stateClass = 'bg-slate-900 border-slate-700 hover:border-slate-500 hover:bg-slate-800 text-slate-300';
@@ -386,7 +386,7 @@ export default function PracticeSessionPage() {
                   key={idx}
                   disabled={hasChecked}
                   onClick={() => setSelectedChoiceIndex(idx)}
-                  className={`w-full text-start p-4 sm:p-5 rounded-2xl border-2 transition-all flex items-center gap-4 ${stateClass}`}
+                  className={`w-full text-start p-3 sm:p-4 rounded-xl border-2 transition-all flex items-center gap-3 ${stateClass}`}
                 >
                   <div className={`w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center transition-colors ${
                     isSelected && !hasChecked ? 'border-brand-500' :
@@ -430,7 +430,7 @@ export default function PracticeSessionPage() {
         isCorrect ? 'bg-emerald-950/80 border-emerald-900/50 backdrop-blur-lg' :
         'bg-rose-950/80 border-rose-900/50 backdrop-blur-lg'
       }`}>
-        <div className="max-w-4xl mx-auto px-4 h-24 flex items-center justify-between">
+        <div className="max-w-4xl mx-auto px-4 h-20 flex items-center justify-between">
           
           <div className="flex-1">
             {hasChecked && isCorrect && (
@@ -469,21 +469,21 @@ export default function PracticeSessionPage() {
               <button
                 onClick={handleCheck}
                 disabled={selectedChoiceIndex === null}
-                className="px-8 py-3.5 bg-brand-500 disabled:bg-slate-800 disabled:text-slate-500 hover:bg-brand-600 text-white font-black rounded-xl text-lg transition-all shadow-lg shadow-brand-500/20 disabled:shadow-none min-w-[140px]"
+                className="px-6 py-2.5 bg-brand-500 disabled:bg-slate-800 disabled:text-slate-500 hover:bg-brand-600 text-white font-black rounded-xl text-base transition-all shadow-lg shadow-brand-500/20 disabled:shadow-none min-w-[120px]"
               >
                 {isRtl ? 'تحقق' : 'Check'}
               </button>
             ) : (
               <button
                 onClick={handleNext}
-                className={`px-8 py-3.5 font-black rounded-xl text-lg transition-all shadow-lg min-w-[140px] flex items-center gap-2 ${
+                className={`px-6 py-2.5 font-black rounded-xl text-base transition-all shadow-lg min-w-[120px] flex items-center justify-center gap-2 ${
                   isCorrect 
                     ? 'bg-emerald-500 hover:bg-emerald-600 text-white shadow-emerald-500/20' 
                     : 'bg-rose-500 hover:bg-rose-600 text-white shadow-rose-500/20'
                 }`}
               >
                 {isRtl ? 'التالي' : 'Next'}
-                {isRtl ? <ChevronLeft className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
+                {isRtl ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
               </button>
             )}
           </div>

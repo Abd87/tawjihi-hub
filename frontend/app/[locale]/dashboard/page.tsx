@@ -566,7 +566,7 @@ export default function DashboardPage() {
         ) : (
           <div className="space-y-10 animate-fade-in pb-20">
             {/* Study Planner Widget */}
-            <StudyPlanner courses={courses} isRtl={locale === 'ar'} />
+            <StudyPlanner courses={courses} isRtl={locale === 'ar'} user={user} />
 
             {/* Dashboard Content */}
 
