@@ -2,14 +2,28 @@
 
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
-import { Beaker, Lock, PlayCircle, ShieldCheck } from 'lucide-react';
+import { Beaker, Lock, PlayCircle, ShieldCheck, Maximize } from 'lucide-react';
 import Link from 'next/link';
+import { useRef } from 'react';
 
 export default function VirtualLabsPage() {
   const t = useTranslations('navigation');
   const params = useParams();
   const locale = (params?.locale as string) || 'ar';
   const isRtl = locale === 'ar';
+  const labRef = useRef<HTMLDivElement>(null);
+
+  const enterFullscreen = () => {
+    if (labRef.current) {
+      if (labRef.current.requestFullscreen) {
+        labRef.current.requestFullscreen();
+      } else if ((labRef.current as any).webkitRequestFullscreen) {
+        (labRef.current as any).webkitRequestFullscreen();
+      } else if ((labRef.current as any).msRequestFullscreen) {
+        (labRef.current as any).msRequestFullscreen();
+      }
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#020617] font-sans pb-20">
@@ -52,11 +66,20 @@ export default function VirtualLabsPage() {
                 </p>
               </div>
             </div>
-            <span className="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-bold rounded-full">
-              {isRtl ? 'مفتوح للجميع' : 'Open for All'}
-            </span>
+            <div className="flex items-center gap-3">
+              <span className="hidden sm:inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-bold rounded-full">
+                {isRtl ? 'مفتوح للجميع' : 'Open for All'}
+              </span>
+              <button 
+                onClick={enterFullscreen}
+                className="flex items-center gap-2 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold rounded-lg transition-colors border border-slate-700 hover:border-slate-600"
+              >
+                <Maximize className="h-3.5 w-3.5" />
+                {isRtl ? 'ملء الشاشة' : 'Fullscreen'}
+              </button>
+            </div>
           </div>
-          <div className="w-full aspect-video bg-slate-950 relative">
+          <div ref={labRef} className="w-full h-[600px] md:h-[700px] bg-slate-950 relative">
             <iframe 
               src={`https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_all.html?locale=${locale}`}
               width="100%" 
