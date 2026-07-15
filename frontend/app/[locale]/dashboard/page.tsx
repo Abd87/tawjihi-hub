@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/routing';
 import { useParams } from 'next/navigation';
 import PromoPopup from '@/components/PromoPopup';
+import CourseUnlockModal from '@/components/CourseUnlockModal';
 import { 
   GraduationCap, 
   LogOut, 
@@ -92,6 +93,7 @@ export default function DashboardPage() {
     }
     return null;
   });
+  const [lockedModalCourse, setLockedModalCourse] = useState<Course | null>(null);
 
   // Fallback Mock Courses in case local PostgreSQL is offline
   const getMockCourses = (track: 'ACADEMIC' | 'BTEC'): Course[] => {
@@ -712,8 +714,8 @@ export default function DashboardPage() {
                 <Link
                   key={course.id}
                   href={course.locked ? '#' : `/courses/${course.id}`}
-                  onClick={course.locked ? (e) => e.preventDefault() : undefined}
-                  className={`group relative rounded-2xl border border-slate-850 bg-slate-900/15 hover:bg-slate-900/35 hover:border-slate-800/80 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg block ${course.locked ? 'cursor-not-allowed' : ''}`}
+                  onClick={course.locked ? (e) => { e.preventDefault(); setLockedModalCourse(course); } : undefined}
+                  className={`group relative rounded-2xl border border-slate-850 bg-slate-900/15 hover:bg-slate-900/35 hover:border-slate-800/80 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg block ${course.locked ? 'cursor-pointer' : ''}`}
                 >
                   <div>
                     {/* Course Banner Cover */}
@@ -837,6 +839,13 @@ export default function DashboardPage() {
 
       </main>
 
+      <CourseUnlockModal 
+        isOpen={!!lockedModalCourse}
+        onClose={() => setLockedModalCourse(null)}
+        courseTitleAr={lockedModalCourse?.titleAr}
+        courseTitleEn={lockedModalCourse?.titleEn}
+        isRtl={locale === 'ar'}
+      />
     </div>
   );
 }

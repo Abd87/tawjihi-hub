@@ -24,6 +24,7 @@ import {
   Circle,
   ClipboardList
 } from 'lucide-react';
+import CourseUnlockModal from '@/components/CourseUnlockModal';
 import Link from 'next/link';
 import VocabCoursePlayer from '@/components/VocabCoursePlayer';
 
@@ -106,6 +107,8 @@ export default function CourseSyllabusPage() {
   const [loading, setLoading] = useState(true);
   const [course, setCourse] = useState<Course | null>(null);
   const [completedItems, setCompletedItems] = useState<string[]>([]);
+  const [hasError, setHasError] = useState(false);
+  const [showUnlockModal, setShowUnlockModal] = useState(false);
   const [authorized, setAuthorized] = useState(false);
   const [expandedUnits, setExpandedUnits] = useState<string[]>([]);
 
@@ -232,18 +235,13 @@ export default function CourseSyllabusPage() {
   if (course.locked) {
     return (
       <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center text-center px-4">
-        <div className="p-6 bg-brand-500/10 border border-brand-500/20 rounded-3xl mb-6">
-          <Lock className="h-16 w-16 text-brand-500" />
-        </div>
-        <h1 className="text-2xl font-black text-white mb-3">
-          {isRtl ? 'هذه الدورة مقفلة حالياً' : 'This course is currently locked'}
-        </h1>
-        <p className="text-slate-400 mb-6">
-          {isRtl ? 'يرجى التواصل مع إدارة المنصة' : 'Please contact platform administration'}
-        </p>
-        <Link href="/dashboard" className="px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl transition-all">
-          {isRtl ? 'العودة للوحة التحكم' : 'Return to Dashboard'}
-        </Link>
+        <CourseUnlockModal 
+          isOpen={true} 
+          onClose={() => router.push(`/${locale}/dashboard`)} 
+          courseTitleAr={course.titleAr}
+          courseTitleEn={course.titleEn}
+          isRtl={isRtl}
+        />
       </div>
     );
   }
@@ -464,8 +462,9 @@ export default function CourseSyllabusPage() {
                                 {lesson.videoUrl && (
                                   <Link 
                                     href={isLessonLocked ? '#' : `/${locale}/courses/${courseId}/video/${lesson.id}`}
+                                    onClick={isLessonLocked ? (e) => { e.preventDefault(); setShowUnlockModal(true); } : undefined}
                                     className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors bg-slate-900/50 border border-slate-800 hover:border-slate-700 ${
-                                      isLessonLocked ? 'opacity-50 cursor-not-allowed' : 'hover:bg-slate-800/80'
+                                      isLessonLocked ? 'cursor-pointer' : 'hover:bg-slate-800/80'
                                     }`}
                                   >
                                     <div className={`shrink-0 ${completedItems.includes(`${lesson.id}-video`) ? 'text-emerald-500' : 'text-brand-500'}`}>
@@ -494,9 +493,9 @@ export default function CourseSyllabusPage() {
                                     href={isLessonLocked ? '#' : lesson.pdfUrl}
                                     target={isLessonLocked ? '_self' : '_blank'}
                                     rel="noreferrer"
-                                    onClick={() => handlePdfClick(lesson.id)}
+                                    onClick={isLessonLocked ? (e) => { e.preventDefault(); setShowUnlockModal(true); } : () => handlePdfClick(lesson.id)}
                                     className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors bg-slate-900/50 border border-slate-800 hover:border-slate-700 ${
-                                      isLessonLocked ? 'opacity-50 cursor-not-allowed' : 'hover:bg-slate-800/80'
+                                      isLessonLocked ? 'cursor-pointer' : 'hover:bg-slate-800/80'
                                     }`}
                                   >
                                     <div className={`shrink-0 ${completedItems.includes(`${lesson.id}-pdf`) ? 'text-emerald-500' : 'text-slate-400'}`}>
@@ -522,8 +521,9 @@ export default function CourseSyllabusPage() {
                                 {lesson.questions && lesson.questions.length > 0 && (
                                   <Link 
                                     href={isLessonLocked ? '#' : `/${locale}/courses/${courseId}/practice/${lesson.id}`}
+                                    onClick={isLessonLocked ? (e) => { e.preventDefault(); setShowUnlockModal(true); } : undefined}
                                     className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors bg-slate-900/50 border border-slate-800 hover:border-slate-700 ${
-                                      isLessonLocked ? 'opacity-50 cursor-not-allowed' : 'hover:bg-slate-800/80'
+                                      isLessonLocked ? 'cursor-pointer' : 'hover:bg-slate-800/80'
                                     }`}
                                   >
                                     <div className={`shrink-0 ${completedItems.includes(`${lesson.id}-practice`) ? 'text-emerald-500' : 'text-amber-500'}`}>
@@ -641,6 +641,14 @@ export default function CourseSyllabusPage() {
 
         </div>
       </div>
+
+      <CourseUnlockModal 
+        isOpen={showUnlockModal}
+        onClose={() => setShowUnlockModal(false)}
+        courseTitleAr={course.titleAr}
+        courseTitleEn={course.titleEn}
+        isRtl={isRtl}
+      />
     </div>
   );
 }
