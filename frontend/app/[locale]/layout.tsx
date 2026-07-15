@@ -8,6 +8,7 @@ import Navbar from '@/components/Navbar';
 import SocialFloatingButtons from '@/components/SocialFloatingButtons';
 import { Analytics } from '@vercel/analytics/react';
 import CookieBanner from '@/components/CookieBanner';
+import SocialProofPopup from '@/components/SocialProofPopup';
 
 const cairo = Cairo({
   subsets: ['arabic'],
@@ -137,6 +138,7 @@ export default async function LocaleLayout({
           <Navbar />
           {children}
           <SocialFloatingButtons />
+          <SocialProofPopup isRtl={locale === 'ar'} />
           <CookieBanner />
         </NextIntlClientProvider>
         <Analytics />
