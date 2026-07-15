@@ -1086,17 +1086,36 @@ function LessonEditor({ lesson, idx, isRtl, onChange, onDelete }: {
   onChange: (field: keyof Lesson, val: any) => void;
   onDelete: () => void;
 }) {
+  const [collapsed, setCollapsed] = useState(true);
+
   return (
-    <div className="p-4 bg-slate-950/70 border border-slate-800/70 rounded-xl space-y-3">
-      <div className="flex items-center justify-between">
-        <span className="text-xs font-bold text-slate-500 flex items-center gap-1.5">
-          <BookOpen className="h-3 w-3" />
-          {isRtl ? `الدرس ${idx + 1}` : `Lesson ${idx + 1}`}
-        </span>
-        <button onClick={onDelete} className="p-1.5 rounded-lg text-slate-600 hover:text-rose-400 hover:bg-rose-500/10 transition-all">
+    <div className="p-4 bg-slate-950/70 border border-slate-800/70 rounded-xl space-y-3 transition-all duration-300">
+      <div 
+        className="flex items-center justify-between cursor-pointer"
+        onClick={() => setCollapsed(!collapsed)}
+      >
+        <div className="flex items-center gap-3">
+          <button type="button" className="text-slate-500 hover:text-white transition-colors">
+            <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${collapsed ? '-rotate-90' : ''}`} />
+          </button>
+          <span className="text-xs font-bold text-slate-500 flex items-center gap-1.5">
+            <BookOpen className="h-3 w-3" />
+            {isRtl ? `الدرس ${idx + 1}` : `Lesson ${idx + 1}`}
+            {collapsed && (lesson.titleAr || lesson.titleEn) && (
+              <span className="text-brand-400 ms-2">{isRtl ? lesson.titleAr : lesson.titleEn}</span>
+            )}
+          </span>
+        </div>
+        <button 
+          onClick={(e) => { e.stopPropagation(); onDelete(); }} 
+          className="p-1.5 rounded-lg text-slate-600 hover:text-rose-400 hover:bg-rose-500/10 transition-all"
+        >
           <Trash2 className="h-3.5 w-3.5" />
         </button>
       </div>
+
+      {!collapsed && (
+        <div className="space-y-3 pt-3 border-t border-slate-800/50 animate-in slide-in-from-top-2">
 
       {/* Titles */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -1260,6 +1279,8 @@ function LessonEditor({ lesson, idx, isRtl, onChange, onDelete }: {
           </div>
         ))}
       </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -1271,45 +1292,65 @@ function LiveSessionEditor({
   onChange: (field: keyof LiveSession, val: any) => void;
   onDelete: () => void;
 }) {
+  const [collapsed, setCollapsed] = useState(true);
+
   return (
-    <div className="p-4 bg-slate-950/70 border border-slate-800/70 rounded-xl space-y-3">
-      <div className="flex items-center justify-between">
-        <span className="text-xs font-bold text-slate-500 flex items-center gap-1.5">
-          <Calendar className="h-3 w-3" />
-          {isRtl ? `جلسة مباشرة ${idx + 1}` : `Live Session ${idx + 1}`}
-        </span>
-        <button onClick={onDelete} className="p-1.5 rounded-lg text-slate-600 hover:text-rose-400 hover:bg-rose-500/10 transition-all">
+    <div className="p-4 bg-slate-950/70 border border-slate-800/70 rounded-xl space-y-3 transition-all duration-300">
+      <div 
+        className="flex items-center justify-between cursor-pointer"
+        onClick={() => setCollapsed(!collapsed)}
+      >
+        <div className="flex items-center gap-3">
+          <button type="button" className="text-slate-500 hover:text-white transition-colors">
+            <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${collapsed ? '-rotate-90' : ''}`} />
+          </button>
+          <span className="text-xs font-bold text-slate-500 flex items-center gap-1.5">
+            <Calendar className="h-3 w-3" />
+            {isRtl ? `جلسة مباشرة ${idx + 1}` : `Live Session ${idx + 1}`}
+            {collapsed && (session.titleAr || session.titleEn) && (
+              <span className="text-blue-400 ms-2">{isRtl ? session.titleAr : session.titleEn}</span>
+            )}
+          </span>
+        </div>
+        <button 
+          onClick={(e) => { e.stopPropagation(); onDelete(); }} 
+          className="p-1.5 rounded-lg text-slate-600 hover:text-rose-400 hover:bg-rose-500/10 transition-all"
+        >
           <Trash2 className="h-3.5 w-3.5" />
         </button>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-        <LessonInput dir="rtl" value={session.titleAr} placeholder={isRtl ? 'عنوان الجلسة (عربي)' : 'Session title (Arabic)'}
-          onChange={v => onChange('titleAr', v)} />
-        <LessonInput dir="ltr" value={session.titleEn} placeholder="Session title (English)"
-          onChange={v => onChange('titleEn', v)} />
-      </div>
+      {!collapsed && (
+        <div className="space-y-3 pt-3 border-t border-slate-800/50 animate-in slide-in-from-top-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <LessonInput dir="rtl" value={session.titleAr} placeholder={isRtl ? 'عنوان الجلسة (عربي)' : 'Session title (Arabic)'}
+              onChange={v => onChange('titleAr', v)} />
+            <LessonInput dir="ltr" value={session.titleEn} placeholder="Session title (English)"
+              onChange={v => onChange('titleEn', v)} />
+          </div>
 
-      <div className="space-y-1">
-        <label className="text-3xs text-slate-600 flex items-center gap-1"><Video className="h-2.5 w-2.5 text-blue-400" />{isRtl ? 'رابط Zoom' : 'Zoom Link'}</label>
-        <LessonInput dir="ltr" value={session.zoomLink} placeholder="https://zoom.us/j/..."
-          onChange={v => onChange('zoomLink', v)} />
-      </div>
+          <div className="space-y-1">
+            <label className="text-3xs text-slate-600 flex items-center gap-1"><Video className="h-2.5 w-2.5 text-blue-400" />{isRtl ? 'رابط Zoom' : 'Zoom Link'}</label>
+            <LessonInput dir="ltr" value={session.zoomLink} placeholder="https://zoom.us/j/..."
+              onChange={v => onChange('zoomLink', v)} />
+          </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-        <div className="space-y-1">
-          <label className="text-3xs text-slate-600 flex items-center gap-1">{isRtl ? 'وقت البدء' : 'Start Time'}</label>
-          <input type="datetime-local" value={session.startTime.slice(0, 16)}
-            onChange={e => onChange('startTime', new Date(e.target.value).toISOString())}
-            className="w-full py-1.5 px-2.5 text-xs bg-slate-900 border border-slate-800 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <div className="space-y-1">
+              <label className="text-3xs text-slate-600 flex items-center gap-1">{isRtl ? 'وقت البدء' : 'Start Time'}</label>
+              <input type="datetime-local" value={session.startTime.slice(0, 16)}
+                onChange={e => onChange('startTime', new Date(e.target.value).toISOString())}
+                className="w-full py-1.5 px-2.5 text-xs bg-slate-900 border border-slate-800 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors" />
+            </div>
+            <div className="space-y-1">
+              <label className="text-3xs text-slate-600">{isRtl ? 'المدة (دقيقة)' : 'Duration (min)'}</label>
+              <input type="number" min="1" value={session.durationMinutes}
+                onChange={e => onChange('durationMinutes', parseInt(e.target.value) || 1)}
+                className="w-full py-1.5 px-2.5 text-xs bg-slate-900 border border-slate-800 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors" />
+            </div>
+          </div>
         </div>
-        <div className="space-y-1">
-          <label className="text-3xs text-slate-600">{isRtl ? 'المدة (دقيقة)' : 'Duration (min)'}</label>
-          <input type="number" min="1" value={session.durationMinutes}
-            onChange={e => onChange('durationMinutes', parseInt(e.target.value) || 1)}
-            className="w-full py-1.5 px-2.5 text-xs bg-slate-900 border border-slate-800 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors" />
-        </div>
-      </div>
+      )}
     </div>
   );
 }
