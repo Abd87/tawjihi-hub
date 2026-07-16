@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { CheckCircle2, GraduationCap, Star, TrendingUp, X } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 const namesAr = ['أحمد من إربد', 'سارة من عمّان', 'عمر من الزرقاء', 'ليان من السلط', 'محمود من العقبة', 'راما من الكرك', 'يوسف من المفرق'];
 const namesEn = ['Ahmad from Irbid', 'Sarah from Amman', 'Omar from Zarqa', 'Layan from Salt', 'Mahmoud from Aqaba', 'Rama from Karak', 'Yousef from Mafraq'];
@@ -21,6 +22,7 @@ const actionsEn = [
 ];
 
 export default function SocialProofPopup({ isRtl }: { isRtl: boolean }) {
+  const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
   const [currentNotification, setCurrentNotification] = useState<{
     name: string;
@@ -77,6 +79,11 @@ export default function SocialProofPopup({ isRtl }: { isRtl: boolean }) {
       if (timeoutId) clearTimeout(timeoutId);
     };
   }, [isRtl]);
+
+  // Only show on the homepage (e.g. /ar, /en, or /)
+  if (pathname !== '/' && pathname !== '/ar' && pathname !== '/en') {
+    return null;
+  }
 
   if (!currentNotification) return null;
 
