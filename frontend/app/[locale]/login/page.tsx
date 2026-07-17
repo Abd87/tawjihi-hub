@@ -366,33 +366,7 @@ export default function LoginPage() {
               </Link>
             </div>
 
-            {/* ── Quick Login Section ── */}
-            <div className="mt-6 border-t border-slate-800/60 pt-4">
-              <button
-                type="button"
-                onClick={() => setQuickOpen((v) => !v)}
-                className="w-full flex items-center justify-center gap-1.5 text-xs text-slate-600 hover:text-slate-400 transition-colors"
-              >
-                <Zap className="h-3 w-3" />
-                <span>{locale === 'ar' ? 'تسجيل دخول سريع (حسابات تجريبية)' : 'Quick Login (Test Accounts)'}</span>
-                {quickOpen ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
-              </button>
 
-              {quickOpen && (
-                <div className="mt-3 flex flex-wrap gap-2 justify-center">
-                  {QUICK_ACCOUNTS.map((acc) => (
-                    <button
-                      key={acc.email}
-                      type="button"
-                      onClick={() => quickFill(acc)}
-                      className="px-2.5 py-1 rounded-full text-xs bg-slate-900 border border-slate-800 text-slate-500 hover:text-slate-300 hover:border-slate-600 transition-all"
-                    >
-                      {acc.label}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
 
           </div>
         </div>
