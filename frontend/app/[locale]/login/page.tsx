@@ -201,7 +201,7 @@ export default function LoginPage() {
 
       const role = data.user?.role || 'STUDENT';
       window.location.href = getRedirectPath(role, locale);
-    } catch {
+    } catch (err: any) {
       // Try offline
       const offline = tryOfflineLogin(email, password);
       if (offline) {
@@ -214,11 +214,11 @@ export default function LoginPage() {
         return;
       }
 
-      setError(
+      setError(err.message || (
         locale === 'ar'
           ? 'البريد الإلكتروني أو كلمة المرور غير صحيحة'
           : 'Invalid email or password'
-      );
+      ));
     } finally {
       setLoading(false);
     }

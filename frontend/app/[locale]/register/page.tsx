@@ -171,7 +171,7 @@ function RegisterForm() {
 
       const redirect = role === 'PARENT' ? `/${locale}/parent/dashboard` : `/${locale}/dashboard`;
       window.location.href = redirect;
-    } catch {
+    } catch (err: any) {
       // Offline mock
       if (email && password.length >= 6 && nameAr) {
         const mockUser: Record<string, unknown> = {
@@ -202,7 +202,7 @@ function RegisterForm() {
           // fall through
         }
       }
-      setError(locale === 'ar' ? 'حدث خطأ أثناء التسجيل' : 'Registration failed. Please try again.');
+      setError(err.message || (locale === 'ar' ? 'حدث خطأ أثناء التسجيل' : 'Registration failed. Please try again.'));
     } finally {
       setLoading(false);
     }
