@@ -76,7 +76,12 @@
     "stepDetails": "Account Info",
     "errorGeneric": "Something went wrong. Please try again.",
     "successLogin": "Successfully logged in!",
-    "successRegister": "Successfully registered account!"
+    "successRegister": "Successfully registered account!",
+    "nameArRequired": "Arabic name is required",
+    "invalidEmail": "Invalid email address format",
+    "passwordMinLength": "Password must be at least 6 characters long",
+    "passwordRequired": "Password is required",
+    "phoneNumberRequired": "Phone number is required"
   },
   "dashboard": {
     "welcomeTitle": "Welcome, {name}",

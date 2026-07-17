@@ -6,8 +6,8 @@ import { z } from 'zod';
 import { rateLimit } from '@/lib/rate-limit';
 
 const loginSchema = z.object({
-  email: z.string().email('Invalid email format'),
-  password: z.string().min(1, 'Password is required'),
+  email: z.string().email('invalidEmail'),
+  password: z.string().min(1, 'passwordRequired'),
 });
 
 export async function POST(request: Request) {
@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     const parsed = loginSchema.safeParse(body);
 
     if (!parsed.success) {
-      return NextResponse.json({ error: parsed.error.issues[0].message }, { status: 400 });
+      return NextResponse.json({ fieldErrors: parsed.error.flatten().fieldErrors }, { status: 400 });
     }
 
     const { email, password } = parsed.data;

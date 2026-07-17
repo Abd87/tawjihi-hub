@@ -117,6 +117,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
   const [quickOpen, setQuickOpen] = useState(false);
 
@@ -179,6 +180,7 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+    setFieldErrors({});
     setLoading(true);
 
     try {
@@ -191,6 +193,14 @@ export default function LoginPage() {
       const data = await response.json();
 
       if (!response.ok) {
+        if (data.fieldErrors) {
+          const errorsObj: Record<string, string> = {};
+          for (const key in data.fieldErrors) {
+             errorsObj[key] = data.fieldErrors[key][0];
+          }
+          setFieldErrors(errorsObj);
+          throw new Error('ValidationFailed');
+        }
         throw new Error(data.error || t('errorGeneric'));
       }
 
@@ -214,11 +224,13 @@ export default function LoginPage() {
         return;
       }
 
-      setError(err.message || (
-        locale === 'ar'
-          ? 'البريد الإلكتروني أو كلمة المرور غير صحيحة'
-          : 'Invalid email or password'
-      ));
+      if (err.message !== 'ValidationFailed') {
+        setError(err.message || (
+          locale === 'ar'
+            ? 'البريد الإلكتروني أو كلمة المرور غير صحيحة'
+            : 'Invalid email or password'
+        ));
+      }
     } finally {
       setLoading(false);
     }
@@ -297,6 +309,7 @@ export default function LoginPage() {
                     placeholder={t('emailPlaceholder')}
                   />
                 </div>
+                {fieldErrors.email && <p className="text-red-500 text-xs mt-1">{t(fieldErrors.email)}</p>}
               </div>
 
               {/* Password */}
@@ -318,6 +331,7 @@ export default function LoginPage() {
                     placeholder={t('passwordPlaceholder')}
                   />
                 </div>
+                {fieldErrors.password && <p className="text-red-500 text-xs mt-1">{t(fieldErrors.password)}</p>}
               </div>
 
               {/* Submit */}

@@ -6,12 +6,12 @@ import { z } from 'zod';
 import { rateLimit } from '@/lib/rate-limit';
 
 const registerSchema = z.object({
-  nameAr: z.string().min(2, 'Arabic name is required'),
+  nameAr: z.string().min(2, 'nameArRequired'),
   nameEn: z.string().optional(),
-  email: z.string().email('Invalid email format'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
-  phoneNumber: z.string().min(8, 'Phone number is required'),
-  role: z.enum(['STUDENT', 'TEACHER', 'ADMIN']).optional(),
+  email: z.string().email('invalidEmail'),
+  password: z.string().min(6, 'passwordMinLength'),
+  phoneNumber: z.string().min(8, 'phoneNumberRequired'),
+  role: z.enum(['STUDENT', 'TEACHER', 'ADMIN', 'PARENT']).optional(),
   trackType: z.enum(['ACADEMIC', 'BTEC']).optional().nullable(),
 });
 
@@ -27,7 +27,7 @@ export async function POST(request: Request) {
     const parsed = registerSchema.safeParse(body);
 
     if (!parsed.success) {
-      return NextResponse.json({ error: parsed.error.issues[0].message }, { status: 400 });
+      return NextResponse.json({ fieldErrors: parsed.error.flatten().fieldErrors }, { status: 400 });
     }
 
     const { nameAr, nameEn, email, password, role, phoneNumber, trackType } = parsed.data;

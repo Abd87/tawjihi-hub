@@ -76,7 +76,12 @@
     "stepDetails": "معلومات الحساب",
     "errorGeneric": "حدث خطأ ما، يرجى المحاولة مرة أخرى.",
     "successLogin": "تم تسجيل الدخول بنجاح!",
-    "successRegister": "تم إنشاء الحساب بنجاح!"
+    "successRegister": "تم إنشاء الحساب بنجاح!",
+    "nameArRequired": "الاسم بالعربية مطلوب",
+    "invalidEmail": "صيغة البريد الإلكتروني غير صحيحة",
+    "passwordMinLength": "كلمة المرور يجب أن تتكون من 6 أحرف على الأقل",
+    "passwordRequired": "كلمة المرور مطلوبة",
+    "phoneNumberRequired": "رقم الهاتف مطلوب"
   },
   "dashboard": {
     "welcomeTitle": "مرحباً، {name}",

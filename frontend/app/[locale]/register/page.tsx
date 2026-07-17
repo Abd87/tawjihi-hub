@@ -75,6 +75,7 @@ function RegisterForm() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [linkedStudentEmail, setLinkedStudentEmail] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
 
   const toggleLanguage = () => {
@@ -139,6 +140,7 @@ function RegisterForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+    setFieldErrors({});
     setLoading(true);
 
     const role = roleType || 'STUDENT';
@@ -161,7 +163,17 @@ function RegisterForm() {
       });
 
       const data = await response.json();
-      if (!response.ok) throw new Error(data.error || t('errorGeneric'));
+      if (!response.ok) {
+        if (data.fieldErrors) {
+          const errorsObj: Record<string, string> = {};
+          for (const key in data.fieldErrors) {
+             errorsObj[key] = data.fieldErrors[key][0];
+          }
+          setFieldErrors(errorsObj);
+          throw new Error('ValidationFailed');
+        }
+        throw new Error(data.error || t('errorGeneric'));
+      }
 
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
@@ -202,7 +214,9 @@ function RegisterForm() {
           // fall through
         }
       }
-      setError(err.message || (locale === 'ar' ? 'حدث خطأ أثناء التسجيل' : 'Registration failed. Please try again.'));
+      if (err.message !== 'ValidationFailed') {
+        setError(err.message || (locale === 'ar' ? 'حدث خطأ أثناء التسجيل' : 'Registration failed. Please try again.'));
+      }
     } finally {
       setLoading(false);
     }
@@ -513,6 +527,7 @@ function RegisterForm() {
                         placeholder={t('nameArPlaceholder')}
                       />
                     </div>
+                    {fieldErrors.nameAr && <p className="text-red-500 text-xs mt-1">{t(fieldErrors.nameAr)}</p>}
                   </div>
 
                   {/* English Name */}
@@ -554,6 +569,7 @@ function RegisterForm() {
                         placeholder={t('emailPlaceholder')}
                       />
                     </div>
+                    {fieldErrors.email && <p className="text-red-500 text-xs mt-1">{t(fieldErrors.email)}</p>}
                   </div>
 
                   {/* Password */}
@@ -575,6 +591,7 @@ function RegisterForm() {
                         placeholder={t('passwordPlaceholder')}
                       />
                     </div>
+                    {fieldErrors.password && <p className="text-red-500 text-xs mt-1">{t(fieldErrors.password)}</p>}
                   </div>
 
                   {/* Phone Number */}
@@ -597,6 +614,7 @@ function RegisterForm() {
                         dir="ltr"
                       />
                     </div>
+                    {fieldErrors.phoneNumber && <p className="text-red-500 text-xs mt-1">{t(fieldErrors.phoneNumber)}</p>}
                   </div>
 
                   {/* Linked Student Email — Parents only */}
