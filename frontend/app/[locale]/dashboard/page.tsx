@@ -720,9 +720,9 @@ export default function DashboardPage() {
                   <div>
                     {/* Course Banner Cover */}
                     <div className="h-32 sm:h-36 w-full overflow-hidden relative bg-slate-950 group-hover:bg-slate-900 transition-colors duration-500">
-                      {course.coverImage ? (
+                      {(course.coverImage || course.thumbnailUrl) ? (
                         <Image 
-                          src={course.coverImage} 
+                          src={course.coverImage || course.thumbnailUrl} 
                           alt={locale === 'ar' ? course.titleAr : course.titleEn} 
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
