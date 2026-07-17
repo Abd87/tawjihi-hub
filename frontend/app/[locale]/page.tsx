@@ -47,7 +47,7 @@ export default function HomePage({ params: { locale } }: PageProps) {
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-[#020617]">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 scale-105"
-          style={{ backgroundImage: 'url(/og-image.png)' }}
+          style={{ backgroundImage: 'url(/og-image.webp)' }}
         />
         <HeroVideoBackground />
         {/* Dark Overlay to ensure text readability */}

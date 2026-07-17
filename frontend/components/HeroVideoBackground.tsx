@@ -26,7 +26,7 @@ export default function HeroVideoBackground() {
       muted 
       playsInline
       preload="none"
-      poster="/_next/image?url=%2Fog-image.png&w=1200&q=40"
+      poster="/_next/image?url=%2Fog-image.webp&w=1200&q=40"
       className={`absolute inset-0 w-full h-full object-cover scale-105 transition-opacity duration-1000 ${shouldLoadVideo ? 'opacity-40' : 'opacity-0'}`}
     >
       {shouldLoadVideo && <source src="/hero-bg.mp4" type="video/mp4" />}
