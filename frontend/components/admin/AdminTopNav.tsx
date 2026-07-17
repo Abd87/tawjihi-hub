@@ -25,7 +25,7 @@ export default function AdminTopNav() {
   const currentTitle = titles[pathname] || { en: 'Admin Dashboard', ar: 'لوحة التحكم' };
 
   return (
-    <header className="h-16 flex items-center px-6 border-b border-slate-800 bg-[#020617]/80 backdrop-blur-md sticky top-0 z-10 shrink-0">
+    <header className="print:hidden h-16 flex items-center px-6 border-b border-slate-800 bg-[#020617]/80 backdrop-blur-md sticky top-0 z-10 shrink-0">
       <h1 className="text-xl font-bold text-white">
         {isRtl ? currentTitle.ar : currentTitle.en}
       </h1>
