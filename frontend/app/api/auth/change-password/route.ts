@@ -19,7 +19,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const secret = process.env.JWT_SECRET || 'tawjihi-hub-secret-key-for-jwt-2024';
+    if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET is missing');
+    const secret = process.env.JWT_SECRET;
     const decoded = jwt.verify(token, secret) as any;
 
     const user = await prisma.user.findUnique({

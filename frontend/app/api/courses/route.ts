@@ -16,7 +16,8 @@ export async function GET(request: Request) {
 
     if (token) {
       try {
-        const secret = process.env.JWT_SECRET || 'tawjihi-hub-secret-key-for-jwt-2024';
+        if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET is missing');
+    const secret = process.env.JWT_SECRET;
         const decoded = jwt.verify(token, secret) as any;
         userId = decoded.userId;
         userRole = decoded.role;

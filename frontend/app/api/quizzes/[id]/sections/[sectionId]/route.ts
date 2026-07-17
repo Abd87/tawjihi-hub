@@ -14,7 +14,8 @@ export async function DELETE(
     const token = cookieStore.get('token')?.value;
     if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-    const secret = process.env.JWT_SECRET || 'tawjihi-hub-secret-key-for-jwt-2024';
+    if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET is missing');
+    const secret = process.env.JWT_SECRET;
     const decoded = jwt.verify(token, secret) as any;
     
     if (decoded.role !== 'ADMIN' && decoded.role !== 'TEACHER') {

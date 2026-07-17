@@ -22,7 +22,8 @@ export async function GET(request: Request) {
 
     let userId = null;
     try {
-      const secret = process.env.JWT_SECRET || 'tawjihi-hub-secret-key-for-jwt-2024';
+      if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET is missing');
+    const secret = process.env.JWT_SECRET;
       const decoded = jwt.verify(token, secret) as any;
       userId = decoded.userId;
     } catch (e) {
@@ -55,7 +56,8 @@ export async function POST(request: Request) {
 
     let userId = null;
     try {
-      const secret = process.env.JWT_SECRET || 'tawjihi-hub-secret-key-for-jwt-2024';
+      if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET is missing');
+    const secret = process.env.JWT_SECRET;
       const decoded = jwt.verify(token, secret) as any;
       userId = decoded.userId;
     } catch (e) {

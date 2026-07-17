@@ -1,10 +1,11 @@
 import createMiddleware from 'next-intl/middleware';
 import { routing } from './i18n/routing';
 import { NextRequest, NextResponse } from 'next/server';
+import { jwtVerify } from 'jose';
 
 const intlMiddleware = createMiddleware(routing);
 
-export default function middleware(request: NextRequest) {
+export default async function middleware(request: NextRequest) {
   const token = request.cookies.get('token')?.value;
   const { pathname } = request.nextUrl;
   
@@ -17,12 +18,31 @@ export default function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (isProtectedRoute && !token) {
-    const locale = pathname.split('/')[1] || 'ar';
-    return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
+  let isValid = false;
+  if (token) {
+    try {
+      if (!process.env.JWT_SECRET) {
+        throw new Error('JWT_SECRET environment variable is missing');
+      }
+      const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+      await jwtVerify(token, secret);
+      isValid = true;
+    } catch (error) {
+      console.error('Middleware JWT Verification failed:', error);
+      isValid = false;
+    }
   }
 
-  if (isAuthRoute && token) {
+  if (isProtectedRoute && !isValid) {
+    const locale = pathname.split('/')[1] || 'ar';
+    const response = NextResponse.redirect(new URL(`/${locale}/login`, request.url));
+    if (token) {
+      response.cookies.delete('token'); // Clear invalid token
+    }
+    return response;
+  }
+
+  if (isAuthRoute && isValid) {
     const locale = pathname.split('/')[1] || 'ar';
     return NextResponse.redirect(new URL(`/${locale}/dashboard`, request.url));
   }

@@ -12,7 +12,8 @@ export async function GET(request: Request) {
 
     if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-    const secret = process.env.JWT_SECRET || 'tawjihi-hub-secret-key-for-jwt-2024';
+    if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET is missing');
+    const secret = process.env.JWT_SECRET;
     const decoded = jwt.verify(token, secret) as any;
 
     const user = await prisma.user.findUnique({ where: { id: decoded.userId } });
@@ -48,7 +49,8 @@ export async function PUT(request: Request) {
 
     if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-    const secret = process.env.JWT_SECRET || 'tawjihi-hub-secret-key-for-jwt-2024';
+    if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET is missing');
+    const secret = process.env.JWT_SECRET;
     const decoded = jwt.verify(token, secret) as any;
 
     const currentUser = await prisma.user.findUnique({ where: { id: decoded.userId } });
@@ -91,7 +93,8 @@ export async function POST(request: Request) {
     const token = cookieStore.get('token')?.value;
     if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-    const secret = process.env.JWT_SECRET || 'tawjihi-hub-secret-key-for-jwt-2024';
+    if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET is missing');
+    const secret = process.env.JWT_SECRET;
     const decoded = jwt.verify(token, secret) as any;
 
     const currentUser = await prisma.user.findUnique({ where: { id: decoded.userId } });
@@ -146,7 +149,8 @@ export async function DELETE(request: Request) {
     const token = cookieStore.get('token')?.value;
     if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-    const secret = process.env.JWT_SECRET || 'tawjihi-hub-secret-key-for-jwt-2024';
+    if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET is missing');
+    const secret = process.env.JWT_SECRET;
     const decoded = jwt.verify(token, secret) as any;
 
     const currentUser = await prisma.user.findUnique({ where: { id: decoded.userId } });

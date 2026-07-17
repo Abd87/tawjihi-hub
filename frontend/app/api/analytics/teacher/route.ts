@@ -16,7 +16,8 @@ export async function GET(request: Request) {
 
     let decoded: any;
     try {
-      const secret = process.env.JWT_SECRET || 'tawjihi-hub-secret-key-for-jwt-2024';
+      if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET is missing');
+    const secret = process.env.JWT_SECRET;
       decoded = jwt.verify(token, secret);
     } catch (e) {
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 });

@@ -2,14 +2,35 @@ import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import prisma from '@/lib/prisma';
+import { z } from 'zod';
+import { rateLimit } from '@/lib/rate-limit';
+
+const registerSchema = z.object({
+  nameAr: z.string().min(2, 'Arabic name is required'),
+  nameEn: z.string().optional(),
+  email: z.string().email('Invalid email format'),
+  password: z.string().min(6, 'Password must be at least 6 characters'),
+  phoneNumber: z.string().min(8, 'Phone number is required'),
+  role: z.enum(['STUDENT', 'TEACHER', 'ADMIN']).optional(),
+  trackType: z.enum(['ACADEMIC', 'BTEC']).optional().nullable(),
+});
 
 export async function POST(request: Request) {
   try {
-    const { nameAr, nameEn, email, password, role, phoneNumber, trackType } = await request.json();
-
-    if (!email || !password || !nameAr || !phoneNumber) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    const ip = request.headers.get('x-forwarded-for') || 'unknown';
+    // Max 5 registration requests per 15 minutes
+    if (!rateLimit(ip + '_register', 5, 15 * 60 * 1000)) {
+      return NextResponse.json({ error: 'Too many requests. Please try again later.' }, { status: 429 });
     }
+
+    const body = await request.json();
+    const parsed = registerSchema.safeParse(body);
+
+    if (!parsed.success) {
+      return NextResponse.json({ error: parsed.error.issues[0].message }, { status: 400 });
+    }
+
+    const { nameAr, nameEn, email, password, role, phoneNumber, trackType } = parsed.data;
 
     const existingUser = await prisma.user.findUnique({
       where: { email },
@@ -43,7 +64,8 @@ export async function POST(request: Request) {
       }
     });
 
-    const secret = process.env.JWT_SECRET || 'tawjihi-hub-secret-key-for-jwt-2024';
+    if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET is missing');
+    const secret = process.env.JWT_SECRET;
     const token = jwt.sign({ userId: user.id, email: user.email, role: user.role, isMasterAdmin: user.isMasterAdmin, trackType: user.trackType }, secret, { expiresIn: '7d' });
 
     const { passwordHash: _, ...userWithoutPassword } = user;
