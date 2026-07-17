@@ -14,14 +14,16 @@ const cairo = Cairo({
   subsets: ['arabic'],
   variable: '--font-cairo',
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: ['400', '500', '700', '800'],
+  preload: true,
 });
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: ['400', '500', '700', '800'],
+  preload: true,
 });
 
 import { Viewport } from 'next';
