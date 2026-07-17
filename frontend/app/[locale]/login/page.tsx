@@ -17,6 +17,8 @@ import {
   ChevronDown,
   ChevronUp,
   Zap,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -120,6 +122,7 @@ export default function LoginPage() {
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
   const [quickOpen, setQuickOpen] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const toggleLanguage = () => {
     const nextLocale = locale === 'ar' ? 'en' : 'ar';
@@ -322,14 +325,21 @@ export default function LoginPage() {
                     <Lock className="h-4.5 w-4.5" />
                   </div>
                   <input
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     id="password"
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="block w-full rounded-xl border border-slate-800 bg-slate-950/80 py-3 ps-11 pe-4 text-xs sm:text-sm text-slate-200 placeholder-slate-600 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 focus:outline-none transition-all"
+                    className="block w-full rounded-xl border border-slate-800 bg-slate-950/80 py-3 ps-11 pe-11 text-xs sm:text-sm text-slate-200 placeholder-slate-600 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 focus:outline-none transition-all"
                     placeholder={t('passwordPlaceholder')}
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 end-0 pe-3.5 flex items-center text-slate-500 hover:text-slate-300 transition-colors"
+                  >
+                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </button>
                 </div>
                 {fieldErrors.password && <p className="text-red-500 text-xs mt-1">{t(fieldErrors.password)}</p>}
               </div>
