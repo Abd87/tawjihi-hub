@@ -131,7 +131,7 @@ export default function Navbar() {
       <header className="fixed top-0 inset-x-0 z-50 bg-transparent pointer-events-none print:hidden">
         <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex items-center justify-between pointer-events-auto">
           <Link href="/" className="flex items-center gap-2.5">
-            <Image src="/logo.png" alt="Tawjihi Hub Logo" width={256} height={96} sizes="(max-width: 640px) 140px, 200px" className="h-20 sm:h-24 w-auto object-contain drop-shadow-md" priority />
+            <Image src="/logo.gif" alt="Tawjihi Hub Logo" width={256} height={96} sizes="(max-width: 640px) 140px, 200px" className="h-20 sm:h-24 w-auto object-contain drop-shadow-md" priority unoptimized />
           </Link>
           <div className="flex items-center gap-4">
             <button
@@ -169,7 +169,7 @@ export default function Navbar() {
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 cursor-pointer z-10">
             <Image 
-              src="/logo.png" 
+              src="/logo.gif" 
               alt="Tawjihi Hub Logo" 
               width={256} 
               height={96} 
