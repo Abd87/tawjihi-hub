@@ -271,7 +271,7 @@ export default function AdminCouponsPage() {
 
   if (!authorized || loading) {
     return (
-      <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center text-slate-400">
+      <div className="bg-[#020617] flex flex-col items-center justify-center text-slate-400">
         <Loader2 className="h-8 w-8 text-brand-500 animate-spin mb-4" />
         <span>Loading Admin Panel...</span>
       </div>
@@ -281,14 +281,14 @@ export default function AdminCouponsPage() {
   const isRtl = locale === 'ar';
 
   return (
-    <div className="relative min-h-screen bg-[#020617] font-sans pb-16 selection:bg-brand-500/30 selection:text-brand-300">
+    <div className="relative bg-[#020617] font-sans pb-16 selection:bg-brand-500/30 selection:text-brand-300">
       
       <div className="absolute top-[-10%] start-[-10%] w-[45vw] h-[45vw] rounded-full bg-brand-500/5 blur-[120px] pointer-events-none print:hidden" />
       <div className="absolute bottom-[-10%] end-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-500/5 blur-[100px] pointer-events-none print:hidden" />
 
 
 
-      <main className="max-w-4xl mx-auto px-4 pt-32 z-10 relative space-y-8 print:hidden">
+      <main className="max-w-4xl mx-auto px-4  z-10 relative space-y-8 print:hidden">
         
         <div className="flex items-center gap-3">
           <div className="p-3 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded-2xl">
@@ -705,7 +705,7 @@ export default function AdminCouponsPage() {
         {/* ═══════════════════════════════════════════════════════════ */}
         {/* PRINT CARDS — hidden in normal view, shown only on print   */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <div className="hidden print:flex w-full bg-white min-h-screen absolute top-0 left-0 z-50 p-8 justify-center">
+        <div className="hidden print:flex w-full bg-white absolute top-0 left-0 z-50 p-8 justify-center">
           <div style={{ fontFamily: 'Arial, sans-serif', width: '100%', maxWidth: '800px' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '40px' }}>
               {coupons

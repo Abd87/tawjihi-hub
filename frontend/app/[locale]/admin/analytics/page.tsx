@@ -249,7 +249,7 @@ export default function AdminAnalyticsPage() {
 
   if (!authorized || loading || !data) {
     return (
-      <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center text-slate-400">
+      <div className="bg-[#020617] flex flex-col items-center justify-center text-slate-400">
         <Loader2 className="h-8 w-8 text-brand-500 animate-spin mb-4" />
         <span>Loading Analytics Engine...</span>
       </div>
@@ -259,7 +259,7 @@ export default function AdminAnalyticsPage() {
   const isRtl = locale === 'ar';
 
   return (
-    <div className="relative min-h-screen bg-[#020617] overflow-x-hidden font-sans pb-16 selection:bg-brand-500/30 selection:text-brand-300">
+    <div className="relative bg-[#020617] overflow-x-hidden font-sans pb-16 selection:bg-brand-500/30 selection:text-brand-300">
       
       {/* Decorative Glows */}
       <div className="absolute top-[-10%] start-[-10%] w-[45vw] h-[45vw] rounded-full bg-brand-500/5 blur-[120px] pointer-events-none" />
@@ -268,7 +268,7 @@ export default function AdminAnalyticsPage() {
 
 
       {/* Main Container */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 z-10 relative space-y-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  z-10 relative space-y-8">
         
         {/* Title Block */}
         <div className="flex items-center gap-3">

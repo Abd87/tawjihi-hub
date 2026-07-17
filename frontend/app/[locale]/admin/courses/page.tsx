@@ -445,7 +445,7 @@ export default function AdminCoursesPage() {
   /* ── Loading / Unauth ──────────────────────────────────────────────────── */
   if (!authorized || loading) {
     return (
-      <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center text-slate-400">
+      <div className="bg-[#020617] flex flex-col items-center justify-center text-slate-400">
         <Loader2 className="h-10 w-10 text-brand-500 animate-spin mb-4" />
         <span className="text-sm font-semibold">{isRtl ? 'جارٍ التحميل...' : 'Loading...'}</span>
       </div>
@@ -460,13 +460,9 @@ export default function AdminCoursesPage() {
   });
 
   return (
-    <div className="min-h-screen bg-[#020617] font-sans pb-20 text-white" dir={isRtl ? 'rtl' : 'ltr'}>
+    <div className="bg-[#020617] font-sans pb-20 text-white" dir={isRtl ? 'rtl' : 'ltr'}>
 
       {/* Decorative glows */}
-      <div className="fixed top-0 start-0 w-[50vw] h-[50vw] rounded-full bg-brand-500/5 blur-[140px] pointer-events-none" />
-      <div className="fixed bottom-0 end-0 w-[40vw] h-[40vw] rounded-full bg-blue-500/5 blur-[120px] pointer-events-none" />
-      <div className="fixed top-1/2 start-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[30vw] rounded-full bg-slate-800/10 blur-[180px] pointer-events-none" />
-
       {/* ── Toast ────────────────────────────────────────────────────────── */}
       {toast && (
         <div className={`fixed top-6 inset-x-0 mx-auto w-fit z-[9999] px-5 py-3 rounded-2xl text-sm font-bold shadow-2xl flex items-center gap-2.5 animate-slide-down border ${
@@ -483,7 +479,7 @@ export default function AdminCoursesPage() {
 
 
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 pt-32 space-y-5 relative z-10">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6  space-y-5 relative z-10">
         <RoleSimulator />
 
         <h1 className="text-3xl font-extrabold text-white mb-2">

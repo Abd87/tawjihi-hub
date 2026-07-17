@@ -76,6 +76,10 @@ export default function Navbar() {
     return null;
   }
 
+  if (pathname.startsWith('/admin')) {
+    return null;
+  }
+
   const handleRoleSwitch = async (targetRole: string) => {
     if (targetRole === user?.role) return;
     setSwitchingRole(true);

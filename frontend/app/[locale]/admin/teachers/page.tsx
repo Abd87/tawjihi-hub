@@ -315,7 +315,7 @@ export default function AdminTeachersPage() {
   /* ── Loading / guard ──────────────────────────────────────────────── */
   if (!authorized || loading) {
     return (
-      <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center text-slate-400">
+      <div className="bg-[#020617] flex flex-col items-center justify-center text-slate-400">
         <Loader2 className="h-10 w-10 text-violet-500 animate-spin mb-4" />
         <span className="text-sm font-semibold">{isRtl ? 'جارٍ التحميل...' : 'Loading...'}</span>
       </div>
@@ -323,13 +323,9 @@ export default function AdminTeachersPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#020617] font-sans pb-20 text-white" dir={isRtl ? 'rtl' : 'ltr'}>
+    <div className="bg-[#020617] font-sans pb-20 text-white" dir={isRtl ? 'rtl' : 'ltr'}>
 
       {/* Decorative glows */}
-      <div className="fixed top-0 start-1/4 w-[50vw] h-[40vw] rounded-full bg-violet-500/5 blur-[150px] pointer-events-none" />
-      <div className="fixed bottom-0 end-0 w-[35vw] h-[35vw] rounded-full bg-purple-500/5 blur-[120px] pointer-events-none" />
-      <div className="fixed top-1/2 start-0 w-[25vw] h-[25vw] rounded-full bg-indigo-500/4 blur-[100px] pointer-events-none" />
-
       {/* ── Toast ────────────────────────────────────────────────────── */}
       {toast && (
         <div className={`fixed top-6 inset-x-0 mx-auto w-fit z-[9999] px-5 py-3 rounded-2xl text-sm font-bold shadow-2xl flex items-center gap-2.5 animate-slide-down border ${
@@ -346,7 +342,7 @@ export default function AdminTeachersPage() {
 
 
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 pt-32 space-y-6 relative z-10">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6  space-y-6 relative z-10">
 
         <h1 className="text-3xl font-extrabold text-white mb-2">
           {isRtl ? 'إدارة المعلمين' : 'Teacher Management'}

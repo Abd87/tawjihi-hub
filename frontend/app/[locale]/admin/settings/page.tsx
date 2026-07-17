@@ -61,7 +61,7 @@ export default function AdminSettingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 font-sans text-slate-200 selection:bg-brand-500/30">
+    <div className="bg-slate-950 font-sans text-slate-200 selection:bg-brand-500/30">
       <div className="absolute top-[-10%] start-[-10%] w-[45vw] h-[45vw] rounded-full bg-brand-500/5 blur-[120px] pointer-events-none" />
 
       {/* Header */}

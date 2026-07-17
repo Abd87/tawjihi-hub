@@ -68,7 +68,7 @@ export default function ApplicationsAdminPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#020617] flex items-center justify-center">
+      <div className="bg-[#020617] flex items-center justify-center">
         <Loader2 className="h-8 w-8 text-brand-500 animate-spin" />
       </div>
     );
@@ -82,9 +82,9 @@ export default function ApplicationsAdminPage() {
   });
 
   return (
-    <div className="min-h-screen bg-[#020617] font-sans">
+    <div className="bg-[#020617] font-sans">
       
-      <main className="max-w-7xl mx-auto px-4 pt-32 pb-20">
+      <main className="max-w-7xl mx-auto px-4  pb-20">
         <div className="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h1 className="text-3xl font-black text-white flex items-center gap-3">

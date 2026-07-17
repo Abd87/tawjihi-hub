@@ -450,7 +450,7 @@ export default function AdminQuizPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center text-slate-400">
+      <div className="bg-[#020617] flex flex-col items-center justify-center text-slate-400">
         <Loader2 className="h-8 w-8 text-brand-500 animate-spin mb-4" />
         <span>Loading Admin Panel...</span>
       </div>
@@ -459,7 +459,7 @@ export default function AdminQuizPage() {
 
   if (!authorized) {
     return (
-      <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center text-slate-400 p-6">
+      <div className="bg-[#020617] flex flex-col items-center justify-center text-slate-400 p-6">
         <ShieldAlert className="h-12 w-12 text-rose-500 mb-4 animate-bounce" />
         <h3 className="text-lg font-bold text-slate-200">{error}</h3>
         <Link href="/" className="mt-6 px-5 py-2.5 bg-slate-900 border border-slate-800 text-white rounded-xl text-sm font-semibold hover:border-slate-500 transition-all">
@@ -472,7 +472,7 @@ export default function AdminQuizPage() {
   const isRtl = locale === 'ar';
 
   return (
-    <div className="relative min-h-screen bg-[#020617] overflow-x-hidden font-sans pb-16 selection:bg-brand-500/30 selection:text-brand-300">
+    <div className="relative bg-[#020617] overflow-x-hidden font-sans pb-16 selection:bg-brand-500/30 selection:text-brand-300">
       
       {/* Glow backgrounds */}
       <div className="absolute top-[-10%] start-[-10%] w-[45vw] h-[45vw] rounded-full bg-brand-500/5 blur-[120px] pointer-events-none" />
@@ -481,7 +481,7 @@ export default function AdminQuizPage() {
 
 
       {/* Admin Panel Body */}
-      <main className="w-full mx-auto px-4 sm:px-6 lg:px-8 pt-32 z-10 relative">
+      <main className="w-full mx-auto px-4 sm:px-6 lg:px-8  z-10 relative">
         
         {/* Title and Tabs */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
