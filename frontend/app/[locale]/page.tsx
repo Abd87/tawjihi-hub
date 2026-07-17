@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import Navbar from '@/components/Navbar';
 import PromoPopup from '@/components/PromoPopup';
+import HeroVideoBackground from '@/components/HeroVideoBackground';
 import { Link } from '@/i18n/routing';
 import { 
   ArrowRight, 
@@ -43,17 +44,12 @@ export default function HomePage({ params: { locale } }: PageProps) {
     <div className="relative min-h-screen bg-[#020617] overflow-x-hidden font-sans selection:bg-brand-500/30 selection:text-brand-300">
       
       {/* Video Background */}
-      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
-        <video aria-hidden="true"
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-          poster="/_next/image?url=%2Fog-image.png&w=1200&q=40"
-          className="w-full h-full object-cover opacity-40 scale-105"
-        >
-          <source src="/hero-bg.mp4" type="video/mp4" />
-        </video>
+      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-[#020617]">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 scale-105"
+          style={{ backgroundImage: 'url(/og-image.png)' }}
+        />
+        <HeroVideoBackground />
         {/* Dark Overlay to ensure text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/40 via-[#020617]/80 to-[#020617] pointer-events-none" />
       </div>
