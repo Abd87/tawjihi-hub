@@ -32,8 +32,6 @@ export const viewport: Viewport = {
   themeColor: '#020617',
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false, // Prevents zooming which breaks mobile app feel
   viewportFit: 'cover', // Ensures full screen on notched phones
 };
 
