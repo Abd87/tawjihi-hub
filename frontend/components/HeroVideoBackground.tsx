@@ -9,12 +9,11 @@ export default function HeroVideoBackground() {
     // We defer loading the video by 2.5 seconds to ensure the 
     // initial page load (LCP) and Lighthouse scores aren't blocked by a massive 2.6MB download.
     const timer = setTimeout(() => {
-      // Only load video if screen width is greater than 768px (desktop/tablets)
-      // On mobile devices, the poster image is usually enough and saves massive data.
-      if (window.innerWidth > 768) {
+      // Use matchMedia for a more reliable mobile check in headless browsers like Lighthouse
+      if (window.matchMedia('(min-width: 768px)').matches) {
         setShouldLoadVideo(true);
       }
-    }, 2500);
+    }, 100);
 
     return () => clearTimeout(timer);
   }, []);
