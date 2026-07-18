@@ -19,6 +19,8 @@ import {
   Award,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
+  ChevronUp,
   Loader2,
   Sparkles,
   Lock,
