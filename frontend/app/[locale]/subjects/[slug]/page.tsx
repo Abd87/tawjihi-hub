@@ -16,6 +16,13 @@ export async function generateMetadata({ params }: { params: { locale: string; s
     title: `${title} | ${track} - Tawjihi Hub`,
     description: `استكشف منهاج مادة ${subject.titleAr} بالتفصيل. عرض لجميع الوحدات والدروس الخاصة بمادة ${subject.titleAr} لمرحلة التوجيهي.`,
     keywords: ['توجيهي', 'منهاج', subject.titleAr, track, 'الأردن', 'Tawjihi'],
+    alternates: {
+      canonical: `/${params.locale}/subjects/${params.slug}`,
+      languages: {
+        'ar': `/ar/subjects/${params.slug}`,
+        'en': `/en/subjects/${params.slug}`,
+      },
+    },
   };
 }
 
