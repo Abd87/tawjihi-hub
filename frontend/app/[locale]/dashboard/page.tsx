@@ -94,6 +94,7 @@ export default function DashboardPage() {
     return null;
   });
   const [lockedModalCourse, setLockedModalCourse] = useState<Course | null>(null);
+  const [isScheduleMinimized, setIsScheduleMinimized] = useState(false);
 
   // Fallback Mock Courses in case local PostgreSQL is offline
   const getMockCourses = (track: 'ACADEMIC' | 'BTEC'): Course[] => {
@@ -611,17 +612,26 @@ export default function DashboardPage() {
 
           return (
             <div className="mb-10">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-2.5 bg-blue-500/20 rounded-xl border border-blue-500/30">
-                  <Calendar className="h-6 w-6 text-blue-400" />
+              <div 
+                className="flex items-center justify-between gap-3 mb-6 cursor-pointer group"
+                onClick={() => setIsScheduleMinimized(!isScheduleMinimized)}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 bg-blue-500/20 rounded-xl border border-blue-500/30 group-hover:bg-blue-500/30 transition-colors">
+                    <Calendar className="h-6 w-6 text-blue-400" />
+                  </div>
+                  <h2 className="text-xl font-black text-white group-hover:text-blue-400 transition-colors">
+                    {locale === 'ar' ? 'جدول الحصص المباشرة التفاعلية' : 'Interactive Live Sessions Schedule'}
+                  </h2>
                 </div>
-                <h2 className="text-xl font-black text-white">
-                  {locale === 'ar' ? 'جدول المواعيد (My Schedule)' : 'My Schedule'}
-                </h2>
+                <button className="p-2 rounded-lg bg-slate-800 text-slate-400 group-hover:text-white transition-colors">
+                  {isScheduleMinimized ? <ChevronDown className="h-5 w-5" /> : <ChevronUp className="h-5 w-5" />}
+                </button>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {allSessions.map(session => (
+              {!isScheduleMinimized && (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 animate-in fade-in slide-in-from-top-2">
+                  {allSessions.map(session => (
                   <div key={session.id} className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-slate-700 transition-colors relative overflow-hidden group">
                     <div className="absolute top-0 start-0 w-1 h-full bg-blue-500"></div>
                     <div>
@@ -654,6 +664,7 @@ export default function DashboardPage() {
                   </div>
                 ))}
               </div>
+              )}
             </div>
           );
         })()}
