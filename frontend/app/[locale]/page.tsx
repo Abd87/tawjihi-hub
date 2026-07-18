@@ -1,10 +1,11 @@
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import Navbar from '@/components/Navbar';
 import PromoPopup from '@/components/PromoPopup';
 import HeroVideoBackground from '@/components/HeroVideoBackground';
 import { Link } from '@/i18n/routing';
+import prisma from '@/lib/prisma';
 import { 
   ArrowRight, 
   ArrowLeft, 
@@ -27,11 +28,12 @@ interface PageProps {
   params: { locale: string };
 }
 
-export default function HomePage({ params: { locale } }: PageProps) {
+export default async function HomePage({ params: { locale } }: PageProps) {
   unstable_setRequestLocale(locale);
-  const t = useTranslations();
+  const t = await getTranslations(); // Actually useTranslations works inside async components in next-intl v3? No, getTranslations is safer in Server Components. Wait, next-intl's `useTranslations` can be used in async Server Components if configured correctly. Let's stick to getTranslations.
+  // Wait, I will just keep `useTranslations` because the component might be relying on it. Actually Next-intl requires `getTranslations` in async Server Components.
 
-  // Helper to determine arrow direction based on locale
+
   const renderForwardArrow = () => {
     return locale === 'ar' ? (
       <ArrowLeft className="h-4.5 w-4.5 transition-transform group-hover:-translate-x-1" />
@@ -39,6 +41,12 @@ export default function HomePage({ params: { locale } }: PageProps) {
       <ArrowRight className="h-4.5 w-4.5 transition-transform group-hover:translate-x-1" />
     );
   };
+
+  const latestPosts = await prisma.blogPost.findMany({
+    where: { published: true },
+    orderBy: { createdAt: 'desc' },
+    take: 3,
+  });
 
   return (
     <div className="relative min-h-screen bg-[#020617] overflow-x-hidden font-sans selection:bg-brand-500/30 selection:text-brand-300">
@@ -596,6 +604,69 @@ export default function HomePage({ params: { locale } }: PageProps) {
           />
         </div>
       </section>
+
+      {/* Latest Blog & News Section */}
+      {latestPosts.length > 0 && (
+        <section className="relative py-20 bg-[#020617] border-t border-slate-800/50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-12">
+              <div>
+                <h2 className="text-3xl md:text-5xl font-black text-white mb-4">
+                  {locale === 'ar' ? 'أحدث الأخبار والمقالات' : 'Latest News & Articles'}
+                </h2>
+                <p className="text-slate-400 text-lg">
+                  {locale === 'ar' 
+                    ? 'تابع أهم قرارات وزارة التربية والتعليم ونصائح المذاكرة من خبراء توجيهي هب.'
+                    : 'Follow the latest MOE decisions and study tips from Tawjihi Hub experts.'}
+                </p>
+              </div>
+              <Link
+                href={`/${locale}/blog`}
+                className="mt-6 md:mt-0 flex items-center gap-2 text-brand-500 font-bold hover:text-brand-400 transition"
+              >
+                {locale === 'ar' ? 'عرض كل المقالات' : 'View All Articles'}
+                {renderForwardArrow()}
+              </Link>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {latestPosts.map((post) => (
+                <Link
+                  key={post.id}
+                  href={`/${locale}/blog/${post.slug}`}
+                  className="group flex flex-col bg-slate-900/50 rounded-3xl border border-slate-800 overflow-hidden hover:border-brand-500/50 hover:bg-slate-900 transition-all duration-300"
+                >
+                  {post.coverImage && (
+                    <div className="relative h-48 w-full bg-slate-950 overflow-hidden">
+                      <Image
+                        src={post.coverImage}
+                        alt={locale === 'ar' ? post.titleAr : post.titleEn}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                  )}
+                  <div className="p-6 flex flex-col flex-1">
+                    <span className="text-xs font-semibold text-brand-500 mb-3">
+                      {new Date(post.createdAt).toLocaleDateString(locale === 'ar' ? 'ar-JO' : 'en-US')}
+                    </span>
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-brand-400 transition-colors line-clamp-2">
+                      {locale === 'ar' ? post.titleAr : post.titleEn}
+                    </h3>
+                    <p className="text-slate-400 text-sm mb-6 line-clamp-3 flex-1">
+                      {locale === 'ar' ? post.excerptAr : post.excerptEn}
+                    </p>
+                    <div className="flex items-center gap-2 text-sm font-bold text-slate-300 mt-auto">
+                      {locale === 'ar' ? 'اقرأ التفاصيل' : 'Read Details'}
+                      {renderForwardArrow()}
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Footer */}
       <footer className="border-t border-slate-900 bg-slate-950/40 py-12">
