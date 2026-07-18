@@ -22,7 +22,8 @@ import {
   ChevronUp,
   Trophy,
   Circle,
-  ClipboardList
+  ClipboardList,
+  MessageCircle
 } from 'lucide-react';
 import CourseUnlockModal from '@/components/CourseUnlockModal';
 import Link from 'next/link';
@@ -343,6 +344,18 @@ export default function CourseSyllabusPage() {
                 <span>{isRtl ? 'بنك الأخطاء' : 'Mistakes Bank'}</span>
                 {isRtl ? <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" /> : <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />}
               </Link>
+              {course.discussionGroupLink && (
+                <a 
+                  href={course.discussionGroupLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full mt-4 flex items-center justify-center gap-2 px-6 py-4 bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#25D366] border border-[#25D366]/30 hover:border-[#25D366]/50 font-bold rounded-2xl transition-all group"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                  <span>{isRtl ? 'مجموعة النقاش' : 'Discussion Group'}</span>
+                  {isRtl ? <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" /> : <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />}
+                </a>
+              )}
             </div>
           </div>
 

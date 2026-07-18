@@ -611,12 +611,12 @@ export default function DashboardPage() {
                       const pdfsVal = course._pdfCount ?? 0;
                       const progressVal = course.mockProgress ?? 0;
                       return (
-                        <Link
+                        <div
                           key={course.id}
-                          href={`/courses/${course.id}`}
-                          className="group relative rounded-2xl border border-slate-850 bg-slate-900/15 hover:bg-slate-900/35 hover:border-brand-500/50 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg block"
+                          className="group relative rounded-2xl border border-slate-850 bg-slate-900/15 hover:bg-slate-900/35 hover:border-brand-500/50 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg"
                         >
-                          <div>
+                          <Link href={`/courses/${course.id}`} className="absolute inset-0 z-0" aria-label="View Course"></Link>
+                          <div className="relative z-10 pointer-events-none">
                             <div className="h-32 sm:h-36 w-full overflow-hidden relative bg-slate-950 group-hover:bg-slate-900 transition-colors duration-500">
                               {(course.coverImage || course.thumbnailUrl) ? (
                                 <Image 
@@ -659,17 +659,29 @@ export default function DashboardPage() {
                             </div>
                           </div>
 
-                          <div className="p-6 pt-0">
-                            <div className="group/btn w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-bold text-white bg-slate-950 border border-slate-850 hover:bg-brand-500 hover:border-brand-500 transition-all duration-300 cursor-pointer">
+                          <div className="p-6 pt-0 relative z-10 flex flex-col gap-2 pointer-events-auto">
+                            <Link href={`/courses/${course.id}`} className="group/btn w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-bold text-white bg-slate-950 border border-slate-850 hover:bg-brand-500 hover:border-brand-500 transition-all duration-300">
                               <span>{t('resumeBtn')}</span>
                               {locale === 'ar' ? (
                                 <ChevronLeft className="h-4 w-4 transition-transform group-hover/btn:-translate-x-1" />
                               ) : (
                                 <ChevronRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
                               )}
-                            </div>
+                            </Link>
+                            
+                            {course.discussionGroupLink && (
+                              <a 
+                                href={course.discussionGroupLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-bold bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366]/20 border border-[#25D366]/30 transition-all duration-300"
+                              >
+                                <MessageCircle className="h-4 w-4" />
+                                <span>{locale === 'ar' ? 'مجموعة النقاش' : 'Discussion Group'}</span>
+                              </a>
+                            )}
                           </div>
-                        </Link>
+                        </div>
                       );
                     })}
                   </div>
