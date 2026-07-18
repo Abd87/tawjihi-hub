@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { subjectsData } from './[locale]/subjects/curriculumData';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://tawjihi-hub.com';
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://tawjihihub.com';
 
   const staticRoutes = [
     '',
