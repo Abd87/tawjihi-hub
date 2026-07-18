@@ -22,16 +22,7 @@ export default function SettingsPage() {
   
   const [profileSuccess, setProfileSuccess] = useState(false);
   const [passwordSuccess, setPasswordSuccess] = useState(false);
-  const [courses, setCourses] = useState<any[]>([]);
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [oldPassword, setOldPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  
-  const [loadingProfile, setLoadingProfile] = useState(false);
-  const [loadingPassword, setLoadingPassword] = useState(false);
-  
-  const [profileSuccess, setProfileSuccess] = useState(false);
-  const [passwordSuccess, setPasswordSuccess] = useState(false);
+
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
