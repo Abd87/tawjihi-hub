@@ -3,13 +3,16 @@
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
-import { User, Lock, Phone, Save, Loader2, CheckCircle2, ShieldAlert } from 'lucide-react';
+import { User, Lock, Phone, Save, Loader2, CheckCircle2, ShieldAlert, TrendingUp } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LineChart, Line, CartesianGrid } from 'recharts';
 
 export default function SettingsPage() {
   const params = useParams();
   const locale = (params?.locale as string) || 'ar';
   
   const [user, setUser] = useState<any>(null);
+  const [quizAttempts, setQuizAttempts] = useState<any[]>([]);
+  const [courses, setCourses] = useState<any[]>([]);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
