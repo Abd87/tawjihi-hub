@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { BookOpen, Calculator, FlaskConical, Atom, Landmark, Code2, HeartPulse, MonitorPlay, Sprout, ChevronDown, BookMarked, GraduationCap } from 'lucide-react';
+import { BookOpen, Calculator, FlaskConical, Atom, Landmark, Code2, HeartPulse, MonitorPlay, Sprout, ChevronDown, BookMarked, GraduationCap, Globe2 } from 'lucide-react';
 import { subjectsData } from './curriculumData';
 
 export default function SubjectsClient({ locale }: { locale: string }) {
@@ -26,6 +26,8 @@ export default function SubjectsClient({ locale }: { locale: string }) {
       case 'monitor': return <MonitorPlay className="h-6 w-6" />;
       case 'landmark': return <Landmark className="h-6 w-6" />;
       case 'sprout': return <Sprout className="h-6 w-6" />;
+      case 'globe': return <Globe2 className="h-6 w-6" />;
+      case 'code': return <Code2 className="h-6 w-6" />;
       default: return <BookMarked className="h-6 w-6" />;
     }
   };

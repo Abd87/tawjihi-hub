@@ -22,259 +22,1516 @@ export type Subject = {
 };
 
 export const subjectsData: Subject[] = [
-  // ACADEMIC TRACK
   {
-    id: 'math-sci',
-    titleAr: 'الرياضيات (علمي/صناعي)',
-    titleEn: 'Mathematics (Sci/Ind)',
-    color: 'blue',
-    iconType: 'calculator',
-    track: 'academic',
-    units: [
-      {
-        id: 'math-u1',
-        titleAr: 'الوحدة الأولى: التفاضل',
-        titleEn: 'Unit 1: Differentiation',
-        lessons: [
-          { id: 'math-u1-l1', titleAr: 'الاشتقاق', titleEn: 'Differentiation' },
-          { id: 'math-u1-l2', titleAr: 'مشتقتا الضرب والقسمة', titleEn: 'Product and Quotient Rules' },
-          { id: 'math-u1-l3', titleAr: 'قاعدة السلسلة', titleEn: 'Chain Rule' }
-        ]
-      },
-      {
-        id: 'math-u2',
-        titleAr: 'الوحدة الثانية: تطبيقات التفاضل',
-        titleEn: 'Unit 2: Applications of Differentiation',
-        lessons: [
-          { id: 'math-u2-l1', titleAr: 'المعدلات المرتبطة بالزمن', titleEn: 'Related Rates' },
-          { id: 'math-u2-l2', titleAr: 'تطبيقات القيم القصوى', titleEn: 'Optimization' }
-        ]
-      },
-      {
-        id: 'math-u3',
-        titleAr: 'الوحدة الثالثة: الأعداد المركبة',
-        titleEn: 'Unit 3: Complex Numbers',
-        lessons: [
-          { id: 'math-u3-l1', titleAr: 'مفهوم الأعداد المركبة', titleEn: 'Concept of Complex Numbers' },
-          { id: 'math-u3-l2', titleAr: 'العمليات على الأعداد المركبة', titleEn: 'Operations on Complex Numbers' }
-        ]
-      },
-      {
-        id: 'math-u4',
-        titleAr: 'الوحدة الرابعة: التكامل',
-        titleEn: 'Unit 4: Integration',
-        lessons: [
-          { id: 'math-u4-l1', titleAr: 'التكامل غير المحدود', titleEn: 'Indefinite Integration' },
-          { id: 'math-u4-l2', titleAr: 'التكامل المحدود', titleEn: 'Definite Integration' },
-          { id: 'math-u4-l3', titleAr: 'تطبيقات التكامل', titleEn: 'Applications of Integration' }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'physics',
-    titleAr: 'الفيزياء',
-    titleEn: 'Physics',
-    color: 'indigo',
-    iconType: 'atom',
-    track: 'academic',
-    units: [
-      {
-        id: 'phys-u1',
-        titleAr: 'الوحدة الأولى: الزخم الخطي والتصادمات',
-        titleEn: 'Unit 1: Momentum & Collisions',
-        lessons: [
-          { id: 'phys-u1-l1', titleAr: 'الزخم الخطي والدفع', titleEn: 'Momentum and Impulse' },
-          { id: 'phys-u1-l2', titleAr: 'التصادمات', titleEn: 'Collisions' }
-        ]
-      },
-      {
-        id: 'phys-u2',
-        titleAr: 'الوحدة الثانية: الحركة الدورانية',
-        titleEn: 'Unit 2: Rotational Motion',
-        lessons: [
-          { id: 'phys-u2-l1', titleAr: 'العزم والاتزان السكوني', titleEn: 'Torque and Static Equilibrium' },
-          { id: 'phys-u2-l2', titleAr: 'الديناميكا الدورانية', titleEn: 'Rotational Dynamics' }
-        ]
-      },
-      {
-        id: 'phys-u3',
-        titleAr: 'الوحدة الثالثة: التيار الكهربائي',
-        titleEn: 'Unit 3: Electric Current',
-        lessons: [
-          { id: 'phys-u3-l1', titleAr: 'المقاومة والقوة الدافعة', titleEn: 'Resistance and EMF' },
-          { id: 'phys-u3-l2', titleAr: 'قاعدتا كيرشوف', titleEn: 'Kirchhoff Laws' }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'chemistry',
-    titleAr: 'الكيمياء',
-    titleEn: 'Chemistry',
-    color: 'emerald',
-    iconType: 'flask',
-    track: 'academic',
-    units: [
-      {
-        id: 'chem-u1',
-        titleAr: 'الوحدة الأولى: الحموض والقواعد',
-        titleEn: 'Unit 1: Acids & Bases',
-        lessons: [
-          { id: 'chem-u1-l1', titleAr: 'مفاهيم الحموض والقواعد', titleEn: 'Acid/Base Concepts' },
-          { id: 'chem-u1-l2', titleAr: 'الرقم الهيدروجيني', titleEn: 'pH' }
-        ]
-      },
-      {
-        id: 'chem-u2',
-        titleAr: 'الوحدة الثانية: التأكسد والاختزال',
-        titleEn: 'Unit 2: Redox Reactions',
-        lessons: [
-          { id: 'chem-u2-l1', titleAr: 'مفهوم التأكسد والاختزال', titleEn: 'Redox Concept' },
-          { id: 'chem-u2-l2', titleAr: 'الخلايا الغلفانية', titleEn: 'Galvanic Cells' }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'biology',
-    titleAr: 'العلوم الحياتية',
-    titleEn: 'Biology',
-    color: 'rose',
-    iconType: 'heart',
-    track: 'academic',
-    units: [
-      {
-        id: 'bio-u1',
-        titleAr: 'الوحدة الأولى: الوراثة',
-        titleEn: 'Unit 1: Genetics',
-        lessons: [
-          { id: 'bio-u1-l1', titleAr: 'الوراثة المندلية', titleEn: 'Mendelian Genetics' },
-          { id: 'bio-u1-l2', titleAr: 'الوراثة غير المندلية', titleEn: 'Non-Mendelian Genetics' }
-        ]
-      },
-      {
-        id: 'bio-u2',
-        titleAr: 'الوحدة الثانية: تكنولوجيا الجينات',
-        titleEn: 'Unit 2: Gene Technology',
-        lessons: [
-          { id: 'bio-u2-l1', titleAr: 'أدوات تكنولوجيا الجينات', titleEn: 'Tools of Gene Technology' },
-          { id: 'bio-u2-l2', titleAr: 'تطبيقات تكنولوجيا الجينات', titleEn: 'Applications of Gene Technology' }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'arabic-skills',
-    titleAr: 'اللغة العربية (مهارات)',
-    titleEn: 'Arabic Skills',
-    color: 'amber',
-    iconType: 'book',
-    track: 'academic',
-    units: [
-      {
-        id: 'ar-u1',
-        titleAr: 'الوحدة الأولى: آيات من سورة آل عمران',
-        titleEn: 'Unit 1: Aal Imran Verses',
-        lessons: [
-          { id: 'ar-u1-l1', titleAr: 'شرح الآيات', titleEn: 'Verses Explanation' },
-          { id: 'ar-u1-l2', titleAr: 'القواعد: النداء', titleEn: 'Grammar: Calling' }
-        ]
-      },
-      {
-        id: 'ar-u2',
-        titleAr: 'الوحدة الثانية: فن السرور',
-        titleEn: 'Unit 2: Art of Joy',
-        lessons: [
-          { id: 'ar-u2-l1', titleAr: 'النص وتحليله', titleEn: 'Text Analysis' },
-          { id: 'ar-u2-l2', titleAr: 'القواعد: اسم الفاعل واسم المفعول', titleEn: 'Grammar: Participles' }
-        ]
-      }
-    ]
-  },
-  
-  // BTEC TRACK
-  {
-    id: 'btec-it',
-    titleAr: 'تكنولوجيا المعلومات (IT)',
-    titleEn: 'Information Technology (IT)',
-    color: 'slate',
-    iconType: 'monitor',
-    track: 'btec',
-    units: [
-      {
-        id: 'bit-u1',
-        titleAr: 'الوحدة الأولى: أنظمة المعلومات',
-        titleEn: 'Unit 1: Information Systems',
-        lessons: [
-          { id: 'bit-u1-l1', titleAr: 'تطوير أنظمة المعلومات', titleEn: 'Developing Information Systems' },
-          { id: 'bit-u1-l2', titleAr: 'إدارة قواعد البيانات', titleEn: 'Database Management' }
-        ]
-      },
-      {
-        id: 'bit-u2',
-        titleAr: 'الوحدة الثانية: الشبكات',
-        titleEn: 'Unit 2: Networking',
-        lessons: [
-          { id: 'bit-u2-l1', titleAr: 'أساسيات الشبكات', titleEn: 'Networking Basics' },
-          { id: 'bit-u2-l2', titleAr: 'أمن الشبكات', titleEn: 'Network Security' }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'btec-business',
-    titleAr: 'الأعمال (Business)',
-    titleEn: 'Business',
+    id: 'btec-accounting',
+    titleAr: 'المحاسبة',
+    titleEn: 'Accounting',
     color: 'brand',
     iconType: 'landmark',
     track: 'btec',
     units: [
       {
-        id: 'bb-u1',
-        titleAr: 'الوحدة الأولى: بيئة الأعمال',
-        titleEn: 'Unit 1: Business Environment',
+        id: 'btec-accounting-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
         lessons: [
-          { id: 'bb-u1-l1', titleAr: 'هياكل الأعمال', titleEn: 'Business Structures' },
-          { id: 'bb-u1-l2', titleAr: 'البيئة الاقتصادية', titleEn: 'Economic Environment' }
+          { id: 'btec-accounting-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-accounting-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
         ]
       },
       {
-        id: 'bb-u2',
-        titleAr: 'الوحدة الثانية: التسويق',
-        titleEn: 'Unit 2: Marketing',
+        id: 'btec-accounting-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
         lessons: [
-          { id: 'bb-u2-l1', titleAr: 'حملات التسويق', titleEn: 'Marketing Campaigns' },
-          { id: 'bb-u2-l2', titleAr: 'التسويق الرقمي', titleEn: 'Digital Marketing' }
+          { id: 'btec-accounting-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-accounting-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
         ]
       }
     ]
   },
   {
-    id: 'btec-engineering',
-    titleAr: 'الهندسة (Engineering)',
-    titleEn: 'Engineering',
+    id: 'btec-agricultural-business',
+    titleAr: 'الأعمال الزراعية',
+    titleEn: 'Agricultural Business',
+    color: 'emerald',
+    iconType: 'sprout',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-agricultural-business-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-agricultural-business-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-agricultural-business-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-agricultural-business-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-agricultural-business-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-agricultural-business-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-animal-husbandry',
+    titleAr: 'الإنتاج الحيواني',
+    titleEn: 'Animal Husbandry',
+    color: 'emerald',
+    iconType: 'sprout',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-animal-husbandry-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-animal-husbandry-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-animal-husbandry-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-animal-husbandry-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-animal-husbandry-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-animal-husbandry-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-beauty-therapy',
+    titleAr: 'العناية بالبشرة والتجميل',
+    titleEn: 'Beauty Therapy',
+    color: 'rose',
+    iconType: 'heart',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-beauty-therapy-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-beauty-therapy-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-beauty-therapy-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-beauty-therapy-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-beauty-therapy-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-beauty-therapy-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-cad-design',
+    titleAr: 'التصميم بمساعدة الحاسوب (CAD)',
+    titleEn: 'CAD Design',
+    color: 'slate',
+    iconType: 'monitor',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-cad-design-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-cad-design-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-cad-design-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-cad-design-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-cad-design-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-cad-design-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-construction-coach',
+    titleAr: 'البناء والتشييد',
+    titleEn: 'Construction',
     color: 'orange',
     iconType: 'sprout',
     track: 'btec',
     units: [
       {
-        id: 'be-u1',
-        titleAr: 'الوحدة الأولى: مبادئ الهندسة',
-        titleEn: 'Unit 1: Engineering Principles',
+        id: 'btec-construction-coach-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
         lessons: [
-          { id: 'be-u1-l1', titleAr: 'الرياضيات الهندسية', titleEn: 'Engineering Math' },
-          { id: 'be-u1-l2', titleAr: 'الميكانيكا الأساسية', titleEn: 'Basic Mechanics' }
+          { id: 'btec-construction-coach-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-construction-coach-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
         ]
       },
       {
-        id: 'be-u2',
-        titleAr: 'الوحدة الثانية: التصميم الهندسي',
-        titleEn: 'Unit 2: Engineering Design',
+        id: 'btec-construction-coach-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
         lessons: [
-          { id: 'be-u2-l1', titleAr: 'الرسم الهندسي بمساعدة الحاسوب (CAD)', titleEn: 'CAD Design' }
+          { id: 'btec-construction-coach-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-construction-coach-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
         ]
       }
     ]
-  }
+  },
+  {
+    id: 'btec-crop-production',
+    titleAr: 'الإنتاج النباتي',
+    titleEn: 'Crop Production',
+    color: 'emerald',
+    iconType: 'sprout',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-crop-production-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-crop-production-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-crop-production-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-crop-production-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-crop-production-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-crop-production-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-cybersecurity',
+    titleAr: 'الأمن السيبراني',
+    titleEn: 'Cybersecurity',
+    color: 'slate',
+    iconType: 'monitor',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-cybersecurity-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-cybersecurity-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-cybersecurity-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-cybersecurity-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-cybersecurity-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-cybersecurity-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-digital-media',
+    titleAr: 'الإعلام الرقمي',
+    titleEn: 'Digital Media',
+    color: 'indigo',
+    iconType: 'monitor',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-digital-media-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-digital-media-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-digital-media-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-digital-media-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-digital-media-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-digital-media-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-electronics',
+    titleAr: 'الإلكترونيات',
+    titleEn: 'Electronics',
+    color: 'blue',
+    iconType: 'atom',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-electronics-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-electronics-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-electronics-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-electronics-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-electronics-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-electronics-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-engineering-design',
+    titleAr: 'التصميم الهندسي',
+    titleEn: 'Engineering Design',
+    color: 'orange',
+    iconType: 'sprout',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-engineering-design-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-engineering-design-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-engineering-design-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-engineering-design-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-engineering-design-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-engineering-design-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-engineering-principles',
+    titleAr: 'مبادئ الهندسة',
+    titleEn: 'Engineering Principles',
+    color: 'orange',
+    iconType: 'sprout',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-engineering-principles-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-engineering-principles-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-engineering-principles-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-engineering-principles-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-engineering-principles-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-engineering-principles-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-entrepreneurship',
+    titleAr: 'ريادة الأعمال',
+    titleEn: 'Entrepreneurship',
+    color: 'brand',
+    iconType: 'landmark',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-entrepreneurship-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-entrepreneurship-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-entrepreneurship-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-entrepreneurship-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-entrepreneurship-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-entrepreneurship-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-event-management',
+    titleAr: 'إدارة الفعاليات',
+    titleEn: 'Event Management',
+    color: 'amber',
+    iconType: 'landmark',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-event-management-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-event-management-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-event-management-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-event-management-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-event-management-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-event-management-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-fine-arts',
+    titleAr: 'الفنون الجميلة',
+    titleEn: 'Fine Arts',
+    color: 'rose',
+    iconType: 'book',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-fine-arts-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-fine-arts-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-fine-arts-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-fine-arts-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-fine-arts-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-fine-arts-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-food-beverage',
+    titleAr: 'إنتاج الطعام والشراب',
+    titleEn: 'Food & Beverage',
+    color: 'amber',
+    iconType: 'flask',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-food-beverage-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-food-beverage-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-food-beverage-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-food-beverage-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-food-beverage-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-food-beverage-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-graphic-design',
+    titleAr: 'التصميم الجرافيكي',
+    titleEn: 'Graphic Design',
+    color: 'indigo',
+    iconType: 'monitor',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-graphic-design-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-graphic-design-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-graphic-design-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-graphic-design-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-graphic-design-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-graphic-design-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-hair-styling',
+    titleAr: 'تصفيف الشعر',
+    titleEn: 'Hair Styling',
+    color: 'rose',
+    iconType: 'heart',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-hair-styling-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-hair-styling-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-hair-styling-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-hair-styling-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-hair-styling-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-hair-styling-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-hospitality-mgmt',
+    titleAr: 'إدارة الضيافة',
+    titleEn: 'Hospitality Management',
+    color: 'brand',
+    iconType: 'landmark',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-hospitality-mgmt-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-hospitality-mgmt-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-hospitality-mgmt-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-hospitality-mgmt-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-hospitality-mgmt-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-hospitality-mgmt-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-makeup-artistry',
+    titleAr: 'فن المكياج',
+    titleEn: 'Makeup Artistry',
+    color: 'rose',
+    iconType: 'heart',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-makeup-artistry-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-makeup-artistry-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-makeup-artistry-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-makeup-artistry-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-makeup-artistry-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-makeup-artistry-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-marketing',
+    titleAr: 'التسويق',
+    titleEn: 'Marketing',
+    color: 'brand',
+    iconType: 'landmark',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-marketing-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-marketing-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-marketing-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-marketing-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-marketing-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-marketing-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-networking',
+    titleAr: 'إدارة الشبكات',
+    titleEn: 'Networking',
+    color: 'slate',
+    iconType: 'monitor',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-networking-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-networking-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-networking-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-networking-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-networking-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-networking-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-photography',
+    titleAr: 'التصوير الفوتوغرافي',
+    titleEn: 'Photography',
+    color: 'indigo',
+    iconType: 'monitor',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-photography-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-photography-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-photography-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-photography-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-photography-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-photography-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-programming',
+    titleAr: 'البرمجة',
+    titleEn: 'Programming',
+    color: 'slate',
+    iconType: 'code',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-programming-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-programming-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-programming-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-programming-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-programming-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-programming-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'btec-tourism-coach',
+    titleAr: 'السياحة والسفر',
+    titleEn: 'Tourism',
+    color: 'amber',
+    iconType: 'landmark',
+    track: 'btec',
+    units: [
+      {
+        id: 'btec-tourism-coach-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'btec-tourism-coach-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-tourism-coach-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'btec-tourism-coach-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'btec-tourism-coach-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'btec-tourism-coach-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g11-arabic',
+    titleAr: 'اللغة العربية (مهارات) - الأول الثانوي',
+    titleEn: 'Arabic Skills - G11',
+    color: 'amber',
+    iconType: 'book',
+    track: 'academic',
+    units: [
+      {
+        id: 'g11-arabic-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g11-arabic-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-arabic-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g11-arabic-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g11-arabic-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-arabic-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g11-biology',
+    titleAr: 'العلوم الحياتية - الأول الثانوي',
+    titleEn: 'Biology - G11',
+    color: 'rose',
+    iconType: 'heart',
+    track: 'academic',
+    units: [
+      {
+        id: 'g11-biology-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g11-biology-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-biology-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g11-biology-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g11-biology-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-biology-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g11-chemistry',
+    titleAr: 'الكيمياء - الأول الثانوي',
+    titleEn: 'Chemistry - G11',
+    color: 'emerald',
+    iconType: 'flask',
+    track: 'academic',
+    units: [
+      {
+        id: 'g11-chemistry-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g11-chemistry-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-chemistry-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g11-chemistry-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g11-chemistry-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-chemistry-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g11-digital-skills',
+    titleAr: 'المهارات الرقمية - الأول الثانوي',
+    titleEn: 'Digital Skills - G11',
+    color: 'slate',
+    iconType: 'monitor',
+    track: 'academic',
+    units: [
+      {
+        id: 'g11-digital-skills-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g11-digital-skills-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-digital-skills-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g11-digital-skills-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g11-digital-skills-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-digital-skills-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g11-earth-science',
+    titleAr: 'علوم الأرض والبيئة - الأول الثانوي',
+    titleEn: 'Earth Science - G11',
+    color: 'emerald',
+    iconType: 'globe',
+    track: 'academic',
+    units: [
+      {
+        id: 'g11-earth-science-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g11-earth-science-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-earth-science-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g11-earth-science-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g11-earth-science-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-earth-science-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g11-english',
+    titleAr: 'اللغة الإنجليزية - الأول الثانوي',
+    titleEn: 'English Language - G11',
+    color: 'cyan',
+    iconType: 'globe',
+    track: 'academic',
+    units: [
+      {
+        id: 'g11-english-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g11-english-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-english-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g11-english-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g11-english-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-english-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g11-financial-literacy',
+    titleAr: 'الثقافة المالية - الأول الثانوي',
+    titleEn: 'Financial Literacy - G11',
+    color: 'green',
+    iconType: 'landmark',
+    track: 'academic',
+    units: [
+      {
+        id: 'g11-financial-literacy-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g11-financial-literacy-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-financial-literacy-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g11-financial-literacy-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g11-financial-literacy-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-financial-literacy-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g11-islamic',
+    titleAr: 'التربية الإسلامية - الأول الثانوي',
+    titleEn: 'Islamic Education - G11',
+    color: 'teal',
+    iconType: 'landmark',
+    track: 'academic',
+    units: [
+      {
+        id: 'g11-islamic-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g11-islamic-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-islamic-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g11-islamic-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g11-islamic-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-islamic-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g11-jordan-history',
+    titleAr: 'تاريخ الأردن - الأول الثانوي',
+    titleEn: 'History of Jordan - G11',
+    color: 'orange',
+    iconType: 'landmark',
+    track: 'academic',
+    units: [
+      {
+        id: 'g11-jordan-history-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g11-jordan-history-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-jordan-history-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g11-jordan-history-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g11-jordan-history-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-jordan-history-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g11-math',
+    titleAr: 'الرياضيات - الأول الثانوي',
+    titleEn: 'Mathematics - G11',
+    color: 'blue',
+    iconType: 'calculator',
+    track: 'academic',
+    units: [
+      {
+        id: 'g11-math-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g11-math-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-math-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g11-math-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g11-math-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-math-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g11-physics',
+    titleAr: 'الفيزياء - الأول الثانوي',
+    titleEn: 'Physics - G11',
+    color: 'indigo',
+    iconType: 'atom',
+    track: 'academic',
+    units: [
+      {
+        id: 'g11-physics-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g11-physics-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-physics-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g11-physics-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g11-physics-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g11-physics-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g12-arabic',
+    titleAr: 'اللغة العربية (مهارات) - التوجيهي',
+    titleEn: 'Arabic Skills - G12',
+    color: 'amber',
+    iconType: 'book',
+    track: 'academic',
+    units: [
+      {
+        id: 'g12-arabic-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g12-arabic-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-arabic-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g12-arabic-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g12-arabic-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-arabic-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g12-arabic-specialized',
+    titleAr: 'اللغة العربية (تخصص) - التوجيهي',
+    titleEn: 'Arabic (Specialized) - G12',
+    color: 'amber',
+    iconType: 'book',
+    track: 'academic',
+    units: [
+      {
+        id: 'g12-arabic-specialized-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g12-arabic-specialized-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-arabic-specialized-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g12-arabic-specialized-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g12-arabic-specialized-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-arabic-specialized-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g12-biology',
+    titleAr: 'العلوم الحياتية - التوجيهي',
+    titleEn: 'Biology - G12',
+    color: 'rose',
+    iconType: 'heart',
+    track: 'academic',
+    units: [
+      {
+        id: 'g12-biology-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g12-biology-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-biology-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g12-biology-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g12-biology-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-biology-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g12-business-math',
+    titleAr: 'رياضيات الأعمال - التوجيهي',
+    titleEn: 'Business Math - G12',
+    color: 'blue',
+    iconType: 'calculator',
+    track: 'academic',
+    units: [
+      {
+        id: 'g12-business-math-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g12-business-math-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-business-math-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g12-business-math-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g12-business-math-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-business-math-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g12-chemistry',
+    titleAr: 'الكيمياء - التوجيهي',
+    titleEn: 'Chemistry - G12',
+    color: 'emerald',
+    iconType: 'flask',
+    track: 'academic',
+    units: [
+      {
+        id: 'g12-chemistry-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g12-chemistry-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-chemistry-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g12-chemistry-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g12-chemistry-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-chemistry-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g12-digital-skills',
+    titleAr: 'المهارات الرقمية - التوجيهي',
+    titleEn: 'Digital Skills - G12',
+    color: 'slate',
+    iconType: 'monitor',
+    track: 'academic',
+    units: [
+      {
+        id: 'g12-digital-skills-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g12-digital-skills-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-digital-skills-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g12-digital-skills-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g12-digital-skills-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-digital-skills-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g12-earth-science',
+    titleAr: 'علوم الأرض والبيئة - التوجيهي',
+    titleEn: 'Earth Science - G12',
+    color: 'emerald',
+    iconType: 'globe',
+    track: 'academic',
+    units: [
+      {
+        id: 'g12-earth-science-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g12-earth-science-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-earth-science-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g12-earth-science-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g12-earth-science-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-earth-science-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g12-english-advanced',
+    titleAr: 'اللغة الإنجليزية (متقدم) - التوجيهي',
+    titleEn: 'Advanced English - G12',
+    color: 'cyan',
+    iconType: 'globe',
+    track: 'academic',
+    units: [
+      {
+        id: 'g12-english-advanced-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g12-english-advanced-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-english-advanced-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g12-english-advanced-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g12-english-advanced-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-english-advanced-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g12-financial-literacy',
+    titleAr: 'الثقافة المالية - التوجيهي',
+    titleEn: 'Financial Literacy - G12',
+    color: 'green',
+    iconType: 'landmark',
+    track: 'academic',
+    units: [
+      {
+        id: 'g12-financial-literacy-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g12-financial-literacy-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-financial-literacy-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g12-financial-literacy-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g12-financial-literacy-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-financial-literacy-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g12-geography',
+    titleAr: 'الجغرافيا - التوجيهي',
+    titleEn: 'Geography - G12',
+    color: 'lime',
+    iconType: 'globe',
+    track: 'academic',
+    units: [
+      {
+        id: 'g12-geography-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g12-geography-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-geography-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g12-geography-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g12-geography-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-geography-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g12-history',
+    titleAr: 'التاريخ - التوجيهي',
+    titleEn: 'History - G12',
+    color: 'orange',
+    iconType: 'book',
+    track: 'academic',
+    units: [
+      {
+        id: 'g12-history-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g12-history-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-history-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g12-history-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g12-history-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-history-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g12-islamic',
+    titleAr: 'التربية الإسلامية - التوجيهي',
+    titleEn: 'Islamic Education - G12',
+    color: 'teal',
+    iconType: 'landmark',
+    track: 'academic',
+    units: [
+      {
+        id: 'g12-islamic-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g12-islamic-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-islamic-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g12-islamic-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g12-islamic-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-islamic-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g12-islamic-specialized',
+    titleAr: 'العلوم الإسلامية (تخصص) - التوجيهي',
+    titleEn: 'Islamic Sciences (Specialized) - G12',
+    color: 'teal',
+    iconType: 'landmark',
+    track: 'academic',
+    units: [
+      {
+        id: 'g12-islamic-specialized-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g12-islamic-specialized-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-islamic-specialized-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g12-islamic-specialized-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g12-islamic-specialized-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-islamic-specialized-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g12-jordan-history',
+    titleAr: 'تاريخ الأردن - التوجيهي',
+    titleEn: 'History of Jordan - G12',
+    color: 'orange',
+    iconType: 'landmark',
+    track: 'academic',
+    units: [
+      {
+        id: 'g12-jordan-history-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g12-jordan-history-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-jordan-history-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g12-jordan-history-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g12-jordan-history-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-jordan-history-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g12-math',
+    titleAr: 'الرياضيات - التوجيهي',
+    titleEn: 'Mathematics - G12',
+    color: 'blue',
+    iconType: 'calculator',
+    track: 'academic',
+    units: [
+      {
+        id: 'g12-math-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g12-math-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-math-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g12-math-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g12-math-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-math-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g12-philosophy',
+    titleAr: 'الفلسفة - التوجيهي',
+    titleEn: 'Philosophy - G12',
+    color: 'slate',
+    iconType: 'book',
+    track: 'academic',
+    units: [
+      {
+        id: 'g12-philosophy-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g12-philosophy-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-philosophy-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g12-philosophy-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g12-philosophy-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-philosophy-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g12-physics',
+    titleAr: 'الفيزياء - التوجيهي',
+    titleEn: 'Physics - G12',
+    color: 'indigo',
+    iconType: 'atom',
+    track: 'academic',
+    units: [
+      {
+        id: 'g12-physics-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g12-physics-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-physics-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g12-physics-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g12-physics-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-physics-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'g12-sociology',
+    titleAr: 'علم الاجتماع - التوجيهي',
+    titleEn: 'Sociology - G12',
+    color: 'slate',
+    iconType: 'book',
+    track: 'academic',
+    units: [
+      {
+        id: 'g12-sociology-u1',
+        titleAr: 'الوحدة الأولى',
+        titleEn: 'Unit 1',
+        lessons: [
+          { id: 'g12-sociology-u1-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-sociology-u1-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      },
+      {
+        id: 'g12-sociology-u2',
+        titleAr: 'الوحدة الثانية',
+        titleEn: 'Unit 2',
+        lessons: [
+          { id: 'g12-sociology-u2-l1', titleAr: 'الدرس الأول', titleEn: 'Lesson 1' },
+          { id: 'g12-sociology-u2-l2', titleAr: 'الدرس الثاني', titleEn: 'Lesson 2' }
+        ]
+      }
+    ]
+  },
 ];
