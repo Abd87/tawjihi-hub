@@ -237,7 +237,7 @@ export default function CourseSyllabusPage() {
       <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center text-center px-4">
         <CourseUnlockModal 
           isOpen={true} 
-          onClose={() => router.push(`/${locale}/dashboard`)} 
+          onClose={() => router.push('/dashboard')} 
           courseTitleAr={course.titleAr}
           courseTitleEn={course.titleEn}
           isRtl={isRtl}
