@@ -1,12 +1,12 @@
 import { MetadataRoute } from 'next';
-import prisma from '@/lib/prisma';
+import { subjectsData } from './[locale]/subjects/curriculumData';
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://tawjihihub.com';
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://tawjihi-hub.com';
 
   const staticRoutes = [
     '',
-    '/btec-guide',
+    '/courses',
     '/login',
     '/register',
     '/dashboard',
@@ -15,107 +15,41 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/subjects',
   ];
 
-  const sitemapEntries: MetadataRoute.Sitemap = [];
+  const locales = ['ar', 'en'];
+  
+  const entries: MetadataRoute.Sitemap = [];
 
-  // 1. Static Routes
+  // Generate localized URLs for static routes
   staticRoutes.forEach((route) => {
-    // Arabic Version
-    sitemapEntries.push({
-      url: `${baseUrl}/ar${route}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: route === '' ? 1 : 0.8,
-      alternates: {
-        languages: {
-          ar: `${baseUrl}/ar${route}`,
-          en: `${baseUrl}/en${route}`,
-        },
-      },
-    });
-    // English Version
-    sitemapEntries.push({
-      url: `${baseUrl}/en${route}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: route === '' ? 1 : 0.8,
-      alternates: {
-        languages: {
-          ar: `${baseUrl}/ar${route}`,
-          en: `${baseUrl}/en${route}`,
-        },
-      },
+    locales.forEach((locale) => {
+      entries.push({
+        url: `${baseUrl}/${locale}${route}`,
+        lastModified: new Date(),
+        changeFrequency: route === '' || route === '/courses' ? 'daily' : 'weekly',
+        priority: route === '' ? 1 : 0.8,
+      });
     });
   });
 
-  try {
-    // 2. Dynamic Course Routes
-    const courses = await prisma.course.findMany({
-      where: { published: true },
-      select: { id: true, updatedAt: true },
-    });
-
-    courses.forEach((course) => {
-      sitemapEntries.push({
-        url: `${baseUrl}/ar/courses/${course.id}`,
-        lastModified: course.updatedAt,
+  // Generate localized URLs for all subjects (SEO goldmine)
+  subjectsData.forEach((subject) => {
+    locales.forEach((locale) => {
+      entries.push({
+        url: `${baseUrl}/${locale}/subjects/${subject.id}`,
+        lastModified: new Date(),
         changeFrequency: 'weekly',
         priority: 0.9,
-        alternates: {
-          languages: {
-            ar: `${baseUrl}/ar/courses/${course.id}`,
-            en: `${baseUrl}/en/courses/${course.id}`,
-          },
-        },
-      });
-      sitemapEntries.push({
-        url: `${baseUrl}/en/courses/${course.id}`,
-        lastModified: course.updatedAt,
-        changeFrequency: 'weekly',
-        priority: 0.9,
-        alternates: {
-          languages: {
-            ar: `${baseUrl}/ar/courses/${course.id}`,
-            en: `${baseUrl}/en/courses/${course.id}`,
-          },
-        },
       });
     });
+  });
 
-    // 3. Dynamic Blog Routes
-    const blogs = await prisma.blogPost.findMany({
-      where: { published: true },
-      select: { slug: true, updatedAt: true },
-    });
+  // Default redirect root
+  entries.push({
+    url: `${baseUrl}`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 1,
+  });
 
-    blogs.forEach((blog) => {
-      sitemapEntries.push({
-        url: `${baseUrl}/ar/blog/${blog.slug}`,
-        lastModified: blog.updatedAt,
-        changeFrequency: 'daily',
-        priority: 0.7,
-        alternates: {
-          languages: {
-            ar: `${baseUrl}/ar/blog/${blog.slug}`,
-            en: `${baseUrl}/en/blog/${blog.slug}`,
-          },
-        },
-      });
-      sitemapEntries.push({
-        url: `${baseUrl}/en/blog/${blog.slug}`,
-        lastModified: blog.updatedAt,
-        changeFrequency: 'daily',
-        priority: 0.7,
-        alternates: {
-          languages: {
-            ar: `${baseUrl}/ar/blog/${blog.slug}`,
-            en: `${baseUrl}/en/blog/${blog.slug}`,
-          },
-        },
-      });
-    });
-  } catch (err) {
-    console.error('Error fetching dynamic routes for sitemap', err);
-  }
-
-  return sitemapEntries;
+  return entries;
 }
