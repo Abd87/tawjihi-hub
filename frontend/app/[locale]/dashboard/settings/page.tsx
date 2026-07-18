@@ -22,6 +22,16 @@ export default function SettingsPage() {
   
   const [profileSuccess, setProfileSuccess] = useState(false);
   const [passwordSuccess, setPasswordSuccess] = useState(false);
+  const [courses, setCourses] = useState<any[]>([]);
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  
+  const [loadingProfile, setLoadingProfile] = useState(false);
+  const [loadingPassword, setLoadingPassword] = useState(false);
+  
+  const [profileSuccess, setProfileSuccess] = useState(false);
+  const [passwordSuccess, setPasswordSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -33,6 +43,36 @@ export default function SettingsPage() {
           setUser(data.user);
           if (data.user.phoneNumber) {
             setPhoneNumber(data.user.phoneNumber);
+          }
+          
+          // Fetch analytics & courses
+          const token = localStorage.getItem('token');
+          if (token && data.user.role === 'STUDENT') {
+            fetch('/api/student/analytics', { headers: { 'Authorization': `Bearer ${token}` }})
+            .then(r => r.json()).then(d => { if(d.quizAttempts) setQuizAttempts(d.quizAttempts); })
+            .catch(e => console.error(e));
+
+            fetch('/api/courses', { headers: { 'Authorization': `Bearer ${token}` }})
+            .then(r => r.json()).then(d => {
+              if (d.courses) {
+                 const track = data.user.trackType || 'ACADEMIC';
+                 let filtered = d.courses.filter((c: any) => c.published && c.track === track);
+                 let completedLessonIds: string[] = [];
+                 try {
+                   const stored = localStorage.getItem(`completed-lessons-${data.user.id}`);
+                   if (stored) completedLessonIds = JSON.parse(stored);
+                 } catch(e) {}
+                 filtered = filtered.map((c: any) => {
+                   if (c.lessons) {
+                      const total = c.lessons.length || 1;
+                      const mastered = c.lessons.filter((l: any) => completedLessonIds.includes(l.id)).length;
+                      c.mockProgress = Math.round((mastered / total) * 100);
+                   }
+                   return c;
+                 });
+                 setCourses(filtered);
+              }
+            }).catch(e=>console.error(e));
           }
         }
       } catch (e) {
@@ -250,6 +290,83 @@ export default function SettingsPage() {
         </div>
 
       </div>
+
+      {/* Performance & Analytics Section */}
+      {user?.role === 'STUDENT' && (
+        <div className="mb-8 bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 mt-8 col-span-1 md:col-span-2">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="p-2.5 bg-brand-500/20 rounded-xl border border-brand-500/30">
+              <TrendingUp className="h-6 w-6 text-brand-400" />
+            </div>
+            <h2 className="text-xl font-black text-white">
+              {locale === 'ar' ? 'تحليل الأداء والمتابعة' : 'Performance & Analytics'}
+            </h2>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Course Progress Chart */}
+            <div className="bg-slate-950/50 rounded-2xl border border-slate-800 p-5">
+              <h3 className="text-slate-300 font-bold mb-6 text-sm">
+                {locale === 'ar' ? 'نسبة الإنجاز في المواد' : 'Course Progress Completion'}
+              </h3>
+              <div className="h-[250px] w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={courses.filter((c: any) => !c.locked && c.mockProgress !== undefined && c.mockProgress > 0)}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
+                    <XAxis 
+                      dataKey={locale === 'ar' ? 'titleAr' : 'titleEn'} 
+                      stroke="#64748b" 
+                      fontSize={12} 
+                      tickFormatter={(val: string) => val.length > 15 ? val.substring(0, 15) + '...' : val}
+                    />
+                    <YAxis stroke="#64748b" fontSize={12} domain={[0, 100]} />
+                    <Tooltip 
+                      contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '12px', color: '#fff' }}
+                      itemStyle={{ color: '#0ea5e9', fontWeight: 'bold' }}
+                      formatter={(value: any) => [`${value}%`, locale === 'ar' ? 'الإنجاز' : 'Progress']}
+                    />
+                    <Bar dataKey="mockProgress" fill="#0ea5e9" radius={[4, 4, 0, 0]} barSize={40} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            {/* Quiz Scores Chart */}
+            <div className="bg-slate-950/50 rounded-2xl border border-slate-800 p-5">
+              <h3 className="text-slate-300 font-bold mb-6 text-sm">
+                {locale === 'ar' ? 'نتائج الاختبارات الأخيرة' : 'Recent Quiz Scores'}
+              </h3>
+              {quizAttempts.length > 0 ? (
+                <div className="h-[250px] w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={quizAttempts}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
+                      <XAxis 
+                        dataKey="date" 
+                        stroke="#64748b" 
+                        fontSize={12}
+                        tickFormatter={(val: string) => new Date(val).toLocaleDateString(locale === 'ar' ? 'ar-JO' : 'en-US', { month: 'short', day: 'numeric' })}
+                      />
+                      <YAxis stroke="#64748b" fontSize={12} domain={[0, 100]} />
+                      <Tooltip 
+                        contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '12px', color: '#fff' }}
+                        labelFormatter={(label: any) => new Date(label).toLocaleString(locale === 'ar' ? 'ar-JO' : 'en-US')}
+                        formatter={(value: any, name: any, props: any) => [`${value}%`, props.payload[locale === 'ar' ? 'quizTitleAr' : 'quizTitleEn']]}
+                      />
+                      <Line type="monotone" dataKey="scorePercent" stroke="#f59e0b" strokeWidth={3} dot={{ r: 5, fill: '#f59e0b', strokeWidth: 0 }} />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              ) : (
+                <div className="h-[250px] w-full flex items-center justify-center text-slate-500 text-sm">
+                  {locale === 'ar' ? 'لم تقم بتقديم أي اختبارات بعد.' : 'You have not attempted any quizzes yet.'}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
