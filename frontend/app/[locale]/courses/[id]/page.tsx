@@ -165,7 +165,6 @@ export default function CourseSyllabusPage() {
         if (res.ok) {
           const found = await res.json();
           setCourse(found);
-          setExpandedUnits(found.units?.map((u: any) => u.id) || []);
           
           // Initial load from cache to prevent flicker, then sync
           const completed = localStorage.getItem(`completed-items-${userStr ? JSON.parse(userStr).id : ''}-${courseId}`);
