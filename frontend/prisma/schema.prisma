@@ -37,6 +37,7 @@ model User {
   usedCoupons   Coupon[]      @relation("UsedCoupons")
   progress      Progress[]
   quizAttempts  QuizAttempt[]
+  blogPosts     BlogPost[]
   
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
@@ -360,3 +361,24 @@ model TeacherApplication {
 
   @@map("teacher_applications")
 }
+
+model BlogPost {
+  id          String   @id @default(uuid())
+  slug        String   @unique
+  titleAr     String
+  titleEn     String
+  excerptAr   String?  @db.Text
+  excerptEn   String?  @db.Text
+  contentAr   String   @db.Text
+  contentEn   String   @db.Text
+  keywords    String?  @db.Text
+  coverImage  String?
+  published   Boolean  @default(false)
+  authorId    String
+  author      User     @relation(fields: [authorId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("blog_posts")
+}
+
