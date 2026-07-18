@@ -621,7 +621,7 @@ export default async function HomePage({ params: { locale } }: PageProps) {
                 </p>
               </div>
               <Link
-                href={`/${locale}/blog`}
+                href="/blog"
                 className="mt-6 md:mt-0 flex items-center gap-2 text-brand-500 font-bold hover:text-brand-400 transition"
               >
                 {locale === 'ar' ? 'عرض كل المقالات' : 'View All Articles'}
@@ -633,7 +633,7 @@ export default async function HomePage({ params: { locale } }: PageProps) {
               {latestPosts.map((post) => (
                 <Link
                   key={post.id}
-                  href={`/${locale}/blog/${post.slug}`}
+                  href={`/blog/${post.slug}`}
                   className="group flex flex-col bg-slate-900/50 rounded-3xl border border-slate-800 overflow-hidden hover:border-brand-500/50 hover:bg-slate-900 transition-all duration-300"
                 >
                   {post.coverImage && (

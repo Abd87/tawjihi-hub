@@ -98,7 +98,7 @@ export default function AdminBlogPage({ params: { locale } }: { params: { locale
               ? 'انقر على تشغيل الروبوت لجلب أحدث التحديثات من موقع المركز الوطني لتطوير المناهج (NCCD) تلقائياً، أو قم بكتابة مقالك الخاص لدعم السيو.'
               : 'Click Run Bot to fetch the latest NCCD curriculum updates automatically, or write your own manual SEO article.'}
           </p>
-          <Link href={`/${locale}/blog`} className="text-brand-500 font-bold hover:underline">
+          <Link href="/blog" className="text-brand-500 font-bold hover:underline">
             {isRtl ? 'عرض المدونة العامة ←' : 'View Public Blog ←'}
           </Link>
         </div>
