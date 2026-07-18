@@ -589,11 +589,17 @@ export default function DashboardPage() {
         {/* My Schedule / Live Sessions Widget */}
         {(() => {
           // Extract all live sessions from enrolled courses
-          const allSessions: (LiveSession & { courseTitleAr: string; courseTitleEn: string })[] = [];
+          const allSessions: (LiveSession & { courseTitleAr: string; courseTitleEn: string; isLocked: boolean; courseId: string })[] = [];
           courses.forEach(c => {
             if (c.liveSessions) {
               c.liveSessions.forEach(ls => {
-                allSessions.push({ ...ls, courseTitleAr: c.titleAr, courseTitleEn: c.titleEn });
+                allSessions.push({ 
+                  ...ls, 
+                  courseTitleAr: c.titleAr, 
+                  courseTitleEn: c.titleEn,
+                  isLocked: !!c.locked,
+                  courseId: c.id
+                });
               });
             }
           });
@@ -634,10 +640,17 @@ export default function DashboardPage() {
                         </span>
                       </div>
                     </div>
-                    <a href={session.zoomLink} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all">
-                      <Video className="h-4 w-4" />
-                      {locale === 'ar' ? 'انضمام عبر Zoom' : 'Join via Zoom'}
-                    </a>
+                    {session.isLocked ? (
+                      <Link href={`/${locale}/courses/${session.courseId}`} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-bold rounded-xl transition-all border border-slate-700">
+                        <Lock className="h-4 w-4 text-slate-400" />
+                        {locale === 'ar' ? 'اشترك للانضمام' : 'Enroll to Join'}
+                      </Link>
+                    ) : (
+                      <a href={session.zoomLink} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-blue-500/20">
+                        <Video className="h-4 w-4" />
+                        {locale === 'ar' ? 'انضمام عبر Zoom' : 'Join via Zoom'}
+                      </a>
+                    )}
                   </div>
                 ))}
               </div>
