@@ -14,7 +14,9 @@ import {
   LogOut,
   ChevronRight,
   ChevronLeft,
-  Globe
+  Globe,
+  PenTool,
+  Newspaper
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
@@ -47,6 +49,8 @@ export default function AdminSidebar() {
     { href: '/admin/teachers', icon: GraduationCap, labelEn: 'Teachers', labelAr: 'المعلمين', roles: ['ADMIN'] },
     { href: '/admin/coupons', icon: Ticket, labelEn: 'Coupons', labelAr: 'الكوبونات', roles: ['ADMIN'] },
     { href: '/admin/applications', icon: FileText, labelEn: 'Applications', labelAr: 'طلبات التوظيف', roles: ['ADMIN'] },
+    { href: '/admin/blog', icon: Newspaper, labelEn: 'Blog & News', labelAr: 'المدونة والأخبار', roles: ['ADMIN'] },
+    { href: '/studio', icon: PenTool, labelEn: 'Studio', labelAr: 'الاستوديو', roles: ['ADMIN', 'TEACHER'] },
     { href: '/admin/settings', icon: Settings, labelEn: 'Settings', labelAr: 'الإعدادات', roles: ['ADMIN'] },
   ];
 
