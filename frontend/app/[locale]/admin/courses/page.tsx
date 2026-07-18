@@ -72,6 +72,7 @@ interface Course {
   liveSessions?: LiveSession[];
   published: boolean;
   locked: boolean;
+  discussionGroupLink?: string;
   createdAt: string;
 }
 
@@ -936,6 +937,12 @@ function CourseForm({
             ))}
           </select>
         </div>
+      </div>
+
+      {/* Discussion Group */}
+      <div className="grid grid-cols-1 gap-3">
+        <Field label={isRtl ? 'رابط مجموعة النقاش (واتساب/تيليجرام)' : 'Discussion Group Link (WhatsApp/Telegram)'} dir="ltr"
+          value={course.discussionGroupLink || ''} onChange={v => setField('discussionGroupLink', v)} placeholder="https://chat.whatsapp.com/..." />
       </div>
 
       {/* Published + Locked toggles */}

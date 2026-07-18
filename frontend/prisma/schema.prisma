@@ -58,6 +58,7 @@ model Course {
   coverImage    String?
   published     Boolean      @default(false)
   locked        Boolean      @default(false)
+  discussionGroupLink String?
   
   teacherId     String
   teacher       User         @relation("TeacherCourses", fields: [teacherId], references: [id])

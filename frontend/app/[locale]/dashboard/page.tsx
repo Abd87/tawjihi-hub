@@ -23,6 +23,7 @@ import {
   ChevronUp,
   Loader2,
   Sparkles,
+  MessageCircle,
   Lock,
   Users,
   Calendar,
@@ -586,283 +587,338 @@ export default function DashboardPage() {
           </div>
         ) : (
           <div className="space-y-10 animate-fade-in pb-20">
-            {/* Dashboard Content */}
-
-
-        {/* My Schedule / Live Sessions Widget */}
-        {(() => {
-          // Extract all live sessions from enrolled courses
-          const allSessions: (LiveSession & { courseTitleAr: string; courseTitleEn: string; isLocked: boolean; courseId: string })[] = [];
-          courses.forEach(c => {
-            if (c.liveSessions) {
-              c.liveSessions.forEach(ls => {
-                allSessions.push({ 
-                  ...ls, 
-                  courseTitleAr: c.titleAr, 
-                  courseTitleEn: c.titleEn,
-                  isLocked: !!c.locked,
-                  courseId: c.id
-                });
-              });
-            }
-          });
-
-          // Sort chronologically
-          allSessions.sort((a, b) => new Date(a.startTime).getTime() - new Date(b.startTime).getTime());
-
-          if (allSessions.length === 0) return null;
-
-          return (
-            <div className="mb-10">
-              <div 
-                className="flex items-center justify-between gap-3 mb-6 cursor-pointer group"
-                onClick={() => setIsScheduleMinimized(!isScheduleMinimized)}
-              >
-                <div className="flex items-center gap-3">
-                  <div className="p-2.5 bg-blue-500/20 rounded-xl border border-blue-500/30 group-hover:bg-blue-500/30 transition-colors">
-                    <Calendar className="h-6 w-6 text-blue-400" />
+            {/* Enrolled Courses (Top Priority) */}
+            {user?.role === 'STUDENT' && (
+              <div className="mb-6">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2.5 bg-brand-500/20 rounded-xl border border-brand-500/30">
+                    <GraduationCap className="h-6 w-6 text-brand-400" />
                   </div>
-                  <h2 className="text-xl font-black text-white group-hover:text-blue-400 transition-colors">
-                    {locale === 'ar' ? 'جدول الحصص المباشرة التفاعلية' : 'Interactive Live Sessions Schedule'}
+                  <h2 className="text-xl font-black text-white">
+                    {locale === 'ar' ? 'دوراتي المشترك بها' : 'My Enrolled Courses'}
                   </h2>
                 </div>
-                <button className="p-2 rounded-lg bg-slate-800 text-slate-400 group-hover:text-white transition-colors">
-                  {isScheduleMinimized ? <ChevronDown className="h-5 w-5" /> : <ChevronUp className="h-5 w-5" />}
-                </button>
-              </div>
-              
-              {!isScheduleMinimized && (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 animate-in fade-in slide-in-from-top-2">
-                  {allSessions.map(session => (
-                  <div key={session.id} className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-slate-700 transition-colors relative overflow-hidden group">
-                    <div className="absolute top-0 start-0 w-1 h-full bg-blue-500"></div>
-                    <div>
-                      <span className="text-xs font-bold text-blue-400 mb-2 block">
-                        {locale === 'ar' ? session.courseTitleAr : session.courseTitleEn}
-                      </span>
-                      <h3 className="text-base font-bold text-white mb-3">
-                        {locale === 'ar' ? session.titleAr : session.titleEn}
-                      </h3>
-                      <div className="flex items-center gap-2 text-sm text-slate-400 mb-5">
-                        <Clock className="h-4 w-4" />
-                        <span>
-                          {new Date(session.startTime).toLocaleString(locale === 'ar' ? 'ar-JO' : 'en-US', {
-                            weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
-                          })}
-                        </span>
-                      </div>
-                    </div>
-                    {session.isLocked ? (
-                      <Link href={`/${locale}/courses/${session.courseId}`} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-bold rounded-xl transition-all border border-slate-700">
-                        <Lock className="h-4 w-4 text-slate-400" />
-                        {locale === 'ar' ? 'اشترك للانضمام' : 'Enroll to Join'}
-                      </Link>
-                    ) : (
-                      <a href={session.zoomLink} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-blue-500/20">
-                        <Video className="h-4 w-4" />
-                        {locale === 'ar' ? 'انضمام عبر Zoom' : 'Join via Zoom'}
-                      </a>
-                    )}
+                
+                {courses.filter(c => !c.locked).length === 0 ? (
+                  <div className="text-center py-10 bg-slate-900/10 border border-slate-900 rounded-3xl p-6">
+                     <p className="text-slate-500">{locale === 'ar' ? 'لم تشترك في أي دورة بعد.' : 'You haven\'t enrolled in any courses yet.'}</p>
                   </div>
-                ))}
-              </div>
-              )}
-            </div>
-          );
-        })()}
+                ) : (
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {courses.filter(c => !c.locked).map((course: any) => {
+                      const lessonsVal = course.mockLessonsCount ?? 0;
+                      const quizzesVal = course.mockQuizzesCount ?? 0;
+                      const pdfsVal = course._pdfCount ?? 0;
+                      const progressVal = course.mockProgress ?? 0;
+                      return (
+                        <Link
+                          key={course.id}
+                          href={`/courses/${course.id}`}
+                          className="group relative rounded-2xl border border-slate-850 bg-slate-900/15 hover:bg-slate-900/35 hover:border-brand-500/50 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg block"
+                        >
+                          <div>
+                            <div className="h-32 sm:h-36 w-full overflow-hidden relative bg-slate-950 group-hover:bg-slate-900 transition-colors duration-500">
+                              {(course.coverImage || course.thumbnailUrl) ? (
+                                <Image 
+                                  src={course.coverImage || course.thumbnailUrl} 
+                                  alt={locale === 'ar' ? course.titleAr : course.titleEn} 
+                                  fill
+                                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                  className="object-cover group-hover:scale-110 group-hover:-rotate-1 transition-all duration-700 opacity-80 group-hover:opacity-100"
+                                />
+                              ) : (
+                                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-brand-900/20 to-slate-950 group-hover:from-brand-800/40 transition-all duration-700">
+                                   <BookOpen className="h-10 w-10 text-brand-500/40 group-hover:text-brand-400 group-hover:scale-125 group-hover:rotate-6 transition-all duration-700" />
+                                </div>
+                              )}
+                              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none" />
+                              <span className="absolute bottom-4 start-4 text-xs font-semibold px-2.5 py-1 rounded bg-brand-500 text-white shadow-md pointer-events-none">
+                                {locale === 'ar' ? course.subjectAr : course.subjectEn}
+                              </span>
+                            </div>
 
-        {/* Student Coupon CTA */}
-        {user?.role === 'STUDENT' && (
-          <div className="mb-6">
-            <Link
-              href="/redeem"
-              className="flex items-center gap-4 p-4 rounded-2xl border border-brand-500/20 bg-gradient-to-r from-brand-500/5 to-amber-500/5 hover:from-brand-500/10 hover:to-amber-500/10 hover:border-brand-500/40 transition-all group"
-            >
-              <div className="p-3 bg-gradient-to-br from-brand-500/20 to-amber-500/20 rounded-xl text-brand-400 group-hover:scale-110 transition-transform shrink-0">
-                <Key className="h-5 w-5" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs text-slate-500 font-semibold mb-0.5">
-                  {locale === 'ar' ? 'هل لديك كوبون دخول؟' : 'Have an access coupon?'}
-                </p>
-                <p className="text-sm font-bold text-white">
-                  {locale === 'ar' ? 'أدخل الكود لفتح مادتك الدراسية' : 'Enter your code to unlock a course'}
-                </p>
-              </div>
-              <div className="text-slate-500 group-hover:text-brand-400 transition-colors">
-                {locale === 'ar' ? <ChevronLeft className="h-5 w-5" /> : <ChevronRight className="h-5 w-5" />}
-              </div>
-            </Link>
-          </div>
-        )}
+                            <div className="p-6">
+                              <span className="text-xs text-slate-500 font-semibold mb-2 block">
+                                {locale === 'ar' ? course.teacherNameAr : course.teacherNameEn}
+                              </span>
+                              <h3 className="text-base sm:text-lg font-bold text-white leading-snug group-hover:text-brand-400 transition-colors mb-3">
+                                {locale === 'ar' ? course.titleAr : course.titleEn}
+                              </h3>
+                              <div className="space-y-2 mt-4">
+                                <div className="flex justify-between text-xs font-bold">
+                                  <span className="text-slate-400">{t('progressLabel')}</span>
+                                  <span className="text-brand-500">{progressVal}%</span>
+                                </div>
+                                <div className="h-1.5 w-full bg-slate-950 rounded-full overflow-hidden">
+                                  <div 
+                                    className="h-full bg-gradient-to-r from-brand-500 to-amber-600 rounded-full"
+                                    style={{ width: `${progressVal}%` }}
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
 
-        {/* Semester Tabs */}
-        <div className="flex items-center gap-2 mb-6">
-          <button
-            onClick={() => setActiveSemester(1)}
-            className={`px-5 py-2 rounded-xl text-sm font-bold transition-all border ${
-              activeSemester === 1
-                ? 'bg-brand-500 border-brand-500 text-white shadow-md shadow-brand-500/20'
-                : 'bg-slate-900/40 border-slate-800 text-slate-400 hover:text-white hover:border-slate-600'
-            }`}
-          >
-            {locale === 'ar' ? 'الفصل الأول' : 'Semester 1'}
-          </button>
-          <button
-            onClick={() => setActiveSemester(2)}
-            className={`px-5 py-2 rounded-xl text-sm font-bold transition-all border ${
-              activeSemester === 2
-                ? 'bg-brand-500 border-brand-500 text-white shadow-md shadow-brand-500/20'
-                : 'bg-slate-900/40 border-slate-800 text-slate-400 hover:text-white hover:border-slate-600'
-            }`}
-          >
-            {locale === 'ar' ? 'الفصل الثاني' : 'Semester 2'}
-          </button>
-        </div>
+                          <div className="p-6 pt-0">
+                            <div className="group/btn w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-bold text-white bg-slate-950 border border-slate-850 hover:bg-brand-500 hover:border-brand-500 transition-all duration-300 cursor-pointer">
+                              <span>{t('resumeBtn')}</span>
+                              {locale === 'ar' ? (
+                                <ChevronLeft className="h-4 w-4 transition-transform group-hover/btn:-translate-x-1" />
+                              ) : (
+                                <ChevronRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                              )}
+                            </div>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
 
-        {courses.filter(c => !c.semester || c.semester === activeSemester).length === 0 ? (
-          <div className="text-center py-20 bg-slate-900/10 border border-slate-900 rounded-3xl p-8">
-            <div className="h-16 w-16 mx-auto flex items-center justify-center rounded-full bg-slate-900 border border-slate-800 text-slate-600 mb-4">
-              <BookOpen className="h-8 w-8" />
-            </div>
-            <h3 className="text-lg font-bold text-slate-300">{t('noCoursesTitle')}</h3>
-            <p className="text-sm text-slate-500 mt-2">{t('noCoursesDesc')}</p>
-          </div>
-        ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {courses.filter(c => !c.semester || c.semester === activeSemester).map((course: any) => {
-              const lessonsVal = course.mockLessonsCount ?? 0;
-              const quizzesVal = course.mockQuizzesCount ?? 0;
-              const pdfsVal = course._pdfCount ?? 0;
-              const progressVal = course.mockProgress ?? 0;
+            {/* My Schedule / Live Sessions Widget */}
+            {(() => {
+              const allSessions: (LiveSession & { courseTitleAr: string; courseTitleEn: string; isLocked: boolean; courseId: string; discussionGroupLink?: string })[] = [];
+              courses.forEach(c => {
+                if (c.liveSessions) {
+                  c.liveSessions.forEach(ls => {
+                    allSessions.push({ 
+                      ...ls, 
+                      courseTitleAr: c.titleAr, 
+                      courseTitleEn: c.titleEn,
+                      isLocked: !!c.locked,
+                      courseId: c.id,
+                      discussionGroupLink: c.discussionGroupLink
+                    });
+                  });
+                }
+              });
+
+              allSessions.sort((a, b) => new Date(a.startTime).getTime() - new Date(b.startTime).getTime());
+              if (allSessions.length === 0) return null;
 
               return (
-                <Link
-                  key={course.id}
-                  href={course.locked ? '#' : `/courses/${course.id}`}
-                  onClick={course.locked ? (e) => { e.preventDefault(); setLockedModalCourse(course); } : undefined}
-                  className={`group relative rounded-2xl border border-slate-850 bg-slate-900/15 hover:bg-slate-900/35 hover:border-slate-800/80 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg block ${course.locked ? 'cursor-pointer' : ''}`}
-                >
-                  <div>
-                    {/* Course Banner Cover */}
-                    <div className="h-32 sm:h-36 w-full overflow-hidden relative bg-slate-950 group-hover:bg-slate-900 transition-colors duration-500">
-                      {(course.coverImage || course.thumbnailUrl) ? (
-                        <Image 
-                          src={course.coverImage || course.thumbnailUrl} 
-                          alt={locale === 'ar' ? course.titleAr : course.titleEn} 
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          className="object-cover group-hover:scale-110 group-hover:-rotate-1 transition-all duration-700 opacity-80 group-hover:opacity-100"
-                        />
-                      ) : (
-                        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-brand-900/20 to-slate-950 group-hover:from-brand-800/40 transition-all duration-700">
-                           <BookOpen className="h-10 w-10 text-brand-500/40 group-hover:text-brand-400 group-hover:scale-125 group-hover:rotate-6 transition-all duration-700" />
-                        </div>
-                      )}
-                      
-                      {/* Shading overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none" />
-                      
-                      {/* Locked overlay */}
-                      {course.locked && (
-                        <div className="absolute inset-0 bg-slate-950/60 flex items-center justify-center pointer-events-none" />
-                      )}
-
-                      {/* Lock badge (top-right) */}
-                      {course.locked && (
-                        <div className="absolute top-3 end-3 p-2 bg-slate-950/80 border border-slate-700 rounded-xl pointer-events-none">
-                          <Lock className="h-4 w-4 text-slate-300" />
-                        </div>
-                      )}
-
-                      {/* Subject Tag */}
-                      <span className="absolute bottom-4 start-4 text-xs font-semibold px-2.5 py-1 rounded bg-brand-500 text-white shadow-md pointer-events-none">
-                        {locale === 'ar' ? course.subjectAr : course.subjectEn}
-                      </span>
-                    </div>
-
-                    {/* Course Info */}
-                    <div className="p-6">
-                      {/* Teacher name */}
-                      <span className="text-xs text-slate-500 font-semibold mb-2 block">
-                        {locale === 'ar' ? course.teacherNameAr : course.teacherNameEn}
-                      </span>
-                      
-                      {/* Course Title */}
-                      <h3 className="text-base sm:text-lg font-bold text-white leading-snug group-hover:text-brand-400 transition-colors mb-3">
-                        {locale === 'ar' ? course.titleAr : course.titleEn}
-                      </h3>
-                      
-                      {/* Course Description */}
-                      <p className="text-slate-400 text-xs sm:text-sm leading-relaxed line-clamp-2 mb-6">
-                        {locale === 'ar' ? course.descriptionAr : course.descriptionEn}
-                      </p>
-
-                      {/* Course Metadata Stats */}
-                      <div className="grid grid-cols-3 gap-4 border-y border-slate-850/60 py-4.5 mb-6 text-xs text-slate-400">
-                        <div className="flex items-center gap-1.5">
-                          <PlayCircle className="h-4 w-4 text-brand-500 shrink-0" />
-                          <span>{t('lessonsCount', { count: lessonsVal })}</span>
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                          <HelpCircle className="h-4 w-4 text-brand-500 shrink-0" />
-                          <span>{t('quizzesCount', { count: quizzesVal })}</span>
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                          <FileText className="h-4 w-4 text-brand-500 shrink-0" />
-                          <span>{pdfsVal} {locale === 'ar' ? 'ملفات PDF' : 'PDFs'}</span>
-                        </div>
+                <div className="mb-10">
+                  <div 
+                    className="flex items-center justify-between gap-3 mb-6 cursor-pointer group"
+                    onClick={() => setIsScheduleMinimized(!isScheduleMinimized)}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="p-2.5 bg-blue-500/20 rounded-xl border border-blue-500/30 group-hover:bg-blue-500/30 transition-colors">
+                        <Calendar className="h-6 w-6 text-blue-400" />
                       </div>
-
-                      {/* Progress Bar widget */}
-                      <div className="space-y-2">
-                        <div className="flex justify-between text-xs font-bold">
-                          <span className="text-slate-400">{t('progressLabel')}</span>
-                          <span className="text-brand-500">{progressVal}%</span>
-                        </div>
-                        <div className="h-1.5 w-full bg-slate-950 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-gradient-to-r from-brand-500 to-amber-600 rounded-full"
-                            style={{ width: `${progressVal}%` }}
-                          />
-                        </div>
-                      </div>
+                      <h2 className="text-xl font-black text-white group-hover:text-blue-400 transition-colors">
+                        {locale === 'ar' ? 'جدول الحصص المباشرة التفاعلية' : 'Interactive Live Sessions Schedule'}
+                      </h2>
                     </div>
+                    <button className="p-2 rounded-lg bg-slate-800 text-slate-400 group-hover:text-white transition-colors">
+                      {isScheduleMinimized ? <ChevronDown className="h-5 w-5" /> : <ChevronUp className="h-5 w-5" />}
+                    </button>
                   </div>
-
-                  {/* Course Action */}
-                  <div className="p-6 pt-0">
-                    {course.locked ? (
-                      <div className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-bold text-slate-500 bg-slate-900 border border-slate-800 cursor-not-allowed">
-                        <Lock className="h-4 w-4" />
-                        <span>{locale === 'ar' ? 'مقفل / Locked' : 'Locked / مقفل'}</span>
-                      </div>
-                    ) : (
-                      <div className="group/btn w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-bold text-white bg-slate-950 border border-slate-850 hover:bg-brand-500 hover:border-brand-500 transition-all duration-300 cursor-pointer">
-                        <span>{t('resumeBtn')}</span>
-                        {locale === 'ar' ? (
-                          <ChevronLeft className="h-4 w-4 transition-transform group-hover/btn:-translate-x-1" />
+                  
+                  {!isScheduleMinimized && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 animate-in fade-in slide-in-from-top-2">
+                      {allSessions.map(session => (
+                      <div key={session.id} className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-slate-700 transition-colors relative overflow-hidden group">
+                        <div className="absolute top-0 start-0 w-1 h-full bg-blue-500"></div>
+                        <div>
+                          <span className="text-xs font-bold text-blue-400 mb-2 block">
+                            {locale === 'ar' ? session.courseTitleAr : session.courseTitleEn}
+                          </span>
+                          <h3 className="text-base font-bold text-white mb-3">
+                            {locale === 'ar' ? session.titleAr : session.titleEn}
+                          </h3>
+                          <div className="flex items-center gap-2 text-sm text-slate-400 mb-5">
+                            <Clock className="h-4 w-4" />
+                            <span>
+                              {new Date(session.startTime).toLocaleString(locale === 'ar' ? 'ar-JO' : 'en-US', {
+                                weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
+                              })}
+                            </span>
+                          </div>
+                        </div>
+                        {session.isLocked ? (
+                          <Link href={`/${locale}/courses/${session.courseId}`} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-bold rounded-xl transition-all border border-slate-700">
+                            <Lock className="h-4 w-4 text-slate-400" />
+                            {locale === 'ar' ? 'اشترك للانضمام' : 'Enroll to Join'}
+                          </Link>
                         ) : (
-                          <ChevronRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                          <div className="flex flex-col gap-2 w-full mt-2">
+                            <a href={session.zoomLink} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-blue-500/20">
+                              <Video className="h-4 w-4" />
+                              {locale === 'ar' ? 'انضمام عبر Zoom' : 'Join via Zoom'}
+                            </a>
+                            {session.discussionGroupLink && (
+                              <a href={session.discussionGroupLink} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-[#25D366]/20 hover:bg-[#25D366]/30 text-[#25D366] border border-[#25D366]/30 text-sm font-bold rounded-xl transition-all">
+                                <MessageCircle className="h-4 w-4" />
+                                {locale === 'ar' ? 'جروب المادة' : 'Discussion Group'}
+                              </a>
+                            )}
+                          </div>
                         )}
                       </div>
-                    )}
+                    ))}
+                  </div>
+                  )}
+                </div>
+              );
+            })()}
+
+            {/* Student Coupon CTA */}
+            {user?.role === 'STUDENT' && (
+              <div className="mb-10">
+                <Link
+                  href="/redeem"
+                  className="flex items-center gap-4 p-4 rounded-2xl border border-brand-500/20 bg-gradient-to-r from-brand-500/5 to-amber-500/5 hover:from-brand-500/10 hover:to-amber-500/10 hover:border-brand-500/40 transition-all group"
+                >
+                  <div className="p-3 bg-gradient-to-br from-brand-500/20 to-amber-500/20 rounded-xl text-brand-400 group-hover:scale-110 transition-transform shrink-0">
+                    <Key className="h-5 w-5" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs text-slate-500 font-semibold mb-0.5">
+                      {locale === 'ar' ? 'هل لديك كوبون دخول؟' : 'Have an access coupon?'}
+                    </p>
+                    <p className="text-sm font-bold text-white">
+                      {locale === 'ar' ? 'أدخل الكود لفتح مادتك الدراسية' : 'Enter your code to unlock a course'}
+                    </p>
+                  </div>
+                  <div className="text-slate-500 group-hover:text-brand-400 transition-colors">
+                    {locale === 'ar' ? <ChevronLeft className="h-5 w-5" /> : <ChevronRight className="h-5 w-5" />}
                   </div>
                 </Link>
-              );
-            })}
+              </div>
+            )}
+
+            {/* Semester Tabs */}
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-2.5 bg-purple-500/20 rounded-xl border border-purple-500/30">
+                <Compass className="h-6 w-6 text-purple-400" />
+              </div>
+              <h2 className="text-xl font-black text-white">
+                {locale === 'ar' ? 'استكشف الدورات المتوفرة' : 'Discover Available Courses'}
+              </h2>
+            </div>
+            
+            <div className="flex items-center gap-2 mb-6">
+              <button
+                onClick={() => setActiveSemester(1)}
+                className={`px-5 py-2 rounded-xl text-sm font-bold transition-all border ${
+                  activeSemester === 1
+                    ? 'bg-brand-500 border-brand-500 text-white shadow-md shadow-brand-500/20'
+                    : 'bg-slate-900/40 border-slate-800 text-slate-400 hover:text-white hover:border-slate-600'
+                }`}
+              >
+                {locale === 'ar' ? 'الفصل الأول' : 'Semester 1'}
+              </button>
+              <button
+                onClick={() => setActiveSemester(2)}
+                className={`px-5 py-2 rounded-xl text-sm font-bold transition-all border ${
+                  activeSemester === 2
+                    ? 'bg-brand-500 border-brand-500 text-white shadow-md shadow-brand-500/20'
+                    : 'bg-slate-900/40 border-slate-800 text-slate-400 hover:text-white hover:border-slate-600'
+                }`}
+              >
+                {locale === 'ar' ? 'الفصل الثاني' : 'Semester 2'}
+              </button>
+            </div>
+
+            {courses.filter(c => c.locked && (!c.semester || c.semester === activeSemester)).length === 0 ? (
+              <div className="text-center py-20 bg-slate-900/10 border border-slate-900 rounded-3xl p-8">
+                <div className="h-16 w-16 mx-auto flex items-center justify-center rounded-full bg-slate-900 border border-slate-800 text-slate-600 mb-4">
+                  <BookOpen className="h-8 w-8" />
+                </div>
+                <h3 className="text-lg font-bold text-slate-300">{t('noCoursesTitle')}</h3>
+                <p className="text-sm text-slate-500 mt-2">{t('noCoursesDesc')}</p>
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {courses.filter(c => c.locked && (!c.semester || c.semester === activeSemester)).map((course: any) => {
+                  const lessonsVal = course.mockLessonsCount ?? 0;
+                  const quizzesVal = course.mockQuizzesCount ?? 0;
+                  const pdfsVal = course._pdfCount ?? 0;
+                  
+                  return (
+                    <Link
+                      key={course.id}
+                      href="#"
+                      onClick={(e) => { e.preventDefault(); setLockedModalCourse(course); }}
+                      className="group relative rounded-2xl border border-slate-850 bg-slate-900/15 hover:bg-slate-900/35 hover:border-slate-800/80 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg block cursor-pointer"
+                    >
+                      <div>
+                        <div className="h-32 sm:h-36 w-full overflow-hidden relative bg-slate-950 group-hover:bg-slate-900 transition-colors duration-500">
+                          {(course.coverImage || course.thumbnailUrl) ? (
+                            <Image 
+                              src={course.coverImage || course.thumbnailUrl} 
+                              alt={locale === 'ar' ? course.titleAr : course.titleEn} 
+                              fill
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                              className="object-cover group-hover:scale-110 group-hover:-rotate-1 transition-all duration-700 opacity-80 group-hover:opacity-100"
+                            />
+                          ) : (
+                            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-brand-900/20 to-slate-950 group-hover:from-brand-800/40 transition-all duration-700">
+                               <BookOpen className="h-10 w-10 text-brand-500/40 group-hover:text-brand-400 group-hover:scale-125 group-hover:rotate-6 transition-all duration-700" />
+                            </div>
+                          )}
+                          <div className="absolute inset-0 bg-slate-950/60 flex items-center justify-center pointer-events-none" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none" />
+                          
+                          <div className="absolute top-3 end-3 p-2 bg-slate-950/80 border border-slate-700 rounded-xl pointer-events-none">
+                            <Lock className="h-4 w-4 text-slate-300" />
+                          </div>
+
+                          <span className="absolute bottom-4 start-4 text-xs font-semibold px-2.5 py-1 rounded bg-brand-500 text-white shadow-md pointer-events-none">
+                            {locale === 'ar' ? course.subjectAr : course.subjectEn}
+                          </span>
+                        </div>
+
+                        <div className="p-6">
+                          <span className="text-xs text-slate-500 font-semibold mb-2 block">
+                            {locale === 'ar' ? course.teacherNameAr : course.teacherNameEn}
+                          </span>
+                          <h3 className="text-base sm:text-lg font-bold text-white leading-snug group-hover:text-brand-400 transition-colors mb-3">
+                            {locale === 'ar' ? course.titleAr : course.titleEn}
+                          </h3>
+                          <p className="text-slate-400 text-xs sm:text-sm leading-relaxed line-clamp-2 mb-6">
+                            {locale === 'ar' ? course.descriptionAr : course.descriptionEn}
+                          </p>
+
+                          <div className="grid grid-cols-3 gap-4 border-t border-slate-850/60 pt-4.5 mt-2 text-xs text-slate-400">
+                            <div className="flex items-center gap-1.5">
+                              <PlayCircle className="h-4 w-4 text-brand-500 shrink-0" />
+                              <span>{t('lessonsCount', { count: lessonsVal })}</span>
+                            </div>
+                            <div className="flex items-center gap-1.5">
+                              <HelpCircle className="h-4 w-4 text-brand-500 shrink-0" />
+                              <span>{t('quizzesCount', { count: quizzesVal })}</span>
+                            </div>
+                            <div className="flex items-center gap-1.5">
+                              <FileText className="h-4 w-4 text-brand-500 shrink-0" />
+                              <span>{pdfsVal} {locale === 'ar' ? 'ملفات PDF' : 'PDFs'}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="p-6 pt-0">
+                        <div className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-bold text-slate-500 bg-slate-900 border border-slate-800 cursor-not-allowed">
+                          <Lock className="h-4 w-4" />
+                          <span>{locale === 'ar' ? 'مقفل / Locked' : 'Locked / مقفل'}</span>
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+
+            {user?.role === 'STUDENT' && (
+              <div className="mt-12">
+                <StudyPlanner courses={courses} isRtl={locale === 'ar'} user={user} />
+              </div>
+            )}
           </div>
         )}
-
-        {user?.role === 'STUDENT' && (
-          <div className="mt-12">
-            <StudyPlanner courses={courses} isRtl={locale === 'ar'} user={user} />
-          </div>
-        )}
-
-          </div>
-        )}
-
       </main>
 
       <CourseUnlockModal 

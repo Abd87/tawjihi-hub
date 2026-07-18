@@ -39,6 +39,7 @@ export async function POST(request: Request) {
           coverImage: course.coverImage,
           published: course.published,
           locked: course.locked,
+          discussionGroupLink: course.discussionGroupLink,
         },
         create: {
           id: course.id,
@@ -55,6 +56,7 @@ export async function POST(request: Request) {
           coverImage: course.coverImage,
           published: course.published,
           locked: course.locked,
+          discussionGroupLink: course.discussionGroupLink,
         }
       });
 
