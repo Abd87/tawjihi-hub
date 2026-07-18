@@ -296,19 +296,6 @@ export default function DashboardPage() {
           }
         }
 
-        // 4. Fetch student analytics if user is STUDENT
-        if (activeUser.role === 'STUDENT') {
-          try {
-            const analyticsRes = await fetch('/api/student/analytics', {
-              headers: { 'Authorization': `Bearer ${token}` }
-            });
-            if (analyticsRes.ok) {
-              const analyticsData = await analyticsRes.json();
-              setQuizAttempts(analyticsData.quizAttempts || []);
-            }
-          } catch (e) { console.error('Failed to fetch student analytics', e); }
-        }
-
       } catch (err: any) {
         // Fallback for offline/unreachable server using localstorage cached credentials
         const cachedUser = localStorage.getItem('user');
@@ -776,82 +763,6 @@ export default function DashboardPage() {
                 </div>
               );
             })()}
-            {/* Performance & Analytics Section */}
-            {user?.role === 'STUDENT' && (
-              <div className="mb-10 bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8">
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="p-2.5 bg-brand-500/20 rounded-xl border border-brand-500/30">
-                    <TrendingUp className="h-6 w-6 text-brand-400" />
-                  </div>
-                  <h2 className="text-xl font-black text-white">
-                    {locale === 'ar' ? 'تحليل الأداء والمتابعة' : 'Performance & Analytics'}
-                  </h2>
-                </div>
-
-                <div className="grid lg:grid-cols-2 gap-8">
-                  {/* Course Progress Chart */}
-                  <div className="bg-slate-950/50 rounded-2xl border border-slate-800 p-5">
-                    <h3 className="text-slate-300 font-bold mb-6 text-sm">
-                      {locale === 'ar' ? 'نسبة الإنجاز في المواد' : 'Course Progress Completion'}
-                    </h3>
-                    <div className="h-[250px] w-full">
-                      <ResponsiveContainer width="100%" height="100%">
-                        <BarChart data={courses.filter(c => !c.locked && c.mockProgress !== undefined && c.mockProgress > 0)}>
-                          <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
-                          <XAxis 
-                            dataKey={locale === 'ar' ? 'titleAr' : 'titleEn'} 
-                            stroke="#64748b" 
-                            fontSize={12} 
-                            tickFormatter={(val) => val.length > 15 ? val.substring(0, 15) + '...' : val}
-                          />
-                          <YAxis stroke="#64748b" fontSize={12} domain={[0, 100]} />
-                          <Tooltip 
-                            contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '12px', color: '#fff' }}
-                            itemStyle={{ color: '#0ea5e9', fontWeight: 'bold' }}
-                            formatter={(value) => [`${value}%`, locale === 'ar' ? 'الإنجاز' : 'Progress']}
-                          />
-                          <Bar dataKey="mockProgress" fill="#0ea5e9" radius={[4, 4, 0, 0]} barSize={40} />
-                        </BarChart>
-                      </ResponsiveContainer>
-                    </div>
-                  </div>
-
-                  {/* Quiz Scores Chart */}
-                  <div className="bg-slate-950/50 rounded-2xl border border-slate-800 p-5">
-                    <h3 className="text-slate-300 font-bold mb-6 text-sm">
-                      {locale === 'ar' ? 'نتائج الاختبارات الأخيرة' : 'Recent Quiz Scores'}
-                    </h3>
-                    {quizAttempts.length > 0 ? (
-                      <div className="h-[250px] w-full">
-                        <ResponsiveContainer width="100%" height="100%">
-                          <LineChart data={quizAttempts}>
-                            <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
-                            <XAxis 
-                              dataKey="date" 
-                              stroke="#64748b" 
-                              fontSize={12}
-                              tickFormatter={(val) => new Date(val).toLocaleDateString(locale === 'ar' ? 'ar-JO' : 'en-US', { month: 'short', day: 'numeric' })}
-                            />
-                            <YAxis stroke="#64748b" fontSize={12} domain={[0, 100]} />
-                            <Tooltip 
-                              contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '12px', color: '#fff' }}
-                              labelFormatter={(label) => new Date(label).toLocaleString(locale === 'ar' ? 'ar-JO' : 'en-US')}
-                              formatter={(value, name, props) => [`${value}%`, props.payload[locale === 'ar' ? 'quizTitleAr' : 'quizTitleEn']]}
-                            />
-                            <Line type="monotone" dataKey="scorePercent" stroke="#f59e0b" strokeWidth={3} dot={{ r: 5, fill: '#f59e0b', strokeWidth: 0 }} />
-                          </LineChart>
-                        </ResponsiveContainer>
-                      </div>
-                    ) : (
-                      <div className="h-[250px] w-full flex items-center justify-center text-slate-500 text-sm">
-                        {locale === 'ar' ? 'لم تقم بتقديم أي اختبارات بعد.' : 'You have not attempted any quizzes yet.'}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
-
             {/* Student Coupon CTA */}
             {user?.role === 'STUDENT' && (
               <div className="mb-10">
