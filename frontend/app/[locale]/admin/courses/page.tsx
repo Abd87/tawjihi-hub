@@ -1335,7 +1335,7 @@ function LiveSessionEditor({
             <div className="space-y-1">
               <label className="text-3xs text-slate-600 flex items-center gap-1">{isRtl ? 'وقت البدء' : 'Start Time'}</label>
               <input type="datetime-local" value={session.startTime.slice(0, 16)}
-                onChange={e => onChange('startTime', new Date(e.target.value).toISOString())}
+                onChange={e => onChange('startTime', e.target.value || new Date().toISOString())}
                 className="w-full py-1.5 px-2.5 text-xs bg-slate-900 border border-slate-800 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors" />
             </div>
             <div className="space-y-1">
