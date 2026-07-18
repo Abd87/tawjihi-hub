@@ -41,9 +41,7 @@ export default function AdminBlogPage({ params: { locale } }: { params: { locale
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+  const handleSubmit = async (formData: FormData) => {
     await createManualBlogPost(formData);
     setIsModalOpen(false);
     window.location.reload();
