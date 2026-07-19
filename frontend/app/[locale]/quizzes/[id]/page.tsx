@@ -319,21 +319,36 @@ export default function StudentQuizPage() {
                       {item.isCorrect ? <CheckCircle2 className="h-5 w-5" /> : <XCircle className="h-5 w-5" />}
                     </div>
                     <div className="space-y-4 w-full">
-                      <p className="font-semibold text-slate-200">
-                        {indexToAlpha(idx)}. {isRtl ? item.textAr : item.textEn}
-                      </p>
+                      <div className="flex gap-2 font-semibold text-slate-200 text-lg">
+                        <span>{idx + 1}.</span>
+                        <div 
+                          className="prose prose-invert max-w-none prose-p:my-0 [&_*]:!text-slate-200 [&_*]:!bg-transparent"
+                          dir="auto"
+                          dangerouslySetInnerHTML={{ __html: (isRtl ? (item.textAr || item.textEn) : (item.textEn || item.textAr)) || '' }}
+                        />
+                      </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="bg-slate-950/50 rounded-xl p-3 border border-slate-800">
                           <span className="block text-xs font-bold text-slate-500 mb-1">{isRtl ? 'إجابتك' : 'Your Answer'}</span>
-                          <span className={item.isCorrect ? 'text-emerald-400 font-medium' : 'text-rose-400 font-medium'}>
-                            {item.userSelection || (isRtl ? 'لم يتم الإجابة' : 'Not answered')}
-                          </span>
+                          {item.userSelection ? (
+                            <div 
+                              className={item.isCorrect ? 'text-emerald-400 font-medium prose prose-invert max-w-none prose-p:my-0 [&_*]:!text-emerald-400 [&_*]:!bg-transparent' : 'text-rose-400 font-medium prose prose-invert max-w-none prose-p:my-0 [&_*]:!text-rose-400 [&_*]:!bg-transparent'}
+                              dir="auto"
+                              dangerouslySetInnerHTML={{ __html: item.userSelection }}
+                            />
+                          ) : (
+                            <span className="text-rose-400 font-medium">{isRtl ? 'لم يتم الإجابة' : 'Not answered'}</span>
+                          )}
                         </div>
                         {!item.isCorrect && (
                           <div className="bg-slate-950/50 rounded-xl p-3 border border-slate-800">
                             <span className="block text-xs font-bold text-slate-500 mb-1">{isRtl ? 'الإجابة الصحيحة' : 'Correct Answer'}</span>
-                            <span className="text-emerald-400 font-medium">{item.correctSelection}</span>
+                            <div 
+                              className="text-emerald-400 font-medium prose prose-invert max-w-none prose-p:my-0 [&_*]:!text-emerald-400 [&_*]:!bg-transparent"
+                              dir="auto"
+                              dangerouslySetInnerHTML={{ __html: item.correctSelection }}
+                            />
                           </div>
                         )}
                       </div>
