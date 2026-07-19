@@ -277,7 +277,7 @@ export default function StudentQuizPage() {
             
             {gradedResult && (
               <button
-                onClick={() => router.push(`/${locale}/dashboard`)}
+                onClick={() => router.push('/dashboard')}
                 className="bg-brand-500 hover:bg-brand-600 text-white px-4 py-2 rounded-lg font-bold text-sm transition-colors"
               >
                 {isRtl ? 'الرجوع إلى لوحة القيادة' : 'Dashboard'}
