@@ -355,23 +355,23 @@ export default function StudentQuizPage() {
           </div>
         ) : isSplitScreen ? (
           // Split Screen Layout
-          <div className={`flex flex-col lg:flex-row${isRtl ? '-reverse' : ''} gap-8 items-start h-[calc(100vh-10rem)]`}>
+          <div className="flex flex-col md:flex-row gap-8 items-start h-[calc(100vh-10rem)]" dir="ltr">
             
             {/* Left side: Reading Passage */}
-            <div className="w-full lg:w-1/2 bg-slate-900 border border-slate-800 rounded-2xl p-6 lg:p-8 sticky top-24 overflow-y-auto h-full scrollbar-thin scrollbar-thumb-slate-700">
+            <div className="w-full md:w-1/2 bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 sticky top-24 overflow-y-auto h-full scrollbar-thin scrollbar-thumb-slate-700" dir={isRtl ? 'rtl' : 'ltr'}>
               <h2 className="text-xl font-bold text-white mb-6 border-b border-slate-800 pb-4 flex items-center gap-3">
                 <BookOpen className="h-6 w-6 text-brand-500" />
                 {isRtl ? 'النص المقروء' : 'Reading Passage'}
               </h2>
               <div 
-                className="prose prose-invert max-w-none text-slate-300 leading-relaxed text-lg [&_*]:!text-slate-300 [&_*]:!bg-transparent"
-                dir="auto"
+                className={`prose prose-invert max-w-none text-slate-300 leading-relaxed text-lg [&_*]:!text-slate-300 [&_*]:!bg-transparent ${!currentSection?.passageAr && currentSection?.passageEn ? 'text-left' : ''}`}
+                dir={!currentSection?.passageAr && currentSection?.passageEn ? 'ltr' : 'auto'}
                 dangerouslySetInnerHTML={{ __html: (isRtl ? (currentSection?.passageAr || currentSection?.passageEn) : (currentSection?.passageEn || currentSection?.passageAr)) || '' }}
               />
             </div>
 
             {/* Right side: Questions */}
-            <div className="w-full lg:w-1/2 space-y-6 overflow-y-auto h-full pb-32 scrollbar-thin scrollbar-thumb-slate-700 pe-4">
+            <div className="w-full md:w-1/2 space-y-6 overflow-y-auto h-full pb-32 scrollbar-thin scrollbar-thumb-slate-700 pe-4" dir={isRtl ? 'rtl' : 'ltr'}>
               {currentSection?.questions.map((q, idx) => (
                 <QuestionCard 
                   key={q.id}
