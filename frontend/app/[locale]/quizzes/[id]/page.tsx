@@ -364,7 +364,7 @@ export default function StudentQuizPage() {
                 {isRtl ? 'النص المقروء' : 'Reading Passage'}
               </h2>
               <div 
-                className="prose prose-invert max-w-none text-slate-300 leading-relaxed text-lg"
+                className="prose prose-invert max-w-none text-slate-300 leading-relaxed text-lg [&_*]:!text-slate-300 [&_*]:!bg-transparent"
                 dir="auto"
                 dangerouslySetInnerHTML={{ __html: (isRtl ? (currentSection?.passageAr || currentSection?.passageEn) : (currentSection?.passageEn || currentSection?.passageAr)) || '' }}
               />
@@ -462,7 +462,7 @@ function QuestionCard({ question, index, isRtl, answer, onMcqSelect, onShortAnsw
           {index + 1}
         </div>
         <div 
-          className="text-lg font-semibold text-slate-200 pt-1 prose prose-invert max-w-none prose-p:my-0"
+          className="text-lg font-semibold text-slate-200 pt-1 prose prose-invert max-w-none prose-p:my-0 [&_*]:!text-slate-200 [&_*]:!bg-transparent"
           dir="auto"
           dangerouslySetInnerHTML={{ __html: (isRtl ? (question.textAr || question.textEn) : (question.textEn || question.textAr)) || '' }}
         />
@@ -490,7 +490,7 @@ function QuestionCard({ question, index, isRtl, answer, onMcqSelect, onShortAnsw
                   className="w-5 h-5 accent-brand-500"
                 />
                 <span 
-                  className={`ms-4 font-medium ${isSelected ? 'text-white' : 'text-slate-300'} prose prose-invert prose-p:my-0 max-w-none`}
+                  className={`ms-4 font-medium ${isSelected ? 'text-white' : 'text-slate-300'} prose prose-invert prose-p:my-0 max-w-none [&_*]:!text-inherit [&_*]:!bg-transparent`}
                   dir="auto"
                   dangerouslySetInnerHTML={{ __html: (isRtl ? (choice.textAr || choice.textEn) : (choice.textEn || choice.textAr)) || '' }}
                 />
