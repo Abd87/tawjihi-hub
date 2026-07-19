@@ -189,7 +189,7 @@ export default function DedicatedVideoPlayerPage() {
   const getYoutubeEmbedUrl = (url: string) => {
     const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/);
     const videoId = match?.[1];
-    return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&controls=1&disablekb=0&fs=0&iv_load_policy=3` : url;
+    return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&controls=1&disablekb=0&fs=1&iv_load_policy=3` : url;
   };
 
   const isYoutube = currentLesson.videoUrl?.includes('youtube.com') || currentLesson.videoUrl?.includes('youtu.be');
@@ -300,7 +300,7 @@ export default function DedicatedVideoPlayerPage() {
                 {/* Custom Fullscreen Button */}
                 <button 
                   onClick={toggleFullScreen}
-                  className="absolute bottom-4 right-4 z-20 p-2 bg-black/60 hover:bg-black/90 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm border border-white/10"
+                  className="hidden md:block absolute bottom-4 right-4 z-20 p-2 bg-black/60 hover:bg-black/90 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm border border-white/10"
                   title={isRtl ? 'ملء الشاشة' : 'Full Screen'}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
@@ -312,6 +312,7 @@ export default function DedicatedVideoPlayerPage() {
                 className="w-full h-full object-contain"
                 controls
                 autoPlay
+                playsInline
                 onEnded={handleVideoEnd}
               />
             )
