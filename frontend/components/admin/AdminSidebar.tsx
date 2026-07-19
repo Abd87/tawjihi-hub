@@ -71,7 +71,7 @@ export default function AdminSidebar() {
   };
 
   return (
-    <aside className={`print:hidden relative h-full bg-[#020617] border-${isRtl ? 'l' : 'r'} border-slate-800 transition-all duration-300 flex flex-col z-20 ${collapsed ? 'w-20' : 'w-64'}`}>
+    <aside className={`print:hidden relative h-full bg-[#020617] border-${isRtl ? 'l' : 'r'} border-slate-800 transition-all duration-300 flex flex-col shrink-0 z-20 ${collapsed ? 'w-20' : 'w-64'}`}>
       
       {/* Header */}
       <div className="h-16 flex items-center justify-between px-4 border-b border-slate-800 shrink-0">

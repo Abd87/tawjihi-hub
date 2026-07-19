@@ -562,7 +562,7 @@ export default function AdminQuizPage() {
         )}
 
         {activeTab === 'create' && (
-          <div className="grid lg:grid-cols-2 gap-8 w-full max-w-7xl mx-auto items-start">
+          <div className="grid xl:grid-cols-2 gap-8 w-full max-w-7xl mx-auto items-start">
           
           <div className="w-full">
         {/* Feedback alerts */}
@@ -924,7 +924,7 @@ export default function AdminQuizPage() {
           </div>
           
           {/* LIVE PREVIEW PANEL (RIGHT SIDE) */}
-          <div className="w-full lg:sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-700 pb-20">
+          <div className="w-full xl:sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-700 pb-20">
             <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl relative">
               <div className="sticky top-0 bg-slate-900/90 backdrop-blur-sm pb-4 border-b border-slate-800 mb-6 z-10 flex items-center gap-3">
                 <Eye className="h-6 w-6 text-brand-500" />
