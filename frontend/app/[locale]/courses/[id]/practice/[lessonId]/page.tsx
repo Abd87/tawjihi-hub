@@ -91,6 +91,9 @@ export default function PracticeSessionPage() {
             const loadedQuestions = foundLesson.questions || [];
             setQuestions(loadedQuestions);
             
+            // Save as last visited
+            localStorage.setItem(`last-visited-route-${currentUserId}-${courseId}`, `/${locale}/courses/${courseId}/practice/${lessonId}`);
+
             // Load saved progress
             const savedProgStr = localStorage.getItem(`saved-practice-${currentUserId}-${courseId}-${lessonId}`);
             if (savedProgStr) {

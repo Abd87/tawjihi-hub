@@ -90,6 +90,9 @@ export default function DedicatedVideoPlayerPage() {
     };
     fetchCourse();
 
+    // Save as last visited
+    localStorage.setItem(`last-visited-route-${userId}-${courseId}`, `/${locale}/courses/${courseId}/video/${lessonId}`);
+
     // load progress
     const storedProg = localStorage.getItem(`completed-lessons-${userId}`);
     if (storedProg) {

@@ -108,6 +108,7 @@ export default function CourseSyllabusPage() {
   const [loading, setLoading] = useState(true);
   const [course, setCourse] = useState<Course | null>(null);
   const [completedItems, setCompletedItems] = useState<string[]>([]);
+  const [lastVisitedRoute, setLastVisitedRoute] = useState<string | null>(null);
   const [hasError, setHasError] = useState(false);
   const [showUnlockModal, setShowUnlockModal] = useState(false);
   const [authorized, setAuthorized] = useState(false);
@@ -167,10 +168,17 @@ export default function CourseSyllabusPage() {
           setCourse(found);
           
           // Initial load from cache to prevent flicker, then sync
-          const completed = localStorage.getItem(`completed-items-${userStr ? JSON.parse(userStr).id : ''}-${courseId}`);
+          const userId = userStr ? JSON.parse(userStr).id : '';
+          const completed = localStorage.getItem(`completed-items-${userId}-${courseId}`);
           if (completed) {
             setCompletedItems(JSON.parse(completed));
           }
+          
+          const lastVisited = localStorage.getItem(`last-visited-route-${userId}-${courseId}`);
+          if (lastVisited) {
+            setLastVisitedRoute(lastVisited);
+          }
+
           syncProgress();
         }
       } catch (err) {
@@ -272,11 +280,13 @@ export default function CourseSyllabusPage() {
     return false;
   }) || course.lessons[0];
 
-  const upNextLink = upNextLesson 
+  const calculatedUpNextLink = upNextLesson 
     ? (!completedItems.includes(`${upNextLesson.id}-video`) && upNextLesson.videoUrl
         ? `/${locale}/courses/${courseId}/video/${upNextLesson.id}`
         : `/${locale}/courses/${courseId}/practice/${upNextLesson.id}`)
     : '#';
+
+  const upNextLink = lastVisitedRoute || calculatedUpNextLink;
 
   return (
     <div className="min-h-screen bg-[#020617] pt-8 pb-20">
