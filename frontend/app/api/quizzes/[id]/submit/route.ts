@@ -23,7 +23,7 @@ export async function POST(
     let studentId;
     try {
       const decoded = jwt.verify(token, secret) as any;
-      studentId = decoded.id;
+      studentId = decoded.userId || decoded.id; // Support both just in case
     } catch (e) {
       console.error('JWT verify error:', e);
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
