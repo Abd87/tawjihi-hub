@@ -206,8 +206,9 @@ export default function StudentQuizPage() {
       }
 
       setGradedResult(data.result);
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
+      alert(err.message || 'An error occurred while submitting the test. Please try again.');
     } finally {
       setSubmitting(false);
     }
@@ -354,7 +355,7 @@ export default function StudentQuizPage() {
           </div>
         ) : isSplitScreen ? (
           // Split Screen Layout
-          <div className="flex flex-col lg:flex-row gap-8 items-start h-[calc(100vh-10rem)]">
+          <div className={`flex flex-col lg:flex-row${isRtl ? '-reverse' : ''} gap-8 items-start h-[calc(100vh-10rem)]`}>
             
             {/* Left side: Reading Passage */}
             <div className="w-full lg:w-1/2 bg-slate-900 border border-slate-800 rounded-2xl p-6 lg:p-8 sticky top-24 overflow-y-auto h-full scrollbar-thin scrollbar-thumb-slate-700">

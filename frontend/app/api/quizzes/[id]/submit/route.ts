@@ -10,14 +10,24 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   try {
+    const authHeader = request.headers.get('authorization');
+    const headerToken = authHeader?.startsWith('Bearer ') ? authHeader.split(' ')[1] : null;
     const cookieStore = cookies();
-    const token = cookieStore.get('token')?.value;
+    const token = headerToken || cookieStore.get('token')?.value;
+    
     if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET is missing');
     const secret = process.env.JWT_SECRET;
-    const decoded = jwt.verify(token, secret) as any;
-    const studentId = decoded.id;
+    
+    let studentId;
+    try {
+      const decoded = jwt.verify(token, secret) as any;
+      studentId = decoded.id;
+    } catch (e) {
+      console.error('JWT verify error:', e);
+      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+    }
 
     const quizId = params.id;
     const body = await request.json();
