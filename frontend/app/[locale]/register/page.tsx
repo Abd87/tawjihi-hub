@@ -187,36 +187,6 @@ function RegisterForm() {
       const redirect = role === 'PARENT' ? `/${locale}/parent/dashboard` : `/${locale}/dashboard`;
       window.location.href = redirect;
     } catch (err: any) {
-      // Offline mock
-      if (email && password.length >= 6 && nameAr) {
-        const mockUser: Record<string, unknown> = {
-          id: `mock-${role.toLowerCase()}-${Date.now()}`,
-          email: email.trim().toLowerCase(),
-          role,
-          nameAr: nameAr.trim(),
-          nameEn: nameEn?.trim() || null,
-        };
-        if (role === 'STUDENT') mockUser.trackType = trackType;
-        if (role === 'PARENT') mockUser.linkedStudentEmail = linkedStudentEmail.trim().toLowerCase();
-
-        try {
-          const stringified = JSON.stringify(mockUser);
-          const base64 = window.btoa(unescape(encodeURIComponent(stringified)));
-          const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.${base64}.mock-signature`;
-
-          localStorage.setItem('token', token);
-          localStorage.setItem('user', stringified);
-          localStorage.removeItem('dashboardTrack');
-          saveUserToAdminUsers(mockUser, password);
-          window.dispatchEvent(new Event('local-storage-update'));
-
-          const redirect = role === 'PARENT' ? `/${locale}/parent/dashboard` : `/${locale}/dashboard`;
-          window.location.href = redirect;
-          return;
-        } catch {
-          // fall through
-        }
-      }
       if (err.message !== 'ValidationFailed') {
         setError(err.message || (locale === 'ar' ? 'حدث خطأ أثناء التسجيل' : 'Registration failed. Please try again.'));
       }
