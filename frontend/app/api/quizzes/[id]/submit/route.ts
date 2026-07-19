@@ -133,8 +133,8 @@ export async function POST(
         breakdown
       }
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Submit quiz error:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return NextResponse.json({ error: error.message || 'Internal server error', stack: error.stack, errorString: String(error) }, { status: 500 });
   }
 }
