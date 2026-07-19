@@ -81,7 +81,8 @@
     "invalidEmail": "صيغة البريد الإلكتروني غير صحيحة",
     "passwordMinLength": "كلمة المرور يجب أن تتكون من 6 أحرف على الأقل",
     "passwordRequired": "كلمة المرور مطلوبة",
-    "phoneNumberRequired": "رقم الهاتف مطلوب"
+    "phoneNumberRequired": "رقم الهاتف مطلوب",
+    "emailExists": "هذا البريد الإلكتروني مسجل بالفعل"
   },
   "dashboard": {
     "welcomeTitle": "مرحباً، {name}",

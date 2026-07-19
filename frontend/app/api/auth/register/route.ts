@@ -37,7 +37,7 @@ export async function POST(request: Request) {
     });
 
     if (existingUser) {
-      return NextResponse.json({ error: 'Email already exists' }, { status: 400 });
+      return NextResponse.json({ fieldErrors: { email: ['emailExists'] } }, { status: 400 });
     }
 
     const passwordHash = await bcrypt.hash(password, 10);
