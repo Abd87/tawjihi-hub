@@ -39,6 +39,17 @@ export default function AdminSidebar() {
         setUser(JSON.parse(stored));
       }
     } catch {}
+
+    const handleToggle = () => setCollapsed(prev => !prev);
+    window.addEventListener('toggle-admin-sidebar', handleToggle);
+    return () => window.removeEventListener('toggle-admin-sidebar', handleToggle);
+  }, []);
+
+  // Ensure it's collapsed on mobile initially
+  useEffect(() => {
+    if (window.innerWidth < 1024) {
+      setCollapsed(true);
+    }
   }, []);
 
   const navItems = [
@@ -71,7 +82,18 @@ export default function AdminSidebar() {
   };
 
   return (
-    <aside className={`print:hidden relative h-full bg-[#020617] border-${isRtl ? 'l' : 'r'} border-slate-800 transition-all duration-300 flex flex-col shrink-0 z-20 ${collapsed ? 'w-20' : 'w-64'}`}>
+    <>
+      {/* Mobile Backdrop */}
+      {!collapsed && (
+        <div 
+          className="lg:hidden fixed inset-0 bg-[#020617]/60 z-40 backdrop-blur-sm" 
+          onClick={() => setCollapsed(true)}
+        />
+      )}
+      
+      <aside className={`print:hidden fixed lg:relative inset-y-0 start-0 h-full bg-[#020617] border-${isRtl ? 'l' : 'r'} border-slate-800 transition-transform duration-300 flex flex-col shrink-0 z-50 
+        ${collapsed ? (isRtl ? 'translate-x-full lg:translate-x-0 lg:w-20' : '-translate-x-full lg:translate-x-0 lg:w-20') : 'translate-x-0 w-64'}
+      `}>
       
       {/* Header */}
       <div className="h-16 flex items-center justify-between px-4 border-b border-slate-800 shrink-0">
@@ -134,7 +156,8 @@ export default function AdminSidebar() {
           <LogOut className="w-5 h-5 shrink-0" />
           {!collapsed && <span>{isRtl ? 'تسجيل الخروج' : 'Logout'}</span>}
         </button>
-      </div>
-    </aside>
+        </div>
+      </aside>
+    </>
   );
 }
