@@ -4,6 +4,7 @@ import { unstable_setRequestLocale } from 'next-intl/server';
 import Navbar from '@/components/Navbar';
 import PromoPopup from '@/components/PromoPopup';
 import HeroVideoBackground from '@/components/HeroVideoBackground';
+import HomeAuthRedirect from '@/components/HomeAuthRedirect';
 import { Link } from '@/i18n/routing';
 import prisma from '@/lib/prisma';
 import { 
@@ -50,6 +51,7 @@ export default async function HomePage({ params: { locale } }: PageProps) {
 
   return (
     <div className="relative min-h-screen bg-[#020617] overflow-x-hidden font-sans selection:bg-brand-500/30 selection:text-brand-300">
+      <HomeAuthRedirect />
       
       {/* Video Background */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-[#020617]">
