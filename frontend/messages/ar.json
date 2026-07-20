@@ -12,7 +12,29 @@
     "logout": "تسجيل الخروج",
     "dashboard": "لوحة التحكم",
     "adminPanel": "لوحة المدرس",
-    "btecGuide": "دليل BTEC"
+    "btecGuide": "دليل BTEC",
+    "calculator": "حاسبة المعدل"
+  },
+  "calculator": {
+    "metaTitle": "حاسبة معدل التوجيهي الأردني | توجيهي هب",
+    "metaDesc": "احسب معدلك المتوقع في التوجيهي للمسار الأكاديمي (علمي، أدبي) ومسار BTEC المهني بخطوات بسيطة.",
+    "title": "حاسبة معدل التوجيهي",
+    "subtitle": "حدد مسارك التعليمي لمعرفة معدلك بدقة",
+    "trackAcademic": "المسار الأكاديمي",
+    "trackBtec": "مسار BTEC المهني",
+    "coreSubjects": "المواد المشتركة",
+    "specialtySubjects": "مواد التخصص",
+    "religion": "التربية الإسلامية",
+    "arabic": "اللغة العربية",
+    "english": "اللغة الإنجليزية",
+    "history": "تاريخ الأردن",
+    "calculateBtn": "احسب المعدل",
+    "yourGpa": "المعدل المتوقع:",
+    "btecDesc": "يحسب معدل BTEC بناءً على تقييم المواد التخصصية (Pass, Merit, Distinction) والمواد المشتركة.",
+    "pass": "ناجح (Pass)",
+    "merit": "جيد (Merit)",
+    "distinction": "امتياز (Distinction)",
+    "signupPromo": "اكتشف فرص قبولك في الجامعات!"
   },
   "hero": {
     "badge": "المنصة الأولى المخصصة لصف الثاني عشر في الأردن 🇯🇴",

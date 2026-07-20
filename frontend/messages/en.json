@@ -12,7 +12,29 @@
     "logout": "Log Out",
     "dashboard": "Dashboard",
     "adminPanel": "Admin Panel",
-    "btecGuide": "BTEC Guide"
+    "btecGuide": "BTEC Guide",
+    "calculator": "GPA Calculator"
+  },
+  "calculator": {
+    "metaTitle": "Tawjihi GPA Calculator | Tawjihi Hub",
+    "metaDesc": "Calculate your expected Tawjihi GPA for Academic (Science, Arts) and BTEC vocational tracks easily.",
+    "title": "Tawjihi GPA Calculator",
+    "subtitle": "Select your track to calculate your expected score",
+    "trackAcademic": "Academic Track",
+    "trackBtec": "BTEC Track",
+    "coreSubjects": "Core Subjects",
+    "specialtySubjects": "Specialty Subjects",
+    "religion": "Islamic Studies",
+    "arabic": "Arabic",
+    "english": "English",
+    "history": "History of Jordan",
+    "calculateBtn": "Calculate GPA",
+    "yourGpa": "Expected GPA:",
+    "btecDesc": "BTEC GPA is calculated based on specialty grades (Pass, Merit, Distinction) and core subjects.",
+    "pass": "Pass",
+    "merit": "Merit",
+    "distinction": "Distinction",
+    "signupPromo": "Discover your university admission chances!"
   },
   "hero": {
     "badge": "The #1 Platform Dedicated for Grade 12 in Jordan 🇯🇴",

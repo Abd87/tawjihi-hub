@@ -199,6 +199,10 @@ export default function Navbar() {
               <Sparkles className="w-3.5 h-3.5 text-brand-500" />
               {t('btecGuide') || (currentLocale === 'ar' ? 'دليل BTEC' : 'BTEC Guide')}
             </Link>
+            <Link href="/calculator" className="text-sm font-medium text-slate-300 hover:text-brand-500 transition-colors flex items-center gap-1">
+              <Calculator className="w-3.5 h-3.5 text-brand-500" />
+              {t('calculator') || (currentLocale === 'ar' ? 'حاسبة المعدل' : 'GPA Calculator')}
+            </Link>
             <Link href="/subjects" className="text-sm font-medium text-slate-300 hover:text-brand-500 transition-colors flex items-center gap-1">
               <BookOpen className="w-3.5 h-3.5 text-brand-500" />
               {currentLocale === 'ar' ? 'المواد' : 'Subjects'}
@@ -382,13 +386,13 @@ export default function Navbar() {
                 <ShieldCheck className="h-4 w-4 text-brand-500" />
                 {t('btec')}
               </a>
-              <Link 
-                href="/btec-guide" 
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-900/60 transition-all"
-              >
-                <Sparkles className="h-4 w-4 text-brand-500" />
+              <Link href="/btec-guide" className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800/50 transition-colors text-slate-300" onClick={() => setMobileOpen(false)}>
+                <Sparkles className="w-5 h-5 text-brand-500" />
                 <span className="font-medium">{t('btecGuide') || (currentLocale === 'ar' ? 'دليل BTEC' : 'BTEC Guide')}</span>
+              </Link>
+              <Link href="/calculator" className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800/50 transition-colors text-slate-300" onClick={() => setMobileOpen(false)}>
+                <Calculator className="w-5 h-5 text-brand-500" />
+                <span className="font-medium">{t('calculator') || (currentLocale === 'ar' ? 'حاسبة المعدل' : 'GPA Calculator')}</span>
               </Link>
               <Link 
                 href="/subjects" 
