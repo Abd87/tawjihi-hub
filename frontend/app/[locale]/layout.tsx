@@ -117,6 +117,9 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   };
 }
 
+import { CSPostHogProvider } from '@/components/providers/PostHogProvider';
+import SuspendedPostHogPageView from '@/components/providers/PostHogPageView';
+
 interface LayoutProps {
   children: ReactNode;
   params: { locale: string };
@@ -132,16 +135,20 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} dir={dir} className={`print:bg-white ${cairo.variable} ${inter.variable}`}>
-      <body className={`bg-[#020617] print:bg-white text-slate-100 print:text-black ${locale === 'ar' ? 'font-arabic' : 'font-sans'} antialiased`}>
-        <NextIntlClientProvider messages={messages}>
-          <Navbar />
-          {children}
-          <SocialFloatingButtons />
-          <SocialProofPopup isRtl={locale === 'ar'} />
-          <CookieBanner />
-        </NextIntlClientProvider>
-        <Analytics />
-      </body>
+      <CSPostHogProvider>
+        <body className={`bg-[#020617] print:bg-white text-slate-100 print:text-black ${locale === 'ar' ? 'font-arabic' : 'font-sans'} antialiased`}>
+          <SuspendedPostHogPageView />
+          <NextIntlClientProvider messages={messages}>
+            <Navbar />
+            {children}
+            <SocialFloatingButtons />
+            <SocialProofPopup isRtl={locale === 'ar'} />
+            <CookieBanner />
+          </NextIntlClientProvider>
+          <Analytics />
+        </body>
+      </CSPostHogProvider>
     </html>
   );
 }
+
