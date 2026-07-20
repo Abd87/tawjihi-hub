@@ -91,7 +91,7 @@ export default function AdminSidebar() {
         />
       )}
       
-      <aside className={`print:hidden fixed lg:relative inset-y-0 start-0 h-full bg-[#020617] border-${isRtl ? 'l' : 'r'} border-slate-800 transition-transform duration-300 flex flex-col shrink-0 z-50 
+      <aside className={`print:hidden fixed lg:relative inset-y-0 start-0 h-[100dvh] lg:h-full bg-[#020617] border-${isRtl ? 'l' : 'r'} border-slate-800 transition-transform duration-300 flex flex-col shrink-0 z-50 
         ${collapsed ? (isRtl ? 'translate-x-full lg:translate-x-0 lg:w-20' : '-translate-x-full lg:translate-x-0 lg:w-20') : 'translate-x-0 w-64'}
       `}>
       
