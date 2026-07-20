@@ -189,7 +189,7 @@ export default function DedicatedVideoPlayerPage() {
   const getYoutubeEmbedUrl = (url: string) => {
     const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/);
     const videoId = match?.[1];
-    return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&controls=1&disablekb=0&fs=1&iv_load_policy=3` : url;
+    return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&controls=1&disablekb=0&fs=1&iv_load_policy=3&playsinline=1` : url;
   };
 
   const isYoutube = currentLesson.videoUrl?.includes('youtube.com') || currentLesson.videoUrl?.includes('youtu.be');
@@ -295,6 +295,7 @@ export default function DedicatedVideoPlayerPage() {
                   src={getYoutubeEmbedUrl(currentLesson.videoUrl)}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
+                  {...({ webkitallowfullscreen: "true", mozallowfullscreen: "true" } as any)}
                 />
                 
                 {/* Custom Fullscreen Button */}

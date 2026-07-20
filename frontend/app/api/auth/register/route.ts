@@ -40,6 +40,15 @@ export async function POST(request: Request) {
       return NextResponse.json({ fieldErrors: { email: ['emailExists'] } }, { status: 400 });
     }
 
+    if (phoneNumber) {
+      const existingPhone = await prisma.user.findUnique({
+        where: { phoneNumber },
+      });
+      if (existingPhone) {
+        return NextResponse.json({ fieldErrors: { phoneNumber: ['phoneNumberExists'] } }, { status: 400 });
+      }
+    }
+
     const passwordHash = await bcrypt.hash(password, 10);
     
     // Only allow ADMIN creation if absolutely no ADMINs exist in the system (bootstrapping)

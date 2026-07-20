@@ -82,7 +82,8 @@
     "passwordMinLength": "Password must be at least 6 characters long",
     "passwordRequired": "Password is required",
     "phoneNumberRequired": "Phone number is required",
-    "emailExists": "This email is already registered"
+    "emailExists": "This email is already registered",
+    "phoneNumberExists": "This phone number is already registered"
   },
   "dashboard": {
     "welcomeTitle": "Welcome, {name}",

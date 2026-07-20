@@ -681,6 +681,7 @@ export default async function HomePage({ params: { locale } }: PageProps) {
             <a href="#tracks-section" className="hover:text-slate-300 transition-colors">{t('navigation.academic')}</a>
             <a href="#tracks-section" className="hover:text-slate-300 transition-colors">{t('navigation.btec')}</a>
             <Link href="/privacy-policy" className="hover:text-brand-400 transition-colors">{locale === 'ar' ? 'سياسة الخصوصية' : 'Privacy Policy'}</Link>
+            <Link href="/refund-policy" className="hover:text-brand-400 transition-colors">{locale === 'ar' ? 'سياسة الاسترجاع' : 'Refund Policy'}</Link>
           </div>
         </div>
       </footer>

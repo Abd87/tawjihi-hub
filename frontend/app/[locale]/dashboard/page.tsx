@@ -229,6 +229,10 @@ export default function DashboardPage() {
           c.mockProgress = Math.round((completedIds.length / total) * 100);
         }
       }
+      const lastRoute = typeof window !== 'undefined' ? localStorage.getItem(`last-visited-route-${userId}-${c.id}`) : null;
+      if (lastRoute) {
+        c._lastVisitedLink = lastRoute;
+      }
       return c;
     });
   };
@@ -662,7 +666,7 @@ export default function DashboardPage() {
                           </div>
 
                           <div className="p-6 pt-0 relative z-10 flex flex-col gap-2 pointer-events-auto">
-                            <Link href={`/courses/${course.id}`} className="group/btn w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-bold text-white bg-slate-950 border border-slate-850 hover:bg-brand-500 hover:border-brand-500 transition-all duration-300">
+                            <Link href={course._lastVisitedLink || `/courses/${course.id}`} className="group/btn w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-bold text-white bg-slate-950 border border-slate-850 hover:bg-brand-500 hover:border-brand-500 transition-all duration-300">
                               <span>{t('resumeBtn')}</span>
                               {locale === 'ar' ? (
                                 <ChevronLeft className="h-4 w-4 transition-transform group-hover/btn:-translate-x-1" />

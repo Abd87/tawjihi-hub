@@ -6,6 +6,7 @@ const withNextIntl = createNextIntlPlugin();
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    minimumCacheTTL: 31536000,
     remotePatterns: [
       {
         protocol: 'https',
@@ -28,6 +29,16 @@ const nextConfig = {
   },
   async headers() {
     return [
+      {
+        // Aggressive caching for static assets like images, videos, and fonts
+        source: '/:all*(svg|jpg|jpeg|png|gif|webp|mp4|woff2|woff|ttf|ico)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          }
+        ],
+      },
       {
         source: '/(.*)',
         headers: [

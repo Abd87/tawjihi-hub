@@ -82,7 +82,8 @@
     "passwordMinLength": "كلمة المرور يجب أن تتكون من 6 أحرف على الأقل",
     "passwordRequired": "كلمة المرور مطلوبة",
     "phoneNumberRequired": "رقم الهاتف مطلوب",
-    "emailExists": "هذا البريد الإلكتروني مسجل بالفعل"
+    "emailExists": "هذا البريد الإلكتروني مسجل بالفعل",
+    "phoneNumberExists": "رقم الهاتف هذا مسجل بالفعل"
   },
   "dashboard": {
     "welcomeTitle": "مرحباً، {name}",

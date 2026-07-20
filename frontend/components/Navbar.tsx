@@ -151,6 +151,14 @@ export default function Navbar() {
                 </Link>
               </div>
             )}
+            {isHome && user && (
+              <div className="flex items-center gap-2 ml-2">
+                <Link href={user.role === 'STUDENT' ? '/dashboard' : (user.role === 'PARENT' ? '/parent/dashboard' : '/admin/courses')} className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 shadow-lg shadow-brand-500/25 transition-all">
+                  <LayoutDashboard className="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" />
+                  {currentLocale === 'ar' ? 'لوحة التحكم' : 'Dashboard'}
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </header>
