@@ -34,5 +34,12 @@ body {
 
 @media print {
   @page { margin: 0; size: A4; }
-  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; margin: 0; padding: 0; }
+  body { 
+    -webkit-print-color-adjust: exact; 
+    print-color-adjust: exact; 
+    margin: 0; 
+    padding: 0;
+    background-color: white !important;
+    color: black !important;
+  }
 }

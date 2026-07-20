@@ -731,7 +731,7 @@ export default function AdminCouponsPage() {
                       
                       {/* Header: Logo and Website */}
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '3px solid #f1f5f9', paddingBottom: '20px', marginBottom: '24px' }}>
-                        <img src="/logo.svg" alt="Tawjihi Hub" style={{ height: '48px', objectFit: 'contain' }} />
+                        <img src="/logo.svg" alt="Tawjihi Hub" style={{ height: '80px', objectFit: 'contain', filter: 'brightness(0)' }} />
                         <span style={{ fontSize: '16px', fontWeight: 'bold', color: '#64748b' }}>www.tawjihihub.com</span>
                       </div>
                       
