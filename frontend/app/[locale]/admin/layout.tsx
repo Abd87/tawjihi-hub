@@ -4,7 +4,7 @@ import AdminTopNav from '@/components/admin/AdminTopNav';
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="flex h-screen print:h-auto bg-[#020617] overflow-hidden print:overflow-visible">
+    <div className="flex h-screen print:h-auto bg-[#020617] print:bg-white print:text-black overflow-hidden print:overflow-visible">
       <AdminSidebar />
       <div className="flex-1 flex flex-col min-w-0 print:block">
         <AdminTopNav />
