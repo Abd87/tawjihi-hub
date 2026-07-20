@@ -701,7 +701,7 @@ export default async function HomePage({ params: { locale } }: PageProps) {
             </div>
           </div>
 
-          <div className="border-t border-slate-900/80 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+          <div className="border-t border-slate-900/80 pt-8 flex flex-col items-center justify-center gap-6 text-xs text-slate-600">
             <p>© {new Date().getFullYear()} Tawjihi Hub. {locale === 'ar' ? 'جميع الحقوق محفوظة.' : 'All rights reserved.'}</p>
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-2 hover:text-slate-400 transition-colors cursor-pointer">
