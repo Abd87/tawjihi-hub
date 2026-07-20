@@ -1,5 +1,4 @@
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
-import Navbar from '@/components/Navbar';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Mail, Sparkles, BookOpen, Clock, ShieldCheck, ArrowLeft, ArrowRight } from 'lucide-react';
@@ -41,7 +40,6 @@ export default async function BtecSpecialtyPage({ params: { locale, specialty } 
   
   return (
     <div className="min-h-screen bg-[#020617] font-sans">
-      <Navbar locale={locale} />
       
       {/* Hero Background Elements */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">

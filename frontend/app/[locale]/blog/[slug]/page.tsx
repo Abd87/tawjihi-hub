@@ -2,7 +2,6 @@ import prisma from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Image from 'next/image';
-import Navbar from '@/components/Navbar';
 import { Calendar, User, ChevronRight, ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
 
@@ -76,7 +75,6 @@ export default async function BlogPostPage({ params }: { params: { slug: string;
 
   return (
     <div className="min-h-screen bg-slate-950">
-      <Navbar locale={params.locale} />
       
       {/* Inject Structured Data */}
       <script

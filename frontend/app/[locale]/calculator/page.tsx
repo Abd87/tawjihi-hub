@@ -1,6 +1,5 @@
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import GpaCalculator from '@/components/GpaCalculator';
-import Navbar from '@/components/Navbar';
 import { Metadata } from 'next';
 
 interface CalculatorPageProps {
@@ -26,7 +25,6 @@ export default async function CalculatorPage({ params: { locale } }: CalculatorP
 
   return (
     <div className="min-h-screen bg-[#020617] font-sans">
-      <Navbar locale={locale} />
       
       {/* Hero Background Elements */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">

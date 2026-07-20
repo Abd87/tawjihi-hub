@@ -15,7 +15,8 @@ export default function GpaCalculator() {
     history: 200,
     specialty1: 200,
     specialty2: 200,
-    specialty3: 200
+    specialty3: 200,
+    specialty4: 200
   });
   
   const [btecScores, setBtecScores] = useState({
@@ -41,20 +42,28 @@ export default function GpaCalculator() {
   };
 
   const calculateGPA = () => {
+    // New 2024 Tawjihi System:
+    // 30% from Core Subjects (Grade 11)
+    // 70% from Specialty Subjects (Grade 12)
     if (track === 'ACADEMIC') {
-      const total = Object.values(academicScores).reduce((sum, score) => sum + score, 0);
-      return (total / 1400 * 100).toFixed(1);
+      const coreTotal = academicScores.religion + academicScores.arabic + academicScores.english + academicScores.history;
+      const corePercentage = (coreTotal / 800) * 100;
+      
+      const specialtyTotal = academicScores.specialty1 + academicScores.specialty2 + academicScores.specialty3 + academicScores.specialty4;
+      const specialtyPercentage = (specialtyTotal / 800) * 100;
+      
+      const totalGpa = (corePercentage * 0.3) + (specialtyPercentage * 0.7);
+      return totalGpa.toFixed(1);
     } else {
       const coreTotal = btecScores.religion + btecScores.arabic + btecScores.english + btecScores.history;
       const corePercentage = (coreTotal / 800) * 100;
       
-      // Rough BTEC calculation for demonstration
-      let btecPercentage = 60;
+      // BTEC Grades
+      let btecPercentage = 60; // Pass
       if (btecScores.btecGrade === 'MERIT') btecPercentage = 80;
-      if (btecScores.btecGrade === 'DISTINCTION') btecPercentage = 95;
+      if (btecScores.btecGrade === 'DISTINCTION') btecPercentage = 100;
       
-      // Usually BTEC counts for 60-70% of the total GPA, and ministry core counts for the rest
-      const totalGpa = (corePercentage * 0.4) + (btecPercentage * 0.6);
+      const totalGpa = (corePercentage * 0.3) + (btecPercentage * 0.7);
       return totalGpa.toFixed(1);
     }
   };
@@ -111,8 +120,8 @@ export default function GpaCalculator() {
             </h3>
             
             {track === 'ACADEMIC' ? (
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                 {['specialty1', 'specialty2', 'specialty3'].map((subject, idx) => (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                 {['specialty1', 'specialty2', 'specialty3', 'specialty4'].map((subject, idx) => (
                   <div key={subject}>
                     <label className="block text-sm font-medium text-slate-400 mb-1">المادة {idx + 1}</label>
                     <input 

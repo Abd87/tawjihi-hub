@@ -2,7 +2,6 @@ import prisma from '@/lib/prisma';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
-import Navbar from '@/components/Navbar';
 import { Calendar, User, ArrowRight, ArrowLeft, BookOpen } from 'lucide-react';
 
 export const revalidate = 60; // Revalidate every minute for fresh news
@@ -18,7 +17,6 @@ export default async function BlogPage({ params: { locale } }: { params: { local
 
   return (
     <div className="min-h-screen bg-slate-950">
-      <Navbar locale={locale} />
       
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
         <div className="text-center mb-16">

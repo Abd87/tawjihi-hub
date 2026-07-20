@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { BrainCircuit, BookOpen, Clock, Trash2, Loader2, Sparkles, AlertCircle } from 'lucide-react';
 import { Link } from '@/i18n/routing';
-import Navbar from '@/components/Navbar';
 
 interface Mistake {
   id: string;
@@ -61,7 +60,6 @@ export default function MistakesDashboard({ params: { locale } }: { params: { lo
 
   return (
     <div className="min-h-screen bg-[#020617] font-sans">
-      <Navbar locale={locale} />
       
       <div className="pt-24 pb-20 px-4 max-w-7xl mx-auto">
         
