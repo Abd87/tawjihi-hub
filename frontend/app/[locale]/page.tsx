@@ -674,18 +674,44 @@ export default async function HomePage({ params: { locale } }: PageProps) {
         </section>
       )}
 
-      {/* Footer */}
-      <footer className="border-t border-slate-900 bg-slate-950/40 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-slate-500">
-          <div className="flex items-center gap-2">
-            <Image src="/logo.svg" alt="Tawjihi Hub Logo" width={192} height={64} sizes="(max-width: 640px) 120px, 192px" className="h-16 w-auto opacity-75 grayscale hover:grayscale-0 hover:opacity-100 transition-all"  />
+      {/* Premium Footer */}
+      <footer className="border-t border-slate-900 bg-[#020617] pt-24 pb-12 relative overflow-hidden mt-12">
+        {/* Subtle background glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-brand-500/30 to-transparent" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-brand-500/5 blur-[120px] rounded-full pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col items-center justify-center text-center space-y-8 mb-16">
+            <Link href="/" className="inline-block hover:scale-105 transition-transform duration-300">
+              <Image src="/logo.svg" alt="Tawjihi Hub Logo" width={180} height={60} className="h-16 w-auto" />
+            </Link>
+            
+            <p className="text-slate-400 max-w-md mx-auto leading-relaxed text-sm">
+              {locale === 'ar' 
+                ? 'المنصة التعليمية الأولى المصممة لتمكين طلاب التوجيهي الأكاديمي والمهني (BTEC) في الأردن من خلال التكنولوجيا الحديثة.'
+                : 'The premier platform empowering Academic and BTEC Tawjihi students in Jordan with cutting-edge technology.'}
+            </p>
+
+            <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium">
+              <Link href="/about" className="text-slate-400 hover:text-white transition-colors">{locale === 'ar' ? 'عن المنصة' : 'About Us'}</Link>
+              <a href="#tracks-section" className="text-slate-400 hover:text-white transition-colors">{t('navigation.academic')}</a>
+              <a href="#tracks-section" className="text-slate-400 hover:text-white transition-colors">{t('navigation.btec')}</a>
+              <Link href="/privacy-policy" className="text-slate-400 hover:text-white transition-colors">{locale === 'ar' ? 'سياسة الخصوصية' : 'Privacy Policy'}</Link>
+              <Link href="/refund-policy" className="text-slate-400 hover:text-white transition-colors">{locale === 'ar' ? 'سياسة الاسترجاع' : 'Refund Policy'}</Link>
+            </div>
           </div>
-          <p>© {new Date().getFullYear()} Tawjihi Hub. All rights reserved.</p>
-          <div className="flex gap-6">
-            <a href="#tracks-section" className="hover:text-slate-300 transition-colors">{t('navigation.academic')}</a>
-            <a href="#tracks-section" className="hover:text-slate-300 transition-colors">{t('navigation.btec')}</a>
-            <Link href="/privacy-policy" className="hover:text-brand-400 transition-colors">{locale === 'ar' ? 'سياسة الخصوصية' : 'Privacy Policy'}</Link>
-            <Link href="/refund-policy" className="hover:text-brand-400 transition-colors">{locale === 'ar' ? 'سياسة الاسترجاع' : 'Refund Policy'}</Link>
+
+          <div className="border-t border-slate-900/80 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+            <p>© {new Date().getFullYear()} Tawjihi Hub. {locale === 'ar' ? 'جميع الحقوق محفوظة.' : 'All rights reserved.'}</p>
+            <div className="flex items-center gap-4">
+              <span className="flex items-center gap-2 hover:text-slate-400 transition-colors cursor-pointer">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                {locale === 'ar' ? 'جميع الأنظمة تعمل' : 'All systems operational'}
+              </span>
+            </div>
           </div>
         </div>
       </footer>
