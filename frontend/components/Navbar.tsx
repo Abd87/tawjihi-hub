@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { useRouter, usePathname, Link } from '@/i18n/routing';
 import { useParams } from 'next/navigation';
-import { Globe, GraduationCap, LogOut, LayoutDashboard, Menu, X, BarChart2, Key, BookOpen, ShieldCheck, Users, Settings, Sparkles, Beaker } from 'lucide-react';
+import { Globe, GraduationCap, LogOut, LayoutDashboard, Menu, X, BarChart2, Key, BookOpen, ShieldCheck, Users, Settings, Sparkles, Beaker, Calculator } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
