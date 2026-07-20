@@ -38,6 +38,7 @@ model User {
   progress      Progress[]
   quizAttempts  QuizAttempt[]
   blogPosts     BlogPost[]
+  mistakes      Mistake[]
   
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
@@ -297,6 +298,7 @@ model QuizQuestion {
   
   choices       QuizChoice[]
   answers       QuizAnswer[]
+  mistakes      Mistake[]
 
   @@map("quiz_questions")
 }
@@ -382,3 +384,15 @@ model BlogPost {
   @@map("blog_posts")
 }
 
+model Mistake {
+  id              String       @id @default(uuid())
+  userId          String
+  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  questionId      String
+  question        QuizQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  mistakeCount    Int          @default(1)
+  lastAttemptDate DateTime     @default(now())
+
+  @@unique([userId, questionId])
+  @@map("mistakes")
+}

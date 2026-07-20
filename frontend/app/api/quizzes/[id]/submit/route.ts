@@ -59,6 +59,7 @@ export async function POST(
     const maxScore = allQuestions.length;
     const breakdown = [];
     const answerRecords = [];
+    const mistakesToLog: string[] = [];
 
     for (const q of allQuestions) {
       const studentAns = answers.find((a: any) => a.questionId === q.id);
@@ -87,7 +88,11 @@ export async function POST(
         }
       }
 
-      if (isCorrect) score += 1;
+      if (isCorrect) {
+        score += 1;
+      } else {
+        mistakesToLog.push(q.id);
+      }
 
       breakdown.push({
         questionId: q.id,
@@ -124,6 +129,27 @@ export async function POST(
         }
       }
     });
+
+    // Save mistakes to Mistake Bank
+    for (const qId of mistakesToLog) {
+      await prisma.mistake.upsert({
+        where: {
+          userId_questionId: {
+            userId: studentId,
+            questionId: qId
+          }
+        },
+        create: {
+          userId: studentId,
+          questionId: qId,
+          mistakeCount: 1
+        },
+        update: {
+          mistakeCount: { increment: 1 },
+          lastAttemptDate: new Date()
+        }
+      });
+    }
 
     return NextResponse.json({ 
       result: {

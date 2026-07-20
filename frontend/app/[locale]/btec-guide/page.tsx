@@ -92,7 +92,7 @@ export default function BtecGuidePage({ params: { locale } }: PageProps) {
               return (
                 <Link 
                   key={spec.key}
-                  href={`/register?track=BTEC`}
+                  href={['engineering', 'it', 'business', 'agriculture', 'hospitality', 'beauty'].includes(spec.key) ? `/btec-guide/${spec.key}` : `/register?track=BTEC`}
                   className={`group relative flex flex-col p-8 rounded-3xl bg-slate-900 border border-slate-800 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-500/10 ${spec.border}`}
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
