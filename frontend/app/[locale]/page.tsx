@@ -55,9 +55,13 @@ export default async function HomePage({ params: { locale } }: PageProps) {
       
       {/* Video Background */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-[#020617]">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 scale-105"
-          style={{ backgroundImage: 'url(/og-image.webp)' }}
+        <Image 
+          src="/og-image.webp"
+          alt="Background"
+          fill
+          priority
+          quality={60}
+          className="object-cover opacity-40 scale-105"
         />
         <HeroVideoBackground />
         {/* Dark Overlay to ensure text readability */}
