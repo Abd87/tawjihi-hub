@@ -281,7 +281,7 @@ export default function AdminCouponsPage() {
   const isRtl = locale === 'ar';
 
   return (
-    <div className="relative bg-[#020617] font-sans pb-16 selection:bg-brand-500/30 selection:text-brand-300">
+    <div className="relative bg-[#020617] print:bg-white font-sans pb-16 selection:bg-brand-500/30 selection:text-brand-300">
       
       <div className="absolute top-[-10%] start-[-10%] w-[45vw] h-[45vw] rounded-full bg-brand-500/5 blur-[120px] pointer-events-none print:hidden" />
       <div className="absolute bottom-[-10%] end-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-500/5 blur-[100px] pointer-events-none print:hidden" />

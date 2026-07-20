@@ -132,7 +132,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} dir={dir} className={`${cairo.variable} ${inter.variable}`}>
-      <body className={`bg-[#020617] text-slate-100 ${locale === 'ar' ? 'font-arabic' : 'font-sans'} antialiased`}>
+      <body className={`bg-[#020617] print:bg-white text-slate-100 print:text-black ${locale === 'ar' ? 'font-arabic' : 'font-sans'} antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <Navbar />
           {children}
