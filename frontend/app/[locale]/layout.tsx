@@ -77,20 +77,22 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     description: messages.meta.description,
     keywords: locale === 'ar' 
       ? [
-          'توجيهي الأردن', 'امتحان التوجيهي 2026', 'أسئلة توجيهي سابقة', 'نتائج التوجيهي',
-          'نظام BTEC', 'منهاج BTEC', 'تعليم مهني توجيهي',
-          'مكثف رياضيات توجيهي', 'ملخص أحياء', 'قواعد إنجليزي',
-          'بيتك هندسة', 'بيتك أعمال', 'بيتك تكنولوجيا معلومات', 'بيتك ميديا',
-          'دليل دراسة التوجيهي', 'نماذج امتحانات توجيهي', 'مواد تخصص BTEC',
-          'وزارة التربية والتعليم الأردنية', 'معادلة التوجيهي', 'رقم جلوس التوجيهي', 'توجيهي هب'
+          'توجيهي', 'توجيهي هب', 'توجيهي الأردن', 'امتحان التوجيهي', 'امتحان التوجيهي 2026', 'أسئلة توجيهي سابقة', 'نتائج التوجيهي',
+          'منصة توجيهي', 'موقع توجيهي', 'دورات توجيهي', 'أوائل التوجيهي',
+          'نظام BTEC', 'منهاج BTEC', 'تعليم مهني توجيهي', 'بيتك توجيهي',
+          'مكثف رياضيات توجيهي', 'ملخص أحياء توجيهي', 'قواعد إنجليزي توجيهي',
+          'توجيهي هندسة', 'توجيهي أعمال', 'توجيهي تكنولوجيا معلومات', 'توجيهي ميديا',
+          'دليل دراسة التوجيهي', 'نماذج امتحانات توجيهي', 'مواد توجيهي',
+          'وزارة التربية والتعليم الأردنية توجيهي', 'معادلة التوجيهي', 'رقم جلوس التوجيهي'
         ] 
       : [
-          'Tawjihi Jordan', 'Tawjihi exam 2026', 'Tawjihi past papers', 'Tawjihi results',
-          'BTEC Jordan', 'BTEC curriculum', 'Pearson BTEC', 'BTEC vocational',
-          'Tawjihi Math revision', 'Tawjihi Biology summary', 'English grammar',
-          'BTEC Engineering', 'BTEC Business', 'BTEC IT', 'Digital Media BTEC',
-          'Tawjihi study guide', 'Tawjihi model exams', 'BTEC training materials',
-          'Ministry of Education Jordan', 'Tawjihi equivalency', 'Tawjihi seat number', 'Tawjihi Hub'
+          'Tawjihi', 'Tawjihi Hub', 'Tawjihi Jordan', 'Tawjihi exam', 'Tawjihi exam 2026', 'Tawjihi past papers', 'Tawjihi results',
+          'Tawjihi platform', 'Tawjihi website', 'Tawjihi courses', 'Tawjihi top students',
+          'BTEC Jordan', 'BTEC curriculum', 'Pearson BTEC Tawjihi', 'BTEC vocational Tawjihi',
+          'Tawjihi Math revision', 'Tawjihi Biology summary', 'Tawjihi English grammar',
+          'Tawjihi BTEC Engineering', 'Tawjihi BTEC Business', 'Tawjihi BTEC IT', 'Tawjihi Digital Media',
+          'Tawjihi study guide', 'Tawjihi model exams', 'Tawjihi training materials',
+          'Ministry of Education Jordan Tawjihi', 'Tawjihi equivalency', 'Tawjihi seat number'
         ],
     openGraph: {
       title: messages.meta.title,
