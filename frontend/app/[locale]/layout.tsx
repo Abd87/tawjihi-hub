@@ -39,8 +39,17 @@ export function generateStaticParams() {
   return [{ locale: 'ar' }, { locale: 'en' }];
 }
 
+import { headers } from 'next/headers';
+
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const messages = (await import(`../../messages/${locale}.json`)).default;
+  
+  // Try to get current URL from middleware header, fallback to domain root
+  const headersList = headers();
+  const currentUrl = headersList.get('x-url') || `https://tawjihihub.com/${locale}`;
+  // Ensure we strip query parameters for the canonical URL
+  const canonicalUrl = currentUrl.split('?')[0];
+
   return {
     metadataBase: new URL('https://tawjihihub.com'),
     manifest: '/manifest.json',
@@ -55,6 +64,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
       },
     },
     alternates: {
+      canonical: canonicalUrl,
       languages: {
         'ar': '/ar',
         'en': '/en',

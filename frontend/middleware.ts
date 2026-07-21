@@ -47,7 +47,9 @@ export default async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(`/${locale}/dashboard`, request.url));
   }
 
-  return intlMiddleware(request);
+  const intlResponse = intlMiddleware(request);
+  intlResponse.headers.set('x-url', request.url);
+  return intlResponse;
 }
 
 export const config = {
