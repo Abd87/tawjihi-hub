@@ -20,6 +20,8 @@ import {
   Users
 } from 'lucide-react';
 
+import AIQuizGeneratorModal from '@/components/studio/AIQuizGeneratorModal';
+
 export default function TeacherStudioDashboardPage() {
   const params = useParams();
   const locale = (params?.locale as string) || 'ar';
@@ -27,6 +29,7 @@ export default function TeacherStudioDashboardPage() {
 
   const [courses, setCourses] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showAiModal, setShowAiModal] = useState(false);
 
   useEffect(() => {
     fetchCourses();
@@ -65,14 +68,30 @@ export default function TeacherStudioDashboardPage() {
           </p>
         </div>
 
-        <Link
-          href={`/${locale}/studio/course-builder/new`}
-          className="inline-flex items-center gap-2 px-6 py-3 bg-brand-600 hover:bg-brand-500 text-white rounded-xl text-sm font-bold shadow-lg shadow-brand-500/20 transition-all w-fit"
-        >
-          <Plus className="w-4 h-4" />
-          <span>{isRtl ? 'إضافة دورة جديدة' : 'Create New Course'}</span>
-        </Link>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setShowAiModal(true)}
+            className="inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 text-white rounded-xl text-sm font-bold shadow-lg shadow-brand-500/20 transition-all w-fit"
+          >
+            <Sparkles className="w-4 h-4" />
+            <span>{isRtl ? 'توليد بالذكاء الاصطناعي ✨' : 'AI Quiz Generator ✨'}</span>
+          </button>
+
+          <Link
+            href={`/${locale}/studio/course-builder/new`}
+            className="inline-flex items-center gap-2 px-5 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white rounded-xl text-sm font-bold transition-all w-fit"
+          >
+            <Plus className="w-4 h-4" />
+            <span>{isRtl ? 'إضافة دورة جديدة' : 'Create Course'}</span>
+          </Link>
+        </div>
       </div>
+
+      <AIQuizGeneratorModal
+        isOpen={showAiModal}
+        onClose={() => setShowAiModal(false)}
+        locale={locale}
+      />
 
       {/* Main Studio Action Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

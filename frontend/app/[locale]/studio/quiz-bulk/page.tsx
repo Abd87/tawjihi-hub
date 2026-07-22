@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Upload, Save, AlertCircle, CheckCircle2, ArrowLeft, Trash2, Plus, Database } from 'lucide-react';
+import { Upload, Save, AlertCircle, CheckCircle2, ArrowLeft, Trash2, Plus, Database, Sparkles } from 'lucide-react';
 import { Link } from '@/i18n/routing';
+import AIQuizGeneratorModal from '@/components/studio/AIQuizGeneratorModal';
 
 export default function BulkQuizUploader() {
   const [questions, setQuestions] = useState<any[]>([]);
@@ -12,6 +13,7 @@ export default function BulkQuizUploader() {
   const [lessons, setLessons] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [showAiModal, setShowAiModal] = useState(false);
   const [message, setMessage] = useState<{type: 'success'|'error', text: string} | null>(null);
 
   useEffect(() => {
@@ -140,15 +142,33 @@ export default function BulkQuizUploader() {
 
   return (
     <div className="p-8 max-w-[1600px] mx-auto">
-      <div className="flex items-center gap-4 mb-8">
-        <Link href="/studio" className="p-2 bg-slate-900 border border-slate-800 rounded-xl hover:bg-slate-800">
-          <ArrowLeft className="h-5 w-5 text-slate-400" />
-        </Link>
-        <div>
-          <h1 className="text-2xl font-black text-white">Bulk Quiz Uploader</h1>
-          <p className="text-slate-400 text-sm mt-1">Upload or type questions rapidly.</p>
+      <div className="flex items-center justify-between flex-wrap gap-4 mb-8">
+        <div className="flex items-center gap-4">
+          <Link href="/studio" className="p-2 bg-slate-900 border border-slate-800 rounded-xl hover:bg-slate-800">
+            <ArrowLeft className="h-5 w-5 text-slate-400" />
+          </Link>
+          <div>
+            <h1 className="text-2xl font-black text-white">Bulk Quiz Uploader</h1>
+            <p className="text-slate-400 text-sm mt-1">Upload CSV or generate questions with AI instantly.</p>
+          </div>
         </div>
+
+        <button
+          onClick={() => setShowAiModal(true)}
+          className="px-6 py-3 bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 text-white font-bold text-xs rounded-xl shadow-lg shadow-brand-500/20 transition-all flex items-center gap-2"
+        >
+          <Sparkles className="w-4 h-4" />
+          <span>توليد بالذكاء الاصطناعي ✨ (AI Generator)</span>
+        </button>
       </div>
+
+      <AIQuizGeneratorModal
+        isOpen={showAiModal}
+        onClose={() => setShowAiModal(false)}
+        onQuestionsSaved={(count) => {
+          setMessage({ type: 'success', text: `Successfully generated and saved ${count} questions!` });
+        }}
+      />
 
       <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 mb-8 flex flex-wrap gap-6 items-end">
         <div className="flex-1 min-w-[200px]">
