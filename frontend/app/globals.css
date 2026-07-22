@@ -35,22 +35,13 @@ body {
 @media print {
   @page { margin: 0; size: A4; }
   
-  html, body, body *, main, div { 
+  html, body, #__next { 
     -webkit-print-color-adjust: exact !important; 
     print-color-adjust: exact !important; 
     color-scheme: light !important;
     background-color: #ffffff !important;
     background: #ffffff !important;
-    color: #000000 !important;
-    opacity: 1 !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-    filter: none !important;
-    backdrop-filter: none !important;
-  }
-
-  /* Force root containers to take full white background */
-  html, body {
+    color: #0f172a !important;
     margin: 0 !important;
     padding: 0 !important;
     min-height: 100vh !important;
@@ -59,5 +50,10 @@ body {
   
   nav, footer, aside, header, .print\:hidden, [class*="Navbar"], [class*="Social"] {
     display: none !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important; 
+    print-color-adjust: exact !important;
   }
 }
