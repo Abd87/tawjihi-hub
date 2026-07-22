@@ -66,3 +66,39 @@ export async function sendTeacherApplicationNotification({
     return { success: false, error };
   }
 }
+
+export async function sendPasswordResetEmail({
+  email,
+  name,
+  resetUrl,
+}: {
+  email: string;
+  name: string;
+  resetUrl: string;
+}) {
+  try {
+    const data = await resend.emails.send({
+      from: SENDER_EMAIL,
+      to: [email],
+      subject: 'إعادة تعيين كلمة المرور | Password Reset - Tawjihi Hub',
+      html: `
+        <div dir="rtl" style="font-family: Arial, sans-serif; background-color: #020617; color: #e2e8f0; padding: 30px; border-radius: 16px;">
+          <h1 style="color: #38bdf8; text-align: center;">إعادة تعيين كلمة المرور 🔑</h1>
+          <p style="font-size: 16px; line-height: 1.6;">مرحباً <strong>${name}</strong>،</p>
+          <p style="font-size: 16px; line-height: 1.6;">لقد تلقينا طلباً لإعادة تعيين كلمة المرور الخاصة بحسابك في منصة توجيهي هب.</p>
+          <p style="font-size: 14px; color: #94a3b8;">اضغط على الزر أدناه لتعيين كلمة مرور جديدة (هذا الرابط صالـح لمدة 60 دقيقة فقط):</p>
+          <div style="text-align: center; margin: 30px 0;">
+            <a href="${resetUrl}" style="background-color: #0284c7; color: white; padding: 12px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">إعادة تعيين كلمة المرور</a>
+          </div>
+          <p style="font-size: 12px; color: #64748b; text-align: center;">إذا لم تطلب إعادة تعيين كلمة المرور، يمكنك تجاهل هذا البريد الإلكتروني بأمان.</p>
+          <hr style="border-color: #1e293b; margin: 20px 0;" />
+          <p style="font-size: 12px; color: #94a3b8; text-align: center;">دعم توجيهي هب: support@tawjihihub.com</p>
+        </div>
+      `,
+    });
+    return { success: true, data };
+  } catch (error) {
+    console.error('Failed to send password reset email:', error);
+    return { success: false, error };
+  }
+}
