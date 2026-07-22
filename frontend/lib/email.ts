@@ -1,6 +1,6 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY || '***REMOVED***');
+const resend = new Resend(process.env.RESEND_API_KEY || '');
 
 // Default sender address using your verified domain/resend domain
 // Note: Resend onboarding uses onboarding@resend.dev until custom domain DKIM is verified in Resend dashboard
