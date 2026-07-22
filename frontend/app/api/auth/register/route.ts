@@ -43,7 +43,7 @@ export async function POST(request: Request) {
     }
 
     if (phoneNumber) {
-      const existingPhone = await prisma.user.findUnique({
+      const existingPhone = await prisma.user.findFirst({
         where: { phoneNumber },
       });
       if (existingPhone) {
