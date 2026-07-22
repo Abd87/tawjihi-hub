@@ -37,18 +37,24 @@ export async function GET(request: Request) {
     const mistakes = await prisma.mistake.findMany({
       where: {
         question: {
-          quiz: {
-            courseId: { in: courseIds },
+          section: {
+            quiz: {
+              courseId: { in: courseIds },
+            },
           },
         },
       },
       include: {
         question: {
           include: {
-            quiz: {
+            section: {
               include: {
-                course: {
-                  select: { titleAr: true, titleEn: true },
+                quiz: {
+                  include: {
+                    course: {
+                      select: { titleAr: true, titleEn: true },
+                    },
+                  },
                 },
               },
             },
@@ -73,10 +79,10 @@ export async function GET(request: Request) {
           questionId: qId,
           textAr: m.question.textAr,
           textEn: m.question.textEn,
-          courseTitleAr: m.question.quiz.course.titleAr,
-          courseTitleEn: m.question.quiz.course.titleEn,
-          quizTitleAr: m.question.quiz.titleAr,
-          quizTitleEn: m.question.quiz.titleEn,
+          courseTitleAr: m.question.section.quiz.course.titleAr,
+          courseTitleEn: m.question.section.quiz.course.titleEn,
+          quizTitleAr: m.question.section.quiz.titleAr,
+          quizTitleEn: m.question.section.quiz.titleEn,
           totalMistakes: 0,
           affectedStudentsCount: 0,
           choices: m.question.choices,
