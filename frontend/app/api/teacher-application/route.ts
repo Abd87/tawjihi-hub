@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
+import { sendTeacherApplicationNotification } from '@/lib/email';
 
 export async function POST(request: Request) {
   try {
@@ -20,6 +21,9 @@ export async function POST(request: Request) {
         resumeLink,
       },
     });
+
+    // Notify admin via email
+    sendTeacherApplicationNotification({ fullName, email, phoneNumber, subject }).catch(err => console.error('Teacher notification email error:', err));
 
     return NextResponse.json({ success: true, application });
   } catch (error) {
