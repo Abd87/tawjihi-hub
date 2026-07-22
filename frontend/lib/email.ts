@@ -1,6 +1,6 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY || '');
+const resend = new Resend(process.env.RESEND_API_KEY || 're_build_placeholder');
 
 // Default sender address using your verified domain
 const SENDER_EMAIL = process.env.EMAIL_FROM || 'Tawjihi Hub <support@tawjihihub.com>';
