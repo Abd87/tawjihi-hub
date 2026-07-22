@@ -5,7 +5,7 @@ import prisma from '@/lib/prisma';
 import { z } from 'zod';
 import { rateLimit } from '@/lib/rate-limit';
 
-import { sendWelcomeEmail } from '@/lib/email';
+import { sendWelcomeEmail, sendAdminNewUserAlert } from '@/lib/email';
 
 const registerSchema = z.object({
   nameAr: z.string().min(2, 'nameArRequired'),
@@ -80,8 +80,9 @@ export async function POST(request: Request) {
       }
     });
 
-    // Send welcome email (fire and forget so it doesn't slow down registration)
+    // Send welcome email to student and admin alert to admin@tawjihihub.com
     sendWelcomeEmail({ email: user.email, name: user.nameAr || user.nameEn || 'طالبنا العزيز' }).catch(err => console.error('Welcome email error:', err));
+    sendAdminNewUserAlert({ name: user.nameAr || user.nameEn || 'مستخدم جديد', email: user.email, role: user.role, trackType: user.trackType }).catch(err => console.error('Admin user alert email error:', err));
 
     if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET is missing');
     const secret = process.env.JWT_SECRET;

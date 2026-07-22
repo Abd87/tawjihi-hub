@@ -35,6 +35,47 @@ export async function sendWelcomeEmail({ email, name }: { email: string; name: s
   }
 }
 
+export async function sendAdminNewUserAlert({
+  name,
+  email,
+  role,
+  trackType,
+}: {
+  name: string;
+  email: string;
+  role: string;
+  trackType?: string | null;
+}) {
+  try {
+    const data = await resend.emails.send({
+      from: SENDER_EMAIL,
+      to: ['admin@tawjihihub.com', 'support@tawjihihub.com'],
+      subject: `تسجيل مستخدم جديد: ${name} (${role})`,
+      html: `
+        <div dir="rtl" style="font-family: Arial, sans-serif; background-color: #020617; color: #e2e8f0; padding: 30px; border-radius: 16px; max-width: 600px; margin: 0 auto; border: 1px solid #1e293b;">
+          <div style="text-align: center; margin-bottom: 24px;">
+            <img src="${LOGO_URL}" alt="Tawjihi Hub" style="height: 50px; width: auto; display: inline-block;" />
+          </div>
+          <h2 style="color: #38bdf8; text-align: center;">إشعار تسجيل مستخدم جديد 👤</h2>
+          <div style="background-color: #0f172a; padding: 20px; border-radius: 12px; margin-top: 20px; line-height: 1.8;">
+            <p style="margin: 6px 0;"><strong>الاسم:</strong> ${name}</p>
+            <p style="margin: 6px 0;"><strong>البريد الإلكتروني:</strong> ${email}</p>
+            <p style="margin: 6px 0;"><strong>نوع الحساب:</strong> ${role}</p>
+            ${trackType ? `<p style="margin: 6px 0;"><strong>الفرع الدراسي:</strong> ${trackType}</p>` : ''}
+          </div>
+          <div style="text-align: center; margin-top: 28px;">
+            <a href="https://tawjihihub.com/admin/users" style="background-color: #0284c7; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">عرض قائمة المستخدمين</a>
+          </div>
+        </div>
+      `,
+    });
+    return { success: true, data };
+  } catch (error) {
+    console.error('Failed to send new user admin alert:', error);
+    return { success: false, error };
+  }
+}
+
 export async function sendTeacherApplicationNotification({
   fullName,
   email,
