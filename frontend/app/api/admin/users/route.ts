@@ -174,6 +174,19 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ error: 'Cannot delete Master Admin account' }, { status: 400 });
     }
 
+    // Transfer any blog posts created by this user to the Master Admin (or delete them) to prevent foreign key errors
+    const masterAdmin = await prisma.user.findFirst({ where: { isMasterAdmin: true } });
+    if (masterAdmin && masterAdmin.id !== id) {
+      await prisma.blogPost.updateMany({
+        where: { authorId: id },
+        data: { authorId: masterAdmin.id },
+      });
+    } else {
+      await prisma.blogPost.deleteMany({
+        where: { authorId: id },
+      });
+    }
+
     await prisma.user.delete({
       where: { id }
     });
