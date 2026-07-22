@@ -35,20 +35,17 @@ body {
 @media print {
   @page { margin: 0; size: A4; }
   
-  html, body, #__next { 
+  html, body, #__next, body > div, main, div[class*="min-h"], div[class*="flex"] { 
     -webkit-print-color-adjust: exact !important; 
     print-color-adjust: exact !important; 
     color-scheme: light !important;
     background-color: #ffffff !important;
     background: #ffffff !important;
     color: #0f172a !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    min-height: 100vh !important;
-    width: 100vw !important;
+    opacity: 1 !important;
   }
-  
-  nav, footer, aside, header, .print\:hidden, [class*="Navbar"], [class*="Social"] {
+
+  nav, footer, aside, header, .print\:hidden, [class*="Navbar"], [class*="Social"], [class*="AdminSidebar"], [class*="AdminTopNav"] {
     display: none !important;
   }
 
