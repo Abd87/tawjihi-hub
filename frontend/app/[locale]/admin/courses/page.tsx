@@ -60,6 +60,7 @@ interface Course {
   descriptionEn: string;
   track: 'BTEC' | 'ACADEMIC';
   semester: 1 | 2;
+  price?: number;
   subjectAr: string;
   subjectEn: string;
   teacherId: string;
@@ -902,12 +903,15 @@ function CourseForm({
           value={course.titleEn} onChange={v => setField('titleEn', v)} placeholder="e.g. Scientific Mathematics" />
       </div>
 
-      {/* Subject */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      {/* Subject & Price */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         <Field label={isRtl ? 'المادة الدراسية (عربي)' : 'Subject (Arabic)'} dir="rtl"
           value={course.subjectAr} onChange={v => setField('subjectAr', v)} placeholder="مثال: الرياضيات" />
         <Field label={isRtl ? 'المادة الدراسية (إنجليزي)' : 'Subject (English)'} dir="ltr"
           value={course.subjectEn} onChange={v => setField('subjectEn', v)} placeholder="e.g. Mathematics" />
+        <Field label={isRtl ? 'سعر الدورة (دينار أردني)' : 'Course Price (JOD)'} dir="ltr"
+          type="number"
+          value={String(course.price ?? 35)} onChange={v => setField('price', parseFloat(v) || 0)} placeholder="35" />
       </div>
 
       {/* Descriptions */}
@@ -1038,13 +1042,13 @@ function CourseForm({
 }
 
 /* ─── Field components ──────────────────────────────────────────────────── */
-function Field({ label, value, onChange, placeholder, dir }: {
-  label: string; value: string; onChange: (v: string) => void; placeholder: string; dir?: string;
+function Field({ label, value, onChange, placeholder, dir, type = 'text' }: {
+  label: string; value: string; onChange: (v: string) => void; placeholder: string; dir?: string; type?: string;
 }) {
   return (
     <div className="space-y-1.5">
       <label className="text-xs font-bold text-slate-500">{label}</label>
-      <input dir={dir} type="text" value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder}
+      <input dir={dir} type={type} value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder}
         className="w-full py-2.5 px-3 text-sm bg-slate-950 border border-slate-800 rounded-xl text-white placeholder:text-slate-700 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500/20 transition-all" />
     </div>
   );
