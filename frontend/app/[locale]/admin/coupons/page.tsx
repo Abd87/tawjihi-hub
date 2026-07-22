@@ -705,7 +705,7 @@ export default function AdminCouponsPage() {
         {/* ═══════════════════════════════════════════════════════════ */}
         {/* PRINT CARDS — hidden in normal view, shown only on print   */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <div className="hidden print:flex w-full bg-white absolute top-0 left-0 z-50 p-8 justify-center">
+        <div className="hidden print:flex print:fixed print:inset-0 print:z-[9999] print:bg-white w-full p-8 justify-center items-start overflow-visible">
           <div style={{ fontFamily: 'Arial, sans-serif', width: '100%', maxWidth: '800px' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '40px' }}>
               {coupons
