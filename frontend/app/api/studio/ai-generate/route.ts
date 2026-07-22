@@ -49,7 +49,7 @@ ${topicText.slice(0, 4000)}
 """
 
 CRITICAL INSTRUCTIONS:
-1. Return ONLY a valid JSON object without markdown formatting, code block markers, or extra text.
+1. Return ONLY a valid raw JSON object without markdown formatting or extra text.
 2. The JSON object must strictly match this exact structure:
 {
   "questions": [
@@ -68,22 +68,20 @@ CRITICAL INSTRUCTIONS:
     }
   ]
 }
-3. Ensure exactly ONE choice per question has "isCorrect": true, and the other 3 choices have "isCorrect": false.
-4. For Arabic subjects, make the Arabic text rich and academic. For English/BTEC subjects, make both Arabic and English text clear.`;
+3. Ensure exactly ONE choice per question has "isCorrect": true, and the other 3 choices have "isCorrect": false.`;
 
-    // Candidate Gemini models in order of priority
     const modelsToTry = [
-      'gemini-1.5-flash-latest',
       'gemini-1.5-flash',
+      'gemini-1.5-pro',
       'gemini-2.0-flash-exp',
-      'gemini-1.5-pro'
+      'gemini-1.0-pro'
     ];
 
     let lastError: string = '';
     let parsedData: any = null;
 
     for (const model of modelsToTry) {
-      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey.trim()}`;
 
       try {
         const geminiResponse = await fetch(geminiUrl, {
@@ -95,10 +93,6 @@ CRITICAL INSTRUCTIONS:
                 parts: [{ text: prompt }],
               },
             ],
-            generationConfig: {
-              temperature: 0.4,
-              responseMimeType: 'application/json',
-            },
           }),
         });
 
@@ -107,22 +101,36 @@ CRITICAL INSTRUCTIONS:
           const candidateText = resData.candidates?.[0]?.content?.parts?.[0]?.text;
 
           if (candidateText) {
-            const cleanedText = candidateText.replace(/```json/g, '').replace(/```/g, '').trim();
-            parsedData = JSON.parse(cleanedText);
-            break; // Successfully generated!
+            // Remove code fences like ```json ... ```
+            const cleanedText = candidateText
+              .replace(/```json/gi, '')
+              .replace(/```/g, '')
+              .trim();
+
+            try {
+              parsedData = JSON.parse(cleanedText);
+              if (parsedData && Array.isArray(parsedData.questions)) {
+                break; // Found working response!
+              }
+            } catch (jsonErr) {
+              console.error('JSON parse error from Gemini:', jsonErr);
+            }
           }
         } else {
           const errBody = await geminiResponse.text();
           lastError = `Model ${model} returned HTTP ${geminiResponse.status}: ${errBody}`;
-          console.warn(`Gemini model ${model} failed, trying fallback...`, errBody);
+          console.warn(`Gemini model ${model} response:`, errBody);
         }
       } catch (e: any) {
         lastError = e?.message || 'Network error connecting to Gemini';
       }
     }
 
-    if (!parsedData || !parsedData.questions) {
-      return NextResponse.json({ error: `Gemini API Error: ${lastError || 'Could not connect to Gemini models.'}` }, { status: 500 });
+    if (!parsedData || !Array.isArray(parsedData.questions)) {
+      return NextResponse.json(
+        { error: `Gemini API Response: ${lastError || 'Could not parse response from Gemini API.'}` },
+        { status: 500 }
+      );
     }
 
     return NextResponse.json({
