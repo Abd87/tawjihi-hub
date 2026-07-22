@@ -43,11 +43,16 @@ export default async function HomePage({ params: { locale } }: PageProps) {
     );
   };
 
-  const latestPosts = await prisma.blogPost.findMany({
-    where: { published: true },
-    orderBy: { createdAt: 'desc' },
-    take: 3,
-  });
+  let latestPosts: any[] = [];
+  try {
+    latestPosts = await prisma.blogPost.findMany({
+      where: { published: true },
+      orderBy: { createdAt: 'desc' },
+      take: 3,
+    });
+  } catch (err) {
+    console.error('Error fetching blog posts for home page:', err);
+  }
 
   return (
     <div className="relative min-h-screen bg-[#020617] overflow-x-hidden font-sans selection:bg-brand-500/30 selection:text-brand-300">
