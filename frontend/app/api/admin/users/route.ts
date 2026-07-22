@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
+import bcrypt from 'bcryptjs';
 
 export const dynamic = 'force-dynamic';
 
@@ -55,15 +56,19 @@ export async function PUT(request: Request) {
 
     const currentUser = await prisma.user.findUnique({ where: { id: decoded.userId } });
 
-    // Only Master Admin can promote/demote users
-    if (!currentUser || !currentUser.isMasterAdmin) {
-      return NextResponse.json({ error: 'Forbidden - Only Master Admin can modify roles' }, { status: 403 });
+    if (!currentUser || (!currentUser.isMasterAdmin && currentUser.role !== 'ADMIN')) {
+      return NextResponse.json({ error: 'Forbidden - Only Master Admin or Admin can modify roles' }, { status: 403 });
     }
 
     const { targetUserId, newRole } = await request.json();
 
     if (!targetUserId || !newRole) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    }
+
+    const targetUser = await prisma.user.findUnique({ where: { id: targetUserId } });
+    if (targetUser?.isMasterAdmin) {
+      return NextResponse.json({ error: 'Cannot modify Master Admin role' }, { status: 400 });
     }
 
     const updatedUser = await prisma.user.update({
@@ -113,7 +118,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Email already exists' }, { status: 400 });
     }
 
-    const bcrypt = require('bcryptjs');
     const passwordHash = await bcrypt.hash(password, 10);
 
     const newUser = await prisma.user.create({
@@ -165,11 +169,16 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ error: 'Missing user ID' }, { status: 400 });
     }
 
+    const targetUser = await prisma.user.findUnique({ where: { id } });
+    if (targetUser?.isMasterAdmin) {
+      return NextResponse.json({ error: 'Cannot delete Master Admin account' }, { status: 400 });
+    }
+
     await prisma.user.delete({
       where: { id }
     });
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, message: 'User deleted successfully' });
   } catch (error) {
     console.error('Delete user error:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

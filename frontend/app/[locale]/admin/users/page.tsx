@@ -1,16 +1,17 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
-import { Users, Search, ShieldCheck, User, Loader2, CheckCircle2 } from 'lucide-react';
+import { Users, Search, ShieldCheck, Loader2, Trash2 } from 'lucide-react';
 
 export default function UsersAdminPage() {
   const params = useParams();
   const locale = (params?.locale as string) || 'ar';
+  const isRtl = locale === 'ar';
   
   const [users, setUsers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
   const [search, setSearch] = useState('');
   const [error, setError] = useState<string | null>(null);
 
@@ -51,6 +52,31 @@ export default function UsersAdminPage() {
     }
   };
 
+  const handleDeleteUser = async (userId: string, userEmail: string) => {
+    if (!confirm(isRtl ? `هل أنت تأكد من حذف المستخدم (${userEmail}) نهائياً؟` : `Are you sure you want to permanently delete (${userEmail})?`)) {
+      return;
+    }
+
+    setDeletingId(userId);
+    try {
+      const res = await fetch(`/api/admin/users?id=${userId}`, {
+        method: 'DELETE',
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || (isRtl ? 'حدث خطأ أثناء الحذف' : 'Failed to delete user'));
+      }
+
+      setUsers(users.filter((u) => u.id !== userId));
+    } catch (err: any) {
+      alert(err.message);
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
   const filteredUsers = users.filter(u => 
     (u.email || '').toLowerCase().includes(search.toLowerCase()) || 
     (u.nameAr || '').toLowerCase().includes(search.toLowerCase())
@@ -78,10 +104,10 @@ export default function UsersAdminPage() {
         <div>
           <h1 className="text-3xl font-extrabold text-white mb-2 flex items-center gap-3">
             <Users className="h-8 w-8 text-brand-500" />
-            {locale === 'ar' ? 'إدارة المستخدمين' : 'User Management'}
+            {isRtl ? 'إدارة المستخدمين' : 'User Management'}
           </h1>
           <p className="text-slate-400">
-            {locale === 'ar' ? 'إدارة الصلاحيات (للمدير الرئيسي فقط)' : 'Manage roles and permissions (Master Admin only)'}
+            {isRtl ? 'إدارة وحذف الحسابات وتعديل الصلاحيات' : 'Manage roles, edit permissions, and remove test accounts'}
           </p>
         </div>
         
@@ -94,7 +120,7 @@ export default function UsersAdminPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full bg-slate-900 border border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-white focus:border-brand-500 transition-all"
-            placeholder={locale === 'ar' ? 'بحث بالاسم أو الإيميل...' : 'Search users...'}
+            placeholder={isRtl ? 'بحث بالاسم أو الإيميل...' : 'Search users...'}
           />
         </div>
       </div>
@@ -104,10 +130,10 @@ export default function UsersAdminPage() {
           <table className="w-full text-left text-sm text-slate-300">
             <thead className="text-xs uppercase bg-slate-950/50 text-slate-400 border-b border-slate-800">
               <tr>
-                <th className="px-6 py-4">{locale === 'ar' ? 'الاسم' : 'Name'}</th>
-                <th className="px-6 py-4">{locale === 'ar' ? 'البريد الإلكتروني' : 'Email'}</th>
-                <th className="px-6 py-4">{locale === 'ar' ? 'الدور' : 'Role'}</th>
-                <th className="px-6 py-4 text-end">{locale === 'ar' ? 'إجراء' : 'Action'}</th>
+                <th className="px-6 py-4">{isRtl ? 'الاسم' : 'Name'}</th>
+                <th className="px-6 py-4">{isRtl ? 'البريد الإلكتروني' : 'Email'}</th>
+                <th className="px-6 py-4">{isRtl ? 'الدور' : 'Role'}</th>
+                <th className="px-6 py-4 text-end">{isRtl ? 'إجراءات' : 'Actions'}</th>
               </tr>
             </thead>
             <tbody>
@@ -115,7 +141,7 @@ export default function UsersAdminPage() {
                 <tr key={user.id} className="border-b border-slate-800/50 hover:bg-slate-900/80 transition-colors">
                   <td className="px-6 py-4 font-bold text-white flex items-center gap-2">
                     {user.isMasterAdmin && <ShieldCheck className="h-4 w-4 text-emerald-400" />}
-                    {locale === 'ar' ? user.nameAr : (user.nameEn || user.nameAr)}
+                    {isRtl ? user.nameAr : (user.nameEn || user.nameAr)}
                   </td>
                   <td className="px-6 py-4">{user.email}</td>
                   <td className="px-6 py-4">
@@ -127,7 +153,7 @@ export default function UsersAdminPage() {
                       {user.role}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-end">
+                  <td className="px-6 py-4 text-end flex items-center justify-end gap-3">
                     <select
                       value={user.role}
                       onChange={(e) => handleRoleChange(user.id, e.target.value)}
@@ -139,13 +165,28 @@ export default function UsersAdminPage() {
                       <option value="TEACHER">TEACHER</option>
                       <option value="ADMIN">ADMIN</option>
                     </select>
+
+                    {!user.isMasterAdmin && (
+                      <button
+                        onClick={() => handleDeleteUser(user.id, user.email)}
+                        disabled={deletingId === user.id}
+                        title={isRtl ? 'حذف المستخدم' : 'Delete User'}
+                        className="p-2 rounded-lg bg-rose-500/10 text-rose-400 hover:bg-rose-500 hover:text-white transition-all disabled:opacity-50"
+                      >
+                        {deletingId === user.id ? (
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                        ) : (
+                          <Trash2 className="h-4 w-4" />
+                        )}
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}
               {filteredUsers.length === 0 && (
                 <tr>
                   <td colSpan={4} className="px-6 py-10 text-center text-slate-500">
-                    {locale === 'ar' ? 'لا يوجد نتائج' : 'No users found'}
+                    {isRtl ? 'لا يوجد نتائج' : 'No users found'}
                   </td>
                 </tr>
               )}
