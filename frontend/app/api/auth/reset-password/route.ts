@@ -39,10 +39,10 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'User not found.' }, { status: 404 });
     }
 
-    // Single-use check: Verify the token was generated for the PREVIOUS password
-    // If the password was already changed, hashSig won't match user.passwordHash.slice(-12)
-    if (decoded.hashSig && decoded.hashSig !== user.passwordHash.slice(-12)) {
-      return NextResponse.json({ error: 'This password reset link has already been used. Please request a new one.' }, { status: 400 });
+    // Single-use check: Verify the token was generated for the CURRENT password hash before reset
+    // If hashSig is missing (legacy token) or doesn't match current user.passwordHash, block reuse immediately
+    if (!decoded.hashSig || decoded.hashSig !== user.passwordHash.slice(-12)) {
+      return NextResponse.json({ error: 'This password reset link has already been used or is expired. Please request a new link.' }, { status: 400 });
     }
 
     const passwordHash = await bcrypt.hash(newPassword, 10);
