@@ -31,7 +31,7 @@ export async function POST(request: Request) {
 
     if (!apiKey) {
       return NextResponse.json(
-        { error: 'Gemini API Key is missing. Please provide a GEMINI_API_KEY environment variable or enter your free Gemini API key.' },
+        { error: 'Gemini API Key is missing. Please enter your free Gemini API key.' },
         { status: 400 }
       );
     }
@@ -71,40 +71,59 @@ CRITICAL INSTRUCTIONS:
 3. Ensure exactly ONE choice per question has "isCorrect": true, and the other 3 choices have "isCorrect": false.
 4. For Arabic subjects, make the Arabic text rich and academic. For English/BTEC subjects, make both Arabic and English text clear.`;
 
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    // Candidate Gemini models in order of priority
+    const modelsToTry = [
+      'gemini-1.5-flash-latest',
+      'gemini-1.5-flash',
+      'gemini-2.0-flash-exp',
+      'gemini-1.5-pro'
+    ];
 
-    const geminiResponse = await fetch(geminiUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [
-          {
-            parts: [{ text: prompt }],
-          },
-        ],
-        generationConfig: {
-          temperature: 0.4,
-          responseMimeType: 'application/json',
-        },
-      }),
-    });
+    let lastError: string = '';
+    let parsedData: any = null;
 
-    if (!geminiResponse.ok) {
-      const errText = await geminiResponse.text();
-      console.error('Gemini API Error:', errText);
-      return NextResponse.json({ error: `Gemini API Error: ${geminiResponse.statusText}` }, { status: 500 });
+    for (const model of modelsToTry) {
+      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+
+      try {
+        const geminiResponse = await fetch(geminiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [
+              {
+                parts: [{ text: prompt }],
+              },
+            ],
+            generationConfig: {
+              temperature: 0.4,
+              responseMimeType: 'application/json',
+            },
+          }),
+        });
+
+        if (geminiResponse.ok) {
+          const resData = await geminiResponse.json();
+          const candidateText = resData.candidates?.[0]?.content?.parts?.[0]?.text;
+
+          if (candidateText) {
+            const cleanedText = candidateText.replace(/```json/g, '').replace(/```/g, '').trim();
+            parsedData = JSON.parse(cleanedText);
+            break; // Successfully generated!
+          }
+        } else {
+          const errBody = await geminiResponse.text();
+          lastError = `Model ${model} returned HTTP ${geminiResponse.status}: ${errBody}`;
+          console.warn(`Gemini model ${model} failed, trying fallback...`, errBody);
+        }
+      } catch (e: any) {
+        lastError = e?.message || 'Network error connecting to Gemini';
+      }
     }
 
-    const resData = await geminiResponse.json();
-    const candidateText = resData.candidates?.[0]?.content?.parts?.[0]?.text;
-
-    if (!candidateText) {
-      return NextResponse.json({ error: 'No content returned from Gemini' }, { status: 500 });
+    if (!parsedData || !parsedData.questions) {
+      return NextResponse.json({ error: `Gemini API Error: ${lastError || 'Could not connect to Gemini models.'}` }, { status: 500 });
     }
-
-    // Clean markdown code fence formatting if present
-    const cleanedText = candidateText.replace(/```json/g, '').replace(/```/g, '').trim();
-    const parsedData = JSON.parse(cleanedText);
 
     return NextResponse.json({
       success: true,
