@@ -31,7 +31,14 @@ export async function POST(request: Request) {
 
     if (!apiKey) {
       return NextResponse.json(
-        { error: 'Gemini API Key is missing. Please enter your free Gemini API key.' },
+        { error: 'Gemini API Key is missing. Please create a free key at https://aistudio.google.com/app/apikey' },
+        { status: 400 }
+      );
+    }
+
+    if (!apiKey.startsWith('AIzaSy')) {
+      return NextResponse.json(
+        { error: 'Invalid Gemini API Key format. Gemini API keys start with "AIzaSy...". Please create your free key at https://aistudio.google.com/app/apikey' },
         { status: 400 }
       );
     }
@@ -83,19 +90,13 @@ CRITICAL INSTRUCTIONS:
     for (const model of modelsToTry) {
       const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
-      const headers: Record<string, string> = {
-        'Content-Type': 'application/json',
-        'x-goog-api-key': apiKey,
-      };
-
-      if (apiKey.startsWith('AQ.')) {
-        headers['Authorization'] = `Bearer ${apiKey}`;
-      }
-
       try {
         const geminiResponse = await fetch(geminiUrl, {
           method: 'POST',
-          headers,
+          headers: {
+            'Content-Type': 'application/json',
+            'x-goog-api-key': apiKey,
+          },
           body: JSON.stringify({
             contents: [
               {
@@ -118,7 +119,7 @@ CRITICAL INSTRUCTIONS:
             try {
               parsedData = JSON.parse(cleanedText);
               if (parsedData && Array.isArray(parsedData.questions)) {
-                break; // Found working response!
+                break;
               }
             } catch (jsonErr) {
               console.error('JSON parse error from Gemini:', jsonErr);
@@ -126,7 +127,7 @@ CRITICAL INSTRUCTIONS:
           }
         } else {
           const errBody = await geminiResponse.text();
-          lastError = `HTTP ${geminiResponse.status} (${geminiResponse.statusText}): ${errBody}`;
+          lastError = `HTTP ${geminiResponse.status}: ${errBody}`;
           console.warn(`Gemini model ${model} response:`, errBody);
         }
       } catch (e: any) {
@@ -136,7 +137,7 @@ CRITICAL INSTRUCTIONS:
 
     if (!parsedData || !Array.isArray(parsedData.questions)) {
       return NextResponse.json(
-        { error: `Gemini API Response: ${lastError || 'Could not parse response from Gemini API.'}` },
+        { error: `Gemini Error: ${lastError || 'Could not connect to Gemini.'}` },
         { status: 500 }
       );
     }
