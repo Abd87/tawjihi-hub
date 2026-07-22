@@ -32,9 +32,15 @@ export async function POST(request: Request) {
       throw new Error('JWT_SECRET is missing');
     }
 
-    // Signed token valid for 1 hour
+    // Signed token valid for 1 hour, bound to the user's CURRENT password hash
+    // The moment the password changes, this token becomes invalid forever (single-use)
     const token = jwt.sign(
-      { userId: user.id, email: user.email, action: 'reset_password' },
+      {
+        userId: user.id,
+        email: user.email,
+        hashSig: user.passwordHash.slice(-12),
+        action: 'reset_password',
+      },
       secret,
       { expiresIn: '1h' }
     );
