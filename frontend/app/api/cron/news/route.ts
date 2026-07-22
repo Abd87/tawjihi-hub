@@ -6,6 +6,13 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
   try {
+    // Verify secret token from Vercel Cron or Authorization header
+    const authHeader = request.headers.get('authorization');
+    const cronSecret = process.env.CRON_SECRET;
+    if (cronSecret && authHeader !== `Bearer ${cronSecret}`) {
+      return NextResponse.json({ error: 'Unauthorized: Invalid Cron Secret' }, { status: 401 });
+    }
+
     const admin = await prisma.user.findFirst({ where: { role: 'ADMIN' } });
     if (!admin) {
       return NextResponse.json({ error: 'No admin user found to author posts' }, { status: 400 });
