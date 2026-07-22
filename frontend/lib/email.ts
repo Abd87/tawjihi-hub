@@ -114,3 +114,52 @@ export async function sendPasswordResetEmail({
     return { success: false, error };
   }
 }
+
+export async function sendBroadcastEmail({
+  emails,
+  subject,
+  content,
+}: {
+  emails: string[];
+  subject: string;
+  content: string;
+}) {
+  try {
+    // Process in batches of 50 to respect Resend rate limits
+    const batchSize = 50;
+    let sentCount = 0;
+
+    for (let i = 0; i < emails.length; i += batchSize) {
+      const batch = emails.slice(i, i + batchSize);
+      await Promise.all(
+        batch.map((to) =>
+          resend.emails.send({
+            from: SENDER_EMAIL,
+            to,
+            subject,
+            html: `
+              <div dir="rtl" style="font-family: Arial, sans-serif; background-color: #020617; color: #e2e8f0; padding: 30px; border-radius: 16px; max-width: 600px; margin: 0 auto; border: 1px solid #1e293b;">
+                <div style="text-align: center; margin-bottom: 24px;">
+                  <img src="${LOGO_URL}" alt="Tawjihi Hub" style="height: 50px; width: auto; display: inline-block;" />
+                </div>
+                <h2 style="color: #38bdf8; text-align: center; font-size: 20px;">${subject}</h2>
+                <div style="font-size: 15px; line-height: 1.8; color: #cbd5e1; margin: 20px 0; white-space: pre-wrap;">${content}</div>
+                <div style="text-align: center; margin: 32px 0;">
+                  <a href="https://tawjihihub.com" style="background-color: #0284c7; color: white; padding: 12px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">زيارة منصة توجيهي هب</a>
+                </div>
+                <hr style="border: none; border-top: 1px solid #1e293b; margin: 24px 0;" />
+                <p style="font-size: 12px; color: #94a3b8; text-align: center;">تصلك هذه الرسالة بصفتك مسجلاً في منصة توجيهي هب. تواصل معنا: <a href="mailto:support@tawjihihub.com" style="color: #38bdf8; text-decoration: none;">support@tawjihihub.com</a></p>
+              </div>
+            `,
+          }).catch(err => console.error(`Error sending to ${to}:`, err))
+        )
+      );
+      sentCount += batch.length;
+    }
+
+    return { success: true, count: sentCount };
+  } catch (error) {
+    console.error('Failed to send broadcast email:', error);
+    return { success: false, error };
+  }
+}
