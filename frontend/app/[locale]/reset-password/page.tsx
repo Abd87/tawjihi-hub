@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { Lock, CheckCircle, ShieldAlert, ArrowLeft, ArrowRight } from 'lucide-react';
+import { Lock, CheckCircle, ShieldAlert, Loader2 } from 'lucide-react';
 
-export default function ResetPasswordPage({ params: { locale } }: { params: { locale: string } }) {
+function ResetPasswordForm({ locale }: { locale: string }) {
   const isRtl = locale === 'ar';
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
@@ -107,7 +107,7 @@ export default function ResetPasswordPage({ params: { locale } }: { params: { lo
             </p>
             <Link
               href={`/${locale}/login`}
-              className="inline-block w-full py-3.5 bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm rounded-xl transition-colors mt-4"
+              className="inline-block w-full py-3.5 bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm rounded-xl transition-colors mt-4 text-center"
             >
               {isRtl ? 'تسجيل الدخول الآن' : 'Log In Now'}
             </Link>
@@ -169,5 +169,19 @@ export default function ResetPasswordPage({ params: { locale } }: { params: { lo
         )}
       </div>
     </div>
+  );
+}
+
+export default function ResetPasswordPage({ params: { locale } }: { params: { locale: string } }) {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-[#020617] flex items-center justify-center p-4">
+          <Loader2 className="w-8 h-8 text-brand-500 animate-spin" />
+        </div>
+      }
+    >
+      <ResetPasswordForm locale={locale} />
+    </Suspense>
   );
 }
