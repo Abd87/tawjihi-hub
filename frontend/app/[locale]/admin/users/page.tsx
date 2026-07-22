@@ -52,6 +52,26 @@ export default function UsersAdminPage() {
     }
   };
 
+  const handleRevenueShareChange = async (userId: string, percent: number) => {
+    try {
+      const res = await fetch('/api/admin/users', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ targetUserId: userId, revenueSharePercent: percent }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Failed to update revenue share');
+      }
+
+      const data = await res.json();
+      setUsers(users.map(u => u.id === userId ? data.user : u));
+    } catch (err: any) {
+      alert(err.message);
+    }
+  };
+
   const handleDeleteUser = async (userId: string, userEmail: string) => {
     if (!confirm(isRtl ? `هل أنت تأكد من حذف المستخدم (${userEmail}) نهائياً؟` : `Are you sure you want to permanently delete (${userEmail})?`)) {
       return;
@@ -133,6 +153,7 @@ export default function UsersAdminPage() {
                 <th className="px-6 py-4">{isRtl ? 'الاسم' : 'Name'}</th>
                 <th className="px-6 py-4">{isRtl ? 'البريد الإلكتروني' : 'Email'}</th>
                 <th className="px-6 py-4">{isRtl ? 'الدور' : 'Role'}</th>
+                <th className="px-6 py-4">{isRtl ? 'نسبة الأرباح %' : 'Share %'}</th>
                 <th className="px-6 py-4 text-end">{isRtl ? 'إجراءات' : 'Actions'}</th>
               </tr>
             </thead>
@@ -152,6 +173,28 @@ export default function UsersAdminPage() {
                     }`}>
                       {user.role}
                     </span>
+                  </td>
+                  <td className="px-6 py-4">
+                    {user.role === 'TEACHER' ? (
+                      <div className="flex items-center gap-1">
+                        <input
+                          type="number"
+                          min="0"
+                          max="100"
+                          defaultValue={user.revenueSharePercent ?? 70}
+                          onBlur={(e) => {
+                            const val = parseFloat(e.target.value);
+                            if (!isNaN(val) && val !== user.revenueSharePercent) {
+                              handleRevenueShareChange(user.id, val);
+                            }
+                          }}
+                          className="w-16 bg-slate-950 border border-slate-800 rounded-lg px-2 py-1 text-xs font-bold text-emerald-400 text-center outline-none focus:border-emerald-500"
+                        />
+                        <span className="text-xs text-slate-500">%</span>
+                      </div>
+                    ) : (
+                      <span className="text-xs text-slate-600">-</span>
+                    )}
                   </td>
                   <td className="px-6 py-4 text-end flex items-center justify-end gap-3">
                     <select

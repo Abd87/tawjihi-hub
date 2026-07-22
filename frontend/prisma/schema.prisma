@@ -30,6 +30,7 @@ model User {
   parentEmail   String?       // For parent accounts linking
   phoneNumber   String?
   isMasterAdmin Boolean       @default(false)
+  revenueSharePercent Float @default(70.0)
   
   enrollments   Enrollment[]
   createdCourses Course[]     @relation("TeacherCourses")
@@ -54,6 +55,7 @@ model Course {
   descriptionEn String?
   track         TrackType    @default(ACADEMIC)
   semester      Int?         // 1 or 2
+  price         Float        @default(35.0)
   subjectAr     String
   subjectEn     String
   thumbnailUrl  String?
@@ -198,6 +200,7 @@ model Coupon {
   usedById   String?
   usedBy     User?     @relation("UsedCoupons", fields: [usedById], references: [id])
   usedAt     DateTime?
+  priceAtRedemption Float?
   expiresAt  DateTime?
   
   createdAt  DateTime  @default(now())

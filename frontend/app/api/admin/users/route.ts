@@ -31,6 +31,7 @@ export async function GET(request: Request) {
         nameEn: true,
         role: true,
         isMasterAdmin: true,
+        revenueSharePercent: true,
         createdAt: true,
       },
       orderBy: { createdAt: 'desc' }
@@ -57,23 +58,29 @@ export async function PUT(request: Request) {
     const currentUser = await prisma.user.findUnique({ where: { id: decoded.userId } });
 
     if (!currentUser || (!currentUser.isMasterAdmin && currentUser.role !== 'ADMIN')) {
-      return NextResponse.json({ error: 'Forbidden - Only Master Admin or Admin can modify roles' }, { status: 403 });
+      return NextResponse.json({ error: 'Forbidden - Only Master Admin or Admin can modify users' }, { status: 403 });
     }
 
-    const { targetUserId, newRole } = await request.json();
+    const { targetUserId, newRole, revenueSharePercent } = await request.json();
 
-    if (!targetUserId || !newRole) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    if (!targetUserId) {
+      return NextResponse.json({ error: 'Missing targetUserId' }, { status: 400 });
     }
 
     const targetUser = await prisma.user.findUnique({ where: { id: targetUserId } });
-    if (targetUser?.isMasterAdmin) {
+    if (targetUser?.isMasterAdmin && newRole && newRole !== 'ADMIN') {
       return NextResponse.json({ error: 'Cannot modify Master Admin role' }, { status: 400 });
+    }
+
+    const updateData: any = {};
+    if (newRole) updateData.role = newRole;
+    if (typeof revenueSharePercent === 'number' && !isNaN(revenueSharePercent)) {
+      updateData.revenueSharePercent = revenueSharePercent;
     }
 
     const updatedUser = await prisma.user.update({
       where: { id: targetUserId },
-      data: { role: newRole },
+      data: updateData,
       select: {
         id: true,
         email: true,
@@ -81,6 +88,7 @@ export async function PUT(request: Request) {
         nameEn: true,
         role: true,
         isMasterAdmin: true,
+        revenueSharePercent: true,
         createdAt: true,
       }
     });
