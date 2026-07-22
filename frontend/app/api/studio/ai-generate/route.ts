@@ -77,25 +77,25 @@ CRITICAL INSTRUCTIONS:
 }
 3. Ensure exactly ONE choice per question has "isCorrect": true, and the other 3 choices have "isCorrect": false.`;
 
-    const modelsToTry = [
-      'gemini-1.5-flash',
-      'gemini-1.5-pro',
-      'gemini-2.0-flash-exp',
-      'gemini-1.0-pro'
+    const modelEndpoints = [
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent',
+      'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent',
     ];
 
     let lastError: string = '';
     let parsedData: any = null;
 
-    for (const model of modelsToTry) {
-      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+    for (const endpoint of modelEndpoints) {
+      const geminiUrl = `${endpoint}?key=${apiKey}`;
 
       try {
         const geminiResponse = await fetch(geminiUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'x-goog-api-key': apiKey,
           },
           body: JSON.stringify({
             contents: [
@@ -119,7 +119,7 @@ CRITICAL INSTRUCTIONS:
             try {
               parsedData = JSON.parse(cleanedText);
               if (parsedData && Array.isArray(parsedData.questions)) {
-                break;
+                break; // Found working model!
               }
             } catch (jsonErr) {
               console.error('JSON parse error from Gemini:', jsonErr);
@@ -127,8 +127,8 @@ CRITICAL INSTRUCTIONS:
           }
         } else {
           const errBody = await geminiResponse.text();
-          lastError = `HTTP ${geminiResponse.status}: ${errBody}`;
-          console.warn(`Gemini model ${model} response:`, errBody);
+          lastError = `Endpoint ${endpoint} returned HTTP ${geminiResponse.status}: ${errBody}`;
+          console.warn(`Gemini endpoint ${endpoint} response:`, errBody);
         }
       } catch (e: any) {
         lastError = e?.message || 'Network error connecting to Gemini';
@@ -137,7 +137,7 @@ CRITICAL INSTRUCTIONS:
 
     if (!parsedData || !Array.isArray(parsedData.questions)) {
       return NextResponse.json(
-        { error: `Gemini Error: ${lastError || 'Could not connect to Gemini.'}` },
+        { error: `Gemini Error: ${lastError || 'Could not connect to active Gemini endpoints.'}` },
         { status: 500 }
       );
     }
