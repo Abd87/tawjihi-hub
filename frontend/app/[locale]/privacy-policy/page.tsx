@@ -125,7 +125,7 @@ export default function PrivacyPolicy({ params: { locale } }: { params: { locale
             <p>{isRtl ? 'يحق لك في أي وقت:' : 'You have the right at any time to:'}</p>
             <ul className="list-disc list-inside ml-4 space-y-2">
               <li>{isRtl ? 'الوصول إلى بياناتك الشخصية وتحديثها عبر لوحة التحكم الخاصة بك.' : 'Access and update your personal data via your dashboard.'}</li>
-              <li>{isRtl ? 'طلب حذف حسابك وكافة البيانات المرتبطة به بالتواصل مع فريق الدعم.' : 'Request the deletion of your account and all associated data by contacting our support team.'}</li>
+              <li>{isRtl ? <>طلب حذف حسابك وكافة البيانات المرتبطة به بالتواصل مع <a href="mailto:support@tawjihihub.com" className="text-brand-400 underline">فريق الدعم (support@tawjihihub.com)</a>.</> : <>Request the deletion of your account and all associated data by contacting our <a href="mailto:support@tawjihihub.com" className="text-brand-400 underline">support team (support@tawjihihub.com)</a>.</>}</li>
               <li>{isRtl ? 'سحب موافقتك على استلام الرسائل الترويجية.' : 'Withdraw your consent to receive promotional messages.'}</li>
             </ul>
           </div>

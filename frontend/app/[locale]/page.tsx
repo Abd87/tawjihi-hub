@@ -698,6 +698,10 @@ export default async function HomePage({ params: { locale } }: PageProps) {
               <a href="#tracks-section" className="text-slate-400 hover:text-white transition-colors">{t('navigation.btec')}</a>
               <Link href="/privacy-policy" className="text-slate-400 hover:text-white transition-colors">{locale === 'ar' ? 'سياسة الخصوصية' : 'Privacy Policy'}</Link>
               <Link href="/refund-policy" className="text-slate-400 hover:text-white transition-colors">{locale === 'ar' ? 'سياسة الاسترجاع' : 'Refund Policy'}</Link>
+              <a href="mailto:support@tawjihihub.com" className="text-slate-400 hover:text-white transition-colors flex items-center gap-1">
+                <span>{locale === 'ar' ? 'تواصل معنا:' : 'Support:'}</span>
+                <span className="text-brand-400 hover:underline">support@tawjihihub.com</span>
+              </a>
             </div>
           </div>
 
