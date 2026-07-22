@@ -6,15 +6,36 @@ export async function GET() {
   try {
     const passwordHash = await bcrypt.hash('admin123', 10);
     
-    const admin = await prisma.user.upsert({
+    // Check if legacy admin exists and update email
+    const existingOldAdmin = await prisma.user.findUnique({
       where: { email: 'admin@tawjihi.jo' },
-      update: {},
+    });
+
+    if (existingOldAdmin) {
+      const updated = await prisma.user.update({
+        where: { id: existingOldAdmin.id },
+        data: {
+          email: 'admin@tawjihihub.com',
+          isMasterAdmin: true,
+        },
+      });
+      return NextResponse.json({ success: true, message: 'Super admin email updated to admin@tawjihihub.com', admin: updated });
+    }
+
+    // Upsert admin@tawjihihub.com
+    const admin = await prisma.user.upsert({
+      where: { email: 'admin@tawjihihub.com' },
+      update: {
+        role: 'ADMIN',
+        isMasterAdmin: true,
+      },
       create: {
-        email: 'admin@tawjihi.jo',
+        email: 'admin@tawjihihub.com',
         passwordHash,
         nameAr: 'مدير النظام',
         nameEn: 'System Admin',
         role: 'ADMIN',
+        isMasterAdmin: true,
       }
     });
 
