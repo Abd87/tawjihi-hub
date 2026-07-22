@@ -33,7 +33,48 @@ export async function GET(request: Request) {
       return NextResponse.json({ bottlenecks: [], totalMistakesRecorded: 0 });
     }
 
-    // Query mistakes recorded for questions belonging to this teacher's courses
+    // 1. Fetch wrong quiz answers submitted by students
+    const wrongAnswers = await prisma.quizAnswer.findMany({
+      where: {
+        isCorrect: false,
+        question: {
+          section: {
+            quiz: {
+              courseId: { in: courseIds },
+            },
+          },
+        },
+      },
+      include: {
+        question: {
+          include: {
+            section: {
+              include: {
+                quiz: {
+                  include: {
+                    course: {
+                      select: { titleAr: true, titleEn: true },
+                    },
+                  },
+                },
+              },
+            },
+            choices: true,
+          },
+        },
+        attempt: {
+          include: {
+            student: {
+              select: { id: true, nameAr: true, nameEn: true, email: true },
+            },
+          },
+        },
+      },
+      orderBy: { id: 'desc' },
+      take: 100,
+    });
+
+    // 2. Fetch recorded mistakes table
     const mistakes = await prisma.mistake.findMany({
       where: {
         question: {
@@ -62,41 +103,122 @@ export async function GET(request: Request) {
           },
         },
         user: {
-          select: { nameAr: true, nameEn: true, email: true },
+          select: { id: true, nameAr: true, nameEn: true, email: true },
         },
       },
       orderBy: { mistakeCount: 'desc' },
-      take: 20,
+      take: 50,
     });
 
-    // Group mistakes by question ID to calculate total failure frequency across all students
+    // 3. Build comprehensive question map
     const questionMap: Record<string, any> = {};
 
-    mistakes.forEach((m) => {
-      const qId = m.questionId;
+    // Process wrong quiz answers
+    wrongAnswers.forEach((ans) => {
+      const q = ans.question;
+      const qId = q.id;
+
       if (!questionMap[qId]) {
         questionMap[qId] = {
           questionId: qId,
-          textAr: m.question.textAr,
-          textEn: m.question.textEn,
-          courseTitleAr: m.question.section.quiz.course.titleAr,
-          courseTitleEn: m.question.section.quiz.course.titleEn,
-          quizTitleAr: m.question.section.quiz.titleAr,
-          quizTitleEn: m.question.section.quiz.titleEn,
+          textAr: q.textAr,
+          textEn: q.textEn,
+          type: q.type || 'MCQ',
+          explanationAr: q.explanationAr,
+          explanationEn: q.explanationEn,
+          correctAnswer: q.correctAnswer,
+          courseTitleAr: q.section.quiz.course.titleAr,
+          courseTitleEn: q.section.quiz.course.titleEn,
+          quizTitleAr: q.section.quiz.titleAr,
+          quizTitleEn: q.section.quiz.titleEn,
           totalMistakes: 0,
-          affectedStudentsCount: 0,
-          choices: m.question.choices,
+          affectedStudentsMap: new Set<string>(),
+          choiceSelectionCounts: {} as Record<string, number>,
+          wrongTextAnswers: [] as string[],
+          choices: q.choices,
         };
       }
-      questionMap[qId].totalMistakes += m.mistakeCount;
-      questionMap[qId].affectedStudentsCount += 1;
+
+      questionMap[qId].totalMistakes += 1;
+      if (ans.attempt?.student?.id) {
+        questionMap[qId].affectedStudentsMap.add(ans.attempt.student.id);
+      }
+
+      if (ans.selectedChoiceId) {
+        questionMap[qId].choiceSelectionCounts[ans.selectedChoiceId] =
+          (questionMap[qId].choiceSelectionCounts[ans.selectedChoiceId] || 0) + 1;
+      }
+
+      if (ans.textAnswer && !questionMap[qId].wrongTextAnswers.includes(ans.textAnswer)) {
+        questionMap[qId].wrongTextAnswers.push(ans.textAnswer);
+      }
     });
 
-    const bottlenecks = Object.values(questionMap).sort((a, b) => b.totalMistakes - a.totalMistakes);
+    // Process mistakes table
+    mistakes.forEach((m) => {
+      const q = m.question;
+      const qId = q.id;
+
+      if (!questionMap[qId]) {
+        questionMap[qId] = {
+          questionId: qId,
+          textAr: q.textAr,
+          textEn: q.textEn,
+          type: q.type || 'MCQ',
+          explanationAr: q.explanationAr,
+          explanationEn: q.explanationEn,
+          correctAnswer: q.correctAnswer,
+          courseTitleAr: q.section.quiz.course.titleAr,
+          courseTitleEn: q.section.quiz.course.titleEn,
+          quizTitleAr: q.section.quiz.titleAr,
+          quizTitleEn: q.section.quiz.titleEn,
+          totalMistakes: 0,
+          affectedStudentsMap: new Set<string>(),
+          choiceSelectionCounts: {} as Record<string, number>,
+          wrongTextAnswers: [] as string[],
+          choices: q.choices,
+        };
+      }
+
+      questionMap[qId].totalMistakes += m.mistakeCount;
+      if (m.userId) {
+        questionMap[qId].affectedStudentsMap.add(m.userId);
+      }
+    });
+
+    // Format output
+    const bottlenecks = Object.values(questionMap)
+      .map((q) => {
+        const choicesFormatted = q.choices.map((c: any) => ({
+          ...c,
+          timesSelectedByMistake: q.choiceSelectionCounts[c.id] || 0,
+        }));
+
+        return {
+          questionId: q.questionId,
+          textAr: q.textAr,
+          textEn: q.textEn,
+          type: q.type,
+          explanationAr: q.explanationAr,
+          explanationEn: q.explanationEn,
+          correctAnswer: q.correctAnswer,
+          courseTitleAr: q.courseTitleAr,
+          courseTitleEn: q.courseTitleEn,
+          quizTitleAr: q.quizTitleAr,
+          quizTitleEn: q.quizTitleEn,
+          totalMistakes: q.totalMistakes,
+          affectedStudentsCount: q.affectedStudentsMap.size || 1,
+          choices: choicesFormatted,
+          wrongTextAnswers: q.wrongTextAnswers.slice(0, 5),
+        };
+      })
+      .sort((a, b) => b.totalMistakes - a.totalMistakes);
+
+    const totalMistakesCount = bottlenecks.reduce((sum, b) => sum + b.totalMistakes, 0);
 
     return NextResponse.json({
       bottlenecks,
-      totalMistakesRecorded: mistakes.length,
+      totalMistakesRecorded: totalMistakesCount,
     });
   } catch (error: any) {
     console.error('Teacher bottleneck analytics error:', error);
