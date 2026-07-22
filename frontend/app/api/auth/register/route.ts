@@ -81,8 +81,14 @@ export async function POST(request: Request) {
     });
 
     // Send welcome email to student and admin alert to admin@tawjihihub.com
-    sendWelcomeEmail({ email: user.email, name: user.nameAr || user.nameEn || 'طالبنا العزيز' }).catch(err => console.error('Welcome email error:', err));
-    sendAdminNewUserAlert({ name: user.nameAr || user.nameEn || 'مستخدم جديد', email: user.email, role: user.role, trackType: user.trackType }).catch(err => console.error('Admin user alert email error:', err));
+    try {
+      const welcomeRes = await sendWelcomeEmail({ email: user.email, name: user.nameAr || user.nameEn || 'طالبنا العزيز' });
+      console.log('Welcome email result:', welcomeRes);
+      const alertRes = await sendAdminNewUserAlert({ name: user.nameAr || user.nameEn || 'مستخدم جديد', email: user.email, role: user.role, trackType: user.trackType });
+      console.log('Admin user alert result:', alertRes);
+    } catch (emailErr) {
+      console.error('Email sending error during registration:', emailErr);
+    }
 
     if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET is missing');
     const secret = process.env.JWT_SECRET;
