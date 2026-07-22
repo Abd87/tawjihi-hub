@@ -2,9 +2,8 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY || '');
 
-// Default sender address using your verified domain/resend domain
-// Note: Resend onboarding uses onboarding@resend.dev until custom domain DKIM is verified in Resend dashboard
-const SENDER_EMAIL = process.env.EMAIL_FROM || 'Tawjihi Hub <onboarding@resend.dev>';
+// Default sender address using your verified domain
+const SENDER_EMAIL = process.env.EMAIL_FROM || 'Tawjihi Hub <support@tawjihihub.com>';
 
 export async function sendWelcomeEmail({ email, name }: { email: string; name: string }) {
   try {
