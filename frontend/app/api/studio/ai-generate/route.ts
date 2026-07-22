@@ -27,7 +27,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Topic or lesson text is required' }, { status: 400 });
     }
 
-    const apiKey = customApiKey || process.env.GEMINI_API_KEY;
+    const apiKey = (customApiKey || process.env.GEMINI_API_KEY || '').trim();
 
     if (!apiKey) {
       return NextResponse.json(
@@ -81,12 +81,21 @@ CRITICAL INSTRUCTIONS:
     let parsedData: any = null;
 
     for (const model of modelsToTry) {
-      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey.trim()}`;
+      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+        'x-goog-api-key': apiKey,
+      };
+
+      if (apiKey.startsWith('AQ.')) {
+        headers['Authorization'] = `Bearer ${apiKey}`;
+      }
 
       try {
         const geminiResponse = await fetch(geminiUrl, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers,
           body: JSON.stringify({
             contents: [
               {
@@ -101,7 +110,6 @@ CRITICAL INSTRUCTIONS:
           const candidateText = resData.candidates?.[0]?.content?.parts?.[0]?.text;
 
           if (candidateText) {
-            // Remove code fences like ```json ... ```
             const cleanedText = candidateText
               .replace(/```json/gi, '')
               .replace(/```/g, '')
@@ -118,7 +126,7 @@ CRITICAL INSTRUCTIONS:
           }
         } else {
           const errBody = await geminiResponse.text();
-          lastError = `Model ${model} returned HTTP ${geminiResponse.status}: ${errBody}`;
+          lastError = `HTTP ${geminiResponse.status} (${geminiResponse.statusText}): ${errBody}`;
           console.warn(`Gemini model ${model} response:`, errBody);
         }
       } catch (e: any) {
