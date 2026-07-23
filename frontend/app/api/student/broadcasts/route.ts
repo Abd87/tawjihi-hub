@@ -7,6 +7,9 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
   try {
+    const { searchParams } = new URL(request.url);
+    const specificCourseId = searchParams.get('courseId');
+
     const authHeader = request.headers.get('authorization');
     const headerToken = authHeader?.startsWith('Bearer ') ? authHeader.substring(7) : null;
     const cookieStore = cookies();
@@ -26,24 +29,35 @@ export async function GET(request: Request) {
         });
         courseIds = enrollments.map((e) => e.courseId);
       } catch (e) {
-        // Token expired or invalid, fall back to public/general announcements
+        // Token invalid
       }
     }
 
-    // Fetch broadcasts: either general broadcasts (courseId == null) OR targeted to student's enrolled courses
+    if (specificCourseId && !courseIds.includes(specificCourseId)) {
+      courseIds.push(specificCourseId);
+    }
+
+    // Build flexible query matching general broadcasts or course-specific broadcasts
+    const orConditions: any[] = [{ courseId: null }];
+
+    if (courseIds.length > 0) {
+      orConditions.push({ courseId: { in: courseIds } });
+    }
+
+    if (specificCourseId) {
+      orConditions.push({ courseId: specificCourseId });
+    }
+
     const broadcasts = await prisma.broadcast.findMany({
       where: {
-        OR: [
-          { courseId: null },
-          courseIds.length > 0 ? { courseId: { in: courseIds } } : undefined,
-        ].filter(Boolean) as any,
+        OR: orConditions,
       },
       include: {
         teacher: {
           select: { nameAr: true, nameEn: true },
         },
         course: {
-          select: { titleAr: true, titleEn: true },
+          select: { id: true, titleAr: true, titleEn: true },
         },
       },
       orderBy: { createdAt: 'desc' },

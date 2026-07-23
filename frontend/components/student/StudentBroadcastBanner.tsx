@@ -11,18 +11,23 @@ interface Broadcast {
   contentEn?: string;
   priority: 'NORMAL' | 'HIGH' | 'URGENT';
   teacher?: { nameAr: string; nameEn?: string };
-  course?: { titleAr: string; titleEn?: string };
+  course?: { id?: string; titleAr: string; titleEn?: string };
   createdAt: string;
 }
 
-export default function StudentBroadcastBanner({ isRtl = true }: { isRtl?: boolean }) {
+interface StudentBroadcastBannerProps {
+  isRtl?: boolean;
+  courseId?: string;
+}
+
+export default function StudentBroadcastBanner({ isRtl = true, courseId }: StudentBroadcastBannerProps) {
   const [broadcasts, setBroadcasts] = useState<Broadcast[]>([]);
   const [dismissedIds, setDismissedIds] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchStudentBroadcasts();
-  }, []);
+  }, [courseId]);
 
   const fetchStudentBroadcasts = async () => {
     try {
@@ -32,7 +37,11 @@ export default function StudentBroadcastBanner({ isRtl = true }: { isRtl?: boole
         headers['Authorization'] = `Bearer ${token}`;
       }
 
-      const res = await fetch('/api/student/broadcasts', { headers });
+      const url = courseId
+        ? `/api/student/broadcasts?courseId=${encodeURIComponent(courseId)}`
+        : '/api/student/broadcasts';
+
+      const res = await fetch(url, { headers });
       if (res.ok) {
         const data = await res.json();
         setBroadcasts(data.broadcasts || []);

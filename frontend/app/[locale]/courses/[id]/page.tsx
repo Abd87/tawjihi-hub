@@ -28,6 +28,7 @@ import {
 import CourseUnlockModal from '@/components/CourseUnlockModal';
 import Link from 'next/link';
 import VocabCoursePlayer from '@/components/VocabCoursePlayer';
+import StudentBroadcastBanner from '@/components/student/StudentBroadcastBanner';
 
 interface InlineQuestion {
   id: string;
@@ -299,6 +300,9 @@ export default function CourseSyllabusPage() {
             <span className="font-semibold">{isRtl ? 'العودة للوحة التحكم' : 'Back to Dashboard'}</span>
           </Link>
         </div>
+
+        {/* Course Specific Broadcast Announcements */}
+        <StudentBroadcastBanner courseId={courseId} isRtl={isRtl} />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           
