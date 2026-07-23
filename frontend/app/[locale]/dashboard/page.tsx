@@ -34,7 +34,8 @@ import {
   TrendingUp,
   Activity,
   ShieldCheck,
-  BrainCircuit
+  BrainCircuit,
+  Ticket
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -447,6 +448,79 @@ export default function DashboardPage() {
             </div>
           </div>
         </div>
+
+        {/* Student Quick Action Ribbon */}
+        {user?.role === 'STUDENT' && (
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 mb-10">
+            <Link
+              href="/dashboard/mistakes"
+              className="group p-4 bg-slate-900/60 border border-slate-800 hover:border-amber-500/50 rounded-2xl transition-all flex items-center gap-3 backdrop-blur-xl"
+            >
+              <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 group-hover:scale-110 transition-transform">
+                <BookOpen className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-white group-hover:text-amber-400 transition-colors">
+                  {locale === 'ar' ? 'بنك الأخطاء' : 'Mistake Bank'}
+                </h4>
+                <p className="text-[10px] text-slate-400">
+                  {locale === 'ar' ? 'مراجعة وتثبيت الإجابات' : 'Review wrong choices'}
+                </p>
+              </div>
+            </Link>
+
+            <Link
+              href="/calculator"
+              className="group p-4 bg-slate-900/60 border border-slate-800 hover:border-cyan-500/50 rounded-2xl transition-all flex items-center gap-3 backdrop-blur-xl"
+            >
+              <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 group-hover:scale-110 transition-transform">
+                <Calculator className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors">
+                  {locale === 'ar' ? 'حاسبة المعدل' : 'GPA Calculator'}
+                </h4>
+                <p className="text-[10px] text-slate-400">
+                  {locale === 'ar' ? 'حساب المعدل المعتمد' : 'Calculate your GPA'}
+                </p>
+              </div>
+            </Link>
+
+            <Link
+              href="/redeem"
+              className="group p-4 bg-slate-900/60 border border-slate-800 hover:border-emerald-500/50 rounded-2xl transition-all flex items-center gap-3 backdrop-blur-xl"
+            >
+              <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 group-hover:scale-110 transition-transform">
+                <Ticket className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-white group-hover:text-emerald-400 transition-colors">
+                  {locale === 'ar' ? 'تفعيل بطاقة' : 'Redeem Coupon'}
+                </h4>
+                <p className="text-[10px] text-slate-400">
+                  {locale === 'ar' ? 'إدخال رمز الكوبون' : 'Enter access code'}
+                </p>
+              </div>
+            </Link>
+
+            <Link
+              href="/subjects"
+              className="group p-4 bg-slate-900/60 border border-slate-800 hover:border-brand-500/50 rounded-2xl transition-all flex items-center gap-3 backdrop-blur-xl"
+            >
+              <div className="p-2.5 rounded-xl bg-brand-500/10 text-brand-400 group-hover:scale-110 transition-transform">
+                <Compass className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-white group-hover:text-brand-400 transition-colors">
+                  {locale === 'ar' ? 'تصفح المواد' : 'Browse Subjects'}
+                </h4>
+                <p className="text-[10px] text-slate-400">
+                  {locale === 'ar' ? 'اكتشاف الخطط الدراسية' : 'Explore all subjects'}
+                </p>
+              </div>
+            </Link>
+          </div>
+        )}
 
         {/* Admin / Teacher View */}
         {(user?.role === 'ADMIN' || user?.role === 'TEACHER') ? (

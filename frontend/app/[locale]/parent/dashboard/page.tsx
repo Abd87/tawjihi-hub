@@ -310,6 +310,21 @@ export default function ParentDashboardPage() {
                   <div className="text-2xl font-extrabold text-cyan-400">{overallProgress}%</div>
                   <div className="text-xs text-slate-500 mt-0.5">{isAr ? 'تقدم كلي' : 'Progress'}</div>
                 </div>
+                <div className="w-px bg-slate-800" />
+                <button
+                  onClick={() => {
+                    const text = encodeURIComponent(
+                      isAr
+                        ? `تقرير التقدم الأكاديمي للطالب/ة ${student.nameAr}: أنجز ${overallProgress}% من مادتين في منصة توجيهي هب.`
+                        : `Academic progress update for student ${student.nameAr}: ${overallProgress}% completed on Tawjihi Hub.`
+                    );
+                    window.open(`https://wa.me/?text=${text}`, '_blank');
+                  }}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 hover:bg-emerald-500 hover:text-slate-950 text-xs font-bold transition-all self-center"
+                  title={isAr ? 'مشاركة التقرير عبر واتساب' : 'Share Progress Report'}
+                >
+                  <span>{isAr ? 'مشاركة التقرير' : 'Share Report'}</span>
+                </button>
               </div>
             </div>
 
