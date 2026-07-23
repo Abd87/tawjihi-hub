@@ -12,12 +12,12 @@ interface Course {
 }
 
 interface StudyPlannerProps {
-  courses: Course[];
+  courses?: Course[];
   isRtl: boolean;
   user?: any;
 }
 
-export default function StudyPlanner({ courses, isRtl, user }: StudyPlannerProps) {
+export default function StudyPlanner({ courses = [], isRtl, user }: StudyPlannerProps) {
   const [examDate, setExamDate] = useState<string>('');
   const [isExpanded, setIsExpanded] = useState(false);
   
@@ -38,9 +38,11 @@ export default function StudyPlanner({ courses, isRtl, user }: StudyPlannerProps
     }
   };
 
+  const safeCourses = Array.isArray(courses) ? courses : [];
+
   // Calculations
-  const totalLessons = courses.reduce((acc, c) => acc + (c.mockLessonsCount || 0), 0);
-  const averageProgress = courses.length > 0 ? (courses.reduce((acc, c) => acc + (c.mockProgress || 0), 0) / courses.length) : 0;
+  const totalLessons = safeCourses.reduce((acc, c) => acc + (c?.mockLessonsCount || 0), 0);
+  const averageProgress = safeCourses.length > 0 ? (safeCourses.reduce((acc, c) => acc + (c?.mockProgress || 0), 0) / safeCourses.length) : 0;
   const completedLessons = Math.round(totalLessons * (averageProgress / 100));
   const remainingLessons = totalLessons - completedLessons;
 
@@ -59,122 +61,54 @@ export default function StudyPlanner({ courses, isRtl, user }: StudyPlannerProps
   const isValidDate = daysRemaining > 0;
   const isUrgent = daysRemaining > 0 && daysRemaining <= 30;
 
-  const renderRoutine = () => {
-    if (!user || !user.trackType) return null;
-    
-    if (user.trackType === 'BTEC') {
-      return (
-        <div className="mt-6 bg-white/5 border border-white/10 rounded-xl p-4">
-          <h4 className="text-white font-bold mb-3 flex items-center gap-2">
-            <Book className="h-4 w-4 text-brand-300" />
-            {isRtl ? 'روتين BTEC المقترح' : 'Suggested BTEC Routine'}
-          </h4>
-          <ul className="text-sm text-brand-100 space-y-2">
-            <li className="flex gap-2"><Clock className="h-4 w-4 shrink-0 text-amber-300" /> {isRtl ? 'أيام المدرسة: ركز على المشاريع العملية (ساعتين)' : 'School Days: Focus on practical assignments (2 hours)'}</li>
-            <li className="flex gap-2"><Clock className="h-4 w-4 shrink-0 text-emerald-300" /> {isRtl ? 'عطلة نهاية الأسبوع: مراجعة المواد النظرية وإنجاز التقارير' : 'Weekends: Review theory and finish reports'}</li>
-            <li className="flex gap-2"><Clock className="h-4 w-4 shrink-0 text-blue-300" /> {isRtl ? 'نصيحة: قسم المشاريع الكبيرة إلى مهام يومية صغيرة' : 'Tip: Break large projects into daily mini-tasks'}</li>
-          </ul>
-        </div>
-      );
-    }
-
-    return (
-      <div className="mt-6 bg-white/5 border border-white/10 rounded-xl p-4">
-        <h4 className="text-white font-bold mb-3 flex items-center gap-2">
-          <Book className="h-4 w-4 text-brand-300" />
-          {isRtl ? 'الروتين الأكاديمي المقترح' : 'Suggested Academic Routine'}
-        </h4>
-        <ul className="text-sm text-brand-100 space-y-2">
-          <li className="flex gap-2"><Clock className="h-4 w-4 shrink-0 text-amber-300" /> {isRtl ? 'أيام المدرسة: دراسة مادتين كحد أقصى (3 ساعات)' : 'School Days: Study max 2 subjects (3 hours)'}</li>
-          <li className="flex gap-2"><Clock className="h-4 w-4 shrink-0 text-emerald-300" /> {isRtl ? 'عطلة نهاية الأسبوع: حل أسئلة وزارية وتكثيف الدراسة (6 ساعات)' : 'Weekends: Solve past papers and intense study (6 hours)'}</li>
-          <li className="flex gap-2"><Clock className="h-4 w-4 shrink-0 text-blue-300" /> {isRtl ? 'نصيحة: استخدم تقنية بومودورو (25 دقيقة دراسة / 5 راحة)' : 'Tip: Use Pomodoro technique (25m study / 5m break)'}</li>
-        </ul>
-      </div>
-    );
-  };
-
   return (
-    <div className="bg-gradient-to-br from-brand-600 to-brand-800 rounded-3xl p-5 relative overflow-hidden shadow-xl shadow-brand-500/20">
-      <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
-      
-      <div className="relative z-10 flex flex-col md:flex-row gap-6 items-start md:items-center">
-        
-        {/* Left Side: Input */}
-        <div className="flex-1 w-full">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-white/20 rounded-lg backdrop-blur-md">
-              <Target className="h-5 w-5 text-white" />
-            </div>
-            <h2 className="text-xl font-black text-white">
-              {isRtl ? 'المخطط الدراسي الذكي' : 'Smart Study Planner'}
-            </h2>
+    <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-xl space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-6">
+        <div className="flex items-center gap-3">
+          <div className="p-3 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded-2xl">
+            <Target className="w-6 h-6" />
           </div>
-          <p className="text-brand-100 text-xs mb-4">
-            {isRtl ? 'أدخل تاريخ امتحانك لحساب الخطة.' : 'Enter your exam date.'}
-          </p>
+          <div>
+            <h3 className="text-lg font-bold text-white">
+              {isRtl ? 'مخطط الدراسة والتفوق الشخصي' : 'Personal Study Planner'}
+            </h3>
+            <p className="text-xs text-slate-400 mt-0.5">
+              {isRtl ? 'حدد تاريخ امتحاناتك لحساب معدل الإنجاز اليومي المطلوب' : 'Set your exam date to calculate daily study requirements'}
+            </p>
+          </div>
+        </div>
 
-          <input 
-            type="date" 
+        <div className="flex items-center gap-3">
+          <Calendar className="w-4 h-4 text-brand-400 shrink-0" />
+          <input
+            type="date"
             value={examDate}
             onChange={handleDateChange}
-            className="block w-full max-w-[200px] px-3 py-2 border border-white/30 rounded-lg bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-white transition-all font-bold shadow-inner"
-            min={new Date().toISOString().split('T')[0]}
+            className="bg-slate-950 border border-slate-800 text-xs font-bold text-white rounded-xl px-3 py-2 focus:border-brand-500 focus:outline-none"
           />
-        </div>
-
-        {/* Right Side: Stats Panel */}
-        <div className="w-full md:w-[60%] lg:w-[50%] bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-lg">
-          {!examDate ? (
-            <div className="text-center py-4">
-              <p className="text-brand-100 text-sm font-medium">
-                {isRtl ? 'يرجى تحديد تاريخ الامتحان.' : 'Please select an exam date.'}
-              </p>
-            </div>
-          ) : !isValidDate ? (
-            <div className="text-center py-4">
-              <p className="text-amber-300 text-sm font-bold">
-                {isRtl ? 'تاريخ غير صالح.' : 'Invalid date.'}
-              </p>
-            </div>
-          ) : (
-            <div>
-              <div className="flex justify-between items-center mb-3 border-b border-white/10 pb-3">
-                <div>
-                  <p className="text-brand-200 text-xs font-medium">{isRtl ? 'الأيام المتبقية' : 'Days Left'}</p>
-                  <p className="text-2xl font-black text-white">{daysRemaining}</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-brand-200 text-xs font-medium">{isRtl ? 'الدروس المتبقية' : 'Lessons Left'}</p>
-                  <p className="text-xl font-bold text-white">{remainingLessons}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between">
-                <p className={`text-xs font-bold ${isUrgent ? 'text-amber-300' : 'text-emerald-300'}`}>
-                  {isRtl ? 'المعدل اليومي المطلوب:' : 'Required Daily Pace:'}
-                </p>
-                <p className="text-white font-black text-lg">
-                  {lessonsPerDay} <span className="text-xs font-medium text-brand-100">{isRtl ? 'دروس' : 'lessons'}</span>
-                </p>
-              </div>
-            </div>
-          )}
         </div>
       </div>
 
-      {examDate && isValidDate && (
-        <>
-          <button 
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="mt-4 text-xs font-bold text-brand-200 hover:text-white transition-colors underline"
-          >
-            {isExpanded 
-              ? (isRtl ? 'إخفاء الروتين المقترح' : 'Hide Suggested Routine')
-              : (isRtl ? 'عرض الروتين المقترح' : 'Show Suggested Routine')}
-          </button>
-          {isExpanded && renderRoutine()}
-        </>
-      )}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="bg-slate-950/60 border border-slate-800/80 rounded-2xl p-4 space-y-1">
+          <span className="text-xs text-slate-400 font-semibold block">{isRtl ? 'الأيام المتبقية' : 'Days Remaining'}</span>
+          <span className={`text-2xl font-black block ${isUrgent ? 'text-rose-400' : 'text-white'}`}>
+            {daysRemaining > 0 ? `${daysRemaining} ${isRtl ? 'يوم' : 'Days'}` : (isRtl ? 'حدد التاريخ' : 'Set Date')}
+          </span>
+        </div>
+
+        <div className="bg-slate-950/60 border border-slate-800/80 rounded-2xl p-4 space-y-1">
+          <span className="text-xs text-slate-400 font-semibold block">{isRtl ? 'إجمالي الدروس المتبقية' : 'Remaining Lessons'}</span>
+          <span className="text-2xl font-black text-amber-400 block">{remainingLessons} {isRtl ? 'درس' : 'Lessons'}</span>
+        </div>
+
+        <div className="bg-slate-950/60 border border-slate-800/80 rounded-2xl p-4 space-y-1">
+          <span className="text-xs text-slate-400 font-semibold block">{isRtl ? 'معدل الإنجاز اليومي' : 'Daily Goal'}</span>
+          <span className="text-2xl font-black text-brand-400 block">
+            {lessonsPerDay > 0 ? `${lessonsPerDay} ${isRtl ? 'درس/يوم' : 'Lessons/Day'}` : '-'}
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

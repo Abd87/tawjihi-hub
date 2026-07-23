@@ -53,7 +53,9 @@ export default function StudentBroadcastBanner({ isRtl = true, courseId }: Stude
     }
   };
 
-  const visibleBroadcasts = broadcasts.filter((b) => !dismissedIds.includes(b.id));
+  const visibleBroadcasts = Array.isArray(broadcasts)
+    ? broadcasts.filter((b) => b && b.id && !dismissedIds.includes(b.id))
+    : [];
 
   if (loading || visibleBroadcasts.length === 0) return null;
 

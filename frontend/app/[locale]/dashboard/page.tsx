@@ -949,10 +949,9 @@ export default function DashboardPage() {
                   const pdfsVal = course._pdfCount ?? 0;
                   
                   return (
-                    <Link
+                    <div
                       key={course.id}
-                      href="#"
-                      onClick={(e) => { e.preventDefault(); setLockedModalCourse(course); }}
+                      onClick={() => setLockedModalCourse(course)}
                       className="group relative rounded-2xl border border-slate-850 bg-slate-900/15 hover:bg-slate-900/35 hover:border-slate-800/80 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg block cursor-pointer"
                     >
                       <div>
@@ -1016,7 +1015,7 @@ export default function DashboardPage() {
                           <span>{locale === 'ar' ? 'مقفل / Locked' : 'Locked / مقفل'}</span>
                         </div>
                       </div>
-                    </Link>
+                    </div>
                   );
                 })}
               </div>
