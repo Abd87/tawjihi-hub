@@ -13,7 +13,8 @@ import {
   ArrowLeft, 
   ArrowRight,
   Loader2,
-  Shield
+  Shield,
+  LayoutDashboard
 } from 'lucide-react';
 
 export default function SettingsPage() {
@@ -92,21 +93,21 @@ export default function SettingsPage() {
       <div className="absolute top-[-10%] start-[-10%] w-[45vw] h-[45vw] rounded-full bg-brand-500/5 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] end-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-500/5 blur-[100px] pointer-events-none" />
 
-      <header className="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-900">
-        <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
-          <Link href="/dashboard" className="group flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-white transition-colors">
+      <main className="max-w-xl mx-auto px-4 pt-32 sm:pt-36 pb-20 relative z-10 space-y-8">
+        {/* Navigation Back Button */}
+        <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
+          <Link
+            href={user.role === 'TEACHER' ? '/studio' : (user.role === 'PARENT' ? '/parent/dashboard' : '/dashboard')}
+            className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors bg-slate-900/60 hover:bg-slate-800 px-4 py-2 rounded-xl border border-slate-800 text-xs font-bold"
+          >
             {isRtl ? <ArrowRight className="h-4 w-4" /> : <ArrowLeft className="h-4 w-4" />}
-            <span>{isRtl ? 'لوحة التحكم' : 'Dashboard'}</span>
+            <span>{isRtl ? 'العودة للوحة التحكم' : 'Back to Dashboard'}</span>
           </Link>
-          <div className="flex items-center gap-2">
-            <span className="text-base font-bold text-white">{isRtl ? 'إعدادات الحساب' : 'Account Settings'}</span>
-          </div>
+          <span className="text-lg font-black text-white">{isRtl ? 'إعدادات الحساب' : 'Account Settings'}</span>
         </div>
-      </header>
 
-      <main className="max-w-xl mx-auto px-4 pt-12 pb-20 relative z-10">
         {/* Profile Card */}
-        <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 mb-8 flex items-center gap-5">
+        <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 flex items-center gap-5 backdrop-blur-xl">
           <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-brand-500 to-amber-600 flex items-center justify-center text-2xl font-black text-white shadow-lg">
             {(user?.nameAr || user?.nameEn || 'U').charAt(0)}
           </div>
@@ -121,7 +122,7 @@ export default function SettingsPage() {
         </div>
 
         {/* Change Password Form */}
-        <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 sm:p-8">
+        <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 sm:p-8 backdrop-blur-xl">
           <div className="flex items-center gap-3 mb-6 border-b border-slate-800 pb-4">
             <Shield className="h-5 w-5 text-brand-400" />
             <h3 className="text-lg font-bold text-white">

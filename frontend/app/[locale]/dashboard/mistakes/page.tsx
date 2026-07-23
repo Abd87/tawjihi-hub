@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
-import { BrainCircuit, BookOpen, Clock, Trash2, Loader2, Sparkles, AlertCircle } from 'lucide-react';
+import { BrainCircuit, BookOpen, Clock, Trash2, Loader2, Sparkles, AlertCircle, ArrowLeft, ArrowRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 
 interface Mistake {
@@ -61,7 +61,18 @@ export default function MistakesDashboard({ params: { locale } }: { params: { lo
   return (
     <div className="min-h-screen bg-[#020617] font-sans">
       
-      <div className="pt-24 pb-20 px-4 max-w-7xl mx-auto">
+      <div className="pt-28 pb-20 px-4 max-w-7xl mx-auto space-y-6">
+        
+        {/* Back Button */}
+        <div>
+          <Link
+            href="/dashboard"
+            className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors bg-slate-900/60 hover:bg-slate-800 px-4 py-2 rounded-xl border border-slate-800 text-xs font-bold"
+          >
+            {locale === 'ar' ? <ArrowRight className="h-4 w-4" /> : <ArrowLeft className="h-4 w-4" />}
+            <span>{locale === 'ar' ? 'العودة للوحة التحكم' : 'Back to Dashboard'}</span>
+          </Link>
+        </div>
         
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-slate-800 pb-8">

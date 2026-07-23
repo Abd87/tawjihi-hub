@@ -9,7 +9,20 @@ export default function SocialFloatingButtons() {
   const whatsappUrl = `https://wa.me/${whatsappNumber}`;
   const facebookUrl = 'https://www.facebook.com/groups/1648666043099156';
 
-  if (pathname.includes('/courses/') || (pathname.includes('/quizzes/') && !pathname.includes('/admin/'))) {
+  // Hide floating social buttons inside all app & dashboard routes
+  const isAppRoute = 
+    pathname.includes('/courses/') || 
+    (pathname.includes('/quizzes/') && !pathname.includes('/admin/')) ||
+    pathname.includes('/dashboard') ||
+    pathname.includes('/calculator') ||
+    pathname.includes('/redeem') ||
+    pathname.includes('/subjects') ||
+    pathname.includes('/settings') ||
+    pathname.includes('/studio') ||
+    pathname.includes('/admin') ||
+    pathname.includes('/parent');
+
+  if (isAppRoute) {
     return null;
   }
 

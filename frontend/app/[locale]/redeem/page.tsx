@@ -127,7 +127,18 @@ export default function RedeemCouponPage() {
       <div className="absolute top-[-10%] start-[-10%] w-[45vw] h-[45vw] rounded-full bg-brand-500/5 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] end-[-10%] w-[40vw] h-[40vw] rounded-full bg-amber-500/5 blur-[100px] pointer-events-none" />
 
-      <main className="max-w-md mx-auto px-4 pt-32 pb-20 relative z-10">
+      <main className="max-w-md mx-auto px-4 pt-32 pb-20 relative z-10 space-y-6">
+        {/* Back Button */}
+        <div>
+          <Link
+            href="/dashboard"
+            className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors bg-slate-900/60 hover:bg-slate-800 px-4 py-2 rounded-xl border border-slate-800 text-xs font-bold"
+          >
+            {isRtl ? <ArrowRight className="h-4 w-4" /> : <ArrowLeft className="h-4 w-4" />}
+            <span>{isRtl ? 'العودة للوحة التحكم' : 'Back to Dashboard'}</span>
+          </Link>
+        </div>
+
         <div className="text-center mb-10">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-500/20 to-amber-500/20 border border-brand-500/30 mb-4">
             <Key className="h-8 w-8 text-brand-400" />

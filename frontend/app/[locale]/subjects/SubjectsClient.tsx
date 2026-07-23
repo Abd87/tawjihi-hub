@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { BookOpen, Calculator, FlaskConical, Atom, Landmark, Code2, HeartPulse, MonitorPlay, Sprout, BookMarked, GraduationCap, Globe2, ChevronRight, ChevronLeft } from 'lucide-react';
+import { BookOpen, Calculator, FlaskConical, Atom, Landmark, Code2, HeartPulse, MonitorPlay, Sprout, BookMarked, GraduationCap, Globe2, ChevronRight, ChevronLeft, ArrowLeft, ArrowRight } from 'lucide-react';
 import { subjectsData } from './curriculumData';
 import Link from 'next/link';
 
@@ -29,7 +29,17 @@ export default function SubjectsClient({ locale }: { locale: string }) {
 
   return (
     <div className="min-h-screen bg-slate-950 pt-32 pb-20">
-      <div className="container mx-auto px-4 max-w-5xl">
+      <div className="container mx-auto px-4 max-w-5xl space-y-6">
+        {/* Back Button */}
+        <div>
+          <Link
+            href={`/${locale}/dashboard`}
+            className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors bg-slate-900/60 hover:bg-slate-800 px-4 py-2 rounded-xl border border-slate-800 text-xs font-bold"
+          >
+            {isRtl ? <ArrowRight className="h-4 w-4" /> : <ArrowLeft className="h-4 w-4" />}
+            <span>{isRtl ? 'العودة للوحة التحكم' : 'Back to Dashboard'}</span>
+          </Link>
+        </div>
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
