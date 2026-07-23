@@ -40,6 +40,7 @@ model User {
   quizAttempts  QuizAttempt[]
   blogPosts     BlogPost[]
   mistakes      Mistake[]
+  broadcasts    Broadcast[]   @relation("TeacherBroadcasts")
   
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
@@ -73,6 +74,7 @@ model Course {
   quizzes       Quiz[]
   enrollments   Enrollment[]
   coupons       Coupon[]
+  broadcasts    Broadcast[]
   
   createdAt     DateTime     @default(now())
   updatedAt     DateTime     @updatedAt
@@ -398,4 +400,24 @@ model Mistake {
 
   @@unique([userId, questionId])
   @@map("mistakes")
+}
+
+model Broadcast {
+  id          String   @id @default(uuid())
+  teacherId   String
+  teacher     User     @relation("TeacherBroadcasts", fields: [teacherId], references: [id], onDelete: Cascade)
+  
+  courseId    String?  // Optional: target specific course, or null for all teacher's courses
+  course      Course?  @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  
+  titleAr     String
+  titleEn     String
+  contentAr   String   @db.Text
+  contentEn   String   @db.Text
+  priority    String   @default("NORMAL") // "NORMAL", "HIGH", "URGENT"
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("broadcasts")
 }
