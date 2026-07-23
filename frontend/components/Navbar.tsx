@@ -3,7 +3,31 @@
 import { useTranslations } from 'next-intl';
 import { useRouter, usePathname, Link } from '@/i18n/routing';
 import { useParams } from 'next/navigation';
-import { Globe, GraduationCap, LogOut, LayoutDashboard, Menu, X, BarChart2, Key, BookOpen, ShieldCheck, Users, Settings, Sparkles, Beaker, Calculator } from 'lucide-react';
+import { 
+  Globe, 
+  GraduationCap, 
+  LogOut, 
+  LayoutDashboard, 
+  Menu, 
+  X, 
+  BarChart2, 
+  Key, 
+  BookOpen, 
+  ShieldCheck, 
+  Users, 
+  Settings, 
+  Sparkles, 
+  Beaker, 
+  Calculator,
+  Radio,
+  DollarSign,
+  AlertTriangle,
+  UploadCloud,
+  ChevronDown,
+  UserCheck,
+  Award,
+  Ticket
+} from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
@@ -19,7 +43,6 @@ export default function Navbar() {
   const [user, setUser] = useState<{ nameAr: string; role: string; isMasterAdmin?: boolean } | null>(null);
   const [switchingRole, setSwitchingRole] = useState(false);
 
-  // Read auth state on client mount (avoids forced layout reflow blocking render)
   useEffect(() => {
     const checkUser = () => {
       try {
@@ -49,7 +72,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => { setMobileOpen(false); }, [pathname]);
 
   const toggleLanguage = () => {
@@ -96,7 +118,8 @@ export default function Navbar() {
         window.dispatchEvent(new Event('local-storage-update'));
         
         let redirectPath = `/${currentLocale}/dashboard`;
-        if (targetRole === 'TEACHER') redirectPath = `/${currentLocale}/admin/courses`;
+        if (targetRole === 'TEACHER') redirectPath = `/${currentLocale}/studio`;
+        if (targetRole === 'ADMIN') redirectPath = `/${currentLocale}/admin/courses`;
         if (targetRole === 'PARENT') redirectPath = `/${currentLocale}/parent/dashboard`;
         
         window.location.href = redirectPath;
@@ -111,17 +134,14 @@ export default function Navbar() {
   const isAdmin = user?.role === 'ADMIN';
   const isTeacher = user?.role === 'TEACHER';
   const isParent = user?.role === 'PARENT';
+  const isStudent = user?.role === 'STUDENT';
   const isAdminOrTeacher = isAdmin || isTeacher;
 
-  // Hide Navbar completely on course-related pages
   if (pathname.includes('/courses/')) {
     return null;
   }
 
-  // Navigate to home page with anchor (works from any page)
   const homeAnchor = (anchor: string) => `/${currentLocale}#${anchor}`;
-
-  // Path helpers
   const isHome = pathname === `/${currentLocale}` || pathname === `/${currentLocale}/`;
   const isAuthPage = pathname.endsWith('/login') || pathname.endsWith('/register');
   const isSimplifiedHeader = isAuthPage || (isHome && !user);
@@ -131,29 +151,29 @@ export default function Navbar() {
       <header className="fixed top-0 inset-x-0 z-50 bg-transparent pointer-events-none print:hidden">
         <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex items-center justify-between pointer-events-auto">
           <Link href="/" className="flex items-center gap-2.5">
-            <Image src="/logo.svg" alt="Tawjihi Hub Logo" width={256} height={96} sizes="(max-width: 640px) 140px, 200px" className="h-20 sm:h-24 w-auto object-contain drop-shadow-md" priority  />
+            <Image src="/logo.svg" alt="Tawjihi Hub Logo" width={256} height={96} sizes="(max-width: 640px) 140px, 200px" className="h-16 sm:h-20 w-auto object-contain drop-shadow-md" priority />
           </Link>
           <div className="flex items-center gap-4">
             <button
               onClick={toggleLanguage}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900/60 text-slate-300 hover:text-white hover:border-slate-600 transition-all text-sm font-medium"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-slate-800 bg-slate-900/60 text-slate-300 hover:text-white hover:border-slate-600 transition-all text-xs font-semibold"
             >
-              <Globe className="h-4 w-4 text-brand-500" />
+              <Globe className="h-3.5 w-3.5 text-brand-500" />
               <span>{currentLocale === 'ar' ? 'English' : 'العربية'}</span>
             </button>
             {isHome && !user && (
-              <div className="hidden sm:flex items-center gap-2 ml-2">
-                <Link href="/login" className="text-sm font-medium text-slate-300 hover:text-white transition-colors px-4 py-2">
+              <div className="hidden sm:flex items-center gap-3 ml-2">
+                <Link href="/login" className="text-xs font-bold text-slate-300 hover:text-white transition-colors px-3.5 py-2">
                   {t('login') || (currentLocale === 'ar' ? 'تسجيل الدخول' : 'Log In')}
                 </Link>
-                <Link href="/register" className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 shadow-lg shadow-brand-500/25 hover:shadow-brand-500/35 transition-all">
+                <Link href="/register" className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 shadow-lg shadow-brand-500/25 hover:shadow-brand-500/35 transition-all">
                   {t('register') || (currentLocale === 'ar' ? 'إنشاء حساب' : 'Register')}
                 </Link>
               </div>
             )}
             {isHome && user && (
               <div className="flex items-center gap-2 ml-2">
-                <Link href={user.role === 'STUDENT' ? '/dashboard' : (user.role === 'PARENT' ? '/parent/dashboard' : '/admin/courses')} className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 shadow-lg shadow-brand-500/25 transition-all">
+                <Link href={isStudent ? '/dashboard' : (isTeacher ? '/studio' : (isParent ? '/parent/dashboard' : '/admin/courses'))} className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 shadow-lg shadow-brand-500/25 transition-all">
                   <LayoutDashboard className="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" />
                   {currentLocale === 'ar' ? 'لوحة التحكم' : 'Dashboard'}
                 </Link>
@@ -172,7 +192,7 @@ export default function Navbar() {
           ? 'bg-slate-950/95 backdrop-blur-md border-b border-slate-800/60 shadow-lg' 
           : 'bg-transparent'
       }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex items-center justify-between">
           
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 cursor-pointer z-10">
@@ -182,126 +202,153 @@ export default function Navbar() {
               width={256} 
               height={96} 
               sizes="(max-width: 640px) 140px, 200px"
-              className="h-20 sm:h-24 w-auto object-contain drop-shadow-md"
+              className="h-16 sm:h-20 w-auto object-contain drop-shadow-md"
               priority
             />
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8">
-            <a href={homeAnchor('academic-track')} className="text-sm font-medium text-slate-300 hover:text-brand-500 transition-colors">
+          <nav className="hidden md:flex items-center gap-6">
+            {/* Student Navigation */}
+            {isStudent && (
+              <>
+                <Link href="/dashboard" className="text-xs font-bold text-slate-300 hover:text-brand-400 transition-colors flex items-center gap-1.5">
+                  <LayoutDashboard className="w-4 h-4 text-brand-500" />
+                  <span>{currentLocale === 'ar' ? 'لوحتي التعليمية' : 'My Dashboard'}</span>
+                </Link>
+                <Link href="/dashboard/mistakes" className="text-xs font-bold text-slate-300 hover:text-amber-400 transition-colors flex items-center gap-1.5">
+                  <BookOpen className="w-4 h-4 text-amber-500" />
+                  <span>{currentLocale === 'ar' ? 'بنك الأخطاء' : 'Mistake Bank'}</span>
+                </Link>
+                <Link href="/redeem" className="text-xs font-bold text-slate-300 hover:text-emerald-400 transition-colors flex items-center gap-1.5">
+                  <Ticket className="w-4 h-4 text-emerald-500" />
+                  <span>{currentLocale === 'ar' ? 'تفعيل بطاقة' : 'Redeem Code'}</span>
+                </Link>
+              </>
+            )}
+
+            {/* Teacher Navigation & Studio 2.0 Hub */}
+            {isTeacher && (
+              <div className="relative group">
+                <Link href="/studio" className="flex items-center gap-2 px-3 py-1.5 bg-brand-500/10 border border-brand-500/30 rounded-xl text-xs font-extrabold text-brand-400 hover:bg-brand-500/20 transition-all">
+                  <Sparkles className="w-4 h-4" />
+                  <span>{currentLocale === 'ar' ? 'استوديو المعلم 2.0' : 'Teacher Studio 2.0'}</span>
+                  <ChevronDown className="w-3.5 h-3.5 opacity-70" />
+                </Link>
+
+                {/* Dropdown Menu */}
+                <div className="absolute top-full start-0 mt-2 w-64 bg-slate-950 border border-slate-800 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 p-2 z-50">
+                  <Link href="/studio" className="flex items-center gap-2.5 px-3 py-2 text-xs font-bold text-slate-200 hover:bg-slate-900 rounded-xl">
+                    <LayoutDashboard className="w-4 h-4 text-brand-400" />
+                    <span>{currentLocale === 'ar' ? 'لوحة تحكم الاستوديو' : 'Studio Hub'}</span>
+                  </Link>
+                  <Link href="/studio/course-builder" className="flex items-center gap-2.5 px-3 py-2 text-xs font-bold text-slate-200 hover:bg-slate-900 rounded-xl">
+                    <BookOpen className="w-4 h-4 text-brand-400" />
+                    <span>{currentLocale === 'ar' ? 'منشئ ومحرر الدورات' : 'Course Builder'}</span>
+                  </Link>
+                  <Link href="/studio/broadcasts" className="flex items-center gap-2.5 px-3 py-2 text-xs font-bold text-slate-200 hover:bg-slate-900 rounded-xl">
+                    <Radio className="w-4 h-4 text-purple-400 animate-pulse" />
+                    <span>{currentLocale === 'ar' ? 'إعلانات وتنبيهات الطلاب' : 'Direct Broadcasts'}</span>
+                  </Link>
+                  <Link href="/studio/revenue" className="flex items-center gap-2.5 px-3 py-2 text-xs font-bold text-slate-200 hover:bg-slate-900 rounded-xl">
+                    <DollarSign className="w-4 h-4 text-emerald-400" />
+                    <span>{currentLocale === 'ar' ? 'المالية وتتبع الأرباح' : 'Revenue Analytics'}</span>
+                  </Link>
+                  <Link href="/studio/analytics" className="flex items-center gap-2.5 px-3 py-2 text-xs font-bold text-slate-200 hover:bg-slate-900 rounded-xl">
+                    <AlertTriangle className="w-4 h-4 text-amber-400" />
+                    <span>{currentLocale === 'ar' ? 'الأسئلة الأكثر تعثراً' : 'Student Bottlenecks'}</span>
+                  </Link>
+                  <Link href="/studio/quiz-bulk" className="flex items-center gap-2.5 px-3 py-2 text-xs font-bold text-slate-200 hover:bg-slate-900 rounded-xl">
+                    <UploadCloud className="w-4 h-4 text-blue-400" />
+                    <span>{currentLocale === 'ar' ? 'رفع وتوليد بنك الأسئلة' : 'Bulk Quiz Uploader'}</span>
+                  </Link>
+                </div>
+              </div>
+            )}
+
+            {/* General Public Links */}
+            <a href={homeAnchor('academic-track')} className="text-xs font-medium text-slate-300 hover:text-brand-400 transition-colors">
               {t('academic')}
             </a>
-            <a href={homeAnchor('btec-track')} className="text-sm font-medium text-slate-300 hover:text-brand-500 transition-colors">
+            <a href={homeAnchor('btec-track')} className="text-xs font-medium text-slate-300 hover:text-brand-400 transition-colors">
               {t('btec')}
             </a>
-            <Link href="/btec-guide" className="text-sm font-medium text-slate-300 hover:text-brand-500 transition-colors flex items-center gap-1">
+            <Link href="/btec-guide" className="text-xs font-medium text-slate-300 hover:text-brand-400 transition-colors flex items-center gap-1">
               <Sparkles className="w-3.5 h-3.5 text-brand-500" />
               {t('btecGuide') || (currentLocale === 'ar' ? 'دليل BTEC' : 'BTEC Guide')}
             </Link>
-            <Link href="/calculator" className="text-sm font-medium text-slate-300 hover:text-brand-500 transition-colors flex items-center gap-1">
+            <Link href="/calculator" className="text-xs font-medium text-slate-300 hover:text-brand-400 transition-colors flex items-center gap-1">
               <Calculator className="w-3.5 h-3.5 text-brand-500" />
               {t('calculator') || (currentLocale === 'ar' ? 'حاسبة المعدل' : 'GPA Calculator')}
             </Link>
-            <Link href="/subjects" className="text-sm font-medium text-slate-300 hover:text-brand-500 transition-colors flex items-center gap-1">
-              <BookOpen className="w-3.5 h-3.5 text-brand-500" />
+            <Link href="/subjects" className="text-xs font-medium text-slate-300 hover:text-brand-400 transition-colors">
               {currentLocale === 'ar' ? 'المواد' : 'Subjects'}
             </Link>
-            <Link href="/labs" className="text-sm font-medium text-slate-300 hover:text-brand-500 transition-colors flex items-center gap-1">
+            <Link href="/labs" className="text-xs font-medium text-slate-300 hover:text-brand-400 transition-colors">
               {currentLocale === 'ar' ? 'المختبرات' : 'Labs'}
             </Link>
-            {!user && (
-              <Link href="/teach" className="text-sm font-medium text-slate-300 hover:text-brand-500 transition-colors flex items-center gap-1">
-                <Users className="w-3.5 h-3.5 text-brand-500" />
-                {currentLocale === 'ar' ? 'انضم كمعلم' : 'Teach'}
-              </Link>
-            )}
-            {isAdminOrTeacher && (
+
+            {isAdmin && (
               <div className="relative group">
-                <button className="flex items-center gap-1.5 text-sm font-medium text-amber-400 hover:text-amber-300 transition-colors py-1">
+                <button className="flex items-center gap-1.5 text-xs font-bold text-amber-400 hover:text-amber-300 transition-colors py-1">
                   <ShieldCheck className="h-4 w-4" />
                   <span>{currentLocale === 'ar' ? 'لوحة الإدارة' : 'Admin'}</span>
-                  <svg className="h-3 w-3 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                  <ChevronDown className="h-3 w-3" />
                 </button>
-                {/* Dropdown on hover */}
-                <div className="absolute top-full start-0 mt-1 w-52 bg-slate-950 border border-slate-800 rounded-2xl shadow-2xl shadow-black/60 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-1 z-50">
-                  <Link href="/admin/analytics" className="flex items-center gap-2.5 px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition-colors rounded-xl mx-1">
+                <div className="absolute top-full start-0 mt-1 w-52 bg-slate-950 border border-slate-800 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-1 z-50">
+                  <Link href="/admin/analytics" className="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 rounded-xl mx-1">
                     <BarChart2 className="h-4 w-4 text-amber-400" />
                     <span>{currentLocale === 'ar' ? 'الإحصائيات' : 'Analytics'}</span>
                   </Link>
-                  <Link href="/admin/courses" className="flex items-center gap-2.5 px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition-colors rounded-xl mx-1">
+                  <Link href="/admin/courses" className="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 rounded-xl mx-1">
                     <GraduationCap className="h-4 w-4 text-amber-400" />
                     <span>{currentLocale === 'ar' ? 'إدارة الدورات' : 'Courses'}</span>
                   </Link>
-                  <Link href="/admin/coupons" className="flex items-center gap-2.5 px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition-colors rounded-xl mx-1">
+                  <Link href="/admin/users" className="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 rounded-xl mx-1">
+                    <Users className="h-4 w-4 text-amber-400" />
+                    <span>{currentLocale === 'ar' ? 'إدارة المستخدمين' : 'User Management'}</span>
+                  </Link>
+                  <Link href="/admin/coupons" className="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 rounded-xl mx-1">
                     <Key className="h-4 w-4 text-amber-400" />
                     <span>{currentLocale === 'ar' ? 'إدارة الكوبونات' : 'Coupons'}</span>
                   </Link>
-                  <Link href="/admin/quizzes" className="flex items-center gap-2.5 px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition-colors rounded-xl mx-1">
-                    <BookOpen className="h-4 w-4 text-amber-400" />
-                    <span>{currentLocale === 'ar' ? 'إدارة الاختبارات' : 'Quizzes'}</span>
-                  </Link>
-                  <Link href="/admin/teachers" className="flex items-center gap-2.5 px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition-colors rounded-xl mx-1">
-                    <Users className="h-4 w-4 text-amber-400" />
-                    <span>{currentLocale === 'ar' ? 'المعلمون' : 'Teachers'}</span>
-                  </Link>
-                  <Link href="/admin/applications" className="flex items-center gap-2.5 px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition-colors rounded-xl mx-1 border-t border-slate-800/60 mt-1 pt-2.5">
+                  <Link href="/admin/applications" className="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 rounded-xl mx-1 border-t border-slate-800/60 mt-1 pt-2.5">
                     <Users className="h-4 w-4 text-emerald-400" />
                     <span>{currentLocale === 'ar' ? 'طلبات التوظيف' : 'Applications'}</span>
                   </Link>
                 </div>
               </div>
             )}
-            {isTeacher && !isAdmin && (
-              <div className="relative group">
-                <button className="flex items-center gap-1.5 text-sm font-medium text-amber-400 hover:text-amber-300 transition-colors py-1">
-                  <BookOpen className="h-4 w-4" />
-                  <span>{currentLocale === 'ar' ? 'لوحة المعلم' : 'Teacher'}</span>
-                  <svg className="h-3 w-3 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                </button>
-                <div className="absolute top-full start-0 mt-1 w-48 bg-slate-950 border border-slate-800 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-1 z-50">
-                  <Link href="/admin/courses" className="flex items-center gap-2.5 px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-white hover:bg-slate-900 transition-colors rounded-xl mx-1">
-                    <GraduationCap className="h-4 w-4 text-amber-400" />
-                    <span>{currentLocale === 'ar' ? 'دوراتي' : 'My Courses'}</span>
-                  </Link>
-                </div>
-              </div>
-            )}
-            {isParent && (
-              <Link href="/parent/dashboard" className="flex items-center gap-1.5 text-sm font-medium text-teal-400 hover:text-teal-300 transition-colors">
-                <span>{currentLocale === 'ar' ? 'متابعة ابني' : 'My Child'}</span>
-              </Link>
-            )}
           </nav>
 
           {/* Desktop Action Controls */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3">
             <button
               onClick={toggleLanguage}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-700/60 bg-slate-900/60 text-slate-300 hover:text-white hover:border-slate-500 hover:bg-slate-800/80 transition-all text-sm font-medium"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-slate-800 bg-slate-900/60 text-slate-300 hover:text-white hover:border-slate-700 transition-all text-xs font-bold"
               aria-label="Toggle language"
             >
-              <Globe className="h-4 w-4 text-brand-500" />
+              <Globe className="h-3.5 w-3.5 text-brand-500" />
               <span>{currentLocale === 'ar' ? 'English' : 'العربية'}</span>
             </button>
 
             {user ? (
-              <>
+              <div className="flex items-center gap-2">
                 {user.isMasterAdmin && (
                   <div className="relative group">
                     <button 
                       disabled={switchingRole}
-                      className="inline-flex items-center gap-1.5 text-sm font-bold text-amber-500 hover:text-amber-400 transition-colors px-4 py-2 border border-amber-500/20 rounded-lg bg-amber-500/5"
+                      className="inline-flex items-center gap-1.5 text-xs font-extrabold text-amber-400 hover:text-amber-300 transition-colors px-3 py-1.5 border border-amber-500/30 rounded-xl bg-amber-500/10"
                     >
-                      <span>{currentLocale === 'ar' ? `محاكاة دور: ${user.role}` : `Simulate: ${user.role}`}</span>
-                      <svg className="h-3 w-3 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                      <span>{currentLocale === 'ar' ? `محاكاة: ${user.role}` : `Role: ${user.role}`}</span>
+                      <ChevronDown className="h-3 w-3" />
                     </button>
-                    <div className="absolute top-full start-0 mt-1 w-32 bg-slate-950 border border-slate-800 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-1 z-50">
+                    <div className="absolute top-full start-0 mt-1 w-36 bg-slate-950 border border-slate-800 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 p-1 z-50">
                       {['STUDENT', 'PARENT', 'TEACHER', 'ADMIN'].map(r => (
                         <button
                           key={r}
                           onClick={() => handleRoleSwitch(r)}
-                          className={`w-full text-start px-4 py-2 text-xs font-bold transition-colors ${user.role === r ? 'text-brand-500 bg-slate-900' : 'text-slate-300 hover:text-white hover:bg-slate-900'}`}
+                          className={`w-full text-start px-3 py-2 text-xs font-bold rounded-lg transition-colors ${user.role === r ? 'text-brand-400 bg-slate-900' : 'text-slate-300 hover:text-white hover:bg-slate-900'}`}
                         >
                           {r}
                         </button>
@@ -309,36 +356,45 @@ export default function Navbar() {
                     </div>
                   </div>
                 )}
-                
-                <Link 
-                  href="/dashboard/settings"
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-400 hover:text-white transition-colors px-4 py-2"
-                >
-                  <Settings className="h-4 w-4 text-slate-500 hover:text-white" />
-                  <span>{currentLocale === 'ar' ? 'الإعدادات' : 'Settings'}</span>
-                </Link>
-                <button 
-                  onClick={handleLogout}
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-400 hover:text-white transition-colors px-4 py-2"
-                >
-                  <LogOut className="h-4 w-4 text-brand-500" />
-                  <span>{t('logout') || (currentLocale === 'ar' ? 'تسجيل الخروج' : 'Log Out')}</span>
-                </button>
+
+                {/* User Pill */}
+                <div className="flex items-center gap-2 pl-2 pr-3 py-1 bg-slate-900/80 border border-slate-800 rounded-2xl">
+                  <div className="w-7 h-7 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold text-xs">
+                    {user.nameAr.charAt(0)}
+                  </div>
+                  <span className="text-xs font-bold text-slate-200 max-w-[100px] truncate">{user.nameAr}</span>
+                  
+                  <Link 
+                    href="/dashboard/settings"
+                    className="p-1 text-slate-400 hover:text-white transition-colors"
+                    title={currentLocale === 'ar' ? 'الإعدادات' : 'Settings'}
+                  >
+                    <Settings className="h-3.5 w-3.5" />
+                  </Link>
+
+                  <button 
+                    onClick={handleLogout}
+                    className="p-1 text-slate-400 hover:text-rose-400 transition-colors"
+                    title={currentLocale === 'ar' ? 'تسجيل الخروج' : 'Log Out'}
+                  >
+                    <LogOut className="h-3.5 w-3.5" />
+                  </button>
+                </div>
 
                 <Link 
-                  href={isParent ? '/parent/dashboard' : (isTeacher ? '/admin/courses' : '/dashboard')} 
-                  className="inline-flex items-center gap-1.5 justify-center px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 shadow-lg shadow-brand-500/25 hover:shadow-brand-500/35 transition-all"
+                  href={isStudent ? '/dashboard' : (isTeacher ? '/studio' : (isParent ? '/parent/dashboard' : '/admin/courses'))} 
+                  className="inline-flex items-center gap-1.5 justify-center px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 shadow-md shadow-brand-500/20 transition-all"
                 >
-                  <LayoutDashboard className="h-4 w-4" />
+                  <LayoutDashboard className="h-3.5 w-3.5" />
                   <span>{currentLocale === 'ar' ? 'لوحة التحكم' : 'Dashboard'}</span>
                 </Link>
-              </>
+              </div>
             ) : (
               <>
-                <Link href="/login" className="text-sm font-medium text-slate-300 hover:text-white transition-colors px-4 py-2">
+                <Link href="/login" className="text-xs font-bold text-slate-300 hover:text-white transition-colors px-3.5 py-2">
                   {t('login')}
                 </Link>
-                <Link href="/register" className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 shadow-lg shadow-brand-500/25 hover:shadow-brand-500/35 transition-all">
+                <Link href="/register" className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 shadow-lg shadow-brand-500/25 transition-all">
                   {t('register')}
                 </Link>
               </>
@@ -349,14 +405,15 @@ export default function Navbar() {
           <div className="flex md:hidden items-center gap-3">
             <button
               onClick={toggleLanguage}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-700/60 bg-slate-900/60 text-slate-300 text-xs font-medium"
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-slate-800 bg-slate-900/60 text-slate-300 text-xs font-bold"
+              aria-label="Toggle language"
             >
               <Globe className="h-3.5 w-3.5 text-brand-500" />
               <span>{currentLocale === 'ar' ? 'EN' : 'ع'}</span>
             </button>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="p-2 rounded-lg border border-slate-700/60 bg-slate-900/60 text-slate-300 hover:text-white transition-colors"
+              className="p-2 rounded-xl border border-slate-800 bg-slate-900/60 text-slate-300 hover:text-white transition-colors"
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -364,179 +421,114 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu Drawer */}
+        {/* Mobile Drawer */}
         {mobileOpen && (
-          <div className="md:hidden border-t border-slate-800/60 bg-slate-950/98 backdrop-blur-md animate-slide-down">
-            <div className="max-w-7xl mx-auto px-4 py-4 space-y-1">
-              
-              {/* Nav Links */}
-              <a
-                href={homeAnchor('academic-track')}
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-900/60 transition-all"
-              >
+          <div className="md:hidden border-t border-slate-800/60 bg-slate-950/98 backdrop-blur-md">
+            <div className="max-w-7xl mx-auto px-4 py-4 space-y-2">
+              {/* User badge mobile */}
+              {user && (
+                <div className="p-3 bg-slate-900 border border-slate-800 rounded-2xl flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 rounded-xl bg-brand-500/20 text-brand-400 font-bold text-xs flex items-center justify-center">
+                      {user.nameAr.charAt(0)}
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-white">{user.nameAr}</p>
+                      <span className="text-[10px] text-brand-400 font-semibold uppercase">{user.role}</span>
+                    </div>
+                  </div>
+
+                  <Link href="/dashboard/settings" onClick={() => setMobileOpen(false)} className="p-2 text-slate-400 hover:text-white">
+                    <Settings className="w-4 h-4" />
+                  </Link>
+                </div>
+              )}
+
+              {/* Student Mobile Links */}
+              {isStudent && (
+                <>
+                  <Link href="/dashboard" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-bold text-slate-200 hover:bg-slate-900">
+                    <LayoutDashboard className="w-4 h-4 text-brand-500" />
+                    <span>{currentLocale === 'ar' ? 'لوحتي التعليمية' : 'My Dashboard'}</span>
+                  </Link>
+                  <Link href="/dashboard/mistakes" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-bold text-slate-200 hover:bg-slate-900">
+                    <BookOpen className="w-4 h-4 text-amber-500" />
+                    <span>{currentLocale === 'ar' ? 'بنك الأخطاء والتمارين' : 'Mistake Bank'}</span>
+                  </Link>
+                  <Link href="/redeem" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-bold text-slate-200 hover:bg-slate-900">
+                    <Ticket className="w-4 h-4 text-emerald-500" />
+                    <span>{currentLocale === 'ar' ? 'تفعيل بطاقة دورة' : 'Redeem Code'}</span>
+                  </Link>
+                </>
+              )}
+
+              {/* Teacher Mobile Links */}
+              {isTeacher && (
+                <>
+                  <div className="p-1 bg-brand-500/10 border border-brand-500/20 rounded-2xl space-y-1 mb-2">
+                    <span className="px-3 py-1 text-[10px] font-extrabold text-brand-400 uppercase block">{currentLocale === 'ar' ? 'استوديو المعلم 2.0' : 'Teacher Studio 2.0'}</span>
+                    <Link href="/studio" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-white hover:bg-slate-900">
+                      <LayoutDashboard className="w-4 h-4 text-brand-400" />
+                      <span>{currentLocale === 'ar' ? 'لوحة تحكم الاستوديو' : 'Studio Hub'}</span>
+                    </Link>
+                    <Link href="/studio/course-builder" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-white hover:bg-slate-900">
+                      <BookOpen className="w-4 h-4 text-brand-400" />
+                      <span>{currentLocale === 'ar' ? 'منشئ ومحرر الدورات' : 'Course Builder'}</span>
+                    </Link>
+                    <Link href="/studio/broadcasts" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-white hover:bg-slate-900">
+                      <Radio className="w-4 h-4 text-purple-400" />
+                      <span>{currentLocale === 'ar' ? 'إعلانات وتنبيهات الطلاب' : 'Direct Broadcasts'}</span>
+                    </Link>
+                    <Link href="/studio/revenue" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-white hover:bg-slate-900">
+                      <DollarSign className="w-4 h-4 text-emerald-400" />
+                      <span>{currentLocale === 'ar' ? 'المالية وتتبع الأرباح' : 'Revenue Analytics'}</span>
+                    </Link>
+                    <Link href="/studio/analytics" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-white hover:bg-slate-900">
+                      <AlertTriangle className="w-4 h-4 text-amber-400" />
+                      <span>{currentLocale === 'ar' ? 'الأسئلة الأكثر تعثراً' : 'Student Bottlenecks'}</span>
+                    </Link>
+                  </div>
+                </>
+              )}
+
+              {/* Public Links */}
+              <a href={homeAnchor('academic-track')} onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white">
                 <BookOpen className="h-4 w-4 text-brand-500" />
                 {t('academic')}
               </a>
-              <a
-                href={homeAnchor('btec-track')}
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-900/60 transition-all"
-              >
+              <a href={homeAnchor('btec-track')} onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white">
                 <ShieldCheck className="h-4 w-4 text-brand-500" />
                 {t('btec')}
               </a>
-              <Link href="/btec-guide" className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800/50 transition-colors text-slate-300" onClick={() => setMobileOpen(false)}>
-                <Sparkles className="w-5 h-5 text-brand-500" />
-                <span className="font-medium">{t('btecGuide') || (currentLocale === 'ar' ? 'دليل BTEC' : 'BTEC Guide')}</span>
+              <Link href="/btec-guide" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white">
+                <Sparkles className="w-4 h-4 text-brand-500" />
+                <span>{t('btecGuide') || (currentLocale === 'ar' ? 'دليل BTEC' : 'BTEC Guide')}</span>
               </Link>
-              <Link href="/calculator" className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800/50 transition-colors text-slate-300" onClick={() => setMobileOpen(false)}>
-                <Calculator className="w-5 h-5 text-brand-500" />
-                <span className="font-medium">{t('calculator') || (currentLocale === 'ar' ? 'حاسبة المعدل' : 'GPA Calculator')}</span>
+              <Link href="/calculator" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white">
+                <Calculator className="w-4 h-4 text-brand-500" />
+                <span>{t('calculator') || (currentLocale === 'ar' ? 'حاسبة المعدل' : 'GPA Calculator')}</span>
               </Link>
-              <Link 
-                href="/subjects" 
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-900/60 transition-all"
-              >
-                <BookOpen className="h-4 w-4 text-brand-500" />
-                <span className="font-medium">{currentLocale === 'ar' ? 'المواد' : 'Subjects'}</span>
-              </Link>
-              <Link
-                href="/labs"
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-900/60 transition-all"
-              >
-                <Beaker className="h-4 w-4 text-brand-500" />
-                {currentLocale === 'ar' ? 'المختبرات الافتراضية' : 'Virtual Labs'}
-              </Link>
-              {!user && (
-                <Link
-                  href="/teach"
-                  onClick={() => setMobileOpen(false)}
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-900/60 transition-all"
-                >
-                  <Users className="h-4 w-4 text-brand-500" />
-                  {currentLocale === 'ar' ? 'انضم كمعلم' : 'Teach'}
-                </Link>
-              )}
-
-              {/* Admin Links */}
-              {isAdminOrTeacher && (
-                <>
-                  <div className="border-t border-slate-800/60 my-2" />
-                  <Link
-                    href="/admin/analytics"
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-amber-400 hover:text-amber-300 hover:bg-slate-900/60 transition-all"
-                  >
-                    <BarChart2 className="h-4 w-4" />
-                    {currentLocale === 'ar' ? 'لوحة الإحصائيات' : 'Analytics'}
-                  </Link>
-                  <Link
-                    href="/admin/coupons"
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-amber-400 hover:text-amber-300 hover:bg-slate-900/60 transition-all"
-                  >
-                    <Key className="h-4 w-4" />
-                    {currentLocale === 'ar' ? 'إدارة الكوبونات' : 'Coupon Manager'}
-                  </Link>
-                  <Link
-                    href="/admin/courses"
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-amber-400 hover:text-amber-300 hover:bg-slate-900/60 transition-all"
-                  >
-                    <GraduationCap className="h-4 w-4" />
-                    {currentLocale === 'ar' ? 'إدارة الدورات' : 'Courses'}
-                  </Link>
-                  <Link
-                    href="/admin/quizzes"
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-amber-400 hover:text-amber-300 hover:bg-slate-900/60 transition-all"
-                  >
-                    <BookOpen className="h-4 w-4" />
-                    {currentLocale === 'ar' ? 'إدارة الاختبارات' : 'Quizzes'}
-                  </Link>
-                  <Link
-                    href="/admin/teachers"
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-amber-400 hover:text-amber-300 hover:bg-slate-900/60 transition-all"
-                  >
-                    <Users className="h-4 w-4" />
-                    {currentLocale === 'ar' ? 'المعلمون' : 'Teachers'}
-                  </Link>
-                  <Link
-                    href="/admin/applications"
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-emerald-400 hover:text-emerald-300 hover:bg-slate-900/60 transition-all border-t border-slate-800/60 mt-2"
-                  >
-                    <Users className="h-4 w-4" />
-                    {currentLocale === 'ar' ? 'طلبات التوظيف' : 'Applications'}
-                  </Link>
-                </>
-              )}
-
-              {/* Parent Link */}
-              {isParent && (
-                <>
-                  <div className="border-t border-slate-800/60 my-2" />
-                  <Link
-                    href="/parent/dashboard"
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-teal-400 hover:text-teal-300 hover:bg-slate-900/60 transition-all"
-                  >
-                    {currentLocale === 'ar' ? 'متابعة ابني' : 'My Child'}
-                  </Link>
-                </>
-              )}
 
               <div className="border-t border-slate-800/60 my-2" />
 
-              {/* Auth Actions */}
+              {/* Auth Actions Mobile */}
               {user ? (
-                <>
-                  {user.isMasterAdmin && (
-                    <>
-                      <div className="border-t border-slate-800/60 my-2" />
-                      <p className="px-4 py-1 text-xs font-bold text-slate-500 uppercase tracking-wider">{currentLocale === 'ar' ? 'محاكاة دور' : 'Simulate Role'}</p>
-                      <div className="grid grid-cols-2 gap-2 px-4 py-2">
-                        {['STUDENT', 'PARENT', 'TEACHER', 'ADMIN'].map(r => (
-                          <button
-                            key={r}
-                            onClick={() => handleRoleSwitch(r)}
-                            disabled={switchingRole}
-                            className={`flex items-center justify-center py-2 rounded-xl text-xs font-bold transition-all ${user.role === r ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30' : 'bg-slate-900 text-slate-400 border border-slate-800'}`}
-                          >
-                            {r}
-                          </button>
-                        ))}
-                      </div>
-                      <div className="border-t border-slate-800/60 my-2" />
-                    </>
-                  )}
-                  <Link
-                    href={isParent ? '/parent/dashboard' : (isTeacher ? '/admin/courses' : '/dashboard')}
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-brand-500 to-amber-600"
-                  >
-                    <LayoutDashboard className="h-4 w-4" />
-                    {currentLocale === 'ar' ? 'لوحة التحكم' : 'Dashboard'}
-                  </Link>
-                  <button
-                    onClick={handleLogout}
-                    className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-rose-400 hover:text-white hover:bg-rose-500/10 transition-all"
-                  >
-                    <LogOut className="h-4 w-4" />
-                    {currentLocale === 'ar' ? 'تسجيل الخروج' : 'Log Out'}
-                  </button>
-                </>
+                <button
+                  onClick={handleLogout}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold text-rose-400 bg-rose-500/10 border border-rose-500/20"
+                >
+                  <LogOut className="h-4 w-4" />
+                  <span>{currentLocale === 'ar' ? 'تسجيل الخروج' : 'Log Out'}</span>
+                </button>
               ) : (
-                <>
-                  <Link
-                    href="/login"
-                    className="flex items-center justify-center px-4 py-3 rounded-xl text-sm font-medium text-slate-300 border border-slate-800 hover:border-slate-600 hover:text-white transition-all"
-                  >
+                <div className="grid grid-cols-2 gap-2 pt-2">
+                  <Link href="/login" onClick={() => setMobileOpen(false)} className="flex items-center justify-center px-4 py-2.5 rounded-xl text-xs font-bold text-slate-300 border border-slate-800">
                     {t('login')}
                   </Link>
-                  <Link
-                    href="/register"
-                    className="flex items-center justify-center px-4 py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-brand-500 to-amber-600"
-                  >
+                  <Link href="/register" onClick={() => setMobileOpen(false)} className="flex items-center justify-center px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-brand-500 to-amber-600">
                     {t('register')}
                   </Link>
-                </>
+                </div>
               )}
             </div>
           </div>
