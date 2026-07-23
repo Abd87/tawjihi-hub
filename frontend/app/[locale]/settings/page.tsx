@@ -1,24 +1,28 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-import { useRouter, usePathname, Link } from '@/i18n/routing';
-import { useParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { Lock, Save, Loader2, User, Key, CheckCircle2, ArrowRight, ArrowLeft, TrendingUp } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LineChart, Line, CartesianGrid } from 'recharts';
+import { useParams } from 'next/navigation';
+import { useRouter } from '@/i18n/routing';
+import Link from 'next/link';
+import { 
+  User, 
+  Lock, 
+  Key, 
+  CheckCircle2, 
+  AlertCircle, 
+  ArrowLeft, 
+  ArrowRight,
+  Loader2,
+  Shield
+} from 'lucide-react';
 
 export default function SettingsPage() {
-  const t = useTranslations('auth'); // Using auth translations since it's related
-  const router = useRouter();
   const params = useParams();
+  const router = useRouter();
   const locale = (params?.locale as string) || 'ar';
   const isRtl = locale === 'ar';
 
   const [user, setUser] = useState<any>(null);
-  const [quizAttempts, setQuizAttempts] = useState<any[]>([]);
-  const [courses, setCourses] = useState<any[]>([]);
-  
-  // Password change state
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -31,8 +35,9 @@ export default function SettingsPage() {
       router.replace('/login');
       return;
     }
-    setUser(JSON.parse(userStr));
-
+    try {
+      setUser(JSON.parse(userStr));
+    } catch (e) {}
   }, [router]);
 
   const handlePasswordChange = async (e: React.FormEvent) => {
@@ -103,10 +108,10 @@ export default function SettingsPage() {
         {/* Profile Card */}
         <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 mb-8 flex items-center gap-5">
           <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-brand-500 to-amber-600 flex items-center justify-center text-2xl font-black text-white shadow-lg">
-            {user.nameAr.charAt(0)}
+            {(user?.nameAr || user?.nameEn || 'U').charAt(0)}
           </div>
           <div>
-            <h2 className="text-xl font-bold text-white">{isRtl ? user.nameAr : user.nameEn || user.nameAr}</h2>
+            <h2 className="text-xl font-bold text-white">{isRtl ? (user?.nameAr || 'مستخدم') : (user?.nameEn || user?.nameAr || 'User')}</h2>
             <p className="text-slate-400 text-sm mt-1">{user.email}</p>
             <div className="mt-2 inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-800 rounded-lg text-xs font-semibold text-brand-400">
               <User className="h-3 w-3" />
@@ -116,101 +121,84 @@ export default function SettingsPage() {
         </div>
 
         {/* Change Password Form */}
-        <div className="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden">
-          <div className="px-6 py-5 border-b border-slate-800 flex items-center gap-3">
-            <div className="p-2 bg-blue-500/10 rounded-xl">
-              <Key className="h-5 w-5 text-blue-400" />
-            </div>
+        <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 sm:p-8">
+          <div className="flex items-center gap-3 mb-6 border-b border-slate-800 pb-4">
+            <Shield className="h-5 w-5 text-brand-400" />
             <h3 className="text-lg font-bold text-white">
               {isRtl ? 'تغيير كلمة المرور' : 'Change Password'}
             </h3>
           </div>
-          
-          <form onSubmit={handlePasswordChange} className="p-6 space-y-5">
-            <div className="space-y-1.5">
-              <label className="text-sm font-semibold text-slate-300">
+
+          {status === 'success' && (
+            <div className="mb-6 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-semibold flex items-center gap-2">
+              <CheckCircle2 className="h-5 w-5 shrink-0" />
+              <span>{isRtl ? 'تم تغيير كلمة المرور بنجاح!' : 'Password changed successfully!'}</span>
+            </div>
+          )}
+
+          {status === 'error' && (
+            <div className="mb-6 p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-sm font-semibold flex items-center gap-2">
+              <AlertCircle className="h-5 w-5 shrink-0" />
+              <span>{errorMsg}</span>
+            </div>
+          )}
+
+          <form onSubmit={handlePasswordChange} className="space-y-5">
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 mb-2">
                 {isRtl ? 'كلمة المرور الحالية' : 'Current Password'}
               </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 ps-4 flex items-center pointer-events-none text-slate-500">
-                  <Lock className="h-4 w-4" />
-                </div>
-                <input
-                  type="password"
-                  required
-                  value={oldPassword}
-                  onChange={e => setOldPassword(e.target.value)}
-                  className="block w-full rounded-xl border border-slate-700 bg-slate-950/50 py-3.5 ps-11 pe-4 text-sm text-white placeholder-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-all"
-                  placeholder="••••••••"
-                />
-              </div>
+              <input
+                type="password"
+                required
+                value={oldPassword}
+                onChange={(e) => setOldPassword(e.target.value)}
+                className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition-colors"
+              />
             </div>
 
-            <div className="space-y-1.5">
-              <label className="text-sm font-semibold text-slate-300">
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 mb-2">
                 {isRtl ? 'كلمة المرور الجديدة' : 'New Password'}
               </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 ps-4 flex items-center pointer-events-none text-slate-500">
-                  <Lock className="h-4 w-4" />
-                </div>
-                <input
-                  type="password"
-                  required
-                  value={newPassword}
-                  onChange={e => setNewPassword(e.target.value)}
-                  className="block w-full rounded-xl border border-slate-700 bg-slate-950/50 py-3.5 ps-11 pe-4 text-sm text-white placeholder-slate-600 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 focus:outline-none transition-all"
-                  placeholder="••••••••"
-                />
-              </div>
+              <input
+                type="password"
+                required
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition-colors"
+              />
             </div>
 
-            <div className="space-y-1.5">
-              <label className="text-sm font-semibold text-slate-300">
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 mb-2">
                 {isRtl ? 'تأكيد كلمة المرور الجديدة' : 'Confirm New Password'}
               </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 ps-4 flex items-center pointer-events-none text-slate-500">
-                  <Lock className="h-4 w-4" />
-                </div>
-                <input
-                  type="password"
-                  required
-                  value={confirmPassword}
-                  onChange={e => setConfirmPassword(e.target.value)}
-                  className="block w-full rounded-xl border border-slate-700 bg-slate-950/50 py-3.5 ps-11 pe-4 text-sm text-white placeholder-slate-600 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 focus:outline-none transition-all"
-                  placeholder="••••••••"
-                />
-              </div>
+              <input
+                type="password"
+                required
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition-colors"
+              />
             </div>
 
-            {status === 'error' && errorMsg && (
-              <div className="p-4 bg-rose-500/10 border border-rose-500/20 rounded-xl text-sm text-rose-400 font-medium">
-                {errorMsg}
-              </div>
-            )}
-
-            {status === 'success' && (
-              <div className="flex items-center gap-3 p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-sm text-emerald-400 font-medium">
-                <CheckCircle2 className="h-5 w-5 shrink-0" />
-                <span>{isRtl ? 'تم تغيير كلمة المرور بنجاح!' : 'Password successfully updated!'}</span>
-              </div>
-            )}
-
-            <button 
+            <button
               type="submit"
               disabled={status === 'loading'}
-              className="w-full flex items-center justify-center gap-2 py-4 px-6 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-600/20 mt-4"
+              className="w-full py-3.5 bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 text-white font-bold text-sm rounded-xl shadow-lg shadow-brand-500/25 transition-all flex items-center justify-center gap-2 mt-4"
             >
               {status === 'loading' ? (
-                <><Loader2 className="h-5 w-5 animate-spin" /><span>{isRtl ? 'جاري الحفظ...' : 'Saving...'}</span></>
+                <Loader2 className="h-4 w-4 animate-spin" />
               ) : (
-                <><Save className="h-5 w-5" /><span>{isRtl ? 'حفظ التغييرات' : 'Save Changes'}</span></>
+                <>
+                  <Key className="h-4 w-4" />
+                  <span>{isRtl ? 'حفظ كلمة المرور الجديدة' : 'Update Password'}</span>
+                </>
               )}
             </button>
           </form>
         </div>
-
       </main>
     </div>
   );

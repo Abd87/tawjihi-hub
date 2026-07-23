@@ -275,14 +275,14 @@ export default function ParentDashboardPage() {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
               {/* Avatar */}
               <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center text-white text-2xl font-bold shrink-0">
-                {student.nameAr.charAt(0)}
+                {(student?.nameAr || student?.nameEn || 'S').charAt(0)}
               </div>
 
               {/* Info */}
               <div className="flex-grow">
                 <div className="flex flex-wrap items-center gap-2 mb-1">
                   <h2 className="text-lg sm:text-xl font-extrabold text-white">
-                    {isAr ? student.nameAr : (student.nameEn || student.nameAr)}
+                    {isAr ? (student?.nameAr || 'طالب') : (student?.nameEn || student?.nameAr || 'Student')}
                   </h2>
                   {student.trackType && (
                     <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${

@@ -360,9 +360,11 @@ export default function Navbar() {
                 {/* User Pill */}
                 <div className="flex items-center gap-2 pl-2 pr-3 py-1 bg-slate-900/80 border border-slate-800 rounded-2xl">
                   <div className="w-7 h-7 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold text-xs">
-                    {user.nameAr.charAt(0)}
+                    {(user?.nameAr || user?.nameEn || 'U').charAt(0)}
                   </div>
-                  <span className="text-xs font-bold text-slate-200 max-w-[100px] truncate">{user.nameAr}</span>
+                  <span className="text-xs font-bold text-slate-200 max-w-[100px] truncate">
+                    {user?.nameAr || user?.nameEn || 'مستخدم'}
+                  </span>
                   
                   <Link 
                     href="/dashboard/settings"
@@ -430,11 +432,11 @@ export default function Navbar() {
                 <div className="p-3 bg-slate-900 border border-slate-800 rounded-2xl flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2.5">
                     <div className="w-8 h-8 rounded-xl bg-brand-500/20 text-brand-400 font-bold text-xs flex items-center justify-center">
-                      {user.nameAr.charAt(0)}
+                      {(user?.nameAr || user?.nameEn || 'U').charAt(0)}
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-white">{user.nameAr}</p>
-                      <span className="text-[10px] text-brand-400 font-semibold uppercase">{user.role}</span>
+                      <p className="text-xs font-bold text-white">{user?.nameAr || user?.nameEn || 'مستخدم'}</p>
+                      <span className="text-[10px] text-brand-400 font-semibold uppercase">{user?.role}</span>
                     </div>
                   </div>
 
