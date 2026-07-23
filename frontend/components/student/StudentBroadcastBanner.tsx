@@ -26,7 +26,13 @@ export default function StudentBroadcastBanner({ isRtl = true }: { isRtl?: boole
 
   const fetchStudentBroadcasts = async () => {
     try {
-      const res = await fetch('/api/student/broadcasts');
+      const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+      const headers: Record<string, string> = {};
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+
+      const res = await fetch('/api/student/broadcasts', { headers });
       if (res.ok) {
         const data = await res.json();
         setBroadcasts(data.broadcasts || []);

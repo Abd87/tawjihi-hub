@@ -7,41 +7,36 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
   try {
+    const authHeader = request.headers.get('authorization');
+    const headerToken = authHeader?.startsWith('Bearer ') ? authHeader.substring(7) : null;
     const cookieStore = cookies();
-    const token = cookieStore.get('token')?.value;
+    const token = headerToken || cookieStore.get('token')?.value;
 
-    if (!token) return NextResponse.json({ broadcasts: [] });
+    let studentId: string | null = null;
+    let courseIds: string[] = [];
 
-    if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET is missing');
-    const secret = process.env.JWT_SECRET;
-    const decoded = jwt.verify(token, secret) as any;
+    if (token && process.env.JWT_SECRET) {
+      try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET) as any;
+        studentId = decoded.userId;
 
-    const studentId = decoded.userId;
-
-    // Get all courses student is enrolled in
-    const enrollments = await prisma.enrollment.findMany({
-      where: { userId: studentId },
-      include: {
-        course: {
-          select: { id: true, teacherId: true },
-        },
-      },
-    });
-
-    if (enrollments.length === 0) {
-      return NextResponse.json({ broadcasts: [] });
+        const enrollments = await prisma.enrollment.findMany({
+          where: { userId: studentId },
+          select: { courseId: true },
+        });
+        courseIds = enrollments.map((e) => e.courseId);
+      } catch (e) {
+        // Token expired or invalid, fall back to public/general announcements
+      }
     }
 
-    const courseIds = enrollments.map((e) => e.courseId);
-    const teacherIds = Array.from(new Set(enrollments.map((e) => e.course.teacherId)));
-
-    // Fetch broadcasts matching enrolled courses or general teacher announcements
+    // Fetch broadcasts: either general broadcasts (courseId == null) OR targeted to student's enrolled courses
     const broadcasts = await prisma.broadcast.findMany({
       where: {
         OR: [
-          { courseId: { in: courseIds } },
-          { courseId: null, teacherId: { in: teacherIds } },
-        ],
+          { courseId: null },
+          courseIds.length > 0 ? { courseId: { in: courseIds } } : undefined,
+        ].filter(Boolean) as any,
       },
       include: {
         teacher: {
@@ -52,7 +47,7 @@ export async function GET(request: Request) {
         },
       },
       orderBy: { createdAt: 'desc' },
-      take: 10,
+      take: 15,
     });
 
     return NextResponse.json({ broadcasts });
