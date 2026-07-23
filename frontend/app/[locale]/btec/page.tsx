@@ -27,6 +27,7 @@ import {
   ChevronDown
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
+import TypewriterTitle from '@/components/btec/TypewriterTitle';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   const isRtl = locale === 'ar';
@@ -213,16 +214,12 @@ export default async function BtecLandingPage({ params: { locale } }: { params: 
             {isRtl ? (
               <>
                 بينما تهمل المنصات الأخرى طلاب BTEC.. <br />
-                <span className="bg-gradient-to-r from-brand-400 via-amber-400 to-cyan-400 bg-clip-text text-transparent">
-                  بنينا بيتك الدراسي المتكامل خصيصاً لك!
-                </span>
+                <TypewriterTitle isRtl={true} />
               </>
             ) : (
               <>
                 Empowering BTEC Students in Jordan <br />
-                <span className="bg-gradient-to-r from-brand-400 via-amber-400 to-cyan-400 bg-clip-text text-transparent">
-                  With Dedicated Mastery Tools
-                </span>
+                <TypewriterTitle isRtl={false} />
               </>
             )}
           </h1>
