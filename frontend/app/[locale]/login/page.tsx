@@ -27,7 +27,8 @@ import Image from 'next/image';
 // Role → redirect path
 // ---------------------------------------------------------------------------
 function getRedirectPath(role: string, locale: string): string {
-  if (role === 'TEACHER') return `/${locale}/admin/courses`;
+  if (role === 'TEACHER') return `/${locale}/studio`;
+  if (role === 'ADMIN') return `/${locale}/admin/courses`;
   if (role === 'PARENT') return `/${locale}/parent/dashboard`;
   return `/${locale}/dashboard`;
 }

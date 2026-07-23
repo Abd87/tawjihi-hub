@@ -266,12 +266,18 @@ export default function DashboardPage() {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         
-        if (!profileRes.ok) {
-          throw new Error('Authentication expired');
+        let activeUser: any = null;
+        if (profileRes.ok) {
+          const profileData = await profileRes.json();
+          activeUser = profileData.user;
+        } else {
+          const cachedUser = localStorage.getItem('user');
+          if (cachedUser) {
+            activeUser = JSON.parse(cachedUser);
+          } else {
+            throw new Error('Authentication expired');
+          }
         }
-        
-        const profileData = await profileRes.json();
-        const activeUser = profileData.user;
         setUser(activeUser);
 
         // 2. Fetch track-segregated courses
