@@ -378,8 +378,14 @@ export default function Grade11UnitExamEnginePage() {
                   <span>High Note 11 Reading Passage • Unit {exam.unitNumber}</span>
                 </div>
                 <h4 className="text-base font-bold text-white mb-2">{exam.titleEn}</h4>
-                <div className="text-xs sm:text-sm text-slate-300 leading-relaxed space-y-3">
-                  <p>{exam.readingPassage}</p>
+                <div className="text-xs sm:text-sm text-slate-300 leading-relaxed space-y-4 font-serif">
+                  {exam.readingPassage.split('\n\n').map((para: string, pIdx: number) => (
+                    <p
+                      key={pIdx}
+                      className="bg-slate-950/60 p-4 rounded-2xl border border-slate-800/80 tracking-wide leading-relaxed text-slate-200"
+                      dangerouslySetInnerHTML={{ __html: para }}
+                    />
+                  ))}
                 </div>
               </div>
             )}
