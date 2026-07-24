@@ -1,0 +1,2886 @@
+[
+  {
+    "id": "unit-1",
+    "unitNumber": 1,
+    "titleAr": "الوحدة الأولى: التواصل والإشارات",
+    "titleEn": "Unit 1: Communication & Relationships",
+    "grade": "11",
+    "subject": "اللغة الإنجليزية (Action Pack 11)",
+    "docPath": "C:\\Users\\fastb\\Desktop\\all booklets ALwatheq\\booklets words\\quizes for each unit\\full quiz unit 1.docx",
+    "descriptionAr": "اختبار تقييمي مجاني وشامل على الوحدة الأولى: التواصل والإشارات. ينشّط مهارات القواعد والمفردات والأسئلة الوزارية للفرعين الأكاديمي والمهني.",
+    "descriptionEn": "Free diagnostic unit exam for Unit 1: Communication & Relationships covering vocabulary, grammar, and exam patterns.",
+    "durationMinutes": 30,
+    "totalMarks": 60,
+    "questionsCount": 30,
+    "questions": [
+      {
+        "id": "g11_u1_q1",
+        "num": 1,
+        "question": "The audience was terrified by the magician's incredible tricks. Replace the underlined word with a suitable word from the options.",
+        "choices": [
+          "surprised",
+          "frightened",
+          "sad",
+          "confused"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q2",
+        "num": 2,
+        "question": "To wipe out something means to................",
+        "choices": [
+          "create it",
+          "protect it",
+          "destroy it",
+          "ignore it"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q3",
+        "num": 3,
+        "question": "I _____________the mistake in the report.",
+        "choices": [
+          "came across",
+          "pointed out",
+          "took in",
+          "wiped out"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q4",
+        "num": 4,
+        "question": "Can you _____________the instructions for me?",
+        "choices": [
+          "take in",
+          "spell out",
+          "figure out",
+          "get across"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q5",
+        "num": 5,
+        "question": "After graduating, we promised to _____________.",
+        "choices": [
+          "stay in touch",
+          "spread the message",
+          "make contact",
+          "lose contact"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q6",
+        "num": 6,
+        "question": "We tried to _____________with them, but we couldn't reach them.",
+        "choices": [
+          "maintain contact",
+          "lose contact",
+          "make contact",
+          "pass on the message"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q7",
+        "num": 7,
+        "question": "It's important to _____________with your friends and family.",
+        "choices": [
+          "lose contact",
+          "maintain contact",
+          "spread the message",
+          "convey a message"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q8",
+        "num": 8,
+        "question": "The strength of the hurricane bewildered the residents. Replace the underlined word with a suitable word from the options.",
+        "choices": [
+          "impressed",
+          "confused",
+          "saddened",
+          "angered"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q9",
+        "num": 9,
+        "question": "Over time, we _____________of friendship.",
+        "choices": [
+          "hit it off",
+          "took to you",
+          "came across as",
+          "created a bond"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q10",
+        "num": 10,
+        "question": "He _____________on her new hairstyle.",
+        "choices": [
+          "put somebody on the spot",
+          "refused to let something drop",
+          "paid a compliment",
+          "hit it off"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q11",
+        "num": 11,
+        "question": "________ they play soccer every week?",
+        "choices": [
+          "Do",
+          "Did",
+          "Are",
+          "Have"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q12",
+        "num": 12,
+        "question": "We __________ already _______ our homework.",
+        "choices": [
+          "have / finished",
+          "did / finished",
+          "are / finishing",
+          "will / finish"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q13",
+        "num": 13,
+        "question": "The sun ________ to the west.",
+        "choices": [
+          "sets",
+          "set",
+          "is setting",
+          "has set"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q14",
+        "num": 14,
+        "question": "Which of the following sentences is correctly used to express a giving instruction?",
+        "choices": [
+          "He lives in Irbid.",
+          "They always go to school by bus.",
+          "Turn right, then take the second exit.",
+          "The class starts at 8:00 AM."
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q15",
+        "num": 15,
+        "question": "It _______________ right now.",
+        "choices": [
+          "is raining",
+          "rained",
+          "has rained",
+          "will rain"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q16",
+        "num": 16,
+        "question": "What _____________ you doing this weekend?",
+        "choices": [
+          "are",
+          "were",
+          "will have",
+          "have been"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q17",
+        "num": 17,
+        "question": "I ____________________ at 10 o'clock last night.",
+        "choices": [
+          "wasn't sleeping",
+          "didn't sleep",
+          "haven't slept",
+          "won't sleep"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q18",
+        "num": 18,
+        "question": "The children ____________ in the park right now.",
+        "choices": [
+          "are playing",
+          "played",
+          "have played",
+          "will play"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q19",
+        "num": 19,
+        "question": "She ______________to the beach yesterday.",
+        "choices": [
+          "went",
+          "goes",
+          "is going",
+          "has gone"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q20",
+        "num": 20,
+        "question": "We ________________ out last night.",
+        "choices": [
+          "aren't eating",
+          "don't eat",
+          "didn't eat",
+          "haven't eaten"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q21",
+        "num": 21,
+        "question": "Which of the following expresses temporary situation.",
+        "choices": [
+          "He is always talking like this.",
+          "We are meeting the teacher next Monday.",
+          "The students are writing the essay at the moment.",
+          "The weather is getting colder."
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q22",
+        "num": 22,
+        "question": "Which of the following expresses a completed action in the past with a specific time.",
+        "choices": [
+          "I was tired.",
+          "Ahmad has finished his dinner.",
+          "The man finished his book last night.",
+          "none of the above."
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q23",
+        "num": 23,
+        "question": "They _____________ TV at the moment.",
+        "choices": [
+          "aren't watching",
+          "didn't watch",
+          "haven't watched",
+          "won't watch"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q24",
+        "num": 24,
+        "question": "They __________________ when it started to rain.",
+        "choices": [
+          "were swimming",
+          "swam",
+          "have swum",
+          "will swim"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q25",
+        "num": 25,
+        "question": "She ________________ breakfast yet.",
+        "choices": [
+          "hasn't eaten",
+          "didn't eat",
+          "isn't eating",
+          "won't eat"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q26",
+        "num": 26,
+        "question": "The kids _______________ video games all afternoon.",
+        "choices": [
+          "were playing",
+          "played",
+          "have played",
+          "will play"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q27",
+        "num": 27,
+        "question": "While I ______________ dinner, my brother was sleeping.",
+        "choices": [
+          "was cooking",
+          "cooked",
+          "have cooked",
+          "will cook"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q28",
+        "num": 28,
+        "question": "What _________ you do for a living?",
+        "choices": [
+          "do",
+          "did",
+          "am doing",
+          "have done"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q29",
+        "num": 29,
+        "question": "She __________ spicy food.",
+        "choices": [
+          "doesn't like",
+          "didn't like",
+          "isn't liking",
+          "hasn't liked"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      },
+      {
+        "id": "g11_u1_q30",
+        "num": 30,
+        "question": "Which of the following sentences is incorrect.",
+        "choices": [
+          "He doesn't like apples.",
+          "They were studying all night.",
+          "The pack of wolves are dangerous.",
+          "I have already watched that movie."
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 1 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 1."
+      }
+    ]
+  },
+  {
+    "id": "unit-2",
+    "unitNumber": 2,
+    "titleAr": "الوحدة الثانية: العالم الطبيعي والبيئة",
+    "titleEn": "Unit 2: The Natural World & Wildlife",
+    "grade": "11",
+    "subject": "اللغة الإنجليزية (Action Pack 11)",
+    "docPath": "C:\\Users\\fastb\\Desktop\\all booklets ALwatheq\\booklets words\\quizes for each unit\\Unit 2 Exam full.docx",
+    "descriptionAr": "اختبار تقييمي مجاني وشامل على الوحدة الثانية: العالم الطبيعي والبيئة. ينشّط مهارات القواعد والمفردات والأسئلة الوزارية للفرعين الأكاديمي والمهني.",
+    "descriptionEn": "Free diagnostic unit exam for Unit 2: The Natural World & Wildlife covering vocabulary, grammar, and exam patterns.",
+    "durationMinutes": 30,
+    "totalMarks": 38,
+    "questionsCount": 19,
+    "questions": [
+      {
+        "id": "g11_u2_q1",
+        "num": 1,
+        "question": "Two…………………were arrested for hunting elephants illegally.",
+        "choices": [
+          "primates",
+          "poachers",
+          "naturalists",
+          "endangered species"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 2 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 2."
+      },
+      {
+        "id": "g11_u2_q2",
+        "num": 2,
+        "question": "The owl is a…………………bird because it sleeps by day and hunt by night.",
+        "choices": [
+          "furry \t`",
+          "marine",
+          "nocturnal",
+          "solitary"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 2 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 2."
+      },
+      {
+        "id": "g11_u2_q3",
+        "num": 3,
+        "question": "The aye aye is traditionally considered an…………….……of bad luck on the island of Madagascar.",
+        "choices": [
+          "nocturnal",
+          "slimy",
+          "cuddly",
+          "omen"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 2 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 2."
+      },
+      {
+        "id": "g11_u2_q4",
+        "num": 4,
+        "question": "All the people on the beach were panicked when they saw a shark's……………..…sticking out of the water.",
+        "choices": [
+          "invertebrates",
+          "scales",
+          "fin",
+          "skeleton"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 2 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 2."
+      },
+      {
+        "id": "g11_u2_q5",
+        "num": 5,
+        "question": "It is claimed that …………………….. from cars kill twice as many people as accidents caused by vehicles.",
+        "choices": [
+          "wind turbine",
+          "fossil fuels",
+          "endangered species",
+          "exhaust fumes"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 2 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 2."
+      },
+      {
+        "id": "g11_u2_q6",
+        "num": 6,
+        "question": "percent of the energy we consume is provided by________ , which pollute the atmosphere.",
+        "choices": [
+          "acid rain",
+          "fossil fuels",
+          "renewable energy",
+          "toxic waste"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 2 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 2."
+      },
+      {
+        "id": "g11_u2_q7",
+        "num": 7,
+        "question": "A lobster is a type of__________ with a hard shell and many legs.",
+        "choices": [
+          "reptile",
+          "crustacean",
+          "mammal",
+          "primate"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 2 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 2."
+      },
+      {
+        "id": "g11_u2_q8",
+        "num": 8,
+        "question": "Insects are ____________ because they do not have a backbone.",
+        "choices": [
+          "furry",
+          "crustacean",
+          "invertebrate",
+          "slimy"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 2 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 2."
+      },
+      {
+        "id": "g11_u2_q9",
+        "num": 9,
+        "question": "The gale-force ______ were so strong they damaged the power lines.",
+        "choices": [
+          "rain",
+          "snow",
+          "heat",
+          "winds"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 2 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 2."
+      },
+      {
+        "id": "g11_u2_q10",
+        "num": 10,
+        "question": "Which of the following words has short vowel sound like big.",
+        "choices": [
+          "seen",
+          "window",
+          "please",
+          "mean"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 2 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 2."
+      },
+      {
+        "id": "g11_u2_q11",
+        "num": 11,
+        "question": "According to these statistics, Without a doubt, crime figures………………….. to decrease in the near future.",
+        "choices": [
+          "'re going to continue",
+          "continues",
+          "'ll have continued",
+          "'ll be continued"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 2 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 2."
+      },
+      {
+        "id": "g11_u2_q12",
+        "num": 12,
+        "question": "We…………………. a great time in a farm with my grandparents next weekend.",
+        "choices": [
+          "will have spent",
+          "going to spend",
+          "spend",
+          "will have been spending"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 2 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 2."
+      },
+      {
+        "id": "g11_u2_q13",
+        "num": 13,
+        "question": "When you come back home tonight, please try to be quiet as everyone…………………….",
+        "choices": [
+          "will / have slept",
+          "will / be sleeping",
+          "had / slept",
+          "is / going to sleep"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 2 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 2."
+      },
+      {
+        "id": "g11_u2_q14",
+        "num": 14,
+        "question": "In two days' time, they………………. in the importance of this project more strongly after the presentation.",
+        "choices": [
+          "will be believing",
+          "'ll have been believing",
+          "believes",
+          "will believe"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 2 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 2."
+      },
+      {
+        "id": "g11_u2_q15",
+        "num": 15,
+        "question": "When you come back home tonight, please try to be quiet as everyone ………… already ………… to bed.",
+        "choices": [
+          "will / have gone",
+          "will / be going",
+          "had / gone",
+          "is / going to go"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 2 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 2."
+      },
+      {
+        "id": "g11_u2_q16",
+        "num": 16,
+        "question": "If you don't charge your electric car now, it…………………. completely by lunchtime.",
+        "choices": [
+          "will have died",
+          "is going to die",
+          "will be dying",
+          "will been dying"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 2 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 2."
+      },
+      {
+        "id": "g11_u2_q17",
+        "num": 17,
+        "question": "By the time we reach the entrance, we ………………….. for three hours!",
+        "choices": [
+          "were going to wait",
+          "had been waited",
+          "will have been waiting",
+          "would have been waiting"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 2 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 2."
+      },
+      {
+        "id": "g11_u2_q18",
+        "num": 18,
+        "question": "Which sentence has the same meaning as \"They are planning a trip to Paris\"?",
+        "choices": [
+          "They have planned a trip to Paris.",
+          "They will plan a trip to Paris.",
+          "They are going to plan a trip to Paris.",
+          "They are going to Paris."
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 2 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 2."
+      },
+      {
+        "id": "g11_u2_q19",
+        "num": 19,
+        "question": "Which sentence has the same meaning as \"She is unlikely to attend the meeting\"?",
+        "choices": [
+          "She will probably attend the meeting.",
+          "She will definitely attend the meeting.",
+          "She might attend the meeting.",
+          "She probably won't attend the  meeting."
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 2 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 2."
+      }
+    ]
+  },
+  {
+    "id": "unit-3",
+    "unitNumber": 3,
+    "titleAr": "الوحدة الثالثة: الأدب والقصص العالمية",
+    "titleEn": "Unit 3: Literature & Classic Stories",
+    "grade": "11",
+    "subject": "اللغة الإنجليزية (Action Pack 11)",
+    "docPath": "C:\\Users\\fastb\\Desktop\\all booklets ALwatheq\\booklets words\\quizes for each unit\\Unit 3 Exam full.docx",
+    "descriptionAr": "اختبار تقييمي مجاني وشامل على الوحدة الثالثة: الأدب والقصص العالمية. ينشّط مهارات القواعد والمفردات والأسئلة الوزارية للفرعين الأكاديمي والمهني.",
+    "descriptionEn": "Free diagnostic unit exam for Unit 3: Literature & Classic Stories covering vocabulary, grammar, and exam patterns.",
+    "durationMinutes": 30,
+    "totalMarks": 44,
+    "questionsCount": 22,
+    "questions": [
+      {
+        "id": "g11_u3_q1",
+        "num": 1,
+        "question": "My brother is very ....................; he refuses to accept anyone who has a different opinion than him.",
+        "choices": [
+          "bigoted",
+          "charming",
+          "compassionate",
+          "modest"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      },
+      {
+        "id": "g11_u3_q2",
+        "num": 2,
+        "question": "If you don't study hard, you might .................... your final exams.",
+        "choices": [
+          "relocate",
+          "clash",
+          "flunk",
+          "row"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      },
+      {
+        "id": "g11_u3_q3",
+        "num": 3,
+        "question": "It is not polite to .................... people just because they make a small mistake.",
+        "choices": [
+          "make up with",
+          "make fun of",
+          "stick at",
+          "put up with"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      },
+      {
+        "id": "g11_u3_q4",
+        "num": 4,
+        "question": "The new employee is very ....................; she is always telling everyone how great she is at her job.",
+        "choices": [
+          "trustworthy",
+          "conceited",
+          "sincere",
+          "innocent"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      },
+      {
+        "id": "g11_u3_q5",
+        "num": 5,
+        "question": "My sister and I never fight; we treat each other well and never have a .................... .",
+        "choices": [
+          "row",
+          "sibling",
+          "colic",
+          "favour"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      },
+      {
+        "id": "g11_u3_q6",
+        "num": 6,
+        "question": "Nurses need to be .................... so they can understand and care for the suffering of their patients.",
+        "choices": [
+          "defensive",
+          "pushy",
+          "compassionate",
+          "immature"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      },
+      {
+        "id": "g11_u3_q7",
+        "num": 7,
+        "question": "When the company closed down, my father had to .................... to another city to find work.",
+        "choices": [
+          "handle",
+          "relocate",
+          "clash",
+          "flunk"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      },
+      {
+        "id": "g11_u3_q8",
+        "num": 8,
+        "question": "Don't worry about the problem; you just need to .................... the situation calmly.",
+        "choices": [
+          "handle",
+          "beg",
+          "row",
+          "wind up"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      },
+      {
+        "id": "g11_u3_q9",
+        "num": 9,
+        "question": "He tends to ....................; whenever he gets a small cut, he acts like he is dying!",
+        "choices": [
+          "be the peacemaker",
+          "blow things out of proportion",
+          "burst into tears",
+          "give a compliment"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      },
+      {
+        "id": "g11_u3_q10",
+        "num": 10,
+        "question": "A .................... is a person whose job is to look after a house, doing cooking and cleaning.",
+        "choices": [
+          "poacher",
+          "housekeeper",
+          "sibling",
+          "primate"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      },
+      {
+        "id": "g11_u3_q11",
+        "num": 11,
+        "question": "My younger brother .................... borrowing my clothes without asking! It is so annoying.",
+        "choices": [
+          "is always",
+          "was always",
+          "always",
+          "would always"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      },
+      {
+        "id": "g11_u3_q12",
+        "num": 12,
+        "question": "When we were children, we .................... go to the beach every summer holiday.",
+        "choices": [
+          "are used to",
+          "would",
+          "were used to",
+          "use to"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      },
+      {
+        "id": "g11_u3_q13",
+        "num": 13,
+        "question": "I .................... like vegetables when I was young, but now I love them.",
+        "choices": [
+          "didn't use to",
+          "wouldn't",
+          "wasn't used to",
+          "don't use to"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      },
+      {
+        "id": "g11_u3_q14",
+        "num": 14,
+        "question": "The student, .................... project won the prize, was very happy.",
+        "choices": [
+          "who",
+          "which",
+          "whose",
+          "where"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      },
+      {
+        "id": "g11_u3_q15",
+        "num": 15,
+        "question": "The car .................... I bought last week is already broken.",
+        "choices": [
+          "where",
+          "who",
+          "when",
+          "which"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      },
+      {
+        "id": "g11_u3_q16",
+        "num": 16,
+        "question": "My father, .................... is a doctor, works at the city hospital.",
+        "choices": [
+          "that",
+          "who",
+          "which",
+          "whose"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      },
+      {
+        "id": "g11_u3_q17",
+        "num": 17,
+        "question": "The man .................... next to the door is my uncle.",
+        "choices": [
+          "stood",
+          "stands",
+          "is standing",
+          "standing"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      },
+      {
+        "id": "g11_u3_q18",
+        "num": 18,
+        "question": "The book .................... by Charles Dickens is very famous.",
+        "choices": [
+          "writing",
+          "written",
+          "wrote",
+          "writes"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      },
+      {
+        "id": "g11_u3_q19",
+        "num": 19,
+        "question": "My friend is so predictable. He .................... arrive late and blame the traffic.",
+        "choices": [
+          "will",
+          "would",
+          "used to",
+          "is used to"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      },
+      {
+        "id": "g11_u3_q20",
+        "num": 20,
+        "question": "Which sentence is grammatically correct?",
+        "choices": [
+          "The city where I was born in is beautiful.",
+          "The city which I was born is beautiful.",
+          "The city in which I was born is beautiful.",
+          "The city who I was born in is beautiful."
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      },
+      {
+        "id": "g11_u3_q21",
+        "num": 21,
+        "question": "Which of the following statements expresses “an annoying habit in the past”?",
+        "choices": [
+          "I used to play chess all the time.",
+          "He is always crying when he needs something.",
+          "After school, I would go home and watch television.",
+          "I was constantly ignoring my parents when they asked me to do something."
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      },
+      {
+        "id": "g11_u3_q22",
+        "num": 22,
+        "question": "The sentence “I would play tennis with my friends” has the function:",
+        "choices": [
+          "an annoying repeated habit in the present",
+          "an annoying repeated habit in the past",
+          "a past state or action which no longer exists",
+          "a habit or repeated action in the past, but not a state"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 3 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 3."
+      }
+    ]
+  },
+  {
+    "id": "unit-4",
+    "unitNumber": 4,
+    "titleAr": "الوحدة الرابعة: المجتمع والتطوير العمراني",
+    "titleEn": "Unit 4: Society & Urban Progress",
+    "grade": "11",
+    "subject": "اللغة الإنجليزية (Action Pack 11)",
+    "docPath": "C:\\Users\\fastb\\Desktop\\all booklets ALwatheq\\booklets words\\quizes for each unit\\Unit 4 Exam full.docx",
+    "descriptionAr": "اختبار تقييمي مجاني وشامل على الوحدة الرابعة: المجتمع والتطوير العمراني. ينشّط مهارات القواعد والمفردات والأسئلة الوزارية للفرعين الأكاديمي والمهني.",
+    "descriptionEn": "Free diagnostic unit exam for Unit 4: Society & Urban Progress covering vocabulary, grammar, and exam patterns.",
+    "durationMinutes": 30,
+    "totalMarks": 38,
+    "questionsCount": 19,
+    "questions": [
+      {
+        "id": "g11_u4_q1",
+        "num": 1,
+        "question": "A good journalist must always __________ before publishing a story to ensure it is true.",
+        "choices": [
+          "verify sources",
+          "shed light",
+          "go viral",
+          "expose corruption"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 4 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 4."
+      },
+      {
+        "id": "g11_u4_q2",
+        "num": 2,
+        "question": "The photo of the child crying was very __________; it made everyone feel sad.",
+        "choices": [
+          "landscape",
+          "composed",
+          "poignant",
+          "blurred"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 4 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 4."
+      },
+      {
+        "id": "g11_u4_q3",
+        "num": 3,
+        "question": "There has been a significant __________ in the quality of internet services in Jordan.",
+        "choices": [
+          "improve",
+          "improvement",
+          "improved",
+          "improves"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 4 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 4."
+      },
+      {
+        "id": "g11_u4_q4",
+        "num": 4,
+        "question": "The lawyer refuted the __________ that his client had stolen the car.",
+        "choices": [
+          "allege",
+          "allegedly",
+          "allegation",
+          "alleging"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 4 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 4."
+      },
+      {
+        "id": "g11_u4_q5",
+        "num": 5,
+        "question": "Children today often have a shorter __________ than kids did 20 years ago.",
+        "choices": [
+          "public interest",
+          "attention span",
+          "news story",
+          "revenue"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 4 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 4."
+      },
+      {
+        "id": "g11_u4_q6",
+        "num": 6,
+        "question": "The investigation aimed to __________ corruption in the city council.",
+        "choices": [
+          "evoke",
+          "expose",
+          "claim",
+          "pose"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 4 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 4."
+      },
+      {
+        "id": "g11_u4_q7",
+        "num": 7,
+        "question": "The new restaurant is too expensive for us; it is aimed at the __________ market.",
+        "choices": [
+          "upmarket",
+          "traditional",
+          "sensitive",
+          "viral"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 4 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 4."
+      },
+      {
+        "id": "g11_u4_q8",
+        "num": 8,
+        "question": "She enjoys the __________ of working from home.",
+        "choices": [
+          "free",
+          "freedom",
+          "freely",
+          "frees"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 4 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 4."
+      },
+      {
+        "id": "g11_u4_q9",
+        "num": 9,
+        "question": "It will be difficult to find a suitable __________ for Laila when she leaves her post.",
+        "choices": [
+          "replacement",
+          "replace",
+          "replaced",
+          "replaceable"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 4 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 4."
+      },
+      {
+        "id": "g11_u4_q10",
+        "num": 10,
+        "question": "By the time the police arrived, the thief __________ the money.",
+        "choices": [
+          "has stolen",
+          "had stolen",
+          "steals",
+          "was stealing"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 4 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 4."
+      },
+      {
+        "id": "g11_u4_q11",
+        "num": 11,
+        "question": "__________ had she finished her speech when the audience started clapping.",
+        "choices": [
+          "Scarcely",
+          "No sooner",
+          "Little",
+          "Not only"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 4 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 4."
+      },
+      {
+        "id": "g11_u4_q12",
+        "num": 12,
+        "question": "Fatima was exhausted because she __________ on her project for ten hours.",
+        "choices": [
+          "had been working",
+          "works",
+          "has worked",
+          "is working"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 4 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 4."
+      },
+      {
+        "id": "g11_u4_q13",
+        "num": 13,
+        "question": "__________ did he know that his best friend was planning a surprise party for him.",
+        "choices": [
+          "Seldom",
+          "Little",
+          "Never",
+          "Scarcely"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 4 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 4."
+      },
+      {
+        "id": "g11_u4_q14",
+        "num": 14,
+        "question": "Under no circumstances __________ you leave the door unlocked.",
+        "choices": [
+          "should",
+          "you should",
+          "should have",
+          "you shall"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 4 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 4."
+      },
+      {
+        "id": "g11_u4_q15",
+        "num": 15,
+        "question": "Before he became a teacher, he __________ as a journalist for five years.",
+        "choices": [
+          "had been working",
+          "works",
+          "has been working",
+          "is working"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 4 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 4."
+      },
+      {
+        "id": "g11_u4_q16",
+        "num": 16,
+        "question": "Not only __________ the race, but she also broke the world record.",
+        "choices": [
+          "she won",
+          "did she win",
+          "she had won",
+          "does she win"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 4 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 4."
+      },
+      {
+        "id": "g11_u4_q17",
+        "num": 17,
+        "question": "The children __________ outside for an hour before it started to rain.",
+        "choices": [
+          "play",
+          "have played",
+          "had been playing",
+          "are playing"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 4 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 4."
+      },
+      {
+        "id": "g11_u4_q18",
+        "num": 18,
+        "question": "__________ had I entered the room when the phone rang.",
+        "choices": [
+          "Scarcely",
+          "No sooner",
+          "Little",
+          "Never"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 4 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 4."
+      },
+      {
+        "id": "g11_u4_q19",
+        "num": 19,
+        "question": "Ali __________ his leg last week. Before he fell, he had been trying to climb the mountain.",
+        "choices": [
+          "breaks",
+          "has broken",
+          "broke",
+          "was breaking"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 4 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 4."
+      }
+    ]
+  },
+  {
+    "id": "unit-5",
+    "unitNumber": 5,
+    "titleAr": "الوحدة الخامسة: الصحة والتكافل الإنساني",
+    "titleEn": "Unit 5: Health & Human Welfare",
+    "grade": "11",
+    "subject": "اللغة الإنجليزية (Action Pack 11)",
+    "docPath": "C:\\Users\\fastb\\Desktop\\all booklets ALwatheq\\booklets words\\quizes for each unit\\Unit 5 Exam full.docx",
+    "descriptionAr": "اختبار تقييمي مجاني وشامل على الوحدة الخامسة: الصحة والتكافل الإنساني. ينشّط مهارات القواعد والمفردات والأسئلة الوزارية للفرعين الأكاديمي والمهني.",
+    "descriptionEn": "Free diagnostic unit exam for Unit 5: Health & Human Welfare covering vocabulary, grammar, and exam patterns.",
+    "durationMinutes": 30,
+    "totalMarks": 40,
+    "questionsCount": 20,
+    "questions": [
+      {
+        "id": "g11_u5_q1",
+        "num": 1,
+        "question": "The soup smells delicious; it has a wonderful ________ that makes me hungry.",
+        "choices": [
+          "stench",
+          "aroma",
+          "texture",
+          "eyesight"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 5 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 5."
+      },
+      {
+        "id": "g11_u5_q2",
+        "num": 2,
+        "question": "It was very foggy this morning; I could barely ________ the traffic lights.",
+        "choices": [
+          "make out",
+          "put off",
+          "come to terms with",
+          "spread the word"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 5 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 5."
+      },
+      {
+        "id": "g11_u5_q3",
+        "num": 3,
+        "question": "The kitten's fur was soft and ________, unlike the rough skin of the lizard.",
+        "choices": [
+          "coarse",
+          "prickly",
+          "fluffy",
+          "bland"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 5 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 5."
+      },
+      {
+        "id": "g11_u5_q4",
+        "num": 4,
+        "question": "Some people are ________; they cannot distinguish between red and green.",
+        "choices": [
+          "short-sighted",
+          "colour-blind",
+          "hard of hearing",
+          "capable"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 5 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 5."
+      },
+      {
+        "id": "g11_u5_q5",
+        "num": 5,
+        "question": "If you eat too much spicy food, it might irritate your ________.",
+        "choices": [
+          "taste buds",
+          "hearing loss",
+          "vision",
+          "spectacles"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 5 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 5."
+      },
+      {
+        "id": "g11_u5_q6",
+        "num": 6,
+        "question": "We need to ________ the meeting until next week because the manager is ill.",
+        "choices": [
+          "put off",
+          "tell apart",
+          "adjust to",
+          "realise"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 5 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 5."
+      },
+      {
+        "id": "g11_u5_q7",
+        "num": 7,
+        "question": "The food that my friend prepared had no flavour, it was _____________.",
+        "choices": [
+          "mouth-watering",
+          "savoury",
+          "bland",
+          "spicy"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 5 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 5."
+      },
+      {
+        "id": "g11_u5_q8",
+        "num": 8,
+        "question": "It took him a long time to ________ living in a different country with a new culture.",
+        "choices": [
+          "adjust to",
+          "pursue",
+          "verify",
+          "expose"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 5 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 5."
+      },
+      {
+        "id": "g11_u5_q9",
+        "num": 9,
+        "question": "Listen to loud music or sounds can result in …………………….",
+        "choices": [
+          "Hearing loss",
+          "Eyesight improvement",
+          "Colour-blindness",
+          "Perceiving things better"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 5 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 5."
+      },
+      {
+        "id": "g11_u5_q10",
+        "num": 10,
+        "question": "She decided to travel to rural Tibet, to spread the word ______ her Braille system.",
+        "choices": [
+          "with",
+          "to",
+          "about",
+          "of"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 5 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 5."
+      },
+      {
+        "id": "g11_u5_q11",
+        "num": 11,
+        "question": "I am planning ________ my grandparents this weekend.",
+        "choices": [
+          "visit",
+          "visiting",
+          "to visit",
+          "visited"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 5 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 5."
+      },
+      {
+        "id": "g11_u5_q12",
+        "num": 12,
+        "question": "He admitted ________ the vase, even though it was an accident.",
+        "choices": [
+          "break",
+          "to break",
+          "breaking",
+          "broken"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 5 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 5."
+      },
+      {
+        "id": "g11_u5_q13",
+        "num": 13,
+        "question": "When I was a child, I ________ hate vegetables, but now I love them.",
+        "choices": [
+          "used to",
+          "am used to",
+          "use to",
+          "get used to"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 5 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 5."
+      },
+      {
+        "id": "g11_u5_q14",
+        "num": 14,
+        "question": "She  ________ waking up early now because she has been doing it for months.",
+        "choices": [
+          "used to",
+          "use to",
+          "uses to",
+          "is used to"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 5 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 5."
+      },
+      {
+        "id": "g11_u5_q15",
+        "num": 15,
+        "question": "We stopped ________ some water because we were very thirsty after the run.",
+        "choices": [
+          "buying",
+          "to buy",
+          "buy",
+          "bought"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 5 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 5."
+      },
+      {
+        "id": "g11_u5_q16",
+        "num": 16,
+        "question": "The teacher made the students ________ the essay again.",
+        "choices": [
+          "to write",
+          "writing",
+          "write",
+          "wrote"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 5 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 5."
+      },
+      {
+        "id": "g11_u5_q17",
+        "num": 17,
+        "question": "I can't afford ________ a new car this year.",
+        "choices": [
+          "buying",
+          "to buy",
+          "buy",
+          "bought"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 5 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 5."
+      },
+      {
+        "id": "g11_u5_q18",
+        "num": 18,
+        "question": "My father avoids ________ during rush hour to escape the traffic.",
+        "choices": [
+          "drive",
+          "to drive",
+          "driving",
+          "driven"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 5 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 5."
+      },
+      {
+        "id": "g11_u5_q19",
+        "num": 19,
+        "question": "Ali moved to London a year ago. He is still ________ driving on the left.",
+        "choices": [
+          "used to",
+          "getting used to",
+          "be used to",
+          "use to"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 5 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 5."
+      },
+      {
+        "id": "g11_u5_q20",
+        "num": 20,
+        "question": "You had better ________ harder if you want to pass the final exam.",
+        "choices": [
+          "study",
+          "to study",
+          "studying",
+          "studied"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 5 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 5."
+      }
+    ]
+  },
+  {
+    "id": "unit-6",
+    "unitNumber": 6,
+    "titleAr": "الوحدة السادسة: أنماط الحياة والحلول الذكية",
+    "titleEn": "Unit 6: Lifestyles & Smart Living",
+    "grade": "11",
+    "subject": "اللغة الإنجليزية (Action Pack 11)",
+    "docPath": "C:\\Users\\fastb\\Desktop\\all booklets ALwatheq\\booklets words\\quizes for each unit\\Unit 6 Exam full.docx",
+    "descriptionAr": "اختبار تقييمي مجاني وشامل على الوحدة السادسة: أنماط الحياة والحلول الذكية. ينشّط مهارات القواعد والمفردات والأسئلة الوزارية للفرعين الأكاديمي والمهني.",
+    "descriptionEn": "Free diagnostic unit exam for Unit 6: Lifestyles & Smart Living covering vocabulary, grammar, and exam patterns.",
+    "durationMinutes": 30,
+    "totalMarks": 30,
+    "questionsCount": 15,
+    "questions": [
+      {
+        "id": "g11_u6_q1",
+        "num": 1,
+        "question": "My brother bought _____ new car yesterday.",
+        "choices": [
+          "a",
+          "an",
+          "the",
+          "Ø"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 6 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 6."
+      },
+      {
+        "id": "g11_u6_q2",
+        "num": 2,
+        "question": "Mount Everest is _____ highest mountain in the world.",
+        "choices": [
+          "a",
+          "an",
+          "the",
+          "Ø"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 6 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 6."
+      },
+      {
+        "id": "g11_u6_q3",
+        "num": 3,
+        "question": "My father is still _____ head of the family.",
+        "choices": [
+          "a",
+          "an",
+          "the",
+          "Ø"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 6 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 6."
+      },
+      {
+        "id": "g11_u6_q4",
+        "num": 4,
+        "question": "Do you enjoy listening to _____ music?",
+        "choices": [
+          "a",
+          "an",
+          "the",
+          "Ø"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 6 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 6."
+      },
+      {
+        "id": "g11_u6_q5",
+        "num": 5,
+        "question": "The children always go to _____ school on weekdays.",
+        "choices": [
+          "a",
+          "an",
+          "the",
+          "Ø"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 6 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 6."
+      },
+      {
+        "id": "g11_u6_q6",
+        "num": 6,
+        "question": "It takes _____ hour to get there by bus.",
+        "choices": [
+          "a",
+          "an",
+          "the",
+          "Ø"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 6 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 6."
+      },
+      {
+        "id": "g11_u6_q7",
+        "num": 7,
+        "question": "I read _____ interesting book last night. The book was about ancient history.",
+        "choices": [
+          "a",
+          "an",
+          "the",
+          "Ø"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 6 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 6."
+      },
+      {
+        "id": "g11_u6_q8",
+        "num": 8,
+        "question": "We should spend less on _______ clothes and more on ______ healthy food.",
+        "choices": [
+          "a/an",
+          "the/ Ø",
+          "an/ Ø",
+          "Ø/ Ø"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 6 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 6."
+      },
+      {
+        "id": "g11_u6_q9",
+        "num": 9,
+        "question": "My friend wants to become _____ astronaut.",
+        "choices": [
+          "a",
+          "an",
+          "the",
+          "Ø"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 6 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 6."
+      },
+      {
+        "id": "g11_u6_q10",
+        "num": 10,
+        "question": "The first person to arrive was _____ oldest person in the room.",
+        "choices": [
+          "a",
+          "an",
+          "the",
+          "Ø"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 6 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 6."
+      },
+      {
+        "id": "g11_u6_q11",
+        "num": 11,
+        "question": "I met _____ man last night, ________ man was kind and helpful.",
+        "choices": [
+          "a/a",
+          "the/ Ø",
+          "a/ the",
+          "the/ the"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 6 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 6."
+      },
+      {
+        "id": "g11_u6_q12",
+        "num": 12,
+        "question": "They were married in _____ 1990s.",
+        "choices": [
+          "a",
+          "an",
+          "the",
+          "Ø"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 6 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 6."
+      },
+      {
+        "id": "g11_u6_q13",
+        "num": 13,
+        "question": "The capital of France is _____ Paris.",
+        "choices": [
+          "a",
+          "an",
+          "the",
+          "Ø"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 6 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 6."
+      },
+      {
+        "id": "g11_u6_q14",
+        "num": 14,
+        "question": "He has a lot of experience because he has worked with _____ people.",
+        "choices": [
+          "a",
+          "an",
+          "the",
+          "Ø"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 6 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 6."
+      },
+      {
+        "id": "g11_u6_q15",
+        "num": 15,
+        "question": "She needs to find _____ work soon.",
+        "choices": [
+          "a",
+          "an",
+          "the",
+          "Ø"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 6 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 6."
+      }
+    ]
+  },
+  {
+    "id": "unit-7",
+    "unitNumber": 7,
+    "titleAr": "الوحدة السابعة: الأعمال والمشاريع الناشئة",
+    "titleEn": "Unit 7: Business & Entrepreneurship",
+    "grade": "11",
+    "subject": "اللغة الإنجليزية (Action Pack 11)",
+    "docPath": "C:\\Users\\fastb\\Desktop\\all booklets ALwatheq\\booklets words\\quizes for each unit\\Unit 7 Exam full.docx",
+    "descriptionAr": "اختبار تقييمي مجاني وشامل على الوحدة السابعة: الأعمال والمشاريع الناشئة. ينشّط مهارات القواعد والمفردات والأسئلة الوزارية للفرعين الأكاديمي والمهني.",
+    "descriptionEn": "Free diagnostic unit exam for Unit 7: Business & Entrepreneurship covering vocabulary, grammar, and exam patterns.",
+    "durationMinutes": 30,
+    "totalMarks": 42,
+    "questionsCount": 21,
+    "questions": [
+      {
+        "id": "g11_u7_q1",
+        "num": 1,
+        "question": "The money raised from the bake sale, the ________, will be donated to a local charity.",
+        "choices": [
+          "Commission",
+          "Proceeds",
+          "Foundation",
+          "Intern"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 7 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 7."
+      },
+      {
+        "id": "g11_u7_q2",
+        "num": 2,
+        "question": "The young woman is working as an ____________  at the tech company to gain experience before she graduates.",
+        "choices": [
+          "Foundation",
+          "Commission",
+          "Proceeds",
+          "Intern"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 7 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 7."
+      },
+      {
+        "id": "g11_u7_q3",
+        "num": 3,
+        "question": "The new factory was so ____________  that it did not have the necessary safety equipment for its workers.",
+        "choices": [
+          "ill-equipped",
+          "integral",
+          "industrious",
+          "anonymous"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 7 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 7."
+      },
+      {
+        "id": "g11_u7_q4",
+        "num": 4,
+        "question": "The architect received a 5% ____________  on the total cost of the project after its completion.",
+        "choices": [
+          "Commission",
+          "Foundation",
+          "Proceeds",
+          "Intern"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 7 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 7."
+      },
+      {
+        "id": "g11_u7_q5",
+        "num": 5,
+        "question": "The generous donor wished to remain ____________, ensuring their donation was not linked to their name.",
+        "choices": [
+          "Integral",
+          "Industrious",
+          "Ill-equipped",
+          "Anonymous"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 7 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 7."
+      },
+      {
+        "id": "g11_u7_q6",
+        "num": 6,
+        "question": "The workers quickly ________  to repair the broken dam after the heavy rains.",
+        "choices": [
+          "set up",
+          "set out",
+          "proved",
+          "tested"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 7 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 7."
+      },
+      {
+        "id": "g11_u7_q7",
+        "num": 7,
+        "question": "They have lost _________  $5,000 in revenue this quarter.",
+        "choices": [
+          "above",
+          "set out",
+          "over",
+          "tested"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 7 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 7."
+      },
+      {
+        "id": "g11_u7_q8",
+        "num": 8,
+        "question": "After months of hard work, they achieved _________  from the strict rules imposed by the committee.",
+        "choices": [
+          "free",
+          "freedom",
+          "freely",
+          "freed"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 7 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 7."
+      },
+      {
+        "id": "g11_u7_q9",
+        "num": 9,
+        "question": "The country's _________   is responsible for creating and enforcing laws.",
+        "choices": [
+          "governing",
+          "government",
+          "governmental",
+          "governs"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 7 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 7."
+      },
+      {
+        "id": "g11_u7_q10",
+        "num": 10,
+        "question": "To ensure the process is transparent, we need to _________  how decisions are made.",
+        "choices": [
+          "clarity",
+          "clarified",
+          "clarify",
+          "clear"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 7 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 7."
+      },
+      {
+        "id": "g11_u7_q11",
+        "num": 11,
+        "question": "The main _________  of the presentation was that climate change is a serious threat.",
+        "choices": [
+          "conclusion",
+          "conclusive",
+          "concludes",
+          "conclude"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 7 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 7."
+      },
+      {
+        "id": "g11_u7_q12",
+        "num": 12,
+        "question": "The new software is highly _________  and can be easily adapted to different tasks.",
+        "choices": [
+          "flex",
+          "flexible",
+          "flexibility",
+          "flexed"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 7 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 7."
+      },
+      {
+        "id": "g11_u7_q13",
+        "num": 13,
+        "question": "The project was highly _________  , resulting in a large profit for the company.",
+        "choices": [
+          "product",
+          "production",
+          "produce",
+          "productive"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 7 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 7."
+      },
+      {
+        "id": "g11_u7_q14",
+        "num": 14,
+        "question": "Governments are trying to create better _________  , especially for young graduates entering the job market.",
+        "choices": [
+          "health facilities",
+          "work opportunities",
+          "environmental problems",
+          "racism"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 7 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 7."
+      },
+      {
+        "id": "g11_u7_q15",
+        "num": 15,
+        "question": "The massive earthquake and tsunami are examples of _________  .",
+        "choices": [
+          "natural disasters",
+          "homelessness",
+          "environmental problems",
+          "broken pipes Grammar"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 7 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 7."
+      },
+      {
+        "id": "g11_u7_q16",
+        "num": 16,
+        "question": "The teacher said, \"I will check your assignments tomorrow.\"",
+        "choices": [
+          "The teacher said that she would check your assignments tomorrow.",
+          "The teacher said that she would check my assignments the next day.",
+          "The teacher said that I will check my assignments the next day.",
+          "The teacher said that she checked my assignments the next day."
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 7 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 7."
+      },
+      {
+        "id": "g11_u7_q17",
+        "num": 17,
+        "question": "He said, \"I have finished my project.\"",
+        "choices": [
+          "He said that he had finished his project.",
+          "He said that he has finished his project.",
+          "He said that he finished his project.",
+          "He said that I had finished his project."
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 7 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 7."
+      },
+      {
+        "id": "g11_u7_q18",
+        "num": 18,
+        "question": "She said, \"The train arrived ten minutes ago.\"",
+        "choices": [
+          "She said that the train arrived ten minutes before.",
+          "She said that the train had arrived ten minutes before.",
+          "She said that the train had arrived ten minutes ago.",
+          "She said that the train arrives ten minutes before."
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 7 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 7."
+      },
+      {
+        "id": "g11_u7_q19",
+        "num": 19,
+        "question": "The book says, \"Honesty is the best policy.\"",
+        "choices": [
+          "The book says that honesty was the best policy.",
+          "The book says that honesty is the best policy.",
+          "The book says that honesty would be the best policy.",
+          "The book says that honesty has been the best policy."
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 7 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 7."
+      },
+      {
+        "id": "g11_u7_q20",
+        "num": 20,
+        "question": "He said, \"I may come to the party, but don't wait for me.\"",
+        "choices": [
+          "He said that he might come to the party, but told them not to wait for him.",
+          "He said that he may come to the party and not to wait for him.",
+          "He said that he might come to the party, but he asked them don't wait for him.",
+          "He said that he might come to the party and told them not to wait for me."
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 7 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 7."
+      },
+      {
+        "id": "g11_u7_q21",
+        "num": 21,
+        "question": "My brother said, \"I must submit this report immediately.\"",
+        "choices": [
+          "My brother said that he must submit that report immediately.",
+          "My brother said that he had to submit that report immediately.",
+          "My brother said that he would submit this report immediately.",
+          "My brother said that he had to submit this report at once."
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 7 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 7."
+      }
+    ]
+  },
+  {
+    "id": "unit-8",
+    "unitNumber": 8,
+    "titleAr": "الوحدة الثامنة: التكنولوجيا والواقع الافتراضي",
+    "titleEn": "Unit 8: Technology & Virtual Reality",
+    "grade": "11",
+    "subject": "اللغة الإنجليزية (Action Pack 11)",
+    "docPath": "C:\\Users\\fastb\\Desktop\\all booklets ALwatheq\\booklets words\\quizes for each unit\\Unit 8 Exam full.docx",
+    "descriptionAr": "اختبار تقييمي مجاني وشامل على الوحدة الثامنة: التكنولوجيا والواقع الافتراضي. ينشّط مهارات القواعد والمفردات والأسئلة الوزارية للفرعين الأكاديمي والمهني.",
+    "descriptionEn": "Free diagnostic unit exam for Unit 8: Technology & Virtual Reality covering vocabulary, grammar, and exam patterns.",
+    "durationMinutes": 30,
+    "totalMarks": 28,
+    "questionsCount": 14,
+    "questions": [
+      {
+        "id": "g11_u8_q1",
+        "num": 1,
+        "question": "Many people are worried that it is quite easy to _______ into a self-driving car's system.",
+        "choices": [
+          "track",
+          "hack",
+          "alert",
+          "embed"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 8 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 8."
+      },
+      {
+        "id": "g11_u8_q2",
+        "num": 2,
+        "question": "The narrator felt _______ upon entering the shopping centre because of the loud noise and bright lights.",
+        "choices": [
+          "upbeat",
+          "envious",
+          "anxious",
+          "influential"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 8 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 8."
+      },
+      {
+        "id": "g11_u8_q3",
+        "num": 3,
+        "question": "If you keep wasting your money, you will _______ with nothing.",
+        "choices": [
+          "fit in",
+          "end up",
+          "calm down",
+          "break off"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 8 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 8."
+      },
+      {
+        "id": "g11_u8_q4",
+        "num": 4,
+        "question": "One of the key issues for many individuals with autism is a _______ to sights, sounds, smells, and tastes.",
+        "choices": [
+          "functionality",
+          "compatibility",
+          "hypersensitivity",
+          "attributes"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 8 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 8."
+      },
+      {
+        "id": "g11_u8_q5",
+        "num": 5,
+        "question": "I didn't expect to _______ my old teacher at the supermarket yesterday.",
+        "choices": [
+          "go through",
+          "bump into",
+          "break off",
+          "eat away at"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 8 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 8."
+      },
+      {
+        "id": "g11_u8_q6",
+        "num": 6,
+        "question": "_______ means not in use any more because a newer invention exists.",
+        "choices": [
+          "state-of-the-art",
+          "obsolete",
+          "appealing",
+          "flattering"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 8 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 8."
+      },
+      {
+        "id": "g11_u8_q7",
+        "num": 7,
+        "question": "It can also lead to people with autism having problems with _______ a job, as they may come across as unreliable.",
+        "choices": [
+          "eating away at",
+          "holding down",
+          "coming up against",
+          "going through"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 8 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 8."
+      },
+      {
+        "id": "g11_u8_q8",
+        "num": 8,
+        "question": "Increasingly, smart devices use _______ software rather than a PIN to unlock it.",
+        "choices": [
+          "household appliance",
+          "facial recognition",
+          "sensor",
+          "wearable"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 8 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 8."
+      },
+      {
+        "id": "g11_u8_q9",
+        "num": 9,
+        "question": "_______ are small problems that prevent a device from working well.",
+        "choices": [
+          "Attributes",
+          "Glitches",
+          "Features",
+          "Wearables"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 8 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 8."
+      },
+      {
+        "id": "g11_u8_q10",
+        "num": 10,
+        "question": "My piano teacher was very _______ about my progress, which made me feel great.",
+        "choices": [
+          "envious",
+          "influential",
+          "endless",
+          "upbeat"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 8 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 8."
+      },
+      {
+        "id": "g11_u8_q11",
+        "num": 11,
+        "question": "You can add filters to _______ how you look and remove any physical flaws.",
+        "choices": [
+          "malfunction",
+          "enhance",
+          "alert",
+          "curate"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 8 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 8."
+      },
+      {
+        "id": "g11_u8_q12",
+        "num": 12,
+        "question": "We will need a van to move the kitchen _______, such as the freezer and cooker.",
+        "choices": [
+          "gadgets",
+          "devices",
+          "appliances",
+          "sensors"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 8 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 8."
+      },
+      {
+        "id": "g11_u8_q13",
+        "num": 13,
+        "question": "The cake for the celebration was decorated _______ delicious white chocolate.",
+        "choices": [
+          "by",
+          "for",
+          "with",
+          "in"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 8 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 8."
+      },
+      {
+        "id": "g11_u8_q14",
+        "num": 14,
+        "question": "The new implants are going _______ in all tech shops by next summer.",
+        "choices": [
+          "to be sold",
+          "being sold",
+          "to sell",
+          "be sold"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 8 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 8."
+      }
+    ]
+  },
+  {
+    "id": "unit-9",
+    "unitNumber": 9,
+    "titleAr": "الوحدة التاسعة: قصص النجاة والإرادة",
+    "titleEn": "Unit 9: Survival & Human Will",
+    "grade": "11",
+    "subject": "اللغة الإنجليزية (Action Pack 11)",
+    "docPath": "C:\\Users\\fastb\\Desktop\\all booklets ALwatheq\\booklets words\\quizes for each unit\\Unit 9 Exam full.docx",
+    "descriptionAr": "اختبار تقييمي مجاني وشامل على الوحدة التاسعة: قصص النجاة والإرادة. ينشّط مهارات القواعد والمفردات والأسئلة الوزارية للفرعين الأكاديمي والمهني.",
+    "descriptionEn": "Free diagnostic unit exam for Unit 9: Survival & Human Will covering vocabulary, grammar, and exam patterns.",
+    "durationMinutes": 30,
+    "totalMarks": 50,
+    "questionsCount": 25,
+    "questions": [
+      {
+        "id": "g11_u9_q1",
+        "num": 1,
+        "question": "The fishing trap Aldi worked on, called a ________, is a hut that floats but is attached to the sea bed.",
+        "choices": [
+          "rompong",
+          "affluent",
+          "lucrative",
+          "setback"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q2",
+        "num": 2,
+        "question": "Aldi's job was ________, as he earned $134 a month, which was a good amount for his family.",
+        "choices": [
+          "extravagant",
+          "costly",
+          "lucrative",
+          "well-off"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q3",
+        "num": 3,
+        "question": "Aldi ________ that his boss would rescue him quickly because it had happened before.",
+        "choices": [
+          "made himself understood",
+          "took it for granted",
+          "had no choice but to",
+          "kept him going"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q4",
+        "num": 4,
+        "question": "Filtering the sea water through his clothes ________ because it helped him survive until it rained.",
+        "choices": [
+          "took its toll on him",
+          "must have done the trick",
+          "was a lucky break",
+          "ran the risk"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q5",
+        "num": 5,
+        "question": "The neighborhood is filled with ________ residents who often donate large sums to charity.",
+        "choices": [
+          "costly",
+          "affluent",
+          "lucrative",
+          "extravagant"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q6",
+        "num": 6,
+        "question": "When his supplies ran out, Aldi ________ drink sea water to stay alive.",
+        "choices": [
+          "got off relatively lightly",
+          "had no choice but to",
+          "considered his options",
+          "kept him going"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q7",
+        "num": 7,
+        "question": "Many parents are disappointed when their children engage in ________ spending on luxury items.",
+        "choices": [
+          "well-off",
+          "extravagant",
+          "lucrative",
+          "costly"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q8",
+        "num": 8,
+        "question": "The 49 days of isolation in the ocean ________ on Aldi's mental health.",
+        "choices": [
+          "must have done the trick",
+          "took its toll",
+          "kept him going",
+          "got off relatively lightly"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q9",
+        "num": 9,
+        "question": "After a hazardous journey across the mountains, the hikers were relieved to get home ________.",
+        "choices": [
+          "ups and downs",
+          "safe and sound",
+          "give and take",
+          "there and then"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q10",
+        "num": 10,
+        "question": "The company's new marketing strategy was a complete ________; it didn't increase sales at all.",
+        "choices": [
+          "masterstroke",
+          "pay off",
+          "flop",
+          "flourish"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q11",
+        "num": 11,
+        "question": "If you spend a few weeks researching your business idea, your hard work will eventually ________.",
+        "choices": [
+          "mess up",
+          "paid off",
+          "blunder",
+          "get nowhere"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q12",
+        "num": 12,
+        "question": "It is not easy to ________ your mistakes and say sorry to those you have hurt.",
+        "choices": [
+          "offer",
+          "take",
+          "make",
+          "acknowledge"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q13",
+        "num": 13,
+        "question": "In most professional situations, she is incapable of ________ that she is wrong.",
+        "choices": [
+          "acknowledging",
+          "admitting",
+          "making",
+          "offering"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q14",
+        "num": 14,
+        "question": "After a hazardous journey, they were relieved to get home ________.",
+        "choices": [
+          "ups and downs",
+          "safe and sound",
+          "give and take",
+          "there and then"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q15",
+        "num": 15,
+        "question": "As soon as I heard about the international trip, I ________________ to go on it.",
+        "choices": [
+          "a lucky break",
+          "take the blame",
+          "took its toll",
+          "grab the chance"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q16",
+        "num": 16,
+        "question": "If you ________ ice in the sun, it melts.",
+        "choices": [
+          "heat",
+          "heated",
+          "had heated",
+          "would heat"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q17",
+        "num": 17,
+        "question": "If I ________ more money, I would buy a brand new car.",
+        "choices": [
+          "have",
+          "had",
+          "had had",
+          "will have"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q18",
+        "num": 18,
+        "question": "If she ________ harder last semester, she would have passed all her exams.",
+        "choices": [
+          "studies",
+          "studied",
+          "had studied",
+          "would study"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q19",
+        "num": 19,
+        "question": "When you touch a hot stove, you ________ your hand.",
+        "choices": [
+          "burned",
+          "would burn",
+          "burn",
+          "had burned"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q20",
+        "num": 20,
+        "question": "If I ________ the lottery, I would travel around the world.",
+        "choices": [
+          "win",
+          "won",
+          "had won",
+          "will win"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q21",
+        "num": 21,
+        "question": "If you ________ yellow and blue, you get green.",
+        "choices": [
+          "mixed",
+          "mix",
+          "had mixed",
+          "would mix"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q22",
+        "num": 22,
+        "question": "If we had arrived at the airport earlier, we ________ our flight.",
+        "choices": [
+          "won't miss",
+          "wouldn't miss",
+          "wouldn't have missed",
+          "didn't miss"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q23",
+        "num": 23,
+        "question": "If I ________ you, I would take that lucrative job offer.",
+        "choices": [
+          "am",
+          "was",
+          "were",
+          "will be"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q24",
+        "num": 24,
+        "question": "If he ________ daily, he will win the championship next month.",
+        "choices": [
+          "trains",
+          "trained",
+          "had trained",
+          "would train"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      },
+      {
+        "id": "g11_u9_q25",
+        "num": 25,
+        "question": "If it rains later today, we ________ at home.",
+        "choices": [
+          "stayed",
+          "will stay",
+          "would stay",
+          "had stayed"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 9 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 9."
+      }
+    ]
+  },
+  {
+    "id": "unit-10",
+    "unitNumber": 10,
+    "titleAr": "الوحدة العاشرة: الإعلام ونقد الأخبار",
+    "titleEn": "Unit 10: Media & News Criticism",
+    "grade": "11",
+    "subject": "اللغة الإنجليزية (Action Pack 11)",
+    "docPath": "C:\\Users\\fastb\\Desktop\\all booklets ALwatheq\\booklets words\\quizes for each unit\\Unit 10 Exam full.docx",
+    "descriptionAr": "اختبار تقييمي مجاني وشامل على الوحدة العاشرة: الإعلام ونقد الأخبار. ينشّط مهارات القواعد والمفردات والأسئلة الوزارية للفرعين الأكاديمي والمهني.",
+    "descriptionEn": "Free diagnostic unit exam for Unit 10: Media & News Criticism covering vocabulary, grammar, and exam patterns.",
+    "durationMinutes": 30,
+    "totalMarks": 20,
+    "questionsCount": 10,
+    "questions": [
+      {
+        "id": "g11_u10_q1",
+        "num": 1,
+        "question": "He didn't mean to reveal the ending of the movie; he did it ________.",
+        "choices": [
+          "in suspense",
+          "on purpose",
+          "by accident",
+          "at least"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 10 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 10."
+      },
+      {
+        "id": "g11_u10_q2",
+        "num": 2,
+        "question": "The new museum doors are massive because the historical sculpture inside is so ________ they couldn't get it through a normal entrance!",
+        "choices": [
+          "enormous",
+          "spherical",
+          "curved",
+          "miniature"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 10 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 10."
+      },
+      {
+        "id": "g11_u10_q3",
+        "num": 3,
+        "question": "The opening of the new cultural center marks a truly ________ day for the city's artists.",
+        "choices": [
+          "historical",
+          "historic",
+          "classic",
+          "classical"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 10 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 10."
+      },
+      {
+        "id": "g11_u10_q4",
+        "num": 4,
+        "question": "The comedian struggled on stage; when he finally delivered the ________, nobody in the audience laughed.",
+        "choices": [
+          "sitcom",
+          "plot",
+          "cast",
+          "punchline"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 10 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 10."
+      },
+      {
+        "id": "g11_u10_q5",
+        "num": 5,
+        "question": "We missed our favourite TV show yesterday, so we'll watch the latest one tonight instead.",
+        "choices": [
+          "deliver the punchline",
+          "be a must watch",
+          "catch up on the latest episode"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 10 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 10."
+      },
+      {
+        "id": "g11_u10_q6",
+        "num": 6,
+        "question": "When he gave the final line of the joke, nobody laughed. The underlined phrase means:",
+        "choices": [
+          "deliver the punchline",
+          "be a must watch",
+          "play the lead"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 10 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 10."
+      },
+      {
+        "id": "g11_u10_q7",
+        "num": 7,
+        "question": "You can't miss this film. This means:",
+        "choices": [
+          "crack a few jokes",
+          "be a must watch",
+          "heckle somebody"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 10 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 10."
+      },
+      {
+        "id": "g11_u10_q8",
+        "num": 8,
+        "question": "My friend is always cracking ------------- jokes that aren't at all funny.",
+        "choices": [
+          "exceptional",
+          "lively",
+          "cheesy"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 10 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 10."
+      },
+      {
+        "id": "g11_u10_q9",
+        "num": 9,
+        "question": "Her performance was----------far better than anyone else in the cast.",
+        "choices": [
+          "offensive",
+          "unconvincing",
+          "exceptional"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 10 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 10."
+      },
+      {
+        "id": "g11_u10_q10",
+        "num": 10,
+        "question": "The costume made him look really---------I couldn't stop laughing!",
+        "choices": [
+          "exceptional",
+          "comical",
+          "cheesy"
+        ],
+        "correctAnswerIndex": 0,
+        "explanationAr": "الإجابة الصحيحة هي الاختيار الأول وفقاً لنموذج أسئلة الوحدة 10 للصف الأول ثانوي.",
+        "explanationEn": "Option 1 is the correct answer according to Jordan Grade 11 Curriculum Unit 10."
+      }
+    ]
+  }
+]

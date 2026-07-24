@@ -310,6 +310,61 @@ export default async function HomePage({ params: { locale } }: PageProps) {
         </div>
       </section>
 
+      {/* Grade 11 Free Lead Magnet Exam Section */}
+      <section className="py-16 bg-gradient-to-b from-slate-950 via-slate-900/40 to-slate-950 border-y border-slate-800/80 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="bg-gradient-to-r from-brand-950/80 via-slate-900/90 to-amber-950/80 border border-brand-500/30 rounded-3xl p-8 md:p-12 backdrop-blur-2xl shadow-2xl relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8">
+            <div className="space-y-4 max-w-2xl text-center lg:text-start">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-500/20 border border-brand-500/30 text-brand-400 text-xs font-extrabold">
+                <GraduationCap className="w-4 h-4" />
+                <span>{locale === 'ar' ? '🎁 جديد حصري أول ثانوي (Action Pack 11)' : '🎁 New Grade 11 Free Unit Exams'}</span>
+              </div>
+
+              <h2 className="text-2xl sm:text-4xl font-black text-white leading-tight">
+                {locale === 'ar'
+                  ? 'اختبر نفسك مجاناً في امتحانات أول ثانوي لـ 10 وحدات كاملة!'
+                  : 'Free Grade 11 Unit Exams for All 10 Units!'}
+              </h2>
+
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                {locale === 'ar'
+                  ? 'حضّر نفسك مسبقاً لمرحلة التوجيهي وقس مستواك في مفردات وقواعد الوحدات من Unit 1 إلى Unit 10 بحساب وتصحيح تلقائي وتخزين أخطائك في بنك الأخطاء.'
+                  : 'Prepare early for Tawjihi and test your English proficiency across Units 1 to 10 with instant feedback and automatic error tracking.'}
+              </p>
+
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                <Link
+                  href="/grade11-exams"
+                  className="px-6 py-3.5 bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-lg shadow-brand-500/25 transition-all inline-flex items-center gap-2"
+                >
+                  <span>{locale === 'ar' ? 'تصفح امتحانات أول ثانوي المجانية 🚀' : 'Explore Free Grade 11 Exams 🚀'}</span>
+                  {renderForwardArrow()}
+                </Link>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3 shrink-0 w-full sm:w-auto">
+              <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-4 text-center space-y-1">
+                <span className="text-2xl font-black text-brand-400">10</span>
+                <span className="text-[11px] text-slate-400 font-bold block">{locale === 'ar' ? 'وحدات دراسية' : 'Units'}</span>
+              </div>
+              <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-4 text-center space-y-1">
+                <span className="text-2xl font-black text-amber-400">195+</span>
+                <span className="text-[11px] text-slate-400 font-bold block">{locale === 'ar' ? 'سؤال وزارى' : 'Questions'}</span>
+              </div>
+              <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-4 text-center space-y-1">
+                <span className="text-2xl font-black text-emerald-400">100%</span>
+                <span className="text-[11px] text-slate-400 font-bold block">{locale === 'ar' ? 'مجاني بالكامل' : 'Free Access'}</span>
+              </div>
+              <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-4 text-center space-y-1">
+                <span className="text-2xl font-black text-cyan-400">CEFR</span>
+                <span className="text-[11px] text-slate-400 font-bold block">{locale === 'ar' ? 'معايير دولية' : 'Standards'}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Quiz Engine & Interactive Assessment Showcase */}
       <section className="py-20 md:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative border-t border-slate-900">
         <div className="grid lg:grid-cols-12 gap-12 items-center">

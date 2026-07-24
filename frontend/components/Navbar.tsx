@@ -273,6 +273,10 @@ export default function Navbar() {
             <a href={homeAnchor('btec-track')} className="text-xs font-medium text-slate-300 hover:text-brand-400 transition-colors">
               {t('btec')}
             </a>
+            <Link href="/grade11-exams" className="text-xs font-bold text-amber-400 hover:text-amber-300 transition-colors flex items-center gap-1 bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <span>{currentLocale === 'ar' ? 'امتحانات 11 مجانية' : 'Free Grade 11 Exams'}</span>
+            </Link>
             <Link href="/btec-guide" className="text-xs font-medium text-slate-300 hover:text-brand-400 transition-colors flex items-center gap-1">
               <Sparkles className="w-3.5 h-3.5 text-brand-500" />
               {t('btecGuide') || (currentLocale === 'ar' ? 'دليل BTEC' : 'BTEC Guide')}

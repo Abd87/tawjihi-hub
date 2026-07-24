@@ -458,7 +458,25 @@ export default function DashboardPage() {
 
         {/* Student Quick Action Ribbon */}
         {user?.role === 'STUDENT' && (
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 mb-10">
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3.5 mb-10">
+            <Link
+              href="/grade11-exams"
+              className="group p-4 bg-gradient-to-r from-brand-950/60 to-amber-950/60 border border-brand-500/40 hover:border-brand-500/80 rounded-2xl transition-all flex items-center gap-3 backdrop-blur-xl col-span-2 sm:col-span-1 shadow-lg shadow-brand-500/10"
+            >
+              <div className="p-2.5 rounded-xl bg-brand-500/20 text-brand-400 group-hover:scale-110 transition-transform">
+                <Sparkles className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-white group-hover:text-brand-400 transition-colors flex items-center gap-1">
+                  <span>{locale === 'ar' ? 'امتحانات 11 مجانية' : 'Grade 11 Free Exams'}</span>
+                  <span className="bg-emerald-500/20 text-emerald-400 text-[9px] px-1.5 py-0.5 rounded font-extrabold">NEW</span>
+                </h4>
+                <p className="text-[10px] text-slate-300">
+                  {locale === 'ar' ? 'اختبارات الـ 10 وحدات' : '10 Unit Free Exams'}
+                </p>
+              </div>
+            </Link>
+
             <Link
               href="/dashboard/mistakes"
               className="group p-4 bg-slate-900/60 border border-slate-800 hover:border-amber-500/50 rounded-2xl transition-all flex items-center gap-3 backdrop-blur-xl"
