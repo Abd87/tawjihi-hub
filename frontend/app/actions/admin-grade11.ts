@@ -39,3 +39,18 @@ export async function deleteGrade11Question(questionId: string) {
     return { success: false, error: error.message };
   }
 }
+
+export async function updateGrade11ExamText(examId: string, text: string) {
+  try {
+    const updated = await prisma.grade11Exam.update({
+      where: { id: examId },
+      data: { text }
+    });
+    revalidatePath('/admin/grade11-exams');
+    revalidatePath('/grade11-exams');
+    return { success: true, exam: updated };
+  } catch (error: any) {
+    console.error('Error updating exam text:', error);
+    return { success: false, error: error.message };
+  }
+}

@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { getGrade11Exams, getGrade11ExamById } from '@/app/actions/grade11-exams';
-import { updateGrade11Question, deleteGrade11Question } from '@/app/actions/admin-grade11';
-import { Loader2, Edit3, Trash2, Save, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { updateGrade11Question, deleteGrade11Question, updateGrade11ExamText } from '@/app/actions/admin-grade11';
+import { Loader2, Edit3, Trash2, Save, X, ChevronDown, ChevronUp, BookOpen } from 'lucide-react';
 
 export default function AdminGrade11ExamsPage() {
   const [exams, setExams] = useState<any[]>([]);
@@ -17,6 +17,8 @@ export default function AdminGrade11ExamsPage() {
   // Editing state
   const [editingQId, setEditingQId] = useState<string | null>(null);
   const [editFormData, setEditFormData] = useState<any>(null);
+  const [editingTextId, setEditingTextId] = useState<string | null>(null);
+  const [editExamText, setEditExamText] = useState<string>('');
 
   useEffect(() => {
     loadExams();
@@ -85,8 +87,19 @@ export default function AdminGrade11ExamsPage() {
     setEditFormData({ ...editFormData, choices: newChoices });
   };
 
+  const handleSaveText = async (examId: string) => {
+    const res = await updateGrade11ExamText(examId, editExamText);
+    if (res.success) {
+      alert('Reading passage text updated successfully!');
+      setExams(prev => prev.map(e => e.id === examId ? { ...e, text: editExamText } : e));
+      setEditingTextId(null);
+    } else {
+      alert('Failed to update text: ' + res.error);
+    }
+  };
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 dir-ltr text-left" dir="ltr">
       <div>
         <h1 className="text-2xl font-bold text-white">Manage Grade 11 Free Exams</h1>
         <p className="text-slate-400">Edit or delete questions across all 10 units.</p>
@@ -114,8 +127,58 @@ export default function AdminGrade11ExamsPage() {
                   {loadingQuestions ? (
                      <div className="flex justify-center p-4"><Loader2 className="w-6 h-6 animate-spin text-slate-400" /></div>
                   ) : (
-                    <div className="space-y-6">
-                      {questions.map((q, idx) => (
+                    <div className="space-y-8">
+                      {/* Passage Editor */}
+                      <div className="bg-slate-950 p-6 rounded-2xl border border-brand-500/30">
+                        <div className="flex items-center justify-between mb-4">
+                          <h4 className="text-lg font-bold text-white flex items-center gap-2">
+                            <BookOpen className="w-5 h-5 text-brand-400" />
+                            Reading Passage
+                          </h4>
+                          {editingTextId === exam.id ? (
+                            <div className="flex gap-2">
+                              <button 
+                                onClick={() => handleSaveText(exam.id)}
+                                className="px-4 py-2 bg-brand-500 text-white rounded-lg text-xs font-bold hover:bg-brand-600 transition-colors flex items-center gap-2"
+                              >
+                                <Save className="w-4 h-4" /> Save
+                              </button>
+                              <button 
+                                onClick={() => setEditingTextId(null)}
+                                className="p-2 bg-slate-800 text-slate-400 rounded-lg hover:text-white transition-colors"
+                              >
+                                <X className="w-4 h-4" />
+                              </button>
+                            </div>
+                          ) : (
+                            <button 
+                              onClick={() => {
+                                setEditingTextId(exam.id);
+                                setEditExamText(exam.text || '');
+                              }}
+                              className="px-4 py-2 bg-slate-800 text-slate-300 rounded-lg text-xs font-bold hover:bg-slate-700 transition-colors flex items-center gap-2"
+                            >
+                              <Edit3 className="w-4 h-4" /> Edit Passage
+                            </button>
+                          )}
+                        </div>
+                        
+                        {editingTextId === exam.id ? (
+                          <textarea 
+                            className="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-slate-300 text-sm font-mono h-[300px]"
+                            value={editExamText}
+                            onChange={(e) => setEditExamText(e.target.value)}
+                            placeholder="Enter reading passage text here. Use <b>...</b> for bold and <u>...</u> for underlined text."
+                          />
+                        ) : (
+                          <div className="text-sm text-slate-400 font-serif leading-relaxed line-clamp-3 bg-slate-900/50 p-4 rounded-xl border border-slate-800" dangerouslySetInnerHTML={{ __html: exam.text || 'No reading passage added yet.' }} />
+                        )}
+                      </div>
+
+                      {/* Questions List */}
+                      <div className="space-y-6">
+                        <h4 className="text-lg font-bold text-white mb-4">Questions ({questions.length})</h4>
+                        {questions.map((q, idx) => (
                         <div key={q.id} className="bg-slate-950 p-4 rounded-lg border border-slate-800">
                           
                           {editingQId === q.id ? (
