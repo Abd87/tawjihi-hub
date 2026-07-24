@@ -587,7 +587,12 @@
         "id": "g11-u2-q8",
         "unitId": "unit-2",
         "question": "Conservation often focuses on \"cute\" animals while \"ugly\" ones are ignored or killed. Suggest two ways to encourage people to care more about less attractive endangered species. (2 points) ……………………………………………………………………………………………………………. ……………………………………………………………………………………………………………. ……………………………………………………………………………………………………………. ……………………………………………………………………………………………………………. Vocabulary                                                                                                   (            /10) marks",
-        "choices": [],
+        "choices": [
+          "Create awareness campaigns focusing on their ecological importance.",
+          "Build zoos specifically for ugly animals.",
+          "Ignore them and focus on plants.",
+          "Stop funding all conservation efforts."
+        ],
         "correctAnswerIndex": 0
       },
       {
@@ -947,7 +952,12 @@
         "id": "g11-u3-q8",
         "unitId": "unit-3",
         "question": "The story highlights the vulnerability of children who have no family to support them. Suggest two tips for how society can better protect orphans to prevent them from turning to crime.\t\t\t\t\t\t\t\t\t\t(2 points) ……………………………………………………………………………………………………………. ……………………………………………………………………………………………………………. ……………………………………………………………………………………………………………. ……………………………………………………………………………………………………………. Vocabulary                                                                                                   (            /10) marks",
-        "choices": [],
+        "choices": [
+          "Implement stronger child protection laws and offer community support programs.",
+          "Send them to work in factories.",
+          "Ignore the problem as it will solve itself.",
+          "Teach them how to steal effectively."
+        ],
         "correctAnswerIndex": 0
       },
       {

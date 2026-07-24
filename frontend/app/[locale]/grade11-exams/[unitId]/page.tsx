@@ -165,7 +165,7 @@ export default function Grade11UnitExamEnginePage() {
       const selected = userAnswers[idx];
       if (selected === q.correctAnswerIndex) {
         correctCount++;
-      } else {
+      } else if (selected !== undefined) {
         mistakesToSave.push({
           qIdx: idx,
           id: q.id,
