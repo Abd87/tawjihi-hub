@@ -297,11 +297,12 @@ export default function Grade11ExamsCatalogPage() {
                     return (
                       <div
                         key={m.id}
+                        dir="ltr"
                         className={`p-6 rounded-3xl border ${
                           isCorrect
                             ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-200 animate-out fade-out duration-700'
                             : 'bg-slate-900/60 border-slate-800'
-                        } space-y-4 backdrop-blur-xl transition-all`}
+                        } space-y-4 backdrop-blur-xl transition-all text-left`}
                       >
                         <div className="flex items-start justify-between gap-3">
                           <h4
