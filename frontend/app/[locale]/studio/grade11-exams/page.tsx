@@ -53,7 +53,8 @@ export default function AdminGrade11ExamsPage() {
     setEditFormData({
       question: q.question,
       choices: [...q.choices],
-      correctAnswerIndex: q.correctAnswerIndex
+      correctAnswerIndex: q.correctAnswerIndex,
+      explanation: q.explanation || ''
     });
   };
 
@@ -211,6 +212,17 @@ export default function AdminGrade11ExamsPage() {
                                   </div>
                                 ))}
                               </div>
+
+                              <div>
+                                <label className="block text-xs text-brand-400 mb-1 font-semibold">Explanation (Optional)</label>
+                                <textarea 
+                                  className="w-full bg-brand-500/5 border border-brand-500/20 rounded-lg p-3 text-brand-200 text-sm placeholder-brand-500/30"
+                                  rows={2}
+                                  placeholder="Why is this the correct answer?"
+                                  value={editFormData.explanation || ''}
+                                  onChange={(e) => setEditFormData({...editFormData, explanation: e.target.value})}
+                                />
+                              </div>
                               
                               <div className="flex items-center gap-3 justify-end pt-2">
                                 <button 
@@ -256,6 +268,11 @@ export default function AdminGrade11ExamsPage() {
                                   </div>
                                 ))}
                               </div>
+                              {q.explanation && (
+                                <div className="mt-3 pl-6 text-xs text-brand-300 bg-brand-500/5 p-3 rounded-lg border border-brand-500/10">
+                                  <strong>Explanation:</strong> {q.explanation}
+                                </div>
+                              )}
                             </div>
                           )}
                           

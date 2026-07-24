@@ -5,6 +5,12 @@ import { usePathname } from 'next/navigation';
 
 export default function SocialFloatingButtons() {
   const pathname = usePathname();
+  
+  // Hide the floating buttons if we're inside the grade11-exams engine
+  if (pathname.includes('/grade11-exams/unit-') || pathname.match(/\/grade11-exams\/[0-9a-f-]+$/)) {
+    return null;
+  }
+
   const whatsappNumber = '962790881392';
   const whatsappUrl = `https://wa.me/${whatsappNumber}`;
   const facebookUrl = 'https://www.facebook.com/groups/1648666043099156';

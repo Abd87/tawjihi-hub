@@ -597,18 +597,17 @@ export default function Grade11UnitExamEnginePage() {
                     </div>
 
                     {/* Detailed Solution Explanation */}
-                    <div className="p-4 rounded-xl bg-slate-950 border border-slate-800/80 space-y-1 text-xs">
-                      <div className="flex items-center gap-1.5 text-brand-400 font-bold mb-1">
-                        <Sparkles className="w-3.5 h-3.5" />
-                        <span>High Note 11 Explanation & Solution Rule:</span>
+                    {q.explanation && (
+                      <div className="p-4 rounded-xl bg-slate-950 border border-slate-800/80 space-y-1 text-xs">
+                        <div className="flex items-center gap-1.5 text-brand-400 font-bold mb-1">
+                          <Sparkles className="w-3.5 h-3.5" />
+                          <span>Explanation & Solution:</span>
+                        </div>
+                        <p className="text-slate-300 leading-relaxed dir-rtl text-right">
+                          {q.explanation}
+                        </p>
                       </div>
-                      <p className="text-slate-300 leading-relaxed dir-rtl text-right">
-                        {q.explanationAr}
-                      </p>
-                      <p className="text-slate-400 leading-relaxed text-left">
-                        {q.explanationEn}
-                      </p>
-                    </div>
+                    )}
                   </div>
                 );
               })}

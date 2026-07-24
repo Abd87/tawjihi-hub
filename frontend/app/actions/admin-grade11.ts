@@ -7,6 +7,7 @@ export async function updateGrade11Question(questionId: string, data: {
   question: string;
   choices: string[];
   correctAnswerIndex: number;
+  explanation?: string;
 }) {
   try {
     const updated = await prisma.grade11Question.update({
@@ -14,7 +15,8 @@ export async function updateGrade11Question(questionId: string, data: {
       data: {
         question: data.question,
         choices: data.choices,
-        correctAnswerIndex: data.correctAnswerIndex
+        correctAnswerIndex: data.correctAnswerIndex,
+        explanation: data.explanation || null
       }
     });
     revalidatePath('/admin/grade11-exams');

@@ -448,7 +448,8 @@ model Grade11Question {
   
   question           String
   choices            String[]
-  correctAnswerIndex Int      @default(0)
+  correctAnswerIndex Int
+  explanation        String?  @db.Text
   
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
