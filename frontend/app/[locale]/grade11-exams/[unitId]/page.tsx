@@ -29,7 +29,7 @@ import {
   Flame,
   CheckCircle
 } from 'lucide-react';
-import grade11Data from '@/data/grade11_unit_exams.json';
+import { getGrade11ExamById, getGrade11ExamByUnit } from '@/app/actions/grade11-exams';
 
 export default function Grade11UnitExamEnginePage() {
   const params = useParams();
@@ -89,10 +89,22 @@ export default function Grade11UnitExamEnginePage() {
       } catch (e) {}
     }
 
-    const found = grade11Data.find((u: any) => u.id === unitId || u.unitNumber === parseInt(unitId.replace('unit-', '')));
-    if (found) {
-      setExam(found);
-      setTimeLeft(found.durationMinutes * 60);
+    // Attempt to match unitId which could be an ID or "unit-X"
+    if (unitId.startsWith('unit-')) {
+      const uNum = parseInt(unitId.replace('unit-', ''));
+      getGrade11ExamByUnit(uNum).then(e => {
+        if (e) {
+          setExam(e);
+          setTimeLeft(e.durationMinutes * 60);
+        }
+      });
+    } else {
+      getGrade11ExamById(unitId).then(e => {
+        if (e) {
+          setExam(e);
+          setTimeLeft(e.durationMinutes * 60);
+        }
+      });
     }
   }, [unitId]);
 

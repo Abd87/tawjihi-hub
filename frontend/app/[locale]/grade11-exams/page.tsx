@@ -25,7 +25,7 @@ import {
   Flame,
   Check
 } from 'lucide-react';
-import grade11Data from '@/data/grade11_unit_exams.json';
+import { getGrade11Exams } from '@/app/actions/grade11-exams';
 
 export default function Grade11ExamsCatalogPage() {
   const params = useParams();
@@ -38,12 +38,18 @@ export default function Grade11ExamsCatalogPage() {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [activeTab, setActiveTab] = useState<'catalog' | 'mistakes'>('catalog');
 
+  // Exams from DB
+  const [grade11Data, setGrade11Data] = useState<any[]>([]);
+
   // Grade 11 Mistake Bank State
   const [g11Mistakes, setG11Mistakes] = useState<any[]>([]);
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, number>>({});
   const [feedbackState, setFeedbackState] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
+    // Load exams from DB
+    getGrade11Exams().then(data => setGrade11Data(data));
+
     const userStr = localStorage.getItem('user');
     const token = localStorage.getItem('token');
     if (userStr && token) {

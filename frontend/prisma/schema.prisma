@@ -421,3 +421,36 @@ model Broadcast {
 
   @@map("broadcasts")
 }
+
+
+model Grade11Exam {
+  id              String   @id @default(uuid())
+  unitNumber      Int      @unique
+  titleAr         String
+  titleEn         String
+  descriptionAr   String
+  descriptionEn   String
+  durationMinutes Int      @default(1800)
+  
+  questions       Grade11Question[]
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("grade11_exams")
+}
+
+model Grade11Question {
+  id                 String   @id @default(uuid())
+  examId             String
+  exam               Grade11Exam @relation(fields: [examId], references: [id], onDelete: Cascade)
+  
+  question           String
+  choices            String[]
+  correctAnswerIndex Int      @default(0)
+  
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@map("grade11_questions")
+}
