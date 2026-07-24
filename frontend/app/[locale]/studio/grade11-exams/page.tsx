@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { getGrade11Exams, getGrade11ExamById } from '@/app/actions/grade11-exams';
 import { updateGrade11Question, deleteGrade11Question } from '@/app/actions/admin-grade11';
 import { Loader2, Edit3, Trash2, Save, X, ChevronDown, ChevronUp } from 'lucide-react';
-import toast from 'react-hot-toast';
 
 export default function AdminGrade11ExamsPage() {
   const [exams, setExams] = useState<any[]>([]);
@@ -59,11 +58,11 @@ export default function AdminGrade11ExamsPage() {
   const handleSave = async (questionId: string) => {
     const res = await updateGrade11Question(questionId, editFormData);
     if (res.success) {
-      toast.success('Question updated successfully!');
+      alert('Question updated successfully!');
       setQuestions(prev => prev.map(q => q.id === questionId ? { ...q, ...editFormData } : q));
       setEditingQId(null);
     } else {
-      toast.error('Failed to update question: ' + res.error);
+      alert('Failed to update question: ' + res.error);
     }
   };
 
@@ -72,11 +71,11 @@ export default function AdminGrade11ExamsPage() {
     
     const res = await deleteGrade11Question(questionId);
     if (res.success) {
-      toast.success('Question deleted successfully!');
+      alert('Question deleted successfully!');
       setQuestions(prev => prev.filter(q => q.id !== questionId));
       setExams(prev => prev.map(e => e.id === expandedExamId ? { ...e, questionsCount: e.questionsCount - 1 } : e));
     } else {
-      toast.error('Failed to delete question: ' + res.error);
+      alert('Failed to delete question: ' + res.error);
     }
   };
 
