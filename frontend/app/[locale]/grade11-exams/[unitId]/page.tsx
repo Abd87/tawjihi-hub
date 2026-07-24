@@ -643,27 +643,24 @@ export default function Grade11UnitExamEnginePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             
             {/* Left Side: Reading Comprehension Passage Pane (ONLY FOR READING QUESTIONS) */}
-            {isReadingQuestion && exam.readingPassage && showPassagePane && (
-              <div className="lg:col-span-5 bg-slate-900/60 border border-slate-800 rounded-3xl p-6 backdrop-blur-xl space-y-3 sticky top-24 max-h-[75vh] overflow-y-auto animate-in fade-in">
-                <div className="flex items-center gap-2 text-blue-400 font-bold text-xs pb-2 border-b border-slate-800">
-                  <BookOpen className="w-4 h-4" />
-                  <span>High Note 11 Reading Passage • Unit {exam.unitNumber}</span>
+            {isReadingQuestion && exam.text && showPassagePane && (
+              <div className="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden flex flex-col h-[500px] lg:h-[calc(100vh-8rem)] sticky top-24 shadow-2xl">
+                <div className="bg-slate-800/50 border-b border-slate-700/50 p-4 flex items-center justify-between shrink-0">
+                  <span className="font-bold text-slate-300 text-sm flex items-center gap-2">
+                    <BookOpen className="w-4 h-4 text-brand-400" />
+                    <span>High Note 11 Reading Passage • Unit {exam.unitNumber}</span>
+                  </span>
                 </div>
-                <h4 className="text-base font-bold text-white mb-2">{exam.titleEn}</h4>
-                <div className="text-xs sm:text-sm text-slate-300 leading-relaxed space-y-4 font-serif">
-                  {exam.readingPassage.split('\n\n').map((para: string, pIdx: number) => (
-                    <p
-                      key={pIdx}
-                      className="bg-slate-950/60 p-4 rounded-2xl border border-slate-800/80 tracking-wide leading-relaxed text-slate-200"
-                      dangerouslySetInnerHTML={{ __html: para }}
-                    />
+                <div className="p-6 overflow-y-auto custom-scrollbar flex-1 space-y-4 text-sm text-slate-300 leading-relaxed font-serif">
+                  {exam.text.split('\n\n').map((para: string, pIdx: number) => (
+                    <p key={pIdx}>{para}</p>
                   ))}
                 </div>
               </div>
             )}
 
             {/* Right Side: Active Question & 2x2 Option Grid */}
-            <div className={`${(isReadingQuestion && exam.readingPassage && showPassagePane) ? 'lg:col-span-7' : 'lg:col-span-12 max-w-4xl mx-auto'} bg-slate-900/60 border border-slate-800 rounded-3xl p-6 backdrop-blur-xl space-y-6 w-full`}>
+            <div className={`${(isReadingQuestion && exam.text && showPassagePane) ? 'lg:col-span-7' : 'lg:col-span-12 max-w-4xl mx-auto'} bg-slate-900/60 border border-slate-800 rounded-3xl p-6 backdrop-blur-xl space-y-6 w-full`}>
               
               {/* Question Progress Tracker */}
               <div className="flex items-center justify-between text-xs text-slate-400 border-b border-slate-800/80 pb-3">

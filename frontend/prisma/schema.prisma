@@ -430,6 +430,7 @@ model Grade11Exam {
   titleEn         String
   descriptionAr   String
   descriptionEn   String
+  text            String?  @db.Text
   durationMinutes Int      @default(1800)
   
   questions       Grade11Question[]
