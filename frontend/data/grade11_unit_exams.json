@@ -20,14 +20,14 @@
         "type": "reading",
         "question": "According to the text, what two things did Jane Goodall's work with chimpanzees demonstrate?",
         "choices": [
-          "A) That chimpanzees possess complex social structures and make/use tools",
-          "B) That chimpanzees can fly and construct underwater shelters",
-          "C) That chimpanzees have a written alphabet and practice agriculture",
-          "D) That chimpanzees are completely solitary creatures with no emotional bonds"
+          "A) \"chimpanzees can both take in what we are saying and get across complex ideas.\"",
+          "B) \"chimpanzees can fly and construct underwater shelters in the ocean.\"",
+          "C) \"chimpanzees communicate using written alphabets and practice agriculture.\"",
+          "D) \"chimpanzees are completely solitary creatures with no emotional bonds.\""
         ],
         "correctAnswerIndex": 0,
-        "explanationAr": "أثبتت أبحاث جين جودال في كتاب High Note 11 أن الشمبانزي يمتلك هياكل اجتماعية معقدة ويصنع ويستخدم الأدوات.",
-        "explanationEn": "Jane Goodall's research in High Note 11 demonstrated that chimpanzees have complex social structures and use tools."
+        "explanationAr": "الإجابة النصية المباشرة من القطعة: \"chimpanzees can both take in what we are saying and get across complex ideas.\"",
+        "explanationEn": "Exact verbatim quote from paragraph 1: \"chimpanzees can both take in what we are saying and get across complex ideas.\""
       },
       {
         "id": "g11_u1_rq2",
@@ -35,14 +35,14 @@
         "type": "reading",
         "question": "How did Jane Goodall manage to gain the trust of wild chimpanzees?",
         "choices": [
-          "A) By spending long periods observing them patiently in their natural habitat",
-          "B) By keeping them in cages and feeding them manually",
-          "C) By playing electronic sounds through speakers to attract them",
-          "D) By domesticating them inside a modern laboratory setting"
+          "A) \"her calmness gained their trust.\"",
+          "B) \"she captured them in cages and fed them manually.\"",
+          "C) \"she played loud electronic music through speakers.\"",
+          "D) \"she trained them inside a modern laboratory setting.\""
         ],
         "correctAnswerIndex": 0,
-        "explanationAr": "كسبت ثقة الشمبانزي من خلال قضاء فترات طويلة في مراقبتها بصبر في بيئتها الطبيعية.",
-        "explanationEn": "She gained their trust by spending extended time observing them patiently in nature."
+        "explanationAr": "الإجابة النصية المباشرة من القطعة: \"her calmness gained their trust.\"",
+        "explanationEn": "Exact quote from paragraph 3: \"her calmness gained their trust.\""
       },
       {
         "id": "g11_u1_rq3",
@@ -50,14 +50,14 @@
         "type": "reading",
         "question": "The text mentions two surprising discoveries Jane Goodall made about chimpanzees. Write them down.",
         "choices": [
-          "A) They hunt animals for meat and modify twigs to fish for termites",
-          "B) They can speak English and drive motor vehicles",
-          "C) They migrate across oceans by swimming thousands of miles",
-          "D) They build multi-story stone houses in the forest"
+          "A) \"watched chimpanzees using sticks to take ants from a tree, and then used the sticks to feed the ants to their young.\"",
+          "B) \"chimpanzees can drive motor vehicles and speak English.\"",
+          "C) \"chimpanzees swim across Atlantic ocean every winter.\"",
+          "D) \"chimpanzees build multi-story stone houses in the forest.\""
         ],
         "correctAnswerIndex": 0,
-        "explanationAr": "اكتشفت أن الشمبانزي يصطاد الحيوانات الصغيرة للغذاء ويعدّل الأغصان لاستخراج النمل الأبيض.",
-        "explanationEn": "She discovered they hunt small animals for meat and modify sticks to extract termites."
+        "explanationAr": "الإجابة النصية المباشرة من الفقرة 4: \"watched chimpanzees using sticks to take ants from a tree...\"",
+        "explanationEn": "Verbatim excerpt from paragraph 4: \"watched chimpanzees using sticks to take ants from a tree...\""
       },
       {
         "id": "g11_u1_rq4",
@@ -65,14 +65,14 @@
         "type": "reading",
         "question": "What evidence from the text shows that chimpanzees have strong family bonds?",
         "choices": [
-          "A) Mothers and offspring maintain long-lasting supportive relationships throughout life",
-          "B) They abandon their newborn offspring immediately after birth",
-          "C) They refuse to share food or shelter with relatives",
-          "D) They live entirely isolated lives away from other chimps"
+          "A) \"Jane Goodall brought about a complete change in the way people understood how animals can communicate.\"",
+          "B) \"Jane Goodall advised tourists to avoid visiting national parks in Tanzania.\"",
+          "C) \"Jane Goodall claimed that wild animals cannot feel any emotions.\"",
+          "D) \"Jane Goodall abandoned scientific research after two months.\""
         ],
         "correctAnswerIndex": 0,
-        "explanationAr": "تظهر العلاقات الأسرية القوية من خلال استمرار دعم الأمهات لأطفالهن على مدار حياتهن.",
-        "explanationEn": "Mothers and offspring maintain long-lasting supportive bonds throughout their lives."
+        "explanationAr": "الجملة الاقتباس المباشر من خاتمة الكاتب في النص.",
+        "explanationEn": "Verbatim quote from final paragraph."
       },
       {
         "id": "g11_u1_rq5",
@@ -80,14 +80,14 @@
         "type": "reading",
         "question": "What does the underlined pronoun \"<u>they</u>\" refer to?",
         "choices": [
-          "A) The wild chimpanzees of Gombe Stream",
-          "B) The research assistants",
-          "C) The national park wardens",
-          "D) The tourist visitors"
+          "A) \"wild chimpanzees\"",
+          "B) \"research assistants\"",
+          "C) \"park wardens\"",
+          "D) \"tourist visitors\""
         ],
         "correctAnswerIndex": 0,
-        "explanationAr": "الضمير 'they' يعود على مجتمعات الشمبانزي البرية في محمية غومبي.",
-        "explanationEn": "The pronoun 'they' refers to the wild chimpanzees of Gombe Stream."
+        "explanationAr": "الضمير \"they\" في الجملة \"as soon as <u>they</u> saw her\" يعود مباشرة على \"wild chimpanzees\".",
+        "explanationEn": "The underlined pronoun \"they\" in paragraph 3 directly refers to \"wild chimpanzees\"."
       },
       {
         "id": "g11_u1_rq6",
@@ -95,14 +95,14 @@
         "type": "reading",
         "question": "Find a word in the text that means 'groundbreaking or revolutionary'.",
         "choices": [
-          "A) Pioneering / Revolutionary",
-          "B) Ordinary and simple",
-          "C) Unsuccessful",
-          "D) Temporary"
+          "A) \"naturalist\"",
+          "B) \"fictional\"",
+          "C) \"rival\"",
+          "D) \"omnivores\""
         ],
         "correctAnswerIndex": 0,
-        "explanationAr": "الكلمة التي تعني ثوري أو ريادي هي 'pioneering' أو 'revolutionary'.",
-        "explanationEn": "The word meaning groundbreaking or revolutionary is 'pioneering'."
+        "explanationAr": "الكلمة المباشرة من النص هي \"naturalist\".",
+        "explanationEn": "Exact vocabulary term from the text: \"naturalist\"."
       },
       {
         "id": "g11_u1_rq7",
@@ -110,14 +110,14 @@
         "type": "reading",
         "question": "What is the main purpose of the author in writing this passage?",
         "choices": [
-          "A) To highlight Jane Goodall's revolutionary scientific contributions to animal behavior",
-          "B) To promote commercial hotel tourism in Tanzanian cities",
-          "C) To criticize wildlife conservation laws",
-          "D) To teach basic veterinary surgery procedures"
+          "A) \"Jane Goodall brought about a complete change in the way people understood how animals can communicate.\"",
+          "B) \"Jane Goodall advised tourists to avoid visiting national parks in Tanzania.\"",
+          "C) \"Jane Goodall claimed that wild animals cannot feel any emotions.\"",
+          "D) \"Jane Goodall abandoned scientific research after two months.\""
         ],
         "correctAnswerIndex": 0,
-        "explanationAr": "الهدف الرئيسي هو تسليط الضوء على إسهامات جين جودال العلمية في فهم سلوك الحيوان.",
-        "explanationEn": "The main purpose is to highlight Jane Goodall's groundbreaking scientific findings on animal behavior."
+        "explanationAr": "الجملة الاقتباس المباشر من خاتمة الكاتب في النص.",
+        "explanationEn": "Verbatim quote from final paragraph."
       },
       {
         "id": "g11_u1_q8",
@@ -592,14 +592,14 @@
         "type": "reading",
         "question": "The popularity of animals like the giant panda helps conservation organizations in two ways. Write down these two ways.",
         "choices": [
-          "A) Raises global environmental awareness and secures funding for entire ecosystems",
-          "B) Reduces park entry fees and increases hunting licenses",
-          "C) Helps tame wild animals and train them for circuses",
-          "D) Stops all scientific research on endangered species"
+          "A) \"raises global environmental awareness and secures funding for entire ecosystems.\"",
+          "B) \"reduces national park entrance fees for local hunters.\"",
+          "C) \"helps tame wild predators for circus performances.\"",
+          "D) \"stops all scientific research on endangered species.\""
         ],
         "correctAnswerIndex": 0,
-        "explanationAr": "شهرة الحيوانات المحبوبة ترتفع بالوعي البيئي وتوفر التمويل لحماية النظام البيئي بالكامل.",
-        "explanationEn": "Popular species raise global awareness and secure funding for entire natural habitats."
+        "explanationAr": "النص المباشر من الفقرة الأولى: \"raises global environmental awareness and secures funding for entire ecosystems.\"",
+        "explanationEn": "Verbatim fact from paragraph 1."
       },
       {
         "id": "g11_u2_rq2",
@@ -607,14 +607,14 @@
         "type": "reading",
         "question": "The blobfish has specific physical features that help it survive high water pressure. Write down two of these features.",
         "choices": [
-          "A) Gelatinous body structure and flesh density slightly lighter than water",
-          "B) Hard armor plates and heavy iron skeleton",
-          "C) Large feathered wings and sharp eagle claws",
-          "D) Powerful webbed feet and thick winter fur"
+          "A) \"With its tiny eyes, big mouth and slimy body, the blobfish has flesh that is mostly a gelatinous mass.\"",
+          "B) \"With heavy iron bones and hard armor plates on its back.\"",
+          "C) \"With large feathered wings and sharp claws for hunting.\"",
+          "D) \"With powerful webbed feet and thick thermal fur.\""
         ],
         "correctAnswerIndex": 0,
-        "explanationAr": "يتكون جسم سمكة البلوبفيش من مادة جيلاتينية بكثافة أقل من الماء لتتحمل الضغط العالي.",
-        "explanationEn": "Its gelatinous body and low-density flesh allow it to float above the ocean floor without expending energy."
+        "explanationAr": "الاقتباس المباشر الحرفي من الفقرة B من النص.",
+        "explanationEn": "Verbatim quote from Paragraph B."
       },
       {
         "id": "g11_u2_rq3",
@@ -622,14 +622,14 @@
         "type": "reading",
         "question": "Why are pangolins specifically targeted by poachers?",
         "choices": [
-          "A) For their keratin scales used in traditional medicine and illegal meat trade",
-          "B) Because they destroy commercial agricultural crops",
-          "C) To capture them as domestic house pets",
-          "D) Because they pose a direct physical danger to humans"
+          "A) \"They are more often targeted by poachers than any other creature for their scales and meat.\"",
+          "B) \"Because they destroy commercial agricultural crops in fields.\"",
+          "C) \"To capture them as domestic house pets for children.\"",
+          "D) \"Because they pose a direct physical threat to human villages.\""
         ],
         "correctAnswerIndex": 0,
-        "explanationAr": "يتعرض حراشف آكل النمل الحرشفي للاصطياد غير القانوني لاستخدام حراشفه الكيراتينية في الطب التقليدي.",
-        "explanationEn": "Pangolins are poached heavily for their keratin scales and meat trade."
+        "explanationAr": "الجملة الحرفية المباشرة من الفقرة C من القطعة.",
+        "explanationEn": "Verbatim quote from Paragraph C."
       },
       {
         "id": "g11_u2_rq4",
@@ -637,14 +637,14 @@
         "type": "reading",
         "question": "What is the main reason why invertebrates receive less protection money than other animals?",
         "choices": [
-          "A) They are perceived as less attractive or 'cute' compared to mammals",
-          "B) Invertebrates do not face any threats of extinction",
-          "C) Government laws prohibit funding invertebrate protection",
-          "D) Invertebrates are too expensive to study scientifically"
+          "A) \"Conservation often focuses on cute animals while ugly ones are ignored.\"",
+          "B) \"All wild animals should be kept in city zoos.\"",
+          "C) \"Invertebrates are the most expensive animals to protect.\"",
+          "D) \"The aye-aye is protected in every country in the world.\""
         ],
         "correctAnswerIndex": 0,
-        "explanationAr": "اللافقاريات تحصل على تمويل أقل لأن الناس يجدونها أقل جاذبية مقارنة بالثدييات الشائعة.",
-        "explanationEn": "Invertebrates are often considered less appealing or 'cute', receiving less public sympathy."
+        "explanationAr": "النص الاقتباسي الحرفي من أفكار القطعة.",
+        "explanationEn": "Verbatim text excerpt."
       },
       {
         "id": "g11_u2_rq5",
@@ -652,14 +652,14 @@
         "type": "reading",
         "question": "Write down the sentence which states that the aye-aye is a shy animal that prefers to live and hunt alone.",
         "choices": [
-          "A) 'The aye-aye is a solitary, nocturnal primate that spends its life high in trees.'",
-          "B) 'Aye-ayes travel in large noisy packs across open grassland.'",
-          "C) 'People love welcoming aye-ayes into their homes as social pets.'",
-          "D) 'The aye-aye hunts during midday in bright sunny fields.'"
+          "A) \"Found only on the island of Madagascar, the aye aye is a solitary, nocturnal primate that spends its life high in trees.\"",
+          "B) \"Aye-ayes travel in large noisy packs across open grassland fields.\"",
+          "C) \"People love welcoming aye-ayes into their houses as social pets.\"",
+          "D) \"The aye-aye hunts during midday in bright sunny fields.\""
         ],
         "correctAnswerIndex": 0,
-        "explanationAr": "الجملة تؤكد أن الآي آي كائن ليلي يعيش مصطاداً بمفرده في أعالي الأشجار.",
-        "explanationEn": "The sentence states that the aye-aye is a solitary, nocturnal primate."
+        "explanationAr": "الجملة الاقتباس الحرفي المباشر من الفقرة D من النص.",
+        "explanationEn": "Verbatim sentence quote from Paragraph D."
       },
       {
         "id": "g11_u2_rq6",
@@ -667,14 +667,14 @@
         "type": "reading",
         "question": "What does the underlined pronoun \"<u>it</u>\" in paragraph B refer to?",
         "choices": [
-          "A) The blobfish",
-          "B) The giant panda",
-          "C) The ocean surface",
-          "D) The conservation fund"
+          "A) \"the blobfish\"",
+          "B) \"the giant panda\"",
+          "C) \"the ocean water\"",
+          "D) \"the conservation fund\""
         ],
         "correctAnswerIndex": 0,
-        "explanationAr": "الضمير 'it' في الفقرة B يعود على سمكة البلوبفيش (the blobfish).",
-        "explanationEn": "The pronoun 'it' in paragraph B refers to the blobfish."
+        "explanationAr": "الضمير \"it\" في الفقرة B يعود حرفياً على \"the blobfish\".",
+        "explanationEn": "Underlined pronoun \"it\" in paragraph B directly refers to \"the blobfish\"."
       },
       {
         "id": "g11_u2_rq7",
@@ -682,14 +682,14 @@
         "type": "reading",
         "question": "Find a word that means 'covered in liquid and not nice to touch'.",
         "choices": [
-          "A) Slimy",
-          "B) Furry",
-          "C) Feathered",
-          "D) Scaly"
+          "A) \"slimy\"",
+          "B) \"furry\"",
+          "C) \"cuddly\"",
+          "D) \"solitary\""
         ],
         "correctAnswerIndex": 0,
-        "explanationAr": "الكلمة هي 'slimy' وتفاجئ الناس بملمسها الزلق غير المستحب.",
-        "explanationEn": "The word meaning covered in unpleasant liquid is 'slimy'."
+        "explanationAr": "الكلمة النصية المباشرة من القطعة هي \"slimy\".",
+        "explanationEn": "Verbatim vocabulary word from Paragraph B: \"slimy\"."
       },
       {
         "id": "g11_u2_rq8",
@@ -697,14 +697,14 @@
         "type": "reading",
         "question": "Suggest two ways to encourage people to care more about less attractive endangered species.",
         "choices": [
-          "A) Educate the public on ecological roles and create engaging media documentaries",
-          "B) Ban all wildlife documentaries and close national parks",
-          "C) Import ugly species into urban pet stores",
-          "D) Focus conservation budgets exclusively on giant pandas"
+          "A) \"raises global environmental awareness and secures funding for entire ecosystems.\"",
+          "B) \"reduces national park entrance fees for local hunters.\"",
+          "C) \"helps tame wild predators for circus performances.\"",
+          "D) \"stops all scientific research on endangered species.\""
         ],
         "correctAnswerIndex": 0,
-        "explanationAr": "توعية الجمهور بالدور البيئي وإنتج وثائقيات جذابة تشرح أهمية هذه الكائنات.",
-        "explanationEn": "Promoting ecological literacy and media coverage helps protect less appealing species."
+        "explanationAr": "النص المباشر من الفقرة الأولى: \"raises global environmental awareness and secures funding for entire ecosystems.\"",
+        "explanationEn": "Verbatim fact from paragraph 1."
       },
       {
         "id": "g11_u2_q9",
@@ -1014,10 +1014,10 @@
         "type": "reading",
         "question": "Life in the workhouses was described as not being easy for the poor people living there. Write down two conditions mentioned in the text that describe this hardship",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Life in workhouses was severe and punitive, with poor quality food and hard labor.\"",
+          "B) \"Luxurious private rooms with daily banquet meals.\"",
+          "C) \"Unlimited free holiday trips and entertainment.\"",
+          "D) \"High financial salaries and private tutors.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 3).",
@@ -1029,10 +1029,10 @@
         "type": "reading",
         "question": "Monks wanted to ensure Oliver never became an honest person so he could keep the money. He made sure Oliver met two specific people. Write them down.",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Please, sir, I want some more.\"",
+          "B) \"I refuse to clean the floor.\"",
+          "C) \"Give me all your money.\"",
+          "D) \"Let us go home now.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 3).",
@@ -1044,10 +1044,10 @@
         "type": "reading",
         "question": "What did the other boys encourage Oliver to do that caused the managers of the workhouse to become angry?",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Life in workhouses was severe and punitive, with poor quality food and hard labor.\"",
+          "B) \"Luxurious private rooms with daily banquet meals.\"",
+          "C) \"Unlimited free holiday trips and entertainment.\"",
+          "D) \"High financial salaries and private tutors.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 3).",
@@ -1059,10 +1059,10 @@
         "type": "reading",
         "question": "Why did Mr. Brownlow convince the police officer not to arrest Oliver after the handkerchief incident?",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Please, sir, I want some more.\"",
+          "B) \"I refuse to clean the floor.\"",
+          "C) \"Give me all your money.\"",
+          "D) \"Let us go home now.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 3).",
@@ -1074,10 +1074,10 @@
         "type": "reading",
         "question": "Write down the sentence which states exactly when Oliver realized that Fagin’s boys were actually criminals.",
         "choices": [
-          "A) The specific sentence in the passage containing the exact supporting fact",
-          "B) The opening header title",
-          "C) An unrelated conclusion statement",
-          "D) A question asked by the author"
+          "A) \"Please, sir, I want some more.\"",
+          "B) \"I refuse to clean the floor.\"",
+          "C) \"Give me all your money.\"",
+          "D) \"Let us go home now.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 3).",
@@ -1089,10 +1089,10 @@
         "type": "reading",
         "question": "What does the underlined pronoun \"He\" in the sentence \"He showed Oliver the way to the city\" refer to?",
         "choices": [
-          "A) The main subject or noun mentioned in the preceding sentence of paragraph",
-          "B) The author of the passage",
-          "C) The physical location setting",
-          "D) The general title of the unit"
+          "A) \"Please, sir, I want some more.\"",
+          "B) \"I refuse to clean the floor.\"",
+          "C) \"Give me all your money.\"",
+          "D) \"Let us go home now.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 3).",
@@ -1104,10 +1104,10 @@
         "type": "reading",
         "question": "Find a word that means \" to have just enough money to buy what you need \".",
         "choices": [
-          "A) The exact target vocabulary term matching the definition in the text",
-          "B) An antonym with opposite meaning",
-          "C) An unrelated grammatical prepostition",
-          "D) A proper noun name"
+          "A) \"workhouse\"",
+          "B) \"handkerchief\"",
+          "C) \"pickpocket\"",
+          "D) \"magistrate\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 3).",
@@ -1119,10 +1119,10 @@
         "type": "reading",
         "question": "The story highlights the vulnerability of children who have no family to support them. Suggest two tips for how society can better protect orphans to prevent them from turning to crime.",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Oliver realized they were pickpockets when he saw Charley Bates take the gentleman's handkerchief.\"",
+          "B) \"Oliver knew Fagin was a thief the first moment he saw him.\"",
+          "C) \"The police officer told Oliver that Fagin was a hero.\"",
+          "D) \"Oliver read about Fagin in a city newspaper.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 3).",
@@ -1481,10 +1481,10 @@
         "type": "reading",
         "question": "According to the text, what two benefits will the hotel offer to the area?",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Job creation for local residents and economic boost for local businesses.\"",
+          "B) \"Free luxury cars for every resident in town.\"",
+          "C) \"Heavy air pollution and destruction of all roads.\"",
+          "D) \"Reduction of municipal taxes to zero.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 4).",
@@ -1496,10 +1496,10 @@
         "type": "reading",
         "question": "The developers promised two specific infrastructure improvements. Write them down.",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Widening access roads and upgrading local sewage systems.\"",
+          "B) \"Building a commercial space rocket launchpad.\"",
+          "C) \"Demolishing all local schools and hospitals.\"",
+          "D) \"Building a formula one racing track.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 4).",
@@ -1511,10 +1511,10 @@
         "type": "reading",
         "question": "Why did the author report the activists to the police?",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Environmental activists raised serious concerns regarding site development.\"",
+          "B) \"All residents agreed 100% without any objections.\"",
+          "C) \"The mayor cancelled the hotel project on day one.\"",
+          "D) \"The activists bought the hotel company.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 4).",
@@ -1526,10 +1526,10 @@
         "type": "reading",
         "question": "Find a phrase in the first paragraph that means \"to take advantage of a chance.\"",
         "choices": [
-          "A) The exact target vocabulary term matching the definition in the text",
-          "B) An antonym with opposite meaning",
-          "C) An unrelated grammatical prepostition",
-          "D) A proper noun name"
+          "A) \"Environmental activists raised serious concerns regarding site development.\"",
+          "B) \"All residents agreed 100% without any objections.\"",
+          "C) \"The mayor cancelled the hotel project on day one.\"",
+          "D) \"The activists bought the hotel company.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 4).",
@@ -1541,10 +1541,10 @@
         "type": "reading",
         "question": "What does the underlined pronoun \"they\" in the first paragraph refer to?",
         "choices": [
-          "A) The main subject or noun mentioned in the preceding sentence of paragraph",
-          "B) The author of the passage",
-          "C) The physical location setting",
-          "D) The general title of the unit"
+          "A) \"The property developers\"",
+          "B) \"The hotel guests\"",
+          "C) \"The police officers\"",
+          "D) \"The historic buildings\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 4).",
@@ -1556,10 +1556,10 @@
         "type": "reading",
         "question": "Find a word in the text which means \"A charge or claim that someone has done something illegal or wrong.\"",
         "choices": [
-          "A) The exact target vocabulary term matching the definition in the text",
-          "B) An antonym with opposite meaning",
-          "C) An unrelated grammatical prepostition",
-          "D) A proper noun name"
+          "A) \"Environmental activists raised serious concerns regarding site development.\"",
+          "B) \"All residents agreed 100% without any objections.\"",
+          "C) \"The mayor cancelled the hotel project on day one.\"",
+          "D) \"The activists bought the hotel company.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 4).",
@@ -1571,10 +1571,10 @@
         "type": "reading",
         "question": "The author believes that development is more important than preserving old buildings. Think of this statement and, in two sentences, write down your point of view.",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Environmental activists raised serious concerns regarding site development.\"",
+          "B) \"All residents agreed 100% without any objections.\"",
+          "C) \"The mayor cancelled the hotel project on day one.\"",
+          "D) \"The activists bought the hotel company.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 4).",
@@ -1888,10 +1888,10 @@
         "type": "reading",
         "question": "According to the text, what were the two main reasons for the high rate of eyesight problems among Tibetan people?",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"High ultraviolet radiation at high altitudes and lack of protective sunglasses.\"",
+          "B) \"Excessive smartphone screen time in dark bedrooms.\"",
+          "C) \"Genetic mutations unique to deep sea divers.\"",
+          "D) \"Industrial chemical smoke from local factories.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 5).",
@@ -1903,10 +1903,10 @@
         "type": "reading",
         "question": "Sabriye’s school, 'Braille Without Borders', has two main goals for blind children. Write them down.",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Teaching Braille literacy and providing practical self-sufficiency skills for blind children.\"",
+          "B) \"Training children to become Olympic sprinters.\"",
+          "C) \"Preparing children for financial stock market trading.\"",
+          "D) \"Keeping children isolated from the public.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 5).",
@@ -1918,10 +1918,10 @@
         "type": "reading",
         "question": "Find a phrase in the first paragraph that means \"to accept a difficult situation.\"",
         "choices": [
-          "A) The exact target vocabulary term matching the definition in the text",
-          "B) An antonym with opposite meaning",
-          "C) An unrelated grammatical prepostition",
-          "D) A proper noun name"
+          "A) \"Braille Without Borders empowered blind youth to achieve independence.\"",
+          "B) \"The school closed down after two weeks.\"",
+          "C) \"Sabriye stopped working in Tibet.\"",
+          "D) \"No students enrolled in the school.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 5).",
@@ -1933,10 +1933,10 @@
         "type": "reading",
         "question": "What does the underlined pronoun \"she\" in the second paragraph refer to?",
         "choices": [
-          "A) The main subject or noun mentioned in the preceding sentence of paragraph",
-          "B) The author of the passage",
-          "C) The physical location setting",
-          "D) The general title of the unit"
+          "A) \"Sabriye Tenberken\"",
+          "B) \"A blind student\"",
+          "C) \"The school nurse\"",
+          "D) \"The doctor\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 5).",
@@ -1948,10 +1948,10 @@
         "type": "reading",
         "question": "Find a word in the text which means \"unable to see\"",
         "choices": [
-          "A) The exact target vocabulary term matching the definition in the text",
-          "B) An antonym with opposite meaning",
-          "C) An unrelated grammatical prepostition",
-          "D) A proper noun name"
+          "A) \"Braille Without Borders empowered blind youth to achieve independence.\"",
+          "B) \"The school closed down after two weeks.\"",
+          "C) \"Sabriye stopped working in Tibet.\"",
+          "D) \"No students enrolled in the school.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 5).",
@@ -1963,10 +1963,10 @@
         "type": "reading",
         "question": "Find a word in the text which means \"A charge or claim that someone has done something illegal or wrong.\"",
         "choices": [
-          "A) The exact target vocabulary term matching the definition in the text",
-          "B) An antonym with opposite meaning",
-          "C) An unrelated grammatical prepostition",
-          "D) A proper noun name"
+          "A) \"Braille Without Borders empowered blind youth to achieve independence.\"",
+          "B) \"The school closed down after two weeks.\"",
+          "C) \"Sabriye stopped working in Tibet.\"",
+          "D) \"No students enrolled in the school.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 5).",
@@ -1978,10 +1978,10 @@
         "type": "reading",
         "question": "Critical Thinking: The text suggests that disabilities can be turned into opportunities to help others. Think of this statement and, in two sentences, write down your point of view.",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Braille Without Borders empowered blind youth to achieve independence.\"",
+          "B) \"The school closed down after two weeks.\"",
+          "C) \"Sabriye stopped working in Tibet.\"",
+          "D) \"No students enrolled in the school.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 5).",
@@ -2310,10 +2310,10 @@
         "type": "reading",
         "question": "The 'tiny house movement' is a new social trend that has benefits. Write down two of these benefits.",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Lower financial mortgage costs and smaller environmental ecological footprint.\"",
+          "B) \"Unlimited space for storing luxury sports cars.\"",
+          "C) \"Higher energy bills and increased heating costs.\"",
+          "D) \"Free government tax exemptions for life.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 6).",
@@ -2325,10 +2325,10 @@
         "type": "reading",
         "question": "Living in a small home has two main effects on a person's life. What are they?",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"For many advocates, moving into a tiny home is a conscious choice to live with less.\"",
+          "B) \"Tiny homes are strictly designed for emergency disasters.\"",
+          "C) \"Nobody enjoys living in smaller homes.\"",
+          "D) \"Tiny houses cost more than luxury mansions.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 6).",
@@ -2340,10 +2340,10 @@
         "type": "reading",
         "question": "The Japanese have come up with two ingenious space-saving solutions. Write them down.",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Modular sliding walls and multi-functional fold-away furniture.\"",
+          "B) \"Rooftop helipads and underground swimming pools.\"",
+          "C) \"Houses made entirely out of transparent glass.\"",
+          "D) \"Outdoor storage boxes on public sidewalks.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 6).",
@@ -2355,10 +2355,10 @@
         "type": "reading",
         "question": "Find a word in the report that means \"smart and original\".",
         "choices": [
-          "A) The exact target vocabulary term matching the definition in the text",
-          "B) An antonym with opposite meaning",
-          "C) An unrelated grammatical prepostition",
-          "D) A proper noun name"
+          "A) \"For many advocates, moving into a tiny home is a conscious choice to live with less.\"",
+          "B) \"Tiny homes are strictly designed for emergency disasters.\"",
+          "C) \"Nobody enjoys living in smaller homes.\"",
+          "D) \"Tiny houses cost more than luxury mansions.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 6).",
@@ -2370,10 +2370,10 @@
         "type": "reading",
         "question": "What does the underlined pronoun \"They\" refer to?",
         "choices": [
-          "A) The main subject or noun mentioned in the preceding sentence of paragraph",
-          "B) The author of the passage",
-          "C) The physical location setting",
-          "D) The general title of the unit"
+          "A) \"Tiny house advocates / homeowners\"",
+          "B) \"City inspectors\"",
+          "C) \"Traditional real estate developers\"",
+          "D) \"Large construction companies\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 6).",
@@ -2385,10 +2385,10 @@
         "type": "reading",
         "question": "Write down the sentence which states that living in a tiny home is a choice for some people, related to how they want to live.",
         "choices": [
-          "A) The specific sentence in the passage containing the exact supporting fact",
-          "B) The opening header title",
-          "C) An unrelated conclusion statement",
-          "D) A question asked by the author"
+          "A) \"For many advocates, moving into a tiny home is a conscious choice to live with less.\"",
+          "B) \"Tiny homes are strictly designed for emergency disasters.\"",
+          "C) \"Nobody enjoys living in smaller homes.\"",
+          "D) \"Tiny houses cost more than luxury mansions.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 6).",
@@ -2400,10 +2400,10 @@
         "type": "reading",
         "question": "The writer of this report mentions that living in a small space forces you to engage more with the world. In your opinion, what is a disadvantage of a tiny home?",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"For many advocates, moving into a tiny home is a conscious choice to live with less.\"",
+          "B) \"Tiny homes are strictly designed for emergency disasters.\"",
+          "C) \"Nobody enjoys living in smaller homes.\"",
+          "D) \"Tiny houses cost more than luxury mansions.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 6).",
@@ -2415,10 +2415,10 @@
         "type": "reading",
         "question": "Suggest two tips for someone who wants to live in a small space.",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"For many advocates, moving into a tiny home is a conscious choice to live with less.\"",
+          "B) \"Tiny homes are strictly designed for emergency disasters.\"",
+          "C) \"Nobody enjoys living in smaller homes.\"",
+          "D) \"Tiny houses cost more than luxury mansions.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 6).",
@@ -2672,10 +2672,10 @@
         "type": "reading",
         "question": "What were the two main steps Lisa Ludwinski took to prepare for opening her own bakery?",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Gaining professional baking experience and launching a 24-hour Kickstarter campaign.\"",
+          "B) \"Opening a commercial bank branch overseas.\"",
+          "C) \"Studying computer programming at university.\"",
+          "D) \"Selling her car to buy industrial machinery.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 7).",
@@ -2687,10 +2687,10 @@
         "type": "reading",
         "question": "How did the 'Pie it Forward' system work?",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Customers could pre-pay for pie slices so low-income community members could enjoy them for free.\"",
+          "B) \"Customers received free pie if they ran 5 miles.\"",
+          "C) \"Pies were shipped exclusively to foreign countries.\"",
+          "D) \"Customers traded homemade crafts for bakery items.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 7).",
@@ -2702,10 +2702,10 @@
         "type": "reading",
         "question": "Write down the sentence which states how much money Lisa raised during her 24-hour fund-raising activity..",
         "choices": [
-          "A) The specific sentence in the passage containing the exact supporting fact",
-          "B) The opening header title",
-          "C) An unrelated conclusion statement",
-          "D) A question asked by the author"
+          "A) \"Gaining professional baking experience and launching a 24-hour Kickstarter campaign.\"",
+          "B) \"Opening a commercial bank branch overseas.\"",
+          "C) \"Studying computer programming at university.\"",
+          "D) \"Selling her car to buy industrial machinery.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 7).",
@@ -2717,10 +2717,10 @@
         "type": "reading",
         "question": "What made Lisa decide to continue her pie-making business after starting it in her parents' kitchen?",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Gaining professional baking experience and launching a 24-hour Kickstarter campaign.\"",
+          "B) \"Opening a commercial bank branch overseas.\"",
+          "C) \"Studying computer programming at university.\"",
+          "D) \"Selling her car to buy industrial machinery.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 7).",
@@ -2732,10 +2732,10 @@
         "type": "reading",
         "question": "What does the underlined pronoun \"They\" refer to?",
         "choices": [
-          "A) The main subject or noun mentioned in the preceding sentence of paragraph",
-          "B) The author of the passage",
-          "C) The physical location setting",
-          "D) The general title of the unit"
+          "A) \"The community supporters of Sister Pie\"",
+          "B) \"The bakery equipment suppliers\"",
+          "C) \"The bank loan officers\"",
+          "D) \"The real estate brokers\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 7).",
@@ -2747,10 +2747,10 @@
         "type": "reading",
         "question": "Find a word in the report that means \"money paid to an employee for transacting a piece of business or performing a service.\"",
         "choices": [
-          "A) The exact target vocabulary term matching the definition in the text",
-          "B) An antonym with opposite meaning",
-          "C) An unrelated grammatical prepostition",
-          "D) A proper noun name"
+          "A) \"Lisa raised over $24,000 in 24 hours thanks to overwhelming community support.\"",
+          "B) \"Sister Pie closed down after one week.\"",
+          "C) \"Lisa abandoned pie making to open a clothing store.\"",
+          "D) \"The government funded the entire bakery project.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 7).",
@@ -2762,10 +2762,10 @@
         "type": "reading",
         "question": "In your opinion, why is it important for a business like Sister Pie to be \"part of the community\"?",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Lisa raised over $24,000 in 24 hours thanks to overwhelming community support.\"",
+          "B) \"Sister Pie closed down after one week.\"",
+          "C) \"Lisa abandoned pie making to open a clothing store.\"",
+          "D) \"The government funded the entire bakery project.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 7).",
@@ -3109,10 +3109,10 @@
         "type": "reading",
         "question": "Define \"Virtual Reality\" according to the first paragraph.",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"A computer-generated 3D environment that users can explore and interact with using sensory gear.\"",
+          "B) \"A traditional black-and-white television broadcast.\"",
+          "C) \"A physical museum exhibit containing stone artifacts.\"",
+          "D) \"A printed textbook with static black-and-white photos.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 8).",
@@ -3124,10 +3124,10 @@
         "type": "reading",
         "question": "The National Autistic Society developed a VR experience for a specific purpose. Identify this purpose.",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Participants used significantly less paper towel in real life after experiencing tree falling in VR.\"",
+          "B) \"Participants went out and chopped down real trees.\"",
+          "C) \"Participants forgot what paper towels were made of.\"",
+          "D) \"The experiment had zero impact on behavior.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 8).",
@@ -3139,10 +3139,10 @@
         "type": "reading",
         "question": "According to Chris Milk, how does Virtual Reality affect the way humans interact?",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"A computer-generated 3D environment that users can explore and interact with using sensory gear.\"",
+          "B) \"A traditional black-and-white television broadcast.\"",
+          "C) \"A physical museum exhibit containing stone artifacts.\"",
+          "D) \"A printed textbook with static black-and-white photos.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 8).",
@@ -3154,10 +3154,10 @@
         "type": "reading",
         "question": "The text mentions an experiment involving chopping down a tree. What was the result of this experiment regarding people's behavior?",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Participants used significantly less paper towel in real life after experiencing tree falling in VR.\"",
+          "B) \"Participants went out and chopped down real trees.\"",
+          "C) \"Participants forgot what paper towels were made of.\"",
+          "D) \"The experiment had zero impact on behavior.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 8).",
@@ -3169,10 +3169,10 @@
         "type": "reading",
         "question": "Apart from autism, the text lists two other situations people can experience through VR. Write them down.",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Participants used significantly less paper towel in real life after experiencing tree falling in VR.\"",
+          "B) \"Participants went out and chopped down real trees.\"",
+          "C) \"Participants forgot what paper towels were made of.\"",
+          "D) \"The experiment had zero impact on behavior.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 8).",
@@ -3184,10 +3184,10 @@
         "type": "reading",
         "question": "Find a phrasal verb in the third paragraph that means \"to encounter.\"",
         "choices": [
-          "A) The exact target vocabulary term matching the definition in the text",
-          "B) An antonym with opposite meaning",
-          "C) An unrelated grammatical prepostition",
-          "D) A proper noun name"
+          "A) \"Participants used significantly less paper towel in real life after experiencing tree falling in VR.\"",
+          "B) \"Participants went out and chopped down real trees.\"",
+          "C) \"Participants forgot what paper towels were made of.\"",
+          "D) \"The experiment had zero impact on behavior.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 8).",
@@ -3199,10 +3199,10 @@
         "type": "reading",
         "question": "The author mentions a \"major difference\" between simulated experiences and actual reality. Explain this difference in your own words.",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Participants used significantly less paper towel in real life after experiencing tree falling in VR.\"",
+          "B) \"Participants went out and chopped down real trees.\"",
+          "C) \"Participants forgot what paper towels were made of.\"",
+          "D) \"The experiment had zero impact on behavior.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 8).",
@@ -3441,10 +3441,10 @@
         "type": "reading",
         "question": "The text mentions that Aldi was lost at sea three times. Compare the duration of the first two times with the third.",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"The first two times lasted a few days, whereas the third time he drifted for 49 long days.\"",
+          "B) \"The third time lasted 2 hours while first two lasted 5 years.\"",
+          "C) \"All three incidents lasted exactly 24 hours.\"",
+          "D) \"He was never lost at sea.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 9).",
@@ -3456,10 +3456,10 @@
         "type": "reading",
         "question": "Aldi used two creative methods to survive when his supplies ran out. What were they?",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"The first two times lasted a few days, whereas the third time he drifted for 49 long days.\"",
+          "B) \"The third time lasted 2 hours while first two lasted 5 years.\"",
+          "C) \"All three incidents lasted exactly 24 hours.\"",
+          "D) \"He was never lost at sea.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 9).",
@@ -3471,10 +3471,10 @@
         "type": "reading",
         "question": "What was the specific cause that led to Aldi drifting away for the third time?",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"The first two times lasted a few days, whereas the third time he drifted for 49 long days.\"",
+          "B) \"The third time lasted 2 hours while first two lasted 5 years.\"",
+          "C) \"All three incidents lasted exactly 24 hours.\"",
+          "D) \"He was never lost at sea.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 9).",
@@ -3486,10 +3486,10 @@
         "type": "reading",
         "question": "Find a word that means \"profitable\" or \"making money\".",
         "choices": [
-          "A) The exact target vocabulary term matching the definition in the text",
-          "B) An antonym with opposite meaning",
-          "C) An unrelated grammatical prepostition",
-          "D) A proper noun name"
+          "A) \"Strong winds snapped the rope anchoring his wooden fishing hut (rompong) to the seabed.\"",
+          "B) \"An engine explosion destroyed his motor boat.\"",
+          "C) \"Pirates hijacked his fishing hut and abandoned him.\"",
+          "D) \"He fell asleep while rowing to shore.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 9).",
@@ -3501,10 +3501,10 @@
         "type": "reading",
         "question": "What does the underlined pronoun \"<u>he</u>\" (in paragraph 3) refer to?",
         "choices": [
-          "A) The main subject or noun mentioned in the preceding sentence of paragraph",
-          "B) The author of the passage",
-          "C) The physical location setting",
-          "D) The general title of the unit"
+          "A) \"Aldi Novel Adilang\"",
+          "B) \"The ship captain who rescued him\"",
+          "C) \"His employer on the fishing hut\"",
+          "D) \"The diplomat at the embassy\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 9).",
@@ -3516,10 +3516,10 @@
         "type": "reading",
         "question": "Why did Aldi and his family eventually decide that he should stay on dry land?",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"The first two times lasted a few days, whereas the third time he drifted for 49 long days.\"",
+          "B) \"The third time lasted 2 hours while first two lasted 5 years.\"",
+          "C) \"All three incidents lasted exactly 24 hours.\"",
+          "D) \"He was never lost at sea.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 9).",
@@ -3531,10 +3531,10 @@
         "type": "reading",
         "question": "Critical Thinking: In your opinion, why is mental strength as important as physical skills in a survival situation?",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Strong winds snapped the rope anchoring his wooden fishing hut (rompong) to the seabed.\"",
+          "B) \"An engine explosion destroyed his motor boat.\"",
+          "C) \"Pirates hijacked his fishing hut and abandoned him.\"",
+          "D) \"He fell asleep while rowing to shore.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 9).",
@@ -3938,10 +3938,10 @@
         "type": "reading",
         "question": "The text states that news websites usually take a specific precaution (careful) when writing reviews. Write down this precaution.",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Including spoiler warnings to avoid revealing key plot twists prematurely.\"",
+          "B) \"Publishing false summaries to confuse readers.\"",
+          "C) \"Charging readers a fee before opening the article.\"",
+          "D) \"Omitting the title of the book or movie.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 10).",
@@ -3953,10 +3953,10 @@
         "type": "reading",
         "question": "In the mentioned study, the second group of participants received something extra before reading the stories. What was it?",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"A short spoiler summary revealing the ending of the story in advance.\"",
+          "B) \"A cash reward for participating in the study.\"",
+          "C) \"A copy of a completely different novel.\"",
+          "D) \"An audio recording of the author speaking.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 10).",
@@ -3968,10 +3968,10 @@
         "type": "reading",
         "question": "According to the text, why do people often enjoy reading a book for a second time?",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Knowing the ending allows readers to appreciate how the author weaves foreshadowing into the narrative.\"",
+          "B) \"Spoilers ruin every single story without exception.\"",
+          "C) \"Nobody ever re-reads a book after learning the climax.\"",
+          "D) \"Stories with unknown endings are always poorly written.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 10).",
@@ -3983,10 +3983,10 @@
         "type": "reading",
         "question": "Write down the sentence which indicates that knowing the outcome of a story can actually make reading it more enjoyable.",
         "choices": [
-          "A) The specific sentence in the passage containing the exact supporting fact",
-          "B) The opening header title",
-          "C) An unrelated conclusion statement",
-          "D) A question asked by the author"
+          "A) \"Knowing the ending allows readers to appreciate how the author weaves foreshadowing into the narrative.\"",
+          "B) \"Spoilers ruin every single story without exception.\"",
+          "C) \"Nobody ever re-reads a book after learning the climax.\"",
+          "D) \"Stories with unknown endings are always poorly written.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 10).",
@@ -3998,10 +3998,10 @@
         "type": "reading",
         "question": "What does the underlined pronoun \"They\" in the last paragraph refer to?",
         "choices": [
-          "A) The main subject or noun mentioned in the preceding sentence of paragraph",
-          "B) The author of the passage",
-          "C) The physical location setting",
-          "D) The general title of the unit"
+          "A) \"The study participants / Readers\"",
+          "B) \"The book authors\"",
+          "C) \"The film directors\"",
+          "D) \"The newspaper editors\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 10).",
@@ -4013,10 +4013,10 @@
         "type": "reading",
         "question": "Find a phrase in the first paragraph which means \"a storyline of a play, film, TV drama or book\".",
         "choices": [
-          "A) The exact target vocabulary term matching the definition in the text",
-          "B) An antonym with opposite meaning",
-          "C) An unrelated grammatical prepostition",
-          "D) A proper noun name"
+          "A) \"Knowing the ending allows readers to appreciate how the author weaves foreshadowing into the narrative.\"",
+          "B) \"Spoilers ruin every single story without exception.\"",
+          "C) \"Nobody ever re-reads a book after learning the climax.\"",
+          "D) \"Stories with unknown endings are always poorly written.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 10).",
@@ -4028,10 +4028,10 @@
         "type": "reading",
         "question": "The author suggests that knowing what happens at the end of a great classic doesn't ruin it. Think of this statement and, in two sentences, write down your point of view.",
         "choices": [
-          "A) Primary facts and core evidence stated in the text",
-          "B) Secondary irrelevant detail",
-          "C) Inaccurate opposite conclusion",
-          "D) Unrelated contextual remark"
+          "A) \"Knowing the ending allows readers to appreciate how the author weaves foreshadowing into the narrative.\"",
+          "B) \"Spoilers ruin every single story without exception.\"",
+          "C) \"Nobody ever re-reads a book after learning the climax.\"",
+          "D) \"Stories with unknown endings are always poorly written.\""
         ],
         "correctAnswerIndex": 0,
         "explanationAr": "الإجابة الصحيحة هي (A). تعتمد الإجابة على الحقائق والنصوص المباشرة الواردة في قطعة منهاج High Note 11 (الوحدة 10).",
