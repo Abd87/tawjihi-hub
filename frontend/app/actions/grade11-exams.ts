@@ -22,7 +22,8 @@ export async function getGrade11Exams() {
       descriptionAr: exam.descriptionAr,
       descriptionEn: exam.descriptionEn,
       durationMinutes: exam.durationMinutes,
-      questionsCount: exam._count.questions
+      questionsCount: exam._count.questions,
+      text: exam.text
     }));
   } catch (error) {
     console.error('Error fetching Grade 11 exams:', error);
