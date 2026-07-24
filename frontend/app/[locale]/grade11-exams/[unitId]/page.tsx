@@ -422,9 +422,10 @@ export default function Grade11UnitExamEnginePage() {
                         <span className="text-amber-400 font-bold">{mQ.type?.toUpperCase()}</span>
                       </div>
 
-                      <h3 className="text-base sm:text-lg font-bold text-white leading-relaxed">
-                        {mQ.question}
-                      </h3>
+                      <h3
+                        className="text-base sm:text-lg font-bold text-white leading-relaxed [&>u]:text-brand-400 [&>u]:font-black [&>u]:underline [&>u]:underline-offset-4 [&>u]:bg-brand-500/10 [&>u]:px-1 [&>u]:py-0.5 [&>u]:rounded [&>u]:border [&>u]:border-brand-500/30"
+                        dangerouslySetInnerHTML={{ __html: mQ.question }}
+                      />
 
                       {/* 2x2 Option Grid */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -548,9 +549,10 @@ export default function Grade11UnitExamEnginePage() {
                     } space-y-4`}
                   >
                     <div className="flex items-start justify-between gap-3">
-                      <h4 className="text-sm font-bold text-white">
-                        {qIdx + 1}. {q.question}
-                      </h4>
+                      <h4
+                        className="text-sm font-bold text-white [&>u]:text-brand-400 [&>u]:font-black [&>u]:underline [&>u]:underline-offset-4 [&>u]:bg-brand-500/10 [&>u]:px-1 [&>u]:py-0.5 [&>u]:rounded [&>u]:border [&>u]:border-brand-500/30"
+                        dangerouslySetInnerHTML={{ __html: `${qIdx + 1}. ${q.question}` }}
+                      />
                       {isCorrect ? (
                         <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
                       ) : (
@@ -668,9 +670,10 @@ export default function Grade11UnitExamEnginePage() {
               </div>
 
               {/* Question Title */}
-              <h3 className="text-base sm:text-lg font-extrabold text-white leading-relaxed">
-                {currentIdx + 1}. {currentQ.question}
-              </h3>
+              <h3
+                className="text-base sm:text-lg font-extrabold text-white leading-relaxed [&>u]:text-brand-400 [&>u]:font-black [&>u]:underline [&>u]:underline-offset-4 [&>u]:bg-brand-500/10 [&>u]:px-1 [&>u]:py-0.5 [&>u]:rounded [&>u]:border [&>u]:border-brand-500/30"
+                dangerouslySetInnerHTML={{ __html: `${currentIdx + 1}. ${currentQ.question}` }}
+              />
 
               {/* Compact 2x2 Options Grid (A, B, C, D) - Fits cleanly on screen without scrolling */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
