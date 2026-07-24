@@ -23,7 +23,11 @@ import {
   HelpCircle,
   Check,
   PanelLeftClose,
-  PanelLeftOpen
+  PanelLeftOpen,
+  Save,
+  Play,
+  Flame,
+  CheckCircle
 } from 'lucide-react';
 import grade11Data from '@/data/grade11_unit_exams.json';
 
@@ -43,6 +47,19 @@ export default function Grade11UnitExamEnginePage() {
   const [timeLeft, setTimeLeft] = useState(1800); // 30 mins
   const [showAuthGate, setShowAuthGate] = useState(false);
   const [showPassagePane, setShowPassagePane] = useState(true);
+  
+  // Save & Resume State
+  const [hasSavedProgress, setHasSavedProgress] = useState(false);
+  const [savedProgressData, setSavedProgressData] = useState<any>(null);
+  const [showResumeModal, setShowResumeModal] = useState(false);
+
+  // In-Exam Mistake Bank Mode
+  const [isMistakeMode, setIsMistakeMode] = useState(false);
+  const [mistakeList, setMistakeList] = useState<any[]>([]);
+  const [currentMistakeIdx, setCurrentMistakeIdx] = useState(0);
+  const [mistakeUserAnswers, setMistakeUserAnswers] = useState<Record<number, number>>({});
+  const [mistakeResolvedIds, setMistakeResolvedIds] = useState<string[]>([]);
+  const [mistakeFeedback, setMistakeFeedback] = useState<Record<number, boolean>>({});
 
   useEffect(() => {
     const userStr = localStorage.getItem('user');
@@ -53,7 +70,22 @@ export default function Grade11UnitExamEnginePage() {
       return;
     } else {
       try {
-        setUser(JSON.parse(userStr));
+        const u = JSON.parse(userStr);
+        setUser(u);
+        
+        // Check saved progress
+        const progressKey = `g11-progress-${unitId}-${u.id}`;
+        const saved = localStorage.getItem(progressKey);
+        if (saved) {
+          try {
+            const parsed = JSON.parse(saved);
+            if (parsed && parsed.currentIdx !== undefined) {
+              setSavedProgressData(parsed);
+              setHasSavedProgress(true);
+              setShowResumeModal(true);
+            }
+          } catch (e) {}
+        }
       } catch (e) {}
     }
 
@@ -66,7 +98,7 @@ export default function Grade11UnitExamEnginePage() {
 
   // Timer countdown
   useEffect(() => {
-    if (!exam || submitted || showAuthGate || timeLeft <= 0) return;
+    if (!exam || submitted || showAuthGate || isMistakeMode || showResumeModal || timeLeft <= 0) return;
     const timer = setInterval(() => {
       setTimeLeft(prev => {
         if (prev <= 1) {
@@ -78,7 +110,42 @@ export default function Grade11UnitExamEnginePage() {
       });
     }, 1000);
     return () => clearInterval(timer);
-  }, [exam, submitted, showAuthGate, timeLeft]);
+  }, [exam, submitted, showAuthGate, isMistakeMode, showResumeModal, timeLeft]);
+
+  const handleResumeProgress = () => {
+    if (savedProgressData) {
+      setCurrentIdx(savedProgressData.currentIdx || 0);
+      setUserAnswers(savedProgressData.userAnswers || {});
+      setTimeLeft(savedProgressData.timeLeft || (exam?.durationMinutes * 60));
+    }
+    setShowResumeModal(false);
+  };
+
+  const handleStartFresh = () => {
+    if (user) {
+      const progressKey = `g11-progress-${unitId}-${user.id}`;
+      localStorage.removeItem(progressKey);
+    }
+    setCurrentIdx(0);
+    setUserAnswers({});
+    setTimeLeft(exam?.durationMinutes * 60 || 1800);
+    setShowResumeModal(false);
+  };
+
+  const handleSaveAndExit = () => {
+    if (user && exam) {
+      const progressKey = `g11-progress-${unitId}-${user.id}`;
+      const payload = {
+        unitId: exam.id,
+        currentIdx,
+        userAnswers,
+        timeLeft,
+        savedAt: new Date().toISOString()
+      };
+      localStorage.setItem(progressKey, JSON.stringify(payload));
+      router.push('/grade11-exams');
+    }
+  };
 
   const handleSelectOption = (questionIndex: number, optionIndex: number) => {
     if (submitted) return;
@@ -100,46 +167,79 @@ export default function Grade11UnitExamEnginePage() {
         correctCount++;
       } else {
         mistakesToSave.push({
+          qIdx: idx,
           id: q.id,
           unitId: exam.id,
           question: q.question,
+          choices: q.choices,
+          correctAnswerIndex: q.correctAnswerIndex,
           selectedChoice: q.choices[selected] || 'No answer selected',
           correctChoice: q.choices[q.correctAnswerIndex],
           explanationAr: q.explanationAr,
           explanationEn: q.explanationEn,
+          type: q.type,
           date: new Date().toISOString()
         });
       }
     });
 
     setScore(correctCount);
+    setMistakeList(mistakesToSave);
     setSubmitted(true);
 
-    // Save mistakes to localStorage
-    if (user && mistakesToSave.length > 0) {
-      const mistakeKey = `student-mistakes-${user.id}`;
-      const existingStr = localStorage.getItem(mistakeKey);
-      const existing = existingStr ? JSON.parse(existingStr) : [];
-      const updated = [...mistakesToSave, ...existing];
-      localStorage.setItem(mistakeKey, JSON.stringify(updated));
+    // Clear saved progress on completion
+    if (user) {
+      const progressKey = `g11-progress-${unitId}-${user.id}`;
+      localStorage.removeItem(progressKey);
 
-      // Sync to API backend if online
-      try {
-        const token = localStorage.getItem('token');
-        for (const mistake of mistakesToSave) {
-          await fetch('/api/student/mistakes', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({
-              questionId: mistake.id,
-              selectedChoice: mistake.selectedChoice
-            })
-          });
-        }
-      } catch (e) {}
+      // Save mistakes to localStorage
+      if (mistakesToSave.length > 0) {
+        const mistakeKey = `student-mistakes-${user.id}`;
+        const existingStr = localStorage.getItem(mistakeKey);
+        const existing = existingStr ? JSON.parse(existingStr) : [];
+        const updated = [...mistakesToSave, ...existing];
+        localStorage.setItem(mistakeKey, JSON.stringify(updated));
+
+        // Sync to API backend if online
+        try {
+          const token = localStorage.getItem('token');
+          for (const mistake of mistakesToSave) {
+            await fetch('/api/student/mistakes', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+              },
+              body: JSON.stringify({
+                questionId: mistake.id,
+                selectedChoice: mistake.selectedChoice
+              })
+            });
+          }
+        } catch (e) {}
+      }
+    }
+  };
+
+  // Start Mistake Correction Engine
+  const handleStartMistakeMode = () => {
+    if (mistakeList.length === 0) return;
+    setIsMistakeMode(true);
+    setCurrentMistakeIdx(0);
+    setMistakeUserAnswers({});
+    setMistakeResolvedIds([]);
+    setMistakeFeedback({});
+  };
+
+  const handleSelectMistakeOption = (mIdx: number, optionIndex: number) => {
+    const currentMistake = mistakeList[mIdx];
+    const isRight = optionIndex === currentMistake.correctAnswerIndex;
+
+    setMistakeUserAnswers(prev => ({ ...prev, [mIdx]: optionIndex }));
+    setMistakeFeedback(prev => ({ ...prev, [mIdx]: isRight }));
+
+    if (isRight && !mistakeResolvedIds.includes(currentMistake.id)) {
+      setMistakeResolvedIds(prev => [...prev, currentMistake.id]);
     }
   };
 
@@ -186,10 +286,46 @@ export default function Grade11UnitExamEnginePage() {
   if (!exam) return null;
 
   const currentQ = exam.questions[currentIdx];
+  const isReadingQuestion = currentQ?.type === 'reading' || currentIdx < 8;
   const percentage = Math.round((score / exam.questionsCount) * 100);
 
   return (
     <div className="min-h-screen bg-[#020617] text-white font-sans text-left" dir="ltr">
+      
+      {/* Resume Progress Modal */}
+      {showResumeModal && (
+        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 max-w-md w-full text-center space-y-6 shadow-2xl animate-in fade-in zoom-in-95">
+            <div className="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mx-auto">
+              <Save className="w-8 h-8" />
+            </div>
+            <h3 className="text-xl font-extrabold text-white">
+              Resume Previous Progress?
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              We found your saved progress for <strong>Unit {exam.unitNumber}</strong> on Question {savedProgressData?.currentIdx + 1} with {formatTime(savedProgressData?.timeLeft || 0)} remaining.
+            </p>
+            <div className="space-y-3 pt-2">
+              <button
+                onClick={handleResumeProgress}
+                className="w-full py-3.5 bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 text-white font-extrabold text-xs rounded-xl shadow-lg shadow-brand-500/25 transition-all flex items-center justify-center gap-2"
+              >
+                <Play className="w-4 h-4 fill-white" />
+                <span>Resume Saved Exam</span>
+              </button>
+
+              <button
+                onClick={handleStartFresh}
+                className="w-full py-3.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs rounded-xl border border-slate-700 transition-all flex items-center justify-center gap-2"
+              >
+                <RotateCcw className="w-4 h-4" />
+                <span>Start Fresh from Question 1</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-24 pb-20 space-y-6">
         
         {/* Navigation & Header Toolbar */}
@@ -203,18 +339,18 @@ export default function Grade11UnitExamEnginePage() {
           </Link>
 
           <div className="flex items-center gap-3">
-            {exam.readingPassage && (
+            {!submitted && !isMistakeMode && (
               <button
-                onClick={() => setShowPassagePane(!showPassagePane)}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 hover:bg-blue-500/20 text-xs font-bold transition-all"
+                onClick={handleSaveAndExit}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 hover:bg-amber-500/20 text-xs font-bold transition-all shadow-md"
               >
-                {showPassagePane ? <PanelLeftClose className="w-4 h-4" /> : <PanelLeftOpen className="w-4 h-4" />}
-                <span>{showPassagePane ? 'Hide Side Passage' : 'Show Side Passage'}</span>
+                <Save className="w-4 h-4" />
+                <span>Save & Exit</span>
               </button>
             )}
 
-            {!submitted && (
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-mono font-bold">
+            {!submitted && !isMistakeMode && (
+              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-amber-400 text-xs font-mono font-bold">
                 <Clock className="w-4 h-4" />
                 <span>{formatTime(timeLeft)}</span>
               </div>
@@ -240,8 +376,120 @@ export default function Grade11UnitExamEnginePage() {
           </div>
         </div>
 
-        {/* Results Breakdown Screen */}
-        {submitted ? (
+        {/* In-Exam Mistake Bank Mode (Resolve Mistakes) */}
+        {isMistakeMode ? (
+          <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 sm:p-8 backdrop-blur-xl space-y-6 max-w-4xl mx-auto animate-in fade-in">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+              <div className="flex items-center gap-2 text-amber-400 font-extrabold text-sm">
+                <BrainCircuit className="w-5 h-5" />
+                <span>Mistake Bank Practice Engine ({mistakeResolvedIds.length} / {mistakeList.length} Resolved)</span>
+              </div>
+              <button
+                onClick={() => setIsMistakeMode(false)}
+                className="px-3 py-1.5 rounded-xl bg-slate-800 text-xs text-slate-300 font-bold hover:bg-slate-700"
+              >
+                Back to Score Summary
+              </button>
+            </div>
+
+            {mistakeResolvedIds.length === mistakeList.length ? (
+              <div className="text-center py-10 space-y-4">
+                <div className="w-20 h-20 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto">
+                  <CheckCircle className="w-10 h-10" />
+                </div>
+                <h3 className="text-2xl font-black text-white">🎉 100% Mastery Achieved!</h3>
+                <p className="text-sm text-slate-300">
+                  Awesome work! You have successfully resolved all mistaken questions for Unit {exam.unitNumber}.
+                </p>
+                <button
+                  onClick={() => setIsMistakeMode(false)}
+                  className="px-6 py-3 bg-gradient-to-r from-brand-500 to-amber-600 text-white font-extrabold text-xs rounded-xl shadow-lg"
+                >
+                  Return to Final Results
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-6">
+                {(() => {
+                  const mQ = mistakeList[currentMistakeIdx];
+                  const userChoice = mistakeUserAnswers[currentMistakeIdx];
+                  const isCorrect = mistakeFeedback[currentMistakeIdx];
+
+                  return (
+                    <div className="space-y-6">
+                      <div className="flex items-center justify-between text-xs text-slate-400">
+                        <span>Mistake {currentMistakeIdx + 1} of {mistakeList.length}</span>
+                        <span className="text-amber-400 font-bold">{mQ.type?.toUpperCase()}</span>
+                      </div>
+
+                      <h3 className="text-base sm:text-lg font-bold text-white leading-relaxed">
+                        {mQ.question}
+                      </h3>
+
+                      {/* 2x2 Option Grid */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {mQ.choices.map((choice: string, cIdx: number) => {
+                          const isChosen = userChoice === cIdx;
+                          const isAnswerKey = cIdx === mQ.correctAnswerIndex;
+
+                          return (
+                            <button
+                              key={cIdx}
+                              onClick={() => handleSelectMistakeOption(currentMistakeIdx, cIdx)}
+                              className={`w-full text-left p-3.5 rounded-2xl border transition-all text-xs sm:text-sm font-semibold flex items-center justify-between ${
+                                isChosen && isAnswerKey
+                                  ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300 font-bold'
+                                  : isChosen && !isAnswerKey
+                                  ? 'bg-rose-500/20 border-rose-500 text-rose-300 font-bold'
+                                  : 'bg-slate-950/60 border-slate-800 text-slate-300 hover:border-slate-700'
+                              }`}
+                            >
+                              <span>{choice}</span>
+                              {isChosen && isAnswerKey && <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 ms-2" />}
+                              {isChosen && !isAnswerKey && <XCircle className="w-4 h-4 text-rose-400 shrink-0 ms-2" />}
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      {/* Immediate Explanation Feedback */}
+                      {userChoice !== undefined && (
+                        <div className={`p-4 rounded-2xl border ${isCorrect ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300' : 'bg-amber-500/10 border-amber-500/20 text-amber-300'} space-y-1 text-xs`}>
+                          <div className="font-bold flex items-center gap-1.5">
+                            <Sparkles className="w-4 h-4" />
+                            <span>{isCorrect ? 'Correct! Mistake Resolved!' : 'Incorrect Try Again:'}</span>
+                          </div>
+                          <p className="dir-rtl text-right text-slate-200">{mQ.explanationAr}</p>
+                          <p className="text-left text-slate-400">{mQ.explanationEn}</p>
+                        </div>
+                      )}
+
+                      {/* Navigation between Mistakes */}
+                      <div className="flex items-center justify-between pt-4 border-t border-slate-800">
+                        <button
+                          disabled={currentMistakeIdx === 0}
+                          onClick={() => setCurrentMistakeIdx(prev => prev - 1)}
+                          className="px-4 py-2 bg-slate-800 text-slate-300 rounded-xl text-xs font-bold disabled:opacity-40"
+                        >
+                          Previous Mistake
+                        </button>
+
+                        <button
+                          disabled={currentMistakeIdx === mistakeList.length - 1}
+                          onClick={() => setCurrentMistakeIdx(prev => prev + 1)}
+                          className="px-5 py-2 bg-brand-500 text-white rounded-xl text-xs font-bold disabled:opacity-40"
+                        >
+                          Next Mistake
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })()}
+              </div>
+            )}
+          </div>
+        ) : submitted ? (
+          /* Results Breakdown Screen */
           <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 sm:p-8 backdrop-blur-xl space-y-8 animate-in fade-in max-w-4xl mx-auto">
             <div className="text-center space-y-4">
               <div className="w-20 h-20 rounded-full bg-gradient-to-br from-brand-500/20 to-amber-500/20 border border-brand-500/30 flex items-center justify-center mx-auto text-brand-400">
@@ -260,12 +508,22 @@ export default function Grade11UnitExamEnginePage() {
                 You answered <span className="text-emerald-400 font-bold">{score}</span> out of <span className="font-bold">{exam.questionsCount}</span> questions correctly.
               </p>
 
-              {exam.questionsCount - score > 0 && (
-                <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold inline-flex items-center gap-2">
-                  <BrainCircuit className="w-5 h-5 shrink-0" />
-                  <span>
-                    {exam.questionsCount - score} incorrect questions saved automatically to your <strong>Mistake Bank</strong>.
-                  </span>
+              {mistakeList.length > 0 && (
+                <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div className="flex items-center gap-2">
+                    <BrainCircuit className="w-5 h-5 shrink-0" />
+                    <span>
+                      {mistakeList.length} incorrect questions saved to your <strong>Mistake Bank</strong>.
+                    </span>
+                  </div>
+
+                  <button
+                    onClick={handleStartMistakeMode}
+                    className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs rounded-xl shadow-md transition-all flex items-center gap-1.5 shrink-0"
+                  >
+                    <Flame className="w-4 h-4" />
+                    <span>Fix Mistakes Now</span>
+                  </button>
                 </div>
               )}
             </div>
@@ -367,12 +625,12 @@ export default function Grade11UnitExamEnginePage() {
             </div>
           </div>
         ) : (
-          /* Active Question View - Side-by-Side Split View (Left: Passage | Right: Question & 2x2 Choices) */
+          /* Active Question View - Passage ONLY shown for Reading Comprehension Questions */
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             
-            {/* Left Side: Reading Comprehension Passage Pane */}
-            {showPassagePane && exam.readingPassage && (
-              <div className="lg:col-span-5 bg-slate-900/60 border border-slate-800 rounded-3xl p-6 backdrop-blur-xl space-y-3 sticky top-24 max-h-[75vh] overflow-y-auto">
+            {/* Left Side: Reading Comprehension Passage Pane (ONLY FOR READING QUESTIONS) */}
+            {isReadingQuestion && exam.readingPassage && showPassagePane && (
+              <div className="lg:col-span-5 bg-slate-900/60 border border-slate-800 rounded-3xl p-6 backdrop-blur-xl space-y-3 sticky top-24 max-h-[75vh] overflow-y-auto animate-in fade-in">
                 <div className="flex items-center gap-2 text-blue-400 font-bold text-xs pb-2 border-b border-slate-800">
                   <BookOpen className="w-4 h-4" />
                   <span>High Note 11 Reading Passage • Unit {exam.unitNumber}</span>
@@ -391,11 +649,16 @@ export default function Grade11UnitExamEnginePage() {
             )}
 
             {/* Right Side: Active Question & 2x2 Option Grid */}
-            <div className={`${(showPassagePane && exam.readingPassage) ? 'lg:col-span-7' : 'lg:col-span-12 max-w-4xl mx-auto'} bg-slate-900/60 border border-slate-800 rounded-3xl p-6 backdrop-blur-xl space-y-6 w-full`}>
+            <div className={`${(isReadingQuestion && exam.readingPassage && showPassagePane) ? 'lg:col-span-7' : 'lg:col-span-12 max-w-4xl mx-auto'} bg-slate-900/60 border border-slate-800 rounded-3xl p-6 backdrop-blur-xl space-y-6 w-full`}>
               
               {/* Question Progress Tracker */}
               <div className="flex items-center justify-between text-xs text-slate-400 border-b border-slate-800/80 pb-3">
-                <span className="font-semibold">Question {currentIdx + 1} of {exam.questionsCount}</span>
+                <div className="flex items-center gap-2">
+                  <span className="font-semibold">Question {currentIdx + 1} of {exam.questionsCount}</span>
+                  <span className="px-2 py-0.5 rounded bg-brand-500/10 border border-brand-500/20 text-brand-400 text-[10px] font-bold uppercase">
+                    {currentQ.type || 'Question'}
+                  </span>
+                </div>
                 <div className="w-36 h-2 bg-slate-950 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-gradient-to-r from-brand-500 to-amber-500 transition-all duration-300"
