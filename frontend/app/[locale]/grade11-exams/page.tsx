@@ -78,19 +78,19 @@ export default function Grade11ExamsCatalogPage() {
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-brand-500/20 to-amber-500/20 border border-brand-500/30 text-brand-400 text-xs font-bold">
             <GraduationCap className="w-4 h-4" />
-            <span>{isRtl ? 'منهاج الأول ثانوي (Action Pack 11)' : 'Grade 11 Action Pack'}</span>
+            <span>{isRtl ? 'منهاج الأول ثانوي (High Note 11)' : 'Grade 11 High Note 11'}</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
             {isRtl
-              ? 'امتحانات الأول ثانوي المجانية لجميع الوحدات'
-              : 'Grade 11 Free Unit Exams Catalog'}
+              ? 'امتحانات الأول ثانوي المجانية لجميع الوحدات (High Note 11)'
+              : 'Grade 11 High Note 11 Free Unit Exams Catalog'}
           </h1>
 
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
             {isRtl
-              ? 'اختبر مستواك مجاناً في وحدات مادة اللغة الإنجليزية (Units 1 - 10) وحضّر نفسك لمرحلة التوجيهي بثقة عالية. احصل على نتيجتك فوراً وراجع أخطاءك!'
-              : 'Test your knowledge for free across all 10 Grade 11 Units. Instant scoring, detailed feedback, and mistake bank tracking.'}
+              ? 'اختبر مستواك مجاناً في جميع وحدات مادة اللغة الإنجليزية (High Note 11 Units 1 - 10) وحضّر نفسك لمرحلة التوجيهي بثقة عالية. تصحيح تلقائي، عرض النص المقروء جنباً إلى جنب، وتخزين أخطائك في بنك الأخطاء!'
+              : 'Test your knowledge for free across all 10 Grade 11 High Note 11 Units. Side-by-side reading passages, instant scoring, and mistake bank tracking.'}
           </p>
         </div>
 
