@@ -15,7 +15,13 @@ import {
   BrainCircuit,
   Lock,
   UserPlus,
-  LogIn
+  LogIn,
+  BookOpen,
+  X,
+  ChevronRight,
+  ChevronLeft,
+  HelpCircle,
+  Check
 } from 'lucide-react';
 import grade11Data from '@/data/grade11_unit_exams.json';
 
@@ -34,6 +40,7 @@ export default function Grade11UnitExamEnginePage() {
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(1800); // 30 mins
   const [showAuthGate, setShowAuthGate] = useState(false);
+  const [showPassageModal, setShowPassageModal] = useState(false);
 
   useEffect(() => {
     const userStr = localStorage.getItem('user');
@@ -79,7 +86,7 @@ export default function Grade11UnitExamEnginePage() {
     }));
   };
 
-  const handleSubmitExam = () => {
+  const handleSubmitExam = async () => {
     if (!exam || submitted) return;
 
     let correctCount = 0;
@@ -94,9 +101,11 @@ export default function Grade11UnitExamEnginePage() {
           id: q.id,
           unitId: exam.id,
           question: q.question,
-          selectedChoice: q.choices[selected] || 'لم يتم الإجابة',
+          selectedChoice: q.choices[selected] || 'No answer selected',
           correctChoice: q.choices[q.correctAnswerIndex],
-          explanationAr: q.explanationAr
+          explanationAr: q.explanationAr,
+          explanationEn: q.explanationEn,
+          date: new Date().toISOString()
         });
       }
     });
@@ -104,13 +113,31 @@ export default function Grade11UnitExamEnginePage() {
     setScore(correctCount);
     setSubmitted(true);
 
-    // Save mistakes locally
+    // 1. Save mistakes to localStorage for Mistake Bank
     if (user && mistakesToSave.length > 0) {
       const mistakeKey = `student-mistakes-${user.id}`;
       const existingStr = localStorage.getItem(mistakeKey);
       const existing = existingStr ? JSON.parse(existingStr) : [];
       const updated = [...mistakesToSave, ...existing];
       localStorage.setItem(mistakeKey, JSON.stringify(updated));
+
+      // 2. Sync to API backend if online
+      try {
+        const token = localStorage.getItem('token');
+        for (const mistake of mistakesToSave) {
+          await fetch('/api/student/mistakes', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              questionId: mistake.id,
+              selectedChoice: mistake.selectedChoice
+            })
+          });
+        }
+      } catch (e) {}
     }
   };
 
@@ -122,18 +149,16 @@ export default function Grade11UnitExamEnginePage() {
 
   if (showAuthGate) {
     return (
-      <div className={`min-h-screen bg-[#020617] text-white flex items-center justify-center p-4 ${isRtl ? 'rtl' : 'ltr'}`}>
+      <div className="min-h-screen bg-[#020617] text-white flex items-center justify-center p-4 dir-ltr font-sans">
         <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 max-w-md w-full text-center space-y-6 shadow-2xl">
           <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-500/20 to-amber-500/20 border border-brand-500/30 flex items-center justify-center mx-auto text-brand-400">
             <Lock className="w-8 h-8" />
           </div>
           <h2 className="text-2xl font-black text-white">
-            {isRtl ? 'تسجيل الدخول مطلوب' : 'Login Required'}
+            Login Required
           </h2>
           <p className="text-sm text-slate-400 leading-relaxed">
-            {isRtl
-              ? 'تأدية امتحانات الوحدات وحفظ نتيجتك يتطلب تسجيل الدخول أو إنشاء حساب مجاني جديد.'
-              : 'Please sign up or log in to take free unit exams and save your results.'}
+            Please sign up or log in to take Grade 11 free unit exams and track your scores in your Mistake Bank.
           </p>
           <div className="space-y-3 pt-2">
             <Link
@@ -141,14 +166,14 @@ export default function Grade11UnitExamEnginePage() {
               className="w-full py-3.5 bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 text-white font-bold text-xs rounded-xl shadow-lg shadow-brand-500/25 transition-all flex items-center justify-center gap-2"
             >
               <UserPlus className="w-4 h-4" />
-              <span>{isRtl ? 'إنشاء حساب مجاني جديد' : 'Create Free Account'}</span>
+              <span>Create Free Account</span>
             </Link>
             <Link
               href={`/login?redirect=/grade11-exams/${unitId}`}
               className="w-full py-3.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs rounded-xl border border-slate-700 transition-all flex items-center justify-center gap-2"
             >
               <LogIn className="w-4 h-4" />
-              <span>{isRtl ? 'تسجيل الدخول' : 'Log In'}</span>
+              <span>Log In</span>
             </Link>
           </div>
         </div>
@@ -162,55 +187,67 @@ export default function Grade11UnitExamEnginePage() {
   const percentage = Math.round((score / exam.questionsCount) * 100);
 
   return (
-    <div className={`min-h-screen bg-[#020617] text-white font-sans ${isRtl ? 'rtl' : 'ltr'}`}>
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-28 pb-24 space-y-8">
+    <div className="min-h-screen bg-[#020617] text-white font-sans text-left" dir="ltr">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-24 pb-20 space-y-6">
         
-        {/* Navigation Bar */}
+        {/* Navigation & Header Toolbar */}
         <div className="flex items-center justify-between border-b border-slate-800 pb-4">
           <Link
             href="/grade11-exams"
             className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors bg-slate-900/60 hover:bg-slate-800 px-4 py-2 rounded-xl border border-slate-800 text-xs font-bold"
           >
-            {isRtl ? <ArrowRight className="h-4 w-4" /> : <ArrowLeft className="h-4 w-4" />}
-            <span>{isRtl ? 'العودة لكتالوج الامتحانات' : 'Back to Catalog'}</span>
+            <ArrowLeft className="h-4 w-4" />
+            <span>Back to Exam Catalog</span>
           </Link>
 
-          {!submitted && (
-            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-mono font-bold">
-              <Clock className="w-4 h-4" />
-              <span>{formatTime(timeLeft)}</span>
-            </div>
-          )}
+          <div className="flex items-center gap-3">
+            {exam.readingPassage && (
+              <button
+                onClick={() => setShowPassageModal(true)}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 hover:bg-blue-500/20 text-xs font-bold transition-all"
+              >
+                <BookOpen className="w-4 h-4" />
+                <span>📖 Reading Passage</span>
+              </button>
+            )}
+
+            {!submitted && (
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-mono font-bold">
+                <Clock className="w-4 h-4" />
+                <span>{formatTime(timeLeft)}</span>
+              </div>
+            )}
+          </div>
         </div>
 
-        {/* Header Title */}
-        <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 backdrop-blur-xl">
+        {/* Unit Info Header */}
+        <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 backdrop-blur-xl">
           <div>
             <span className="text-xs font-bold text-brand-400 block mb-1">
-              {isRtl ? `الوحدة ${exam.unitNumber}` : `Unit ${exam.unitNumber}`}
+              Action Pack 11 • Unit {exam.unitNumber}
             </span>
-            <h1 className="text-xl sm:text-2xl font-black text-white">
-              {isRtl ? exam.titleAr : exam.titleEn}
+            <h1 className="text-lg sm:text-xl font-extrabold text-white">
+              {exam.titleEn} ({exam.titleAr})
             </h1>
           </div>
 
-          <div className="flex items-center gap-3 text-xs text-slate-400">
-            <span className="bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800">
-              {exam.questionsCount} {isRtl ? 'سؤال' : 'Questions'}
+          <div className="flex items-center gap-2 text-xs text-slate-400 shrink-0">
+            <span className="bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800 font-bold">
+              {exam.questionsCount} Questions
             </span>
           </div>
         </div>
 
-        {/* Results Screen */}
+        {/* Results Breakdown Screen */}
         {submitted ? (
-          <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 backdrop-blur-xl space-y-8 animate-in fade-in">
+          <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 sm:p-8 backdrop-blur-xl space-y-8 animate-in fade-in">
             <div className="text-center space-y-4">
               <div className="w-20 h-20 rounded-full bg-gradient-to-br from-brand-500/20 to-amber-500/20 border border-brand-500/30 flex items-center justify-center mx-auto text-brand-400">
                 <Award className="w-10 h-10" />
               </div>
 
               <h2 className="text-2xl sm:text-3xl font-black text-white">
-                {isRtl ? 'نتيجة الامتحان النهائي' : 'Exam Results'}
+                Exam Final Score & Explanation Breakdown
               </h2>
 
               <div className="text-4xl sm:text-5xl font-black text-brand-400">
@@ -218,27 +255,23 @@ export default function Grade11UnitExamEnginePage() {
               </div>
 
               <p className="text-sm text-slate-300">
-                {isRtl
-                  ? `أجبت بشكل صحيح على ${score} من أصل ${exam.questionsCount} سؤالاً.`
-                  : `You answered ${score} out of ${exam.questionsCount} questions correctly.`}
+                You answered <span className="text-emerald-400 font-bold">{score}</span> out of <span className="font-bold">{exam.questionsCount}</span> questions correctly.
               </p>
 
               {exam.questionsCount - score > 0 && (
                 <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold inline-flex items-center gap-2">
-                  <BrainCircuit className="w-4 h-4" />
+                  <BrainCircuit className="w-5 h-5 shrink-0" />
                   <span>
-                    {isRtl
-                      ? `تمت إضافة ${exam.questionsCount - score} أسئلة خاطئة تلقائياً إلى بنك الأخطاء لمراجعتها.`
-                      : `${exam.questionsCount - score} incorrect questions saved to your Mistake Bank.`}
+                    {exam.questionsCount - score} incorrect questions saved automatically to your <strong>Mistake Bank</strong>.
                   </span>
                 </div>
               )}
             </div>
 
-            {/* Answer Breakdown Review */}
-            <div className="space-y-4 pt-4 border-t border-slate-800">
+            {/* Answer Breakdown with Detailed Explanations */}
+            <div className="space-y-6 pt-4 border-t border-slate-800">
               <h3 className="text-lg font-bold text-white mb-4">
-                {isRtl ? 'مراجعة جميع الأسئلة والإجابات:' : 'Detailed Question Breakdown:'}
+                Detailed Answers & Rule Explanations:
               </h3>
 
               {exam.questions.map((q: any, qIdx: number) => {
@@ -252,7 +285,7 @@ export default function Grade11UnitExamEnginePage() {
                       isCorrect
                         ? 'bg-emerald-500/5 border-emerald-500/20'
                         : 'bg-rose-500/5 border-rose-500/20'
-                    } space-y-3`}
+                    } space-y-4`}
                   >
                     <div className="flex items-start justify-between gap-3">
                       <h4 className="text-sm font-bold text-white">
@@ -265,6 +298,7 @@ export default function Grade11UnitExamEnginePage() {
                       )}
                     </div>
 
+                    {/* 2x2 Grid Options Review */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                       {q.choices.map((choice: string, cIdx: number) => {
                         const isChosen = userAns === cIdx;
@@ -273,18 +307,33 @@ export default function Grade11UnitExamEnginePage() {
                         return (
                           <div
                             key={cIdx}
-                            className={`p-2.5 rounded-xl border ${
+                            className={`p-3 rounded-xl border flex items-center justify-between ${
                               isAnswerKey
-                                ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-300 font-bold'
+                                ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-300 font-bold'
                                 : isChosen
-                                ? 'bg-rose-500/20 border-rose-500/40 text-rose-300 font-bold'
+                                ? 'bg-rose-500/20 border-rose-500/50 text-rose-300 font-bold'
                                 : 'bg-slate-950/40 border-slate-800 text-slate-400'
                             }`}
                           >
                             <span>{choice}</span>
+                            {isAnswerKey && <Check className="w-4 h-4 text-emerald-400 shrink-0" />}
                           </div>
                         );
                       })}
+                    </div>
+
+                    {/* Detailed Solution Explanation */}
+                    <div className="p-4 rounded-xl bg-slate-950 border border-slate-800/80 space-y-1 text-xs">
+                      <div className="flex items-center gap-1.5 text-brand-400 font-bold mb-1">
+                        <Sparkles className="w-3.5 h-3.5" />
+                        <span>Explanation & Solution Rule:</span>
+                      </div>
+                      <p className="text-slate-300 leading-relaxed dir-rtl text-right">
+                        {q.explanationAr}
+                      </p>
+                      <p className="text-slate-400 leading-relaxed text-left">
+                        {q.explanationEn}
+                      </p>
                     </div>
                   </div>
                 );
@@ -303,7 +352,7 @@ export default function Grade11UnitExamEnginePage() {
                 className="flex-1 py-3.5 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-2"
               >
                 <RotateCcw className="w-4 h-4" />
-                <span>{isRtl ? 'إعادة الامتحان' : 'Retake Exam'}</span>
+                <span>Retake Exam</span>
               </button>
 
               <Link
@@ -311,43 +360,47 @@ export default function Grade11UnitExamEnginePage() {
                 className="flex-1 py-3.5 bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 text-white font-bold text-xs rounded-xl shadow-lg shadow-brand-500/20 transition-all flex items-center justify-center gap-2 text-center"
               >
                 <BrainCircuit className="w-4 h-4" />
-                <span>{isRtl ? 'الانتقال لبنك الأخطاء' : 'Go to Mistake Bank'}</span>
+                <span>Open Mistake Bank</span>
               </Link>
             </div>
           </div>
         ) : (
-          /* Active Question Step */
-          <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 sm:p-8 backdrop-blur-xl space-y-6">
-            <div className="flex items-center justify-between text-xs text-slate-400 border-b border-slate-800 pb-4">
-              <span>{isRtl ? `السؤال ${currentIdx + 1} من أصل ${exam.questionsCount}` : `Question ${currentIdx + 1} of ${exam.questionsCount}`}</span>
-              <div className="w-32 h-2 bg-slate-950 rounded-full overflow-hidden">
+          /* Active Question Container - Compact 2x2 No Scroll Layout */
+          <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 backdrop-blur-xl space-y-6">
+            
+            {/* Question Progress Tracker */}
+            <div className="flex items-center justify-between text-xs text-slate-400 border-b border-slate-800/80 pb-3">
+              <span className="font-semibold">Question {currentIdx + 1} of {exam.questionsCount}</span>
+              <div className="w-36 h-2 bg-slate-950 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-brand-500 transition-all"
+                  className="h-full bg-gradient-to-r from-brand-500 to-amber-500 transition-all duration-300"
                   style={{ width: `${((currentIdx + 1) / exam.questionsCount) * 100}%` }}
                 />
               </div>
             </div>
 
-            <h3 className="text-base sm:text-lg font-bold text-white leading-relaxed">
+            {/* Question Title */}
+            <h3 className="text-base sm:text-lg font-extrabold text-white leading-relaxed">
               {currentIdx + 1}. {currentQ.question}
             </h3>
 
-            <div className="space-y-3">
+            {/* Compact 2x2 Options Grid (A, B, C, D) - Fits cleanly on screen without scrolling */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {currentQ.choices.map((choice: string, cIdx: number) => {
                 const isSelected = userAnswers[currentIdx] === cIdx;
                 return (
                   <button
                     key={cIdx}
                     onClick={() => handleSelectOption(currentIdx, cIdx)}
-                    className={`w-full text-start p-4 rounded-2xl border transition-all text-xs sm:text-sm font-semibold flex items-center justify-between ${
+                    className={`w-full text-left p-3.5 rounded-2xl border transition-all text-xs sm:text-sm font-semibold flex items-center justify-between ${
                       isSelected
                         ? 'bg-brand-500/20 border-brand-500 text-white shadow-lg shadow-brand-500/10'
                         : 'bg-slate-950/60 border-slate-800 text-slate-300 hover:border-slate-700 hover:bg-slate-900'
                     }`}
                   >
-                    <span>{choice}</span>
+                    <span className="leading-snug">{choice}</span>
                     <div
-                      className={`w-5 h-5 rounded-full border flex items-center justify-center ${
+                      className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ms-2 ${
                         isSelected ? 'border-brand-400 bg-brand-500 text-white' : 'border-slate-700'
                       }`}
                     >
@@ -358,8 +411,8 @@ export default function Grade11UnitExamEnginePage() {
               })}
             </div>
 
-            {/* Navigation Buttons */}
-            <div className="flex items-center justify-between pt-6 border-t border-slate-800">
+            {/* Compact Navigation Controls */}
+            <div className="flex items-center justify-between pt-4 border-t border-slate-800/80">
               <button
                 disabled={currentIdx === 0}
                 onClick={() => setCurrentIdx(prev => prev - 1)}
@@ -369,28 +422,64 @@ export default function Grade11UnitExamEnginePage() {
                     : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white'
                 }`}
               >
-                {isRtl ? 'السؤال السابق' : 'Previous'}
+                Previous
               </button>
 
               {currentIdx < exam.questionsCount - 1 ? (
                 <button
                   onClick={() => setCurrentIdx(prev => prev + 1)}
-                  className="px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-xs font-extrabold rounded-xl shadow-md transition-all"
+                  className="px-6 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-xs font-extrabold rounded-xl shadow-md transition-all flex items-center gap-1"
                 >
-                  {isRtl ? 'السؤال التالي' : 'Next Question'}
+                  <span>Next Question</span>
+                  <ChevronRight className="w-4 h-4" />
                 </button>
               ) : (
                 <button
                   onClick={handleSubmitExam}
-                  className="px-6 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white text-xs font-black rounded-xl shadow-lg shadow-emerald-500/20 transition-all"
+                  className="px-6 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white text-xs font-black rounded-xl shadow-lg shadow-emerald-500/20 transition-all flex items-center gap-1"
                 >
-                  {isRtl ? 'إنهاء الامتحان وتسليم الإجابات' : 'Submit Exam'}
+                  <span>Submit Exam</span>
+                  <CheckCircle2 className="w-4 h-4" />
                 </button>
               )}
             </div>
           </div>
         )}
       </div>
+
+      {/* Reading Passage Modal */}
+      {showPassageModal && (
+        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 max-w-2xl w-full relative space-y-4 shadow-2xl animate-in fade-in zoom-in-95">
+            <button
+              onClick={() => setShowPassageModal(false)}
+              className="absolute top-4 end-4 p-2 text-slate-400 hover:text-white rounded-xl bg-slate-800/50"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="flex items-center gap-2 text-brand-400 font-bold text-sm">
+              <BookOpen className="w-5 h-5" />
+              <span>Unit {exam.unitNumber} • Reading Comprehension Passage</span>
+            </div>
+
+            <h3 className="text-xl font-bold text-white">
+              {exam.titleEn}
+            </h3>
+
+            <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 max-h-[60vh] overflow-y-auto leading-relaxed text-sm text-slate-300 space-y-3">
+              <p>{exam.readingPassage}</p>
+            </div>
+
+            <button
+              onClick={() => setShowPassageModal(false)}
+              className="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-xl transition-all"
+            >
+              Close Passage & Resume Exam
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
