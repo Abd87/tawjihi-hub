@@ -94,14 +94,14 @@ export default function Grade11UnitExamEnginePage() {
       const uNum = parseInt(unitId.replace('unit-', ''));
       getGrade11ExamByUnit(uNum).then(e => {
         if (e) {
-          setExam(e);
+          setExam({ ...e, questionsCount: e.questions.length });
           setTimeLeft(e.durationMinutes * 60);
         }
       });
     } else {
       getGrade11ExamById(unitId).then(e => {
         if (e) {
-          setExam(e);
+          setExam({ ...e, questionsCount: e.questions.length });
           setTimeLeft(e.durationMinutes * 60);
         }
       });
@@ -653,7 +653,11 @@ export default function Grade11UnitExamEnginePage() {
                 </div>
                 <div className="p-6 overflow-y-auto custom-scrollbar flex-1 space-y-4 text-sm text-slate-300 leading-relaxed font-serif">
                   {exam.text.split('\n\n').map((para: string, pIdx: number) => (
-                    <p key={pIdx}>{para}</p>
+                    <p 
+                      key={pIdx} 
+                      className="bg-slate-950/60 p-4 rounded-2xl border border-slate-800/80 tracking-wide leading-relaxed text-slate-200 [&>u]:text-brand-400 [&>u]:font-black [&>u]:underline [&>u]:underline-offset-4 [&>u]:bg-brand-500/10 [&>u]:px-1 [&>u]:py-0.5 [&>u]:rounded [&>u]:border [&>u]:border-brand-500/30 [&>b>u]:text-brand-400 [&>b>u]:font-black [&>b>u]:underline [&>b>u]:underline-offset-4 [&>b>u]:bg-brand-500/10 [&>b>u]:px-1 [&>b>u]:py-0.5 [&>b>u]:rounded [&>b>u]:border [&>b>u]:border-brand-500/30"
+                      dangerouslySetInnerHTML={{ __html: para }}
+                    />
                   ))}
                 </div>
               </div>
