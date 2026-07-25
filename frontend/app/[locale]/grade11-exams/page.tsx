@@ -69,7 +69,7 @@ export default function Grade11ExamsCatalogPage() {
         const list = JSON.parse(raw);
         // Filter Grade 11 mistakes
         const filtered = list.filter((m: any) => 
-          (m.id && m.id.startsWith('g11_')) || (m.unitId && m.unitId.startsWith('unit-'))
+          m.isGrade11 || (m.id && m.id.startsWith('g11_')) || (m.unitId && m.unitId.startsWith('unit-'))
         );
         setG11Mistakes(filtered);
       } catch (e) {}

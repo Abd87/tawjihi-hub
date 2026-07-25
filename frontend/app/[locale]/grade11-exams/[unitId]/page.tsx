@@ -190,7 +190,8 @@ export default function Grade11UnitExamEnginePage() {
           explanationAr: q.explanationAr,
           explanationEn: q.explanationEn,
           type: q.type,
-          date: new Date().toISOString()
+          date: new Date().toISOString(),
+          isGrade11: true
         });
       }
     });
@@ -639,8 +640,23 @@ export default function Grade11UnitExamEnginePage() {
           </div>
         ) : (
           /* Active Question View - Passage ONLY shown for Reading Comprehension Questions */
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start relative pb-24 lg:pb-0">
             
+            {/* Mobile/Floating Toggle Button for Reading Passage */}
+            {isReadingQuestion && exam.text && (
+              <div className={`flex lg:hidden flex-col gap-4 fixed bottom-6 ${isRtl ? 'left-6' : 'right-6'} z-[60]`}>
+                <button
+                  onClick={() => setShowPassagePane(!showPassagePane)}
+                  className="bg-brand-500 text-white p-3.5 rounded-full shadow-2xl shadow-brand-500/40 hover:bg-brand-600 transition-all flex items-center justify-center gap-2 group border-2 border-slate-900"
+                >
+                  {showPassagePane ? <PanelLeftClose className="w-5 h-5" /> : <PanelLeftOpen className="w-5 h-5" />}
+                  <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out px-0 group-hover:px-2 text-sm font-bold">
+                    {showPassagePane ? 'Hide Passage' : 'View Passage'}
+                  </span>
+                </button>
+              </div>
+            )}
+
             {/* Left Side: Reading Comprehension Passage Pane (ONLY FOR READING QUESTIONS) */}
             {isReadingQuestion && exam.text && showPassagePane && (
               <div className="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden flex flex-col h-[500px] lg:h-[calc(100vh-8rem)] sticky top-24 shadow-2xl">
@@ -695,7 +711,7 @@ export default function Grade11UnitExamEnginePage() {
                     <button
                       key={cIdx}
                       onClick={() => handleSelectOption(currentIdx, cIdx)}
-                      className={`w-full text-left p-3.5 rounded-2xl border transition-all text-xs sm:text-sm font-semibold flex items-center justify-between ${
+                      className={`w-full text-left p-4 sm:p-3.5 rounded-2xl border transition-all text-sm font-semibold flex items-center justify-between min-h-[60px] ${
                         isSelected
                           ? 'bg-brand-500/20 border-brand-500 text-white shadow-lg shadow-brand-500/10'
                           : 'bg-slate-950/60 border-slate-800 text-slate-300 hover:border-slate-700 hover:bg-slate-900'
