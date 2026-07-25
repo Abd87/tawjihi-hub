@@ -304,6 +304,11 @@ export default function Grade11UnitExamEnginePage() {
   const isReadingQuestion = currentQ?.type === 'reading' || currentIdx < 8 || ['paragraph', 'text', 'underlined', 'passage', 'writer', 'author', 'pronoun', 'line', 'refer', 'meaning'].some(keyword => qText.includes(keyword));
   const percentage = Math.round((score / exam.questionsCount) * 100);
 
+  // Auto-sync passage pane state when moving between question types
+  useEffect(() => {
+    setShowPassagePane(isReadingQuestion);
+  }, [currentIdx, isReadingQuestion]);
+
   return (
     <div className="min-h-screen bg-[#020617] text-white font-sans text-left" dir="ltr">
       
@@ -644,9 +649,9 @@ export default function Grade11UnitExamEnginePage() {
           /* Active Question View - Passage ONLY shown for Reading Comprehension Questions */
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start relative pb-24 lg:pb-0">
             
-            {/* Mobile/Floating Toggle Button for Reading Passage */}
-            {isReadingQuestion && exam.text && (
-              <div className={`flex lg:hidden flex-col gap-4 fixed bottom-6 ${isRtl ? 'left-6' : 'right-6'} z-[60]`}>
+            {/* Floating Toggle Button for Reading Passage (Available for all questions) */}
+            {exam.text && (
+              <div className={`flex flex-col gap-4 fixed bottom-6 ${isRtl ? 'left-6' : 'right-6'} z-[60]`}>
                 <button
                   onClick={() => setShowPassagePane(!showPassagePane)}
                   className="bg-brand-500 text-white p-3.5 rounded-full shadow-2xl shadow-brand-500/40 hover:bg-brand-600 transition-all flex items-center justify-center gap-2 group border-2 border-slate-900"
@@ -659,8 +664,8 @@ export default function Grade11UnitExamEnginePage() {
               </div>
             )}
 
-            {/* Left Side: Reading Comprehension Passage Pane (ONLY FOR READING QUESTIONS) */}
-            {isReadingQuestion && exam.text && showPassagePane && (
+            {/* Left Side: Reading Comprehension Passage Pane */}
+            {exam.text && showPassagePane && (
               <div className="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden flex flex-col h-[500px] lg:h-[calc(100vh-8rem)] sticky top-24 shadow-2xl">
                 <div className="bg-slate-800/50 border-b border-slate-700/50 p-4 flex items-center justify-between shrink-0">
                   <span className="font-bold text-slate-300 text-sm flex items-center gap-2">
@@ -681,7 +686,7 @@ export default function Grade11UnitExamEnginePage() {
             )}
 
             {/* Right Side: Active Question & 2x2 Option Grid */}
-            <div className={`${(isReadingQuestion && exam.text && showPassagePane) ? 'lg:col-span-7' : 'lg:col-span-12 max-w-4xl mx-auto'} bg-slate-900/60 border border-slate-800 rounded-3xl p-6 backdrop-blur-xl space-y-6 w-full`}>
+            <div className={`${(exam.text && showPassagePane) ? 'lg:col-span-7' : 'lg:col-span-12 max-w-4xl mx-auto'} bg-slate-900/60 border border-slate-800 rounded-3xl p-6 backdrop-blur-xl space-y-6 w-full`}>
               
               {/* Question Progress Tracker */}
               <div className="flex items-center justify-between text-xs text-slate-400 border-b border-slate-800/80 pb-3">
