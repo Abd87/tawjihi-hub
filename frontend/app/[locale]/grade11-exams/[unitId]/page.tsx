@@ -299,7 +299,8 @@ export default function Grade11UnitExamEnginePage() {
   if (!exam) return null;
 
   const currentQ = exam.questions[currentIdx];
-  const isReadingQuestion = currentQ?.type === 'reading' || currentIdx < 8;
+  const qText = (currentQ?.question || '').toLowerCase();
+  const isReadingQuestion = currentQ?.type === 'reading' || currentIdx < 8 || ['paragraph', 'text', 'underlined', 'passage', 'writer', 'author', 'pronoun', 'line', 'refer', 'meaning'].some(keyword => qText.includes(keyword));
   const percentage = Math.round((score / exam.questionsCount) * 100);
 
   return (
