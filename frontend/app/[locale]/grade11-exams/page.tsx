@@ -47,6 +47,12 @@ export default function Grade11ExamsCatalogPage() {
   const [feedbackState, setFeedbackState] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
+    // Check url for mistake bank auto-open
+    const queryStr = window.location.search;
+    if (queryStr.includes('tab=mistakes')) {
+      setActiveTab('mistakes');
+    }
+
     // Load exams from DB
     getGrade11Exams().then(data => setGrade11Data(data));
 
@@ -316,7 +322,7 @@ export default function Grade11ExamsCatalogPage() {
                             dangerouslySetInnerHTML={{ __html: `${idx + 1}. ${m.question}` }}
                           />
                           <span className="px-2.5 py-0.5 rounded bg-slate-950 border border-slate-800 text-[10px] text-slate-400 font-mono shrink-0">
-                            Unit {m.unitId?.replace('unit-', '')}
+                            Unit {m.unitNumber || m.unitId?.replace('unit-', '').substring(0, 4)}
                           </span>
                         </div>
 

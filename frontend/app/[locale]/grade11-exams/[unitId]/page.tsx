@@ -182,6 +182,7 @@ export default function Grade11UnitExamEnginePage() {
           qIdx: idx,
           id: q.id,
           unitId: exam.id,
+          unitNumber: exam.unitNumber,
           question: q.question,
           choices: q.choices,
           correctAnswerIndex: q.correctAnswerIndex,
@@ -631,7 +632,7 @@ export default function Grade11UnitExamEnginePage() {
               </button>
 
               <Link
-                href="/dashboard/mistakes"
+                href="/grade11-exams?tab=mistakes"
                 className="flex-1 py-3.5 bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 text-white font-bold text-xs rounded-xl shadow-lg shadow-brand-500/20 transition-all flex items-center justify-center gap-2 text-center"
               >
                 <BrainCircuit className="w-4 h-4" />
