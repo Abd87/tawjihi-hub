@@ -227,6 +227,19 @@ export default function CourseSyllabusPage() {
 
   // Intercept Vocab BTEC Course
   if (courseId === 'vocab-btec') {
+    if (course.locked) {
+      return (
+        <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center text-center px-4">
+          <CourseUnlockModal 
+            isOpen={true} 
+            onClose={() => router.push('/dashboard')} 
+            courseTitleAr={course.titleAr}
+            courseTitleEn={course.titleEn}
+            isRtl={isRtl}
+          />
+        </div>
+      );
+    }
     return <VocabCoursePlayer course={course} />;
   }
 
@@ -338,14 +351,24 @@ export default function CourseSyllabusPage() {
                   {isRtl ? <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" /> : <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />}
                 </Link>
               )}
-              <Link 
-                href={`/${locale}/courses/${courseId}/mistakes`}
-                className="w-full mt-4 flex items-center justify-center gap-2 px-6 py-4 bg-slate-800 hover:bg-rose-500/20 text-rose-400 hover:text-rose-300 border border-slate-700 hover:border-rose-500/50 font-bold rounded-2xl transition-all group"
-              >
-                <AlertOctagon className="h-5 w-5" />
-                <span>{isRtl ? 'بنك الأخطاء' : 'Mistakes Bank'}</span>
-                {isRtl ? <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" /> : <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />}
-              </Link>
+              {course.locked ? (
+                <button 
+                  onClick={() => setShowUnlockModal(true)}
+                  className="w-full mt-4 flex items-center justify-center gap-2 px-6 py-4 bg-slate-800 hover:bg-slate-700 text-slate-500 border border-slate-700 font-bold rounded-2xl transition-all group"
+                >
+                  <Lock className="h-5 w-5" />
+                  <span>{isRtl ? 'مقفول' : 'Locked'}</span>
+                </button>
+              ) : (
+                <Link 
+                  href={`/${locale}/courses/${courseId}/mistakes`}
+                  className="w-full mt-4 flex items-center justify-center gap-2 px-6 py-4 bg-slate-800 hover:bg-rose-500/20 text-rose-400 hover:text-rose-300 border border-slate-700 hover:border-rose-500/50 font-bold rounded-2xl transition-all group"
+                >
+                  <AlertOctagon className="h-5 w-5" />
+                  <span>{isRtl ? 'بنك الأخطاء' : 'Mistakes Bank'}</span>
+                  {isRtl ? <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" /> : <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />}
+                </Link>
+              )}
               {course.locked && (
                 <button 
                   onClick={() => setShowUnlockModal(true)}
@@ -404,10 +427,17 @@ export default function CourseSyllabusPage() {
                           </span>
                         </div>
                       </div>
-                      <a href={session.zoomLink} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-blue-500/20">
-                        <Video className="h-4 w-4" />
-                        {isRtl ? 'انضمام عبر Zoom' : 'Join via Zoom'}
-                      </a>
+                      {course.locked ? (
+                        <button onClick={() => setShowUnlockModal(true)} className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-700 text-slate-500 text-sm font-bold rounded-xl transition-all shadow-lg border border-slate-700">
+                          <Lock className="h-4 w-4" />
+                          {isRtl ? 'مقفول' : 'Locked'}
+                        </button>
+                      ) : (
+                        <a href={session.zoomLink} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-blue-500/20">
+                          <Video className="h-4 w-4" />
+                          {isRtl ? 'انضمام عبر Zoom' : 'Join via Zoom'}
+                        </a>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -642,30 +672,55 @@ export default function CourseSyllabusPage() {
                 </div>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {course.exams.map((exam: any) => (
-                    <a 
-                      key={exam.id}
-                      href={exam.pdfUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex items-center justify-between gap-4 hover:bg-slate-800/80 hover:border-slate-700 transition-colors group"
-                    >
-                      <div className="flex items-center gap-4">
-                        <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 group-hover:border-rose-500/50 transition-colors">
-                          <FileText className="h-5 w-5 text-rose-400" />
+                  {course.exams.map((exam: any) => {
+                    if (course.locked) {
+                      return (
+                        <button
+                          key={exam.id}
+                          onClick={() => setShowUnlockModal(true)}
+                          className="group flex items-center justify-between p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all text-left"
+                        >
+                          <div className="flex items-center gap-4">
+                            <div className="h-10 w-10 rounded-xl bg-slate-950 flex items-center justify-center border border-slate-800">
+                              <Lock className="h-5 w-5 text-slate-500" />
+                            </div>
+                            <div>
+                              <h3 className="font-bold text-slate-500 line-clamp-1">
+                                {isRtl ? exam.titleAr : exam.titleEn}
+                              </h3>
+                              <p className="text-xs text-slate-600 mt-1 font-semibold">
+                                {isRtl ? 'مقفول' : 'Locked'}
+                              </p>
+                            </div>
+                          </div>
+                        </button>
+                      );
+                    }
+                    return (
+                      <a 
+                        key={exam.id}
+                        href={exam.pdfUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-center justify-between p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-rose-500/50 hover:bg-rose-500/5 transition-all"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="h-10 w-10 rounded-xl bg-rose-500/10 flex items-center justify-center border border-rose-500/20 group-hover:scale-110 transition-transform">
+                            <FileText className="h-5 w-5 text-rose-400" />
+                          </div>
+                          <div>
+                            <h3 className="font-bold text-white line-clamp-1">
+                              {isRtl ? exam.titleAr : exam.titleEn}
+                            </h3>
+                            <p className="text-xs text-slate-500 mt-1 font-semibold">
+                              {isRtl ? 'انقر للتحميل' : 'Click to download'}
+                            </p>
+                          </div>
                         </div>
-                        <div>
-                          <h3 className="font-bold text-white line-clamp-1">
-                            {isRtl ? exam.titleAr : exam.titleEn}
-                          </h3>
-                          <p className="text-xs text-slate-500 mt-1 font-semibold">
-                            {isRtl ? 'انقر للتحميل' : 'Click to download'}
-                          </p>
-                        </div>
-                      </div>
-                      <Download className="h-5 w-5 text-slate-500 group-hover:text-rose-400 transition-colors shrink-0" />
-                    </a>
-                  ))}
+                        <Download className="h-5 w-5 text-slate-500 group-hover:text-rose-400 transition-colors shrink-0" />
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
             )}
