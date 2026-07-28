@@ -920,7 +920,7 @@ export default function DashboardPage() {
                   return (
                     <div
                       key={course.id}
-                      onClick={() => router.push(`/${locale}/courses/${course.id}`)}
+                      onClick={() => router.push(`/courses/${course.id}`)}
                       className="group relative rounded-2xl border border-slate-850 bg-slate-900/15 hover:bg-slate-900/35 hover:border-slate-800/80 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg block cursor-pointer"
                     >
                       <div>
