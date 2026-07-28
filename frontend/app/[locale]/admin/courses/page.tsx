@@ -8,7 +8,7 @@ import {
   ArrowLeft, ArrowRight, Plus, Trash2, BookOpen, Save,
   ChevronDown, Loader2, CheckCircle2, Video, FileText,
   GraduationCap, Edit3, X, PlusCircle, Eye, EyeOff,
-  Lock, Unlock, AlertCircle, Users, Calendar, Image as ImageIcon, Bold, Underline
+  Lock, Unlock, AlertCircle, Users, Calendar, Image as ImageIcon, Bold, Underline, PlaySquare
 } from 'lucide-react';
 import RoleSimulator from '@/components/RoleSimulator';
 
