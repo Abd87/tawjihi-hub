@@ -38,6 +38,7 @@ export async function GET(request: Request) {
                 id: true,
                 videoUrl: true,
                 pdfUrl: true,
+                isFreeTrial: true,
                 _count: {
                   select: { questions: true }
                 }
@@ -71,6 +72,7 @@ export async function GET(request: Request) {
       return {
         ...c,
         locked: isLocked, // Override DB lock with effective lock
+        hasFreeTrial: c.units.some(u => u.lessons.some(l => l.isFreeTrial)),
         lessons: c.units.flatMap(u => u.lessons)
       };
     });
