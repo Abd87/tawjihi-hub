@@ -15,6 +15,7 @@ import {
   ChevronRight,
   ChevronLeft
 } from 'lucide-react';
+import CourseUnlockModal from '@/components/CourseUnlockModal';
 
 interface Choice {
   textAr: string;
@@ -35,6 +36,7 @@ interface Lesson {
   id: string;
   titleAr: string;
   titleEn: string;
+  locked?: boolean;
   questions?: InlineQuestion[];
 }
 
@@ -70,6 +72,7 @@ export default function PracticeSessionPage() {
   // New state for persistence and mistake bank
   const [answers, setAnswers] = useState<Record<string, { choiceIndex: number; isCorrect: boolean }>>({});
   const [userId, setUserId] = useState<string>('guest');
+  const [showUnlockModal, setShowUnlockModal] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
@@ -87,6 +90,11 @@ export default function PracticeSessionPage() {
           setCourse(foundCourse);
           const foundLesson = foundCourse.lessons?.find((l: any) => l.id === lessonId);
           if (foundLesson) {
+            if (foundLesson.locked) {
+              setShowUnlockModal(true);
+              setLoading(false);
+              return;
+            }
             setLesson(foundLesson);
             const loadedQuestions = foundLesson.questions || [];
             setQuestions(loadedQuestions);
@@ -496,7 +504,14 @@ export default function PracticeSessionPage() {
 
         </div>
       </div>
-
+      
+      <CourseUnlockModal 
+        isOpen={showUnlockModal}
+        onClose={() => router.push(`/${locale}/courses/${courseId}`)}
+        courseTitleAr={course?.titleAr || ''}
+        courseTitleEn={course?.titleEn || ''}
+        isRtl={isRtl}
+      />
     </div>
   );
 }

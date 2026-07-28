@@ -12,9 +12,11 @@ import {
   ArrowLeft,
   MessageSquare,
   Send,
-  Info
+  Info,
+  Lock
 } from 'lucide-react';
 import LessonQA from '@/components/LessonQA';
+import CourseUnlockModal from '@/components/CourseUnlockModal';
 
 interface Lesson {
   id: string;
@@ -24,6 +26,7 @@ interface Lesson {
   videoDuration?: number;
   pdfUrl?: string;
   order: number;
+  locked?: boolean;
 }
 
 interface Unit {
@@ -55,6 +58,7 @@ export default function DedicatedVideoPlayerPage() {
   const [videoEnded, setVideoEnded] = useState(false);
   const [completedLessons, setCompletedLessons] = useState<string[]>([]);
   const [currentUser, setCurrentUser] = useState<any>(null);
+  const [showUnlockModal, setShowUnlockModal] = useState(false);
 
   const isRtl = locale === 'ar';
 
@@ -82,7 +86,11 @@ export default function DedicatedVideoPlayerPage() {
           setCourse(found);
           const foundLesson = found.lessons?.find((l: any) => l.id === lessonId);
           if (foundLesson) {
-            setCurrentLesson(foundLesson);
+            if (foundLesson.locked) {
+              setShowUnlockModal(true);
+            } else {
+              setCurrentLesson(foundLesson);
+            }
           }
         }
       } catch (e) {}
@@ -251,22 +259,34 @@ export default function DedicatedVideoPlayerPage() {
                           </h4>
                           
                           <div className="flex items-center gap-2 flex-wrap">
-                            <Link href={`/${locale}/courses/${courseId}/video/${lesson.id}`} className={`flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium ${isActive ? 'bg-brand-500 text-white' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'} transition-colors`}>
-                              <Play className="h-3 w-3" />
-                              <span>{isRtl ? 'الفيديو' : 'Video'}</span>
-                            </Link>
-                            
-                            {lesson.pdfUrl && (
-                              <Link href={lesson.pdfUrl} target="_blank" className="flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors">
-                                <FileText className="h-3 w-3" />
-                                <span>{isRtl ? 'الملخصات' : 'Notes'}</span>
-                              </Link>
+                            {lesson.locked ? (
+                              <button 
+                                onClick={() => setShowUnlockModal(true)}
+                                className="flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium bg-slate-800 text-slate-500 transition-colors"
+                              >
+                                <Lock className="h-3 w-3" />
+                                <span>{isRtl ? 'مقفول' : 'Locked'}</span>
+                              </button>
+                            ) : (
+                              <>
+                                <Link href={`/${locale}/courses/${courseId}/video/${lesson.id}`} className={`flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium ${isActive ? 'bg-brand-500 text-white' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'} transition-colors`}>
+                                  <Play className="h-3 w-3" />
+                                  <span>{isRtl ? 'الفيديو' : 'Video'}</span>
+                                </Link>
+                                
+                                {lesson.pdfUrl && (
+                                  <Link href={lesson.pdfUrl} target="_blank" className="flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors">
+                                    <FileText className="h-3 w-3" />
+                                    <span>{isRtl ? 'الملخصات' : 'Notes'}</span>
+                                  </Link>
+                                )}
+                                
+                                <Link href={`/${locale}/courses/${courseId}/practice/${lesson.id}`} className="flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium bg-slate-800 text-amber-400 hover:bg-slate-700 transition-colors">
+                                  <Star className="h-3 w-3" />
+                                  <span>{isRtl ? 'التدريب' : 'Practice'}</span>
+                                </Link>
+                              </>
                             )}
-                            
-                            <Link href={`/${locale}/courses/${courseId}/practice/${lesson.id}`} className="flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium bg-slate-800 text-amber-400 hover:bg-slate-700 transition-colors">
-                              <Star className="h-3 w-3" />
-                              <span>{isRtl ? 'التدريب' : 'Practice'}</span>
-                            </Link>
                           </div>
                         </div>
                       </div>
@@ -382,6 +402,14 @@ export default function DedicatedVideoPlayerPage() {
           </div>
         </div>
       </main>
+
+      <CourseUnlockModal 
+        isOpen={showUnlockModal}
+        onClose={() => router.push(`/${locale}/courses/${courseId}`)}
+        courseTitleAr={course?.titleAr || ''}
+        courseTitleEn={course?.titleEn || ''}
+        isRtl={isRtl}
+      />
     </div>
   );
 }
