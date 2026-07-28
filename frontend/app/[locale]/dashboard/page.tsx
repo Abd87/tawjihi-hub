@@ -924,7 +924,7 @@ export default function DashboardPage() {
                         if (course.locked && !course.hasFreeTrial) {
                           setLockedModalCourse(course);
                         } else {
-                          router.push(`/courses/${course.id}`);
+                          router.push(`/courses/${course.id}?trial=true`);
                         }
                       }}
                       className="group relative rounded-2xl border border-slate-850 bg-slate-900/15 hover:bg-slate-900/35 hover:border-slate-800/80 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg block cursor-pointer"
@@ -951,9 +951,17 @@ export default function DashboardPage() {
                             <Lock className="h-4 w-4 text-slate-300" />
                           </div>
 
-                          <span className="absolute bottom-4 start-4 text-xs font-semibold px-2.5 py-1 rounded bg-brand-500 text-white shadow-md pointer-events-none">
-                            {locale === 'ar' ? course.subjectAr : course.subjectEn}
-                          </span>
+                          <div className="absolute bottom-4 start-4 flex items-center gap-2 pointer-events-none">
+                            <span className="text-xs font-semibold px-2.5 py-1 rounded bg-brand-500 text-white shadow-md pointer-events-none">
+                              {locale === 'ar' ? course.subjectAr : course.subjectEn}
+                            </span>
+                            {course.hasFreeTrial && (
+                              <span className="text-[10px] sm:text-xs font-bold px-2 py-1 rounded bg-emerald-500 text-white shadow-md pointer-events-none flex items-center gap-1 shadow-emerald-500/20 border border-emerald-400">
+                                <PlayCircle className="w-3.5 h-3.5" />
+                                {locale === 'ar' ? 'معاينة مجانية' : 'Free Trial'}
+                              </span>
+                            )}
+                          </div>
                         </div>
 
                         <div className="p-6">

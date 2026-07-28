@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/routing';
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import { 
   PlayCircle, 
   FileText, 
@@ -105,6 +105,8 @@ export default function CourseSyllabusPage() {
   const locale = (params?.locale as string) || 'ar';
   const courseId = params?.id as string;
   const isRtl = locale === 'ar';
+  const searchParams = useSearchParams();
+  const trialParam = searchParams.get('trial');
 
   const [loading, setLoading] = useState(true);
   const [course, setCourse] = useState<Course | null>(null);
@@ -167,6 +169,32 @@ export default function CourseSyllabusPage() {
         if (res.ok) {
           const found = await res.json();
           setCourse(found);
+          
+          if (trialParam === 'true' && found.locked) {
+            let targetUnitId = null;
+            let targetLessonId = null;
+            for (const unit of (found.units || [])) {
+              const trialLesson = unit.lessons?.find((l: any) => !l.locked);
+              if (trialLesson) {
+                targetUnitId = unit.id;
+                targetLessonId = trialLesson.id;
+                break;
+              }
+            }
+            if (targetUnitId) {
+              setExpandedUnits([targetUnitId]);
+              setTimeout(() => {
+                const el = document.getElementById(`lesson-${targetLessonId}`);
+                if (el) {
+                  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  el.classList.add('bg-emerald-500/10', 'border-emerald-500/30', 'border-y');
+                  setTimeout(() => {
+                    el.classList.remove('bg-emerald-500/10', 'border-emerald-500/30', 'border-y');
+                  }, 2500);
+                }
+              }, 500); // Wait for render
+            }
+          }
           
           // Initial load from cache to prevent flicker, then sync
           const userId = userStr ? JSON.parse(userStr).id : '';
@@ -495,7 +523,7 @@ export default function CourseSyllabusPage() {
                           const isLessonLocked = lesson.locked;
                           
                           return (
-                            <div key={lesson.id} className="pl-6 pr-4 py-2 relative">
+                            <div id={`lesson-${lesson.id}`} key={lesson.id} className="pl-6 pr-4 py-2 relative transition-all duration-700">
                               <div className="absolute top-0 start-4 w-px h-full bg-slate-800"></div>
                               {/* Lesson Sub-header */}
                               <div className="px-4 py-3 flex items-center justify-between">
