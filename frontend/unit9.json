@@ -1,0 +1,584 @@
+{
+  "id": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+  "unitNumber": 9,
+  "titleAr": "الوحدة التاسعة: قصص النجاة والإرادة",
+  "titleEn": "Unit 9: Survival & Human Will",
+  "descriptionAr": "اختبار تقييمي مجاني وشامل على الوحدة التاسعة: قصص النجاة والإرادة. ينشّط مهارات القواعد والمفردات والأسئلة الوزارية والقطع لمنهاج High Note 11.",
+  "descriptionEn": "Free diagnostic unit exam for Unit 9: Survival & Human Will covering reading comprehension, vocabulary, and grammar in High Note 11.",
+  "text": "\n<b>Indonesian teenager, Aldi Adilang, is only 19, but he has already gone through the ordeal of being lost at sea an incredible three times! The first two times he got off relatively lightly; he was drifting for a week, and the second time for two days. However, on the third occasion, he was alone in the ocean for 49 long days.</b>\n\n<b>From when he was 16 years old, Aldi had spent weeks at a time working on a fishing trap, known as a rompong. This is a kind of hut which floats in the middle of the sea but is attached to the sea bed with a rope. Every night he would light lamps to attract the fish to his nets. It was a lonely kind of life.</b>\n\n<b>One day, the rope attaching his rompong to the bottom of the sea broke and he started to drift even further away from the coast. At first, he wasn’t too worried. He took it for granted that his boss would come and rescue him, as </b><b><u>he</u></b><b> had done before. Aldi had a week’s supply of food and was sure it would all be fine.</b>\n\n<b>But after a week, his supplies ran out. He caught fish and used parts of his wooden hut to make a fire and cook them. Having no more fresh drinking water, he had no choice but to drink sea water. However, he filtered the sea water through his clothes to reduce the amount of salt. This must have done the trick because he survived for four days until it rained and he was able to collect some rainwater.</b>\n\n<b>His survival skills were keeping him alive, but he was starting to wonder if he would ever be rescued. He saw more than ten ships sail past him, but none of them seemed to have a clue that he was there. After a few weeks, he thought he had at last got his lucky break when he managed to talk to the captain of an Indonesian ship. The captain promised he would pick him up, but heartbreakingly, Aldi never saw the ship again.</b>\n\n<b>After this setback, he really started to worry. To try and take his mind off his situation, he sang and read. The isolation took its toll on him, and he almost gave up hope, but the thought of seeing his parents again kept him going. In the end, after 49 days, he saw a ship called </b><b>The Arpeggio</b><b>. Desperate to be understood, he used the few words of English he knew: \"Help! Help!\". The ship turned around and rescued him.</b>\n\n<b>Safely back home, Aldi considered his options. His job was relatively lucrative at $134 a month, but having drifted three times, he and his family decided it simply wasn't worth the risk. From now on, he will stay firmly on dry land.</b>",
+  "durationMinutes": 30,
+  "createdAt": "2026-07-24T18:22:27.783Z",
+  "updatedAt": "2026-07-24T19:56:27.804Z",
+  "questions": [
+    {
+      "id": "71411a83-0077-41f5-8e0f-28194836134a",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "Aldi ________ that his boss would rescue him quickly because it had happened before.",
+      "choices": [
+        "made himself understood",
+        "took it for granted",
+        "had no choice but to",
+        "kept him going"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.086Z",
+      "updatedAt": "2026-07-24T18:22:28.086Z"
+    },
+    {
+      "id": "425a2907-71c4-4e37-a382-effb6c070906",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "In most professional situations, she is incapable of ________ that she is wrong.",
+      "choices": [
+        "acknowledging",
+        "admitting",
+        "making",
+        "offering"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T18:22:28.088Z"
+    },
+    {
+      "id": "d5f8f272-14ac-424c-8d05-5145308b63af",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "If I ________ you, I would take that lucrative job offer.",
+      "choices": [
+        "am",
+        "was",
+        "were",
+        "will be"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T18:22:28.088Z"
+    },
+    {
+      "id": "faf04efd-b25d-40bb-944a-40aab917a093",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "When his supplies ran out, Aldi ________ drink sea water to stay alive.",
+      "choices": [
+        "got off relatively lightly",
+        "had no choice but to",
+        "considered his options",
+        "kept him going"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.087Z",
+      "updatedAt": "2026-07-24T18:22:28.087Z"
+    },
+    {
+      "id": "fde1747c-b353-4032-8189-04aa47e5399f",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "If we had arrived at the airport earlier, we ________ our flight.",
+      "choices": [
+        "won't miss",
+        "wouldn't miss",
+        "wouldn't have missed",
+        "didn't miss"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T18:22:28.088Z"
+    },
+    {
+      "id": "ea298174-3c09-494c-b60a-6598dc91f2eb",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "After a hazardous journey, they were relieved to get home ________ .",
+      "choices": [
+        "ups and downs",
+        "safe and sound",
+        "give and take",
+        "there and then"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T19:06:52.547Z"
+    },
+    {
+      "id": "93f4ac49-c6e0-448f-9235-75bb47d38c40",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "If she ________ harder last semester, she would have passed all her exams.",
+      "choices": [
+        "studies",
+        "studied",
+        "had studied",
+        "would study"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T18:22:28.088Z"
+    },
+    {
+      "id": "88d596a4-e03f-4442-abfb-7d610c3d0868",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "Why did Aldi and his family eventually decide that he should stay on dry land? (2 points) ________ ________ ________",
+      "choices": [
+        "Because the job was too dangerous after his terrifying ordeal.",
+        "Because he found a better paying job on a larger ship.",
+        "Because the floating trap was destroyed and could not be replaced.",
+        "Because he wanted to move to a different country."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.086Z",
+      "updatedAt": "2026-07-24T19:06:52.695Z"
+    },
+    {
+      "id": "994fffc4-df03-4bf0-89e4-120c0e5e802d",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "If you spend a few weeks researching your business idea, your hard work will eventually ________ .",
+      "choices": [
+        "mess up",
+        "paid off",
+        "blunder",
+        "get nowhere"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.087Z",
+      "updatedAt": "2026-07-24T19:06:52.842Z"
+    },
+    {
+      "id": "419c51f2-1022-4cc8-929d-a5cbd96d1fa3",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "Filtering the sea water through his clothes ________ because it helped him survive until it rained.",
+      "choices": [
+        "took its toll on him",
+        "must have done the trick",
+        "was a lucky break",
+        "ran the risk"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.086Z",
+      "updatedAt": "2026-07-24T18:22:28.086Z"
+    },
+    {
+      "id": "58e8336d-c91b-4723-b2a7-f407f31ce0fe",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "If you ________ yellow and blue, you get green.",
+      "choices": [
+        "mixed",
+        "mix",
+        "had mixed",
+        "would mix"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T18:22:28.088Z"
+    },
+    {
+      "id": "aa1a7c04-33f0-4cc6-a283-46a0c88f5fe3",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "If I ________ more money, I would buy a brand new car.",
+      "choices": [
+        "have",
+        "had",
+        "had had",
+        "will have"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T18:22:28.088Z"
+    },
+    {
+      "id": "6de22021-39ce-45e0-bf6d-5afb1b4f28f3",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "The text mentions that Aldi was lost at sea three times. Compare the duration of the first two times with the third. (2 points) ________ ________ ________",
+      "choices": [
+        "By building a makeshift sail and using a signaling mirror.",
+        "By swimming towards passing ships and shouting for help.",
+        "By catching fish to eat and filtering sea water through his clothes to drink.",
+        "By sending distress signals using a radio and waiting for rescue."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.086Z",
+      "updatedAt": "2026-07-24T19:06:52.989Z"
+    },
+    {
+      "id": "e02b22fb-47a4-4041-914c-f3c123678556",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "The neighborhood is filled with ________ residents who often donate large sums to charity.",
+      "choices": [
+        "costly",
+        "affluent",
+        "lucrative",
+        "extravagant"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.087Z",
+      "updatedAt": "2026-07-24T18:22:28.087Z"
+    },
+    {
+      "id": "bd8a9598-ae0f-428f-8562-0f953fede7f9",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "\"If I had studied harder, I would have passed the exam last year.\" The function of this Third Conditional sentence is:",
+      "choices": [
+        "To talk about a present condition affecting a past result.",
+        "To describe a possible future event.",
+        "To describe an unreal or hypothetical situation in the past.",
+        "To state a general fact that is always true."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T18:22:28.088Z"
+    },
+    {
+      "id": "0c5df332-dd0e-4cf0-b71e-5373bcf2615a",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "Aldi's job was ________ , as he earned $134 a month, which was a good amount for his family.",
+      "choices": [
+        "extravagant",
+        "costly",
+        "lucrative",
+        "well-off"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.086Z",
+      "updatedAt": "2026-07-24T19:06:53.137Z"
+    },
+    {
+      "id": "25fce8bd-fb9e-4877-902b-94dfe06fd823",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "\"If I won the lottery, I'd travel the world.\" What is the function of using the Second Conditional in this sentence?",
+      "choices": [
+        "To talk about a past habit.",
+        "To describe a real and likely future event.",
+        "To describe an unreal or hypothetical situation in the present or future.",
+        "To express a scientific truth."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T18:22:28.088Z"
+    },
+    {
+      "id": "1dee0ad8-2ac0-468f-84c5-02627f69634c",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "What does the underlined pronoun \"<u>he</u>\" (in paragraph 3) refer to? (2 points) ________",
+      "choices": [
+        "Aldi",
+        "his boss",
+        "the captain",
+        "the rescuer"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.086Z",
+      "updatedAt": "2026-07-24T19:06:53.284Z"
+    },
+    {
+      "id": "ab5ff61b-e452-42ee-ab62-707e20630fe8",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "</u><u> At some point</u>, you will have to make a decision. The correct binomial that can replace the underlined words in the above sentence is ________",
+      "choices": [
+        "Sooner or later",
+        "More or less",
+        "Touch and go",
+        "Ups and downs"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T19:06:53.439Z"
+    },
+    {
+      "id": "808112e8-1bf0-462c-b771-9eb98d26b839",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "If you ________ ice in the sun, it melts.",
+      "choices": [
+        "heat",
+        "heated",
+        "had heated",
+        "would heat"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T18:22:28.088Z"
+    },
+    {
+      "id": "854f4f5f-aa57-48c6-8a45-c6d7d2780c41",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "\"If it rains tomorrow, we will stay inside.\" The use of the First Conditional here indicates:",
+      "choices": [
+        "A real and possible situation that is likely to happen.",
+        "An impossible situation in the present.",
+        "A hypothetical situation in the past.",
+        "A general scientific fact."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T18:22:28.088Z"
+    },
+    {
+      "id": "94a4c843-7041-490d-b2e6-d714854fba96",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "The fishing trap Aldi worked on, called a ________ , is a hut that floats but is attached to the sea bed.",
+      "choices": [
+        "rompong",
+        "affluent",
+        "lucrative",
+        "setback"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.086Z",
+      "updatedAt": "2026-07-24T19:06:53.586Z"
+    },
+    {
+      "id": "378f4d32-cf61-4112-a188-92a97f0a96b0",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "If I ________ the lottery, I would travel around the world.",
+      "choices": [
+        "win",
+        "won",
+        "had won",
+        "will win"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T18:22:28.088Z"
+    },
+    {
+      "id": "aafe7401-7d37-4e7e-acc5-23dd0536d9cf",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "If he ________ daily, he will win the championship next month.",
+      "choices": [
+        "trains",
+        "trained",
+        "had trained",
+        "would train"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T18:22:28.088Z"
+    },
+    {
+      "id": "f0f40357-06c9-4231-9903-5409db5bcd52",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "Critical Thinking: In your opinion, why is mental strength as important as physical skills in a survival situation? (4 points) ________ ________ ________ Vocabulary ( /15) marks",
+      "choices": [
+        "Mental strength prevents panic and helps a person make rational decisions to survive.",
+        "Mental strength is not as important as having the right equipment.",
+        "It only matters if you are trained in survival techniques.",
+        "Physical strength is the only thing that matters in a survival situation."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.086Z",
+      "updatedAt": "2026-07-24T19:06:53.733Z"
+    },
+    {
+      "id": "96334567-d910-48bb-901f-03e5530172f8",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "It is not easy to ________ your mistakes and say sorry to those you have hurt.",
+      "choices": [
+        "offer",
+        "take",
+        "make",
+        "acknowledge"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T18:22:28.088Z"
+    },
+    {
+      "id": "849d821b-f077-4eca-b42a-fd1e21bbee93",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "If it rains later today, we ________ at home.",
+      "choices": [
+        "stayed",
+        "will stay",
+        "would stay",
+        "had stayed"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T18:22:28.088Z"
+    },
+    {
+      "id": "a9601699-efbc-4b1f-b975-ff3330f7cc98",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "What was the specific cause that led to Aldi drifting away for the third time? (2 points) ________ ________ ________",
+      "choices": [
+        "The rope attaching his floating trap to the seabed snapped in high winds.",
+        "He fell asleep and his boat drifted away with the tide.",
+        "The engine of his small boat broke down.",
+        "A storm destroyed his navigation equipment."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.086Z",
+      "updatedAt": "2026-07-24T19:06:53.881Z"
+    },
+    {
+      "id": "bb215df6-c8bf-4399-abd9-e5816bae74a6",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "When you touch a hot stove, you ________ your hand.",
+      "choices": [
+        "burned",
+        "would burn",
+        "burn",
+        "had burned"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T18:22:28.088Z"
+    },
+    {
+      "id": "815504a3-f381-4819-bbf2-80168779d6d6",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "Many parents are disappointed when their children engage in ________ spending on luxury items.",
+      "choices": [
+        "well-off",
+        "extravagant",
+        "lucrative",
+        "costly"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T18:22:28.088Z"
+    },
+    {
+      "id": "0e57b90e-800c-4985-85e1-9ab940498b33",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "Find a word that means \"profitable\" or \"making money\". (2 points) ________",
+      "choices": [
+        "lucrative",
+        "hazardous",
+        "isolated",
+        "makeshift"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.086Z",
+      "updatedAt": "2026-07-24T19:06:54.029Z"
+    },
+    {
+      "id": "27f47d46-1318-45c5-b9ff-f656c5273fcd",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "The 49 days of isolation in the ocean ________ on Aldi's mental health.",
+      "choices": [
+        "must have done the trick",
+        "took its toll",
+        "kept him going",
+        "got off relatively lightly"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.087Z",
+      "updatedAt": "2026-07-24T18:22:28.087Z"
+    },
+    {
+      "id": "a70108e6-3a95-4363-a92f-95802f99e2f1",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "\"If you heat water to 100°C, it boils.\" What is the function of this sentence?",
+      "choices": [
+        "To describe a hypothetical situation in the past.",
+        "To describe a situation that the speaker considers is generally true.",
+        "To give advice about a future event.",
+        "To express regret about a present situation."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T18:22:28.088Z"
+    },
+    {
+      "id": "18b2f738-1b07-433c-aef1-d748daee16b8",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "Aldi used two creative methods to survive when his supplies ran out. What were they? (2 points) ________ ________ ________",
+      "choices": [
+        "He caught fish and filtered sea water through his clothes.",
+        "He found an island and gathered coconuts.",
+        "He flagged down a passing boat and asked for supplies.",
+        "He used a solar still to create fresh water."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.086Z",
+      "updatedAt": "2026-07-24T19:06:54.176Z"
+    },
+    {
+      "id": "701b5a3b-1492-4e94-b8a9-3e8f3514135c",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "As soon as I heard about the international trip, I ________ to go on it.",
+      "choices": [
+        "a lucky break",
+        "take the blame",
+        "took its toll",
+        "grab the chance"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T19:06:54.480Z"
+    },
+    {
+      "id": "462d88b2-3954-4383-8e12-391a17b05a98",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "After a hazardous journey across the mountains, the hikers were relieved to get home ________ .",
+      "choices": [
+        "ups and downs",
+        "safe and sound",
+        "give and take",
+        "there and then"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T19:06:54.630Z"
+    },
+    {
+      "id": "45bc3222-ef16-472b-9c6b-6627d499c7d4",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "\"When you arrive at the station, I will pick you up.\" Why is \"when\" used instead of \"if\" in this First Conditional sentence?",
+      "choices": [
+        "Because the situation is impossible.",
+        "Because the condition is more certain to happen.",
+        "Because it is a past regret.",
+        "Because it is a scientific law."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.088Z",
+      "updatedAt": "2026-07-24T18:22:28.088Z"
+    },
+    {
+      "id": "7b05c517-cc13-421e-891a-557e6f490bbc",
+      "examId": "ec56578d-58cd-48d6-97a3-e1f3d7996795",
+      "question": "The company’s new marketing strategy was a complete ________ ; it didn't increase sales at all.",
+      "choices": [
+        "masterstroke",
+        "pay off",
+        "flop",
+        "flourish"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.087Z",
+      "updatedAt": "2026-07-24T19:06:54.785Z"
+    }
+  ]
+}

@@ -1,0 +1,482 @@
+[
+  {
+    "id": "57255561-1f95-48d7-b676-258e33cd2d2c",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "If you don't study hard, you might ________ your final exams.",
+    "choices": [
+      "relocate",
+      "clash",
+      "flunk",
+      "row"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.065Z",
+    "updatedAt": "2026-07-24T19:06:27.902Z"
+  },
+  {
+    "id": "124675ff-b749-4632-b3fe-c485b9e7744b",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "He tends to ________ ; whenever he gets a small cut, he acts like he is dying!",
+    "choices": [
+      "be the peacemaker",
+      "blow things out of proportion",
+      "burst into tears",
+      "give a compliment"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.066Z",
+    "updatedAt": "2026-07-24T19:06:28.199Z"
+  },
+  {
+    "id": "7c3fca00-478e-43da-89ae-81fd36bd9c6c",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "Which sentence is grammatically correct?",
+    "choices": [
+      "The city where I was born in is beautiful.",
+      "The city which I was born is beautiful.",
+      "The city in which I was born is beautiful.",
+      "The city who I was born in is beautiful."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.066Z",
+    "updatedAt": "2026-07-24T18:22:24.066Z"
+  },
+  {
+    "id": "d694e431-059a-4da9-91e5-8a521908be62",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "My sister and I never fight; we treat each other well and never have a ________ .",
+    "choices": [
+      "row",
+      "sibling",
+      "colic",
+      "favour"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.066Z",
+    "updatedAt": "2026-07-24T19:06:28.645Z"
+  },
+  {
+    "id": "7ffb94be-f2da-416c-bfe6-4832ec0175ea",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "My brother is very ________ ; he refuses to accept anyone who has a different opinion than him.",
+    "choices": [
+      "bigoted",
+      "charming",
+      "compassionate",
+      "modest"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.065Z",
+    "updatedAt": "2026-07-24T19:06:28.794Z"
+  },
+  {
+    "id": "fdda553d-b67e-4eaa-96eb-b0ce8ba134ae",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "I ________ like vegetables when I was young, but now I love them.",
+    "choices": [
+      "didn't use to",
+      "wouldn't",
+      "wasn't used to",
+      "don't use to"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.066Z",
+    "updatedAt": "2026-07-24T19:06:28.943Z"
+  },
+  {
+    "id": "6fbfc211-f384-49be-8455-168f2a22c189",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "It is not polite to ________ people just because they make a small mistake.",
+    "choices": [
+      "make up with",
+      "make fun of",
+      "stick at",
+      "put up with"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.065Z",
+    "updatedAt": "2026-07-24T19:06:29.092Z"
+  },
+  {
+    "id": "8177dc98-1e25-4a7b-9806-07617597d70a",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "Nurses need to be ________ so they can understand and care for the suffering of their patients.",
+    "choices": [
+      "defensive",
+      "pushy",
+      "compassionate",
+      "immature"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.066Z",
+    "updatedAt": "2026-07-24T19:06:29.241Z"
+  },
+  {
+    "id": "599c41c2-f2ec-4c7f-875e-0bfdc8a905fe",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "My friend is so predictable. He ________ arrive late and blame the traffic.",
+    "choices": [
+      "will",
+      "would",
+      "used to",
+      "is used to"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.066Z",
+    "updatedAt": "2026-07-24T19:06:29.390Z"
+  },
+  {
+    "id": "a5697d7c-58f4-47ad-b5c0-fb4edd851d1f",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "Life in the workhouses was described as not being easy for the poor people living there. Write down two conditions mentioned in the text that describe this hardship (2 points) ________ ________ ________",
+    "choices": [
+      "They help us navigate life's challenges.",
+      "They cause unnecessary stress and anxiety.",
+      "They are easily replaced by new acquaintances.",
+      "They always agree with our opinions."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.064Z",
+    "updatedAt": "2026-07-24T19:06:29.540Z"
+  },
+  {
+    "id": "82f8d9ba-b5ba-4731-8983-9bbfc9eea2b2",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "When the company closed down, my father had to ________ to another city to find work.",
+    "choices": [
+      "handle",
+      "relocate",
+      "clash",
+      "flunk"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.066Z",
+    "updatedAt": "2026-07-24T19:06:29.688Z"
+  },
+  {
+    "id": "5ab1a9f8-b0d7-4305-88ad-545903f4e47a",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "The flip phone, which was designed in the 1990s, is rapidly becoming popular again. The Sentence that has the correct participle clause of the one above is ________",
+    "choices": [
+      "The flip phone, to design in the 1990s, is rapidly becoming popular again.",
+      "The flip phone, designed in the 1990s, is rapidly becoming popular again.",
+      "The flip phone, designing in the 1990s, is rapidly becoming popular again.",
+      "The flip phone, design in the 1990s, is rapidly becoming popular again."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.066Z",
+    "updatedAt": "2026-07-24T19:06:29.837Z"
+  },
+  {
+    "id": "90f924d5-836f-419e-8dd3-c58e86c9f833",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "The new employee is very ________ ; she is always telling everyone how great she is at her job.",
+    "choices": [
+      "trustworthy",
+      "conceited",
+      "sincere",
+      "innocent"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.066Z",
+    "updatedAt": "2026-07-24T19:06:29.986Z"
+  },
+  {
+    "id": "754addef-1e63-4230-bed0-33f020c96dbc",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "When we were children, we ________ go to the beach every summer holiday.",
+    "choices": [
+      "are used to",
+      "would",
+      "were used to",
+      "use to"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.066Z",
+    "updatedAt": "2026-07-24T19:06:30.136Z"
+  },
+  {
+    "id": "66f6a368-f576-4896-b70e-5efb72e20348",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "The sentence “I would play tennis with my friends” has the function:",
+    "choices": [
+      "an annoying repeated habit in the present",
+      "an annoying repeated habit in the past",
+      "a past state or action which no longer exists",
+      "a habit or repeated action in the past, but not a state"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.066Z",
+    "updatedAt": "2026-07-24T18:22:24.066Z"
+  },
+  {
+    "id": "f2ae1650-adf3-4069-bb65-46f75353ad64",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "My younger brother ________ borrowing my clothes without asking! It is so annoying.",
+    "choices": [
+      "is always",
+      "was always",
+      "always",
+      "would always"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.066Z",
+    "updatedAt": "2026-07-24T19:06:30.585Z"
+  },
+  {
+    "id": "380b1a19-1c8c-4472-a6b5-0d5a8a8dd084",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "Which of the following statements expresses “an annoying habit in the past”?",
+    "choices": [
+      "I used to play chess all the time.",
+      "He is always crying when he needs something.",
+      "After school, I would go home and watch television.",
+      "I was constantly ignoring my parents when they asked me to do something."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.066Z",
+    "updatedAt": "2026-07-24T18:22:24.066Z"
+  },
+  {
+    "id": "6b893e6c-d541-4f0f-a268-38b666b676e2",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "Find a word that means \" to have just enough money to buy what you need \". (1 points) ________",
+    "choices": [
+      "Yes, true friends challenge us to grow and improve ourselves.",
+      "No, friends should always agree with us to avoid conflict.",
+      "Friendships are mostly about having fun, not personal growth.",
+      "Only family members can truly support our personal development."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.064Z",
+    "updatedAt": "2026-07-24T19:06:30.735Z"
+  },
+  {
+    "id": "4919dfd3-df81-43f9-9b4b-4168cc8333d7",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "A ________ is a person whose job is to look after a house, doing cooking and cleaning.",
+    "choices": [
+      "poacher",
+      "housekeeper",
+      "sibling",
+      "primate"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.066Z",
+    "updatedAt": "2026-07-24T19:06:30.884Z"
+  },
+  {
+    "id": "529f8591-c57f-4b6f-b93c-5a1758bd345d",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "What did the other boys encourage Oliver to do that caused the managers of the workhouse to become angry? (1 points) ________ ________ ________",
+    "choices": [
+      "Trust and mutual respect.",
+      "Shared hobbies and interests.",
+      "Similar backgrounds and ages.",
+      "Frequent communication and physical proximity."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.064Z",
+    "updatedAt": "2026-07-24T19:06:31.033Z"
+  },
+  {
+    "id": "c7625df6-9c7c-465a-91b3-df1b2837d839",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "Don't worry about the problem; you just need to ________ the situation calmly.",
+    "choices": [
+      "handle",
+      "beg",
+      "row",
+      "wind up"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.066Z",
+    "updatedAt": "2026-07-24T19:06:31.183Z"
+  },
+  {
+    "id": "6b95f93d-9635-4ddf-a3e5-5e6a1e555871",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "The man ________ next to the door is my uncle.",
+    "choices": [
+      "stood",
+      "stands",
+      "is standing",
+      "standing"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.066Z",
+    "updatedAt": "2026-07-24T19:06:31.333Z"
+  },
+  {
+    "id": "9906a65e-8d65-4677-87c5-9d2c60ed5928",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "What does the underlined pronoun \"He\" in the sentence \"He showed Oliver the way to the city\" refer to? (1 points) ________",
+    "choices": [
+      "support",
+      "perspective",
+      "foundation",
+      "acquaintance"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.064Z",
+    "updatedAt": "2026-07-24T19:06:31.483Z"
+  },
+  {
+    "id": "6abd964f-7108-4150-91a2-a0220e46ef8c",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "The car ________ I bought last week is already broken.",
+    "choices": [
+      "where",
+      "who",
+      "when",
+      "which"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.066Z",
+    "updatedAt": "2026-07-24T19:06:31.632Z"
+  },
+  {
+    "id": "c176e5d5-110c-467c-956e-9bb482d5e866",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "The student, ________ project won the prize, was very happy.",
+    "choices": [
+      "who",
+      "which",
+      "whose",
+      "where"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.066Z",
+    "updatedAt": "2026-07-24T19:06:31.929Z"
+  },
+  {
+    "id": "95d89ad1-03ed-450b-af79-d60a218ed8c2",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "My father, ________ is a doctor, works at the city hospital.",
+    "choices": [
+      "that",
+      "who",
+      "which",
+      "whose"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.066Z",
+    "updatedAt": "2026-07-24T19:06:32.229Z"
+  },
+  {
+    "id": "d24bbf22-7e6c-4431-a54e-fde78e201bd8",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "Monks wanted to ensure Oliver never became an honest person so he could keep the money. He made sure Oliver met two specific people. Write them down. (1 points) ________ ________ ________",
+    "choices": [
+      "Friends make life more enjoyable by sharing experiences and offering a different perspective.",
+      "Friends complicate our lives with their problems.",
+      "Friends are only useful when we need financial help.",
+      "Friends distract us from achieving our personal goals."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.064Z",
+    "updatedAt": "2026-07-24T19:06:32.383Z"
+  },
+  {
+    "id": "84e40e89-89b7-4c42-9d53-923c9fdd4db7",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "The book ________ by Charles Dickens is very famous.",
+    "choices": [
+      "writing",
+      "written",
+      "wrote",
+      "writes"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.066Z",
+    "updatedAt": "2026-07-24T19:06:32.532Z"
+  },
+  {
+    "id": "5e12b4bb-ca5d-43a4-a2ab-d9509cd2e357",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "There are very few people who are still using analogue televisions. The Sentence that has the correct participle clause of the one above is ________",
+    "choices": [
+      "There are very few people used to using analogue televisions.",
+      "There are very few people using analogue televisions.",
+      "There are very few people to use analogue televisions.",
+      "There are very few people who are used to using analogue televisions."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.066Z",
+    "updatedAt": "2026-07-24T19:06:30.286Z"
+  },
+  {
+    "id": "ee06024c-f5e2-48b6-a7a8-ccb4e3fde644",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "The story highlights the vulnerability of children who have no family to support them. Suggest two tips for how society can better protect orphans to prevent them from turning to crime. (2 points) ________ ________ ________ ________ Vocabulary ( /10) marks",
+    "choices": [
+      "Implement stronger child protection laws and offer community support programs.",
+      "Send them to work in factories.",
+      "Ignore the problem as it will solve itself.",
+      "Teach them how to steal effectively."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.065Z",
+    "updatedAt": "2026-07-24T19:06:30.435Z"
+  },
+  {
+    "id": "cea2aaf6-4f18-4850-b6d2-5f6eb0b7c607",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "Write down the sentence which states exactly when Oliver realized that Fagin’s boys were actually criminals. (1 points) ________ ________ ________",
+    "choices": [
+      "friends",
+      "challenges",
+      "experiences",
+      "opinions"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.064Z",
+    "updatedAt": "2026-07-24T19:06:31.781Z"
+  },
+  {
+    "id": "e989e315-ec26-49e7-8c2e-57dbd4969098",
+    "examId": "b85ecca4-3f71-409d-9623-9bb201250038",
+    "question": "Why did Mr. Brownlow convince the police officer not to arrest Oliver after the handkerchief incident? (1 points) ________ ________ ________",
+    "choices": [
+      "Strong friendships provide a foundation of support during difficult times.",
+      "Making new friends is easier than maintaining old ones.",
+      "People with many friends are generally happier.",
+      "Friendships often fade away as people grow older."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": null,
+    "createdAt": "2026-07-24T18:22:24.064Z",
+    "updatedAt": "2026-07-24T19:06:32.079Z"
+  }
+]

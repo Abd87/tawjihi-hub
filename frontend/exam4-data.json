@@ -1,0 +1,419 @@
+{
+  "id": "248db12c-9e72-4592-91c1-bf931d85b46b",
+  "unitNumber": 4,
+  "titleAr": "الوحدة الرابعة: المجتمع والتطوير العمراني",
+  "titleEn": "Unit 4: Society & Urban Progress",
+  "descriptionAr": "اختبار تقييمي مجاني وشامل على الوحدة الرابعة: المجتمع والتطوير العمراني. ينشّط مهارات القواعد والمفردات والأسئلة الوزارية والقطع لمنهاج High Note 11.",
+  "descriptionEn": "Free diagnostic unit exam for Unit 4: Society & Urban Progress covering reading comprehension, vocabulary, and grammar in High Note 11.",
+  "text": "\n<b>When developers released a statement that </b><b><u>they</u></b><b> were going to build a luxury new hotel at the local beach, everyone in the town was very excited. There have been talks for years about opportunities for new developments, but they never seem to happen. We all have to seize the opportunity and </b><b>realise</b><b> that the hotel will not only give us work, but offer improvements to the whole area around the beach. </b>\n\n<b>The developers have promised a new road with wide pavements to and from the beach and a replacement of the sad old beach restaurants which have been there for years. We have asked for such development for years and I'm so happy that the developers have come up with a solution to help local people. </b>\n\n<b>I was very surprised to hear that there are protesters who are against the plan. Just last week, some activists tried to stop lorries from entering the beach to start building work, and I reported the incident to the police. Everyone has the right to protest, but such obstruction is illegal. There has even been an accusation that I am working to promote the hotel company, but this is not true. We must remember that the hotel will solve many of the problems in our area.</b>",
+  "durationMinutes": 30,
+  "createdAt": "2026-07-24T18:22:24.510Z",
+  "updatedAt": "2026-07-24T19:54:21.539Z",
+  "questions": [
+    {
+      "id": "62645824-1f31-4a0c-8d7c-8c44196fa3cd",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "The lawyer refuted the ________ that his client had stolen the car.",
+      "choices": [
+        "allege",
+        "allegedly",
+        "allegation",
+        "alleging"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:24.807Z",
+      "updatedAt": "2026-07-24T19:06:32.983Z"
+    },
+    {
+      "id": "a27054ee-797a-4884-bfc8-7ca7d1f5023c",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "She enjoys the ________ of working from home.",
+      "choices": [
+        "free",
+        "freedom",
+        "freely",
+        "frees"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:24.807Z",
+      "updatedAt": "2026-07-24T19:06:33.130Z"
+    },
+    {
+      "id": "3be22f52-bbe3-4d54-abd3-7886b06ed368",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "It will be difficult to find a suitable ________ for Laila when she leaves her post.",
+      "choices": [
+        "replacement",
+        "replace",
+        "replaced",
+        "replaceable"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:24.807Z",
+      "updatedAt": "2026-07-24T19:06:33.428Z"
+    },
+    {
+      "id": "3baa3504-aceb-43e8-8e48-c78b46371beb",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "What else did the developers promise to replace?",
+      "choices": [
+        "The old beach restaurants.",
+        "The town hall.",
+        "The local police station.",
+        "The fishing boats."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "The text says they promised 'a replacement of the sad old beach restaurants'.",
+      "createdAt": "2026-07-24T18:22:24.806Z",
+      "updatedAt": "2026-07-25T04:05:16.731Z"
+    },
+    {
+      "id": "c2ab227d-54dd-4c79-ab0a-aca763042967",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "________ did he know that his best friend was planning a surprise party for him.",
+      "choices": [
+        "Seldom",
+        "Little",
+        "Never",
+        "Scarcely"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:24.807Z",
+      "updatedAt": "2026-07-24T19:06:33.722Z"
+    },
+    {
+      "id": "7bb3adc0-8ab4-43b3-9f54-b239eb5f24de",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "What is the author's stance on the development compared to the protesters?",
+      "choices": [
+        "The author supports the development because it brings solutions and work, while protesters oppose it.",
+        "The author is neutral and just observing the events.",
+        "The author is against the development and supports the protesters.",
+        "The author believes the development should be moved to another town."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "The text shows the author is happy about the development solving problems, and surprised/unsupportive of the protesters obstructing it.",
+      "createdAt": "2026-07-24T18:22:24.806Z",
+      "updatedAt": "2026-07-25T04:05:17.030Z"
+    },
+    {
+      "id": "5877e6bc-7765-4218-b97d-eda4c6ef0c15",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "The photo of the child crying was very ________ ; it made everyone feel sad.",
+      "choices": [
+        "landscape",
+        "composed",
+        "poignant",
+        "blurred"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:24.806Z",
+      "updatedAt": "2026-07-24T19:06:33.870Z"
+    },
+    {
+      "id": "826460ef-322a-43db-9599-6f0d90975040",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "Fatima was exhausted because she ________ on her project for ten hours.",
+      "choices": [
+        "had been working",
+        "works",
+        "has worked",
+        "is working"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:24.807Z",
+      "updatedAt": "2026-07-24T19:06:34.017Z"
+    },
+    {
+      "id": "1a2c5803-fdb2-4abf-9422-083a3a09e356",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "Children today often have a shorter ________ than kids did 20 years ago.",
+      "choices": [
+        "public interest",
+        "attention span",
+        "news story",
+        "revenue"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:24.807Z",
+      "updatedAt": "2026-07-24T19:06:34.312Z"
+    },
+    {
+      "id": "71d16cbf-fb44-4bc0-bca2-460ac376d131",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "Ali ________ his leg last week. Before he fell, he had been trying to climb the mountain.",
+      "choices": [
+        "breaks",
+        "has broken",
+        "broke",
+        "was breaking"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:24.807Z",
+      "updatedAt": "2026-07-24T19:06:34.460Z"
+    },
+    {
+      "id": "1b72f0e0-37d5-4287-af7f-97b11d2cbfda",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "The headline was designed to attract attention and shock readers; it was purely __________.",
+      "choices": [
+        "balanced",
+        "sensational",
+        "heartwarming",
+        "off the record"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "Sensationalism in journalism is the use of exciting or shocking stories or language at the expense of accuracy, in order to provoke public interest.",
+      "createdAt": "2026-07-24T18:22:24.806Z",
+      "updatedAt": "2026-07-25T04:05:17.180Z"
+    },
+    {
+      "id": "cbd731a7-137a-4934-9b78-5f85acfdaca1",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "The new restaurant is too expensive for us; it is aimed at the ________ market.",
+      "choices": [
+        "upmarket",
+        "traditional",
+        "sensitive",
+        "viral"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:24.807Z",
+      "updatedAt": "2026-07-24T19:06:34.757Z"
+    },
+    {
+      "id": "a68eb549-566d-4132-8642-403799b29f3c",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "Find a word in the text which means 'A charge or claim that someone has done something illegal or wrong.'",
+      "choices": [
+        "accusation",
+        "obstruction",
+        "incident",
+        "statement"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "An 'accusation' is a claim that someone has done something wrong, as seen when the author mentions an accusation that they are working for the hotel company.",
+      "createdAt": "2026-07-24T18:22:24.806Z",
+      "updatedAt": "2026-07-25T04:05:17.330Z"
+    },
+    {
+      "id": "ba24ea5f-8e7a-4968-9f03-93c3ffd48c31",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "By the time the police arrived, the thief ________ the money.",
+      "choices": [
+        "has stolen",
+        "had stolen",
+        "steals",
+        "was stealing"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:24.807Z",
+      "updatedAt": "2026-07-24T19:06:35.053Z"
+    },
+    {
+      "id": "f6b535b9-e410-47d7-b09b-fad1f170c591",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "Which of the following is one of the specific infrastructure improvements promised by developers?",
+      "choices": [
+        "A new road with wide pavements.",
+        "A new shopping mall.",
+        "A large public library.",
+        "A new airport near the beach."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "The second paragraph explicitly mentions that the developers promised a new road with wide pavements.",
+      "createdAt": "2026-07-24T18:22:24.806Z",
+      "updatedAt": "2026-07-25T04:05:17.480Z"
+    },
+    {
+      "id": "02a3d6d6-3180-4ce9-97e1-cf858fde182c",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "________ had she finished her speech when the audience started clapping.",
+      "choices": [
+        "Scarcely",
+        "No sooner",
+        "Little",
+        "Not only"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:24.807Z",
+      "updatedAt": "2026-07-24T19:06:35.348Z"
+    },
+    {
+      "id": "2720e50b-61fb-449f-b1c5-eb9f7391c7e8",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "The investigation aimed to ________ corruption in the city council.",
+      "choices": [
+        "evoke",
+        "expose",
+        "claim",
+        "pose"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:24.807Z",
+      "updatedAt": "2026-07-24T19:06:35.643Z"
+    },
+    {
+      "id": "429ea725-7d07-4ef8-9307-28d4bc102bdf",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "Before he became a teacher, he ________ as a journalist for five years.",
+      "choices": [
+        "had been working",
+        "works",
+        "has been working",
+        "is working"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:24.807Z",
+      "updatedAt": "2026-07-24T19:06:35.790Z"
+    },
+    {
+      "id": "ced3deea-6052-4406-b583-115b31177b5b",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "Find a phrase in the first paragraph that means 'to take advantage of a chance.'",
+      "choices": [
+        "seize the opportunity",
+        "released a statement",
+        "offer improvements",
+        "come up with a solution"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "The phrase 'seize the opportunity' means to act quickly in order to use an opportunity that may not be available later.",
+      "createdAt": "2026-07-24T18:22:24.806Z",
+      "updatedAt": "2026-07-25T04:05:17.630Z"
+    },
+    {
+      "id": "5322f041-4f45-46dc-8728-8ab3df1c0daf",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "The children ________ outside for an hour before it started to rain.",
+      "choices": [
+        "play",
+        "have played",
+        "had been playing",
+        "are playing"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:24.807Z",
+      "updatedAt": "2026-07-24T19:06:36.085Z"
+    },
+    {
+      "id": "2023c57c-e9ed-4fea-aa77-a58455558e99",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "What does the underlined pronoun 'they' in the first paragraph refer to?",
+      "choices": [
+        "the developers",
+        "the protesters",
+        "the townspeople",
+        "the police"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "In the sentence 'When developers released a statement that they were going to build...', 'they' refers to the developers.",
+      "createdAt": "2026-07-24T18:22:24.806Z",
+      "updatedAt": "2026-07-25T04:05:17.780Z"
+    },
+    {
+      "id": "c0d1e958-68a6-400b-8f18-c6f80cb306a5",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "Under no circumstances ________ you leave the door unlocked.",
+      "choices": [
+        "should",
+        "you should",
+        "should have",
+        "you shall"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:24.807Z",
+      "updatedAt": "2026-07-24T19:06:36.381Z"
+    },
+    {
+      "id": "c77f0a86-3cf1-4256-b46c-5e4518ed2da6",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "Why did the author report the activists to the police?",
+      "choices": [
+        "Because they were illegally obstructing lorries from entering the beach.",
+        "Because they stole equipment from the site.",
+        "Because they were protesting peacefully.",
+        "Because they were working for a rival company."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": "The author mentions reporting the activists because they tried to stop lorries from entering the beach, which the author describes as illegal obstruction.",
+      "createdAt": "2026-07-24T18:22:24.806Z",
+      "updatedAt": "2026-07-25T04:05:17.930Z"
+    },
+    {
+      "id": "145615de-56e7-4fc2-a081-7dc1f5620e18",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "A good journalist must always ________ before publishing a story to ensure it is true.",
+      "choices": [
+        "verify sources",
+        "shed light",
+        "go viral",
+        "expose corruption"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:24.806Z",
+      "updatedAt": "2026-07-24T19:06:36.528Z"
+    },
+    {
+      "id": "ddb8fff2-7b32-4e23-ab0a-ff872535c028",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "Not only ________ the race, but she also broke the world record.",
+      "choices": [
+        "she won",
+        "did she win",
+        "she had won",
+        "does she win"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:24.807Z",
+      "updatedAt": "2026-07-24T19:06:36.675Z"
+    },
+    {
+      "id": "030085ce-adeb-446e-ad0e-e86de8dd2af3",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "There has been a significant ________ in the quality of internet services in Jordan.",
+      "choices": [
+        "improve",
+        "improvement",
+        "improved",
+        "improves"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:24.806Z",
+      "updatedAt": "2026-07-24T19:06:36.823Z"
+    },
+    {
+      "id": "8c91343d-5de5-440c-a1cd-3ec9deee7b2f",
+      "examId": "248db12c-9e72-4592-91c1-bf931d85b46b",
+      "question": "________ had I entered the room when the phone rang.",
+      "choices": [
+        "Scarcely",
+        "No sooner",
+        "Little",
+        "Never"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:24.807Z",
+      "updatedAt": "2026-07-24T19:06:36.970Z"
+    }
+  ]
+}

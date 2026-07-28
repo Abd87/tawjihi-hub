@@ -30,6 +30,7 @@ interface Lesson {
   durationMinutes: number;
   order: number;
   locked: boolean;
+  isFreeTrial?: boolean;
   questions?: InlineQuestion[];
   explanationAr?: string;
   explanationEn?: string;
@@ -146,7 +147,7 @@ function saveUsers(users: AppUser[]) {
 /* ─── Empty factories ───────────────────────────────────────────────────── */
 const emptyLesson = (): Lesson => ({
   id: `lesson-${Date.now()}-${Math.random().toString(36).slice(2)}`,
-  titleAr: '', titleEn: '', videoUrl: '', pdfUrl: '', durationMinutes: 45, order: 1, locked: false,
+  titleAr: '', titleEn: '', videoUrl: '', pdfUrl: '', durationMinutes: 45, order: 1, locked: false, isFreeTrial: false,
   questions: [],
 });
 
@@ -1152,8 +1153,8 @@ function LessonEditor({ lesson, idx, isRtl, onChange, onDelete }: {
         </div>
       </div>
 
-      {/* Lesson lock toggle */}
-      <div className="flex items-center gap-2">
+      {/* Lesson lock & trial toggles */}
+      <div className="flex items-center gap-4">
         <button
           type="button"
           onClick={() => onChange('locked', !lesson.locked)}
@@ -1165,6 +1166,19 @@ function LessonEditor({ lesson, idx, isRtl, onChange, onDelete }: {
         >
           {lesson.locked ? <Lock className="h-3 w-3" /> : <Unlock className="h-3 w-3" />}
           {lesson.locked ? (isRtl ? 'مقفول' : 'Locked') : (isRtl ? 'مفتوح' : 'Unlocked')}
+        </button>
+
+        <button
+          type="button"
+          onClick={() => onChange('isFreeTrial', !lesson.isFreeTrial)}
+          className={`flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-lg border transition-all ${
+            lesson.isFreeTrial
+              ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/25'
+              : 'text-slate-500 border-slate-800 hover:border-slate-600'
+          }`}
+        >
+          <PlaySquare className="h-3 w-3" />
+          {lesson.isFreeTrial ? (isRtl ? 'معاينة مجانية: مفعلة' : 'Free Trial: ON') : (isRtl ? 'معاينة مجانية: معطلة' : 'Free Trial: OFF')}
         </button>
       </div>
 

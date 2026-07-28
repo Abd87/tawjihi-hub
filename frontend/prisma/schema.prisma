@@ -108,6 +108,7 @@ model Lesson {
   pdfUrl          String?
   order           Int
   locked          Boolean          @default(false)
+  isFreeTrial     Boolean          @default(false)
   
   explanationAr   String?          @db.Text
   explanationEn   String?          @db.Text

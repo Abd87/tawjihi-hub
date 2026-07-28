@@ -241,20 +241,8 @@ export default function CourseSyllabusPage() {
     );
   }
 
-  // Course lock gate
-  if (course.locked) {
-    return (
-      <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center text-center px-4">
-        <CourseUnlockModal 
-          isOpen={true} 
-          onClose={() => router.push('/dashboard')} 
-          courseTitleAr={course.titleAr}
-          courseTitleEn={course.titleEn}
-          isRtl={isRtl}
-        />
-      </div>
-    );
-  }
+  // Course lock gate removed to allow unenrolled students to see the syllabus.
+  // The CourseUnlockModal will still pop up if they click a locked lesson.
 
   const courseTitle = isRtl ? course.titleAr : course.titleEn;
   const courseDesc = isRtl ? course.descriptionAr : course.descriptionEn;
@@ -480,7 +468,15 @@ export default function CourseSyllabusPage() {
                                     {isRtl ? lesson.titleAr : lesson.titleEn}
                                   </h4>
                                 </div>
-                                {isLessonLocked && <Lock className="h-4 w-4 text-slate-500" />}
+                                {isLessonLocked ? (
+                                  <Lock className="h-4 w-4 text-slate-500" />
+                                ) : (
+                                  course.locked && !isLessonLocked && (
+                                    <span className="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold uppercase tracking-wider">
+                                      {isRtl ? 'معاينة مجانية' : 'Free Trial'}
+                                    </span>
+                                  )
+                                )}
                               </div>
 
                               {/* Lesson Items */}

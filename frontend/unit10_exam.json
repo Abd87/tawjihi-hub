@@ -1,0 +1,263 @@
+{
+  "id": "5a375d35-45a8-4ed2-9792-22f7e8ba9467",
+  "unitNumber": 10,
+  "titleAr": "الوحدة العاشرة: الإعلام ونقد الأخبار",
+  "titleEn": "Unit 10: Media & News Criticism",
+  "descriptionAr": "اختبار تقييمي مجاني وشامل على الوحدة العاشرة: الإعلام ونقد الأخبار. ينشّط مهارات القواعد والمفردات والأسئلة الوزارية والقطع لمنهاج High Note 11.",
+  "descriptionEn": "Free diagnostic unit exam for Unit 10: Media & News Criticism covering reading comprehension, vocabulary, and grammar in High Note 11.",
+  "text": "W<b>Why do people enjoy fiction? Some people are under the impression that it’s because we are in suspense about what is going to happen, so someone actually telling you the plot would completely spoil the experience. This is why we refer to a newspaper article or blog with that kind of information as a ‘spoiler’. News sites are usually careful to at least signal that there are spoilers in their reviews, and when an important plot line gets ‘spoilt’, there’s a huge fuss online. </b>\n\n<b>You might be surprised to learn that research would actually suggest the opposite: that spoilers can in fact enhance our experience. In a study, participants were divided into two groups and each group was given the same stories to read. In addition, the second group were also given brief introductions which subtly ‘spoilt’ the plots. You might assume that the first group found the stories more engaging, but surprisingly, it was the second group who claimed the greatest reading satisfaction. </b>\n\n<b>It could be said that when we love a book, we often read it again – sometimes many times. We aren’t doing this to find out what happens. In all likelihood, we enjoy it more the second time because we are free to notice more of the detail. Knowing what happens at the end of great classic works of fiction isn’t going to ruin them. Interestingly, the research carried out showed that the kind of people who are keen to avoid spoilers by accident tend to have a particular personality type. </b><b><u>They</u></b><b> are very emotionally involved with what they are reading. </b>",
+  "durationMinutes": 30,
+  "createdAt": "2026-07-24T18:22:28.587Z",
+  "updatedAt": "2026-07-24T19:56:45.981Z",
+  "questions": [
+    {
+      "id": "891eee73-a1a1-413c-bc85-6eb4ff46797a",
+      "examId": "5a375d35-45a8-4ed2-9792-22f7e8ba9467",
+      "question": "The text states that news websites usually take a specific precaution (careful) when writing reviews. Write down this precaution. (2 points) ________ ________ ________",
+      "choices": [
+        "To keep readers engaged and encourage them to read the full article.",
+        "To summarize the entire article in one sentence.",
+        "To trick readers into clicking on advertisements.",
+        "To provide a detailed analysis of the news event."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.741Z",
+      "updatedAt": "2026-07-24T19:06:55.231Z"
+    },
+    {
+      "id": "0b1679a3-5eb9-423d-943e-cb9dc26d1241",
+      "examId": "5a375d35-45a8-4ed2-9792-22f7e8ba9467",
+      "question": "<u>You can’t miss this film</u>. This means:",
+      "choices": [
+        "crack a few jokes",
+        "be a must watch",
+        "heckle somebody"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.743Z",
+      "updatedAt": "2026-07-24T18:22:28.743Z"
+    },
+    {
+      "id": "359cdac8-0d83-46c4-8097-bb96142f686c",
+      "examId": "5a375d35-45a8-4ed2-9792-22f7e8ba9467",
+      "question": "In the mentioned study, the second group of participants received something extra before reading the stories. What was it? (2 points) ________ ________",
+      "choices": [
+        "They found the stories more enjoyable because they knew the ending.",
+        "They were bored and stopped reading halfway through.",
+        "They skipped to the end to see if they were right.",
+        "They preferred the stories with surprise endings."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.741Z",
+      "updatedAt": "2026-07-24T19:06:55.378Z"
+    },
+    {
+      "id": "78a538f9-d943-4518-a603-5208d108448a",
+      "examId": "5a375d35-45a8-4ed2-9792-22f7e8ba9467",
+      "question": "The new museum doors are massive because the historical sculpture inside is so ________ they couldn’t get it through a normal entrance!",
+      "choices": [
+        "enormous",
+        "spherical",
+        "curved",
+        "miniature"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.741Z",
+      "updatedAt": "2026-07-24T18:22:28.741Z"
+    },
+    {
+      "id": "13e9a1e5-8e81-4948-96d4-e532ea357bef",
+      "examId": "5a375d35-45a8-4ed2-9792-22f7e8ba9467",
+      "question": "The costume made him look really---------I couldn’t stop laughing!",
+      "choices": [
+        "exceptional",
+        "comical",
+        "cheesy"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.743Z",
+      "updatedAt": "2026-07-24T18:22:28.743Z"
+    },
+    {
+      "id": "59b23d30-7f95-469f-9ddd-e67098619850",
+      "examId": "5a375d35-45a8-4ed2-9792-22f7e8ba9467",
+      "question": "My friend is always cracking ------------- jokes that aren’t at all funny.",
+      "choices": [
+        "exceptional",
+        "lively",
+        "cheesy"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.743Z",
+      "updatedAt": "2026-07-24T18:22:28.743Z"
+    },
+    {
+      "id": "3f6d9176-4f1e-4c5f-8f8e-74f459715d1b",
+      "examId": "5a375d35-45a8-4ed2-9792-22f7e8ba9467",
+      "question": "He didn't mean to reveal the ending of the movie; he did it ________ .",
+      "choices": [
+        "in suspense",
+        "on purpose",
+        "by accident",
+        "at least"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.741Z",
+      "updatedAt": "2026-07-24T19:06:55.525Z"
+    },
+    {
+      "id": "cdce6a98-3a6d-4913-b7a5-e10dd27fdf9f",
+      "examId": "5a375d35-45a8-4ed2-9792-22f7e8ba9467",
+      "question": "What does the underlined pronoun \"They\" in the last paragraph refer to? (2 points) ________",
+      "choices": [
+        "the participants",
+        "the stories",
+        "the authors",
+        "the endings"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.741Z",
+      "updatedAt": "2026-07-24T19:06:55.673Z"
+    },
+    {
+      "id": "d8dc3bff-a901-4225-9ad3-6ae070edd5e9",
+      "examId": "5a375d35-45a8-4ed2-9792-22f7e8ba9467",
+      "question": "We missed our favourite TV show yesterday, so we’ll <u>watch the latest one</u> tonight instead.",
+      "choices": [
+        "deliver the punchline",
+        "be a must watch",
+        "catch up on the latest episode"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.742Z",
+      "updatedAt": "2026-07-24T18:22:28.742Z"
+    },
+    {
+      "id": "9481a020-6f51-40a2-bbde-f3c419c3ada7",
+      "examId": "5a375d35-45a8-4ed2-9792-22f7e8ba9467",
+      "question": "According to the text, why do people often enjoy reading a book for a second time? (2 points) ________ ________ ________",
+      "choices": [
+        "Knowing the ending reduces anxiety and allows them to appreciate the writing.",
+        "They want to impress their friends by knowing the plot.",
+        "They don't have enough time to read the whole story.",
+        "They enjoy finding plot holes and mistakes in the narrative."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.741Z",
+      "updatedAt": "2026-07-24T19:06:55.967Z"
+    },
+    {
+      "id": "7d0bb72f-2951-4a03-ad24-2911f39793b2",
+      "examId": "5a375d35-45a8-4ed2-9792-22f7e8ba9467",
+      "question": "The opening of the new cultural center marks a truly ________ day for the city's artists.",
+      "choices": [
+        "historical",
+        "historic",
+        "classic",
+        "classical"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.741Z",
+      "updatedAt": "2026-07-24T18:22:28.741Z"
+    },
+    {
+      "id": "0108687e-d4f7-4c81-8a85-4db2db2b2b99",
+      "examId": "5a375d35-45a8-4ed2-9792-22f7e8ba9467",
+      "question": "Her performance was----------far better than anyone else in the cast.",
+      "choices": [
+        "offensive",
+        "unconvincing",
+        "exceptional"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.743Z",
+      "updatedAt": "2026-07-24T18:22:28.743Z"
+    },
+    {
+      "id": "f24e8a81-3a65-4f54-be25-beeba67bc737",
+      "examId": "5a375d35-45a8-4ed2-9792-22f7e8ba9467",
+      "question": "Find a phrase in the first paragraph which means \"a storyline of a play, film, TV drama or book\". (2 points) ________ ________ ________",
+      "choices": [
+        "give away",
+        "look forward to",
+        "come across",
+        "make up"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.741Z",
+      "updatedAt": "2026-07-24T19:06:56.115Z"
+    },
+    {
+      "id": "e2980835-2464-4e83-8b64-963d3c02f130",
+      "examId": "5a375d35-45a8-4ed2-9792-22f7e8ba9467",
+      "question": "When he <u>gave the final line of the joke</u>, nobody laughed. The underlined phrase means:",
+      "choices": [
+        "deliver the punchline",
+        "be a must watch",
+        "play the lead"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.743Z",
+      "updatedAt": "2026-07-24T18:22:28.743Z"
+    },
+    {
+      "id": "3d4749e0-ee4a-48ce-bf13-4194000d4365",
+      "examId": "5a375d35-45a8-4ed2-9792-22f7e8ba9467",
+      "question": "The comedian struggled on stage; when he finally delivered the ________ , nobody in the audience laughed.",
+      "choices": [
+        "sitcom",
+        "plot",
+        "cast",
+        "punchline"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.743Z",
+      "updatedAt": "2026-07-24T19:06:56.262Z"
+    },
+    {
+      "id": "4193fa8e-e69a-4a6b-b336-9ce7e9e8241c",
+      "examId": "5a375d35-45a8-4ed2-9792-22f7e8ba9467",
+      "question": "The author suggests that knowing what happens at the end of a great classic doesn't ruin it. Think of this statement and, in two sentences, write down your point of view. (4 points) ________ ________ ________ Vocabulary ( /10) marks",
+      "choices": [
+        "It lets readers focus on how the events unfold rather than just what happens.",
+        "It ruins the suspense and makes the story less interesting.",
+        "It is only useful for academic reading, not for entertainment.",
+        "It helps readers read faster and skip boring parts."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.741Z",
+      "updatedAt": "2026-07-24T19:06:56.410Z"
+    },
+    {
+      "id": "aa305b62-e6ca-41b4-9454-3b2fcbef1985",
+      "examId": "5a375d35-45a8-4ed2-9792-22f7e8ba9467",
+      "question": "Write down the sentence which indicates that knowing the outcome of a story can actually make reading it more enjoyable. (2 points) ________ ________ ________",
+      "choices": [
+        "Surprisingly, knowing what happens at the end did not ruin the experience.",
+        "Many readers prefer to avoid spoilers at all costs.",
+        "The study was conducted by a group of psychology students.",
+        "Most news articles follow a predictable structure."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:28.741Z",
+      "updatedAt": "2026-07-24T19:06:56.557Z"
+    }
+  ]
+}

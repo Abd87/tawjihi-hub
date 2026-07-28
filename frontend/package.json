@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "fetch": "npx tsx fetch-unit10.ts",
+    "fetch5": "npx tsx fetch_unit5.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",

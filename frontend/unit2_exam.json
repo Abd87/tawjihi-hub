@@ -1,0 +1,434 @@
+{
+  "id": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+  "unitNumber": 2,
+  "titleAr": "الوحدة الثانية: العالم الطبيعي والبيئة",
+  "titleEn": "Unit 2: The Natural World & Wildlife",
+  "descriptionAr": "اختبار تقييمي مجاني وشامل على الوحدة الثانية: العالم الطبيعي والبيئة. ينشّط مهارات القواعد والمفردات والأسئلة الوزارية والقطع لمنهاج High Note 11.",
+  "descriptionEn": "Free diagnostic unit exam for Unit 2: The Natural World & Wildlife covering reading comprehension, vocabulary, and grammar in High Note 11.",
+  "text": "\n<b>A- It's no accident that the symbol of the World-Wide Fund for Nature is a giant panda. These animals are cute or beautiful, or both, and of course we all want to save them. This popularity enables organisations such as the WWF to raise money to support a range of critically endangered species. However, less well-known or 'exciting' creatures are far more likely to become extinct because they don't get enough attention from researchers. Invertebrates (animals without a backbone) make up over 90% of all the creatures on Earth, but get only a tiny percentage of the money available to protect our wildlife.</b>\n\n<b>B- And what about those creatures that many people would find positively ugly? With its tiny eyes, big mouth and slimy pink body, the blobfish is far from attractive. This marine creature lives deep in the ocean, where the pressure is very high. As a result, </b><b><u>it</u></b><b> has tiny fins and no skeleton, which keeps it from being crushed by the water pressure. Unfortunately, when fishing boats sweep the ocean floor, looking for other fish and crustaceans, these fish can get swept into the nets accidentally.</b>\n\n<b>C- The threat faced by </b><b>the pangolin</b><b>s, however, is far from accidental. </b><b>They</b><b> are more often targeted by poachers than any other animal in the world. Unique among mammals, it is covered in scales, like a reptile. They may not look very cuddly or cute, but these scales are highly prized in traditional Chinese medicine, which has caused the population of pangolins in China to fall by around 90% since the 1960s. Their scales protect them from their natural predators, but it's simple for a poacher to just pick them up.   </b>\n\n<b>D- Other creatures become endangered precisely because people find them ugly. Take the aye aye for example. Found only on the island of Madagascar, the aye aye is the world's largest nocturnal primate. During the day they sleep in nests in the trees, coming out to hunt at night. They are solitary creatures, furry, and harmless but unfortunately, they are often killed.</b>",
+  "durationMinutes": 30,
+  "createdAt": "2026-07-24T18:22:23.030Z",
+  "updatedAt": "2026-07-24T19:51:37.832Z",
+  "questions": [
+    {
+      "id": "ee258f77-71ab-4405-ac57-fe5d4c91798a",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "When you come back home tonight, please try to be quiet as everyone",
+      "choices": [
+        "will / have slept",
+        "will / be sleeping",
+        "had / slept",
+        "is / going to sleep"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.328Z",
+      "updatedAt": "2026-07-24T18:38:35.547Z"
+    },
+    {
+      "id": "3867582e-aad0-4204-aa87-f9de9a1bee14",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "Find a word that means \" covered in liquid and not nice to touch \"",
+      "choices": [
+        "slimy",
+        "cuddly",
+        "attractive",
+        "ugly"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.326Z",
+      "updatedAt": "2026-07-24T18:41:06.643Z"
+    },
+    {
+      "id": "be5a08fa-94bd-481f-a3f8-ad279dc6f1de",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "If you don’t charge your electric car now, it________ completely by lunchtime",
+      "choices": [
+        "will have died",
+        "is going to die",
+        "will be dying",
+        "will been dying"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.328Z",
+      "updatedAt": "2026-07-24T18:38:35.254Z"
+    },
+    {
+      "id": "c7dbb108-a855-4f07-a3f1-98683be72984",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "The aye aye is traditionally considered an________of bad luck on the island of Madagascar",
+      "choices": [
+        "nocturnal",
+        "slimy",
+        "cuddly",
+        "omen"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.328Z",
+      "updatedAt": "2026-07-24T18:38:35.400Z"
+    },
+    {
+      "id": "9b203723-e3a8-4bdc-8b92-f9ab6b5ee49a",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "All the people on the beach were panicked when they saw a shark’s________sticking out of the water",
+      "choices": [
+        "invertebrates",
+        "scales",
+        "fin",
+        "skeleton"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.328Z",
+      "updatedAt": "2026-07-24T18:38:35.693Z"
+    },
+    {
+      "id": "d6af1017-7137-437f-855c-3a886ae39f33",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "Why are pangolins specifically targeted by poachers?",
+      "choices": [
+        "these scales are highly prized in traditional Chinese medicine",
+        "they are the world's largest nocturnal primate",
+        "they are considered an omen of bad luck",
+        "they get swept into the nets accidentally"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.326Z",
+      "updatedAt": "2026-07-24T18:41:06.049Z"
+    },
+    {
+      "id": "1fb2076a-d89f-48e9-8207-a8638baf543f",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "What is the main reason why invertebrates receive less protection money than other animals?",
+      "choices": [
+        "because they don't get enough attention from researchers.",
+        "because they are far from attractive and have slimy bodies.",
+        "because they live deep in the ocean where pressure is very high.",
+        "because they are considered an omen of bad luck by local people."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.326Z",
+      "updatedAt": "2026-07-24T18:41:06.196Z"
+    },
+    {
+      "id": "7852088f-a546-4616-8714-2d66900fc2d9",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "Write down the sentence which states that the aye-aye is a shy animal that prefers to live and hunt alone",
+      "choices": [
+        "They are solitary creatures, furry, and harmless but unfortunately, they are often killed.",
+        "Found only on the island of Madagascar, the aye aye is the world's largest nocturnal primate.",
+        "During the day they sleep in nests in the trees, coming out to hunt at night.",
+        "Other creatures become endangered precisely because people find them ugly."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.326Z",
+      "updatedAt": "2026-07-24T18:41:06.344Z"
+    },
+    {
+      "id": "0ae19613-584a-4eb1-9afc-cef1ff0c76eb",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "In two days’ time, they________ in the importance of this project more strongly after the presentation",
+      "choices": [
+        "will be believing",
+        "’ll have been believing",
+        "believes",
+        "will believe"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.328Z",
+      "updatedAt": "2026-07-24T18:38:35.840Z"
+    },
+    {
+      "id": "0d5ad3b6-5f55-4281-b0ed-8cbe86132b32",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "What does the underlined pronoun \"it\" in paragraph B refer to?",
+      "choices": [
+        "the blobfish",
+        "the giant panda",
+        "the marine creature",
+        "the ocean"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.326Z",
+      "updatedAt": "2026-07-24T18:41:06.496Z"
+    },
+    {
+      "id": "68ffdaee-3f86-43c6-8571-f608665e814f",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "We________ a great time in a farm with my grandparents next weekend",
+      "choices": [
+        "will have spent",
+        "going to spend",
+        "spend",
+        "will have been spending"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.328Z",
+      "updatedAt": "2026-07-24T18:38:35.986Z"
+    },
+    {
+      "id": "2dada780-b820-4487-87b0-ebc5ce40876c",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "A: I’m planning to go to the match at the stadium. What time________ it ________? B: At 7 p.m. So hurry up!",
+      "choices": [
+        "did / start",
+        "will / have started",
+        "does / start",
+        "does / starts"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.328Z",
+      "updatedAt": "2026-07-24T18:38:36.133Z"
+    },
+    {
+      "id": "e6caf682-4039-46f8-aa8b-27bd014efd03",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "When you come back home tonight, please try to be quiet as everyone ________ already ________ to bed",
+      "choices": [
+        "will / have gone",
+        "will / be going",
+        "had / gone",
+        "is / going to go"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.328Z",
+      "updatedAt": "2026-07-24T18:38:36.280Z"
+    },
+    {
+      "id": "1c7f96ec-bb26-489f-a4bb-add8b8478ef2",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "percent of the energy we consume is provided by________ , which pollute the atmosphere",
+      "choices": [
+        "acid rain",
+        "fossil fuels",
+        "renewable energy",
+        "toxic waste"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.327Z",
+      "updatedAt": "2026-07-24T18:38:34.668Z"
+    },
+    {
+      "id": "53250427-16af-4d47-8249-59944f507aa4",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "The gale-force ________ were so strong they damaged the power lines",
+      "choices": [
+        "rain",
+        "snow",
+        "heat",
+        "winds"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.328Z",
+      "updatedAt": "2026-07-24T18:38:36.426Z"
+    },
+    {
+      "id": "8f720335-96cf-4b35-848c-fb366869aac8",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "Which sentence has the same meaning as \"She is unlikely to attend the meeting\"?",
+      "choices": [
+        "She will probably attend the meeting.",
+        "She will definitely attend the meeting.",
+        "She might attend the meeting.",
+        "She probably won't attend the  meeting."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.328Z",
+      "updatedAt": "2026-07-24T18:22:23.328Z"
+    },
+    {
+      "id": "7c4ebc63-f2ef-4ea1-9999-09f0ddb7c04c",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "Insects are ________ because they do not have a backbone",
+      "choices": [
+        "furry",
+        "crustacean",
+        "invertebrate",
+        "slimy"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.328Z",
+      "updatedAt": "2026-07-24T18:38:36.573Z"
+    },
+    {
+      "id": "fb7f6c5a-ab19-457a-aa5e-622939003483",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "Which of the following words has short vowel sound like <u>big</u>",
+      "choices": [
+        "seen",
+        "window",
+        "please",
+        "mean"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.328Z",
+      "updatedAt": "2026-07-24T18:38:36.719Z"
+    },
+    {
+      "id": "3578a002-6417-435f-9fbc-afefc1f2218f",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "According to these statistics, Without a doubt, crime figures________ to decrease in the near future",
+      "choices": [
+        "’re going to continue",
+        "continues",
+        "’ll have continued",
+        "’ll be continued"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.328Z",
+      "updatedAt": "2026-07-24T18:38:34.815Z"
+    },
+    {
+      "id": "73a47bf0-6e09-489e-b3c8-a6aea2e1eab4",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "By the time we reach the entrance, we ________ for three hours!",
+      "choices": [
+        "were going to wait",
+        "had been waited",
+        "will have been waiting",
+        "would have been waiting"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.328Z",
+      "updatedAt": "2026-07-24T18:38:34.961Z"
+    },
+    {
+      "id": "bf445cfd-6985-489d-889d-d295eefa45c6",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "Which sentence has the same meaning as \"They are planning a trip to Paris\"?",
+      "choices": [
+        "They have planned a trip to Paris.",
+        "They will plan a trip to Paris.",
+        "They are going to plan a trip to Paris.",
+        "They are going to Paris."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.328Z",
+      "updatedAt": "2026-07-24T18:22:23.328Z"
+    },
+    {
+      "id": "fe9b9527-0f3b-4aeb-b80e-681463deebaa",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "A lobster is a type of________ with a hard shell and many legs",
+      "choices": [
+        "reptile",
+        "crustacean",
+        "mammal",
+        "primate"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.328Z",
+      "updatedAt": "2026-07-24T18:38:35.107Z"
+    },
+    {
+      "id": "b0c02795-b543-4459-9a7e-d58191b67250",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "Two________were arrested for hunting elephants illegally",
+      "choices": [
+        "primates",
+        "poachers",
+        "naturalists",
+        "endangered species"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.326Z",
+      "updatedAt": "2026-07-24T18:38:33.782Z"
+    },
+    {
+      "id": "dfc78c29-673a-4bab-9405-e270bf2222bd",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "It is claimed that ________ from cars kill twice as many people as accidents caused by vehicles",
+      "choices": [
+        "wind turbine",
+        "fossil fuels",
+        "endangered species",
+        "exhaust fumes"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.327Z",
+      "updatedAt": "2026-07-24T18:38:34.229Z"
+    },
+    {
+      "id": "173bd523-ffc3-4549-af12-7f1d4d5ee307",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "The owl is a________bird because it sleeps by day and hunt by night",
+      "choices": [
+        "furry",
+        "marine",
+        "nocturnal",
+        "solitary"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.327Z",
+      "updatedAt": "2026-07-24T18:38:57.049Z"
+    },
+    {
+      "id": "e637a195-64e2-4a0e-89e4-667da504fb89",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "The popularity of animals like the giant panda helps conservation organizations in two ways. Write down these two ways",
+      "choices": [
+        "to raise money to support a range of critically endangered species.",
+        "to find new animals and protect them from natural predators.",
+        "to build shelters and provide medical care to all animals.",
+        "to hire more researchers and scientists to study the animals."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.326Z",
+      "updatedAt": "2026-07-24T18:41:05.609Z"
+    },
+    {
+      "id": "ce7797b6-bd24-4580-9787-833eff267de3",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "The blobfish has specific physical features that help it survive high water pressure. Write down two of these features",
+      "choices": [
+        "tiny fins and no skeleton",
+        "big mouth and slimy pink body",
+        "tiny eyes and big mouth",
+        "thick skin and large fins"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.326Z",
+      "updatedAt": "2026-07-24T18:41:05.901Z"
+    },
+    {
+      "id": "2b9984b4-c88e-4652-a5e2-465dd22eca76",
+      "examId": "e45ee85e-7adf-44c3-bd0e-766354fdeeda",
+      "question": "Conservation often focuses on \"cute\" animals while \"ugly\" ones are ignored or killed. Suggest two ways to encourage people to care more about less attractive endangered species",
+      "choices": [
+        "By spreading awareness about their ecological importance and creating educational campaigns.",
+        "By moving all ugly animals to zoos and keeping them away from humans.",
+        "By changing their appearance to make them look more like pandas.",
+        "By hunting their predators to increase their population."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:23.327Z",
+      "updatedAt": "2026-07-24T18:41:06.790Z"
+    }
+  ]
+}

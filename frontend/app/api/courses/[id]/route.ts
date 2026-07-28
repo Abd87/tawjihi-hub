@@ -83,7 +83,19 @@ export async function GET(request: Request, { params }: { params: { id: string }
     const course = {
       ...courseRaw,
       locked: isLocked, // Override DB lock with effective lock
-      lessons: courseRaw.units.flatMap(u => u.lessons)
+      lessons: courseRaw.units.flatMap(u => 
+        u.lessons.map(l => ({
+          ...l,
+          locked: isLocked ? !l.isFreeTrial : l.locked
+        }))
+      ),
+      units: courseRaw.units.map(u => ({
+        ...u,
+        lessons: u.lessons.map(l => ({
+          ...l,
+          locked: isLocked ? !l.isFreeTrial : l.locked
+        }))
+      }))
     };
     
     return NextResponse.json(course);

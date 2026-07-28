@@ -1,0 +1,86 @@
+[
+  {
+    "id": "g11-u8-q1",
+    "question": "Define 'Virtual Reality' according to the first paragraph.",
+    "choices": [
+      "A computer-generated environment that simulates reality.",
+      "A new type of video game console.",
+      "A software program used for editing videos.",
+      "A psychological treatment for phobias."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "According to the passage, Virtual Reality is described as 'a computer-generated simulation of an experience', making the first choice the correct definition."
+  },
+  {
+    "id": "g11-u8-q2",
+    "question": "The National Autistic Society developed a VR experience for a specific purpose. Identify this purpose.",
+    "choices": [
+      "To help people understand how individuals with autism experience the world.",
+      "To train doctors on how to diagnose autism.",
+      "To cure autism using advanced technology.",
+      "To create a virtual school for children with autism."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The text states the Society developed a VR experience 'to help people understand what sensory overload feels like', which is a key part of how individuals with autism experience the world."
+  },
+  {
+    "id": "g11-u8-q3",
+    "question": "According to Chris Milk, how does Virtual Reality affect the way humans interact?",
+    "choices": [
+      "It creates a strong sense of empathy by placing the user in someone else's shoes.",
+      "It distracts the user from their real-world problems.",
+      "It provides a fun and entertaining experience.",
+      "It allows the user to travel to fictional worlds."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Chris Milk notes that VR 'connects humans to other humans in a way which can change people’s perceptions of each other', which aligns with creating empathy."
+  },
+  {
+    "id": "g11-u8-q4",
+    "question": "The text mentions an experiment involving chopping down a tree. What was the result of this experiment regarding people's behavior?",
+    "choices": [
+      "They reached for fewer paper napkins, suggesting they stopped wasting paper.",
+      "They started to plant more trees in their local community.",
+      "They completely stopped using any paper products.",
+      "They developed a fear of forests and trees."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The passage explicitly mentions that those who 'chopped down trees' in VR 'reached for fewer paper napkins, suggesting that their experience had subconsciously encouraged them to stop wasting paper.'"
+  },
+  {
+    "id": "g11-u8-q5",
+    "question": "Apart from autism, the text lists two other situations people can experience through VR. Identify them.",
+    "choices": [
+      "Being disabled or being in a flood.",
+      "Medical training and architectural design.",
+      "Playing video games and watching movies.",
+      "Social media and online shopping."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The third paragraph directly states: 'VR has also been used to give people the experience of being disabled, or being in a flood.'"
+  },
+  {
+    "id": "g11-u8-q6",
+    "question": "Find a phrasal verb in the third paragraph that means 'to encounter'.",
+    "choices": [
+      "come up against",
+      "cut off",
+      "set up",
+      "take over"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "In the final sentence, 'come up against' is used to mean encountering or facing difficulties."
+  },
+  {
+    "id": "g11-u8-q7",
+    "question": "What is a major difference between simulated experiences and actual reality according to the text?",
+    "choices": [
+      "We can choose to stop a VR experience at any time, unlike real life.",
+      "VR allows you to actively interact with the environment, unlike a passive movie.",
+      "VR is much more expensive than real-life experiences.",
+      "VR requires special equipment that is hard to use."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The text explains that 'we can break off at any time and go back to our normal lives, whereas the people whose lives we’re experiencing don’t have that luxury.'"
+  }
+]

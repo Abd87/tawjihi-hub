@@ -320,10 +320,10 @@ export default function Grade11UnitExamEnginePage() {
               <Save className="w-8 h-8" />
             </div>
             <h3 className="text-xl font-extrabold text-white">
-              Resume Previous Progress?
+              {isRtl ? 'استئناف التقدم السابق؟' : 'Resume Previous Progress?'}
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              We found your saved progress for <strong>Unit {exam.unitNumber}</strong> on Question {savedProgressData?.currentIdx + 1} with {formatTime(savedProgressData?.timeLeft || 0)} remaining.
+              {isRtl ? ( <>لقد وجدنا تقدمك المحفوظ <strong>للوحدة {exam.unitNumber}</strong> عند السؤال {savedProgressData?.currentIdx + 1} ومتبقي {formatTime(savedProgressData?.timeLeft || 0)}.</> ) : ( <>We found your saved progress for <strong>Unit {exam.unitNumber}</strong> on Question {savedProgressData?.currentIdx + 1} with {formatTime(savedProgressData?.timeLeft || 0)} remaining.</> )}
             </p>
             <div className="space-y-3 pt-2">
               <button
@@ -331,7 +331,7 @@ export default function Grade11UnitExamEnginePage() {
                 className="w-full py-3.5 bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 text-white font-extrabold text-xs rounded-xl shadow-lg shadow-brand-500/25 transition-all flex items-center justify-center gap-2"
               >
                 <Play className="w-4 h-4 fill-white" />
-                <span>Resume Saved Exam</span>
+                <span>{isRtl ? 'استئناف الامتحان المحفوظ' : 'Resume Saved Exam'}</span>
               </button>
 
               <button
@@ -339,7 +339,7 @@ export default function Grade11UnitExamEnginePage() {
                 className="w-full py-3.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs rounded-xl border border-slate-700 transition-all flex items-center justify-center gap-2"
               >
                 <RotateCcw className="w-4 h-4" />
-                <span>Start Fresh from Question 1</span>
+                <span>{isRtl ? 'البدء من جديد من السؤال 1' : 'Start Fresh from Question 1'}</span>
               </button>
             </div>
           </div>
@@ -354,8 +354,8 @@ export default function Grade11UnitExamEnginePage() {
             href="/grade11-exams"
             className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors bg-slate-900/60 hover:bg-slate-800 px-4 py-2 rounded-xl border border-slate-800 text-xs font-bold"
           >
-            <ArrowLeft className="h-4 w-4" />
-            <span>Back to Exam Catalog</span>
+            {isRtl ? <ArrowRight className="h-4 w-4" /> : <ArrowLeft className="h-4 w-4" />}
+            <span>{isRtl ? 'العودة للامتحانات' : 'Back to Exam Catalog'}</span>
           </Link>
 
           <div className="flex items-center gap-3">
@@ -365,7 +365,7 @@ export default function Grade11UnitExamEnginePage() {
                 className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 hover:bg-amber-500/20 text-xs font-bold transition-all shadow-md"
               >
                 <Save className="w-4 h-4" />
-                <span>Save & Exit</span>
+                <span>{isRtl ? 'حفظ وخروج' : 'Save & Exit'}</span>
               </button>
             )}
 
@@ -391,7 +391,7 @@ export default function Grade11UnitExamEnginePage() {
 
           <div className="flex items-center gap-2 text-xs text-slate-400 shrink-0">
             <span className="bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800 font-bold">
-              {exam.questionsCount} Questions
+              {exam.questionsCount} {isRtl ? 'سؤال' : 'Questions'}
             </span>
           </div>
         </div>
@@ -402,13 +402,13 @@ export default function Grade11UnitExamEnginePage() {
             <div className="flex items-center justify-between border-b border-slate-800 pb-4">
               <div className="flex items-center gap-2 text-amber-400 font-extrabold text-sm">
                 <BrainCircuit className="w-5 h-5" />
-                <span>Mistake Bank Practice Engine ({mistakeResolvedIds.length} / {mistakeList.length} Resolved)</span>
+                <span>{isRtl ? `محرك بنك الأخطاء (${mistakeResolvedIds.length} / ${mistakeList.length} تم حله)` : `Mistake Bank Practice Engine (${mistakeResolvedIds.length} / ${mistakeList.length} Resolved)`}</span>
               </div>
               <button
                 onClick={() => setIsMistakeMode(false)}
                 className="px-3 py-1.5 rounded-xl bg-slate-800 text-xs text-slate-300 font-bold hover:bg-slate-700"
               >
-                Back to Score Summary
+                {isRtl ? 'العودة لملخص النتيجة' : 'Back to Score Summary'}
               </button>
             </div>
 
@@ -417,15 +417,15 @@ export default function Grade11UnitExamEnginePage() {
                 <div className="w-20 h-20 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto">
                   <CheckCircle className="w-10 h-10" />
                 </div>
-                <h3 className="text-2xl font-black text-white">🎉 100% Mastery Achieved!</h3>
+                <h3 className="text-2xl font-black text-white">{isRtl ? '🎉 اكتملت المراجعة 100%!' : '🎉 100% Mastery Achieved!'}</h3>
                 <p className="text-sm text-slate-300">
-                  Awesome work! You have successfully resolved all mistaken questions for Unit {exam.unitNumber}.
+                  {isRtl ? `عمل رائع! لقد قمت بحل جميع الأخطاء بنجاح للوحدة ${exam.unitNumber}.` : `Awesome work! You have successfully resolved all mistaken questions for Unit ${exam.unitNumber}.`}
                 </p>
                 <button
                   onClick={() => setIsMistakeMode(false)}
                   className="px-6 py-3 bg-gradient-to-r from-brand-500 to-amber-600 text-white font-extrabold text-xs rounded-xl shadow-lg"
                 >
-                  Return to Final Results
+                  {isRtl ? 'العودة للنتائج النهائية' : 'Return to Final Results'}
                 </button>
               </div>
             ) : (
@@ -438,7 +438,7 @@ export default function Grade11UnitExamEnginePage() {
                   return (
                     <div className="space-y-6">
                       <div className="flex items-center justify-between text-xs text-slate-400">
-                        <span>Mistake {currentMistakeIdx + 1} of {mistakeList.length}</span>
+                        <span>{isRtl ? `خطأ ${currentMistakeIdx + 1} من ${mistakeList.length}` : `Mistake ${currentMistakeIdx + 1} of ${mistakeList.length}`}</span>
                         <span className="text-amber-400 font-bold">{mQ.type?.toUpperCase()}</span>
                       </div>
 
@@ -478,7 +478,7 @@ export default function Grade11UnitExamEnginePage() {
                         <div className={`p-4 rounded-2xl border ${isCorrect ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300' : 'bg-amber-500/10 border-amber-500/20 text-amber-300'} space-y-1 text-xs`}>
                           <div className="font-bold flex items-center gap-1.5">
                             <Sparkles className="w-4 h-4" />
-                            <span>{isCorrect ? 'Correct! Mistake Resolved!' : 'Incorrect Try Again:'}</span>
+                            <span>{isCorrect ? (isRtl ? 'إجابة صحيحة! تم حل الخطأ' : 'Correct! Mistake Resolved!') : (isRtl ? 'إجابة خاطئة - حاول مرة أخرى:' : 'Incorrect Try Again:')}</span>
                           </div>
                           <p className="dir-rtl text-right text-slate-200">{mQ.explanationAr}</p>
                           <p className="text-left text-slate-400">{mQ.explanationEn}</p>
@@ -492,7 +492,7 @@ export default function Grade11UnitExamEnginePage() {
                           onClick={() => setCurrentMistakeIdx(prev => prev - 1)}
                           className="px-4 py-2 bg-slate-800 text-slate-300 rounded-xl text-xs font-bold disabled:opacity-40"
                         >
-                          Previous Mistake
+                          {isRtl ? 'الخطأ السابق' : 'Previous Mistake'}
                         </button>
 
                         <button
@@ -500,7 +500,7 @@ export default function Grade11UnitExamEnginePage() {
                           onClick={() => setCurrentMistakeIdx(prev => prev + 1)}
                           className="px-5 py-2 bg-brand-500 text-white rounded-xl text-xs font-bold disabled:opacity-40"
                         >
-                          Next Mistake
+                          {isRtl ? 'الخطأ التالي' : 'Next Mistake'}
                         </button>
                       </div>
                     </div>
@@ -518,7 +518,7 @@ export default function Grade11UnitExamEnginePage() {
               </div>
 
               <h2 className="text-2xl sm:text-3xl font-black text-white">
-                Exam Final Score & Explanation Breakdown
+                {isRtl ? 'النتيجة النهائية وتفاصيل الإجابات' : 'Exam Final Score & Explanation Breakdown'}
               </h2>
 
               <div className="text-4xl sm:text-5xl font-black text-brand-400">
@@ -526,7 +526,7 @@ export default function Grade11UnitExamEnginePage() {
               </div>
 
               <p className="text-sm text-slate-300">
-                You answered <span className="text-emerald-400 font-bold">{score}</span> out of <span className="font-bold">{exam.questionsCount}</span> questions correctly.
+                {isRtl ? ( <>لقد أجبت على <span className="text-emerald-400 font-bold">{score}</span> من أصل <span className="font-bold">{exam.questionsCount}</span> أسئلة بشكل صحيح.</> ) : ( <>You answered <span className="text-emerald-400 font-bold">{score}</span> out of <span className="font-bold">{exam.questionsCount}</span> questions correctly.</> )}
               </p>
 
               {mistakeList.length > 0 && (
@@ -534,7 +534,7 @@ export default function Grade11UnitExamEnginePage() {
                   <div className="flex items-center gap-2">
                     <BrainCircuit className="w-5 h-5 shrink-0" />
                     <span>
-                      {mistakeList.length} incorrect questions saved to your <strong>Mistake Bank</strong>.
+                      {isRtl ? ( <>{mistakeList.length} أسئلة خاطئة تم حفظها في <strong>بنك الأخطاء</strong>.</> ) : ( <>{mistakeList.length} incorrect questions saved to your <strong>Mistake Bank</strong>.</> )}
                     </span>
                   </div>
 
@@ -543,7 +543,7 @@ export default function Grade11UnitExamEnginePage() {
                     className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs rounded-xl shadow-md transition-all flex items-center gap-1.5 shrink-0"
                   >
                     <Flame className="w-4 h-4" />
-                    <span>Fix Mistakes Now</span>
+                    <span>{isRtl ? 'تدارك أخطائك الآن' : 'Fix Mistakes Now'}</span>
                   </button>
                 </div>
               )}
@@ -552,7 +552,7 @@ export default function Grade11UnitExamEnginePage() {
             {/* Answer Breakdown with Detailed Explanations */}
             <div className="space-y-6 pt-4 border-t border-slate-800">
               <h3 className="text-lg font-bold text-white mb-4">
-                Detailed Answers & Rule Explanations:
+                {isRtl ? 'الإجابات التفصيلية وتوضيح القواعد:' : 'Detailed Answers & Rule Explanations:'}
               </h3>
 
               {exam.questions.map((q: any, qIdx: number) => {
@@ -609,7 +609,7 @@ export default function Grade11UnitExamEnginePage() {
                       <div className="p-4 rounded-xl bg-slate-950 border border-slate-800/80 space-y-1 text-xs">
                         <div className="flex items-center gap-1.5 text-brand-400 font-bold mb-1">
                           <Sparkles className="w-3.5 h-3.5" />
-                          <span>Explanation & Solution:</span>
+                          <span>{isRtl ? 'التفسير والحل:' : 'Explanation & Solution:'}</span>
                         </div>
                         <p className="text-slate-300 leading-relaxed dir-rtl text-right">
                           {q.explanation}
@@ -633,7 +633,7 @@ export default function Grade11UnitExamEnginePage() {
                 className="flex-1 py-3.5 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-2"
               >
                 <RotateCcw className="w-4 h-4" />
-                <span>Retake Exam</span>
+                <span>{isRtl ? 'إعادة الامتحان' : 'Retake Exam'}</span>
               </button>
 
               <Link
@@ -641,7 +641,7 @@ export default function Grade11UnitExamEnginePage() {
                 className="flex-1 py-3.5 bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 text-white font-bold text-xs rounded-xl shadow-lg shadow-brand-500/20 transition-all flex items-center justify-center gap-2 text-center"
               >
                 <BrainCircuit className="w-4 h-4" />
-                <span>Open Mistake Bank</span>
+                <span>{isRtl ? 'فتح بنك الأخطاء' : 'Open Mistake Bank'}</span>
               </Link>
             </div>
           </div>
@@ -658,7 +658,7 @@ export default function Grade11UnitExamEnginePage() {
                 >
                   {showPassagePane ? <PanelLeftClose className="w-5 h-5" /> : <PanelLeftOpen className="w-5 h-5" />}
                   <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out px-0 group-hover:px-2 text-sm font-bold">
-                    {showPassagePane ? 'Hide Passage' : 'View Passage'}
+                    {showPassagePane ? (isRtl ? 'إخفاء النص' : 'Hide Passage') : (isRtl ? 'عرض النص' : 'View Passage')}
                   </span>
                 </button>
               </div>
@@ -670,7 +670,7 @@ export default function Grade11UnitExamEnginePage() {
                 <div className="bg-slate-800/50 border-b border-slate-700/50 p-4 flex items-center justify-between shrink-0">
                   <span className="font-bold text-slate-300 text-sm flex items-center gap-2">
                     <BookOpen className="w-4 h-4 text-brand-400" />
-                    <span>High Note 11 Reading Passage • Unit {exam.unitNumber}</span>
+                    <span>{isRtl ? `قطعة القراءة للوحدة ${exam.unitNumber}` : `High Note 11 Reading Passage • Unit ${exam.unitNumber}`}</span>
                   </span>
                 </div>
                 <div className="p-6 overflow-y-auto custom-scrollbar flex-1 space-y-4 text-sm text-slate-300 leading-relaxed font-serif">
@@ -691,9 +691,9 @@ export default function Grade11UnitExamEnginePage() {
               {/* Question Progress Tracker */}
               <div className="flex items-center justify-between text-xs text-slate-400 border-b border-slate-800/80 pb-3">
                 <div className="flex items-center gap-2">
-                  <span className="font-semibold">Question {currentIdx + 1} of {exam.questionsCount}</span>
+                  <span className="font-semibold">{isRtl ? `السؤال ${currentIdx + 1} من ${exam.questionsCount}` : `Question ${currentIdx + 1} of ${exam.questionsCount}`}</span>
                   <span className="px-2 py-0.5 rounded bg-brand-500/10 border border-brand-500/20 text-brand-400 text-[10px] font-bold uppercase">
-                    {currentQ.type || 'Question'}
+                    {currentQ.type || (isRtl ? 'سؤال' : 'Question')}
                   </span>
                 </div>
                 <div className="w-36 h-2 bg-slate-950 rounded-full overflow-hidden">
@@ -748,7 +748,7 @@ export default function Grade11UnitExamEnginePage() {
                       : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white'
                   }`}
                 >
-                  Previous
+                  {isRtl ? 'السابق' : 'Previous'}
                 </button>
 
                 {currentIdx < exam.questionsCount - 1 ? (
@@ -756,15 +756,15 @@ export default function Grade11UnitExamEnginePage() {
                     onClick={() => setCurrentIdx(prev => prev + 1)}
                     className="px-6 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-xs font-extrabold rounded-xl shadow-md transition-all flex items-center gap-1"
                   >
-                    <span>Next Question</span>
-                    <ChevronRight className="w-4 h-4" />
+                    <span>{isRtl ? 'السؤال التالي' : 'Next Question'}</span>
+                    {isRtl ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
                   </button>
                 ) : (
                   <button
                     onClick={handleSubmitExam}
                     className="px-6 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white text-xs font-black rounded-xl shadow-lg shadow-emerald-500/20 transition-all flex items-center gap-1"
                   >
-                    <span>Submit Exam</span>
+                    <span>{isRtl ? 'تسليم الامتحان' : 'Submit Exam'}</span>
                     <CheckCircle2 className="w-4 h-4" />
                   </button>
                 )}

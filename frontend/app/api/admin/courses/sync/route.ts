@@ -104,6 +104,7 @@ export async function POST(request: Request) {
               durationMinutes: lesson.durationMinutes,
               order: lesson.order,
               locked: lesson.locked,
+              isFreeTrial: lesson.isFreeTrial || false,
               explanationAr: lesson.explanationAr,
               explanationEn: lesson.explanationEn,
             }

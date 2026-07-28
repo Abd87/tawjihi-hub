@@ -1,0 +1,584 @@
+{
+  "id": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+  "unitNumber": 6,
+  "titleAr": "الوحدة السادسة: أنماط الحياة والحلول الذكية",
+  "titleEn": "Unit 6: Lifestyles & Smart Living",
+  "descriptionAr": "اختبار تقييمي مجاني وشامل على الوحدة السادسة: أنماط الحياة والحلول الذكية. ينشّط مهارات القواعد والمفردات والأسئلة الوزارية والقطع لمنهاج High Note 11.",
+  "descriptionEn": "Free diagnostic unit exam for Unit 6: Lifestyles & Smart Living covering reading comprehension, vocabulary, and grammar in High Note 11.",
+  "text": "\n<b>A) Could you live in a home that is only 37 square </b><b>metres</b><b> in size? That is the size of a so-called ‘tiny home’, which has become a big craze in some parts of the world, giving rise to a new social trend: the ‘tiny house movement’. These compact properties have become more popular as people </b><b>recognise</b><b> the benefits of ‘living small’. For some, it’s the only way to afford a home, but for others it’s a lifestyle choice, offering a way of living more ecologically and less wastefully. Living in a small space means that you have to get rid of your excess possessions. It also forces you to go out and engage with the rest of the world.</b>\n\n<b>B) Living small requires careful planning and who better to turn to for inspiration than the Japanese, the masters in the art of saving space. In densely populated cities like Tokyo, many people live in apartments smaller than ten square </b><b>metres</b><b>. </b><b><u>They</u></b><b> have managed to come up with ingenious space-saving solutions to make the apartments feel less cramped, such as the use of deep wardrobes and cupboards for storage. In this way, bedding can be folded and put away every day, allowing the room to be used for purposes other than sleeping. Another method is the use of sliding doors which can divide the room into different living areas when required.</b>",
+  "durationMinutes": 30,
+  "createdAt": "2026-07-24T18:22:25.836Z",
+  "updatedAt": "2026-07-24T19:55:12.538Z",
+  "questions": [
+    {
+      "id": "d95f17d6-7fda-49ad-9e46-3d4caf2f1615",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "After years of traveling, they decided to ________ and buy a house.",
+      "choices": [
+        "work remotely",
+        "get rid of",
+        "settle down",
+        "come across"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.986Z",
+      "updatedAt": "2026-07-24T18:22:25.986Z"
+    },
+    {
+      "id": "76ad6808-47c4-4484-a68c-1e4420b623ae",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "She lives in a ________ town, which is not too big and not too small.",
+      "choices": [
+        "confined",
+        "medium-sized",
+        "densely-populated",
+        "excess"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.987Z",
+      "updatedAt": "2026-07-24T18:22:25.987Z"
+    },
+    {
+      "id": "073f64dd-b52e-443d-b2e3-d5210df72e71",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "He rents a desk at a ________ to separate his work life from his home life.",
+      "choices": [
+        "co-working space",
+        "one the move",
+        "public library",
+        "cafe"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.987Z",
+      "updatedAt": "2026-07-24T18:22:25.987Z"
+    },
+    {
+      "id": "c974c6c5-82ac-40d6-81c5-333c5ac5bdf2",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "Living in a small home has two main effects on a person's life. What are they? (2 points) ________ ________ ________",
+      "choices": [
+        "It reduces the space available for belongings and changes the way they entertain guests.",
+        "It increases the cost of living and maintenance.",
+        "It forces people to spend more time commuting to work.",
+        "It requires people to buy more furniture to fill the space."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.986Z",
+      "updatedAt": "2026-07-24T19:06:39.924Z"
+    },
+    {
+      "id": "0af52dbc-5f5d-4191-9b6a-8ff2522d100e",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "I have to ________ quickly, before my father comes back.",
+      "choices": [
+        "sweep them up",
+        "sweep up them",
+        "them sweep up",
+        "sweep up it"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.987Z",
+      "updatedAt": "2026-07-24T19:06:40.072Z"
+    },
+    {
+      "id": "8cb3435e-f27f-426e-8822-72cf71774d77",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "I read ________ interesting book last night. The book was about ancient history.",
+      "choices": [
+        "a",
+        "an",
+        "the",
+        "Ø"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.988Z",
+      "updatedAt": "2026-07-24T19:06:40.219Z"
+    },
+    {
+      "id": "295360fe-36ef-4cef-837c-c9589c1bc32f",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "He felt ________ in the small, restricted room with no windows.",
+      "choices": [
+        "cramped",
+        "confined",
+        "excess",
+        "medium-sized"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.987Z",
+      "updatedAt": "2026-07-24T18:22:25.987Z"
+    },
+    {
+      "id": "4170d2b7-bdd5-470f-aa27-73f3a1133bea",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "The 'tiny house movement' is a new social trend that has benefits. Write down two of these benefits. (4 points) ________ ________ ________",
+      "choices": [
+        "It is a social trend that encourages living in very small homes.",
+        "It is a movement to build larger, more luxurious houses.",
+        "It is a political campaign for affordable housing.",
+        "It is a new architectural style for skyscrapers."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.986Z",
+      "updatedAt": "2026-07-24T19:06:40.367Z"
+    },
+    {
+      "id": "f35fc11a-5e8b-482e-9ca4-45cdf7997779",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "The capital of France is ________ Paris.",
+      "choices": [
+        "a",
+        "an",
+        "the",
+        "Ø"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.988Z",
+      "updatedAt": "2026-07-24T19:06:40.514Z"
+    },
+    {
+      "id": "ce32d015-958c-4f2a-9a85-a75c98486738",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "He wants to ________ in this community and start a family.",
+      "choices": [
+        "work remotely",
+        "put down roots",
+        "be on the move",
+        "go to a co-working space"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.987Z",
+      "updatedAt": "2026-07-24T18:22:25.987Z"
+    },
+    {
+      "id": "eda677c2-4fda-47f4-84ba-ceb38ce6dd0e",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "The car was so ________ with luggage that there was no room for me.",
+      "choices": [
+        "compact",
+        "medium-sized",
+        "cramped",
+        "confined"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.987Z",
+      "updatedAt": "2026-07-24T18:22:25.987Z"
+    },
+    {
+      "id": "340d777d-3f34-48a6-9b54-76b02c5c6f6f",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "She feels ________ because her job requires her to be in the office every day.",
+      "choices": [
+        "tied down to one place",
+        "on the move",
+        "settling down",
+        "home comforts"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.987Z",
+      "updatedAt": "2026-07-24T18:22:25.987Z"
+    },
+    {
+      "id": "bdbd3e55-01b1-40a7-841d-85307534fc5b",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "My new apartment is small, but it's very ________ , with everything fitting neatly into the space.",
+      "choices": [
+        "compact",
+        "cramped",
+        "confined",
+        "medium-sized"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.987Z",
+      "updatedAt": "2026-07-24T19:06:40.808Z"
+    },
+    {
+      "id": "5f0a5cb7-1e74-48f9-bf69-aece0d47829a",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "It takes ________ hour to get there by bus.",
+      "choices": [
+        "a",
+        "an",
+        "the",
+        "Ø"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.988Z",
+      "updatedAt": "2026-07-24T19:06:40.955Z"
+    },
+    {
+      "id": "22db70a8-36c8-48b7-a628-8c3e18dc4ebc",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "We had to cancel the picnic because of the ________ of rain.",
+      "choices": [
+        "confined",
+        "medium-sized",
+        "excess",
+        "cramped"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.987Z",
+      "updatedAt": "2026-07-24T18:22:25.987Z"
+    },
+    {
+      "id": "d311a8a2-b858-4cd3-85ea-23c822a13102",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "The Japanese have come up with two ingenious space-saving solutions. Write them down. (2 points) ________ ________ ________",
+      "choices": [
+        "Using sliding walls and hidden storage compartments.",
+        "Building taller houses and digging deep basements.",
+        "Creating open-plan layouts with no interior walls.",
+        "Using mirrors to make the space look larger."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.986Z",
+      "updatedAt": "2026-07-24T19:06:41.102Z"
+    },
+    {
+      "id": "263d11b1-9a24-4f47-866d-10f2fc3d32d8",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "The first person to arrive was ________ oldest person in the room.",
+      "choices": [
+        "a",
+        "an",
+        "the",
+        "Ø"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.988Z",
+      "updatedAt": "2026-07-24T19:06:41.249Z"
+    },
+    {
+      "id": "1409065a-42bf-4d1e-8c0d-959ded3b23b3",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "My car ________ on the way to work, so I had to call a tow truck.",
+      "choices": [
+        "ran out",
+        "broke down",
+        "came across",
+        "wiped down"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.987Z",
+      "updatedAt": "2026-07-24T18:22:25.987Z"
+    },
+    {
+      "id": "f9028971-79e2-40eb-8713-4074750964a7",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "Many people now ________ , which allows them to live wherever they choose.",
+      "choices": [
+        "work remotely",
+        "come across",
+        "put down roots",
+        "tied down to one place"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.986Z",
+      "updatedAt": "2026-07-24T19:06:41.396Z"
+    },
+    {
+      "id": "293be15b-b41a-46c7-80d1-3c4f891e3134",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "We should spend less on ________ clothes and more on ________ healthy food.",
+      "choices": [
+        "a/an",
+        "the/ Ø",
+        "an/ Ø",
+        "Ø/ Ø"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.988Z",
+      "updatedAt": "2026-07-24T19:06:41.543Z"
+    },
+    {
+      "id": "9f14af17-695a-4bd5-a6f0-35fa7edfc80b",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "My father travels frequently for work, but he still enjoys the simple ________ like a warm bed and a home-cooked meal.",
+      "choices": [
+        "co-working spaces",
+        "home comforts",
+        "nomadic lifestyle",
+        "remote work"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.987Z",
+      "updatedAt": "2026-07-24T18:22:25.987Z"
+    },
+    {
+      "id": "ab7d4aa4-b381-4d25-9b42-fec77af9a766",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "She's a digital nomad, so she's always ________ .",
+      "choices": [
+        "tied down to one place",
+        "on the move",
+        "settling down",
+        "putting down roots"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.986Z",
+      "updatedAt": "2026-07-24T19:06:41.712Z"
+    },
+    {
+      "id": "b6d821ca-cc3b-4b8b-9814-2d456358634e",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "I met ________ man last night, ________ man was kind and helpful.",
+      "choices": [
+        "a/a",
+        "the/ Ø",
+        "a/ the",
+        "the/ the"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.988Z",
+      "updatedAt": "2026-07-24T19:06:41.860Z"
+    },
+    {
+      "id": "4678ddc3-7661-4540-b2c3-dbb5f1c57840",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "The city is so ________ that there are always crowds of people on the streets.",
+      "choices": [
+        "cramped",
+        "compact",
+        "confined",
+        "densely-populated"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.987Z",
+      "updatedAt": "2026-07-24T18:22:25.987Z"
+    },
+    {
+      "id": "79460744-cae4-405b-a338-5fd682e568e6",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "Find a word in the report that means \"smart and original\". (2 points) ________",
+      "choices": [
+        "ingenious",
+        "social",
+        "luxurious",
+        "affordable"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.986Z",
+      "updatedAt": "2026-07-24T19:06:42.015Z"
+    },
+    {
+      "id": "bf307ae6-aec8-45dc-aea3-c6043be79722",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "Mount Everest is ________ highest mountain in the world.",
+      "choices": [
+        "a",
+        "an",
+        "the",
+        "Ø"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.987Z",
+      "updatedAt": "2026-07-24T19:06:42.162Z"
+    },
+    {
+      "id": "2a8ef404-f5b2-4b3e-800a-dbb075776904",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "Suggest two tips for someone who wants to live in a small space. (2 points) ________ ________ ________ Vocabulary ( /10) marks",
+      "choices": [
+        "Declutter regularly and choose multi-functional furniture.",
+        "Buy more storage boxes and rent a storage unit.",
+        "Spend most of your time outdoors and avoid buying groceries.",
+        "Build an extension to the house and buy smaller appliances."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.986Z",
+      "updatedAt": "2026-07-24T19:06:42.456Z"
+    },
+    {
+      "id": "a4a95e58-3529-4274-aaea-69e4178260dc",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "Do you enjoy listening to ________ music?",
+      "choices": [
+        "a",
+        "an",
+        "the",
+        "Ø"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.987Z",
+      "updatedAt": "2026-07-24T19:06:42.603Z"
+    },
+    {
+      "id": "7bcd68b5-39d5-4972-aa53-8041ba009514",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "He has a lot of experience because he has worked with ________ people.",
+      "choices": [
+        "a",
+        "an",
+        "the",
+        "Ø"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.988Z",
+      "updatedAt": "2026-07-24T19:06:42.751Z"
+    },
+    {
+      "id": "f840970d-dbb9-49b9-8b32-24bbe3ceab1b",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "The writer of this report mentions that living in a small space forces you to engage more with the world. In your opinion, what is a disadvantage of a tiny home? (4 points) ________ ________ ________",
+      "choices": [
+        "They prefer spending money on experiences rather than possessions.",
+        "They cannot afford larger homes due to rising real estate prices.",
+        "They want to reduce their carbon footprint and live sustainably.",
+        "They travel frequently and don't need a permanent residence."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.986Z",
+      "updatedAt": "2026-07-24T19:06:42.898Z"
+    },
+    {
+      "id": "a002aa95-54cd-4d11-8f37-0a34aeab1f9f",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "The children always go to ________ school on weekdays.",
+      "choices": [
+        "a",
+        "an",
+        "the",
+        "Ø"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.987Z",
+      "updatedAt": "2026-07-24T19:06:43.050Z"
+    },
+    {
+      "id": "c724ae5a-8b63-477d-8ed4-5d77d45b30ac",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "My friend wants to become ________ astronaut.",
+      "choices": [
+        "a",
+        "an",
+        "the",
+        "Ø"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.988Z",
+      "updatedAt": "2026-07-24T19:06:43.198Z"
+    },
+    {
+      "id": "1a74cb02-bfc5-4dc1-b262-30991a948075",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "Write down the sentence which states that living in a tiny home is a choice for some people, related to how they want to live. (2 points) ________ ________ ________",
+      "choices": [
+        "Living in a small home means you have to be creative with your space.",
+        "The tiny house movement started in the United States.",
+        "Many people find it difficult to adjust to a smaller living area.",
+        "The Japanese have a long history of compact living."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.986Z",
+      "updatedAt": "2026-07-24T19:06:43.346Z"
+    },
+    {
+      "id": "90ad9005-679e-4dd4-9457-45da2d6661be",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "My brother bought ________ new car yesterday.",
+      "choices": [
+        "a",
+        "an",
+        "the",
+        "Ø"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.987Z",
+      "updatedAt": "2026-07-24T19:06:43.493Z"
+    },
+    {
+      "id": "91382767-91a1-4177-9140-4489f109ed49",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "They were married in ________ 1990s.",
+      "choices": [
+        "a",
+        "an",
+        "the",
+        "Ø"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.988Z",
+      "updatedAt": "2026-07-24T19:06:43.647Z"
+    },
+    {
+      "id": "56b364e7-81c6-4a6e-8331-c6402f9a004f",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "What does the underlined pronoun \"They\" refer to? (2 points) ________",
+      "choices": [
+        "the Japanese",
+        "tiny houses",
+        "storage compartments",
+        "sliding walls"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.986Z",
+      "updatedAt": "2026-07-24T19:06:43.797Z"
+    },
+    {
+      "id": "8f2bf541-a172-47b9-a5be-538a6d1ea473",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "My father is still ________ head of the family.",
+      "choices": [
+        "a",
+        "an",
+        "the",
+        "Ø"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.987Z",
+      "updatedAt": "2026-07-24T19:06:43.944Z"
+    },
+    {
+      "id": "37288807-4eeb-4322-96c0-32945ef55bc1",
+      "examId": "107e84d5-49c7-4c1d-835b-bb04d62bd894",
+      "question": "She needs to find ________ work soon.",
+      "choices": [
+        "a",
+        "an",
+        "the",
+        "Ø"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:25.988Z",
+      "updatedAt": "2026-07-24T19:06:44.092Z"
+    }
+  ]
+}

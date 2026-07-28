@@ -1,0 +1,584 @@
+{
+  "id": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+  "unitNumber": 1,
+  "titleAr": "الوحدة الأولى: التواصل والإشارات",
+  "titleEn": "Unit 1: Communication & Relationships",
+  "descriptionAr": "اختبار تقييمي مجاني وشامل على الوحدة الأولى: التواصل والإشارات. ينشّط مهارات القواعد والمفردات والأسئلة الوزارية والقطع لمنهاج High Note 11.",
+  "descriptionEn": "Free diagnostic unit exam for Unit 1: Communication & Relationships covering reading comprehension, vocabulary, and grammar in High Note 11.",
+  "text": "\nWe know that some animals understand basic1 instructions, allowing travellers to control their horses or camels, for example. But although some of the more intelligent2 animals can figure out3 what we want them to do, we have long assumed that communication with - and between - animals must be limited. However, thanks to the work done by the naturalist4 Jane Goodall since the 1960s, we should take the possibility seriously that some animals can both take in5 what we are saying and get across complex6 ideas.\n\nAs a child, Jane loved reading books about a fictional1 character called Dr Dolittle, who could talk to animals. Perhaps this is what inspired her to go to Africa when she was in her 20s. Here she came across2 a scientist who asked Jane if she might want a job observing3 chimpanzees in the wild. She immediately said yes. She went with her mother to the shores4 of Lake Tanganyika in Tanzania to start her new job, and it was not long before she made out5 a group of chimpanzees in the trees around an area now called the Gombe Stream National Park.\n\nHow could a young English woman with no scientific training possibly make contact1 with a group of wild chimpanzees? At first, the animals ran away as soon as they saw her. But maybe because she knew very little about these wild animals, it is highly likely that her calmness gained2 their trust. It was only later that Jane would learn how dangerous they could be. She saw that different groups of chimpanzees had battles in which <b><u>they</u></b> tried to wipe out3 the rival4 group. But before this, her studies showed her that the chimpanzees could clearly communicate, allowing them to groom5 and help each other, share food as well as have arguments. Jane pointed out6 that the animals couldn't communicate using language like people, but they could communicate by touch and sound. Amazingly, she also realised they could use sign language.\n\nAt this time, people believed that only humans could use tools, but Jane watched chimpanzees using sticks to take ants from a tree, and then used the sticks to feed the ants to their young. Through her work, Jane spelled out1 to the scientific community for the first time that animals, too, could use tools.\n\nJane went on to write a number of books about her work. As well as explaining chimpanzees' highly developed social behaviour, she taught us that they are omnivores2 (people used to think they were vegetarian). In 2002, she became a UN Messenger for Peace.\n\nIn my opinion, Jane Goodall brought about3 a complete change in the way people understood how animals can communicate. Since her work in Tanzania, naturalists have continued to study different forms of communication between animals such as whales and elephants, who can pick up4 sounds made by other whales and elephants over large distances. I feel that we may well learn even more about animal communication in the future.",
+  "durationMinutes": 30,
+  "createdAt": "2026-07-24T18:22:21.080Z",
+  "updatedAt": "2026-07-24T19:53:03.308Z",
+  "questions": [
+    {
+      "id": "897f8628-74bd-4883-aaed-da6d58ed479f",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "Can you _____________the instructions for me?",
+      "choices": [
+        "take in",
+        "spell out",
+        "figure out",
+        "get across"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.383Z",
+      "updatedAt": "2026-07-24T18:22:21.383Z"
+    },
+    {
+      "id": "f53610b1-c9d6-4997-adc2-68f9d4cc1f2e",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "We tried to _____________with them, but we couldn't reach them.",
+      "choices": [
+        "maintain contact",
+        "lose contact",
+        "make contact",
+        "pass on the message"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "3b0d893a-12fb-4612-ae52-246d507c5287",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "The strength of the hurricane <u>bewildered</u> the residents. Replace the underlined word with a suitable word from the options.",
+      "choices": [
+        "impressed",
+        "confused",
+        "saddened",
+        "angered"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "8a606400-bd7c-4100-9e85-3e4e0386e690",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "Over time, we _____________of friendship.",
+      "choices": [
+        "hit it off",
+        "took to you",
+        "came across as",
+        "created a bond"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "60eefce4-737c-4240-8fcf-ae488c2ccfde",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "________ they play soccer every week?",
+      "choices": [
+        "Do",
+        "Did",
+        "Are",
+        "Have"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "5bfba9bc-11aa-4891-993e-49341c9d3c01",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "He _____________on her new hairstyle.",
+      "choices": [
+        "put somebody on the spot",
+        "refused to let something drop",
+        "paid a compliment",
+        "hit it off"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "8540fbc9-7c3d-4f05-9309-4c9bf63a50b9",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "We __________ already _______ our homework.",
+      "choices": [
+        "have / finished",
+        "did / finished",
+        "are / finishing",
+        "will / finish"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "794696f1-d9a8-4a4e-96a5-8625247a13ef",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "To wipe out something means to................",
+      "choices": [
+        "create it",
+        "protect it",
+        "destroy it",
+        "ignore it"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.383Z",
+      "updatedAt": "2026-07-24T18:22:21.383Z"
+    },
+    {
+      "id": "2375cf2d-f449-4a2e-8ce8-78949dd8ee24",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "The audience was <u>terrified</u> by the magician's incredible tricks. Replace the underlined word with a suitable word from the options.",
+      "choices": [
+        "surprised",
+        "frightened",
+        "sad",
+        "confused"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.383Z",
+      "updatedAt": "2026-07-24T18:22:21.383Z"
+    },
+    {
+      "id": "1c6737ec-d820-4a64-888d-ed0239e7eba3",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "I _____________the mistake in the report.",
+      "choices": [
+        "came across",
+        "pointed out",
+        "took in",
+        "wiped out"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.383Z",
+      "updatedAt": "2026-07-24T18:22:21.383Z"
+    },
+    {
+      "id": "2d809127-e81a-4c4a-abf0-504be74cc513",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "What does the underlined pronoun \"<u>they</u>\" refer to? \t\t\t\t(2 points) ……………………………………………………………………………………………………………. ……………………………………………………………………………………………………………. …………………………………………………………………………………………………………….",
+      "choices": [
+        "chimpanzees",
+        "humans",
+        "emotions",
+        "researchers"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.383Z",
+      "updatedAt": "2026-07-24T18:22:21.383Z"
+    },
+    {
+      "id": "9e059fcf-74a6-4f32-88dd-d603120c617d",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "The sun ________ to the west.",
+      "choices": [
+        "sets",
+        "set",
+        "is setting",
+        "has set"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "2b3027cb-075e-4458-a23b-e85fd4417876",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "How did Jane Goodall manage to gain the trust of the wild chimpanzees?  ",
+      "choices": [
+        "By waiting quietly every day in the forest until they got used to her.",
+        "By offering them food and playing with their young.",
+        "By building a shelter near their natural habitat.",
+        "By imitating their sounds and behaviors."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.383Z",
+      "updatedAt": "2026-07-24T18:29:28.302Z"
+    },
+    {
+      "id": "a4494540-7d53-445a-9ff9-3827e53232cd",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "The writer believes we may learn even more about animal communication in the future. In your opinion, why is it important for humans to understand how animals communicate? \t\t\t\t\t\t\t\t\t\t\t",
+      "choices": [
+        "Understanding animal communication helps us protect endangered species and their habitats.",
+        "It is not important because humans are fundamentally different from animals.",
+        "Animals do not have meaningful communication, so studying it is useless.",
+        "It is only useful for training pets to obey commands."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.383Z",
+      "updatedAt": "2026-07-24T18:29:42.740Z"
+    },
+    {
+      "id": "d5c71047-f7f3-4f54-8936-e501c7dade8d",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "According to the text, what two things did Jane Goodall's work with chimpanzees demonstrate about their ability to communicate?\t\t\t",
+      "choices": [
+        "that chimpanzees have a complex system of communication and that they can show emotions",
+        "that chimpanzees are good at climbing trees and finding food",
+        "that chimpanzees prefer to live in isolation and avoid humans",
+        "that chimpanzees cannot learn new skills from other animals"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.383Z",
+      "updatedAt": "2026-07-24T18:29:53.212Z"
+    },
+    {
+      "id": "2ac62a1b-8ee9-4dea-a665-1b7d30394946",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "Write down the sentence which states that Jane Goodall's work caused a major change in how people viewed animal communication. \t\t\t\t",
+      "choices": [
+        "Because of Jane's work, people had to change the way they thought about animals.",
+        "Chimpanzees use a variety of sounds to warn others of danger.",
+        "The chimpanzees eventually allowed her to come closer.",
+        "Her discoveries were published in scientific journals worldwide."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.383Z",
+      "updatedAt": "2026-07-24T18:30:08.398Z"
+    },
+    {
+      "id": "48e16845-3f8e-40ee-bfdd-ac1fdc32d7f0",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "It's important to _____________with your friends and family.",
+      "choices": [
+        "lose contact",
+        "maintain contact",
+        "spread the message",
+        "convey a message"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "5a34fc22-729c-46b5-83ac-a5a094d70e1c",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "After graduating, we promised to _____________.",
+      "choices": [
+        "stay in touch",
+        "spread the message",
+        "make contact",
+        "lose contact"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.383Z",
+      "updatedAt": "2026-07-24T18:22:21.383Z"
+    },
+    {
+      "id": "9d8e153b-9ce4-47cc-80f6-d73d144ad448",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "We ________________ out last night.",
+      "choices": [
+        "aren’t eating",
+        "don't eat",
+        "didn’t eat",
+        "haven't eaten"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "2e9296aa-8ce1-4b52-870e-fdeb21fc921b",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "While I ______________ dinner, my brother was sleeping.",
+      "choices": [
+        "was cooking",
+        "cooked",
+        "have cooked",
+        "will cook"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "9a2873e2-9ac2-45fa-8097-d8ec15fcdcca",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "Which of the following expresses a completed action in the past with a specific time.",
+      "choices": [
+        "I was tired.",
+        "Ahmad has finished his dinner.",
+        "The man finished his book last night.",
+        "none of the above."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "2178d9ad-e120-41fb-8ed4-46f4393b13aa",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "The kids _______________ video games all afternoon.",
+      "choices": [
+        "were playing",
+        "played",
+        "have played",
+        "will play"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "6cda6871-2bc8-4c9b-ac21-1d7fdf1fb36f",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "The text mentions two surprising discoveries Jane Goodall made about chimpanzees. Write them down. \t\t\t\t\t",
+      "choices": [
+        "She discovered that chimpanzees eat meat and make tools.",
+        "She found out that chimpanzees can swim and build complex nests.",
+        "She learned that chimpanzees prefer sleeping during the day.",
+        "She noticed that chimpanzees have a lifespan similar to humans."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.383Z",
+      "updatedAt": "2026-07-24T18:30:30.924Z"
+    },
+    {
+      "id": "40943e6e-6e75-4e83-a508-ad5eaecddc8a",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "It _______________ right now.",
+      "choices": [
+        "is raining",
+        "rained",
+        "has rained",
+        "will rain"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "3bf625e7-bbf5-4fd2-aff3-8d906dbb9920",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "She __________ spicy food.",
+      "choices": [
+        "doesn't like",
+        "didn't like",
+        "isn't liking",
+        "hasn't liked"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "6901d320-306d-42e4-b52e-22ae068c2d24",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "What _____________ you doing this weekend?",
+      "choices": [
+        "are",
+        "were",
+        "will have",
+        "have been"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "6a5c4af9-9d55-4c4f-baf5-6ebd9dc28dd2",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "What _________ you do for a living?",
+      "choices": [
+        "do",
+        "did",
+        "am doing",
+        "have done"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "024bda57-4f2f-432c-af84-dde3f818acfd",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "Which of the following sentences is correctly used to express a giving instruction?",
+      "choices": [
+        "He lives in Irbid.",
+        "They always go to school by bus.",
+        "Turn right, then take the second exit.",
+        "The class starts at 8:00 AM."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "cec78377-52b8-4349-808d-dab7ee0a6c74",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "They _____________ TV at the moment.",
+      "choices": [
+        "aren't watching",
+        "didn't watch",
+        "haven't watched",
+        "won't watch"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "2c6d56a0-ec2e-46ec-850b-64202b51cf8b",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "She ______________to the beach yesterday.",
+      "choices": [
+        "went",
+        "goes",
+        "is going",
+        "has gone"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "ae6dc380-1b16-4b98-8f35-777471b296ed",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "I ____________________ at 10 o'clock last night.",
+      "choices": [
+        "wasn't sleeping",
+        "didn't sleep",
+        "haven't slept",
+        "won't sleep"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "8d6df34b-2a8e-4c0e-877b-6cc60a67e0d4",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "Which of the following sentences is incorrect.",
+      "choices": [
+        "He doesn’t like apples.",
+        "They were studying all night.",
+        "The pack of wolves are dangerous.",
+        "I have already watched that movie."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "0dd667b3-c26c-4155-9723-e81f089797bf",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "The children ____________ in the park right now.",
+      "choices": [
+        "are playing",
+        "played",
+        "have played",
+        "will play"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "7417e967-696e-4d93-942f-1907c3d295e6",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "Which of the following expresses temporary situation.",
+      "choices": [
+        "He is always talking like this.",
+        "We are meeting the teacher next Monday.",
+        "The students are writing the essay at the moment.",
+        "The weather is getting colder."
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "8b189bf0-a262-4519-a242-00ea7bedeb2f",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "They __________________ when it started to rain.",
+      "choices": [
+        "were swimming",
+        "swam",
+        "have swum",
+        "will swim"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "7c74ed59-8b31-4255-862e-70cf0fe60823",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "She ________________ breakfast yet.",
+      "choices": [
+        "hasn't eaten",
+        "didn't eat",
+        "isn't eating",
+        "won't eat"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.384Z",
+      "updatedAt": "2026-07-24T18:22:21.384Z"
+    },
+    {
+      "id": "b49aad7e-1479-4e03-8125-d255ee1a9215",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "According to the text, what two things did Jane Goodall's work with chimpanzees demonstrate about their ability to communicate?",
+      "choices": [
+        "that chimpanzees have a complex system of communication and that they can show emotions",
+        "that chimpanzees are good at climbing trees and finding food",
+        "that chimpanzees prefer to live in isolation and avoid humans",
+        "that chimpanzees cannot learn new skills from other animals"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.382Z",
+      "updatedAt": "2026-07-24T18:28:48.344Z"
+    },
+    {
+      "id": "b6241a93-d33a-4883-834d-8eaa3c184f5d",
+      "examId": "16f7dbb4-8e19-40e1-b9e9-c3fe08ebcd02",
+      "question": "Find a word in the report that means \"to discover or become aware of something.\"\t\t\t\t\t\t\t\t\t\t\t\t\t",
+      "choices": [
+        "realize",
+        "demonstrate",
+        "communicate",
+        "observe"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": null,
+      "createdAt": "2026-07-24T18:22:21.383Z",
+      "updatedAt": "2026-07-24T18:29:10.512Z"
+    }
+  ]
+}
