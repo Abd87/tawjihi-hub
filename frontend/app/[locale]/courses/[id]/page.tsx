@@ -346,6 +346,15 @@ export default function CourseSyllabusPage() {
                 <span>{isRtl ? 'بنك الأخطاء' : 'Mistakes Bank'}</span>
                 {isRtl ? <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" /> : <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />}
               </Link>
+              {course.locked && (
+                <button 
+                  onClick={() => setShowUnlockModal(true)}
+                  className="w-full mt-4 flex items-center justify-center gap-2 px-6 py-4 bg-amber-500 hover:bg-amber-600 text-slate-950 font-black rounded-2xl transition-all group shadow-lg shadow-amber-500/20"
+                >
+                  <Lock className="h-5 w-5" />
+                  <span>{isRtl ? 'شراء هذه الدورة' : 'Purchase Course'}</span>
+                </button>
+              )}
               {course.discussionGroupLink && (
                 <a 
                   href={course.discussionGroupLink}
