@@ -99,7 +99,8 @@ export default function UsersAdminPage() {
 
   const filteredUsers = users.filter(u => 
     (u.email || '').toLowerCase().includes(search.toLowerCase()) || 
-    (u.nameAr || '').toLowerCase().includes(search.toLowerCase())
+    (u.nameAr || '').toLowerCase().includes(search.toLowerCase()) ||
+    (u.phoneNumber || '').toLowerCase().includes(search.toLowerCase())
   );
 
   if (loading) {
@@ -140,7 +141,7 @@ export default function UsersAdminPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full bg-slate-900 border border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-white focus:border-brand-500 transition-all"
-            placeholder={isRtl ? 'بحث بالاسم أو الإيميل...' : 'Search users...'}
+            placeholder={isRtl ? 'بحث بالاسم، الإيميل، أو رقم الهاتف...' : 'Search users...'}
           />
         </div>
       </div>
@@ -152,6 +153,7 @@ export default function UsersAdminPage() {
               <tr>
                 <th className="px-6 py-4">{isRtl ? 'الاسم' : 'Name'}</th>
                 <th className="px-6 py-4">{isRtl ? 'البريد الإلكتروني' : 'Email'}</th>
+                <th className="px-6 py-4">{isRtl ? 'الهاتف' : 'Phone'}</th>
                 <th className="px-6 py-4">{isRtl ? 'الدور' : 'Role'}</th>
                 <th className="px-6 py-4">{isRtl ? 'نسبة الأرباح %' : 'Share %'}</th>
                 <th className="px-6 py-4 text-end">{isRtl ? 'إجراءات' : 'Actions'}</th>
@@ -165,6 +167,9 @@ export default function UsersAdminPage() {
                     {isRtl ? user.nameAr : (user.nameEn || user.nameAr)}
                   </td>
                   <td className="px-6 py-4">{user.email}</td>
+                  <td className="px-6 py-4 text-slate-400 font-mono text-xs" dir="ltr">
+                    {user.phoneNumber || '-'}
+                  </td>
                   <td className="px-6 py-4">
                     <span className={`px-2.5 py-1 rounded-lg text-xs font-bold ${
                       user.role === 'ADMIN' ? 'bg-amber-500/10 text-amber-400' :

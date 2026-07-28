@@ -32,6 +32,7 @@ export async function GET(request: Request) {
         role: true,
         isMasterAdmin: true,
         revenueSharePercent: true,
+        phoneNumber: true,
         createdAt: true,
       },
       orderBy: { createdAt: 'desc' }
