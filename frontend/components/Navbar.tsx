@@ -506,6 +506,10 @@ export default function Navbar() {
                 <ShieldCheck className="h-4 w-4 text-brand-500" />
                 {t('btec')}
               </a>
+              <Link href="/grade11-exams" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-bold text-amber-400 bg-amber-500/10 border border-amber-500/20 hover:bg-amber-500/20">
+                <Sparkles className="w-4 h-4 text-amber-400" />
+                <span>{currentLocale === 'ar' ? 'امتحانات 11 مجانية' : 'Free Grade 11 Exams'}</span>
+              </Link>
               <Link href="/btec-guide" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white">
                 <Sparkles className="w-4 h-4 text-brand-500" />
                 <span>{t('btecGuide') || (currentLocale === 'ar' ? 'دليل BTEC' : 'BTEC Guide')}</span>

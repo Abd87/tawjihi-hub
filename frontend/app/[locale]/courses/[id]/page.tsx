@@ -633,28 +633,53 @@ export default function CourseSyllabusPage() {
                 </div>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {course.quizzes.map((quiz: any) => (
-                    <Link 
-                      key={quiz.id}
-                      href={`/${locale}/quizzes/${quiz.id}`}
-                      className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex items-center justify-between gap-4 hover:bg-slate-800/80 hover:border-brand-500/50 transition-colors group cursor-pointer"
-                    >
-                      <div className="flex items-center gap-4">
-                        <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 group-hover:border-brand-500/50 transition-colors">
-                          <ClipboardList className="h-5 w-5 text-brand-400" />
+                  {course.quizzes.map((quiz: any) => {
+                    if (course.locked) {
+                      return (
+                        <button
+                          key={quiz.id}
+                          onClick={() => setShowUnlockModal(true)}
+                          className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex items-center justify-between gap-4 hover:bg-slate-800/80 hover:border-slate-700 transition-colors group cursor-pointer text-left"
+                        >
+                          <div className="flex items-center gap-4">
+                            <div className="p-3 bg-slate-950 rounded-xl border border-slate-800">
+                              <Lock className="h-5 w-5 text-slate-500" />
+                            </div>
+                            <div>
+                              <h3 className="font-bold text-slate-500 line-clamp-1">
+                                {isRtl ? quiz.titleAr : quiz.titleEn}
+                              </h3>
+                              <p className="text-xs text-slate-600 mt-1 font-semibold">
+                                {isRtl ? 'مقفول' : 'Locked'}
+                              </p>
+                            </div>
+                          </div>
+                        </button>
+                      );
+                    }
+                    return (
+                      <Link 
+                        key={quiz.id}
+                        href={`/${locale}/quizzes/${quiz.id}`}
+                        className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex items-center justify-between gap-4 hover:bg-slate-800/80 hover:border-brand-500/50 transition-colors group cursor-pointer"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 group-hover:border-brand-500/50 transition-colors">
+                            <ClipboardList className="h-5 w-5 text-brand-400" />
+                          </div>
+                          <div>
+                            <h3 className="font-bold text-white line-clamp-1">
+                              {isRtl ? quiz.titleAr : quiz.titleEn}
+                            </h3>
+                            <p className="text-xs text-slate-500 mt-1 font-semibold">
+                              {quiz.durationMinutes} {isRtl ? 'دقيقة' : 'Minutes'} • {quiz.cefrLevel}
+                            </p>
+                          </div>
                         </div>
-                        <div>
-                          <h3 className="font-bold text-white line-clamp-1">
-                            {isRtl ? quiz.titleAr : quiz.titleEn}
-                          </h3>
-                          <p className="text-xs text-slate-500 mt-1 font-semibold">
-                            {quiz.durationMinutes} {isRtl ? 'دقيقة' : 'Minutes'} • {quiz.cefrLevel}
-                          </p>
-                        </div>
-                      </div>
-                      <ArrowRight className={`h-5 w-5 text-slate-500 group-hover:text-brand-400 transition-colors shrink-0 ${isRtl ? 'rotate-180' : ''}`} />
-                    </Link>
-                  ))}
+                        <ArrowRight className={`h-5 w-5 text-slate-500 group-hover:text-brand-400 transition-colors shrink-0 ${isRtl ? 'rotate-180' : ''}`} />
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
             )}
