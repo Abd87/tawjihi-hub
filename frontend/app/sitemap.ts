@@ -1,7 +1,8 @@
 import { MetadataRoute } from 'next';
 import { subjectsData } from './[locale]/subjects/curriculumData';
+import prisma from '@/lib/prisma';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://tawjihihub.com';
 
   const staticRoutes = [
@@ -42,6 +43,43 @@ export default function sitemap(): MetadataRoute.Sitemap {
       });
     });
   });
+
+  // Fetch dynamic courses and blogs from database
+  try {
+    const courses = await prisma.course.findMany({
+      where: { published: true },
+      select: { id: true, updatedAt: true },
+    });
+
+    courses.forEach((course) => {
+      locales.forEach((locale) => {
+        entries.push({
+          url: `${baseUrl}/${locale}/courses/${course.id}`,
+          lastModified: course.updatedAt || new Date(),
+          changeFrequency: 'weekly',
+          priority: 0.8,
+        });
+      });
+    });
+
+    const blogs = await prisma.blogPost.findMany({
+      where: { published: true },
+      select: { slug: true, updatedAt: true },
+    });
+
+    blogs.forEach((blog) => {
+      locales.forEach((locale) => {
+        entries.push({
+          url: `${baseUrl}/${locale}/blog/${blog.slug}`,
+          lastModified: blog.updatedAt || new Date(),
+          changeFrequency: 'weekly',
+          priority: 0.7,
+        });
+      });
+    });
+  } catch (error) {
+    console.error('Error fetching dynamic content for sitemap:', error);
+  }
 
   // Default redirect root
   entries.push({

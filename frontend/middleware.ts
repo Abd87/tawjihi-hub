@@ -48,7 +48,8 @@ export default async function middleware(request: NextRequest) {
   }
 
   const intlResponse = intlMiddleware(request);
-  intlResponse.headers.set('x-url', request.url);
+  // Pass current URL to server components (Next.js specific pattern)
+  intlResponse.headers.set('x-middleware-request-x-url', request.url);
   return intlResponse;
 }
 
