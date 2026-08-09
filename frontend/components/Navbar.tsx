@@ -450,6 +450,30 @@ export default function Navbar() {
                 </div>
               )}
 
+              {/* Master Admin Mobile Role Switcher */}
+              {user?.isMasterAdmin && (
+                <div className="p-3 bg-amber-500/10 border border-amber-500/20 rounded-2xl mb-3">
+                  <p className="text-[10px] font-bold text-amber-500 uppercase mb-2">
+                    {currentLocale === 'ar' ? 'تغيير الدور (للمدير)' : 'Switch Role (Admin)'}
+                  </p>
+                  <div className="grid grid-cols-2 gap-2">
+                    {['STUDENT', 'PARENT', 'TEACHER', 'ADMIN'].map(r => (
+                      <button
+                        key={r}
+                        onClick={() => handleRoleSwitch(r)}
+                        className={`px-2 py-1.5 text-[10px] font-bold rounded-lg transition-colors ${
+                          user.role === r 
+                            ? 'bg-amber-500 text-white' 
+                            : 'bg-slate-900 border border-slate-700 text-slate-400 hover:text-white'
+                        }`}
+                      >
+                        {r}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* Student Mobile Links */}
               {isStudent && (
                 <>
