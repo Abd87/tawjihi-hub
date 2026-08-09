@@ -517,6 +517,68 @@ export default async function HomePage({ params: { locale } }: PageProps) {
         </div>
       </section>
 
+      {/* Teachers Section */}
+      <section id="teachers-section" className="py-20 md:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-900 bg-[#020617] relative">
+        <div className="absolute top-[10%] end-[10%] w-[40vw] h-[40vw] rounded-full bg-brand-500/5 blur-[120px] pointer-events-none z-0" />
+        
+        <div className="relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-brand-500 text-xs sm:text-sm font-extrabold uppercase tracking-widest bg-brand-500/5 px-4 py-1.5 rounded-full border border-brand-500/10">
+              {locale === 'ar' ? 'نخبة الأساتذة' : 'Expert Teachers'}
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-4 tracking-tight">
+              {locale === 'ar' ? 'تعلم مع أفضل المعلمين الخبراء' : 'Learn from the Best Experts'}
+            </h2>
+            <p className="text-slate-400 mt-4 text-base sm:text-lg">
+              {locale === 'ar' 
+                ? 'فريقنا يتكون من معلمين ذوي خبرة طويلة في مناهج التوجيهي والـ BTEC.'
+                : 'Our team consists of highly experienced teachers specializing in Tawjihi and BTEC curriculums.'}
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+            {/* Teacher Abd Profile */}
+            <div className="col-span-1 md:col-start-1 lg:col-start-2 rounded-3xl border border-slate-800 bg-slate-900/20 hover:bg-slate-900/40 transition-all duration-500 shadow-xl overflow-hidden group">
+              <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-slate-800">
+                <Image 
+                  src="/teacher-abd.png"
+                  alt="Teacher Abd"
+                  fill
+                  className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
+                <div className="absolute bottom-4 start-6">
+                  <h3 className="text-2xl font-bold text-white mb-1">
+                    {locale === 'ar' ? 'أ. عبد' : 'Mr. Abd'}
+                  </h3>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-500/20 border border-brand-500/30 text-brand-400 text-xs font-bold">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>{locale === 'ar' ? 'خبير لغة إنجليزية' : 'English Expert'}</span>
+                  </div>
+                </div>
+              </div>
+              <div className="p-6">
+                <p className="text-slate-300 text-sm leading-relaxed mb-4">
+                  {locale === 'ar'
+                    ? 'أستاذ خبير في تدريس اللغة الإنجليزية لمرحلة التوجيهي والـ BTEC. يتميز بأسلوب تفاعلي مبسط يضمن وصول المعلومة وتثبيتها من خلال التطبيق العملي والتدريب المستمر على أسئلة الوزارة.'
+                    : 'An expert English teacher for Tawjihi and BTEC students. Known for his interactive and simplified teaching style that ensures deep understanding through practical application and continuous training on ministerial questions.'}
+                </p>
+                <div className="pt-4 border-t border-slate-800 flex items-center gap-4 text-xs font-semibold text-slate-400">
+                  <div className="flex items-center gap-1.5">
+                    <Users className="w-4 h-4 text-emerald-500" />
+                    <span>{locale === 'ar' ? '+10,000 طالب' : '10k+ Students'}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <GraduationCap className="w-4 h-4 text-blue-500" />
+                    <span>{locale === 'ar' ? 'خبرة 10 سنوات' : '10+ Years Exp'}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       {/* About Us Section */}
       <section id="about-us-section" className="py-20 md:py-28 relative border-t border-slate-900 bg-[#020617]">
