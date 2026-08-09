@@ -7,6 +7,7 @@ import HeroVideoBackground from '@/components/HeroVideoBackground';
 import HomeAuthRedirect from '@/components/HomeAuthRedirect';
 import { Link } from '@/i18n/routing';
 import prisma from '@/lib/prisma';
+import { teachersData } from '@/data/teachers';
 import { 
   ArrowRight, 
   ArrowLeft, 
@@ -537,44 +538,55 @@ export default async function HomePage({ params: { locale } }: PageProps) {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
-            {/* Teacher Abd Profile */}
-            <div className="col-span-1 md:col-start-1 lg:col-start-2 rounded-3xl border border-slate-800 bg-slate-900/20 hover:bg-slate-900/40 transition-all duration-500 shadow-xl overflow-hidden group">
-              <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-slate-800">
-                <Image 
-                  src="/teacher-abd.png"
-                  alt="Teacher Abd"
-                  fill
-                  className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
-                <div className="absolute bottom-4 start-6">
-                  <h3 className="text-2xl font-bold text-white mb-1">
-                    {locale === 'ar' ? 'أ. عبد' : 'Mr. Abd'}
-                  </h3>
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-500/20 border border-brand-500/30 text-brand-400 text-xs font-bold">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>{locale === 'ar' ? 'خبير لغة إنجليزية' : 'English Expert'}</span>
+            {teachersData.map((teacher, index) => (
+              <div key={teacher.id} className="col-span-1 rounded-3xl border border-slate-800 bg-slate-900/20 hover:bg-slate-900/40 transition-all duration-500 shadow-xl overflow-hidden group hover:-translate-y-2 relative">
+                {/* Image Section */}
+                <div className={`relative h-72 sm:h-80 w-full overflow-hidden ${teacher.imageBgColor}`}>
+                  <Image 
+                    src={teacher.image}
+                    alt={teacher.nameEn}
+                    fill
+                    className="object-contain object-bottom transition-transform duration-700 group-hover:scale-110 group-hover:-translate-y-2 origin-bottom drop-shadow-2xl"
+                  />
+                  {/* Subtle vignette over the image */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-90" />
+                  
+                  {/* Title & Badge */}
+                  <div className="absolute bottom-4 start-6 z-10 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                    <h3 className="text-2xl font-black text-white mb-1.5 tracking-tight drop-shadow-lg">
+                      {locale === 'ar' ? teacher.nameAr : teacher.nameEn}
+                    </h3>
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/60 backdrop-blur-sm border border-white/10 text-brand-300 text-xs font-bold shadow-lg">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-brand-400" />
+                      <span>{locale === 'ar' ? teacher.roleAr : teacher.roleEn}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Info Section */}
+                <div className="p-6">
+                  <p className="text-slate-300 text-sm leading-relaxed mb-6 opacity-80 group-hover:opacity-100 transition-opacity">
+                    {locale === 'ar' ? teacher.bioAr : teacher.bioEn}
+                  </p>
+                  
+                  {/* Stats Footer */}
+                  <div className="pt-5 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-slate-400">
+                    <div className="flex items-center gap-2 group-hover:text-emerald-400 transition-colors">
+                      <div className="p-1.5 rounded-lg bg-slate-800 group-hover:bg-emerald-500/20 transition-colors">
+                        <Users className="w-4 h-4" />
+                      </div>
+                      <span>{locale === 'ar' ? teacher.stats.studentsAr : teacher.stats.studentsEn}</span>
+                    </div>
+                    <div className="flex items-center gap-2 group-hover:text-blue-400 transition-colors">
+                      <div className="p-1.5 rounded-lg bg-slate-800 group-hover:bg-blue-500/20 transition-colors">
+                        <GraduationCap className="w-4 h-4" />
+                      </div>
+                      <span>{locale === 'ar' ? teacher.stats.experienceAr : teacher.stats.experienceEn}</span>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="p-6">
-                <p className="text-slate-300 text-sm leading-relaxed mb-4">
-                  {locale === 'ar'
-                    ? 'أستاذ خبير في تدريس اللغة الإنجليزية لمرحلة التوجيهي والـ BTEC. يتميز بأسلوب تفاعلي مبسط يضمن وصول المعلومة وتثبيتها من خلال التطبيق العملي والتدريب المستمر على أسئلة الوزارة.'
-                    : 'An expert English teacher for Tawjihi and BTEC students. Known for his interactive and simplified teaching style that ensures deep understanding through practical application and continuous training on ministerial questions.'}
-                </p>
-                <div className="pt-4 border-t border-slate-800 flex items-center gap-4 text-xs font-semibold text-slate-400">
-                  <div className="flex items-center gap-1.5">
-                    <Users className="w-4 h-4 text-emerald-500" />
-                    <span>{locale === 'ar' ? '+10,000 طالب' : '10k+ Students'}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <GraduationCap className="w-4 h-4 text-blue-500" />
-                    <span>{locale === 'ar' ? 'خبرة 10 سنوات' : '10+ Years Exp'}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
