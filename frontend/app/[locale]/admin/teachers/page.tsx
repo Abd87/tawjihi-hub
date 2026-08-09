@@ -141,6 +141,7 @@ export default function AdminTeachersPage() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editDraft, setEditDraft] = useState<AppUser | null>(null);
   const [editShowPw, setEditShowPw] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
 
   /* ── Auth ───────────────────────────────────────────────────────────── */
   useEffect(() => {
@@ -355,6 +356,36 @@ export default function AdminTeachersPage() {
       showToast(isRtl ? 'تم تحديث بيانات المعلم' : 'Teacher updated');
     } catch(e) {
       showToast('Error', 'error');
+    }
+  };
+
+  const uploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !editDraft) return;
+    setIsUploading(true);
+    const formData = new FormData();
+    formData.append('file', file);
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch('/api/admin/upload', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}` },
+        body: formData,
+      });
+      const data = await res.json();
+      if (res.ok && data.url) {
+        setEditDraft({
+          ...editDraft,
+          teacherProfile: { ...editDraft.teacherProfile, imageUrl: data.url }
+        });
+        showToast(isRtl ? 'تم رفع الصورة' : 'Image uploaded', 'success');
+      } else {
+        showToast(data.error || 'Upload failed', 'error');
+      }
+    } catch (err) {
+      showToast('Upload error', 'error');
+    } finally {
+      setIsUploading(false);
     }
   };
 
@@ -620,10 +651,18 @@ export default function AdminTeachersPage() {
                           </div>
                           
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
-                            <TField label={isRtl ? 'رابط الصورة' : 'Image URL'} dir="ltr"
-                              value={draft.teacherProfile?.imageUrl || ''} 
-                              onChange={v => setEditDraft({ ...draft, teacherProfile: { ...draft.teacherProfile, imageUrl: v } })}
-                              placeholder="/teacher-abd.png" />
+                            <div>
+                              <TField label={isRtl ? 'رابط الصورة' : 'Image URL'} dir="ltr"
+                                value={draft.teacherProfile?.imageUrl || ''} 
+                                onChange={v => setEditDraft({ ...draft, teacherProfile: { ...draft.teacherProfile, imageUrl: v } })}
+                                placeholder="/teacher-abd.png" />
+                              <div className="mt-2 flex items-center gap-2">
+                                <label className="cursor-pointer text-xs font-bold px-3 py-1.5 rounded-lg bg-violet-600/20 text-violet-400 hover:bg-violet-600/30 transition-colors border border-violet-500/20">
+                                  {isUploading ? (isRtl ? 'جاري الرفع...' : 'Uploading...') : (isRtl ? 'رفع صورة (Cloudinary)' : 'Upload Image')}
+                                  <input type="file" className="hidden" accept="image/*" onChange={uploadImage} disabled={isUploading} />
+                                </label>
+                              </div>
+                            </div>
                             <TField label={isRtl ? 'لون الخلفية (CSS)' : 'Background Color (CSS)'} dir="ltr"
                               value={draft.teacherProfile?.imageBgColor || ''} 
                               onChange={v => setEditDraft({ ...draft, teacherProfile: { ...draft.teacherProfile, imageBgColor: v } })}

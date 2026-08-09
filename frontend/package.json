@@ -17,6 +17,7 @@
     "bcryptjs": "^3.0.3",
     "canvas-confetti": "^1.9.4",
     "cheerio": "^1.2.0",
+    "cloudinary": "^2.10.0",
     "critters": "^0.0.23",
     "jose": "^6.2.3",
     "jsonwebtoken": "^9.0.3",
