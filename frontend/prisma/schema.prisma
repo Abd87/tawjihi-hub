@@ -41,6 +41,7 @@ model User {
   blogPosts     BlogPost[]
   mistakes      Mistake[]
   broadcasts    Broadcast[]   @relation("TeacherBroadcasts")
+  teacherProfile TeacherProfile?
   
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
@@ -457,3 +458,27 @@ model Grade11Question {
 
   @@map("grade11_questions")
 }
+
+model TeacherProfile {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  roleTitleAr     String?
+  roleTitleEn     String?
+  bioAr           String?  @db.Text
+  bioEn           String?  @db.Text
+  imageUrl        String?
+  imageBgColor    String?  @default("bg-gradient-to-t from-orange-600 to-amber-500")
+  
+  studentsCountAr String?  @default("+10,000 ????")
+  studentsCountEn String?  @default("10k+ Students")
+  experienceAr    String?  @default("???? 10 ?????")
+  experienceEn    String?  @default("10+ Years Exp")
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("teacher_profiles")
+}
+

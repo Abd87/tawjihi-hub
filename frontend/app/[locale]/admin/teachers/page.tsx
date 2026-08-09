@@ -22,6 +22,18 @@ interface AppUser {
   trackType?: 'BTEC' | 'ACADEMIC';
   assignedCourseIds?: string[];
   createdAt: string;
+  teacherProfile?: {
+    roleTitleAr?: string | null;
+    roleTitleEn?: string | null;
+    bioAr?: string | null;
+    bioEn?: string | null;
+    imageUrl?: string | null;
+    imageBgColor?: string | null;
+    studentsCountAr?: string | null;
+    studentsCountEn?: string | null;
+    experienceAr?: string | null;
+    experienceEn?: string | null;
+  };
 }
 
 interface Course {
@@ -144,7 +156,24 @@ export default function AdminTeachersPage() {
         const res = await fetch('/api/admin/users', { headers: { 'Authorization': `Bearer ${token}` } });
         if (res.ok) {
           const data = await res.json();
-          setTeachers(data.users.filter((u: any) => u.role === 'TEACHER'));
+          const fetchedTeachers = data.users.filter((u: any) => u.role === 'TEACHER');
+
+          // Fetch profiles
+          let profiles: any[] = [];
+          try {
+            const profRes = await fetch('/api/admin/teachers/profile', { headers: { 'Authorization': `Bearer ${token}` } });
+            if (profRes.ok) {
+              const profData = await profRes.json();
+              profiles = profData.profiles || [];
+            }
+          } catch (e) {}
+
+          const merged = fetchedTeachers.map((t: any) => ({
+            ...t,
+            teacherProfile: profiles.find((p: any) => p.userId === t.id) || {}
+          }));
+
+          setTeachers(merged);
         }
       } catch (err) {
         console.error(err);
@@ -298,7 +327,7 @@ export default function AdminTeachersPage() {
     setEditShowPw(false);
   };
   const cancelEdit = () => { setEditingId(null); setEditDraft(null); };
-  const saveEdit = () => {
+  const saveEdit = async () => {
     if (!editDraft) return;
     if (!editDraft.nameAr || !editDraft.nameEn) {
       showToast(isRtl ? 'الاسم مطلوب' : 'Name is required', 'error'); return;
@@ -306,10 +335,27 @@ export default function AdminTeachersPage() {
     if (!editDraft.email) {
       showToast(isRtl ? 'البريد الإلكتروني مطلوب' : 'Email is required', 'error'); return;
     }
-    const updated = teachers.map(t => t.id === editDraft.id ? editDraft : t);
-    persistUsers(updated);
-    setEditingId(null); setEditDraft(null);
-    showToast(isRtl ? 'تم تحديث بيانات المعلم' : 'Teacher updated');
+
+    try {
+      const token = localStorage.getItem('token');
+      // Save profile
+      await fetch('/api/admin/teachers/profile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify({
+          userId: editDraft.id,
+          ...editDraft.teacherProfile
+        })
+      });
+      // (Basic user info is handled by the backend if we updated users, but here we only have the profile API)
+      // Since this is mock UI for the users table, we update local state
+      const updated = teachers.map(t => t.id === editDraft.id ? editDraft : t);
+      persistUsers(updated);
+      setEditingId(null); setEditDraft(null);
+      showToast(isRtl ? 'تم تحديث بيانات المعلم' : 'Teacher updated');
+    } catch(e) {
+      showToast('Error', 'error');
+    }
   };
 
   /* ── Loading / guard ──────────────────────────────────────────────── */
@@ -537,6 +583,67 @@ export default function AdminTeachersPage() {
                           >
                             {editShowPw ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                           </button>
+                        </div>
+                        
+                        {/* Profile Edit Fields */}
+                        <div className="pt-4 mt-4 border-t border-slate-800/50">
+                          <p className="text-xs font-bold text-violet-400 uppercase tracking-wider mb-3">
+                            {isRtl ? 'الملف الشخصي العام' : 'Public Profile (Homepage)'}
+                          </p>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                            <TField label={isRtl ? 'المسمى الوظيفي (عربي)' : 'Role (Arabic)'} dir="rtl"
+                              value={draft.teacherProfile?.roleTitleAr || ''} 
+                              onChange={v => setEditDraft({ ...draft, teacherProfile: { ...draft.teacherProfile, roleTitleAr: v } })}
+                              placeholder="خبير لغة إنجليزية" />
+                            <TField label={isRtl ? 'المسمى الوظيفي (إنجليزي)' : 'Role (English)'} dir="ltr"
+                              value={draft.teacherProfile?.roleTitleEn || ''} 
+                              onChange={v => setEditDraft({ ...draft, teacherProfile: { ...draft.teacherProfile, roleTitleEn: v } })}
+                              placeholder="English Expert" />
+                          </div>
+                          
+                          <div className="mb-3">
+                            <label className="block text-xs font-bold text-slate-400 mb-1">{isRtl ? 'نبذة (عربي)' : 'Bio (Arabic)'}</label>
+                            <textarea 
+                              className="w-full rounded-xl border border-slate-800 bg-slate-950 p-3 text-sm text-white focus:border-violet-500 focus:ring-1 focus:ring-violet-500 focus:outline-none"
+                              rows={3} dir="rtl" value={draft.teacherProfile?.bioAr || ''}
+                              onChange={e => setEditDraft({ ...draft, teacherProfile: { ...draft.teacherProfile, bioAr: e.target.value } })}
+                            />
+                          </div>
+                          
+                          <div className="mb-3">
+                            <label className="block text-xs font-bold text-slate-400 mb-1">{isRtl ? 'نبذة (إنجليزي)' : 'Bio (English)'}</label>
+                            <textarea 
+                              className="w-full rounded-xl border border-slate-800 bg-slate-950 p-3 text-sm text-white focus:border-violet-500 focus:ring-1 focus:ring-violet-500 focus:outline-none"
+                              rows={3} dir="ltr" value={draft.teacherProfile?.bioEn || ''}
+                              onChange={e => setEditDraft({ ...draft, teacherProfile: { ...draft.teacherProfile, bioEn: e.target.value } })}
+                            />
+                          </div>
+                          
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                            <TField label={isRtl ? 'رابط الصورة' : 'Image URL'} dir="ltr"
+                              value={draft.teacherProfile?.imageUrl || ''} 
+                              onChange={v => setEditDraft({ ...draft, teacherProfile: { ...draft.teacherProfile, imageUrl: v } })}
+                              placeholder="/teacher-abd.png" />
+                            <TField label={isRtl ? 'لون الخلفية (CSS)' : 'Background Color (CSS)'} dir="ltr"
+                              value={draft.teacherProfile?.imageBgColor || ''} 
+                              onChange={v => setEditDraft({ ...draft, teacherProfile: { ...draft.teacherProfile, imageBgColor: v } })}
+                              placeholder="bg-gradient-to-t from-orange-600 to-amber-500" />
+                          </div>
+
+                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <TField label={isRtl ? 'الطلاب (ع)' : 'Students (Ar)'} dir="rtl"
+                              value={draft.teacherProfile?.studentsCountAr || ''} 
+                              onChange={v => setEditDraft({ ...draft, teacherProfile: { ...draft.teacherProfile, studentsCountAr: v } })} />
+                            <TField label={isRtl ? 'الطلاب (E)' : 'Students (En)'} dir="ltr"
+                              value={draft.teacherProfile?.studentsCountEn || ''} 
+                              onChange={v => setEditDraft({ ...draft, teacherProfile: { ...draft.teacherProfile, studentsCountEn: v } })} />
+                            <TField label={isRtl ? 'الخبرة (ع)' : 'Exp (Ar)'} dir="rtl"
+                              value={draft.teacherProfile?.experienceAr || ''} 
+                              onChange={v => setEditDraft({ ...draft, teacherProfile: { ...draft.teacherProfile, experienceAr: v } })} />
+                            <TField label={isRtl ? 'الخبرة (E)' : 'Exp (En)'} dir="ltr"
+                              value={draft.teacherProfile?.experienceEn || ''} 
+                              onChange={v => setEditDraft({ ...draft, teacherProfile: { ...draft.teacherProfile, experienceEn: v } })} />
+                          </div>
                         </div>
 
                         <div className="flex gap-3">

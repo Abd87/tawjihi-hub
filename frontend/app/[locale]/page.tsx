@@ -7,7 +7,6 @@ import HeroVideoBackground from '@/components/HeroVideoBackground';
 import HomeAuthRedirect from '@/components/HomeAuthRedirect';
 import { Link } from '@/i18n/routing';
 import prisma from '@/lib/prisma';
-import { teachersData } from '@/data/teachers';
 import { 
   ArrowRight, 
   ArrowLeft, 
@@ -32,9 +31,15 @@ interface PageProps {
 
 export default async function HomePage({ params: { locale } }: PageProps) {
   unstable_setRequestLocale(locale);
-  const t = await getTranslations(); // Actually useTranslations works inside async components in next-intl v3? No, getTranslations is safer in Server Components. Wait, next-intl's `useTranslations` can be used in async Server Components if configured correctly. Let's stick to getTranslations.
-  // Wait, I will just keep `useTranslations` because the component might be relying on it. Actually Next-intl requires `getTranslations` in async Server Components.
+  const t = await getTranslations(); 
 
+  const teacherProfiles = await prisma.teacherProfile.findMany({
+    include: {
+      user: {
+        select: { nameAr: true, nameEn: true, email: true }
+      }
+    }
+  });
 
   const renderForwardArrow = () => {
     return locale === 'ar' ? (
@@ -538,27 +543,29 @@ export default async function HomePage({ params: { locale } }: PageProps) {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
-            {teachersData.map((teacher, index) => (
-              <div key={teacher.id} className="col-span-1 rounded-3xl border border-slate-800 bg-slate-900/20 hover:bg-slate-900/40 transition-all duration-500 shadow-xl overflow-hidden group hover:-translate-y-2 relative">
+            {teacherProfiles.map((profile, index) => (
+              <div key={profile.id} className="col-span-1 rounded-3xl border border-slate-800 bg-slate-900/20 hover:bg-slate-900/40 transition-all duration-500 shadow-xl overflow-hidden group hover:-translate-y-2 relative">
                 {/* Image Section */}
-                <div className={`relative h-72 sm:h-80 w-full overflow-hidden ${teacher.imageBgColor}`}>
-                  <Image 
-                    src={teacher.image}
-                    alt={teacher.nameEn}
-                    fill
-                    className="object-contain object-bottom transition-transform duration-700 group-hover:scale-110 group-hover:-translate-y-2 origin-bottom drop-shadow-2xl"
-                  />
+                <div className={`relative h-72 sm:h-80 w-full overflow-hidden ${profile.imageBgColor || 'bg-slate-800'}`}>
+                  {profile.imageUrl && (
+                    <Image 
+                      src={profile.imageUrl}
+                      alt={profile.user?.nameEn || 'Teacher'}
+                      fill
+                      className="object-contain object-bottom transition-transform duration-700 group-hover:scale-110 group-hover:-translate-y-2 origin-bottom drop-shadow-2xl"
+                    />
+                  )}
                   {/* Subtle vignette over the image */}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-90" />
                   
                   {/* Title & Badge */}
                   <div className="absolute bottom-4 start-6 z-10 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
                     <h3 className="text-2xl font-black text-white mb-1.5 tracking-tight drop-shadow-lg">
-                      {locale === 'ar' ? teacher.nameAr : teacher.nameEn}
+                      {locale === 'ar' ? profile.user?.nameAr : (profile.user?.nameEn || profile.user?.nameAr)}
                     </h3>
                     <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/60 backdrop-blur-sm border border-white/10 text-brand-300 text-xs font-bold shadow-lg">
                       <CheckCircle2 className="w-3.5 h-3.5 text-brand-400" />
-                      <span>{locale === 'ar' ? teacher.roleAr : teacher.roleEn}</span>
+                      <span>{locale === 'ar' ? profile.roleTitleAr : profile.roleTitleEn}</span>
                     </div>
                   </div>
                 </div>
@@ -566,7 +573,7 @@ export default async function HomePage({ params: { locale } }: PageProps) {
                 {/* Info Section */}
                 <div className="p-6">
                   <p className="text-slate-300 text-sm leading-relaxed mb-6 opacity-80 group-hover:opacity-100 transition-opacity">
-                    {locale === 'ar' ? teacher.bioAr : teacher.bioEn}
+                    {locale === 'ar' ? profile.bioAr : profile.bioEn}
                   </p>
                   
                   {/* Stats Footer */}
@@ -575,13 +582,13 @@ export default async function HomePage({ params: { locale } }: PageProps) {
                       <div className="p-1.5 rounded-lg bg-slate-800 group-hover:bg-emerald-500/20 transition-colors">
                         <Users className="w-4 h-4" />
                       </div>
-                      <span>{locale === 'ar' ? teacher.stats.studentsAr : teacher.stats.studentsEn}</span>
+                      <span>{locale === 'ar' ? profile.studentsCountAr : profile.studentsCountEn}</span>
                     </div>
                     <div className="flex items-center gap-2 group-hover:text-blue-400 transition-colors">
                       <div className="p-1.5 rounded-lg bg-slate-800 group-hover:bg-blue-500/20 transition-colors">
                         <GraduationCap className="w-4 h-4" />
                       </div>
-                      <span>{locale === 'ar' ? teacher.stats.experienceAr : teacher.stats.experienceEn}</span>
+                      <span>{locale === 'ar' ? profile.experienceAr : profile.experienceEn}</span>
                     </div>
                   </div>
                 </div>
