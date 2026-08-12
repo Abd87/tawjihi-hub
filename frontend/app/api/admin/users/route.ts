@@ -33,6 +33,7 @@ export async function GET(request: Request) {
         isMasterAdmin: true,
         revenueSharePercent: true,
         phoneNumber: true,
+        trackType: true,
         createdAt: true,
       },
       orderBy: { createdAt: 'desc' }
@@ -62,7 +63,7 @@ export async function PUT(request: Request) {
       return NextResponse.json({ error: 'Forbidden - Only Master Admin or Admin can modify users' }, { status: 403 });
     }
 
-    const { targetUserId, newRole, revenueSharePercent } = await request.json();
+    const { targetUserId, newRole, revenueSharePercent, trackType } = await request.json();
 
     if (!targetUserId) {
       return NextResponse.json({ error: 'Missing targetUserId' }, { status: 400 });
@@ -78,6 +79,9 @@ export async function PUT(request: Request) {
     if (typeof revenueSharePercent === 'number' && !isNaN(revenueSharePercent)) {
       updateData.revenueSharePercent = revenueSharePercent;
     }
+    if (trackType !== undefined) {
+      updateData.trackType = trackType;
+    }
 
     const updatedUser = await prisma.user.update({
       where: { id: targetUserId },
@@ -90,6 +94,7 @@ export async function PUT(request: Request) {
         role: true,
         isMasterAdmin: true,
         revenueSharePercent: true,
+        trackType: true,
         createdAt: true,
       }
     });

@@ -72,6 +72,26 @@ export default function UsersAdminPage() {
     }
   };
 
+  const handleTrackChange = async (userId: string, newTrack: string) => {
+    try {
+      const res = await fetch('/api/admin/users', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ targetUserId: userId, trackType: newTrack }),
+      });
+      
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Failed to update stream');
+      }
+      
+      const data = await res.json();
+      setUsers(users.map(u => u.id === userId ? data.user : u));
+    } catch (err: any) {
+      alert(err.message);
+    }
+  };
+
   const handleDeleteUser = async (userId: string, userEmail: string) => {
     if (!confirm(isRtl ? `هل أنت تأكد من حذف المستخدم (${userEmail}) نهائياً؟` : `Are you sure you want to permanently delete (${userEmail})?`)) {
       return;
@@ -213,6 +233,17 @@ export default function UsersAdminPage() {
                       <option value="TEACHER">TEACHER</option>
                       <option value="ADMIN">ADMIN</option>
                     </select>
+
+                    {user.role === 'STUDENT' && (
+                      <select
+                        value={user.trackType || 'ACADEMIC'}
+                        onChange={(e) => handleTrackChange(user.id, e.target.value)}
+                        className="bg-slate-950 border border-slate-800 rounded-lg py-1.5 px-3 text-xs font-bold text-slate-300 outline-none focus:border-blue-500"
+                      >
+                        <option value="ACADEMIC">{isRtl ? 'أكاديمي' : 'ACADEMIC'}</option>
+                        <option value="BTEC">{isRtl ? 'مهني (BTEC)' : 'BTEC'}</option>
+                      </select>
+                    )}
 
                     {!user.isMasterAdmin && (
                       <button
