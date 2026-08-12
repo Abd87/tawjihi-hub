@@ -61,7 +61,7 @@ export default function StudioBroadcastsPage() {
   const fetchInitialData = async () => {
     try {
       // Fetch teacher's courses
-      const coursesRes = await fetch('/api/courses');
+      const coursesRes = await fetch('/api/admin/courses');
       if (coursesRes.ok) {
         const cData = await coursesRes.json();
         setCourses(cData.courses || []);
