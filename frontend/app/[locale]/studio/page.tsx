@@ -83,7 +83,7 @@ export default function TeacherStudioDashboardPage() {
           </button>
 
           <Link
-            href={`/${locale}/studio/course-builder/new`}
+            href={`/${locale}/admin/courses`}
             className="inline-flex items-center gap-2 px-5 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white rounded-xl text-sm font-bold transition-all w-fit"
           >
             <Plus className="w-4 h-4" />
@@ -102,7 +102,7 @@ export default function TeacherStudioDashboardPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Card 1: Course Builder */}
         <Link
-          href={`/${locale}/studio/course-builder`}
+          href={`/${locale}/admin/courses`}
           className="group bg-slate-900/60 border border-slate-800 hover:border-brand-500/50 p-6 rounded-3xl transition-all relative overflow-hidden flex flex-col justify-between"
         >
           <div className="space-y-4">
@@ -263,7 +263,7 @@ export default function TeacherStudioDashboardPage() {
                     {course._count?.units || 0} {isRtl ? 'وحدات' : 'Units'}
                   </span>
                   <Link
-                    href={`/${locale}/studio/course-builder/${course.id}`}
+                    href={`/${locale}/admin/courses`}
                     className="text-brand-400 hover:text-brand-300 font-bold flex items-center gap-1"
                   >
                     <span>{isRtl ? 'تعديل المحتوى' : 'Edit Content'}</span>
@@ -277,7 +277,7 @@ export default function TeacherStudioDashboardPage() {
           <div className="py-12 text-center text-slate-500 space-y-3">
             <p>{isRtl ? 'لم تقم بإنشاء أي دورات تعليمية بعد' : 'No courses created yet.'}</p>
             <Link
-              href={`/${locale}/studio/course-builder/new`}
+              href={`/${locale}/admin/courses`}
               className="inline-flex items-center gap-2 px-4 py-2 bg-brand-600 text-white rounded-xl text-xs font-bold"
             >
               <Plus className="w-3.5 h-3.5" />
