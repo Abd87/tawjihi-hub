@@ -56,7 +56,17 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     }
 
+    let whereClause = {};
+    if (decoded.role === 'TEACHER') {
+      whereClause = {
+        course: {
+          teacherId: decoded.userId
+        }
+      };
+    }
+
     const quizzes = await prisma.quiz.findMany({
+      where: whereClause,
       include: {
         course: { select: { titleAr: true, titleEn: true } },
         sections: {

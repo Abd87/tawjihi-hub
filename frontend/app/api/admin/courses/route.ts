@@ -20,7 +20,13 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     }
 
+    let whereClause = {};
+    if (decoded.role === 'TEACHER') {
+      whereClause = { teacherId: decoded.userId };
+    }
+
     const coursesRaw = await prisma.course.findMany({
+      where: whereClause,
       include: {
         teacher: true,
         liveSessions: true,
