@@ -38,7 +38,11 @@ export default function TeacherStudioDashboardPage() {
 
   const fetchCourses = async () => {
     try {
-      const res = await fetch('/api/courses');
+      const res = await fetch('/api/courses?studio=true', {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
       if (res.ok) {
         const data = await res.json();
         setCourses(data.courses || []);

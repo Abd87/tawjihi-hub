@@ -7,6 +7,8 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
   try {
+    const { searchParams } = new URL(request.url);
+    const studioMode = searchParams.get('studio') === 'true';
     // 1. Get user from token if available
     const authHeader = request.headers.get('authorization');
     const token = authHeader?.split(' ')[1] || cookies().get('token')?.value;
@@ -26,8 +28,14 @@ export async function GET(request: Request) {
       }
     }
 
-    // 2. Fetch all courses
+    // 2. Fetch all courses (filtered if studio mode)
+    let whereClause = {};
+    if (studioMode && userRole === 'TEACHER' && userId) {
+      whereClause = { teacherId: userId };
+    }
+
     const coursesRaw = await prisma.course.findMany({
+      where: whereClause,
       include: { 
         teacher: true, 
         liveSessions: true,
