@@ -10,11 +10,13 @@ interface MathRendererProps extends React.HTMLAttributes<HTMLElement> {
   as?: React.ElementType;
 }
 
-export default function MathRenderer({ html, className = '', dir = 'rtl', as: Tag = 'div', ...props }: MathRendererProps) {
+const MathRenderer = React.memo(function MathRenderer({ html, className = '', dir = 'rtl', as: Tag = 'div', ...props }: MathRendererProps) {
   const containerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (containerRef.current) {
+      // Re-apply the raw HTML before running KaTeX in case React reset the DOM
+      containerRef.current.innerHTML = html;
       renderMathInElement(containerRef.current, {
         delimiters: [
           { left: '$$', right: '$$', display: true },
@@ -26,11 +28,10 @@ export default function MathRenderer({ html, className = '', dir = 'rtl', as: Ta
         errorColor: '#f43f5e',
       });
     }
-  }, [html]);
+  }); // run on every render to ensure it catches React resets, but resetting html makes it safe
 
   return (
     <Tag
-      key={html}
       ref={containerRef}
       className={className}
       dir={dir}
@@ -38,4 +39,6 @@ export default function MathRenderer({ html, className = '', dir = 'rtl', as: Ta
       {...props}
     />
   );
-}
+});
+
+export default MathRenderer;
