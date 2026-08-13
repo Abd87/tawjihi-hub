@@ -13,7 +13,7 @@ export default function SocialFloatingButtons() {
 
   const whatsappNumber = '962790881392';
   const whatsappUrl = `https://wa.me/${whatsappNumber}`;
-  const facebookUrl = 'https://www.facebook.com/groups/1648666043099156';
+  const facebookUrl = 'https://www.facebook.com/profile.php?id=61591900810785';
 
   // Hide floating social buttons inside all app & dashboard routes
   const isAppRoute = 
