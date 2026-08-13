@@ -727,6 +727,18 @@ export default function AdminCoursesPage() {
                       </button>
                     )}
 
+                    {/* Preview Course */}
+                    {canEdit && (
+                      <Link
+                        href={`/${locale}/courses/${course.id}`}
+                        target="_blank"
+                        className="p-2 rounded-lg text-slate-400 hover:text-brand-400 hover:bg-brand-500/10 transition-all"
+                        title={isRtl ? 'معاينة كطالب' : 'Preview as Student'}
+                      >
+                        <PlaySquare className="h-3.5 w-3.5" />
+                      </Link>
+                    )}
+
                     {/* Expand */}
                     <button
                       onClick={() => setExpandedId(isOpen ? null : course.id)}

@@ -86,14 +86,14 @@ export async function GET(request: Request, { params }: { params: { id: string }
       lessons: courseRaw.units.flatMap(u => 
         u.lessons.map(l => ({
           ...l,
-          locked: isLocked ? !l.isFreeTrial : l.locked
+          locked: isLocked ? !l.isFreeTrial : false
         }))
       ),
       units: courseRaw.units.map(u => ({
         ...u,
         lessons: u.lessons.map(l => ({
           ...l,
-          locked: isLocked ? !l.isFreeTrial : l.locked
+          locked: isLocked ? !l.isFreeTrial : false
         }))
       }))
     };

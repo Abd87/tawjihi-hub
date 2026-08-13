@@ -18,7 +18,8 @@ import {
   Percent,
   CheckCircle2,
   Users,
-  Radio
+  Radio,
+  PlayCircle
 } from 'lucide-react';
 
 import AIQuizGeneratorModal from '@/components/studio/AIQuizGeneratorModal';
@@ -258,17 +259,27 @@ export default function TeacherStudioDashboardPage() {
                   </h4>
                 </div>
 
-                <div className="pt-4 border-t border-slate-900 mt-4 flex items-center justify-between text-xs">
+                <div className="pt-4 border-t border-slate-900 mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
                   <span className="text-slate-400">
                     {course._count?.units || 0} {isRtl ? 'وحدات' : 'Units'}
                   </span>
-                  <Link
-                    href={`/${locale}/admin/courses`}
-                    className="text-brand-400 hover:text-brand-300 font-bold flex items-center gap-1"
-                  >
-                    <span>{isRtl ? 'تعديل المحتوى' : 'Edit Content'}</span>
-                    {isRtl ? <ArrowLeft className="w-3.5 h-3.5" /> : <ArrowRight className="w-3.5 h-3.5" />}
-                  </Link>
+                  <div className="flex items-center gap-4">
+                    <Link
+                      href={`/${locale}/courses/${course.id}`}
+                      target="_blank"
+                      className="text-slate-400 hover:text-white font-bold flex items-center gap-1.5 transition-colors"
+                    >
+                      <PlayCircle className="w-4 h-4" />
+                      <span>{isRtl ? 'معاينة كطالب' : 'Preview'}</span>
+                    </Link>
+                    <Link
+                      href={`/${locale}/admin/courses`}
+                      className="text-brand-400 hover:text-brand-300 font-bold flex items-center gap-1"
+                    >
+                      <span>{isRtl ? 'تعديل المحتوى' : 'Edit Content'}</span>
+                      {isRtl ? <ArrowLeft className="w-3.5 h-3.5" /> : <ArrowRight className="w-3.5 h-3.5" />}
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}
