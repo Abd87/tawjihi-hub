@@ -444,7 +444,7 @@ export default function Grade11UnitExamEnginePage() {
                       </div>
 
                       <MathRenderer
-                        as="h3"
+                        as="div"
                         className="text-base sm:text-lg font-bold text-white leading-relaxed [&>u]:text-brand-400 [&>u]:font-black [&>u]:underline [&>u]:underline-offset-4 [&>u]:bg-brand-500/10 [&>u]:px-1 [&>u]:py-0.5 [&>u]:rounded [&>u]:border [&>u]:border-brand-500/30"
                         html={mQ.question}
                       />
@@ -467,7 +467,7 @@ export default function Grade11UnitExamEnginePage() {
                                   : 'bg-slate-950/60 border-slate-800 text-slate-300 hover:border-slate-700'
                               }`}
                             >
-                              <MathRenderer as="span" html={choice} />
+                              <MathRenderer as="div" html={choice} />
                               {isChosen && isAnswerKey && <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 ms-2" />}
                               {isChosen && !isAnswerKey && <XCircle className="w-4 h-4 text-rose-400 shrink-0 ms-2" />}
                             </button>
@@ -572,7 +572,7 @@ export default function Grade11UnitExamEnginePage() {
                   >
                     <div className="flex items-start justify-between gap-3">
                       <MathRenderer
-                        as="h4"
+                        as="div"
                         className="text-sm font-bold text-white [&>u]:text-brand-400 [&>u]:font-black [&>u]:underline [&>u]:underline-offset-4 [&>u]:bg-brand-500/10 [&>u]:px-1 [&>u]:py-0.5 [&>u]:rounded [&>u]:border [&>u]:border-brand-500/30"
                         html={`${qIdx + 1}. ${q.question}`}
                       />
@@ -600,7 +600,7 @@ export default function Grade11UnitExamEnginePage() {
                                 : 'bg-slate-950/40 border-slate-800 text-slate-400'
                             }`}
                           >
-                            <MathRenderer as="span" html={choice} />
+                            <MathRenderer as="div" html={choice} />
                             {isAnswerKey && <Check className="w-4 h-4 text-emerald-400 shrink-0" />}
                           </div>
                         );
@@ -680,7 +680,7 @@ export default function Grade11UnitExamEnginePage() {
                   {exam.text.split('\n\n').map((para: string, pIdx: number) => (
                     <MathRenderer 
                       key={pIdx} 
-                      as="p"
+                      as="div"
                       className="bg-slate-950/60 p-4 rounded-2xl border border-slate-800/80 tracking-wide leading-relaxed text-slate-200 [&>u]:text-brand-400 [&>u]:font-black [&>u]:underline [&>u]:underline-offset-4 [&>u]:bg-brand-500/10 [&>u]:px-1 [&>u]:py-0.5 [&>u]:rounded [&>u]:border [&>u]:border-brand-500/30 [&>b>u]:text-brand-400 [&>b>u]:font-black [&>b>u]:underline [&>b>u]:underline-offset-4 [&>b>u]:bg-brand-500/10 [&>b>u]:px-1 [&>b>u]:py-0.5 [&>b>u]:rounded [&>b>u]:border [&>b>u]:border-brand-500/30"
                       html={para}
                     />
@@ -710,7 +710,7 @@ export default function Grade11UnitExamEnginePage() {
 
               {/* Question Title */}
               <MathRenderer
-                as="h3"
+                as="div"
                 className="text-base sm:text-lg font-extrabold text-white leading-relaxed [&>u]:text-brand-400 [&>u]:font-black [&>u]:underline [&>u]:underline-offset-4 [&>u]:bg-brand-500/10 [&>u]:px-1 [&>u]:py-0.5 [&>u]:rounded [&>u]:border [&>u]:border-brand-500/30"
                 html={`${currentIdx + 1}. ${currentQ.question}`}
               />
@@ -729,7 +729,7 @@ export default function Grade11UnitExamEnginePage() {
                           : 'bg-slate-950/60 border-slate-800 text-slate-300 hover:border-slate-700 hover:bg-slate-900'
                       }`}
                     >
-                      <MathRenderer as="span" className="leading-snug" html={choice} />
+                      <MathRenderer as="div" className="leading-snug" html={choice} />
                       <div
                         className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ms-2 ${
                           isSelected ? 'border-brand-400 bg-brand-500 text-white' : 'border-slate-700'
