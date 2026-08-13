@@ -423,13 +423,29 @@ export default function PracticeSessionPage() {
           {/* Explanation Section */}
           {hasChecked && showExplanation && (
             <div className="mt-8 p-6 rounded-2xl bg-slate-800/50 border border-slate-700 animate-in fade-in slide-in-from-bottom-4">
-              <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+              <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
                 <Lightbulb className="w-4 h-4 text-brand-400" />
                 {isRtl ? 'الشرح' : 'Explanation'}
               </h4>
-              <p className="text-slate-200 leading-relaxed text-sm sm:text-base" dir="auto">
-                { (isRtl ? currentQuestion.explanationAr : currentQuestion.explanationEn) || (isRtl ? currentQuestion.explanationEn : currentQuestion.explanationAr) }
-              </p>
+
+              {!isCorrect && (
+                <div className="mb-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+                  <span className="block text-xs font-bold text-emerald-400 mb-1">{isRtl ? 'الإجابة الصحيحة:' : 'Correct Answer:'}</span>
+                  <MathRenderer 
+                    as="div" 
+                    className="text-emerald-300 font-medium sm:text-lg" 
+                    dir="auto" 
+                    html={(isRtl ? currentQuestion.choices.find(c => c.isCorrect)?.textAr : currentQuestion.choices.find(c => c.isCorrect)?.textEn) || currentQuestion.choices.find(c => c.isCorrect)?.textEn || ''} 
+                  />
+                </div>
+              )}
+
+              <MathRenderer 
+                as="div" 
+                className="text-slate-200 leading-relaxed text-sm sm:text-base [&>u]:text-brand-400 [&>u]:font-black [&>u]:underline [&>u]:underline-offset-4 [&>u]:bg-brand-500/10 [&>u]:px-1 [&>u]:py-0.5 [&>u]:rounded [&>u]:border [&>u]:border-brand-500/30" 
+                dir="auto" 
+                html={(isRtl ? currentQuestion.explanationAr : currentQuestion.explanationEn) || (isRtl ? currentQuestion.explanationEn : currentQuestion.explanationAr) || ''} 
+              />
             </div>
           )}
 

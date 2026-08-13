@@ -479,13 +479,21 @@ export default function Grade11UnitExamEnginePage() {
 
                       {/* Immediate Explanation Feedback */}
                       {userChoice !== undefined && (
-                        <div className={`p-4 rounded-2xl border ${isCorrect ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300' : 'bg-amber-500/10 border-amber-500/20 text-amber-300'} space-y-1 text-xs`}>
-                          <div className="font-bold flex items-center gap-1.5">
+                        <div className={`p-4 rounded-2xl border ${isCorrect ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300' : 'bg-amber-500/10 border-amber-500/20 text-amber-300'} space-y-2 text-xs`}>
+                          <div className="font-bold flex items-center gap-1.5 mb-2">
                             <Sparkles className="w-4 h-4" />
                             <span>{isCorrect ? (isRtl ? 'إجابة صحيحة! تم حل الخطأ' : 'Correct! Mistake Resolved!') : (isRtl ? 'إجابة خاطئة - حاول مرة أخرى:' : 'Incorrect Try Again:')}</span>
                           </div>
-                          <p className="dir-rtl text-right text-slate-200">{mQ.explanationAr}</p>
-                          <p className="text-left text-slate-400">{mQ.explanationEn}</p>
+
+                          {!isCorrect && (
+                            <div className="p-3 bg-slate-950/50 rounded-xl border border-slate-800 mb-2">
+                              <span className="block text-[10px] font-bold text-slate-500 mb-1">{isRtl ? 'الإجابة الصحيحة:' : 'Correct Answer:'}</span>
+                              <MathRenderer as="div" className="text-emerald-400 font-medium text-sm" dir="auto" html={mQ.choices[mQ.correctAnswerIndex] || ''} />
+                            </div>
+                          )}
+
+                          <MathRenderer as="div" className="dir-rtl text-right text-slate-200 [&>u]:text-brand-400 [&>u]:font-black [&>u]:underline [&>u]:underline-offset-4 [&>u]:bg-brand-500/10 [&>u]:px-1 [&>u]:py-0.5 [&>u]:rounded [&>u]:border [&>u]:border-brand-500/30" html={mQ.explanationAr || ''} />
+                          <MathRenderer as="div" className="text-left text-slate-400 [&>u]:text-brand-400 [&>u]:font-black [&>u]:underline [&>u]:underline-offset-4 [&>u]:bg-brand-500/10 [&>u]:px-1 [&>u]:py-0.5 [&>u]:rounded [&>u]:border [&>u]:border-brand-500/30" html={mQ.explanationEn || ''} />
                         </div>
                       )}
 
@@ -610,15 +618,13 @@ export default function Grade11UnitExamEnginePage() {
                     </div>
 
                     {/* Detailed Solution Explanation */}
-                    {q.explanation && (
-                      <div className="p-4 rounded-xl bg-slate-950 border border-slate-800/80 space-y-1 text-xs">
+                    {(q.explanationAr || q.explanationEn || q.explanation) && (
+                      <div className="p-4 rounded-xl bg-slate-950 border border-slate-800/80 space-y-2 text-xs">
                         <div className="flex items-center gap-1.5 text-brand-400 font-bold mb-1">
                           <Sparkles className="w-3.5 h-3.5" />
                           <span>{isRtl ? 'التفسير والحل:' : 'Explanation & Solution:'}</span>
                         </div>
-                        <p className="text-slate-300 leading-relaxed dir-rtl text-right">
-                          {q.explanation}
-                        </p>
+                        <MathRenderer as="div" className="text-slate-300 leading-relaxed [&>u]:text-brand-400 [&>u]:font-black [&>u]:underline [&>u]:underline-offset-4 [&>u]:bg-brand-500/10 [&>u]:px-1 [&>u]:py-0.5 [&>u]:rounded [&>u]:border [&>u]:border-brand-500/30" dir="auto" html={(isRtl ? (q.explanationAr || q.explanation) : (q.explanationEn || q.explanation)) || q.explanationEn || ''} />
                       </div>
                     )}
                   </div>

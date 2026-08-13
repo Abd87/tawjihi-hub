@@ -371,7 +371,7 @@ export default function StudentQuizPage() {
                           <AlertCircle className="h-4.5 w-4.5 text-brand-500 shrink-0 mt-0.5" />
                           <div>
                             <span className="font-bold text-brand-500 block mb-1">{isRtl ? 'الشرح' : 'Explanation'}</span>
-                            <p className="leading-relaxed">{isRtl ? item.explanationAr : item.explanationEn}</p>
+                            <MathRenderer as="div" className="leading-relaxed [&>u]:text-brand-400 [&>u]:font-black [&>u]:underline [&>u]:underline-offset-4 [&>u]:bg-brand-500/10 [&>u]:px-1 [&>u]:py-0.5 [&>u]:rounded [&>u]:border [&>u]:border-brand-500/30" dir="auto" html={(isRtl ? item.explanationAr : item.explanationEn) || item.explanationEn || ''} />
                           </div>
                         </div>
                       )}
