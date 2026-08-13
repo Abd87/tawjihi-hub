@@ -264,6 +264,18 @@ export default function Grade11UnitExamEnginePage() {
     return `${m}:${s < 10 ? '0' : ''}${s}`;
   };
 
+  const currentQ = exam?.questions?.[currentIdx];
+  const qText = (currentQ?.question || '').toLowerCase();
+  const isReadingQuestion = currentQ?.type === 'reading' || currentIdx < 8 || ['paragraph', 'text', 'underlined', 'passage', 'writer', 'author', 'pronoun', 'line', 'refer', 'meaning'].some(keyword => qText.includes(keyword));
+  const percentage = exam ? Math.round((score / exam.questionsCount) * 100) : 0;
+
+  // Auto-sync passage pane state when moving between question types
+  useEffect(() => {
+    if (exam) {
+      setShowPassagePane(isReadingQuestion);
+    }
+  }, [currentIdx, isReadingQuestion, exam]);
+
   if (showAuthGate) {
     return (
       <div className="min-h-screen bg-[#020617] text-white flex items-center justify-center p-4 dir-ltr font-sans">
@@ -299,16 +311,6 @@ export default function Grade11UnitExamEnginePage() {
   }
 
   if (!exam) return null;
-
-  const currentQ = exam.questions[currentIdx];
-  const qText = (currentQ?.question || '').toLowerCase();
-  const isReadingQuestion = currentQ?.type === 'reading' || currentIdx < 8 || ['paragraph', 'text', 'underlined', 'passage', 'writer', 'author', 'pronoun', 'line', 'refer', 'meaning'].some(keyword => qText.includes(keyword));
-  const percentage = Math.round((score / exam.questionsCount) * 100);
-
-  // Auto-sync passage pane state when moving between question types
-  useEffect(() => {
-    setShowPassagePane(isReadingQuestion);
-  }, [currentIdx, isReadingQuestion]);
 
   return (
     <div className="min-h-screen bg-[#020617] text-white font-sans text-left" dir="ltr">
