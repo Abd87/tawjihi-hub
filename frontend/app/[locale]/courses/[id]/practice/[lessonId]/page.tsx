@@ -13,7 +13,8 @@ import {
   Trophy, 
   Sparkles,
   ChevronRight,
-  ChevronLeft
+  ChevronLeft,
+  Clock
 } from 'lucide-react';
 import CourseUnlockModal from '@/components/CourseUnlockModal';
 import MathRenderer from '@/components/MathRenderer';
@@ -74,6 +75,7 @@ export default function PracticeSessionPage() {
   const [answers, setAnswers] = useState<Record<string, { choiceIndex: number; isCorrect: boolean }>>({});
   const [userId, setUserId] = useState<string>('guest');
   const [showUnlockModal, setShowUnlockModal] = useState(false);
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
 
   useEffect(() => {
     const loadData = async () => {
@@ -118,6 +120,10 @@ export default function PracticeSessionPage() {
                 } else {
                    setCurrentIndex(restoredIndex);
                 }
+                
+                if (savedProg.elapsedSeconds) {
+                  setElapsedSeconds(savedProg.elapsedSeconds);
+                }
               } catch(e) {}
             }
           }
@@ -148,6 +154,20 @@ export default function PracticeSessionPage() {
       setShowExplanation(false);
     }
   }, [currentIndex, answers, questions]);
+
+  useEffect(() => {
+    if (loading || isCompleted || showUnlockModal) return;
+    const interval = setInterval(() => {
+      setElapsedSeconds(prev => prev + 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [loading, isCompleted, showUnlockModal]);
+
+  const formatTime = (secs: number) => {
+    const m = Math.floor(secs / 60);
+    const s = secs % 60;
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
+  };
 
 
   if (loading) {
@@ -214,6 +234,7 @@ export default function PracticeSessionPage() {
     localStorage.setItem(`saved-practice-${userId}-${courseId}-${lessonId}`, JSON.stringify({
       currentIndex: currentIndex,
       correctCount: newCorrectCount,
+      elapsedSeconds,
       answers: updatedAnswers
     }));
   };
@@ -227,6 +248,7 @@ export default function PracticeSessionPage() {
       localStorage.setItem(`saved-practice-${userId}-${courseId}-${lessonId}`, JSON.stringify({
         currentIndex: nextIndex,
         correctCount,
+        elapsedSeconds,
         answers
       }));
     } else {
@@ -279,6 +301,7 @@ export default function PracticeSessionPage() {
       localStorage.setItem(`saved-practice-${userId}-${courseId}-${lessonId}`, JSON.stringify({
         currentIndex: prevIndex,
         correctCount,
+        elapsedSeconds,
         answers
       }));
     }
@@ -300,8 +323,8 @@ export default function PracticeSessionPage() {
           </h1>
           <p className="text-slate-400 mb-8 text-lg">
             {isRtl 
-              ? `لقد أجبت بشكل صحيح على ${correctCount} من أصل ${questions.length}`
-              : `You scored ${correctCount} out of ${questions.length} correct.`}
+              ? `لقد أجبت بشكل صحيح على ${correctCount} من أصل ${questions.length} في ${formatTime(elapsedSeconds)} دقيقة.`
+              : `You scored ${correctCount} out of ${questions.length} correct in ${formatTime(elapsedSeconds)}.`}
           </p>
           
           <div className="w-full h-3 bg-slate-800 rounded-full mb-10 overflow-hidden">
@@ -357,9 +380,15 @@ export default function PracticeSessionPage() {
           </div>
         </div>
         
-        <div className="flex items-center gap-2 font-bold text-brand-400 text-sm">
-          <Sparkles className="w-4 h-4" />
-          <span className="hidden sm:inline">{correctCount} {isRtl ? 'نقاط' : 'Pts'}</span>
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 font-bold text-amber-400 text-sm">
+            <Clock className="w-4 h-4" />
+            <span className="font-mono">{formatTime(elapsedSeconds)}</span>
+          </div>
+          <div className="flex items-center gap-2 font-bold text-brand-400 text-sm">
+            <Sparkles className="w-4 h-4" />
+            <span className="hidden sm:inline">{correctCount} {isRtl ? 'نقاط' : 'Pts'}</span>
+          </div>
         </div>
       </header>
 
@@ -367,10 +396,10 @@ export default function PracticeSessionPage() {
       <main className="flex-1 overflow-y-auto pb-24">
         <div className="max-w-3xl mx-auto px-4 py-4 sm:py-6 flex flex-col min-h-full">
           
-          <div className="mb-4 sm:mb-6" dir="auto">
+          <div className="mb-4 sm:mb-6 text-left dir-ltr" dir="ltr">
             <MathRenderer 
               as="h2"
-              className="text-lg sm:text-xl font-bold text-white leading-relaxed [&>u]:border-b-2 [&>u]:border-brand-500 [&>u]:no-underline [&>b]:text-brand-400"
+              className="text-lg sm:text-xl font-bold text-white leading-relaxed text-left [&>u]:border-b-2 [&>u]:border-brand-500 [&>u]:no-underline [&>b]:text-brand-400"
               html={(isRtl ? currentQuestion.textAr : currentQuestion.textEn) || (isRtl ? currentQuestion.textEn : currentQuestion.textAr)}
             />
           </div>
@@ -414,7 +443,7 @@ export default function PracticeSessionPage() {
                     {isSelected && !isCorrect && <X className="w-3.5 h-3.5 text-white" />}
                     {!isSelected && hasChecked && choice.isCorrect && <Check className="w-3.5 h-3.5 text-emerald-400" />}
                   </div>
-                  <MathRenderer as="span" className="text-base sm:text-lg font-medium" dir="auto" html={(isRtl ? choice.textAr : choice.textEn) || (isRtl ? choice.textEn : choice.textAr)} />
+                  <MathRenderer as="span" className="text-base sm:text-lg font-medium text-left dir-ltr" dir="ltr" html={(isRtl ? choice.textAr : choice.textEn) || (isRtl ? choice.textEn : choice.textAr)} />
                 </button>
               );
             })}
