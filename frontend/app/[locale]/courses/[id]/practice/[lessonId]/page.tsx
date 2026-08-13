@@ -414,9 +414,7 @@ export default function PracticeSessionPage() {
                     {isSelected && !isCorrect && <X className="w-3.5 h-3.5 text-white" />}
                     {!isSelected && hasChecked && choice.isCorrect && <Check className="w-3.5 h-3.5 text-emerald-400" />}
                   </div>
-                  <span className="text-base sm:text-lg font-medium" dir="auto">
-                    { (isRtl ? choice.textAr : choice.textEn) || (isRtl ? choice.textEn : choice.textAr) }
-                  </span>
+                  <MathRenderer as="span" className="text-base sm:text-lg font-medium" dir="auto" html={(isRtl ? choice.textAr : choice.textEn) || (isRtl ? choice.textEn : choice.textAr)} />
                 </button>
               );
             })}

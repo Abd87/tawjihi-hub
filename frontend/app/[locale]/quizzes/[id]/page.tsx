@@ -461,7 +461,7 @@ export default function StudentQuizPage() {
                         }`}
                         dir="auto"
                       >
-                        <span className="leading-snug">{(isRtl ? choice.textAr : choice.textEn) || choice.textEn}</span>
+                        <MathRenderer as="span" className="leading-snug" html={(isRtl ? choice.textAr : choice.textEn) || choice.textEn} />
                         <div
                           className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ms-2 ${
                             isSelected ? 'border-brand-400 bg-brand-500 text-white' : 'border-slate-700'

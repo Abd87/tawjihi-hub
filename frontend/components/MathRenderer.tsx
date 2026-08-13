@@ -3,14 +3,14 @@
 import React, { useEffect, useRef } from 'react';
 import renderMathInElement from 'katex/dist/contrib/auto-render';
 
-interface MathRendererProps {
+interface MathRendererProps extends React.HTMLAttributes<HTMLElement> {
   html: string;
   className?: string;
   dir?: 'rtl' | 'ltr' | 'auto';
   as?: React.ElementType;
 }
 
-export default function MathRenderer({ html, className = '', dir = 'rtl', as: Tag = 'div' }: MathRendererProps) {
+export default function MathRenderer({ html, className = '', dir = 'rtl', as: Tag = 'div', ...props }: MathRendererProps) {
   const containerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -30,10 +30,12 @@ export default function MathRenderer({ html, className = '', dir = 'rtl', as: Ta
 
   return (
     <Tag
+      key={html}
       ref={containerRef}
       className={className}
       dir={dir}
       dangerouslySetInnerHTML={{ __html: html }}
+      {...props}
     />
   );
 }

@@ -467,7 +467,7 @@ export default function Grade11UnitExamEnginePage() {
                                   : 'bg-slate-950/60 border-slate-800 text-slate-300 hover:border-slate-700'
                               }`}
                             >
-                              <span>{choice}</span>
+                              <MathRenderer as="span" html={choice} />
                               {isChosen && isAnswerKey && <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 ms-2" />}
                               {isChosen && !isAnswerKey && <XCircle className="w-4 h-4 text-rose-400 shrink-0 ms-2" />}
                             </button>
@@ -600,7 +600,7 @@ export default function Grade11UnitExamEnginePage() {
                                 : 'bg-slate-950/40 border-slate-800 text-slate-400'
                             }`}
                           >
-                            <span>{choice}</span>
+                            <MathRenderer as="span" html={choice} />
                             {isAnswerKey && <Check className="w-4 h-4 text-emerald-400 shrink-0" />}
                           </div>
                         );
@@ -729,7 +729,7 @@ export default function Grade11UnitExamEnginePage() {
                           : 'bg-slate-950/60 border-slate-800 text-slate-300 hover:border-slate-700 hover:bg-slate-900'
                       }`}
                     >
-                      <span className="leading-snug">{choice}</span>
+                      <MathRenderer as="span" className="leading-snug" html={choice} />
                       <div
                         className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ms-2 ${
                           isSelected ? 'border-brand-400 bg-brand-500 text-white' : 'border-slate-700'
