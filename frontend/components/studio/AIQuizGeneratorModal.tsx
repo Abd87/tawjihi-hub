@@ -17,6 +17,7 @@ import {
   HelpCircle,
   Check
 } from 'lucide-react';
+import MathRenderer from '@/components/MathRenderer';
 
 interface AIQuestion {
   textAr: string;
@@ -424,6 +425,12 @@ export default function AIQuizGeneratorModal({
                           placeholder={isRtl ? 'نص السؤال (إنجليزي)' : 'English Question Text'}
                           className="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-300 outline-none focus:border-brand-500"
                         />
+                        {(q.textAr || q.textEn) && (
+                           <div className="mt-2 p-3 bg-slate-950/50 rounded-xl border border-brand-500/10">
+                              <label className="text-[9px] text-brand-400 font-bold uppercase tracking-wider block mb-1">Live Preview</label>
+                              <MathRenderer className="text-sm font-medium text-white" html={isRtl ? (q.textAr || q.textEn) : (q.textEn || q.textAr)} />
+                           </div>
+                        )}
                       </div>
 
                       <button

@@ -193,6 +193,12 @@ export default function AdminGrade11ExamsPage() {
                                   value={editFormData.question}
                                   onChange={(e) => setEditFormData({...editFormData, question: e.target.value})}
                                 />
+                                {editFormData.question && (
+                                  <div className="mt-2 p-3 bg-slate-950 rounded-lg border border-brand-500/20">
+                                    <label className="text-[10px] text-brand-400 font-bold uppercase tracking-wider block mb-1">Live Preview</label>
+                                    <MathRenderer className="text-sm text-slate-200" html={editFormData.question} />
+                                  </div>
+                                )}
                               </div>
                               
                               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -243,7 +249,10 @@ export default function AdminGrade11ExamsPage() {
                           ) : (
                             <div>
                               <div className="flex justify-between items-start gap-4">
-                                <h4 className="text-slate-200 font-medium whitespace-pre-wrap"><span className="text-slate-500 mr-2">{idx + 1}.</span>{q.question}</h4>
+                                <div className="text-slate-200 font-medium whitespace-pre-wrap flex gap-2">
+                                  <span className="text-slate-500">{idx + 1}.</span>
+                                  <MathRenderer as="span" className="flex-1" html={q.question} />
+                                </div>
                                 <div className="flex gap-2">
                                   <button onClick={() => startEditing(q)} className="p-1.5 text-slate-400 hover:text-brand-400 hover:bg-brand-500/10 rounded transition-colors" title="Edit">
                                     <Edit3 className="w-4 h-4" />
@@ -265,7 +274,7 @@ export default function AdminGrade11ExamsPage() {
                                     }`}
                                   >
                                     <span className="mr-2 opacity-50">{String.fromCharCode(65 + cIdx)}.</span>
-                                    {choice}
+                                    <MathRenderer as="span" html={choice} />
                                   </div>
                                 ))}
                               </div>
