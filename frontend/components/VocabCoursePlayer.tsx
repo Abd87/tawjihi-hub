@@ -10,6 +10,7 @@ import {
   AlertTriangle, RotateCcw, Save
 } from 'lucide-react';
 import vocabData from '@/data/vocab.json';
+import MathRenderer from '@/components/MathRenderer';
 
 interface VocabCoursePlayerProps {
   course: any;
@@ -308,9 +309,9 @@ function VocabUnitPlayer({ unitKey, unitData, onClose, onComplete, isRtl }: any)
         {displayQuestions.map((q: any, i: number) => (
           <div key={i} className="bg-slate-900 border border-slate-800 rounded-2xl p-6 mb-4" dir="ltr">
             <span className="text-xs font-bold text-brand-500 bg-brand-500/10 px-2 py-1 rounded mb-3 inline-block">Section {q.sec}</span>
-            <div className="text-lg text-white mb-4" dangerouslySetInnerHTML={{ __html: q.q }} />
-            <div className="bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 p-3 rounded-xl mb-3 font-medium" dangerouslySetInnerHTML={{ __html: `✅ ${q.opts[q.correct]}` }} />
-            <div className="bg-slate-800/50 p-4 rounded-xl text-sm text-slate-300" dangerouslySetInnerHTML={{ __html: q.exp }} />
+            <MathRenderer className="text-lg text-white mb-4" html={q.q} />
+            <MathRenderer className="bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 p-3 rounded-xl mb-3 font-medium" html={`✅ ${q.opts[q.correct]}`} />
+            <MathRenderer className="bg-slate-800/50 p-4 rounded-xl text-sm text-slate-300" html={q.exp} />
           </div>
         ))}
       </div>
@@ -366,17 +367,19 @@ function VocabUnitPlayer({ unitKey, unitData, onClose, onComplete, isRtl }: any)
 
         <div className="bg-slate-900 border border-slate-800 rounded-3xl p-5 md:p-6 mb-4" dir="ltr">
           <span className="text-xs font-bold text-slate-500 bg-slate-800 px-2 py-1 rounded mb-3 inline-block">Section {currentQ.sec}</span>
-          <h3 
+          <MathRenderer 
+            as="h3"
             className="text-lg md:text-xl font-medium text-white mb-4 leading-normal" 
-            dangerouslySetInnerHTML={{ __html: currentQ.q }} 
+            html={currentQ.q} 
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {currentQ.opts.map((opt: string, i: number) => (
-              <button
+              <MathRenderer
+                as="button"
                 key={i}
                 onClick={() => handleAnswer(i)}
                 className="w-full text-left p-3 rounded-xl border border-slate-700 bg-slate-800/50 hover:bg-slate-800 hover:border-brand-500 transition-colors text-slate-200 text-sm md:text-base"
-                dangerouslySetInnerHTML={{ __html: opt }}
+                html={opt}
               />
             ))}
           </div>
@@ -413,16 +416,16 @@ function VocabUnitPlayer({ unitKey, unitData, onClose, onComplete, isRtl }: any)
             if (!q) return null;
             return (
               <div key={i} className="bg-slate-900 border border-red-500/20 rounded-2xl p-6 mb-4" dir="ltr">
-                <div className="text-lg text-white mb-4" dangerouslySetInnerHTML={{ __html: q.q }} />
+                <MathRenderer className="text-lg text-white mb-4" html={q.q} />
                 <div className="space-y-2 mb-4 text-sm">
                   <div className="bg-red-500/10 border border-red-500/20 text-red-400 p-3 rounded-xl flex items-center gap-2">
-                    <span>❌</span> <span dangerouslySetInnerHTML={{ __html: q.opts[ans.selected] }} />
+                    <span>❌</span> <MathRenderer as="span" html={q.opts[ans.selected]} />
                   </div>
                   <div className="bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 p-3 rounded-xl flex items-center gap-2">
-                    <span>✅</span> <span dangerouslySetInnerHTML={{ __html: q.opts[q.correct] }} />
+                    <span>✅</span> <MathRenderer as="span" html={q.opts[q.correct]} />
                   </div>
                 </div>
-                <div className="bg-slate-800/50 p-4 rounded-xl text-sm text-slate-300" dangerouslySetInnerHTML={{ __html: q.exp }} />
+                <MathRenderer className="bg-slate-800/50 p-4 rounded-xl text-sm text-slate-300" html={q.exp} />
               </div>
             );
           })

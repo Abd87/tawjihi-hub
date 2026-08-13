@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { BrainCircuit, BookOpen, Clock, Trash2, Loader2, Sparkles, AlertCircle, ArrowLeft, ArrowRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
+import MathRenderer from '@/components/MathRenderer';
 
 interface Mistake {
   id: string;
@@ -132,12 +133,12 @@ export default function MistakesDashboard({ params: { locale } }: { params: { lo
                   </button>
                 </div>
                 
-                <h4 className="text-lg text-white font-medium mb-2" dangerouslySetInnerHTML={{ __html: locale === 'ar' ? mistake.question.textAr : mistake.question.textEn }} />
+                <MathRenderer as="h4" className="text-lg text-white font-medium mb-2" html={locale === 'ar' ? mistake.question.textAr : mistake.question.textEn} />
                 
                 {(mistake.question.explanationAr || mistake.question.explanationEn) && (
                   <div className="mt-4 p-4 bg-slate-800/50 rounded-xl border border-slate-700/50">
                     <p className="text-sm text-brand-400 font-semibold mb-1">{locale === 'ar' ? 'الشرح:' : 'Explanation:'}</p>
-                    <p className="text-sm text-slate-300" dangerouslySetInnerHTML={{ __html: (locale === 'ar' ? mistake.question.explanationAr : mistake.question.explanationEn) || '' }} />
+                    <MathRenderer as="p" className="text-sm text-slate-300" html={(locale === 'ar' ? mistake.question.explanationAr : mistake.question.explanationEn) || ''} />
                   </div>
                 )}
                 

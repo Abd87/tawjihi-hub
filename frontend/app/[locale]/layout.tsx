@@ -3,6 +3,7 @@ import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 import { ReactNode } from 'react';
 import { Cairo, Inter } from 'next/font/google';
 import '../globals.css';
+import 'katex/dist/katex.min.css';
 import { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import SocialFloatingButtons from '@/components/SocialFloatingButtons';

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { getGrade11Exams, getGrade11ExamById } from '@/app/actions/grade11-exams';
 import { updateGrade11Question, deleteGrade11Question, updateGrade11ExamText } from '@/app/actions/admin-grade11';
 import { Loader2, Edit3, Trash2, Save, X, ChevronDown, ChevronUp, BookOpen } from 'lucide-react';
+import MathRenderer from '@/components/MathRenderer';
 
 export default function AdminGrade11ExamsPage() {
   const [exams, setExams] = useState<any[]>([]);
@@ -172,7 +173,7 @@ export default function AdminGrade11ExamsPage() {
                             placeholder="Enter reading passage text here. Use <b>...</b> for bold and <u>...</u> for underlined text."
                           />
                         ) : (
-                          <div className="text-sm text-slate-400 font-serif leading-relaxed line-clamp-3 bg-slate-900/50 p-4 rounded-xl border border-slate-800" dangerouslySetInnerHTML={{ __html: exam.text || 'No reading passage added yet.' }} />
+                          <MathRenderer className="text-sm text-slate-400 font-serif leading-relaxed line-clamp-3 bg-slate-900/50 p-4 rounded-xl border border-slate-800" html={exam.text || 'No reading passage added yet.'} />
                         )}
                       </div>
 

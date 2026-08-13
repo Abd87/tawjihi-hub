@@ -28,6 +28,7 @@ import {
   PanelLeftOpen
 } from 'lucide-react';
 import Link from 'next/link';
+import MathRenderer from '@/components/MathRenderer';
 
 interface Choice {
   id: string;
@@ -333,10 +334,10 @@ export default function StudentQuizPage() {
                     <div className="space-y-4 w-full">
                       <div className="flex gap-2 font-semibold text-slate-200 text-lg">
                         <span>{idx + 1}.</span>
-                        <div 
+                        <MathRenderer 
                           className="prose prose-invert max-w-none prose-p:my-0 [&_*]:!text-slate-200 [&_*]:!bg-transparent [&>u]:text-brand-400 [&>u]:font-black [&>u]:underline [&>u]:underline-offset-4 [&>u]:bg-brand-500/10 [&>u]:px-1 [&>u]:py-0.5 [&>u]:rounded [&>u]:border [&>u]:border-brand-500/30"
                           dir="auto"
-                          dangerouslySetInnerHTML={{ __html: (isRtl ? (item.textAr || item.textEn) : (item.textEn || item.textAr)) || '' }}
+                          html={(isRtl ? (item.textAr || item.textEn) : (item.textEn || item.textAr)) || ''}
                         />
                       </div>
 
@@ -344,10 +345,10 @@ export default function StudentQuizPage() {
                         <div className="bg-slate-950/50 rounded-xl p-3 border border-slate-800">
                           <span className="block text-xs font-bold text-slate-500 mb-1">{isRtl ? 'إجابتك' : 'Your Answer'}</span>
                           {item.userSelection ? (
-                            <div 
+                            <MathRenderer 
                               className={item.isCorrect ? 'text-emerald-400 font-medium prose prose-invert max-w-none prose-p:my-0 [&_*]:!text-emerald-400 [&_*]:!bg-transparent' : 'text-rose-400 font-medium prose prose-invert max-w-none prose-p:my-0 [&_*]:!text-rose-400 [&_*]:!bg-transparent'}
                               dir="auto"
-                              dangerouslySetInnerHTML={{ __html: item.userSelection }}
+                              html={item.userSelection}
                             />
                           ) : (
                             <span className="text-rose-400 font-medium">{isRtl ? 'لم يتم الإجابة' : 'Not answered'}</span>
@@ -356,10 +357,10 @@ export default function StudentQuizPage() {
                         {!item.isCorrect && (
                           <div className="bg-slate-950/50 rounded-xl p-3 border border-slate-800">
                             <span className="block text-xs font-bold text-slate-500 mb-1">{isRtl ? 'الإجابة الصحيحة' : 'Correct Answer'}</span>
-                            <div 
+                            <MathRenderer 
                               className="text-emerald-400 font-medium prose prose-invert max-w-none prose-p:my-0 [&_*]:!text-emerald-400 [&_*]:!bg-transparent"
                               dir="auto"
-                              dangerouslySetInnerHTML={{ __html: item.correctSelection }}
+                              html={item.correctSelection}
                             />
                           </div>
                         )}
@@ -409,10 +410,11 @@ export default function StudentQuizPage() {
                   {((isRtl ? currentSection.passageAr : currentSection.passageEn) || currentSection.passageEn || '')
                     .split('\n\n')
                     .map((para: string, pIdx: number) => (
-                    <p 
+                    <MathRenderer 
                       key={pIdx} 
+                      as="p"
                       className="bg-slate-950/60 p-4 rounded-2xl border border-slate-800/80 tracking-wide leading-relaxed text-slate-200 [&>u]:text-brand-400 [&>u]:font-black [&>u]:underline [&>u]:underline-offset-4 [&>u]:bg-brand-500/10 [&>u]:px-1 [&>u]:py-0.5 [&>u]:rounded [&>u]:border [&>u]:border-brand-500/30 [&>b>u]:text-brand-400 [&>b>u]:font-black [&>b>u]:underline [&>b>u]:underline-offset-4 [&>b>u]:bg-brand-500/10 [&>b>u]:px-1 [&>b>u]:py-0.5 [&>b>u]:rounded [&>b>u]:border [&>b>u]:border-brand-500/30"
-                      dangerouslySetInnerHTML={{ __html: para }}
+                      html={para}
                     />
                   ))}
                 </div>
@@ -436,10 +438,11 @@ export default function StudentQuizPage() {
                 </div>
               </div>
 
-              <h3
+              <MathRenderer
+                as="h3"
                 className="text-base sm:text-lg font-extrabold text-white leading-relaxed mb-6 [&>u]:text-brand-400 [&>u]:font-black [&>u]:underline [&>u]:underline-offset-4 [&>u]:bg-brand-500/10 [&>u]:px-1 [&>u]:py-0.5 [&>u]:rounded [&>u]:border [&>u]:border-brand-500/30"
                 dir="auto"
-                dangerouslySetInnerHTML={{ __html: `${activeQuestionIndex + 1}. ${(isRtl ? currentQ.textAr : currentQ.textEn) || currentQ.textEn}` }}
+                html={`${activeQuestionIndex + 1}. ${(isRtl ? currentQ.textAr : currentQ.textEn) || currentQ.textEn}`}
               />
 
               {currentQ.type === 'MCQ' ? (

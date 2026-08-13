@@ -16,6 +16,7 @@ import {
   ChevronLeft
 } from 'lucide-react';
 import CourseUnlockModal from '@/components/CourseUnlockModal';
+import MathRenderer from '@/components/MathRenderer';
 
 interface Choice {
   textAr: string;
@@ -367,11 +368,10 @@ export default function PracticeSessionPage() {
         <div className="max-w-3xl mx-auto px-4 py-4 sm:py-6 flex flex-col min-h-full">
           
           <div className="mb-4 sm:mb-6" dir="auto">
-            <h2 
+            <MathRenderer 
+              as="h2"
               className="text-lg sm:text-xl font-bold text-white leading-relaxed [&>u]:border-b-2 [&>u]:border-brand-500 [&>u]:no-underline [&>b]:text-brand-400"
-              dangerouslySetInnerHTML={{ 
-                __html: (isRtl ? currentQuestion.textAr : currentQuestion.textEn) || (isRtl ? currentQuestion.textEn : currentQuestion.textAr) 
-              }}
+              html={(isRtl ? currentQuestion.textAr : currentQuestion.textEn) || (isRtl ? currentQuestion.textEn : currentQuestion.textAr)}
             />
           </div>
 

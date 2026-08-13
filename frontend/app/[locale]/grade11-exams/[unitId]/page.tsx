@@ -30,6 +30,7 @@ import {
   CheckCircle
 } from 'lucide-react';
 import { getGrade11ExamById, getGrade11ExamByUnit } from '@/app/actions/grade11-exams';
+import MathRenderer from '@/components/MathRenderer';
 
 export default function Grade11UnitExamEnginePage() {
   const params = useParams();
@@ -442,9 +443,10 @@ export default function Grade11UnitExamEnginePage() {
                         <span className="text-amber-400 font-bold">{mQ.type?.toUpperCase()}</span>
                       </div>
 
-                      <h3
+                      <MathRenderer
+                        as="h3"
                         className="text-base sm:text-lg font-bold text-white leading-relaxed [&>u]:text-brand-400 [&>u]:font-black [&>u]:underline [&>u]:underline-offset-4 [&>u]:bg-brand-500/10 [&>u]:px-1 [&>u]:py-0.5 [&>u]:rounded [&>u]:border [&>u]:border-brand-500/30"
-                        dangerouslySetInnerHTML={{ __html: mQ.question }}
+                        html={mQ.question}
                       />
 
                       {/* 2x2 Option Grid */}
@@ -569,9 +571,10 @@ export default function Grade11UnitExamEnginePage() {
                     } space-y-4`}
                   >
                     <div className="flex items-start justify-between gap-3">
-                      <h4
+                      <MathRenderer
+                        as="h4"
                         className="text-sm font-bold text-white [&>u]:text-brand-400 [&>u]:font-black [&>u]:underline [&>u]:underline-offset-4 [&>u]:bg-brand-500/10 [&>u]:px-1 [&>u]:py-0.5 [&>u]:rounded [&>u]:border [&>u]:border-brand-500/30"
-                        dangerouslySetInnerHTML={{ __html: `${qIdx + 1}. ${q.question}` }}
+                        html={`${qIdx + 1}. ${q.question}`}
                       />
                       {isCorrect ? (
                         <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
@@ -675,10 +678,11 @@ export default function Grade11UnitExamEnginePage() {
                 </div>
                 <div className="p-6 overflow-y-auto custom-scrollbar flex-1 space-y-4 text-sm text-slate-300 leading-relaxed font-serif">
                   {exam.text.split('\n\n').map((para: string, pIdx: number) => (
-                    <p 
+                    <MathRenderer 
                       key={pIdx} 
+                      as="p"
                       className="bg-slate-950/60 p-4 rounded-2xl border border-slate-800/80 tracking-wide leading-relaxed text-slate-200 [&>u]:text-brand-400 [&>u]:font-black [&>u]:underline [&>u]:underline-offset-4 [&>u]:bg-brand-500/10 [&>u]:px-1 [&>u]:py-0.5 [&>u]:rounded [&>u]:border [&>u]:border-brand-500/30 [&>b>u]:text-brand-400 [&>b>u]:font-black [&>b>u]:underline [&>b>u]:underline-offset-4 [&>b>u]:bg-brand-500/10 [&>b>u]:px-1 [&>b>u]:py-0.5 [&>b>u]:rounded [&>b>u]:border [&>b>u]:border-brand-500/30"
-                      dangerouslySetInnerHTML={{ __html: para }}
+                      html={para}
                     />
                   ))}
                 </div>
@@ -705,9 +709,10 @@ export default function Grade11UnitExamEnginePage() {
               </div>
 
               {/* Question Title */}
-              <h3
+              <MathRenderer
+                as="h3"
                 className="text-base sm:text-lg font-extrabold text-white leading-relaxed [&>u]:text-brand-400 [&>u]:font-black [&>u]:underline [&>u]:underline-offset-4 [&>u]:bg-brand-500/10 [&>u]:px-1 [&>u]:py-0.5 [&>u]:rounded [&>u]:border [&>u]:border-brand-500/30"
-                dangerouslySetInnerHTML={{ __html: `${currentIdx + 1}. ${currentQ.question}` }}
+                html={`${currentIdx + 1}. ${currentQ.question}`}
               />
 
               {/* Compact 2x2 Options Grid (A, B, C, D) - Fits cleanly on screen without scrolling */}

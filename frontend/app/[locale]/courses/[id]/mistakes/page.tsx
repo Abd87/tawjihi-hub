@@ -16,6 +16,7 @@ import {
   ChevronLeft,
   AlertOctagon
 } from 'lucide-react';
+import MathRenderer from '@/components/MathRenderer';
 
 interface Choice {
   textAr: string;
@@ -286,11 +287,10 @@ export default function MistakesBankPage() {
       <main className="flex-1 flex flex-col items-center px-4 py-8 sm:py-12 overflow-y-auto">
         <div className="w-full max-w-3xl">
           <div className="mb-4 sm:mb-6" dir="auto">
-            <h2 
+            <MathRenderer 
+              as="h2"
               className="text-lg sm:text-xl font-bold text-white leading-relaxed [&>u]:border-b-2 [&>u]:border-brand-500 [&>u]:no-underline [&>b]:text-brand-400"
-              dangerouslySetInnerHTML={{ 
-                __html: (isRtl ? currentQuestion.textAr : currentQuestion.textEn) || (isRtl ? currentQuestion.textEn : currentQuestion.textAr) 
-              }}
+              html={(isRtl ? currentQuestion.textAr : currentQuestion.textEn) || (isRtl ? currentQuestion.textEn : currentQuestion.textAr)}
             />
           </div>
 

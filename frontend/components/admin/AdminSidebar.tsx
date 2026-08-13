@@ -64,7 +64,7 @@ export default function AdminSidebar() {
     { href: '/admin/broadcast', icon: Send, labelEn: 'Broadcast Emails', labelAr: 'الرسائل الجماعية', roles: ['ADMIN'] },
     { href: '/admin/blog', icon: Newspaper, labelEn: 'Blog & News', labelAr: 'المدونة والأخبار', roles: ['ADMIN'] },
     { href: '/studio', icon: PenTool, labelEn: 'Studio', labelAr: 'الاستوديو', roles: ['ADMIN', 'TEACHER'] },
-    { href: '/studio/grade11-exams', icon: BookOpen, labelEn: 'Grade 11 Exams', labelAr: 'امتحانات الأول ثانوي', roles: ['ADMIN', 'TEACHER'] },
+    { href: '/studio/grade11-exams', icon: BookOpen, labelEn: 'Grade 11 Exams', labelAr: 'امتحانات الأول ثانوي', roles: ['ADMIN'] },
     { href: '/admin/settings', icon: Settings, labelEn: 'Settings', labelAr: 'الإعدادات', roles: ['ADMIN'] },
   ];
 

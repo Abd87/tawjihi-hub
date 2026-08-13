@@ -25,6 +25,7 @@ import {
   Flame,
   Check
 } from 'lucide-react';
+import MathRenderer from '@/components/MathRenderer';
 import { getGrade11Exams } from '@/app/actions/grade11-exams';
 
 export default function Grade11ExamsCatalogPage() {
@@ -317,9 +318,10 @@ export default function Grade11ExamsCatalogPage() {
                         } space-y-4 backdrop-blur-xl transition-all text-left`}
                       >
                         <div className="flex items-start justify-between gap-3">
-                          <h4
+                          <MathRenderer
+                            as="h4"
                             className="text-sm sm:text-base font-bold text-white [&>u]:text-brand-400 [&>u]:font-black [&>u]:underline [&>u]:underline-offset-4 [&>u]:bg-brand-500/10 [&>u]:px-1 [&>u]:py-0.5 [&>u]:rounded [&>u]:border [&>u]:border-brand-500/30"
-                            dangerouslySetInnerHTML={{ __html: `${idx + 1}. ${m.question}` }}
+                            html={`${idx + 1}. ${m.question}`}
                           />
                           <span className="px-2.5 py-0.5 rounded bg-slate-950 border border-slate-800 text-[10px] text-slate-400 font-mono shrink-0">
                             Unit {m.unitNumber || m.unitId?.replace('unit-', '').substring(0, 4)}
