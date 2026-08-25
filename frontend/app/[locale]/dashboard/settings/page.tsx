@@ -14,6 +14,7 @@ export default function SettingsPage() {
   const [quizAttempts, setQuizAttempts] = useState<any[]>([]);
   const [courses, setCourses] = useState<any[]>([]);
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [linkedStudentEmail, setLinkedStudentEmail] = useState('');
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   
@@ -34,6 +35,9 @@ export default function SettingsPage() {
           setUser(data.user);
           if (data.user.phoneNumber) {
             setPhoneNumber(data.user.phoneNumber);
+          }
+          if (data.user.linkedStudentEmail) {
+            setLinkedStudentEmail(data.user.linkedStudentEmail);
           }
           
           // Fetch analytics & courses
@@ -83,12 +87,21 @@ export default function SettingsPage() {
       const res = await fetch('/api/auth/update-profile', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phoneNumber }),
+        body: JSON.stringify({ 
+          phoneNumber,
+          ...(user?.role === 'PARENT' ? { linkedStudentEmail } : {})
+        }),
       });
       
+      const resData = await res.json();
+      
       if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || 'Failed to update profile');
+        throw new Error(resData.error || 'Failed to update profile');
+      }
+      
+      if (resData.user) {
+        setUser(resData.user);
+        localStorage.setItem('user', JSON.stringify(resData.user));
       }
       
       setProfileSuccess(true);
@@ -208,6 +221,22 @@ export default function SettingsPage() {
                 />
               </div>
             </div>
+
+            {user?.role === 'PARENT' && (
+              <div>
+                <label className="block text-xs font-bold text-slate-300 mb-1.5">
+                  {locale === 'ar' ? 'البريد الإلكتروني للطالب المرتبط' : 'Linked Student Email'}
+                </label>
+                <input
+                  type="email"
+                  value={linkedStudentEmail}
+                  onChange={(e) => setLinkedStudentEmail(e.target.value)}
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl py-2.5 px-4 text-white focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all placeholder:text-slate-600"
+                  placeholder="student@example.com"
+                  dir="ltr"
+                />
+              </div>
+            )}
 
             <button
               type="submit"

@@ -6,7 +6,7 @@ import { cookies } from 'next/headers';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { phoneNumber, trackType } = body;
+    const { phoneNumber, trackType, linkedStudentEmail } = body;
 
     const cookieStore = cookies();
     const token = cookieStore.get('token')?.value;
@@ -30,15 +30,20 @@ export async function POST(request: Request) {
     const updateData: any = {};
     if (phoneNumber !== undefined) updateData.phoneNumber = phoneNumber;
     if (trackType !== undefined) updateData.trackType = trackType;
+    if (linkedStudentEmail !== undefined) updateData.parentEmail = linkedStudentEmail;
 
     const updatedUser = await prisma.user.update({
       where: { id: user.id },
       data: updateData,
     });
 
-    const { passwordHash: _, ...userWithoutPassword } = updatedUser;
+    const { passwordHash: _, parentEmail, ...userWithoutPassword } = updatedUser;
+    const responseUser = {
+      ...userWithoutPassword,
+      linkedStudentEmail: parentEmail
+    };
 
-    return NextResponse.json({ success: true, user: userWithoutPassword });
+    return NextResponse.json({ success: true, user: responseUser });
   } catch (error) {
     console.error('Update profile error:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
