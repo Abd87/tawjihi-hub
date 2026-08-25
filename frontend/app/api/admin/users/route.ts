@@ -34,6 +34,7 @@ export async function GET(request: Request) {
         revenueSharePercent: true,
         phoneNumber: true,
         trackType: true,
+        parentEmail: true,
         createdAt: true,
       },
       orderBy: { createdAt: 'desc' }
@@ -95,6 +96,7 @@ export async function PUT(request: Request) {
         isMasterAdmin: true,
         revenueSharePercent: true,
         trackType: true,
+        parentEmail: true,
         createdAt: true,
       }
     });

@@ -186,7 +186,14 @@ export default function UsersAdminPage() {
                     {user.isMasterAdmin && <ShieldCheck className="h-4 w-4 text-emerald-400" />}
                     {isRtl ? user.nameAr : (user.nameEn || user.nameAr)}
                   </td>
-                  <td className="px-6 py-4">{user.email}</td>
+                  <td className="px-6 py-4">
+                    <div>{user.email}</div>
+                    {user.role === 'PARENT' && user.parentEmail && (
+                      <div className="text-xs text-brand-400 mt-1 font-bold">
+                        {isRtl ? `مرتبط بـ: ${user.parentEmail}` : `Linked: ${user.parentEmail}`}
+                      </div>
+                    )}
+                  </td>
                   <td className="px-6 py-4 text-slate-400 font-mono text-xs" dir="ltr">
                     {user.phoneNumber || '-'}
                   </td>
