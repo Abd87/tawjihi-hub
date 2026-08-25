@@ -396,10 +396,10 @@ export default function PracticeSessionPage() {
       <main className="flex-1 overflow-y-auto pb-24">
         <div className="max-w-3xl mx-auto px-4 py-4 sm:py-6 flex flex-col min-h-full">
           
-          <div className="mb-4 sm:mb-6 text-left dir-ltr" dir="ltr">
+          <div className="mb-4 sm:mb-6" dir="auto">
             <MathRenderer 
               as="h2"
-              className="text-lg sm:text-xl font-bold text-white leading-relaxed text-left [&>u]:border-b-2 [&>u]:border-brand-500 [&>u]:no-underline [&>b]:text-brand-400"
+              className="text-lg sm:text-xl font-bold text-white leading-relaxed [&>u]:border-b-2 [&>u]:border-brand-500 [&>u]:no-underline [&>b]:text-brand-400"
               html={(isRtl ? currentQuestion.textAr : currentQuestion.textEn) || (isRtl ? currentQuestion.textEn : currentQuestion.textAr)}
             />
           </div>
@@ -443,7 +443,7 @@ export default function PracticeSessionPage() {
                     {isSelected && !isCorrect && <X className="w-3.5 h-3.5 text-white" />}
                     {!isSelected && hasChecked && choice.isCorrect && <Check className="w-3.5 h-3.5 text-emerald-400" />}
                   </div>
-                  <MathRenderer as="span" className="text-base sm:text-lg font-medium text-left dir-ltr" dir="ltr" html={(isRtl ? choice.textAr : choice.textEn) || (isRtl ? choice.textEn : choice.textAr)} />
+                  <MathRenderer as="span" className="text-base sm:text-lg font-medium" dir="auto" html={(isRtl ? choice.textAr : choice.textEn) || (isRtl ? choice.textEn : choice.textAr)} />
                 </button>
               );
             })}

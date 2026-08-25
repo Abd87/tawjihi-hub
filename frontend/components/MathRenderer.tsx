@@ -10,7 +10,7 @@ interface MathRendererProps extends React.HTMLAttributes<HTMLElement> {
   as?: React.ElementType;
 }
 
-const MathRenderer = React.memo(function MathRenderer({ html, className = '', dir = 'rtl', as: Tag = 'div', ...props }: MathRendererProps) {
+const MathRenderer = React.memo(function MathRenderer({ html, className = '', dir = 'auto', as: Tag = 'div', ...props }: MathRendererProps) {
   const containerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
