@@ -47,21 +47,34 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
         
         hoveredElement.current = spanTarget;
         
+        // Wait for 250ms (hover intent) to prevent spamming APIs when moving mouse across a sentence
+        await new Promise(resolve => setTimeout(resolve, 250));
+        
+        // If they moved away during the delay, abort
+        if (hoveredElement.current !== spanTarget) return;
+        
         const dict = await fetchDict();
         let translation = dict[word.toLowerCase()];
         
         // Fallback: Google Translate
         if (!translation) {
+           // check if we already tried and failed (cache negative result to avoid infinite spam)
+           if (dict[word.toLowerCase()] === null) return; 
+
            try {
              const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ar&dt=t&q=${encodeURIComponent(word)}`;
              const res = await fetch(url);
+             if (!res.ok) throw new Error('API Rate Limit');
              const data = await res.json();
              if (data && data[0] && data[0][0] && data[0][0][0]) {
                translation = data[0][0][0];
                dict[word.toLowerCase()] = translation; // cache it locally
+             } else {
+               dict[word.toLowerCase()] = null; // cache negative
              }
            } catch(err) {
              console.error('Translation fallback failed', err);
+             dict[word.toLowerCase()] = null; // cache negative so we don't hit rate limit again
            }
         }
 
