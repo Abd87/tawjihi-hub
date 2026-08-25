@@ -1,13 +1,19 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 
 // Global dictionary cache
 let dictionaryCache: Record<string, string> | null = null;
 let fetchPromise: Promise<Record<string, string>> | null = null;
 
-export function useTranslatableText(containerRef: React.RefObject<HTMLElement | null>, enabled: boolean = true) {
+export function useTranslatableText(containerRef: React.RefObject<HTMLElement | null>, html: string, enabled: boolean = true) {
   const [tooltip, setTooltip] = useState<{ text: string, x: number, y: number, visible: boolean }>({ text: '', x: 0, y: 0, visible: false });
   const hoveredElement = useRef<HTMLElement | null>(null);
   
+  // Clear tooltip when HTML changes (like moving to the next question)
+  useEffect(() => {
+    setTooltip(prev => ({ ...prev, visible: false }));
+    hoveredElement.current = null;
+  }, [html]);
+
   useEffect(() => {
     if (!enabled) return;
 
@@ -31,18 +37,20 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
     const container = containerRef.current;
     let timeoutId: any;
 
-    const handleMouseOver = async (e: MouseEvent | TouchEvent) => {
+    const handleMouseOver = async (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (target.classList && target.classList.contains('translatable-word')) {
-        const word = target.getAttribute('data-word');
+      // Walk up slightly in case we hovered a nested element inside the span
+      const spanTarget = target.closest('.translatable-word') as HTMLElement;
+      if (spanTarget) {
+        const word = spanTarget.getAttribute('data-word');
         if (!word) return;
         
-        hoveredElement.current = target;
+        hoveredElement.current = spanTarget;
         
         const dict = await fetchDict();
         let translation = dict[word.toLowerCase()];
         
-        // Fallback: If word not in local dictionary, try to fetch from Google Translate API directly
+        // Fallback: Google Translate
         if (!translation) {
            try {
              const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ar&dt=t&q=${encodeURIComponent(word)}`;
@@ -57,8 +65,8 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
            }
         }
 
-        if (translation && hoveredElement.current === target) {
-          const rect = target.getBoundingClientRect();
+        if (translation && hoveredElement.current === spanTarget) {
+          const rect = spanTarget.getBoundingClientRect();
           setTooltip({
             text: translation,
             x: rect.left + (rect.width / 2),
@@ -69,9 +77,13 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
       }
     };
 
-    const handleMouseOut = (e: MouseEvent | TouchEvent) => {
+    const handleMouseOut = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (target.classList && target.classList.contains('translatable-word')) {
+      const spanTarget = target.closest('.translatable-word') as HTMLElement;
+      
+      // If we are leaving the currently hovered word
+      if (spanTarget && hoveredElement.current === spanTarget) {
+        // Only clear if the mouse is actually leaving the word (not entering a child)
         hoveredElement.current = null;
         setTooltip(prev => ({ ...prev, visible: false }));
       }
@@ -97,9 +109,10 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
           const text = node.nodeValue || '';
           if (!/[a-zA-Z]/.test(text)) return; // Only process text with English letters
 
-          // Replace words with span (removed underline as requested)
+          // Replace words with span
           const span = document.createElement('span');
-          span.innerHTML = text.replace(/([a-zA-Z]+)/g, '<span class="translatable-word cursor-pointer hover:bg-brand-500/10 hover:text-brand-400 rounded px-0.5 transition-colors select-none" data-word="$1">$1</span>');
+          // Add transition-all to allow it to be interactable
+          span.innerHTML = text.replace(/([a-zA-Z]+)/g, '<span class="translatable-word cursor-pointer hover:bg-amber-500/20 hover:text-amber-500 rounded px-0.5 transition-colors select-none" data-word="$1">$1</span>');
           
           if (span.childNodes.length > 0) {
             node.parentNode?.replaceChild(span, node);
@@ -110,7 +123,7 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
       walkDOM(container);
       container.setAttribute('data-translated', 'true');
       
-      // Use event delegation on the container (mouseover/mouseout work natively on both desktop hover and mobile tap)
+      // Event delegation
       container.addEventListener('mouseover', handleMouseOver);
       container.addEventListener('mouseout', handleMouseOut);
     }, 150);
@@ -120,7 +133,7 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
       container.removeEventListener('mouseover', handleMouseOver);
       container.removeEventListener('mouseout', handleMouseOut);
     };
-  }, [containerRef, enabled]);
+  }, [containerRef, enabled, html]);
 
   return tooltip;
 }

@@ -13,7 +13,7 @@ interface MathRendererProps extends React.HTMLAttributes<HTMLElement> {
 
 const MathRenderer = React.memo(function MathRenderer({ html, className = '', dir = 'auto', as: Tag = 'div', ...props }: MathRendererProps) {
   const containerRef = useRef<HTMLElement>(null);
-  const tooltip = useTranslatableText(containerRef);
+  const tooltip = useTranslatableText(containerRef, html);
 
   useEffect(() => {
     if (containerRef.current) {
@@ -45,7 +45,7 @@ const MathRenderer = React.memo(function MathRenderer({ html, className = '', di
         {...props}
       />
       <div 
-        className={`fixed z-[9999] bg-slate-800 text-white px-3 py-1.5 rounded-lg shadow-xl text-sm font-bold border border-slate-700 pointer-events-none transition-all duration-200 ease-out flex flex-col items-center ${
+        className={`fixed z-[9999] bg-amber-500 text-slate-900 px-3 py-1.5 rounded-lg shadow-xl text-sm font-bold border border-amber-400 pointer-events-none transition-all duration-200 ease-out flex flex-col items-center ${
           tooltip.visible 
             ? 'opacity-100 scale-100' 
             : 'opacity-0 scale-95'
@@ -54,7 +54,7 @@ const MathRenderer = React.memo(function MathRenderer({ html, className = '', di
         dir="rtl"
       >
         {tooltip.text}
-        <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-slate-800"></div>
+        <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-amber-500"></div>
       </div>
     </>
   );
