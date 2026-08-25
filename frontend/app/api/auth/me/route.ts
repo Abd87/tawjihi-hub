@@ -42,9 +42,13 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
-    const { passwordHash, ...userWithoutPassword } = user;
+    const { passwordHash, parentEmail, ...userWithoutPassword } = user;
+    const responseUser = {
+      ...userWithoutPassword,
+      linkedStudentEmail: parentEmail
+    };
 
-    return NextResponse.json({ user: userWithoutPassword });
+    return NextResponse.json({ user: responseUser });
   } catch (error) {
     console.error('Auth check error:', error);
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

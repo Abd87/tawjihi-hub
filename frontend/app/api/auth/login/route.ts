@@ -45,9 +45,13 @@ export async function POST(request: Request) {
     const secret = process.env.JWT_SECRET;
     const token = jwt.sign({ userId: user.id, email: user.email, role: user.role, isMasterAdmin: user.isMasterAdmin }, secret, { expiresIn: '7d' });
 
-    const { passwordHash, ...userWithoutPassword } = user;
+    const { passwordHash, parentEmail, ...userWithoutPassword } = user;
+    const responseUser = {
+      ...userWithoutPassword,
+      linkedStudentEmail: parentEmail
+    };
 
-    const response = NextResponse.json({ token, user: userWithoutPassword });
+    const response = NextResponse.json({ token, user: responseUser });
     
     response.cookies.set('token', token, {
       httpOnly: true,

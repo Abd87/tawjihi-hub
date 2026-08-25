@@ -15,6 +15,7 @@ const registerSchema = z.object({
   phoneNumber: z.string().min(8, 'phoneNumberRequired'),
   role: z.enum(['STUDENT', 'TEACHER', 'ADMIN', 'PARENT']).optional(),
   trackType: z.enum(['ACADEMIC', 'BTEC']).optional().nullable(),
+  linkedStudentEmail: z.string().email('invalidEmail').optional().nullable(),
 });
 
 export async function POST(request: Request) {
@@ -32,7 +33,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ fieldErrors: parsed.error.flatten().fieldErrors }, { status: 400 });
     }
 
-    const { nameAr, nameEn, email, password, role, phoneNumber, trackType } = parsed.data;
+    const { nameAr, nameEn, email, password, role, phoneNumber, trackType, linkedStudentEmail } = parsed.data;
 
     const existingUser = await prisma.user.findUnique({
       where: { email },
@@ -77,6 +78,7 @@ export async function POST(request: Request) {
         trackType: finalRole === 'STUDENT' ? trackType : null,
         phoneNumber,
         isMasterAdmin,
+        parentEmail: finalRole === 'PARENT' ? linkedStudentEmail : null,
       }
     });
 
@@ -94,9 +96,13 @@ export async function POST(request: Request) {
     const secret = process.env.JWT_SECRET;
     const token = jwt.sign({ userId: user.id, email: user.email, role: user.role, isMasterAdmin: user.isMasterAdmin, trackType: user.trackType }, secret, { expiresIn: '7d' });
 
-    const { passwordHash: _, ...userWithoutPassword } = user;
+    const { passwordHash: _, parentEmail, ...userWithoutPassword } = user;
+    const responseUser = {
+      ...userWithoutPassword,
+      linkedStudentEmail: parentEmail
+    };
 
-    const response = NextResponse.json({ token, user: userWithoutPassword });
+    const response = NextResponse.json({ token, user: responseUser });
     
     response.cookies.set('token', token, {
       httpOnly: true,
