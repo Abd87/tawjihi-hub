@@ -77,7 +77,10 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
       }
     };
 
+    let isTouch = false;
+
     const handleMouseOver = async (e: MouseEvent) => {
+      if (isTouch) return;
       const target = e.target as HTMLElement;
       const spanTarget = target.closest('.translatable-word') as HTMLElement;
       if (spanTarget) {
@@ -93,6 +96,7 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
     };
 
     const handleMouseOut = (e: MouseEvent) => {
+      if (isTouch) return;
       const target = e.target as HTMLElement;
       const spanTarget = target.closest('.translatable-word') as HTMLElement;
       
@@ -103,6 +107,9 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
     };
 
     const handleTouchOrClick = (e: Event) => {
+      if (e.type === 'touchstart') {
+        isTouch = true;
+      }
       const target = e.target as HTMLElement;
       const spanTarget = target.closest('.translatable-word') as HTMLElement;
       
