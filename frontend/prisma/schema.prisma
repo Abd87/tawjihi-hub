@@ -482,3 +482,11 @@ model TeacherProfile {
   @@map("teacher_profiles")
 }
 
+
+model Dictionary {
+  word        String   @id
+  translation String
+  createdAt   DateTime @default(now())
+}
+
+

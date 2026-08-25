@@ -14,6 +14,7 @@
   "dependencies": {
     "@prisma/client": "^5.22.0",
     "@vercel/analytics": "^2.0.1",
+    "arabic-dictionary": "^1.0.2",
     "bcryptjs": "^3.0.3",
     "canvas-confetti": "^1.9.4",
     "cheerio": "^1.2.0",

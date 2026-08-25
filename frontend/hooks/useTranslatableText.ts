@@ -56,25 +56,25 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
         const dict = await fetchDict();
         let translation = dict[word.toLowerCase()];
         
-        // Fallback: Google Translate
+        // Fallback: Use our organic dictionary API
         if (!translation) {
-           // check if we already tried and failed (cache negative result to avoid infinite spam)
+           // check if we already tried and failed (cache negative result)
            if (dict[word.toLowerCase()] === null) return; 
 
            try {
-             const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ar&dt=t&q=${encodeURIComponent(word)}`;
-             const res = await fetch(url);
-             if (!res.ok) throw new Error('API Rate Limit');
+             const res = await fetch(`/api/translate?word=${encodeURIComponent(word)}`);
+             if (!res.ok) throw new Error('API Error');
              const data = await res.json();
-             if (data && data[0] && data[0][0] && data[0][0][0]) {
-               translation = data[0][0][0];
+             
+             if (data.translation) {
+               translation = data.translation;
                dict[word.toLowerCase()] = translation; // cache it locally
              } else {
                dict[word.toLowerCase()] = null; // cache negative
              }
            } catch(err) {
              console.error('Translation fallback failed', err);
-             dict[word.toLowerCase()] = null; // cache negative so we don't hit rate limit again
+             dict[word.toLowerCase()] = null; // cache negative
            }
         }
 
