@@ -95,7 +95,7 @@ function ls<T>(key: string, fallback: T): T {
 }
 
 function calcProgress(course: Course, completedLessonIds: string[]): number {
-  if (!course.lessons.length) return 0;
+  if (!course?.lessons?.length) return 0;
   const done = course.lessons.filter((l) => completedLessonIds.includes(l.id)).length;
   return Math.round((done / course.lessons.length) * 100);
 }
@@ -154,7 +154,7 @@ export default function ParentDashboardPage() {
     if (linkedEmail) {
       const allUsers = ls<Array<Record<string, unknown>>>('admin-users', []);
       const match = allUsers.find(
-        (au) => (au.email as string)?.toLowerCase() === linkedEmail && au.role === 'STUDENT'
+        (au) => au && (au.email as string)?.toLowerCase() === linkedEmail && au.role === 'STUDENT'
       );
       if (match) {
         foundStudent = {
