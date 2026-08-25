@@ -1,4 +1,4 @@
-﻿import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 
 // Global dictionary cache
 let dictionaryCache: Record<string, string> | null = null;
@@ -122,14 +122,31 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
           const text = node.nodeValue || '';
           if (!/[a-zA-Z]/.test(text)) return; // Only process text with English letters
 
-          // Replace words with span
-          const span = document.createElement('span');
-          // Add transition-all to allow it to be interactable
-          span.innerHTML = text.replace(/([a-zA-Z]+)/g, '<span class="translatable-word cursor-pointer hover:bg-amber-500/20 hover:text-amber-500 rounded px-0.5 transition-colors select-none" data-word="$1">$1</span>');
+          // Extract leading and trailing whitespace to avoid highlighting spaces
+          const match = text.match(/^(\s*)([\s\S]*?)(\s*)$/);
+          if (!match) return;
+          const [, leading, coreText, trailing] = match;
+
+          if (!coreText || !/[a-zA-Z]/.test(coreText)) return;
+
+          const fragment = document.createDocumentFragment();
           
-          if (span.childNodes.length > 0) {
-            node.parentNode?.replaceChild(span, node);
+          if (leading) {
+            fragment.appendChild(document.createTextNode(leading));
           }
+
+          const span = document.createElement('span');
+          // 'inline' instead of 'inline-block' so it wraps lines naturally
+          span.className = 'translatable-word cursor-pointer hover:bg-amber-500/20 hover:text-amber-500 rounded px-0.5 transition-colors select-none';
+          span.setAttribute('data-word', coreText);
+          span.textContent = coreText;
+          fragment.appendChild(span);
+
+          if (trailing) {
+            fragment.appendChild(document.createTextNode(trailing));
+          }
+
+          node.parentNode?.replaceChild(fragment, node);
         }
       };
       
