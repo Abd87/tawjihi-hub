@@ -37,56 +37,58 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
     const container = containerRef.current;
     let timeoutId: any;
 
+    const fetchAndShowTranslation = async (spanTarget: HTMLElement) => {
+      const word = spanTarget.getAttribute('data-word');
+      if (!word) return;
+      
+      hoveredElement.current = spanTarget;
+      
+      const dict = await fetchDict();
+      let translation = dict[word.toLowerCase()];
+      
+      if (!translation) {
+         if (dict[word.toLowerCase()] === null) return; 
+
+         try {
+           const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ar&dt=t&q=${encodeURIComponent(word)}`;
+           const res = await fetch(url);
+           if (!res.ok) throw new Error('API Rate Limit');
+           const data = await res.json();
+           if (data && data[0] && data[0][0] && data[0][0][0]) {
+             translation = data[0][0][0];
+             dict[word.toLowerCase()] = translation; // cache it locally
+           } else {
+             dict[word.toLowerCase()] = null;
+           }
+         } catch(err) {
+           console.error('Translation fallback failed', err);
+           dict[word.toLowerCase()] = null;
+         }
+      }
+
+      if (translation && hoveredElement.current === spanTarget) {
+        const rect = spanTarget.getBoundingClientRect();
+        setTooltip({
+          text: translation,
+          x: rect.left + (rect.width / 2),
+          y: rect.top, // position above the word
+          visible: true
+        });
+      }
+    };
+
     const handleMouseOver = async (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      // Walk up slightly in case we hovered a nested element inside the span
       const spanTarget = target.closest('.translatable-word') as HTMLElement;
       if (spanTarget) {
-        const word = spanTarget.getAttribute('data-word');
-        if (!word) return;
-        
         hoveredElement.current = spanTarget;
         
-        // Wait for 250ms (hover intent) to prevent spamming APIs when moving mouse across a sentence
+        // Wait for 250ms (hover intent)
         await new Promise(resolve => setTimeout(resolve, 250));
         
-        // If they moved away during the delay, abort
         if (hoveredElement.current !== spanTarget) return;
         
-        const dict = await fetchDict();
-        let translation = dict[word.toLowerCase()];
-        
-        // Fallback: Google Translate
-        if (!translation) {
-           // check if we already tried and failed (cache negative result to avoid infinite spam)
-           if (dict[word.toLowerCase()] === null) return; 
-
-           try {
-             const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ar&dt=t&q=${encodeURIComponent(word)}`;
-             const res = await fetch(url);
-             if (!res.ok) throw new Error('API Rate Limit');
-             const data = await res.json();
-             if (data && data[0] && data[0][0] && data[0][0][0]) {
-               translation = data[0][0][0];
-               dict[word.toLowerCase()] = translation; // cache it locally
-             } else {
-               dict[word.toLowerCase()] = null; // cache negative
-             }
-           } catch(err) {
-             console.error('Translation fallback failed', err);
-             dict[word.toLowerCase()] = null; // cache negative so we don't hit rate limit again
-           }
-        }
-
-        if (translation && hoveredElement.current === spanTarget) {
-          const rect = spanTarget.getBoundingClientRect();
-          setTooltip({
-            text: translation,
-            x: rect.left + (rect.width / 2),
-            y: rect.top, // position above the word
-            visible: true
-          });
-        }
+        await fetchAndShowTranslation(spanTarget);
       }
     };
 
@@ -94,13 +96,29 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
       const target = e.target as HTMLElement;
       const spanTarget = target.closest('.translatable-word') as HTMLElement;
       
-      // If we are leaving the currently hovered word
       if (spanTarget && hoveredElement.current === spanTarget) {
-        // Only clear if the mouse is actually leaving the word (not entering a child)
         hoveredElement.current = null;
         setTooltip(prev => ({ ...prev, visible: false }));
       }
     };
+
+    const handleTouchOrClick = (e: Event) => {
+      const target = e.target as HTMLElement;
+      const spanTarget = target.closest('.translatable-word') as HTMLElement;
+      
+      if (spanTarget) {
+        // Immediately fetch and show on tap, no hover intent delay needed
+        fetchAndShowTranslation(spanTarget);
+      } else {
+        // Tapped outside, dismiss tooltip
+        hoveredElement.current = null;
+        setTooltip(prev => ({ ...prev, visible: false }));
+      }
+    };
+
+    // Global listener to dismiss tooltip when tapping anywhere outside
+    document.addEventListener('click', handleTouchOrClick);
+    document.addEventListener('touchstart', handleTouchOrClick, { passive: true });
 
     // We need to wait for MathRenderer to finish rendering HTML (KaTeX).
     timeoutId = setTimeout(() => {
@@ -162,6 +180,8 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
       clearTimeout(timeoutId);
       container.removeEventListener('mouseover', handleMouseOver);
       container.removeEventListener('mouseout', handleMouseOut);
+      document.removeEventListener('click', handleTouchOrClick);
+      document.removeEventListener('touchstart', handleTouchOrClick);
     };
   }, [containerRef, enabled, html]);
 
