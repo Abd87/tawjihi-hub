@@ -44,16 +44,18 @@ const MathRenderer = React.memo(function MathRenderer({ html, className = '', di
         dangerouslySetInnerHTML={{ __html: html }}
         {...props}
       />
-      {tooltip.visible && (
-        <div 
-          className="fixed z-[9999] bg-slate-800 text-white px-3 py-1.5 rounded-lg shadow-xl text-sm font-bold border border-slate-700 pointer-events-none transform -translate-x-1/2 -translate-y-full mb-2 animate-in fade-in zoom-in duration-200"
-          style={{ left: tooltip.x, top: tooltip.y - 8 }}
-          dir="rtl"
-        >
-          {tooltip.text}
-          <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-slate-800"></div>
-        </div>
-      )}
+      <div 
+        className={`fixed z-[9999] bg-slate-800 text-white px-3 py-1.5 rounded-lg shadow-xl text-sm font-bold border border-slate-700 pointer-events-none transition-all duration-200 ease-out flex flex-col items-center ${
+          tooltip.visible 
+            ? 'opacity-100 scale-100' 
+            : 'opacity-0 scale-95'
+        }`}
+        style={{ left: tooltip.x, top: tooltip.y - 8, transform: `translate(-50%, ${tooltip.visible ? '-100%' : '-80%'}) scale(${tooltip.visible ? 1 : 0.95})` }}
+        dir="rtl"
+      >
+        {tooltip.text}
+        <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-slate-800"></div>
+      </div>
     </>
   );
 });

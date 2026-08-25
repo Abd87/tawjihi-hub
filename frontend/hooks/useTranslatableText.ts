@@ -97,9 +97,9 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
           const text = node.nodeValue || '';
           if (!/[a-zA-Z]/.test(text)) return; // Only process text with English letters
 
-          // Replace words with span
+          // Replace words with span (removed underline as requested)
           const span = document.createElement('span');
-          span.innerHTML = text.replace(/([a-zA-Z]+)/g, '<span class="translatable-word cursor-help underline decoration-dotted decoration-slate-500/50 hover:decoration-brand-400 hover:text-brand-400 transition-colors select-none" data-word="$1">$1</span>');
+          span.innerHTML = text.replace(/([a-zA-Z]+)/g, '<span class="translatable-word cursor-pointer hover:bg-brand-500/10 hover:text-brand-400 rounded px-0.5 transition-colors select-none" data-word="$1">$1</span>');
           
           if (span.childNodes.length > 0) {
             node.parentNode?.replaceChild(span, node);
@@ -110,19 +110,15 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
       walkDOM(container);
       container.setAttribute('data-translated', 'true');
       
-      // Use event delegation on the container
+      // Use event delegation on the container (mouseover/mouseout work natively on both desktop hover and mobile tap)
       container.addEventListener('mouseover', handleMouseOver);
       container.addEventListener('mouseout', handleMouseOut);
-      container.addEventListener('touchstart', handleMouseOver, { passive: true });
-      container.addEventListener('touchend', handleMouseOut, { passive: true });
     }, 150);
 
     return () => {
       clearTimeout(timeoutId);
       container.removeEventListener('mouseover', handleMouseOver);
       container.removeEventListener('mouseout', handleMouseOut);
-      container.removeEventListener('touchstart', handleMouseOver);
-      container.removeEventListener('touchend', handleMouseOut);
     };
   }, [containerRef, enabled]);
 
