@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from 'react';
+﻿import { useEffect, useState, useRef, useCallback } from 'react';
 
 // Global dictionary cache
 let dictionaryCache: Record<string, string> | null = null;
@@ -56,25 +56,25 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
         const dict = await fetchDict();
         let translation = dict[word.toLowerCase()];
         
-        // Fallback: Use our organic dictionary API
+        // Fallback: Google Translate
         if (!translation) {
-           // check if we already tried and failed (cache negative result)
+           // check if we already tried and failed (cache negative result to avoid infinite spam)
            if (dict[word.toLowerCase()] === null) return; 
 
            try {
-             const res = await fetch(`/api/translate?word=${encodeURIComponent(word)}`);
-             if (!res.ok) throw new Error('API Error');
+             const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ar&dt=t&q=${encodeURIComponent(word)}`;
+             const res = await fetch(url);
+             if (!res.ok) throw new Error('API Rate Limit');
              const data = await res.json();
-             
-             if (data.translation) {
-               translation = data.translation;
+             if (data && data[0] && data[0][0] && data[0][0][0]) {
+               translation = data[0][0][0];
                dict[word.toLowerCase()] = translation; // cache it locally
              } else {
                dict[word.toLowerCase()] = null; // cache negative
              }
            } catch(err) {
              console.error('Translation fallback failed', err);
-             dict[word.toLowerCase()] = null; // cache negative
+             dict[word.toLowerCase()] = null; // cache negative so we don't hit rate limit again
            }
         }
 
@@ -150,3 +150,4 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
 
   return tooltip;
 }
+
