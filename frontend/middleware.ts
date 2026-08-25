@@ -33,8 +33,14 @@ export default async function middleware(request: NextRequest) {
     }
   }
 
+  // Helper to safely get the locale from pathname
+  const getLocale = (path: string) => {
+    const segment = path.split('/')[1];
+    return ['ar', 'en'].includes(segment) ? segment : 'ar';
+  };
+
   if (isProtectedRoute && !isValid) {
-    const locale = pathname.split('/')[1] || 'ar';
+    const locale = getLocale(pathname);
     const response = NextResponse.redirect(new URL(`/${locale}/login`, request.url));
     if (token) {
       response.cookies.delete('token'); // Clear invalid token
@@ -43,7 +49,7 @@ export default async function middleware(request: NextRequest) {
   }
 
   if (isAuthRoute && isValid) {
-    const locale = pathname.split('/')[1] || 'ar';
+    const locale = getLocale(pathname);
     return NextResponse.redirect(new URL(`/${locale}/dashboard`, request.url));
   }
 
