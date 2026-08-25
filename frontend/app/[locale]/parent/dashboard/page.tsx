@@ -393,9 +393,9 @@ export default function ParentDashboardPage() {
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {courses.map((course) => {
                   const prog = calcProgress(course, completedIds);
-                  const completedLessons = course.lessons.filter((l) =>
+                  const completedLessons = course.lessons?.filter((l) =>
                     completedIds.includes(l.id)
-                  ).length;
+                  ).length || 0;
 
                   return (
                     <div
@@ -430,7 +430,7 @@ export default function ParentDashboardPage() {
                       <div>
                         <div className="flex justify-between text-xs text-slate-500 mb-1">
                           <span>
-                            {completedLessons}/{course.lessons.length}{' '}
+                            {completedLessons}/{course.lessons?.length || 0}{' '}
                             {isAr ? 'درس' : 'lessons'}
                           </span>
                           <span className="font-bold text-teal-400">{prog}%</span>
