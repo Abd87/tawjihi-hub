@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from 'react';
+﻿import { useEffect, useState, useRef, useCallback } from 'react';
 
 // Global dictionary cache
 let dictionaryCache: Record<string, string> | null = null;
@@ -50,14 +50,31 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
          if (dict[word.toLowerCase()] === null) return; 
 
          try {
-           const res = await fetch(`/api/translate?word=${encodeURIComponent(word)}`);
-           if (!res.ok) throw new Error('Translation API Error');
-           const data = await res.json();
-           if (data && data.translation) {
+           // 1. Try fetching from our DB cache first
+           let res = await fetch(\/api/translate?word=\\);
+           let data = await res.json();
+           
+           if (res.ok && data && data.translation) {
              translation = data.translation;
              dict[word.toLowerCase()] = translation; // cache it locally
            } else {
-             dict[word.toLowerCase()] = null;
+             // 2. If not in DB, fallback to Google Translate directly from client IP
+             const url = \https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ar&dt=t&q=\\;
+             res = await fetch(url);
+             if (!res.ok) throw new Error('API Rate Limit from Client');
+             data = await res.json();
+             
+             if (data && Array.isArray(data[0])) {
+               translation = data[0].map((segment: any) => segment[0]).join('');
+               dict[word.toLowerCase()] = translation;
+               
+               // 3. Post back to our DB to save it for others
+               fetch('/api/translate', {
+                 method: 'POST',
+                 headers: { 'Content-Type': 'application/json' },
+                 body: JSON.stringify({ word, translation })
+               }).catch(e => console.error('Failed to save to DB cache', e));
+             }
            }
          } catch(err) {
            console.error('Translation fallback failed', err);
@@ -192,4 +209,3 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
 
   return tooltip;
 }
-

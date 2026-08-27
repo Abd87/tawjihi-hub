@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+﻿import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 
 export async function GET(request: Request) {
@@ -12,7 +12,6 @@ export async function GET(request: Request) {
   const word = wordParam.toLowerCase().trim();
 
   try {
-    // 1. Check database cache first
     const cached = await prisma.dictionary.findUnique({
       where: { word }
     });
@@ -21,36 +20,36 @@ export async function GET(request: Request) {
       return NextResponse.json({ translation: cached.translation });
     }
 
-    // 2. Fetch from Google Translate if not cached
-    const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ar&dt=t&q=${encodeURIComponent(word)}`;
-    const res = await fetch(url);
-    
-    if (!res.ok) {
-      throw new Error(`Google Translate API Error: ${res.status}`);
-    }
-
-    const data = await res.json();
-    
-    if (data && Array.isArray(data[0])) {
-      const translation = data[0].map((segment: any) => segment[0]).join('');
-      
-      // 3. Save to database for future users
-      await prisma.dictionary.create({
-        data: {
-          word,
-          translation
-        }
-      }).catch(err => {
-        // Ignore unique constraint errors in case of race conditions
-        console.error('Failed to cache translation', err);
-      });
-
-      return NextResponse.json({ translation });
-    } else {
-      throw new Error('Invalid Google Translate Response Format');
-    }
+    return NextResponse.json({ error: 'Not found in cache' }, { status: 404 });
   } catch (error) {
-    console.error('Translation API Error:', error);
-    return NextResponse.json({ error: 'Failed to translate' }, { status: 500 });
+    console.error('Translation GET Error:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const { word, translation } = body;
+
+    if (!word || !translation) {
+      return NextResponse.json({ error: 'Missing parameters' }, { status: 400 });
+    }
+
+    const cleanWord = word.toLowerCase().trim();
+
+    await prisma.dictionary.upsert({
+      where: { word: cleanWord },
+      update: { translation },
+      create: {
+        word: cleanWord,
+        translation
+      }
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Translation POST Error:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
