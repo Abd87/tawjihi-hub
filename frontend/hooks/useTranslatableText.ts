@@ -51,7 +51,7 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
 
          try {
            // 1. Try fetching from our DB cache first
-           let res = await fetch(\/api/translate?word=\\);
+           let res = await fetch(`/api/translate?word=${encodeURIComponent(word)}`);
            let data = await res.json();
            
            if (res.ok && data && data.translation) {
@@ -59,7 +59,7 @@ export function useTranslatableText(containerRef: React.RefObject<HTMLElement | 
              dict[word.toLowerCase()] = translation; // cache it locally
            } else {
              // 2. If not in DB, fallback to Google Translate directly from client IP
-             const url = \https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ar&dt=t&q=\\;
+             const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ar&dt=t&q=${encodeURIComponent(word)}`;
              res = await fetch(url);
              if (!res.ok) throw new Error('API Rate Limit from Client');
              data = await res.json();
