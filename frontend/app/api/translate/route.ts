@@ -31,8 +31,8 @@ export async function GET(request: Request) {
 
     const data = await res.json();
     
-    if (data && data[0] && data[0][0] && data[0][0][0]) {
-      const translation = data[0][0][0];
+    if (data && Array.isArray(data[0])) {
+      const translation = data[0].map((segment: any) => segment[0]).join('');
       
       // 3. Save to database for future users
       await prisma.dictionary.create({
