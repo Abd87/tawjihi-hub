@@ -5,17 +5,18 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
-import 'tldraw/tldraw.css';
-
 // Dynamic import with SSR disabled
-const Tldraw = dynamic(() => import('tldraw').then((mod) => mod.Tldraw), {
-  ssr: false,
-  loading: () => (
-    <div style={{ width: '100vw', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'sans-serif' }}>
-      Loading Smart Whiteboard...
-    </div>
-  )
-});
+const Excalidraw = dynamic(
+  () => import('@excalidraw/excalidraw').then((mod) => mod.Excalidraw),
+  {
+    ssr: false,
+    loading: () => (
+      <div style={{ width: '100vw', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'sans-serif' }}>
+        جاري تحميل السبورة الذكية...
+      </div>
+    )
+  }
+);
 
 export default function InfiniteWhiteboard() {
   const params = useParams();
@@ -32,7 +33,7 @@ export default function InfiniteWhiteboard() {
   }, []);
 
   return (
-    <div style={{ width: '100vw', height: '100dvh', position: 'fixed', top: 0, left: 0, zIndex: 999999, backgroundColor: '#f8fafc', touchAction: 'none' }} dir="ltr">
+    <div style={{ width: '100vw', height: '100dvh', position: 'fixed', top: 0, left: 0, zIndex: 999999, backgroundColor: '#ffffff', touchAction: 'none' }} dir="ltr">
       
       {/* Floating Back Button */}
       <div style={{ position: 'absolute', top: '16px', left: '16px', zIndex: 9999999 }}>
@@ -60,7 +61,7 @@ export default function InfiniteWhiteboard() {
       {/* The Infinite Canvas */}
       {mounted && (
         <div style={{ width: '100%', height: '100%' }}>
-          <Tldraw inferDarkMode={false} />
+          <Excalidraw theme="light" langCode={locale === 'ar' ? "ar-SA" : "en"} />
         </div>
       )}
     </div>
