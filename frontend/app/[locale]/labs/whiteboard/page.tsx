@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 
 import 'tldraw/tldraw.css';
 
-// Dynamic import with SSR disabled to prevent hydration and window issues
+// Dynamic import with SSR disabled
 const Tldraw = dynamic(() => import('tldraw').then((mod) => mod.Tldraw), {
   ssr: false,
   loading: () => (
@@ -24,7 +24,7 @@ export default function InfiniteWhiteboard() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Delay mount to ensure DOM is fully painted and stable
+    // Delay mount to ensure DOM is fully painted
     const timer = setTimeout(() => {
       setMounted(true);
     }, 150);
@@ -32,7 +32,7 @@ export default function InfiniteWhiteboard() {
   }, []);
 
   return (
-    <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 999999, backgroundColor: '#f8fafc', touchAction: 'none' }} dir="ltr">
+    <div style={{ width: '100vw', height: '100dvh', position: 'fixed', top: 0, left: 0, zIndex: 999999, backgroundColor: '#f8fafc', touchAction: 'none' }} dir="ltr">
       
       {/* Floating Back Button */}
       <div style={{ position: 'absolute', top: '16px', left: '16px', zIndex: 9999999 }}>
@@ -59,7 +59,9 @@ export default function InfiniteWhiteboard() {
 
       {/* The Infinite Canvas */}
       {mounted && (
-        <Tldraw inferDarkMode={false} />
+        <div style={{ width: '100%', height: '100%' }}>
+          <Tldraw inferDarkMode={false} />
+        </div>
       )}
     </div>
   );
