@@ -2,6 +2,11 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { fabric } from 'fabric';
+import jsPDF from 'jspdf';
+import * as pdfjsLib from 'pdfjs-dist';
+
+// Configure PDF.js worker
+pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
 
 export default function WhiteboardInner({
   isRtl,
@@ -37,7 +42,8 @@ export default function WhiteboardInner({
       isDrawingMode: activeTool === 'draw' || activeTool === 'erase',
       width: width,
       height: height,
-      backgroundColor: '#ffffff'
+      backgroundColor: '#ffffff',
+      preserveObjectStacking: true
     });
     
     fabricCanvas.freeDrawingBrush.color = strokeColor;
@@ -141,7 +147,7 @@ export default function WhiteboardInner({
     }
   }, [canvas, activeTool, strokeColor, strokeWidth]);
 
-  // Expose shape/text addition to parent
+  // Expose methods to parent
   useEffect(() => {
     if (!canvas) return;
     
@@ -202,6 +208,128 @@ export default function WhiteboardInner({
         text.enterEditing();
         text.selectAll();
         canvas.renderAll();
+      },
+      addImage: (dataUrl: string) => {
+        fabric.Image.fromURL(dataUrl, (img) => {
+          setActiveTool('select');
+          const center = canvas.getVpCenter();
+          
+          if (img.width && img.height) {
+            const maxW = window.innerWidth * 0.8;
+            const maxH = window.innerHeight * 0.8;
+            let scale = 1;
+            if (img.width > maxW) scale = maxW / img.width;
+            if (img.height > maxH && maxH / img.height < scale) scale = maxH / img.height;
+            img.scale(scale);
+          }
+          
+          img.set({
+            left: center.x - ((img.width || 0) * (img.scaleX || 1)) / 2,
+            top: center.y - ((img.height || 0) * (img.scaleY || 1)) / 2,
+            cornerColor: '#0ea5e9',
+            borderColor: '#0ea5e9',
+          });
+          
+          canvas.add(img);
+          canvas.setActiveObject(img);
+          canvas.renderAll();
+        });
+      },
+      addPDF: async (file: File) => {
+        try {
+          setActiveTool('select');
+          alert(isRtl ? 'جاري معالجة الـ PDF (محلياً)... يرجى الانتظار.' : 'Processing PDF locally... please wait.');
+          
+          const arrayBuffer = await file.arrayBuffer();
+          const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+          
+          let currentTop = canvas.getVpCenter().y - (window.innerHeight / 2) + 50;
+          
+          for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+            const page = await pdf.getPage(pageNum);
+            const viewport = page.getViewport({ scale: 1.5 });
+            
+            const tempCanvas = document.createElement('canvas');
+            const context = tempCanvas.getContext('2d');
+            if (!context) continue;
+            
+            tempCanvas.height = viewport.height;
+            tempCanvas.width = viewport.width;
+            
+            await page.render({ canvasContext: context, viewport: viewport }).promise;
+            
+            const dataUrl = tempCanvas.toDataURL('image/png');
+            
+            await new Promise((resolve) => {
+              fabric.Image.fromURL(dataUrl, (img) => {
+                const center = canvas.getVpCenter();
+                img.set({
+                  left: center.x - ((img.width || 0) * (img.scaleX || 1)) / 2,
+                  top: currentTop,
+                  cornerColor: '#0ea5e9',
+                  borderColor: '#0ea5e9',
+                });
+                
+                canvas.add(img);
+                currentTop += (img.height || 0) + 50;
+                resolve(null);
+              });
+            });
+          }
+          canvas.renderAll();
+        } catch (error) {
+          console.error("PDF upload failed", error);
+          alert(isRtl ? 'فشل تحميل الـ PDF!' : 'Failed to load PDF!');
+        }
+      },
+      exportPDF: () => {
+        const objects = canvas.getObjects();
+        if (objects.length === 0) {
+           alert(isRtl ? "اللوحة فارغة!" : "Canvas is empty!");
+           return;
+        }
+        
+        alert(isRtl ? 'جاري تصدير اللوحة إلى PDF...' : 'Exporting to PDF...');
+        
+        const originalVpt = [...(canvas.viewportTransform || [1,0,0,1,0,0])];
+        const originalWidth = canvas.getWidth();
+        const originalHeight = canvas.getHeight();
+        
+        let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+        objects.forEach(obj => {
+           const br = obj.getBoundingRect();
+           minX = Math.min(minX, br.left);
+           minY = Math.min(minY, br.top);
+           maxX = Math.max(maxX, br.left + br.width);
+           maxY = Math.max(maxY, br.top + br.height);
+        });
+        
+        const padding = 50;
+        minX -= padding;
+        minY -= padding;
+        const width = maxX - minX + (padding * 2);
+        const height = maxY - minY + (padding * 2);
+        
+        canvas.setViewportTransform([1, 0, 0, 1, -minX, -minY]);
+        canvas.setWidth(width);
+        canvas.setHeight(height);
+        canvas.renderAll();
+        
+        const dataUrl = canvas.toDataURL({ format: 'jpeg', quality: 0.8 });
+        
+        canvas.setViewportTransform(originalVpt);
+        canvas.setWidth(originalWidth);
+        canvas.setHeight(originalHeight);
+        canvas.renderAll();
+        
+        const doc = new jsPDF({
+          orientation: width > height ? 'landscape' : 'portrait',
+          unit: 'px',
+          format: [width, height]
+        });
+        
+        doc.addImage(dataUrl, 'JPEG', 0, 0, width, height);
+        doc.save('TawjihiHub-Whiteboard.pdf');
       },
       resetZoom: () => {
         canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);

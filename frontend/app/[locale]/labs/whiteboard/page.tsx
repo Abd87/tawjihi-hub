@@ -4,7 +4,7 @@ import { useState, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { ArrowLeft, ArrowRight, Eraser, Pen, Trash2, Sparkles, Square, Circle, Triangle, MousePointer2, Hand, Maximize, Type } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Eraser, Pen, Trash2, Sparkles, Square, Circle, Triangle, MousePointer2, Hand, Maximize, Type, ImagePlus, FileDown } from 'lucide-react';
 
 const WhiteboardInner = dynamic(() => import('./WhiteboardInner'), { ssr: false });
 
@@ -18,34 +18,29 @@ export default function CustomFabricWhiteboard() {
   const [strokeWidth, setStrokeWidth] = useState(4);
   
   const handleClearRef = useRef<any>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const addShape = (type: string) => {
-    if (handleClearRef.current?.addShape) {
-      handleClearRef.current.addShape(type);
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    
+    if (file.type.includes('image')) {
+       const reader = new FileReader();
+       reader.onload = (f) => {
+         handleClearRef.current?.addImage(f.target?.result as string);
+       };
+       reader.readAsDataURL(file);
+    } else if (file.type === 'application/pdf') {
+       handleClearRef.current?.addPDF(file);
     }
-  };
-
-  const addText = () => {
-    if (handleClearRef.current?.addText) {
-      handleClearRef.current.addText();
-    }
-  };
-
-  const handleClear = () => {
-    if (handleClearRef.current?.clear) {
-      handleClearRef.current.clear();
-    }
-  };
-
-  const handleResetZoom = () => {
-    if (handleClearRef.current?.resetZoom) {
-      handleClearRef.current.resetZoom();
-    }
+    
+    // Reset input
+    if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
   return (
     <div className="fixed inset-0 bg-slate-100 flex flex-col z-[99999]" dir={isRtl ? 'rtl' : 'ltr'}>
-      {/* Top Header - Kept slim */}
+      {/* Top Header */}
       <div className="h-14 bg-white border-b border-slate-200 px-3 sm:px-4 flex items-center justify-between shadow-sm shrink-0 relative z-10">
         <div className="flex items-center gap-3">
           <Link 
@@ -63,18 +58,33 @@ export default function CustomFabricWhiteboard() {
         </div>
 
         <div className="flex items-center gap-2">
-          <button onClick={handleResetZoom} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors" title="Reset Zoom">
-            <Maximize className="w-4 h-4" />
-            <span className="hidden sm:inline">{isRtl ? 'إعادة ضبط الرؤية' : 'Reset Zoom'}</span>
+          {/* File Upload (Images & PDF) */}
+          <input type="file" ref={fileInputRef} className="hidden" accept="image/*,.pdf" onChange={handleFileUpload} />
+          <button onClick={() => fileInputRef.current?.click()} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-brand-700 bg-brand-50 hover:bg-brand-100 rounded-lg transition-colors" title="Upload Image / PDF (رفع ملف)">
+            <ImagePlus className="w-4 h-4" />
+            <span className="hidden sm:inline">{isRtl ? 'إدراج' : 'Insert'}</span>
           </button>
-          <button onClick={handleClear} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors" title="Clear All">
+          
+          <div className="h-4 w-px bg-slate-200"></div>
+
+          {/* Export PDF */}
+          <button onClick={() => handleClearRef.current?.exportPDF()} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors" title="Export as PDF (تصدير كملف PDF)">
+            <FileDown className="w-4 h-4" />
+            <span className="hidden sm:inline">{isRtl ? 'تصدير' : 'Export'}</span>
+          </button>
+          
+          <div className="h-4 w-px bg-slate-200"></div>
+
+          <button onClick={() => handleClearRef.current?.resetZoom()} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors" title="Reset Zoom">
+            <Maximize className="w-4 h-4" />
+          </button>
+          <button onClick={() => handleClearRef.current?.clear()} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors" title="Clear All">
             <Trash2 className="w-4 h-4" />
-            <span className="hidden sm:inline">{isRtl ? 'مسح الكل' : 'Clear'}</span>
           </button>
         </div>
       </div>
 
-      {/* Main Toolbar - Scrollable on mobile */}
+      {/* Main Toolbar */}
       <div className="bg-white border-b border-slate-200 px-2 py-2 flex items-center gap-2 overflow-x-auto shrink-0 z-10 w-full shadow-sm" style={{ WebkitOverflowScrolling: 'touch' }}>
         <div className="flex items-center gap-1 sm:gap-2 mx-auto">
           <button 
@@ -104,14 +114,14 @@ export default function CustomFabricWhiteboard() {
           
           <div className="w-px h-8 bg-slate-200 mx-1 shrink-0"></div>
           
-          <button onClick={addText} className="p-2 sm:p-2.5 text-slate-600 hover:bg-slate-100 rounded-xl shrink-0"><Type className="w-5 h-5" /></button>
-          <button onClick={() => addShape('rect')} className="p-2 sm:p-2.5 text-slate-600 hover:bg-slate-100 rounded-xl shrink-0"><Square className="w-5 h-5" /></button>
-          <button onClick={() => addShape('circle')} className="p-2 sm:p-2.5 text-slate-600 hover:bg-slate-100 rounded-xl shrink-0"><Circle className="w-5 h-5" /></button>
-          <button onClick={() => addShape('triangle')} className="p-2 sm:p-2.5 text-slate-600 hover:bg-slate-100 rounded-xl shrink-0"><Triangle className="w-5 h-5" /></button>
+          <button onClick={() => handleClearRef.current?.addText()} className="p-2 sm:p-2.5 text-slate-600 hover:bg-slate-100 rounded-xl shrink-0"><Type className="w-5 h-5" /></button>
+          <button onClick={() => handleClearRef.current?.addShape('rect')} className="p-2 sm:p-2.5 text-slate-600 hover:bg-slate-100 rounded-xl shrink-0"><Square className="w-5 h-5" /></button>
+          <button onClick={() => handleClearRef.current?.addShape('circle')} className="p-2 sm:p-2.5 text-slate-600 hover:bg-slate-100 rounded-xl shrink-0"><Circle className="w-5 h-5" /></button>
+          <button onClick={() => handleClearRef.current?.addShape('triangle')} className="p-2 sm:p-2.5 text-slate-600 hover:bg-slate-100 rounded-xl shrink-0"><Triangle className="w-5 h-5" /></button>
 
           <div className="w-px h-8 bg-slate-200 mx-1 shrink-0"></div>
           
-          {/* Colors (Inline on all devices now) */}
+          {/* Colors */}
           <div className="flex items-center gap-1.5 px-2">
             {['#0f172a', '#dc2626', '#16a34a', '#2563eb', '#d97706', '#9333ea'].map(color => (
               <button
@@ -125,7 +135,7 @@ export default function CustomFabricWhiteboard() {
           
           <div className="w-px h-8 bg-slate-200 mx-1 shrink-0"></div>
           
-          {/* Thickness (Inline on all devices) */}
+          {/* Thickness */}
           <div className="flex items-center gap-2 px-2 shrink-0">
             <div className="w-2 h-2 rounded-full bg-slate-400"></div>
             <input 
