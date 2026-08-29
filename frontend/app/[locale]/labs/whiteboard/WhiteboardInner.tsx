@@ -41,8 +41,10 @@ export default function WhiteboardInner({
     const resizeObserver = new ResizeObserver((entries) => {
       for (let entry of entries) {
         if (entry.contentRect.width > 0 && entry.contentRect.height > 0) {
-          fabricCanvas.setWidth(entry.contentRect.width);
-          fabricCanvas.setHeight(entry.contentRect.height);
+          fabricCanvas.setDimensions({ 
+            width: entry.contentRect.width, 
+            height: entry.contentRect.height 
+          });
           fabricCanvas.renderAll();
         }
       }
