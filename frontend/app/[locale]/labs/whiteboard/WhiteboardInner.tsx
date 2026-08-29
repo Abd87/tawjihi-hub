@@ -1,8 +1,7 @@
 ﻿'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { fabric } from 'fabric';
-import { MousePointer2, Pen, Eraser, Square, Circle, Triangle, Trash2 } from 'lucide-react';
+import * as fabric from 'fabric';
 
 export default function WhiteboardInner({
   isRtl,
@@ -63,12 +62,16 @@ export default function WhiteboardInner({
 
     if (activeTool === 'draw') {
       canvas.isDrawingMode = true;
-      canvas.freeDrawingBrush.color = strokeColor;
-      canvas.freeDrawingBrush.width = strokeWidth;
+      if (canvas.freeDrawingBrush) {
+        canvas.freeDrawingBrush.color = strokeColor;
+        canvas.freeDrawingBrush.width = strokeWidth;
+      }
     } else if (activeTool === 'erase') {
       canvas.isDrawingMode = true;
-      canvas.freeDrawingBrush.color = '#ffffff';
-      canvas.freeDrawingBrush.width = 30;
+      if (canvas.freeDrawingBrush) {
+        canvas.freeDrawingBrush.color = '#ffffff';
+        canvas.freeDrawingBrush.width = 30;
+      }
     } else {
       canvas.isDrawingMode = false;
     }
