@@ -15,5 +15,8 @@
     "backend:start": "npm run start --workspace=backend",
     "prisma:generate": "npm run prisma:generate --workspace=backend",
     "prisma:migrate": "npm run prisma:migrate --workspace=backend"
+  },
+  "dependencies": {
+    "tldraw": "^5.3.2"
   }
 }
