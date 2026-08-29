@@ -19,17 +19,11 @@ export default function CustomFabricWhiteboard() {
   const [strokeWidth, setStrokeWidth] = useState(4);
 
   useEffect(() => {
-    // Dynamic import to avoid Next.js window undefined SSR errors
     import('fabric').then(({ fabric }) => {
       if (!canvasRef.current || !containerRef.current) return;
-      
-      const width = containerRef.current.clientWidth;
-      const height = containerRef.current.clientHeight;
 
       // Initialize fabric canvas
       const canvas = new fabric.Canvas(canvasRef.current, {
-        width,
-        height,
         isDrawingMode: true,
         backgroundColor: '#ffffff'
       });
@@ -39,21 +33,26 @@ export default function CustomFabricWhiteboard() {
       
       fabricCanvasRef.current = canvas;
 
-      // Handle resize to keep canvas full size
-      const handleResize = () => {
-        if (!containerRef.current || !fabricCanvasRef.current) return;
-        fabricCanvasRef.current.setWidth(containerRef.current.clientWidth);
-        fabricCanvasRef.current.setHeight(containerRef.current.clientHeight);
-        fabricCanvasRef.current.renderAll();
-      };
+      // Resize observer to perfectly fit the parent container at all times
+      const resizeObserver = new ResizeObserver((entries) => {
+        for (let entry of entries) {
+          const { width, height } = entry.contentRect;
+          if (width > 0 && height > 0) {
+            canvas.setWidth(width);
+            canvas.setHeight(height);
+            canvas.renderAll();
+          }
+        }
+      });
       
-      window.addEventListener('resize', handleResize);
+      resizeObserver.observe(containerRef.current);
       
       return () => {
-        window.removeEventListener('resize', handleResize);
+        resizeObserver.disconnect();
         canvas.dispose();
       };
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Sync tools when state changes
