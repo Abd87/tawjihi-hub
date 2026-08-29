@@ -4,7 +4,7 @@ import { useState, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { ArrowLeft, ArrowRight, Eraser, Pen, Trash2, Sparkles, Square, Circle, Triangle, MousePointer2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Eraser, Pen, Trash2, Sparkles, Square, Circle, Triangle, MousePointer2, Hand, Maximize } from 'lucide-react';
 
 const WhiteboardInner = dynamic(() => import('./WhiteboardInner'), { ssr: false });
 
@@ -31,6 +31,12 @@ export default function CustomFabricWhiteboard() {
     }
   };
 
+  const handleResetZoom = () => {
+    if (handleClearRef.current?.resetZoom) {
+      handleClearRef.current.resetZoom();
+    }
+  };
+
   return (
     <div className="fixed inset-0 bg-slate-50 flex flex-col z-[99999]" dir={isRtl ? 'rtl' : 'ltr'}>
       {/* Custom Tailwind UI Header */}
@@ -46,42 +52,50 @@ export default function CustomFabricWhiteboard() {
           <div className="h-6 w-px bg-slate-300"></div>
           <h1 className="text-sm font-bold text-slate-800 flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-brand-500" />
-            <span className="hidden sm:inline">{isRtl ? 'سبورة توجيهي هب (النسخة الحصرية)' : 'Custom Whiteboard'}</span>
+            <span className="hidden lg:inline">{isRtl ? 'سبورة توجيهي هب اللانهائية' : 'Infinite Whiteboard'}</span>
           </h1>
         </div>
 
         {/* Toolbar */}
         <div className="flex items-center gap-1 sm:gap-2 bg-slate-100 p-1.5 rounded-lg border border-slate-200 overflow-x-auto max-w-full">
           <button 
+            onClick={() => setActiveTool('pan')}
+            className={`p-2 rounded-md transition-colors shrink-0 ${activeTool === 'pan' ? 'bg-white shadow-sm text-brand-600 ring-1 ring-slate-200' : 'text-slate-600 hover:bg-slate-200'}`}
+            title="Pan (تحريك اللوحة)"
+          >
+            <Hand className="w-5 h-5" />
+          </button>
+          <button 
             onClick={() => setActiveTool('select')}
             className={`p-2 rounded-md transition-colors shrink-0 ${activeTool === 'select' ? 'bg-white shadow-sm text-brand-600 ring-1 ring-slate-200' : 'text-slate-600 hover:bg-slate-200'}`}
-            title="Select & Move"
+            title="Select & Move (المؤشر)"
           >
             <MousePointer2 className="w-5 h-5" />
           </button>
           <button 
             onClick={() => setActiveTool('draw')}
             className={`p-2 rounded-md transition-colors shrink-0 ${activeTool === 'draw' ? 'bg-white shadow-sm text-brand-600 ring-1 ring-slate-200' : 'text-slate-600 hover:bg-slate-200'}`}
-            title="Pen"
+            title="Pen (القلم)"
           >
             <Pen className="w-5 h-5" />
           </button>
           <button 
             onClick={() => setActiveTool('erase')}
             className={`p-2 rounded-md transition-colors shrink-0 ${activeTool === 'erase' ? 'bg-white shadow-sm text-brand-600 ring-1 ring-slate-200' : 'text-slate-600 hover:bg-slate-200'}`}
-            title="Eraser"
+            title="Eraser (الممحاة)"
           >
             <Eraser className="w-5 h-5" />
           </button>
           
           <div className="w-px h-6 bg-slate-300 mx-1 shrink-0"></div>
           
-          <button onClick={() => addShape('rect')} className="p-2 text-slate-600 hover:bg-slate-200 rounded-md shrink-0"><Square className="w-5 h-5" /></button>
-          <button onClick={() => addShape('circle')} className="p-2 text-slate-600 hover:bg-slate-200 rounded-md shrink-0"><Circle className="w-5 h-5" /></button>
-          <button onClick={() => addShape('triangle')} className="p-2 text-slate-600 hover:bg-slate-200 rounded-md shrink-0"><Triangle className="w-5 h-5" /></button>
+          <button onClick={() => addShape('rect')} className="p-2 text-slate-600 hover:bg-slate-200 rounded-md shrink-0" title="Square (مربع)"><Square className="w-5 h-5" /></button>
+          <button onClick={() => addShape('circle')} className="p-2 text-slate-600 hover:bg-slate-200 rounded-md shrink-0" title="Circle (دائرة)"><Circle className="w-5 h-5" /></button>
+          <button onClick={() => addShape('triangle')} className="p-2 text-slate-600 hover:bg-slate-200 rounded-md shrink-0" title="Triangle (مثلث)"><Triangle className="w-5 h-5" /></button>
 
           <div className="w-px h-6 bg-slate-300 mx-1 shrink-0"></div>
-          <button onClick={handleClear} className="p-2 text-red-600 hover:bg-red-50 rounded-md shrink-0"><Trash2 className="w-5 h-5" /></button>
+          <button onClick={handleResetZoom} className="p-2 text-slate-600 hover:bg-slate-200 rounded-md shrink-0" title="Reset Zoom (إعادة الضبط)"><Maximize className="w-5 h-5" /></button>
+          <button onClick={handleClear} className="p-2 text-red-600 hover:bg-red-50 rounded-md shrink-0" title="Clear All (مسح الكل)"><Trash2 className="w-5 h-5" /></button>
         </div>
         
         {/* Colors & Stroke */}
@@ -93,6 +107,7 @@ export default function CustomFabricWhiteboard() {
             value={strokeWidth} 
             onChange={(e) => setStrokeWidth(Number(e.target.value))}
             className="w-24 accent-brand-500"
+            title="Pen Thickness (سماكة القلم)"
           />
           <div className="flex items-center gap-1.5">
             {['#0f172a', '#dc2626', '#16a34a', '#2563eb', '#d97706', '#9333ea'].map(color => (
