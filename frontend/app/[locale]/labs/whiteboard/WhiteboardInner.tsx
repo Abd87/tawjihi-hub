@@ -238,7 +238,6 @@ export default function WhiteboardInner({
       addPDF: async (file: File) => {
         try {
           setActiveTool('select');
-          alert(isRtl ? 'جاري معالجة الـ PDF (محلياً)... يرجى الانتظار.' : 'Processing PDF locally... please wait.');
           
           const arrayBuffer = await file.arrayBuffer();
           const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
@@ -289,39 +288,65 @@ export default function WhiteboardInner({
            return;
         }
         
-        alert(isRtl ? 'جاري تصدير اللوحة إلى PDF...' : 'Exporting to PDF...');
-        
+        // Save current viewport
         const originalVpt = [...(canvas.viewportTransform || [1,0,0,1,0,0])];
         const originalWidth = canvas.getWidth();
         const originalHeight = canvas.getHeight();
         
+        // Reset viewport so bounding boxes are absolute
+        canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
+        canvas.renderAll();
+        
+        // Measure exact boundaries of all drawings
         let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
         objects.forEach(obj => {
-           const br = obj.getBoundingRect();
-           minX = Math.min(minX, br.left);
-           minY = Math.min(minY, br.top);
-           maxX = Math.max(maxX, br.left + br.width);
-           maxY = Math.max(maxY, br.top + br.height);
+           const br = obj.getBoundingRect(true, true);
+           if (br.left < minX) minX = br.left;
+           if (br.top < minY) minY = br.top;
+           if (br.left + br.width > maxX) maxX = br.left + br.width;
+           if (br.top + br.height > maxY) maxY = br.top + br.height;
         });
         
+        // Prevent infinite bugs if math fails
+        if (minX === Infinity) {
+          minX = 0; minY = 0; maxX = 800; maxY = 600;
+        }
+
         const padding = 50;
         minX -= padding;
         minY -= padding;
-        const width = maxX - minX + (padding * 2);
-        const height = maxY - minY + (padding * 2);
+        let width = maxX - minX + (padding * 2);
+        let height = maxY - minY + (padding * 2);
         
+        // Avoid 0 sizes
+        if (width <= 0) width = 800;
+        if (height <= 0) height = 600;
+        
+        // Resize canvas temporarily to frame the exact bounding box
         canvas.setViewportTransform([1, 0, 0, 1, -minX, -minY]);
         canvas.setWidth(width);
         canvas.setHeight(height);
+        canvas.backgroundColor = '#ffffff';
         canvas.renderAll();
         
-        const dataUrl = canvas.toDataURL({ format: 'jpeg', quality: 0.8 });
+        // Capture image with high quality. 
+        // Note: multiplier > 1 on a massive canvas can crash the browser, so we keep it at 1 for infinite boards.
+        const maxDim = Math.max(width, height);
+        const multiplier = maxDim > 3000 ? 1 : 2; 
+
+        const dataUrl = canvas.toDataURL({ 
+          format: 'jpeg', 
+          quality: 0.85,
+          multiplier: multiplier
+        });
         
+        // Restore user's view
         canvas.setViewportTransform(originalVpt);
         canvas.setWidth(originalWidth);
         canvas.setHeight(originalHeight);
         canvas.renderAll();
         
+        // Generate PDF
         const doc = new jsPDF({
           orientation: width > height ? 'landscape' : 'portrait',
           unit: 'px',
