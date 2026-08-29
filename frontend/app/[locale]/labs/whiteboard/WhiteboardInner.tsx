@@ -22,7 +22,6 @@ export default function WhiteboardInner({
   const containerRef = useRef<HTMLDivElement>(null);
   const [canvas, setCanvas] = useState<fabric.Canvas | null>(null);
   
-  // Use a ref for activeTool so event listeners can access the latest value without rebinding
   const activeToolRef = useRef(activeTool);
   useEffect(() => {
     activeToolRef.current = activeTool;
@@ -31,7 +30,6 @@ export default function WhiteboardInner({
   useEffect(() => {
     if (!canvasRef.current || !containerRef.current) return;
 
-    // We must ensure the container has height before initializing
     const width = containerRef.current.clientWidth || window.innerWidth;
     const height = containerRef.current.clientHeight || window.innerHeight;
 
@@ -42,15 +40,11 @@ export default function WhiteboardInner({
       backgroundColor: '#ffffff'
     });
     
-    // Set initial brush settings
     fabricCanvas.freeDrawingBrush.color = strokeColor;
     fabricCanvas.freeDrawingBrush.width = strokeWidth;
 
     setCanvas(fabricCanvas);
 
-    // --- INFINITE CANVAS LOGIC (Zoom & Pan) ---
-
-    // 1. Zoom with mouse wheel
     fabricCanvas.on('mouse:wheel', function(opt) {
       var delta = opt.e.deltaY;
       var zoom = fabricCanvas.getZoom();
@@ -62,7 +56,6 @@ export default function WhiteboardInner({
       opt.e.stopPropagation();
     });
 
-    // 2. Pan with Hand tool or Alt Key
     let isDragging = false;
     let lastPosX = 0;
     let lastPosY = 0;
@@ -102,12 +95,6 @@ export default function WhiteboardInner({
       isDragging = false;
       fabricCanvas.selection = true;
     });
-
-    // Support touch devices zooming (Pinch) - handled mostly via wheel above for standard trackpads, 
-    // but full multitouch pinch-zoom requires complex gesture logic. 
-    // Hand tool panning works via touches above.
-
-    // ------------------------------------------
 
     const resizeObserver = new ResizeObserver((entries) => {
       for (let entry of entries) {
@@ -154,7 +141,7 @@ export default function WhiteboardInner({
     }
   }, [canvas, activeTool, strokeColor, strokeWidth]);
 
-  // Expose shape addition to parent via window or ref
+  // Expose shape/text addition to parent
   useEffect(() => {
     if (!canvas) return;
     
@@ -162,15 +149,12 @@ export default function WhiteboardInner({
       clear: () => {
         canvas.clear();
         canvas.backgroundColor = '#ffffff';
-        // Reset viewport zoom/pan
         canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
         canvas.renderAll();
       },
       addShape: (type: string) => {
         setActiveTool('select');
         let shape;
-        
-        // Add shape at the center of the current viewport
         const center = canvas.getVpCenter();
         const opts = { 
           left: center.x - 50, 
@@ -196,12 +180,35 @@ export default function WhiteboardInner({
           canvas.renderAll();
         }
       },
+      addText: () => {
+        setActiveTool('select');
+        const center = canvas.getVpCenter();
+        const text = new fabric.Textbox(isRtl ? 'اكتب هنا...' : 'Type here...', {
+          left: center.x - 75,
+          top: center.y - 20,
+          width: 150,
+          fontSize: 28,
+          fill: strokeColor,
+          fontFamily: 'system-ui, sans-serif',
+          textAlign: isRtl ? 'right' : 'left',
+          cornerColor: '#0ea5e9',
+          borderColor: '#0ea5e9',
+          editingBorderColor: '#0ea5e9',
+          padding: 5
+        });
+        
+        canvas.add(text);
+        canvas.setActiveObject(text);
+        text.enterEditing();
+        text.selectAll();
+        canvas.renderAll();
+      },
       resetZoom: () => {
         canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
         canvas.renderAll();
       }
     };
-  }, [canvas, strokeColor, setActiveTool, handleClearRef]);
+  }, [canvas, strokeColor, isRtl, setActiveTool, handleClearRef]);
 
   return (
     <div ref={containerRef} className="flex-1 w-full h-full relative overflow-hidden" style={{ minHeight: '80vh' }}>

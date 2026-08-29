@@ -4,7 +4,7 @@ import { useState, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { ArrowLeft, ArrowRight, Eraser, Pen, Trash2, Sparkles, Square, Circle, Triangle, MousePointer2, Hand, Maximize } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Eraser, Pen, Trash2, Sparkles, Square, Circle, Triangle, MousePointer2, Hand, Maximize, Type } from 'lucide-react';
 
 const WhiteboardInner = dynamic(() => import('./WhiteboardInner'), { ssr: false });
 
@@ -22,6 +22,12 @@ export default function CustomFabricWhiteboard() {
   const addShape = (type: string) => {
     if (handleClearRef.current?.addShape) {
       handleClearRef.current.addShape(type);
+    }
+  };
+
+  const addText = () => {
+    if (handleClearRef.current?.addText) {
+      handleClearRef.current.addText();
     }
   };
 
@@ -89,6 +95,7 @@ export default function CustomFabricWhiteboard() {
           
           <div className="w-px h-6 bg-slate-300 mx-1 shrink-0"></div>
           
+          <button onClick={addText} className="p-2 text-slate-600 hover:bg-slate-200 rounded-md shrink-0" title="Text (نص)"><Type className="w-5 h-5" /></button>
           <button onClick={() => addShape('rect')} className="p-2 text-slate-600 hover:bg-slate-200 rounded-md shrink-0" title="Square (مربع)"><Square className="w-5 h-5" /></button>
           <button onClick={() => addShape('circle')} className="p-2 text-slate-600 hover:bg-slate-200 rounded-md shrink-0" title="Circle (دائرة)"><Circle className="w-5 h-5" /></button>
           <button onClick={() => addShape('triangle')} className="p-2 text-slate-600 hover:bg-slate-200 rounded-md shrink-0" title="Triangle (مثلث)"><Triangle className="w-5 h-5" /></button>
