@@ -44,110 +44,100 @@ export default function CustomFabricWhiteboard() {
   };
 
   return (
-    <div className="fixed inset-0 bg-slate-50 flex flex-col z-[99999]" dir={isRtl ? 'rtl' : 'ltr'}>
-      {/* Custom Tailwind UI Header */}
-      <div className="h-16 bg-white border-b border-slate-200 px-4 flex items-center justify-between shadow-sm shrink-0 relative z-10">
-        <div className="flex items-center gap-4">
+    <div className="fixed inset-0 bg-slate-100 flex flex-col z-[99999]" dir={isRtl ? 'rtl' : 'ltr'}>
+      {/* Top Header - Kept slim */}
+      <div className="h-14 bg-white border-b border-slate-200 px-3 sm:px-4 flex items-center justify-between shadow-sm shrink-0 relative z-10">
+        <div className="flex items-center gap-3">
           <Link 
             href={`/${locale}/dashboard`}
-            className="flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors"
+            className="flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors bg-slate-100 px-3 py-1.5 rounded-lg"
           >
             {isRtl ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}
-            {isRtl ? 'العودة' : 'Back'}
+            <span className="hidden sm:inline">{isRtl ? 'العودة' : 'Back'}</span>
           </Link>
-          <div className="h-6 w-px bg-slate-300"></div>
+          <div className="hidden sm:block h-6 w-px bg-slate-300"></div>
           <h1 className="text-sm font-bold text-slate-800 flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-brand-500" />
-            <span className="hidden lg:inline">{isRtl ? 'سبورة توجيهي هب اللانهائية' : 'Infinite Whiteboard'}</span>
+            <span className="hidden md:inline">{isRtl ? 'سبورة توجيهي هب اللانهائية' : 'Infinite Whiteboard'}</span>
           </h1>
         </div>
 
-        {/* Toolbar */}
-        <div className="flex items-center gap-1 sm:gap-2 bg-slate-100 p-1.5 rounded-lg border border-slate-200 overflow-x-auto max-w-full">
+        <div className="flex items-center gap-2">
+          <button onClick={handleResetZoom} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors" title="Reset Zoom">
+            <Maximize className="w-4 h-4" />
+            <span className="hidden sm:inline">{isRtl ? 'إعادة ضبط الرؤية' : 'Reset Zoom'}</span>
+          </button>
+          <button onClick={handleClear} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors" title="Clear All">
+            <Trash2 className="w-4 h-4" />
+            <span className="hidden sm:inline">{isRtl ? 'مسح الكل' : 'Clear'}</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Main Toolbar - Scrollable on mobile */}
+      <div className="bg-white border-b border-slate-200 px-2 py-2 flex items-center gap-2 overflow-x-auto shrink-0 z-10 w-full shadow-sm" style={{ WebkitOverflowScrolling: 'touch' }}>
+        <div className="flex items-center gap-1 sm:gap-2 mx-auto">
           <button 
             onClick={() => setActiveTool('pan')}
-            className={`p-2 rounded-md transition-colors shrink-0 ${activeTool === 'pan' ? 'bg-white shadow-sm text-brand-600 ring-1 ring-slate-200' : 'text-slate-600 hover:bg-slate-200'}`}
-            title="Pan (تحريك اللوحة)"
+            className={`p-2 sm:p-2.5 rounded-xl transition-all shrink-0 flex flex-col items-center gap-1 ${activeTool === 'pan' ? 'bg-brand-50 shadow-sm text-brand-600 ring-1 ring-brand-200' : 'text-slate-600 hover:bg-slate-100'}`}
           >
             <Hand className="w-5 h-5" />
           </button>
           <button 
             onClick={() => setActiveTool('select')}
-            className={`p-2 rounded-md transition-colors shrink-0 ${activeTool === 'select' ? 'bg-white shadow-sm text-brand-600 ring-1 ring-slate-200' : 'text-slate-600 hover:bg-slate-200'}`}
-            title="Select & Move (المؤشر)"
+            className={`p-2 sm:p-2.5 rounded-xl transition-all shrink-0 flex flex-col items-center gap-1 ${activeTool === 'select' ? 'bg-brand-50 shadow-sm text-brand-600 ring-1 ring-brand-200' : 'text-slate-600 hover:bg-slate-100'}`}
           >
             <MousePointer2 className="w-5 h-5" />
           </button>
           <button 
             onClick={() => setActiveTool('draw')}
-            className={`p-2 rounded-md transition-colors shrink-0 ${activeTool === 'draw' ? 'bg-white shadow-sm text-brand-600 ring-1 ring-slate-200' : 'text-slate-600 hover:bg-slate-200'}`}
-            title="Pen (القلم)"
+            className={`p-2 sm:p-2.5 rounded-xl transition-all shrink-0 flex flex-col items-center gap-1 ${activeTool === 'draw' ? 'bg-brand-50 shadow-sm text-brand-600 ring-1 ring-brand-200' : 'text-slate-600 hover:bg-slate-100'}`}
           >
             <Pen className="w-5 h-5" />
           </button>
           <button 
             onClick={() => setActiveTool('erase')}
-            className={`p-2 rounded-md transition-colors shrink-0 ${activeTool === 'erase' ? 'bg-white shadow-sm text-brand-600 ring-1 ring-slate-200' : 'text-slate-600 hover:bg-slate-200'}`}
-            title="Eraser (الممحاة)"
+            className={`p-2 sm:p-2.5 rounded-xl transition-all shrink-0 flex flex-col items-center gap-1 ${activeTool === 'erase' ? 'bg-brand-50 shadow-sm text-brand-600 ring-1 ring-brand-200' : 'text-slate-600 hover:bg-slate-100'}`}
           >
             <Eraser className="w-5 h-5" />
           </button>
           
-          <div className="w-px h-6 bg-slate-300 mx-1 shrink-0"></div>
+          <div className="w-px h-8 bg-slate-200 mx-1 shrink-0"></div>
           
-          <button onClick={addText} className="p-2 text-slate-600 hover:bg-slate-200 rounded-md shrink-0" title="Text (نص)"><Type className="w-5 h-5" /></button>
-          <button onClick={() => addShape('rect')} className="p-2 text-slate-600 hover:bg-slate-200 rounded-md shrink-0" title="Square (مربع)"><Square className="w-5 h-5" /></button>
-          <button onClick={() => addShape('circle')} className="p-2 text-slate-600 hover:bg-slate-200 rounded-md shrink-0" title="Circle (دائرة)"><Circle className="w-5 h-5" /></button>
-          <button onClick={() => addShape('triangle')} className="p-2 text-slate-600 hover:bg-slate-200 rounded-md shrink-0" title="Triangle (مثلث)"><Triangle className="w-5 h-5" /></button>
+          <button onClick={addText} className="p-2 sm:p-2.5 text-slate-600 hover:bg-slate-100 rounded-xl shrink-0"><Type className="w-5 h-5" /></button>
+          <button onClick={() => addShape('rect')} className="p-2 sm:p-2.5 text-slate-600 hover:bg-slate-100 rounded-xl shrink-0"><Square className="w-5 h-5" /></button>
+          <button onClick={() => addShape('circle')} className="p-2 sm:p-2.5 text-slate-600 hover:bg-slate-100 rounded-xl shrink-0"><Circle className="w-5 h-5" /></button>
+          <button onClick={() => addShape('triangle')} className="p-2 sm:p-2.5 text-slate-600 hover:bg-slate-100 rounded-xl shrink-0"><Triangle className="w-5 h-5" /></button>
 
-          <div className="w-px h-6 bg-slate-300 mx-1 shrink-0"></div>
-          <button onClick={handleResetZoom} className="p-2 text-slate-600 hover:bg-slate-200 rounded-md shrink-0" title="Reset Zoom (إعادة الضبط)"><Maximize className="w-5 h-5" /></button>
-          <button onClick={handleClear} className="p-2 text-red-600 hover:bg-red-50 rounded-md shrink-0" title="Clear All (مسح الكل)"><Trash2 className="w-5 h-5" /></button>
-        </div>
-        
-        {/* Colors & Stroke */}
-        <div className="hidden md:flex items-center gap-4">
-          <input 
-            type="range" 
-            min="1" 
-            max="30" 
-            value={strokeWidth} 
-            onChange={(e) => setStrokeWidth(Number(e.target.value))}
-            className="w-24 accent-brand-500"
-            title="Pen Thickness (سماكة القلم)"
-          />
-          <div className="flex items-center gap-1.5">
+          <div className="w-px h-8 bg-slate-200 mx-1 shrink-0"></div>
+          
+          {/* Colors (Inline on all devices now) */}
+          <div className="flex items-center gap-1.5 px-2">
             {['#0f172a', '#dc2626', '#16a34a', '#2563eb', '#d97706', '#9333ea'].map(color => (
               <button
                 key={color}
                 onClick={() => setStrokeColor(color)}
-                className={`w-7 h-7 rounded-full border-2 transition-transform ${strokeColor === color ? 'scale-110 border-slate-200 ring-2 ring-brand-500 shadow-md' : 'border-slate-200 shadow-sm'}`}
+                className={`w-7 h-7 rounded-full border-2 transition-transform shrink-0 ${strokeColor === color ? 'scale-110 border-white ring-2 ring-brand-500 shadow-md' : 'border-transparent shadow-sm'}`}
                 style={{ backgroundColor: color }}
               />
             ))}
           </div>
-        </div>
-      </div>
-
-      {/* Mobile colors bar */}
-      <div className="md:hidden h-12 bg-white border-b border-slate-200 px-4 flex items-center justify-between shrink-0">
-        <input 
-          type="range" 
-          min="1" 
-          max="30" 
-          value={strokeWidth} 
-          onChange={(e) => setStrokeWidth(Number(e.target.value))}
-          className="w-1/3 accent-brand-500"
-        />
-        <div className="flex items-center gap-2">
-          {['#0f172a', '#dc2626', '#2563eb', '#d97706'].map(color => (
-            <button
-              key={color}
-              onClick={() => setStrokeColor(color)}
-              className={`w-6 h-6 rounded-full border border-slate-200 transition-transform ${strokeColor === color ? 'scale-110 ring-2 ring-brand-500' : ''}`}
-              style={{ backgroundColor: color }}
+          
+          <div className="w-px h-8 bg-slate-200 mx-1 shrink-0"></div>
+          
+          {/* Thickness (Inline on all devices) */}
+          <div className="flex items-center gap-2 px-2 shrink-0">
+            <div className="w-2 h-2 rounded-full bg-slate-400"></div>
+            <input 
+              type="range" 
+              min="1" 
+              max="30" 
+              value={strokeWidth} 
+              onChange={(e) => setStrokeWidth(Number(e.target.value))}
+              className="w-20 sm:w-24 accent-brand-500"
             />
-          ))}
+            <div className="w-4 h-4 rounded-full bg-slate-800"></div>
+          </div>
         </div>
       </div>
 
