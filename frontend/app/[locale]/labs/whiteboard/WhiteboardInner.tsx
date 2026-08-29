@@ -1,7 +1,7 @@
 ﻿'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import * as fabric from 'fabric';
+import { fabric } from 'fabric';
 
 export default function WhiteboardInner({
   isRtl,
@@ -35,16 +35,18 @@ export default function WhiteboardInner({
       height: height,
       backgroundColor: '#ffffff'
     });
+    
+    // Set initial brush settings
+    fabricCanvas.freeDrawingBrush.color = strokeColor;
+    fabricCanvas.freeDrawingBrush.width = strokeWidth;
 
     setCanvas(fabricCanvas);
 
     const resizeObserver = new ResizeObserver((entries) => {
       for (let entry of entries) {
         if (entry.contentRect.width > 0 && entry.contentRect.height > 0) {
-          fabricCanvas.setDimensions({ 
-            width: entry.contentRect.width, 
-            height: entry.contentRect.height 
-          });
+          fabricCanvas.setWidth(entry.contentRect.width);
+          fabricCanvas.setHeight(entry.contentRect.height);
           fabricCanvas.renderAll();
         }
       }
