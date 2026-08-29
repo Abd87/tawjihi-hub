@@ -1,21 +1,23 @@
 ﻿'use client';
 
 import { useEffect, useState } from 'react';
-import 'tldraw/tldraw.css';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Sparkles, Loader2 } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
-const Tldraw = dynamic(() => import('tldraw').then((mod) => mod.Tldraw), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-slate-50">
-      <Loader2 className="w-8 h-8 text-brand-500 animate-spin mb-4" />
-      <p className="text-slate-500 font-medium">جاري تحميل السبورة الذكية...</p>
-    </div>
-  )
-});
+const Excalidraw = dynamic(
+  () => import('@excalidraw/excalidraw').then((mod) => mod.Excalidraw),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-full flex flex-col items-center justify-center bg-slate-50">
+        <Loader2 className="w-8 h-8 text-brand-500 animate-spin mb-4" />
+        <p className="text-slate-500 font-medium">جاري تحميل السبورة الذكية...</p>
+      </div>
+    )
+  }
+);
 
 export default function WhiteboardPrototype() {
   const params = useParams();
@@ -46,10 +48,19 @@ export default function WhiteboardPrototype() {
         </div>
       </div>
 
-      <div className="flex-1 w-full relative z-0" dir="ltr">
+      <div className="flex-1 w-full relative z-0">
         {mounted && (
           <div style={{ position: 'absolute', inset: 0 }}>
-            <Tldraw inferDarkMode={false} />
+            <Excalidraw 
+              theme="light"
+              langCode={isRtl ? "ar-SA" : "en"}
+              UIOptions={{
+                canvasActions: {
+                  loadScene: false,
+                  export: { saveFileToDisk: true },
+                }
+              }}
+            />
           </div>
         )}
       </div>

@@ -12,6 +12,7 @@
     "fetch5": "npx tsx fetch_unit5.ts"
   },
   "dependencies": {
+    "@excalidraw/excalidraw": "^0.18.1",
     "@prisma/client": "^5.22.0",
     "@vercel/analytics": "^2.0.1",
     "arabic-dictionary": "^1.0.2",
