@@ -23,14 +23,10 @@ export default function WhiteboardPrototype() {
   const params = useParams();
   const locale = (params?.locale as string) || 'ar';
   const isRtl = locale === 'ar';
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
+  // We don't really need `mounted` if we use next/dynamic with ssr: false, it won't render on server
   return (
-    <div className="flex flex-col h-[100dvh] w-full bg-slate-50 text-slate-900 overflow-hidden">
+    <div className="w-screen h-screen flex flex-col bg-slate-50 text-slate-900 overflow-hidden">
       <div className="h-14 border-b border-slate-200 bg-white flex items-center px-4 justify-between shrink-0 shadow-sm z-10 relative">
         <div className="flex items-center gap-4">
           <Link 
@@ -43,26 +39,13 @@ export default function WhiteboardPrototype() {
           <div className="h-4 w-px bg-slate-300 hidden sm:block"></div>
           <h1 className="text-sm font-bold text-slate-800 flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-brand-500" />
-            {isRtl ? 'السبورة التفاعلية (نسخة تجريبية)' : 'Interactive Whiteboard (Beta)'}
+            {isRtl ? 'السبورة التفاعلية' : 'Interactive Whiteboard'}
           </h1>
         </div>
       </div>
 
-      <div className="flex-1 w-full relative z-0">
-        {mounted && (
-          <div style={{ position: 'absolute', inset: 0 }}>
-            <Excalidraw 
-              theme="light"
-              langCode={isRtl ? "ar-SA" : "en"}
-              UIOptions={{
-                canvasActions: {
-                  loadScene: false,
-                  export: { saveFileToDisk: true },
-                }
-              }}
-            />
-          </div>
-        )}
+      <div style={{ height: 'calc(100vh - 3.5rem)', width: '100vw' }} dir="ltr">
+        <Excalidraw theme="light" />
       </div>
     </div>
   );
