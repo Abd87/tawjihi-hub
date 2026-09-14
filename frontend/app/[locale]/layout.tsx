@@ -1,4 +1,4 @@
-import { NextIntlClientProvider } from 'next-intl';
+﻿import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 import { ReactNode } from 'react';
 import { Cairo, Inter } from 'next/font/google';
@@ -33,7 +33,7 @@ export const viewport: Viewport = {
   themeColor: '#020617',
   width: 'device-width',
   initialScale: 1,
-  viewportFit: 'cover', // Ensures full screen on notched phones
+  viewportFit: 'cover',
 };
 
 export function generateStaticParams() {
@@ -54,17 +54,27 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     };
   }
   
-  // Try to get current URL from middleware header, fallback to domain root
   let canonicalUrl = `https://tawjihihub.com/${safeLocale}`;
+  let pathWithoutLocale = '';
+  
   try {
     const headersList = headers();
-    const currentUrl = headersList.get('x-url');
+    const currentUrl = headersList.get('x-middleware-request-x-url') || headersList.get('x-url');
     if (currentUrl) {
-      canonicalUrl = currentUrl.split('?')[0];
+      const urlObj = new URL(currentUrl);
+      canonicalUrl = urlObj.href.split('?')[0];
+      
+      const pathname = urlObj.pathname;
+      const segments = pathname.split('/').filter(Boolean);
+      if (segments[0] === 'ar' || segments[0] === 'en') {
+        segments.shift();
+      }
+      pathWithoutLocale = segments.length > 0 ? '/' + segments.join('/') : '';
     }
-  } catch (e) {
-    // fallback
-  }
+  } catch (e) {}
+
+  const arUrl = `https://tawjihihub.com/ar${pathWithoutLocale}`;
+  const enUrl = `https://tawjihihub.com/en${pathWithoutLocale}`;
 
   return {
     metadataBase: new URL('https://tawjihihub.com'),
@@ -82,8 +92,9 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        'ar': '/ar',
-        'en': '/en',
+        'ar': arUrl,
+        'en': enUrl,
+        'x-default': arUrl,
       },
     },
     title: {
@@ -114,7 +125,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     openGraph: {
       title: messages.meta?.title || 'توجيهي هب | Tawjihi Hub',
       description: messages.meta?.description || 'المنصة الأولى لطلاب التوجيهي في الأردن',
-      url: 'https://tawjihihub.com',
+      url: canonicalUrl,
       siteName: messages.navigation?.brandName || 'Tawjihi Hub',
       images: [
         {
@@ -190,4 +201,3 @@ export default async function LocaleLayout({
     </html>
   );
 }
-
