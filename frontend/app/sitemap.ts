@@ -7,7 +7,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticRoutes = [
     '',
-    '/courses',
     '/blog',
     '/subjects',
     '/foundation',
@@ -34,7 +33,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   };
 
   staticRoutes.forEach((route) => {
-    entries.push(createEntry(route, route === '' || route === '/courses' ? 'daily' : 'weekly', route === '' ? 1 : 0.8));
+    entries.push(createEntry(route, route === '' ? 'daily' : 'weekly', route === '' ? 1 : 0.8));
   });
 
   subjectsData.forEach((subject) => {
