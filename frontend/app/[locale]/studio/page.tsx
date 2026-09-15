@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
@@ -197,7 +197,31 @@ export default function TeacherStudioDashboardPage() {
           </div>
         </Link>
 
-        {/* Card 5: Direct Broadcast Announcements */}
+        {/* Card 5: Infinite Whiteboard */}
+        <Link
+          href={`/${locale}/labs/whiteboard`}
+          className="group bg-slate-900/60 border border-slate-800 hover:border-indigo-500/50 p-6 rounded-3xl transition-all relative overflow-hidden flex flex-col justify-between"
+        >
+          <div className="space-y-4">
+            <div className="p-3.5 bg-indigo-500/10 text-indigo-400 rounded-2xl w-fit group-hover:scale-110 transition-transform">
+              <PenTool className="w-6 h-6" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-white group-hover:text-indigo-400 transition-colors">
+                {isRtl ? 'السبورة اللانهائية' : 'Infinite Whiteboard'}
+              </h3>
+              <p className="text-xs text-slate-400 mt-1.5 line-clamp-2">
+                {isRtl ? 'مساحة شرح وتدريس حرة مع إمكانية رفع ملفات PDF' : 'Free teaching space with PDF upload capability'}
+              </p>
+            </div>
+          </div>
+          <div className="pt-6 flex items-center justify-between text-xs font-bold text-slate-400 group-hover:text-white">
+            <span>{isRtl ? 'افتح السبورة' : 'Open Whiteboard'}</span>
+            {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
+          </div>
+        </Link>
+
+        {/* Card 6: Direct Broadcast Announcements */}
         <Link
           href={`/${locale}/studio/broadcasts`}
           className="group bg-slate-900/60 border border-slate-800 hover:border-purple-500/50 p-6 rounded-3xl transition-all relative overflow-hidden flex flex-col justify-between"

@@ -7,7 +7,7 @@ import { useParams } from 'next/navigation';
 import PromoPopup from '@/components/PromoPopup';
 import CourseUnlockModal from '@/components/CourseUnlockModal';
 import { 
-  GraduationCap, PenTool, MessageCircle, Facebook, 
+  GraduationCap, PenTool, Facebook, 
   LogOut, 
   BookOpen, 
   PlayCircle, 
@@ -697,7 +697,7 @@ export default function DashboardPage() {
           <div className="space-y-10 animate-fade-in pb-20">
                         {/* Quick Actions & Tools */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8 animate-fade-in">
-              <Link href={//labs/whiteboard} className="group flex items-center gap-4 p-5 bg-gradient-to-br from-indigo-900/40 to-slate-900 border border-indigo-500/20 hover:border-indigo-500/50 rounded-2xl transition-all shadow-lg hover:shadow-indigo-500/10 relative overflow-hidden">
+              <Link href={/ + locale + /labs/whiteboard} className="group flex items-center gap-4 p-5 bg-gradient-to-br from-indigo-900/40 to-slate-900 border border-indigo-500/20 hover:border-indigo-500/50 rounded-2xl transition-all shadow-lg hover:shadow-indigo-500/10 relative overflow-hidden">
                 <div className="absolute top-0 end-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
                 <div className="w-14 h-14 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
                   <PenTool className="w-7 h-7" />
