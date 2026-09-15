@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
@@ -692,12 +692,207 @@ export default function DashboardPage() {
                   )}
                 </div>
              </div>
+            >
+              <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 group-hover:scale-110 transition-transform">
+                <Calculator className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors">
+                  {locale === 'ar' ? 'Ø­Ø§Ø³Ø¨Ø© Ø§Ù„Ù…Ø¹Ø¯Ù„' : 'GPA Calculator'}
+                </h4>
+                <p className="text-[10px] text-slate-400">
+                  {locale === 'ar' ? 'Ø­Ø³Ø§Ø¨ Ø§Ù„Ù…Ø¹Ø¯Ù„ Ø§Ù„Ù…Ø¹ØªÙ…Ø¯' : 'Calculate your GPA'}
+                </p>
+              </div>
+            </Link>
+
+            <Link
+              href="/redeem"
+              className="group p-4 bg-slate-900/60 border border-slate-800 hover:border-emerald-500/50 rounded-2xl transition-all flex items-center gap-3 backdrop-blur-xl"
+            >
+              <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 group-hover:scale-110 transition-transform">
+                <Ticket className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-white group-hover:text-emerald-400 transition-colors">
+                  {locale === 'ar' ? 'ØªÙ Ø¹ÙŠÙ„ Ø¨Ø·Ø§Ù‚Ø©' : 'Redeem Coupon'}
+                </h4>
+                <p className="text-[10px] text-slate-400">
+                  {locale === 'ar' ? 'Ø¥Ø¯Ø®Ø§Ù„ Ø±Ù…Ø² Ø§Ù„ÙƒÙˆØ¨ÙˆÙ†' : 'Enter access code'}
+                </p>
+              </div>
+            </Link>
+
+            <Link
+              href="/subjects"
+              className="group p-4 bg-slate-900/60 border border-slate-800 hover:border-brand-500/50 rounded-2xl transition-all flex items-center gap-3 backdrop-blur-xl"
+            >
+              <div className="p-2.5 rounded-xl bg-brand-500/10 text-brand-400 group-hover:scale-110 transition-transform">
+                <Compass className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-white group-hover:text-brand-400 transition-colors">
+                  {locale === 'ar' ? 'ØªØµÙ Ø­ Ø§Ù„Ù…ÙˆØ§Ø¯' : 'Browse Subjects'}
+                </h4>
+                <p className="text-[10px] text-slate-400">
+                  {locale === 'ar' ? 'Ø§ÙƒØªØ´Ø§Ù  Ø§Ù„Ø®Ø·Ø· Ø§Ù„Ø¯Ø±Ø§Ø³ÙŠØ©' : 'Explore all subjects'}
+                </p>
+              </div>
+            </Link>
+          </div>
+        )}
+
+        {/* Admin / Teacher View */}
+        {(user?.role === 'ADMIN' || user?.role === 'TEACHER') ? (
+          <div className="space-y-8 animate-fade-in pb-20">
+             <div className="flex items-center gap-3 mb-6">
+                <div className="p-2.5 bg-brand-500/20 rounded-xl border border-brand-500/30">
+                  <BarChart2 className="h-6 w-6 text-brand-400" />
+                </div>
+                <h2 className="text-xl font-black text-white">
+                  {locale === 'ar' ? 'Ù„ÙˆØ­Ø© ØªØ­ÙƒÙ… Ø§Ù„Ø¥Ø¯Ø§Ø±Ø©' : 'Command Center'}
+                </h2>
+             </div>
+             
+             {/* KPI Metrics */}
+             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 relative overflow-hidden group hover:border-slate-700 transition-colors shadow-lg">
+                   <div className="absolute top-0 end-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
+                      <Users className="h-20 w-20" />
+                   </div>
+                   <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'Ø§Ù„Ø·Ù„Ø§Ø¨ Ø§Ù„Ù†Ø´Ø·ÙŠÙ†' : 'Active Students'}</p>
+                   <h3 className="text-3xl font-black text-white">{adminStats?.stats?.totalStudents || 0}</h3>
+                   <p className="text-emerald-500 text-xs mt-3 flex items-center gap-1 font-bold"><TrendingUp className="h-3 w-3" /> {locale === 'ar' ? 'Ø¥Ø¬Ù…Ø§Ù„ÙŠ' : 'Total'}</p>
+                </div>
+                <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 relative overflow-hidden group hover:border-slate-700 transition-colors shadow-lg">
+                   <div className="absolute top-0 end-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
+                      <BookOpen className="h-20 w-20" />
+                   </div>
+                   <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'Ø§Ù„Ø¯ÙˆØ±Ø§Øª Ø§Ù„Ù Ø¹Ø§Ù„Ø©' : 'Active Courses'}</p>
+                   <h3 className="text-3xl font-black text-white">{adminStats?.stats?.totalCourses || courses.length || 0}</h3>
+                   <p className="text-emerald-500 text-xs mt-3 flex items-center gap-1 font-bold"><TrendingUp className="h-3 w-3" /> {locale === 'ar' ? 'Ø¥Ø¬Ù…Ø§Ù„ÙŠ' : 'Total'}</p>
+                </div>
+                <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 relative overflow-hidden group hover:border-slate-700 transition-colors shadow-lg">
+                   <div className="absolute top-0 end-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
+                      <Key className="h-20 w-20" />
+                   </div>
+                   <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'Ø§Ù„ÙƒÙˆØ¨ÙˆÙ†Ø§Øª Ø§Ù„Ù Ø¹Ø§Ù„Ø©' : 'Active Coupons'}</p>
+                   <h3 className="text-3xl font-black text-white">{adminStats?.stats?.activeCoupons || 0}</h3>
+                   <p className="text-slate-500 text-xs mt-3 flex items-center gap-1 font-bold">{locale === 'ar' ? 'Ø¬Ø§Ù‡Ø²Ø© Ù„Ù„Ø§Ø³ØªØ®Ø¯Ø§Ù…' : 'Ready to use'}</p>
+                </div>
+                <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 relative overflow-hidden group hover:border-slate-700 transition-colors shadow-lg">
+                   <div className="absolute top-0 end-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
+                      <Award className="h-20 w-20" />
+                   </div>
+                   <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'Ø§Ù„Ø§Ø®ØªØ¨Ø§Ø±Ø§Øª Ø§Ù„Ù…Ù†Ø¬Ø²Ø©' : 'Completed Quizzes'}</p>
+                   <h3 className="text-3xl font-black text-white">-</h3>
+                   <p className="text-slate-500 text-xs mt-3 flex items-center gap-1 font-bold">{locale === 'ar' ? 'Ù‚Ø±ÙŠØ¨Ø§Ù‹' : 'Coming soon'}</p>
+                </div>
+             </div>
+             
+             {/* Large Action Cards */}
+             <div className="mt-12">
+                 <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                   <Settings className="h-5 w-5 text-slate-400" />
+                   {locale === 'ar' ? 'Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ù…Ù†ØµØ©' : 'Platform Management'}
+                 </h3>
+                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <Link href="/admin/courses" className="flex flex-col gap-4 p-6 rounded-3xl border border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/10 hover:border-emerald-500/40 transition-all group">
+                      <div className="p-4 bg-emerald-500/10 rounded-2xl text-emerald-400 w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <GraduationCap className="h-8 w-8" />
+                      </div>
+                      <div>
+                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'Ø§Ù„Ø¯ÙˆØ±Ø§Øª Ø§Ù„ØªØ¹Ù„ÙŠÙ…ÙŠØ©' : 'Manage Courses'}</p>
+                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'Ø¥Ø¶Ø§Ù Ø© ÙˆØªØ¹Ø¯ÙŠÙ„ ÙˆØ­Ø°Ù  Ø§Ù„Ø¯ÙˆØ±Ø§Øª ÙˆØ§Ù„Ø¯Ø±ÙˆØ³' : 'Add, edit, or remove courses and lessons.'}</p>
+                      </div>
+                    </Link>
+
+                    <Link href="/admin/quizzes" className="flex flex-col gap-4 p-6 rounded-3xl border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 hover:border-blue-500/40 transition-all group">
+                      <div className="p-4 bg-blue-500/10 rounded-2xl text-blue-400 w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <HelpCircle className="h-8 w-8" />
+                      </div>
+                      <div>
+                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'Ø§Ù„Ø§Ø®ØªØ¨Ø§Ø±Ø§Øª' : 'Quizzes'}</p>
+                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'Ø¥Ù†Ø´Ø§Ø¡ Ø§Ù„Ø§Ø®ØªØ¨Ø§Ø±Ø§Øª ÙˆØªØ­Ø¯ÙŠØ¯ Ø§Ù„Ø¥Ø¬Ø§Ø¨Ø§Øª Ø§Ù„ØµØ­ÙŠØ­Ø©' : 'Create quizzes and configure answers.'}</p>
+                      </div>
+                    </Link>
+
+                    <Link href="/admin/coupons" className="flex flex-col gap-4 p-6 rounded-3xl border border-brand-500/20 bg-brand-500/5 hover:bg-brand-500/10 hover:border-brand-500/40 transition-all group">
+                      <div className="p-4 bg-brand-500/10 rounded-2xl text-brand-400 w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Key className="h-8 w-8" />
+                      </div>
+                      <div>
+                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'Ø§Ù„ÙƒÙˆØ¨ÙˆÙ†Ø§Øª' : 'Coupons'}</p>
+                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'Ø¥Ø¯Ø§Ø±Ø© Ø£ÙƒÙˆØ§Ø¯ Ø§Ù„Ø¯Ø®ÙˆÙ„ Ù„Ù„Ø·Ù„Ø§Ø¨ Ø§Ù„Ø¬Ø¯Ø¯' : 'Generate access codes for new students.'}</p>
+                      </div>
+                    </Link>
+
+                    <Link href="/admin/analytics" className="flex flex-col gap-4 p-6 rounded-3xl border border-amber-500/20 bg-amber-500/5 hover:bg-amber-500/10 hover:border-amber-500/40 transition-all group">
+                      <div className="p-4 bg-amber-500/10 rounded-2xl text-amber-400 w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Award className="h-8 w-8" />
+                      </div>
+                      <div>
+                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'ØªÙ‚Ø§Ø±ÙŠØ± Ø§Ù„Ø£Ø¯Ø§Ø¡' : 'Analytics'}</p>
+                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'Ù…ØªØ§Ø¨Ø¹Ø© Ø£Ø¯Ø§Ø¡ Ø§Ù„Ø·Ù„Ø§Ø¨ ÙˆÙ…Ø¹Ø¯Ù„Ø§Øª Ø§Ù„Ø¥Ù†Ø¬Ø§Ø²' : 'Track student performance and completion rates.'}</p>
+                      </div>
+                    </Link>
+
+                    <Link href="/admin/teachers" className="flex flex-col gap-4 p-6 rounded-3xl border border-purple-500/20 bg-purple-500/5 hover:bg-purple-500/10 hover:border-purple-500/40 transition-all group">
+                      <div className="p-4 bg-purple-500/10 rounded-2xl text-purple-400 w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Users className="h-8 w-8" />
+                      </div>
+                      <div>
+                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ù…Ø¹Ù„Ù…ÙŠÙ†' : 'Teachers'}</p>
+                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'Ø¥Ø¶Ø§Ù Ø© Ù…Ø¹Ù„Ù…ÙŠÙ† ÙˆØªÙˆØ²ÙŠØ¹ Ø§Ù„ØµÙ„Ø§Ø­ÙŠØ§Øª' : 'Add teachers and manage platform access.'}</p>
+                      </div>
+                    </Link>
+
+                    <Link href="/admin/users" className="flex flex-col gap-4 p-6 rounded-3xl border border-rose-500/20 bg-rose-500/5 hover:bg-rose-500/10 hover:border-rose-500/40 transition-all group">
+                      <div className="p-4 bg-rose-500/10 rounded-2xl text-rose-400 w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <ShieldCheck className="h-8 w-8" />
+                      </div>
+                      <div>
+                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù…ÙŠÙ†' : 'User Management'}</p>
+                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'ØªØ±Ù‚ÙŠØ© Ø­Ø³Ø§Ø¨Ø§Øª Ø§Ù„Ø·Ù„Ø§Ø¨ Ø£Ùˆ Ø§Ù„Ù…Ø¹Ù„Ù…ÙŠÙ† Ù„Ù…Ø¯Ø±Ø§Ø¡' : 'Promote student or teacher accounts to Admins.'}</p>
+                      </div>
+                    </Link>
+                 </div>
+             </div>
+
+             {/* Recent Activity Feed */}
+             <div className="mt-12 bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8">
+                <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                   <Activity className="h-5 w-5 text-brand-500" />
+                   {locale === 'ar' ? 'Ø£Ø­Ø¯Ø« Ø§Ù„Ù†Ø´Ø§Ø·Ø§Øª' : 'Recent Activity'}
+                </h3>
+                <div className="space-y-4">
+                  {adminStats?.recentActivities?.length > 0 ? (
+                    adminStats.recentActivities.map((act: any, i: number) => (
+                      <div key={i} className="flex items-center gap-4 p-4 bg-slate-950 rounded-2xl border border-slate-850">
+                         <div className={`p-2 rounded-full ${act.color} shrink-0`}>
+                            <Sparkles className="h-4 w-4" />
+                         </div>
+                         <div className="flex-1">
+                            <p className="text-sm font-semibold text-slate-200">{locale === 'ar' ? act.textAr : act.textEn}</p>
+                            <p className="text-xs text-slate-500 mt-0.5">
+                              {new Date(act.time).toLocaleString(locale === 'ar' ? 'ar-EG' : 'en-US')}
+                            </p>
+                         </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="text-center py-6 text-slate-500">
+                      {locale === 'ar' ? 'Ù„Ø§ ÙŠÙˆØ¬Ø¯ Ù†Ø´Ø§Ø·Ø§Øª Ø­Ø¯ÙŠØ«Ø©' : 'No recent activities'}
+                    </div>
+                  )}
+                </div>
+             </div>
           </div>
         ) : (
           <div className="space-y-10 animate-fade-in pb-20">
                         {/* Quick Actions & Tools */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8 animate-fade-in">
-              <Link href={/ + locale + /labs/whiteboard} className="group flex items-center gap-4 p-5 bg-gradient-to-br from-indigo-900/40 to-slate-900 border border-indigo-500/20 hover:border-indigo-500/50 rounded-2xl transition-all shadow-lg hover:shadow-indigo-500/10 relative overflow-hidden">
+              <Link href={`/${locale}/labs/whiteboard`} className="group flex items-center gap-4 p-5 bg-gradient-to-br from-indigo-900/40 to-slate-900 border border-indigo-500/20 hover:border-indigo-500/50 rounded-2xl transition-all shadow-lg hover:shadow-indigo-500/10 relative overflow-hidden">
                 <div className="absolute top-0 end-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
                 <div className="w-14 h-14 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
                   <PenTool className="w-7 h-7" />
