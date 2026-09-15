@@ -6,26 +6,25 @@ import { usePathname } from 'next/navigation';
 export default function SocialFloatingButtons() {
   const pathname = usePathname();
   
-  if (pathname.includes('/grade11-exams/unit-') || pathname.match(/\/grade11-exams\/[0-9a-f-]+$/)) {
-    return null;
-  }
-
-  const whatsappNumber = '962790881392';
-  const whatsappUrl = `https://wa.me/${whatsappNumber}`;
-  const facebookUrl = 'https://www.facebook.com/profile.php?id=61591900810785';
-
-  const isAppRoute = 
+  const isExamOrAppRoute = 
     pathname.includes('/courses/') || 
     pathname.includes('/dashboard') ||
     pathname.includes('/studio') ||
     pathname.includes('/admin') ||
     pathname.includes('/parent') ||
     pathname.includes('/teach') ||
-    pathname.includes('/whiteboard');
+    pathname.includes('/whiteboard') ||
+    pathname.includes('/grade11-exams') ||
+    pathname.includes('/quizzes') ||
+    pathname.includes('/practice');
 
-  if (isAppRoute) {
+  if (isExamOrAppRoute) {
     return null;
   }
+
+  const whatsappNumber = '962790881392';
+  const whatsappUrl = `https://wa.me/${whatsappNumber}`;
+  const facebookUrl = 'https://www.facebook.com/profile.php?id=61591900810785';
 
   return (
     <div className="fixed bottom-6 left-6 z-50 flex flex-col gap-3 print:hidden">
