@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import { UploadCloud, BookOpen, Trash2, Plus, Loader2, FileText, CheckCircle } from 'lucide-react';
+import { UploadCloud, BookOpen, Trash2, Plus, Loader2, FileText, CheckCircle, Link as LinkIcon } from 'lucide-react';
 
 export default function AdminLibraryPage() {
   const params = useParams();
@@ -15,6 +15,7 @@ export default function AdminLibraryPage() {
   
   // Form State
   const [showForm, setShowForm] = useState(false);
+  const [uploadMethod, setUploadMethod] = useState<'FILE' | 'LINK'>('FILE');
   const [file, setFile] = useState<File | null>(null);
   const [formData, setFormData] = useState({
     titleAr: '',
@@ -24,6 +25,7 @@ export default function AdminLibraryPage() {
     grade: 'GRADE_12',
     subject: 'MATH',
     type: 'SUMMARY',
+    externalUrl: '',
   });
 
   const fetchDocuments = async () => {
@@ -44,30 +46,41 @@ export default function AdminLibraryPage() {
 
   const handleUpload = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!file) return alert(isRtl ? 'الرجاء اختيار ملف' : 'Please select a file');
+    if (uploadMethod === 'FILE' && !file) return alert(isRtl ? 'الرجاء اختيار ملف' : 'Please select a file');
+    if (uploadMethod === 'LINK' && !formData.externalUrl) return alert(isRtl ? 'الرجاء إدخال الرابط' : 'Please enter a URL');
     
     setIsUploading(true);
     try {
-      // 1. Upload file to Cloudinary
-      const uploadData = new FormData();
-      uploadData.append('file', file);
+      let finalUrl = formData.externalUrl;
+
+      if (uploadMethod === 'FILE' && file) {
+        const uploadData = new FormData();
+        uploadData.append('file', file);
+        
+        const uploadRes = await fetch('/api/admin/upload', {
+          method: 'POST',
+          headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') },
+          body: uploadData
+        });
+        
+        let uploadJson: any;
+        try {
+          uploadJson = await uploadRes.json();
+        } catch (e) {
+          if (uploadRes.status === 413) throw new Error(isRtl ? 'حجم الملف كبير جداً (الحد الأقصى 4.5 ميجا). يرجى ضغطه أو اختيار "رابط خارجي" لوضع رابط لجوجل درايف.' : 'File too large (max 4.5MB). Please compress it or use external link.');
+          throw new Error('Server error during upload');
+        }
+        if (!uploadRes.ok) throw new Error(uploadJson.error || 'Upload failed');
+        finalUrl = uploadJson.url;
+      }
       
-      const uploadRes = await fetch('/api/admin/upload', {
-        method: 'POST',
-        headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') },
-        body: uploadData
-      });
-      const uploadJson = await uploadRes.json();
-      if (!uploadRes.ok) throw new Error(uploadJson.error || 'Upload failed');
-      
-      // 2. Save document to Database
       const docRes = await fetch('/api/library', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + localStorage.getItem('token')
         },
-        body: JSON.stringify({ ...formData, fileUrl: uploadJson.url })
+        body: JSON.stringify({ ...formData, fileUrl: finalUrl })
       });
       
       if (!docRes.ok) throw new Error('Failed to save document');
@@ -75,7 +88,7 @@ export default function AdminLibraryPage() {
       alert(isRtl ? 'تم الرفع بنجاح' : 'Uploaded successfully');
       setShowForm(false);
       setFile(null);
-      setFormData({ ...formData, titleAr: '', titleEn: '' });
+      setFormData({ ...formData, titleAr: '', titleEn: '', externalUrl: '' });
       fetchDocuments();
     } catch (err: any) {
       alert(err.message);
@@ -170,15 +183,34 @@ export default function AdminLibraryPage() {
                 </select>
               </div>
 
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-300">{isRtl ? 'ملف الـ PDF' : 'PDF File'}</label>
-                <div className="relative">
-                  <input type="file" accept="application/pdf" onChange={e => setFile(e.target.files?.[0] || null)} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" required />
-                  <div className="w-full bg-slate-950 border border-slate-800 border-dashed rounded-xl px-4 py-3 text-center flex items-center justify-center gap-2 text-slate-400">
-                    <UploadCloud className="w-5 h-5" />
-                    {file ? <span className="text-emerald-400">{file.name}</span> : <span>{isRtl ? 'اضغط لاختيار ملف' : 'Click to select PDF'}</span>}
-                  </div>
+              <div className="space-y-4 col-span-1 md:col-span-2">
+                <div className="flex gap-4 border-b border-slate-800 pb-2">
+                  <button type="button" onClick={() => setUploadMethod('FILE')} className={`text-sm font-bold pb-2 border-b-2 transition-colors ${uploadMethod === 'FILE' ? 'border-brand-500 text-brand-400' : 'border-transparent text-slate-400 hover:text-slate-200'}`}>
+                    {isRtl ? 'رفع ملف PDF' : 'Upload PDF'}
+                  </button>
+                  <button type="button" onClick={() => setUploadMethod('LINK')} className={`text-sm font-bold pb-2 border-b-2 transition-colors ${uploadMethod === 'LINK' ? 'border-brand-500 text-brand-400' : 'border-transparent text-slate-400 hover:text-slate-200'}`}>
+                    {isRtl ? 'رابط خارجي (جوجل درايف)' : 'External Link (Drive)'}
+                  </button>
                 </div>
+
+                {uploadMethod === 'FILE' ? (
+                  <div className="relative">
+                    <input type="file" accept="application/pdf" onChange={e => setFile(e.target.files?.[0] || null)} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                    <div className="w-full bg-slate-950 border border-slate-800 border-dashed rounded-xl px-4 py-6 text-center flex flex-col items-center justify-center gap-2 text-slate-400">
+                      <UploadCloud className="w-8 h-8 mb-2" />
+                      {file ? <span className="text-emerald-400 font-bold">{file.name}</span> : <span>{isRtl ? 'اضغط لاختيار ملف (الحد الأقصى 4.5 ميجابايت)' : 'Click to select PDF (max 4.5MB)'}</span>}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+                        <LinkIcon className="h-5 w-5" />
+                      </div>
+                      <input type="url" value={formData.externalUrl} onChange={e => setFormData({...formData, externalUrl: e.target.value})} className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-white" placeholder="https://drive.google.com/..." />
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
