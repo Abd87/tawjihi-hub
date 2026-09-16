@@ -88,7 +88,7 @@ export default function AdminLibraryPage() {
   const handleDelete = async (id: string) => {
     if (!confirm(isRtl ? 'هل أنت متأكد من الحذف؟' : 'Are you sure?')) return;
     try {
-      const res = await fetch(/api/library/ + id, {
+      const res = await fetch('/api/library/' + id, {
         method: 'DELETE',
         headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
       });

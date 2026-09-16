@@ -26,7 +26,7 @@ export default function PublicLibraryPage() {
       if (filterSubject) query.append('subject', filterSubject);
       if (filterType) query.append('type', filterType);
       
-      const res = await fetch(/api/library? + query.toString());
+      const res = await fetch('/api/library?' + query.toString());
       const data = await res.json();
       setDocuments(data.documents || []);
     } catch (err) {
