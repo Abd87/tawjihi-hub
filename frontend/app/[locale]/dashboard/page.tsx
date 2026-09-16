@@ -512,6 +512,23 @@ export default function DashboardPage() {
             </Link>
 
             <Link
+              href="/library"
+              className="group p-4 bg-slate-900/60 border border-slate-800 hover:border-emerald-500/50 rounded-2xl transition-all flex items-center gap-3 backdrop-blur-xl"
+            >
+              <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 group-hover:scale-110 transition-transform">
+                <BookOpen className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-white group-hover:text-emerald-400 transition-colors">
+                  {locale === 'ar' ? 'المكتبة العامة' : 'Public Library'}
+                </h4>
+                <p className="text-[10px] text-slate-400">
+                  {locale === 'ar' ? 'دوسيات وأوراق عمل مجانية' : 'Free summaries & worksheets'}
+                </p>
+              </div>
+            </Link>
+
+            <Link
               href="/redeem"
               className="group p-4 bg-slate-900/60 border border-slate-800 hover:border-emerald-500/50 rounded-2xl transition-all flex items-center gap-3 backdrop-blur-xl"
             >
