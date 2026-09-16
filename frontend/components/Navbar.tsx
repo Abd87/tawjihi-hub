@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useTranslations } from 'next-intl';
 import { useRouter, usePathname, Link } from '@/i18n/routing';
@@ -159,15 +159,15 @@ export default function Navbar() {
               className="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-slate-800 bg-slate-900/60 text-slate-300 hover:text-white hover:border-slate-600 transition-all text-xs font-semibold"
             >
               <Globe className="h-3.5 w-3.5 text-brand-500" />
-              <span>{currentLocale === 'ar' ? 'English' : 'العربية'}</span>
+              <span>{currentLocale === 'ar' ? 'English' : 'Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©'}</span>
             </button>
             {isHome && !user && (
               <div className="hidden sm:flex items-center gap-3 ml-2">
                 <Link href="/login" className="text-xs font-bold text-slate-300 hover:text-white transition-colors px-3.5 py-2">
-                  {t('login') || (currentLocale === 'ar' ? 'تسجيل الدخول' : 'Log In')}
+                  {t('login') || (currentLocale === 'ar' ? 'ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„' : 'Log In')}
                 </Link>
                 <Link href="/register" className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 shadow-lg shadow-brand-500/25 hover:shadow-brand-500/35 transition-all">
-                  {t('register') || (currentLocale === 'ar' ? 'إنشاء حساب' : 'Register')}
+                  {t('register') || (currentLocale === 'ar' ? 'Ø¥Ù†Ø´Ø§Ø¡ Ø­Ø³Ø§Ø¨' : 'Register')}
                 </Link>
               </div>
             )}
@@ -175,7 +175,7 @@ export default function Navbar() {
               <div className="flex items-center gap-2 ml-2">
                 <Link href={isStudent ? '/dashboard' : (isTeacher ? '/studio' : (isParent ? '/parent/dashboard' : '/admin/courses'))} className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 shadow-lg shadow-brand-500/25 transition-all">
                   <LayoutDashboard className="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" />
-                  {currentLocale === 'ar' ? 'لوحة التحكم' : 'Dashboard'}
+                  {currentLocale === 'ar' ? 'Ù„ÙˆØ­Ø© Ø§Ù„ØªØ­ÙƒÙ…' : 'Dashboard'}
                 </Link>
               </div>
             )}
@@ -214,15 +214,15 @@ export default function Navbar() {
               <>
                 <Link href="/dashboard" className="text-xs font-bold text-slate-300 hover:text-brand-400 transition-colors flex items-center gap-1.5">
                   <LayoutDashboard className="w-4 h-4 text-brand-500" />
-                  <span>{currentLocale === 'ar' ? 'لوحتي التعليمية' : 'My Dashboard'}</span>
+                  <span>{currentLocale === 'ar' ? 'Ù„ÙˆØ­ØªÙŠ Ø§Ù„ØªØ¹Ù„ÙŠÙ…ÙŠØ©' : 'My Dashboard'}</span>
                 </Link>
                 <Link href="/dashboard/mistakes" className="text-xs font-bold text-slate-300 hover:text-amber-400 transition-colors flex items-center gap-1.5">
                   <BookOpen className="w-4 h-4 text-amber-500" />
-                  <span>{currentLocale === 'ar' ? 'بنك الأخطاء' : 'Mistake Bank'}</span>
+                  <span>{currentLocale === 'ar' ? 'Ø¨Ù†Ùƒ Ø§Ù„Ø£Ø®Ø·Ø§Ø¡' : 'Mistake Bank'}</span>
                 </Link>
                 <Link href="/redeem" className="text-xs font-bold text-slate-300 hover:text-emerald-400 transition-colors flex items-center gap-1.5">
                   <Ticket className="w-4 h-4 text-emerald-500" />
-                  <span>{currentLocale === 'ar' ? 'تفعيل بطاقة' : 'Redeem Code'}</span>
+                  <span>{currentLocale === 'ar' ? 'ØªÙØ¹ÙŠÙ„ Ø¨Ø·Ø§Ù‚Ø©' : 'Redeem Code'}</span>
                 </Link>
               </>
             )}
@@ -232,7 +232,7 @@ export default function Navbar() {
               <div className="relative group">
                 <Link href="/studio" className="flex items-center gap-2 px-3 py-1.5 bg-brand-500/10 border border-brand-500/30 rounded-xl text-xs font-extrabold text-brand-400 hover:bg-brand-500/20 transition-all">
                   <Sparkles className="w-4 h-4" />
-                  <span>{currentLocale === 'ar' ? 'استوديو المعلم 2.0' : 'Teacher Studio 2.0'}</span>
+                  <span>{currentLocale === 'ar' ? 'Ø§Ø³ØªÙˆØ¯ÙŠÙˆ Ø§Ù„Ù…Ø¹Ù„Ù… 2.0' : 'Teacher Studio 2.0'}</span>
                   <ChevronDown className="w-3.5 h-3.5 opacity-70" />
                 </Link>
 
@@ -240,36 +240,36 @@ export default function Navbar() {
                 <div className="absolute top-full start-0 mt-2 w-64 bg-slate-950 border border-slate-800 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 p-2 z-50">
                   <Link href="/studio" className="flex items-center gap-2.5 px-3 py-2 text-xs font-bold text-slate-200 hover:bg-slate-900 rounded-xl">
                     <LayoutDashboard className="w-4 h-4 text-brand-400" />
-                    <span>{currentLocale === 'ar' ? 'لوحة تحكم الاستوديو' : 'Studio Hub'}</span>
+                    <span>{currentLocale === 'ar' ? 'Ù„ÙˆØ­Ø© ØªØ­ÙƒÙ… Ø§Ù„Ø§Ø³ØªÙˆØ¯ÙŠÙˆ' : 'Studio Hub'}</span>
                   </Link>
                   <Link href="/studio/course-builder" className="flex items-center gap-2.5 px-3 py-2 text-xs font-bold text-slate-200 hover:bg-slate-900 rounded-xl">
                     <BookOpen className="w-4 h-4 text-brand-400" />
-                    <span>{currentLocale === 'ar' ? 'منشئ ومحرر الدورات' : 'Course Builder'}</span>
+                    <span>{currentLocale === 'ar' ? 'Ù…Ù†Ø´Ø¦ ÙˆÙ…Ø­Ø±Ø± Ø§Ù„Ø¯ÙˆØ±Ø§Øª' : 'Course Builder'}</span>
                   </Link>
                   <Link href="/studio/broadcasts" className="flex items-center gap-2.5 px-3 py-2 text-xs font-bold text-slate-200 hover:bg-slate-900 rounded-xl">
                     <Radio className="w-4 h-4 text-purple-400 animate-pulse" />
-                    <span>{currentLocale === 'ar' ? 'إعلانات وتنبيهات الطلاب' : 'Direct Broadcasts'}</span>
+                    <span>{currentLocale === 'ar' ? 'Ø¥Ø¹Ù„Ø§Ù†Ø§Øª ÙˆØªÙ†Ø¨ÙŠÙ‡Ø§Øª Ø§Ù„Ø·Ù„Ø§Ø¨' : 'Direct Broadcasts'}</span>
                   </Link>
                   <Link href="/studio/revenue" className="flex items-center gap-2.5 px-3 py-2 text-xs font-bold text-slate-200 hover:bg-slate-900 rounded-xl">
                     <DollarSign className="w-4 h-4 text-emerald-400" />
-                    <span>{currentLocale === 'ar' ? 'المالية وتتبع الأرباح' : 'Revenue Analytics'}</span>
+                    <span>{currentLocale === 'ar' ? 'Ø§Ù„Ù…Ø§Ù„ÙŠØ© ÙˆØªØªØ¨Ø¹ Ø§Ù„Ø£Ø±Ø¨Ø§Ø­' : 'Revenue Analytics'}</span>
                   </Link>
                   <Link href="/studio/analytics" className="flex items-center gap-2.5 px-3 py-2 text-xs font-bold text-slate-200 hover:bg-slate-900 rounded-xl">
                     <AlertTriangle className="w-4 h-4 text-amber-400" />
-                    <span>{currentLocale === 'ar' ? 'الأسئلة الأكثر تعثراً' : 'Student Bottlenecks'}</span>
+                    <span>{currentLocale === 'ar' ? 'Ø§Ù„Ø£Ø³Ø¦Ù„Ø© Ø§Ù„Ø£ÙƒØ«Ø± ØªØ¹Ø«Ø±Ø§Ù‹' : 'Student Bottlenecks'}</span>
                   </Link>
                   <Link href="/studio/quiz-bulk" className="flex items-center gap-2.5 px-3 py-2 text-xs font-bold text-slate-200 hover:bg-slate-900 rounded-xl">
                     <UploadCloud className="w-4 h-4 text-blue-400" />
-                    <span>{currentLocale === 'ar' ? 'رفع وتوليد بنك الأسئلة' : 'Bulk Quiz Uploader'}</span>
+                    <span>{currentLocale === 'ar' ? 'Ø±ÙØ¹ ÙˆØªÙˆÙ„ÙŠØ¯ Ø¨Ù†Ùƒ Ø§Ù„Ø£Ø³Ø¦Ù„Ø©' : 'Bulk Quiz Uploader'}</span>
                   </Link>
                 </div>
               </div>
             )}
 
             {/* General Public Links */}
-            <Link href={`/${currentLocale}/library`} className="text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1.5 bg-emerald-500/10 px-3 py-1.5 rounded-xl border border-emerald-500/20">
+            <Link href="/library" className="text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1.5 bg-emerald-500/10 px-3 py-1.5 rounded-xl border border-emerald-500/20">
               <BookOpen className="w-3.5 h-3.5" />
-              <span>{currentLocale === 'ar' ? 'المكتبة العامة' : 'Library'}</span>
+              <span>{currentLocale === 'ar' ? 'Ø§Ù„Ù…ÙƒØªØ¨Ø© Ø§Ù„Ø¹Ø§Ù…Ø©' : 'Library'}</span>
             </Link>
             <a href={homeAnchor('academic-track')} className="text-xs font-medium text-slate-300 hover:text-brand-400 transition-colors">
               {t('academic')}
@@ -279,50 +279,50 @@ export default function Navbar() {
             </a>
             <Link href="/grade11-exams" className="text-xs font-bold text-amber-400 hover:text-amber-300 transition-colors flex items-center gap-1 bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20">
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              <span>{currentLocale === 'ar' ? 'امتحانات 11 مجانية' : 'Free Grade 11 Exams'}</span>
+              <span>{currentLocale === 'ar' ? 'Ø§Ù…ØªØ­Ø§Ù†Ø§Øª 11 Ù…Ø¬Ø§Ù†ÙŠØ©' : 'Free Grade 11 Exams'}</span>
             </Link>
             <Link href="/btec-guide" className="text-xs font-medium text-slate-300 hover:text-brand-400 transition-colors flex items-center gap-1">
               <Sparkles className="w-3.5 h-3.5 text-brand-500" />
-              {t('btecGuide') || (currentLocale === 'ar' ? 'دليل BTEC' : 'BTEC Guide')}
+              {t('btecGuide') || (currentLocale === 'ar' ? 'Ø¯Ù„ÙŠÙ„ BTEC' : 'BTEC Guide')}
             </Link>
             <Link href="/calculator" className="text-xs font-medium text-slate-300 hover:text-brand-400 transition-colors flex items-center gap-1">
               <Calculator className="w-3.5 h-3.5 text-brand-500" />
-              {t('calculator') || (currentLocale === 'ar' ? 'حاسبة المعدل' : 'GPA Calculator')}
+              {t('calculator') || (currentLocale === 'ar' ? 'Ø­Ø§Ø³Ø¨Ø© Ø§Ù„Ù…Ø¹Ø¯Ù„' : 'GPA Calculator')}
             </Link>
             <Link href="/subjects" className="text-xs font-medium text-slate-300 hover:text-brand-400 transition-colors">
-              {currentLocale === 'ar' ? 'المواد' : 'Subjects'}
+              {currentLocale === 'ar' ? 'Ø§Ù„Ù…ÙˆØ§Ø¯' : 'Subjects'}
             </Link>
             <Link href="/labs" className="text-xs font-medium text-slate-300 hover:text-brand-400 transition-colors">
-              {currentLocale === 'ar' ? 'المختبرات' : 'Labs'}
+              {currentLocale === 'ar' ? 'Ø§Ù„Ù…Ø®ØªØ¨Ø±Ø§Øª' : 'Labs'}
             </Link>
 
             {isAdmin && (
               <div className="relative group">
                 <button className="flex items-center gap-1.5 text-xs font-bold text-amber-400 hover:text-amber-300 transition-colors py-1">
                   <ShieldCheck className="h-4 w-4" />
-                  <span>{currentLocale === 'ar' ? 'لوحة الإدارة' : 'Admin'}</span>
+                  <span>{currentLocale === 'ar' ? 'Ù„ÙˆØ­Ø© Ø§Ù„Ø¥Ø¯Ø§Ø±Ø©' : 'Admin'}</span>
                   <ChevronDown className="h-3 w-3" />
                 </button>
                 <div className="absolute top-full start-0 mt-1 w-52 bg-slate-950 border border-slate-800 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-1 z-50">
                   <Link href="/admin/analytics" className="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 rounded-xl mx-1">
                     <BarChart2 className="h-4 w-4 text-amber-400" />
-                    <span>{currentLocale === 'ar' ? 'الإحصائيات' : 'Analytics'}</span>
+                    <span>{currentLocale === 'ar' ? 'Ø§Ù„Ø¥Ø­ØµØ§Ø¦ÙŠØ§Øª' : 'Analytics'}</span>
                   </Link>
                   <Link href="/admin/courses" className="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 rounded-xl mx-1">
                     <GraduationCap className="h-4 w-4 text-amber-400" />
-                    <span>{currentLocale === 'ar' ? 'إدارة الدورات' : 'Courses'}</span>
+                    <span>{currentLocale === 'ar' ? 'Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ø¯ÙˆØ±Ø§Øª' : 'Courses'}</span>
                   </Link>
                   <Link href="/admin/users" className="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 rounded-xl mx-1">
                     <Users className="h-4 w-4 text-amber-400" />
-                    <span>{currentLocale === 'ar' ? 'إدارة المستخدمين' : 'User Management'}</span>
+                    <span>{currentLocale === 'ar' ? 'Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù…ÙŠÙ†' : 'User Management'}</span>
                   </Link>
                   <Link href="/admin/coupons" className="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 rounded-xl mx-1">
                     <Key className="h-4 w-4 text-amber-400" />
-                    <span>{currentLocale === 'ar' ? 'إدارة الكوبونات' : 'Coupons'}</span>
+                    <span>{currentLocale === 'ar' ? 'Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„ÙƒÙˆØ¨ÙˆÙ†Ø§Øª' : 'Coupons'}</span>
                   </Link>
                   <Link href="/admin/applications" className="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900 rounded-xl mx-1 border-t border-slate-800/60 mt-1 pt-2.5">
                     <Users className="h-4 w-4 text-emerald-400" />
-                    <span>{currentLocale === 'ar' ? 'طلبات التوظيف' : 'Applications'}</span>
+                    <span>{currentLocale === 'ar' ? 'Ø·Ù„Ø¨Ø§Øª Ø§Ù„ØªÙˆØ¸ÙŠÙ' : 'Applications'}</span>
                   </Link>
                 </div>
               </div>
@@ -337,7 +337,7 @@ export default function Navbar() {
               aria-label="Toggle language"
             >
               <Globe className="h-3.5 w-3.5 text-brand-500" />
-              <span>{currentLocale === 'ar' ? 'English' : 'العربية'}</span>
+              <span>{currentLocale === 'ar' ? 'English' : 'Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©'}</span>
             </button>
 
             {user ? (
@@ -348,7 +348,7 @@ export default function Navbar() {
                       disabled={switchingRole}
                       className="inline-flex items-center gap-1.5 text-xs font-extrabold text-amber-400 hover:text-amber-300 transition-colors px-3 py-1.5 border border-amber-500/30 rounded-xl bg-amber-500/10"
                     >
-                      <span>{currentLocale === 'ar' ? `محاكاة: ${user.role}` : `Role: ${user.role}`}</span>
+                      <span>{currentLocale === 'ar' ? `Ù…Ø­Ø§ÙƒØ§Ø©: ${user.role}` : `Role: ${user.role}`}</span>
                       <ChevronDown className="h-3 w-3" />
                     </button>
                     <div className="absolute top-full start-0 mt-1 w-36 bg-slate-950 border border-slate-800 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 p-1 z-50">
@@ -371,13 +371,13 @@ export default function Navbar() {
                     {(user?.nameAr || user?.nameEn || 'U').charAt(0)}
                   </div>
                   <span className="text-xs font-bold text-slate-200 max-w-[100px] truncate">
-                    {user?.nameAr || user?.nameEn || 'مستخدم'}
+                    {user?.nameAr || user?.nameEn || 'Ù…Ø³ØªØ®Ø¯Ù…'}
                   </span>
                   
                   <Link 
                     href="/dashboard/settings"
                     className="p-1 text-slate-400 hover:text-white transition-colors"
-                    title={currentLocale === 'ar' ? 'الإعدادات' : 'Settings'}
+                    title={currentLocale === 'ar' ? 'Ø§Ù„Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª' : 'Settings'}
                   >
                     <Settings className="h-3.5 w-3.5" />
                   </Link>
@@ -385,7 +385,7 @@ export default function Navbar() {
                   <button 
                     onClick={handleLogout}
                     className="p-1 text-slate-400 hover:text-rose-400 transition-colors"
-                    title={currentLocale === 'ar' ? 'تسجيل الخروج' : 'Log Out'}
+                    title={currentLocale === 'ar' ? 'ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø®Ø±ÙˆØ¬' : 'Log Out'}
                   >
                     <LogOut className="h-3.5 w-3.5" />
                   </button>
@@ -396,7 +396,7 @@ export default function Navbar() {
                   className="inline-flex items-center gap-1.5 justify-center px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-brand-500 to-amber-600 hover:from-brand-600 hover:to-amber-700 shadow-md shadow-brand-500/20 transition-all"
                 >
                   <LayoutDashboard className="h-3.5 w-3.5" />
-                  <span>{currentLocale === 'ar' ? 'لوحة التحكم' : 'Dashboard'}</span>
+                  <span>{currentLocale === 'ar' ? 'Ù„ÙˆØ­Ø© Ø§Ù„ØªØ­ÙƒÙ…' : 'Dashboard'}</span>
                 </Link>
               </div>
             ) : (
@@ -419,7 +419,7 @@ export default function Navbar() {
               aria-label="Toggle language"
             >
               <Globe className="h-3.5 w-3.5 text-brand-500" />
-              <span>{currentLocale === 'ar' ? 'EN' : 'ع'}</span>
+              <span>{currentLocale === 'ar' ? 'EN' : 'Ø¹'}</span>
             </button>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -443,7 +443,7 @@ export default function Navbar() {
                       {(user?.nameAr || user?.nameEn || 'U').charAt(0)}
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-white">{user?.nameAr || user?.nameEn || 'مستخدم'}</p>
+                      <p className="text-xs font-bold text-white">{user?.nameAr || user?.nameEn || 'Ù…Ø³ØªØ®Ø¯Ù…'}</p>
                       <span className="text-[10px] text-brand-400 font-semibold uppercase">{user?.role}</span>
                     </div>
                   </div>
@@ -458,7 +458,7 @@ export default function Navbar() {
               {user?.isMasterAdmin && (
                 <div className="p-3 bg-amber-500/10 border border-amber-500/20 rounded-2xl mb-3">
                   <p className="text-[10px] font-bold text-amber-500 uppercase mb-2">
-                    {currentLocale === 'ar' ? 'تغيير الدور (للمدير)' : 'Switch Role (Admin)'}
+                    {currentLocale === 'ar' ? 'ØªØºÙŠÙŠØ± Ø§Ù„Ø¯ÙˆØ± (Ù„Ù„Ù…Ø¯ÙŠØ±)' : 'Switch Role (Admin)'}
                   </p>
                   <div className="grid grid-cols-2 gap-2">
                     {['STUDENT', 'PARENT', 'TEACHER', 'ADMIN'].map(r => (
@@ -483,15 +483,15 @@ export default function Navbar() {
                 <>
                   <Link href="/dashboard" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-bold text-slate-200 hover:bg-slate-900">
                     <LayoutDashboard className="w-4 h-4 text-brand-500" />
-                    <span>{currentLocale === 'ar' ? 'لوحتي التعليمية' : 'My Dashboard'}</span>
+                    <span>{currentLocale === 'ar' ? 'Ù„ÙˆØ­ØªÙŠ Ø§Ù„ØªØ¹Ù„ÙŠÙ…ÙŠØ©' : 'My Dashboard'}</span>
                   </Link>
                   <Link href="/dashboard/mistakes" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-bold text-slate-200 hover:bg-slate-900">
                     <BookOpen className="w-4 h-4 text-amber-500" />
-                    <span>{currentLocale === 'ar' ? 'بنك الأخطاء والتمارين' : 'Mistake Bank'}</span>
+                    <span>{currentLocale === 'ar' ? 'Ø¨Ù†Ùƒ Ø§Ù„Ø£Ø®Ø·Ø§Ø¡ ÙˆØ§Ù„ØªÙ…Ø§Ø±ÙŠÙ†' : 'Mistake Bank'}</span>
                   </Link>
                   <Link href="/redeem" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-bold text-slate-200 hover:bg-slate-900">
                     <Ticket className="w-4 h-4 text-emerald-500" />
-                    <span>{currentLocale === 'ar' ? 'تفعيل بطاقة دورة' : 'Redeem Code'}</span>
+                    <span>{currentLocale === 'ar' ? 'ØªÙØ¹ÙŠÙ„ Ø¨Ø·Ø§Ù‚Ø© Ø¯ÙˆØ±Ø©' : 'Redeem Code'}</span>
                   </Link>
                 </>
               )}
@@ -500,35 +500,35 @@ export default function Navbar() {
               {isTeacher && (
                 <>
                   <div className="p-1 bg-brand-500/10 border border-brand-500/20 rounded-2xl space-y-1 mb-2">
-                    <span className="px-3 py-1 text-[10px] font-extrabold text-brand-400 uppercase block">{currentLocale === 'ar' ? 'استوديو المعلم 2.0' : 'Teacher Studio 2.0'}</span>
+                    <span className="px-3 py-1 text-[10px] font-extrabold text-brand-400 uppercase block">{currentLocale === 'ar' ? 'Ø§Ø³ØªÙˆØ¯ÙŠÙˆ Ø§Ù„Ù…Ø¹Ù„Ù… 2.0' : 'Teacher Studio 2.0'}</span>
                     <Link href="/studio" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-white hover:bg-slate-900">
                       <LayoutDashboard className="w-4 h-4 text-brand-400" />
-                      <span>{currentLocale === 'ar' ? 'لوحة تحكم الاستوديو' : 'Studio Hub'}</span>
+                      <span>{currentLocale === 'ar' ? 'Ù„ÙˆØ­Ø© ØªØ­ÙƒÙ… Ø§Ù„Ø§Ø³ØªÙˆØ¯ÙŠÙˆ' : 'Studio Hub'}</span>
                     </Link>
                     <Link href="/studio/course-builder" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-white hover:bg-slate-900">
                       <BookOpen className="w-4 h-4 text-brand-400" />
-                      <span>{currentLocale === 'ar' ? 'منشئ ومحرر الدورات' : 'Course Builder'}</span>
+                      <span>{currentLocale === 'ar' ? 'Ù…Ù†Ø´Ø¦ ÙˆÙ…Ø­Ø±Ø± Ø§Ù„Ø¯ÙˆØ±Ø§Øª' : 'Course Builder'}</span>
                     </Link>
                     <Link href="/studio/broadcasts" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-white hover:bg-slate-900">
                       <Radio className="w-4 h-4 text-purple-400" />
-                      <span>{currentLocale === 'ar' ? 'إعلانات وتنبيهات الطلاب' : 'Direct Broadcasts'}</span>
+                      <span>{currentLocale === 'ar' ? 'Ø¥Ø¹Ù„Ø§Ù†Ø§Øª ÙˆØªÙ†Ø¨ÙŠÙ‡Ø§Øª Ø§Ù„Ø·Ù„Ø§Ø¨' : 'Direct Broadcasts'}</span>
                     </Link>
                     <Link href="/studio/revenue" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-white hover:bg-slate-900">
                       <DollarSign className="w-4 h-4 text-emerald-400" />
-                      <span>{currentLocale === 'ar' ? 'المالية وتتبع الأرباح' : 'Revenue Analytics'}</span>
+                      <span>{currentLocale === 'ar' ? 'Ø§Ù„Ù…Ø§Ù„ÙŠØ© ÙˆØªØªØ¨Ø¹ Ø§Ù„Ø£Ø±Ø¨Ø§Ø­' : 'Revenue Analytics'}</span>
                     </Link>
                     <Link href="/studio/analytics" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold text-white hover:bg-slate-900">
                       <AlertTriangle className="w-4 h-4 text-amber-400" />
-                      <span>{currentLocale === 'ar' ? 'الأسئلة الأكثر تعثراً' : 'Student Bottlenecks'}</span>
+                      <span>{currentLocale === 'ar' ? 'Ø§Ù„Ø£Ø³Ø¦Ù„Ø© Ø§Ù„Ø£ÙƒØ«Ø± ØªØ¹Ø«Ø±Ø§Ù‹' : 'Student Bottlenecks'}</span>
                     </Link>
                   </div>
                 </>
               )}
 
               {/* Public Links */}
-              <Link href={`/${currentLocale}/library`} onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 hover:bg-emerald-500/20">
+              <Link href="/library" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 hover:bg-emerald-500/20">
                 <BookOpen className="w-4 h-4 text-emerald-400" />
-                <span>{currentLocale === 'ar' ? 'المكتبة العامة' : 'Library'}</span>
+                <span>{currentLocale === 'ar' ? 'Ø§Ù„Ù…ÙƒØªØ¨Ø© Ø§Ù„Ø¹Ø§Ù…Ø©' : 'Library'}</span>
               </Link>
               <a href={homeAnchor('academic-track')} onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white">
                 <BookOpen className="h-4 w-4 text-brand-500" />
@@ -540,15 +540,15 @@ export default function Navbar() {
               </a>
               <Link href="/grade11-exams" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-bold text-amber-400 bg-amber-500/10 border border-amber-500/20 hover:bg-amber-500/20">
                 <Sparkles className="w-4 h-4 text-amber-400" />
-                <span>{currentLocale === 'ar' ? 'امتحانات 11 مجانية' : 'Free Grade 11 Exams'}</span>
+                <span>{currentLocale === 'ar' ? 'Ø§Ù…ØªØ­Ø§Ù†Ø§Øª 11 Ù…Ø¬Ø§Ù†ÙŠØ©' : 'Free Grade 11 Exams'}</span>
               </Link>
               <Link href="/btec-guide" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white">
                 <Sparkles className="w-4 h-4 text-brand-500" />
-                <span>{t('btecGuide') || (currentLocale === 'ar' ? 'دليل BTEC' : 'BTEC Guide')}</span>
+                <span>{t('btecGuide') || (currentLocale === 'ar' ? 'Ø¯Ù„ÙŠÙ„ BTEC' : 'BTEC Guide')}</span>
               </Link>
               <Link href="/calculator" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white">
                 <Calculator className="w-4 h-4 text-brand-500" />
-                <span>{t('calculator') || (currentLocale === 'ar' ? 'حاسبة المعدل' : 'GPA Calculator')}</span>
+                <span>{t('calculator') || (currentLocale === 'ar' ? 'Ø­Ø§Ø³Ø¨Ø© Ø§Ù„Ù…Ø¹Ø¯Ù„' : 'GPA Calculator')}</span>
               </Link>
 
               <div className="border-t border-slate-800/60 my-2" />
@@ -560,7 +560,7 @@ export default function Navbar() {
                   className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold text-rose-400 bg-rose-500/10 border border-rose-500/20"
                 >
                   <LogOut className="h-4 w-4" />
-                  <span>{currentLocale === 'ar' ? 'تسجيل الخروج' : 'Log Out'}</span>
+                  <span>{currentLocale === 'ar' ? 'ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø®Ø±ÙˆØ¬' : 'Log Out'}</span>
                 </button>
               ) : (
                 <div className="grid grid-cols-2 gap-2 pt-2">
