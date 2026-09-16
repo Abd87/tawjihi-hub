@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
@@ -111,39 +111,39 @@ export default function DashboardPage() {
       return [
         {
           id: 'mock-btec-1',
-          titleAr: 'ØªØ§Ø±ÙŠØ® Ø§Ù„Ø£Ø±Ø¯Ù† Ù„Ù„ØªÙˆØ¬ÙŠÙ‡ÙŠ ÙˆØ§Ù„Ù…Ù‡Ù†ÙŠ BTEC',
+          titleAr: 'تاريخ الأردن للتوجيهي والمهني BTEC',
           titleEn: 'Jordan History for Grade 12 BTEC',
-          descriptionAr: 'Ø¯ÙˆØ±Ø© Ø´Ø§Ù…Ù„Ø© ÙˆÙ…Ø¨Ø³Ø·Ø© Ù„Ø´Ø±Ø­ Ù…Ù†Ù‡Ø§Ø¬ ØªØ§Ø±ÙŠØ® Ø§Ù„Ø£Ø±Ø¯Ù† Ø§Ù„Ù…Ø¹ØªÙ…Ø¯ Ù„Ø·Ù„Ø¨Ø© Ø§Ù„Ù…Ø³Ø§Ø± Ø§Ù„Ù…Ù‡Ù†ÙŠ ÙˆØ§Ù„ØªÙ‚Ù†ÙŠ.',
+          descriptionAr: 'دورة شاملة ومبسطة لشرح منهاج تاريخ الأردن المعتمد لطلبة المسار المهني والتقني.',
           descriptionEn: 'Comprehensive guide covering historical milestones tailored for technical students.',
           coverImage: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600&auto=format&fit=crop&q=60',
-          subjectAr: 'ØªØ§Ø±ÙŠØ® Ø§Ù„Ø£Ø±Ø¯Ù† (Ø§Ù„Ù…Ø´ØªØ±Ùƒ)', subjectEn: 'Jordan History',
-          teacherNameAr: 'Ø£. Ù…Ø­Ù…Ø¯ Ø§Ù„Ù…Ù‡Ù†ÙŠ', teacherNameEn: 'Mr. Mohammad BTEC',
+          subjectAr: 'تاريخ الأردن (المشترك)', subjectEn: 'Jordan History',
+          teacherNameAr: 'أ. محمد المهني', teacherNameEn: 'Mr. Mohammad BTEC',
           mockLessonsCount: 12,
           mockQuizzesCount: 6,
           mockProgress: 45
         },
         {
           id: 'mock-btec-2',
-          titleAr: 'Ø§Ù„Ù„ØºØ© Ø§Ù„Ø¥Ù†Ø¬Ù„ÙŠØ²ÙŠØ© Ø§Ù„Ù…Ø´ØªØ±ÙƒØ© BTEC',
+          titleAr: 'اللغة الإنجليزية المشتركة BTEC',
           titleEn: 'Core English for Grade 12 BTEC',
-          descriptionAr: 'Ù…Ù†Ù‡Ø§Ø¬ Ø§Ù„Ù„ØºØ© Ø§Ù„Ø¥Ù†Ø¬Ù„ÙŠØ²ÙŠØ© Ø§Ù„Ù…Ø´ØªØ±Ùƒ Ù„ØªØ¹Ø²ÙŠØ² Ù…Ù‡Ø§Ø±Ø§Øª Ø§Ù„Ù‚Ø±Ø§Ø¡Ø© ÙˆØ§Ù„ÙƒØªØ§Ø¨Ø© ÙˆØ§Ù„Ù…Ø­Ø§Ø¯Ø«Ø© Ø§Ù„Ù…Ù‡Ù†ÙŠØ©.',
+          descriptionAr: 'منهاج اللغة الإنجليزية المشترك لتعزيز مهارات القراءة والكتابة والمحادثة المهنية.',
           descriptionEn: 'Focus on communication, core grammar structures and vocational English writing.',
           coverImage: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&auto=format&fit=crop&q=60',
-          subjectAr: 'Ø§Ù„Ù„ØºØ© Ø§Ù„Ø¥Ù†Ø¬Ù„ÙŠØ²ÙŠØ© (Ø§Ù„Ù…Ø´ØªØ±ÙƒØ©)', subjectEn: 'Core English',
-          teacherNameAr: 'Ø£. Ø±Ø§Ù†ÙŠØ§ Ø´Ø­Ø§ØªØ©', teacherNameEn: 'Mrs. Rania Shehata',
+          subjectAr: 'اللغة الإنجليزية (المشتركة)', subjectEn: 'Core English',
+          teacherNameAr: 'أ. رانيا شحاتة', teacherNameEn: 'Mrs. Rania Shehata',
           mockLessonsCount: 15,
           mockQuizzesCount: 5,
           mockProgress: 75
         },
         {
           id: 'mock-btec-3',
-          titleAr: 'Ø§Ù„ØªØ±Ø¨ÙŠØ© Ø§Ù„Ø¥Ø³Ù„Ø§Ù…ÙŠØ© - Ø§Ù„Ù…Ø³ØªÙˆÙ‰ Ø§Ù„Ø«Ø§Ù„Ø«',
+          titleAr: 'التربية الإسلامية - المستوى الثالث',
           titleEn: 'Islamic Studies for Grade 12 BTEC',
-          descriptionAr: 'Ø´Ø±Ø­ Ù…Ø¨Ø³Ø· ÙˆÙˆØ§Ø¶Ø­ Ù„Ù„Ù…Ù†Ù‡Ø§Ø¬ Ø§Ù„Ù…Ù‚Ø±Ø± Ù„Ù„ØªØ±Ø¨ÙŠØ© Ø§Ù„Ø¥Ø³Ù„Ø§Ù…ÙŠØ© ÙˆØ§Ù„Ø«Ù‚Ø§ÙØ© Ø§Ù„Ø¯ÙŠÙ†ÙŠØ©.',
+          descriptionAr: 'شرح مبسط وواضح للمنهاج المقرر للتربية الإسلامية والثقافة الدينية.',
           descriptionEn: 'Islamic concepts, jurisprudence, and ethical structures for core education.',
           coverImage: 'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?w=600&auto=format&fit=crop&q=60',
-          subjectAr: 'Ø§Ù„ØªØ±Ø¨ÙŠØ© Ø§Ù„Ø¥Ø³Ù„Ø§Ù…ÙŠØ© (Ø§Ù„Ù…Ø´ØªØ±ÙƒØ©)', subjectEn: 'Islamic Studies',
-          teacherNameAr: 'Ø£. Ø¥Ø¨Ø±Ø§Ù‡ÙŠÙ… Ø®Ù„ÙŠÙ„', teacherNameEn: 'Mr. Ibrahim Khalil',
+          subjectAr: 'التربية الإسلامية (المشتركة)', subjectEn: 'Islamic Studies',
+          teacherNameAr: 'أ. إبراهيم خليل', teacherNameEn: 'Mr. Ibrahim Khalil',
           mockLessonsCount: 10,
           mockQuizzesCount: 4,
           mockProgress: 15
@@ -153,39 +153,39 @@ export default function DashboardPage() {
       return [
         {
           id: 'mock-acad-1',
-          titleAr: 'Ø§Ù„Ø±ÙŠØ§Ø¶ÙŠØ§Øª Ø§Ù„Ø¹Ù„Ù…ÙŠØ© - Ø§Ù„ÙØµÙ„ Ø§Ù„Ø£ÙˆÙ„',
+          titleAr: 'الرياضيات العلمية - الفصل الأول',
           titleEn: 'Scientific Calculus - Term 1',
-          descriptionAr: 'Ø´Ø±Ø­ Ù…ÙƒØ«Ù ÙˆØªÙØµÙŠÙ„ÙŠ Ù„Ù„Ù†Ù‡Ø§ÙŠØ§Øª ÙˆØ§Ù„Ø§Ø´ØªÙ‚Ø§Ù‚ ÙˆØªØ·Ø¨ÙŠÙ‚Ø§Øª Ø§Ù„ØªÙØ§Ø¶Ù„ Ø§Ù„Ù…ØªÙ‚Ø¯Ù…Ø©.',
+          descriptionAr: 'شرح مكثف وتفصيلي للنهايات والاشتقاق وتطبيقات التفاضل المتقدمة.',
           descriptionEn: 'Advanced topics in differentiation, limits and rate of change.',
           coverImage: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&auto=format&fit=crop&q=60',
-          subjectAr: 'Ø§Ù„Ø±ÙŠØ§Ø¶ÙŠØ§Øª Ø§Ù„Ø¹Ù„Ù…ÙŠØ©', subjectEn: 'Scientific Mathematics',
-          teacherNameAr: 'Ø£. Ø£Ø­Ù…Ø¯ Ø§Ù„Ø¹Ù„Ù…ÙŠ', teacherNameEn: 'Dr. Ahmad Academic',
+          subjectAr: 'الرياضيات العلمية', subjectEn: 'Scientific Mathematics',
+          teacherNameAr: 'أ. أحمد العلمي', teacherNameEn: 'Dr. Ahmad Academic',
           mockLessonsCount: 24,
           mockQuizzesCount: 12,
           mockProgress: 30
         },
         {
           id: 'mock-acad-2',
-          titleAr: 'Ø§Ù„ÙÙŠØ²ÙŠØ§Ø¡ Ø§Ù„Ø¹Ù„Ù…ÙŠØ© - Ø§Ù„ÙƒÙ‡Ø±Ø¨Ø§Ø¡ ÙˆØ§Ù„Ù…ØºÙ†Ø§Ø·ÙŠØ³ÙŠØ©',
+          titleAr: 'الفيزياء العلمية - الكهرباء والمغناطيسية',
           titleEn: 'Scientific Physics - Electromagnetism',
-          descriptionAr: 'ØªØºØ·ÙŠØ© Ø´Ø§Ù…Ù„Ø© Ù„Ù‚ÙˆØ§Ù†ÙŠÙ† ÙƒÙŠØ±Ø´ÙˆÙØŒ Ø§Ù„Ù…Ø¬Ø§Ù„ Ø§Ù„Ù…ØºÙ†Ø§Ø·ÙŠØ³ÙŠØŒ ÙˆØ§Ù„ØªÙŠØ§Ø± Ø§Ù„Ù…ØªØ±Ø¯Ø¯.',
+          descriptionAr: 'تغطية شاملة لقوانين كيرشوف، المجال المغناطيسي، والتيار المتردد.',
           descriptionEn: 'Complete breakdown of electrical circuits and electromagnetic induction.',
           coverImage: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&auto=format&fit=crop&q=60',
-          subjectAr: 'Ø§Ù„ÙÙŠØ²ÙŠØ§Ø¡ Ø§Ù„ØªØ®ØµØµÙŠØ©', subjectEn: 'Advanced Physics',
-          teacherNameAr: 'Ø£. ÙŠÙˆØ³Ù Ø±ÙŠØ§Ù†', teacherNameEn: 'Mr. Yousef Rayan',
+          subjectAr: 'الفيزياء التخصصية', subjectEn: 'Advanced Physics',
+          teacherNameAr: 'أ. يوسف ريان', teacherNameEn: 'Mr. Yousef Rayan',
           mockLessonsCount: 20,
           mockQuizzesCount: 10,
           mockProgress: 10
         },
         {
           id: 'mock-acad-3',
-          titleAr: 'Ø§Ù„ÙƒÙŠÙ…ÙŠØ§Ø¡ Ø§Ù„ØªØ®ØµØµÙŠØ© - Ø³Ø±Ø¹Ø© Ø§Ù„ØªÙØ§Ø¹Ù„Ø§Øª',
+          titleAr: 'الكيمياء التخصصية - سرعة التفاعلات',
           titleEn: 'Advanced Chemistry - Reaction Rates',
-          descriptionAr: 'Ø¯Ø±Ø§Ø³Ø© Ø³Ø±Ø¹Ø© Ø§Ù„ØªÙØ§Ø¹Ù„Ø§Øª Ø§Ù„ÙƒÙŠÙ…ÙŠØ§Ø¦ÙŠØ©ØŒ Ø§Ù„Ø§ØªØ²Ø§Ù† Ø§Ù„Ø¯ÙŠÙ†Ø§Ù…ÙŠÙƒÙŠ ÙˆØ­Ø³Ø§Ø¨Ø§Øª Ø§Ù„Ø£Ø­Ù…Ø§Ø¶ ÙˆØ§Ù„Ù‚ÙˆØ§Ø¹Ø¯.',
+          descriptionAr: 'دراسة سرعة التفاعلات الكيميائية، الاتزان الديناميكي وحسابات الأحماض والقواعد.',
           descriptionEn: 'Chemical kinetics, dynamic equilibrium, and pH calculation guides.',
           coverImage: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop&q=60',
-          subjectAr: 'Ø§Ù„ÙƒÙŠÙ…ÙŠØ§Ø¡ Ø§Ù„ØªØ®ØµØµÙŠØ©', subjectEn: 'Advanced Chemistry',
-          teacherNameAr: 'Ø£. Ø³Ø§Ø±Ø© Ø§Ù„ÙƒÙŠÙ…Ø§ÙˆÙŠ', teacherNameEn: 'Mrs. Sara Chemistry',
+          subjectAr: 'الكيمياء التخصصية', subjectEn: 'Advanced Chemistry',
+          teacherNameAr: 'أ. سارة الكيماوي', teacherNameEn: 'Mrs. Sara Chemistry',
           mockLessonsCount: 18,
           mockQuizzesCount: 8,
           mockProgress: 55
@@ -362,7 +362,7 @@ export default function DashboardPage() {
     return (
       <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center text-slate-400">
         <Loader2 className="h-8 w-8 text-brand-500 animate-spin mb-4" />
-        <span>{locale === 'ar' ? 'Ø¬Ø§Ø±ÙŠ ØªØ­Ù…ÙŠÙ„ Ù„ÙˆØ­Ø© Ø§Ù„ØªØ­ÙƒÙ…...' : 'Loading your dashboard...'}</span>
+        <span>{locale === 'ar' ? 'جاري تحميل لوحة التحكم...' : 'Loading your dashboard...'}</span>
       </div>
     );
   }
@@ -406,7 +406,7 @@ export default function DashboardPage() {
             <Link 
               href="/dashboard/settings"
               className="flex items-center gap-2 px-4 py-3 sm:p-4.5 bg-slate-950/80 border border-slate-800 hover:border-brand-500/50 hover:bg-slate-900 rounded-2xl transition-all shadow-sm"
-              title={locale === 'ar' ? 'Ø§Ù„Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª' : 'Settings'}
+              title={locale === 'ar' ? 'الإعدادات' : 'Settings'}
             >
               <Settings className="h-5 w-5 text-slate-400" />
             </Link>
@@ -440,7 +440,7 @@ export default function DashboardPage() {
                   }}
                   className="text-xs font-bold text-brand-500 hover:text-brand-400 bg-brand-500/10 px-2 py-1 rounded-lg transition-colors"
                 >
-                  {locale === 'ar' ? 'ØªØ¨Ø¯ÙŠÙ„ Ø§Ù„Ù…Ø³Ø§Ø±' : 'Switch Track'}
+                  {locale === 'ar' ? 'تبديل المسار' : 'Switch Track'}
                 </button>
               )}
             </div>
@@ -468,11 +468,11 @@ export default function DashboardPage() {
               </div>
               <div>
                 <h4 className="text-xs font-bold text-white group-hover:text-brand-400 transition-colors flex items-center gap-1">
-                  <span>{locale === 'ar' ? 'Ø§Ù…ØªØ­Ø§Ù†Ø§Øª 11 Ù…Ø¬Ø§Ù†ÙŠØ©' : 'Grade 11 Free Exams'}</span>
+                  <span>{locale === 'ar' ? 'امتحانات 11 مجانية' : 'Grade 11 Free Exams'}</span>
                   <span className="bg-emerald-500/20 text-emerald-400 text-[9px] px-1.5 py-0.5 rounded font-extrabold">NEW</span>
                 </h4>
                 <p className="text-[10px] text-slate-300">
-                  {locale === 'ar' ? 'Ø§Ø®ØªØ¨Ø§Ø±Ø§Øª Ø§Ù„Ù€ 10 ÙˆØ­Ø¯Ø§Øª' : '10 Unit Free Exams'}
+                  {locale === 'ar' ? 'اختبارات الـ 10 وحدات' : '10 Unit Free Exams'}
                 </p>
               </div>
             </Link>
@@ -486,10 +486,10 @@ export default function DashboardPage() {
               </div>
               <div>
                 <h4 className="text-xs font-bold text-white group-hover:text-amber-400 transition-colors">
-                  {locale === 'ar' ? 'Ø¨Ù†Ùƒ Ø§Ù„Ø£Ø®Ø·Ø§Ø¡' : 'Mistake Bank'}
+                  {locale === 'ar' ? 'بنك الأخطاء' : 'Mistake Bank'}
                 </h4>
                 <p className="text-[10px] text-slate-400">
-                  {locale === 'ar' ? 'Ù…Ø±Ø§Ø¬Ø¹Ø© ÙˆØªØ«Ø¨ÙŠØª Ø§Ù„Ø¥Ø¬Ø§Ø¨Ø§Øª' : 'Review wrong choices'}
+                  {locale === 'ar' ? 'مراجعة وتثبيت الإجابات' : 'Review wrong choices'}
                 </p>
               </div>
             </Link>
@@ -503,10 +503,10 @@ export default function DashboardPage() {
               </div>
               <div>
                 <h4 className="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors">
-                  {locale === 'ar' ? 'Ø­Ø§Ø³Ø¨Ø© Ø§Ù„Ù…Ø¹Ø¯Ù„' : 'GPA Calculator'}
+                  {locale === 'ar' ? 'حاسبة المعدل' : 'GPA Calculator'}
                 </h4>
                 <p className="text-[10px] text-slate-400">
-                  {locale === 'ar' ? 'Ø­Ø³Ø§Ø¨ Ø§Ù„Ù…Ø¹Ø¯Ù„ Ø§Ù„Ù…Ø¹ØªÙ…Ø¯' : 'Calculate your GPA'}
+                  {locale === 'ar' ? 'حساب المعدل المعتمد' : 'Calculate your GPA'}
                 </p>
               </div>
             </Link>
@@ -520,10 +520,10 @@ export default function DashboardPage() {
               </div>
               <div>
                 <h4 className="text-xs font-bold text-white group-hover:text-emerald-400 transition-colors">
-                  {locale === 'ar' ? 'ØªÙØ¹ÙŠÙ„ Ø¨Ø·Ø§Ù‚Ø©' : 'Redeem Coupon'}
+                  {locale === 'ar' ? 'تفعيل بطاقة' : 'Redeem Coupon'}
                 </h4>
                 <p className="text-[10px] text-slate-400">
-                  {locale === 'ar' ? 'Ø¥Ø¯Ø®Ø§Ù„ Ø±Ù…Ø² Ø§Ù„ÙƒÙˆØ¨ÙˆÙ†' : 'Enter access code'}
+                  {locale === 'ar' ? 'إدخال رمز الكوبون' : 'Enter access code'}
                 </p>
               </div>
             </Link>
@@ -537,10 +537,10 @@ export default function DashboardPage() {
               </div>
               <div>
                 <h4 className="text-xs font-bold text-white group-hover:text-brand-400 transition-colors">
-                  {locale === 'ar' ? 'ØªØµÙØ­ Ø§Ù„Ù…ÙˆØ§Ø¯' : 'Browse Subjects'}
+                  {locale === 'ar' ? 'تصفح المواد' : 'Browse Subjects'}
                 </h4>
                 <p className="text-[10px] text-slate-400">
-                  {locale === 'ar' ? 'Ø§ÙƒØªØ´Ø§Ù Ø§Ù„Ø®Ø·Ø· Ø§Ù„Ø¯Ø±Ø§Ø³ÙŠØ©' : 'Explore all subjects'}
+                  {locale === 'ar' ? 'اكتشاف الخطط الدراسية' : 'Explore all subjects'}
                 </p>
               </div>
             </Link>
@@ -555,7 +555,7 @@ export default function DashboardPage() {
                   <BarChart2 className="h-6 w-6 text-brand-400" />
                 </div>
                 <h2 className="text-xl font-black text-white">
-                  {locale === 'ar' ? 'Ù„ÙˆØ­Ø© ØªØ­ÙƒÙ… Ø§Ù„Ø¥Ø¯Ø§Ø±Ø©' : 'Command Center'}
+                  {locale === 'ar' ? 'لوحة تحكم الإدارة' : 'Command Center'}
                 </h2>
              </div>
              
@@ -565,33 +565,33 @@ export default function DashboardPage() {
                    <div className="absolute top-0 end-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
                       <Users className="h-20 w-20" />
                    </div>
-                   <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'Ø§Ù„Ø·Ù„Ø§Ø¨ Ø§Ù„Ù†Ø´Ø·ÙŠÙ†' : 'Active Students'}</p>
+                   <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'الطلاب النشطين' : 'Active Students'}</p>
                    <h3 className="text-3xl font-black text-white">{adminStats?.stats?.totalStudents || 0}</h3>
-                   <p className="text-emerald-500 text-xs mt-3 flex items-center gap-1 font-bold"><TrendingUp className="h-3 w-3" /> {locale === 'ar' ? 'Ø¥Ø¬Ù…Ø§Ù„ÙŠ' : 'Total'}</p>
+                   <p className="text-emerald-500 text-xs mt-3 flex items-center gap-1 font-bold"><TrendingUp className="h-3 w-3" /> {locale === 'ar' ? 'إجمالي' : 'Total'}</p>
                 </div>
                 <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 relative overflow-hidden group hover:border-slate-700 transition-colors shadow-lg">
                    <div className="absolute top-0 end-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
                       <BookOpen className="h-20 w-20" />
                    </div>
-                   <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'Ø§Ù„Ø¯ÙˆØ±Ø§Øª Ø§Ù„ÙØ¹Ø§Ù„Ø©' : 'Active Courses'}</p>
+                   <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'الدورات الفعالة' : 'Active Courses'}</p>
                    <h3 className="text-3xl font-black text-white">{adminStats?.stats?.totalCourses || courses.length || 0}</h3>
-                   <p className="text-emerald-500 text-xs mt-3 flex items-center gap-1 font-bold"><TrendingUp className="h-3 w-3" /> {locale === 'ar' ? 'Ø¥Ø¬Ù…Ø§Ù„ÙŠ' : 'Total'}</p>
+                   <p className="text-emerald-500 text-xs mt-3 flex items-center gap-1 font-bold"><TrendingUp className="h-3 w-3" /> {locale === 'ar' ? 'إجمالي' : 'Total'}</p>
                 </div>
                 <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 relative overflow-hidden group hover:border-slate-700 transition-colors shadow-lg">
                    <div className="absolute top-0 end-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
                       <Key className="h-20 w-20" />
                    </div>
-                   <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'Ø§Ù„ÙƒÙˆØ¨ÙˆÙ†Ø§Øª Ø§Ù„ÙØ¹Ø§Ù„Ø©' : 'Active Coupons'}</p>
+                   <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'الكوبونات الفعالة' : 'Active Coupons'}</p>
                    <h3 className="text-3xl font-black text-white">{adminStats?.stats?.activeCoupons || 0}</h3>
-                   <p className="text-slate-500 text-xs mt-3 flex items-center gap-1 font-bold">{locale === 'ar' ? 'Ø¬Ø§Ù‡Ø²Ø© Ù„Ù„Ø§Ø³ØªØ®Ø¯Ø§Ù…' : 'Ready to use'}</p>
+                   <p className="text-slate-500 text-xs mt-3 flex items-center gap-1 font-bold">{locale === 'ar' ? 'جاهزة للاستخدام' : 'Ready to use'}</p>
                 </div>
                 <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 relative overflow-hidden group hover:border-slate-700 transition-colors shadow-lg">
                    <div className="absolute top-0 end-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
                       <Award className="h-20 w-20" />
                    </div>
-                   <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'Ø§Ù„Ø§Ø®ØªØ¨Ø§Ø±Ø§Øª Ø§Ù„Ù…Ù†Ø¬Ø²Ø©' : 'Completed Quizzes'}</p>
+                   <p className="text-slate-400 text-sm font-semibold mb-1">{locale === 'ar' ? 'الاختبارات المنجزة' : 'Completed Quizzes'}</p>
                    <h3 className="text-3xl font-black text-white">-</h3>
-                   <p className="text-slate-500 text-xs mt-3 flex items-center gap-1 font-bold">{locale === 'ar' ? 'Ù‚Ø±ÙŠØ¨Ø§Ù‹' : 'Coming soon'}</p>
+                   <p className="text-slate-500 text-xs mt-3 flex items-center gap-1 font-bold">{locale === 'ar' ? 'قريباً' : 'Coming soon'}</p>
                 </div>
              </div>
              
@@ -599,7 +599,7 @@ export default function DashboardPage() {
              <div className="mt-12">
                  <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
                    <Settings className="h-5 w-5 text-slate-400" />
-                   {locale === 'ar' ? 'Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ù…Ù†ØµØ©' : 'Platform Management'}
+                   {locale === 'ar' ? 'إدارة المنصة' : 'Platform Management'}
                  </h3>
                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     <Link href="/admin/courses" className="flex flex-col gap-4 p-6 rounded-3xl border border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/10 hover:border-emerald-500/40 transition-all group">
@@ -607,8 +607,8 @@ export default function DashboardPage() {
                         <GraduationCap className="h-8 w-8" />
                       </div>
                       <div>
-                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'Ø§Ù„Ø¯ÙˆØ±Ø§Øª Ø§Ù„ØªØ¹Ù„ÙŠÙ…ÙŠØ©' : 'Manage Courses'}</p>
-                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'Ø¥Ø¶Ø§ÙØ© ÙˆØªØ¹Ø¯ÙŠÙ„ ÙˆØ­Ø°Ù Ø§Ù„Ø¯ÙˆØ±Ø§Øª ÙˆØ§Ù„Ø¯Ø±ÙˆØ³' : 'Add, edit, or remove courses and lessons.'}</p>
+                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'الدورات التعليمية' : 'Manage Courses'}</p>
+                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'إضافة وتعديل وحذف الدورات والدروس' : 'Add, edit, or remove courses and lessons.'}</p>
                       </div>
                     </Link>
 
@@ -617,8 +617,8 @@ export default function DashboardPage() {
                         <HelpCircle className="h-8 w-8" />
                       </div>
                       <div>
-                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'Ø§Ù„Ø§Ø®ØªØ¨Ø§Ø±Ø§Øª' : 'Quizzes'}</p>
-                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'Ø¥Ù†Ø´Ø§Ø¡ Ø§Ù„Ø§Ø®ØªØ¨Ø§Ø±Ø§Øª ÙˆØªØ­Ø¯ÙŠØ¯ Ø§Ù„Ø¥Ø¬Ø§Ø¨Ø§Øª Ø§Ù„ØµØ­ÙŠØ­Ø©' : 'Create quizzes and configure answers.'}</p>
+                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'الاختبارات' : 'Quizzes'}</p>
+                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'إنشاء الاختبارات وتحديد الإجابات الصحيحة' : 'Create quizzes and configure answers.'}</p>
                       </div>
                     </Link>
 
@@ -627,8 +627,8 @@ export default function DashboardPage() {
                         <Key className="h-8 w-8" />
                       </div>
                       <div>
-                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'Ø§Ù„ÙƒÙˆØ¨ÙˆÙ†Ø§Øª' : 'Coupons'}</p>
-                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'Ø¥Ø¯Ø§Ø±Ø© Ø£ÙƒÙˆØ§Ø¯ Ø§Ù„Ø¯Ø®ÙˆÙ„ Ù„Ù„Ø·Ù„Ø§Ø¨ Ø§Ù„Ø¬Ø¯Ø¯' : 'Generate access codes for new students.'}</p>
+                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'الكوبونات' : 'Coupons'}</p>
+                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'إدارة أكواد الدخول للطلاب الجدد' : 'Generate access codes for new students.'}</p>
                       </div>
                     </Link>
 
@@ -637,8 +637,8 @@ export default function DashboardPage() {
                         <Award className="h-8 w-8" />
                       </div>
                       <div>
-                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'ØªÙ‚Ø§Ø±ÙŠØ± Ø§Ù„Ø£Ø¯Ø§Ø¡' : 'Analytics'}</p>
-                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'Ù…ØªØ§Ø¨Ø¹Ø© Ø£Ø¯Ø§Ø¡ Ø§Ù„Ø·Ù„Ø§Ø¨ ÙˆÙ…Ø¹Ø¯Ù„Ø§Øª Ø§Ù„Ø¥Ù†Ø¬Ø§Ø²' : 'Track student performance and completion rates.'}</p>
+                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'تقارير الأداء' : 'Analytics'}</p>
+                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'متابعة أداء الطلاب ومعدلات الإنجاز' : 'Track student performance and completion rates.'}</p>
                       </div>
                     </Link>
 
@@ -647,8 +647,8 @@ export default function DashboardPage() {
                         <Users className="h-8 w-8" />
                       </div>
                       <div>
-                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ù…Ø¹Ù„Ù…ÙŠÙ†' : 'Teachers'}</p>
-                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'Ø¥Ø¶Ø§ÙØ© Ù…Ø¹Ù„Ù…ÙŠÙ† ÙˆØªÙˆØ²ÙŠØ¹ Ø§Ù„ØµÙ„Ø§Ø­ÙŠØ§Øª' : 'Add teachers and manage platform access.'}</p>
+                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'إدارة المعلمين' : 'Teachers'}</p>
+                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'إضافة معلمين وتوزيع الصلاحيات' : 'Add teachers and manage platform access.'}</p>
                       </div>
                     </Link>
 
@@ -657,8 +657,8 @@ export default function DashboardPage() {
                         <ShieldCheck className="h-8 w-8" />
                       </div>
                       <div>
-                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù…ÙŠÙ†' : 'User Management'}</p>
-                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'ØªØ±Ù‚ÙŠØ© Ø­Ø³Ø§Ø¨Ø§Øª Ø§Ù„Ø·Ù„Ø§Ø¨ Ø£Ùˆ Ø§Ù„Ù…Ø¹Ù„Ù…ÙŠÙ† Ù„Ù…Ø¯Ø±Ø§Ø¡' : 'Promote student or teacher accounts to Admins.'}</p>
+                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'إدارة المستخدمين' : 'User Management'}</p>
+                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'ترقية حسابات الطلاب أو المعلمين لمدراء' : 'Promote student or teacher accounts to Admins.'}</p>
                       </div>
                     </Link>
 
@@ -667,8 +667,8 @@ export default function DashboardPage() {
                         <BookOpen className="h-8 w-8" />
                       </div>
                       <div>
-                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ù…ÙƒØªØ¨Ø©' : 'Library Management'}</p>
-                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'Ø±ÙØ¹ ÙˆØ¥Ø¯Ø§Ø±Ø© Ø§Ù„Ø¯ÙˆØ³ÙŠØ§Øª ÙˆØ£ÙˆØ±Ø§Ù‚ Ø§Ù„Ø¹Ù…Ù„' : 'Manage and upload summaries and worksheets.'}</p>
+                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'إدارة المكتبة' : 'Library Management'}</p>
+                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'رفع وإدارة الدوسيات وأوراق العمل' : 'Manage and upload summaries and worksheets.'}</p>
                       </div>
                     </Link>
                  </div>
@@ -678,7 +678,7 @@ export default function DashboardPage() {
              <div className="mt-12 bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8">
                 <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
                    <Activity className="h-5 w-5 text-brand-500" />
-                   {locale === 'ar' ? 'Ø£Ø­Ø¯Ø« Ø§Ù„Ù†Ø´Ø§Ø·Ø§Øª' : 'Recent Activity'}
+                   {locale === 'ar' ? 'أحدث النشاطات' : 'Recent Activity'}
                 </h3>
                 <div className="space-y-4">
                   {adminStats?.recentActivities?.length > 0 ? (
@@ -697,7 +697,7 @@ export default function DashboardPage() {
                     ))
                   ) : (
                     <div className="text-center py-6 text-slate-500">
-                      {locale === 'ar' ? 'Ù„Ø§ ÙŠÙˆØ¬Ø¯ Ù†Ø´Ø§Ø·Ø§Øª Ø­Ø¯ÙŠØ«Ø©' : 'No recent activities'}
+                      {locale === 'ar' ? 'لا يوجد نشاطات حديثة' : 'No recent activities'}
                     </div>
                   )}
                 </div>
@@ -714,10 +714,10 @@ export default function DashboardPage() {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-lg font-bold text-white group-hover:text-indigo-400 transition-colors">
-                    {locale === 'ar' ? 'Ø§Ù„Ø³Ø¨ÙˆØ±Ø© Ø§Ù„Ù„Ø§Ù†Ù‡Ø§Ø¦ÙŠØ©' : 'Infinite Whiteboard'}
+                    {locale === 'ar' ? 'السبورة اللانهائية' : 'Infinite Whiteboard'}
                   </h3>
                   <p className="text-sm text-slate-400 mt-1">
-                    {locale === 'ar' ? 'Ù…Ø³Ø§Ø­Ø© Ø­Ø±Ø© Ù„Ù„Ø­Ù„ØŒ Ø§Ù„Ø´Ø®Ø¨Ø·Ø©ØŒ ÙˆØ±ÙØ¹ Ù…Ù„ÙØ§Øª Ø§Ù„Ù€ PDF' : 'Free space for solving, sketching, and PDF uploads'}
+                    {locale === 'ar' ? 'مساحة حرة للحل، الشخبطة، ورفع ملفات الـ PDF' : 'Free space for solving, sketching, and PDF uploads'}
                   </p>
                 </div>
               </Link>
@@ -729,16 +729,16 @@ export default function DashboardPage() {
                 <div className="flex-1 w-full">
                   <h3 className="text-base sm:text-lg font-bold text-white mb-3 flex items-center gap-2">
                     <span className="sm:hidden text-emerald-500"><MessageCircle className="w-5 h-5" /></span>
-                    {locale === 'ar' ? 'ØªÙˆØ§ØµÙ„ Ù…Ø¹ÙŠ Ù…Ø¨Ø§Ø´Ø±Ø© Ù„Ø£ÙŠ Ù…Ø³Ø§Ø¹Ø¯Ø©!' : 'Contact me directly for any help!'}
+                    {locale === 'ar' ? 'تواصل معي مباشرة لأي مساعدة!' : 'Contact me directly for any help!'}
                   </h3>
                   <div className="flex gap-2 w-full">
                     <a href="https://wa.me/962790881392" target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#25D366] border border-[#25D366]/30 rounded-xl py-2.5 text-sm font-bold transition-all hover:scale-[1.02]">
                       <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" /></svg>
-                      {locale === 'ar' ? 'ÙˆØ§ØªØ³Ø§Ø¨' : 'WhatsApp'}
+                      {locale === 'ar' ? 'واتساب' : 'WhatsApp'}
                     </a>
                     <a href="https://www.facebook.com/profile.php?id=61591900810785" target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-[#1877F2]/10 hover:bg-[#1877F2]/20 text-[#1877F2] border border-[#1877F2]/30 rounded-xl py-2.5 text-sm font-bold transition-all hover:scale-[1.02]">
                       <Facebook className="w-4 h-4" />
-                      {locale === 'ar' ? 'ÙÙŠØ³Ø¨ÙˆÙƒ' : 'Facebook'}
+                      {locale === 'ar' ? 'فيسبوك' : 'Facebook'}
                     </a>
                   </div>
                 </div>
@@ -753,13 +753,13 @@ export default function DashboardPage() {
                     <GraduationCap className="h-6 w-6 text-brand-400" />
                   </div>
                   <h2 className="text-xl font-black text-white">
-                    {locale === 'ar' ? 'Ø¯ÙˆØ±Ø§ØªÙŠ Ø§Ù„Ù…Ø´ØªØ±Ùƒ Ø¨Ù‡Ø§' : 'My Enrolled Courses'}
+                    {locale === 'ar' ? 'دوراتي المشترك بها' : 'My Enrolled Courses'}
                   </h2>
                 </div>
                 
                 {courses.filter(c => !c.locked).length === 0 ? (
                   <div className="text-center py-10 bg-slate-900/10 border border-slate-900 rounded-3xl p-6">
-                     <p className="text-slate-500">{locale === 'ar' ? 'Ù„Ù… ØªØ´ØªØ±Ùƒ ÙÙŠ Ø£ÙŠ Ø¯ÙˆØ±Ø© Ø¨Ø¹Ø¯.' : 'You haven\'t enrolled in any courses yet.'}</p>
+                     <p className="text-slate-500">{locale === 'ar' ? 'لم تشترك في أي دورة بعد.' : 'You haven\'t enrolled in any courses yet.'}</p>
                   </div>
                 ) : (
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -869,7 +869,7 @@ export default function DashboardPage() {
                         <Calendar className="h-6 w-6 text-blue-400" />
                       </div>
                       <h2 className="text-xl font-black text-white group-hover:text-blue-400 transition-colors">
-                        {locale === 'ar' ? 'Ø¬Ø¯ÙˆÙ„ Ø§Ù„Ø­ØµØµ Ø§Ù„Ù…Ø¨Ø§Ø´Ø±Ø© Ø§Ù„ØªÙØ§Ø¹Ù„ÙŠØ©' : 'Interactive Live Sessions Schedule'}
+                        {locale === 'ar' ? 'جدول الحصص المباشرة التفاعلية' : 'Interactive Live Sessions Schedule'}
                       </h2>
                     </div>
                     <button className="p-2 rounded-lg bg-slate-800 text-slate-400 group-hover:text-white transition-colors">
@@ -901,13 +901,13 @@ export default function DashboardPage() {
                         {session.isLocked ? (
                           <Link href={`/${locale}/courses/${session.courseId}`} className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-bold rounded-xl transition-all border border-slate-700">
                             <Lock className="h-4 w-4 text-slate-400" />
-                            {locale === 'ar' ? 'Ø§Ø´ØªØ±Ùƒ Ù„Ù„Ø§Ù†Ø¶Ù…Ø§Ù…' : 'Enroll to Join'}
+                            {locale === 'ar' ? 'اشترك للانضمام' : 'Enroll to Join'}
                           </Link>
                         ) : (
                           <div className="flex flex-col gap-2 w-full mt-2">
                             <a href={session.zoomLink} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-blue-500/20">
                               <Video className="h-4 w-4" />
-                              {locale === 'ar' ? 'Ø§Ù†Ø¶Ù…Ø§Ù… Ø¹Ø¨Ø± Zoom' : 'Join via Zoom'}
+                              {locale === 'ar' ? 'انضمام عبر Zoom' : 'Join via Zoom'}
                             </a>
                             
                           </div>
@@ -925,7 +925,7 @@ export default function DashboardPage() {
                 <Compass className="h-6 w-6 text-purple-400" />
               </div>
               <h2 className="text-xl font-black text-white">
-                {locale === 'ar' ? 'Ø§Ø³ØªÙƒØ´Ù Ø§Ù„Ø¯ÙˆØ±Ø§Øª Ø§Ù„Ù…ØªÙˆÙØ±Ø©' : 'Discover Available Courses'}
+                {locale === 'ar' ? 'استكشف الدورات المتوفرة' : 'Discover Available Courses'}
               </h2>
             </div>
             
@@ -938,7 +938,7 @@ export default function DashboardPage() {
                     : 'bg-slate-900/40 border-slate-800 text-slate-400 hover:text-white hover:border-slate-600'
                 }`}
               >
-                {locale === 'ar' ? 'Ø§Ù„ÙØµÙ„ Ø§Ù„Ø£ÙˆÙ„' : 'Semester 1'}
+                {locale === 'ar' ? 'الفصل الأول' : 'Semester 1'}
               </button>
               <button
                 onClick={() => setActiveSemester(2)}
@@ -948,7 +948,7 @@ export default function DashboardPage() {
                     : 'bg-slate-900/40 border-slate-800 text-slate-400 hover:text-white hover:border-slate-600'
                 }`}
               >
-                {locale === 'ar' ? 'Ø§Ù„ÙØµÙ„ Ø§Ù„Ø«Ø§Ù†ÙŠ' : 'Semester 2'}
+                {locale === 'ar' ? 'الفصل الثاني' : 'Semester 2'}
               </button>
             </div>
 
@@ -1008,7 +1008,7 @@ export default function DashboardPage() {
                             {course.hasFreeTrial && (
                               <span className="text-[10px] sm:text-xs font-bold px-2 py-1 rounded bg-emerald-500 text-white shadow-md pointer-events-none flex items-center gap-1 shadow-emerald-500/20 border border-emerald-400">
                                 <PlayCircle className="w-3.5 h-3.5" />
-                                {locale === 'ar' ? 'Ù…Ø¹Ø§ÙŠÙ†Ø© Ù…Ø¬Ø§Ù†ÙŠØ©' : 'Free Trial'}
+                                {locale === 'ar' ? 'معاينة مجانية' : 'Free Trial'}
                               </span>
                             )}
                           </div>
@@ -1036,7 +1036,7 @@ export default function DashboardPage() {
                             </div>
                             <div className="flex items-center gap-1.5">
                               <FileText className="h-4 w-4 text-brand-500 shrink-0" />
-                              <span>{pdfsVal} {locale === 'ar' ? 'Ù…Ù„ÙØ§Øª PDF' : 'PDFs'}</span>
+                              <span>{pdfsVal} {locale === 'ar' ? 'ملفات PDF' : 'PDFs'}</span>
                             </div>
                           </div>
                         </div>
@@ -1045,7 +1045,7 @@ export default function DashboardPage() {
                       <div className="p-6 pt-0">
                         <div className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-bold text-slate-500 bg-slate-900 border border-slate-800 cursor-not-allowed">
                           <Lock className="h-4 w-4" />
-                          <span>{locale === 'ar' ? 'Ù…Ù‚ÙÙ„ / Locked' : 'Locked / Ù…Ù‚ÙÙ„'}</span>
+                          <span>{locale === 'ar' ? 'مقفل / Locked' : 'Locked / مقفل'}</span>
                         </div>
                       </div>
                     </div>
