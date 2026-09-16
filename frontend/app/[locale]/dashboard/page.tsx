@@ -661,6 +661,16 @@ export default function DashboardPage() {
                         <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'ترقية حسابات الطلاب أو المعلمين لمدراء' : 'Promote student or teacher accounts to Admins.'}</p>
                       </div>
                     </Link>
+
+                    <Link href={`/${locale}/admin/library`} className="flex flex-col gap-4 p-6 rounded-3xl border border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/10 hover:border-emerald-500/40 transition-all group">
+                      <div className="p-4 bg-emerald-500/10 rounded-2xl text-emerald-400 w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <BookOpen className="h-8 w-8" />
+                      </div>
+                      <div>
+                        <p className="text-lg font-bold text-white mb-1">{locale === 'ar' ? 'إدارة المكتبة' : 'Library Management'}</p>
+                        <p className="text-sm text-slate-400 leading-relaxed">{locale === 'ar' ? 'رفع وإدارة الدوسيات وأوراق العمل' : 'Manage and upload summaries and worksheets.'}</p>
+                      </div>
+                    </Link>
                  </div>
              </div>
 

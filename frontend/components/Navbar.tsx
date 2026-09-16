@@ -267,6 +267,10 @@ export default function Navbar() {
             )}
 
             {/* General Public Links */}
+            <Link href={`/${currentLocale}/library`} className="text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1.5 bg-emerald-500/10 px-3 py-1.5 rounded-xl border border-emerald-500/20">
+              <BookOpen className="w-3.5 h-3.5" />
+              <span>{currentLocale === 'ar' ? 'المكتبة العامة' : 'Library'}</span>
+            </Link>
             <a href={homeAnchor('academic-track')} className="text-xs font-medium text-slate-300 hover:text-brand-400 transition-colors">
               {t('academic')}
             </a>
@@ -522,6 +526,10 @@ export default function Navbar() {
               )}
 
               {/* Public Links */}
+              <Link href={`/${currentLocale}/library`} onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 hover:bg-emerald-500/20">
+                <BookOpen className="w-4 h-4 text-emerald-400" />
+                <span>{currentLocale === 'ar' ? 'المكتبة العامة' : 'Library'}</span>
+              </Link>
               <a href={homeAnchor('academic-track')} onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white">
                 <BookOpen className="h-4 w-4 text-brand-500" />
                 {t('academic')}

@@ -490,3 +490,22 @@ model Dictionary {
 }
 
 
+
+model LibraryDocument {
+  id            String   @id @default(uuid())
+  titleAr       String
+  titleEn       String
+  descriptionAr String?  @db.Text
+  descriptionEn String?  @db.Text
+  grade         String   // e.g., '12', '11', '10'
+  subject       String   // e.g., 'MATH', 'PHYSICS', 'ENGLISH'
+  type          String   // e.g., 'SUMMARY' (دوسية), 'WORKSHEET' (ورقة عمل), 'EXAM' (امتحان)
+  fileUrl       String
+  downloads     Int      @default(0)
+  isPublished   Boolean  @default(true)
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("library_documents")
+}
