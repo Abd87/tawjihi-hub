@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
@@ -138,11 +138,23 @@ export default function PublicLibraryPage() {
                     <span className="bg-indigo-500/10 text-indigo-400 px-2 py-1 rounded-md">{SUBJECT_LABELS[doc.subject] || doc.subject}</span>
                     <span className="bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded-md">{TYPE_LABELS[doc.type] || doc.type}</span>
                   </div>
+                  <div className="flex flex-col sm:flex-row items-center gap-3 mt-auto pt-4">
+                    <a 
+                      href={doc.fileUrl} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      className="flex-1 w-full text-center py-2.5 bg-brand-600 hover:bg-brand-500 text-white text-sm font-bold rounded-xl transition-colors shadow-lg shadow-brand-500/20"
+                    >
+                      {isRtl ? 'تحميل' : 'Download'}
+                    </a>
+                    <Link
+                      href={`/${locale}/library/${doc.id}`}
+                      className="flex-1 w-full text-center py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-bold rounded-xl transition-colors"
+                    >
+                      {isRtl ? 'مشاركة' : 'Share'}
+                    </Link>
+                  </div>
                 </div>
-                <a href={doc.fileUrl} target="_blank" rel="noreferrer" className="mt-auto flex items-center justify-center gap-2 py-3 bg-brand-600 hover:bg-brand-500 text-white text-sm font-bold rounded-xl transition-all hover:shadow-lg hover:shadow-brand-500/20">
-                  <Download className="w-4 h-4" />
-                  {isRtl ? 'تحميل الملف' : 'Download'}
-                </a>
               </div>
             ))
           )}
