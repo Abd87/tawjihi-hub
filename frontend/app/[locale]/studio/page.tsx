@@ -102,6 +102,24 @@ export default function TeacherStudioDashboardPage() {
 
       {/* Main Studio Action Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Library Card (NEW) */}
+        <Link 
+          href={`/${locale}/admin/library`}
+          className="group flex flex-col justify-between p-6 rounded-3xl border border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/10 hover:border-emerald-500/40 transition-all"
+        >
+          <div>
+            <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <BookOpen className="w-7 h-7" />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-2">
+              {locale === 'ar' ? 'إدارة المكتبة العامة' : 'Library Management'}
+            </h3>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              {locale === 'ar' ? 'رفع وإدارة الدوسيات وأوراق العمل للطلاب' : 'Upload and manage summaries and worksheets.'}
+            </p>
+          </div>
+        </Link>
+
         {/* Card 1: Course Builder */}
         <Link
           href={`/${locale}/admin/courses`}
