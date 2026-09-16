@@ -83,7 +83,10 @@ export default function AdminLibraryPage() {
         body: JSON.stringify({ ...formData, fileUrl: finalUrl })
       });
       
-      if (!docRes.ok) throw new Error('Failed to save document');
+      if (!docRes.ok) {
+        const errText = await docRes.text();
+        throw new Error('Failed to save document: ' + errText);
+      }
       
       alert(isRtl ? 'تم الرفع بنجاح' : 'Uploaded successfully');
       setShowForm(false);

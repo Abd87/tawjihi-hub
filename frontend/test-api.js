@@ -1,16 +1,21 @@
-const jwt = require('jsonwebtoken');
+﻿const jwt = require('jsonwebtoken');
 
-const token = jwt.sign(
-  { userId: '29792a34-5ea5-4a78-bc7d-8a097845beab', role: 'STUDENT' }, 
-  process.env.JWT_SECRET || 'tawjihi-hub-secret-key-for-jwt-2024'
-);
+const token = jwt.sign({ id: 'test-admin', role: 'ADMIN' }, process.env.JWT_SECRET || 'fallback-secret');
 
-async function test() {
-  const res = await fetch('http://localhost:5000/api/courses', {
-    headers: { Authorization: `Bearer ${token}` }
-  });
-  const data = await res.json();
-  console.log(JSON.stringify(data, null, 2));
-}
-
-test();
+fetch('https://tawjihihub.com/api/library', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + token
+  },
+  body: JSON.stringify({
+    titleAr: 'Test Link',
+    titleEn: 'Test Link',
+    grade: 'GRADE_12',
+    subject: 'MATH',
+    type: 'SUMMARY',
+    fileUrl: 'https://drive.google.com/test'
+  })
+})
+.then(res => res.text().then(text => console.log(res.status, text)))
+.catch(err => console.error(err));

@@ -57,6 +57,6 @@ export async function POST(request: Request) {
     return NextResponse.json(document);
   } catch (error) {
     console.error('Create Library Document Error:', error);
-    return NextResponse.json({ error: 'Failed to create library document' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to create library document', details: error.message || String(error) }, { status: 500 });
   }
 }
