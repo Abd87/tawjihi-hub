@@ -1,9 +1,8 @@
-﻿'use client';
+'use client';
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { UploadCloud, BookOpen, Trash2, Plus, Loader2, FileText, CheckCircle } from 'lucide-react';
-import { toast } from 'sonner';
 
 export default function AdminLibraryPage() {
   const params = useParams();
@@ -33,7 +32,7 @@ export default function AdminLibraryPage() {
       const data = await res.json();
       setDocuments(data.documents || []);
     } catch (err) {
-      toast.error('Failed to load documents');
+      alert('Failed to load documents');
     } finally {
       setIsLoading(false);
     }
@@ -45,7 +44,7 @@ export default function AdminLibraryPage() {
 
   const handleUpload = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!file) return toast.error(isRtl ? 'الرجاء اختيار ملف' : 'Please select a file');
+    if (!file) return alert(isRtl ? 'الرجاء اختيار ملف' : 'Please select a file');
     
     setIsUploading(true);
     try {
@@ -73,13 +72,13 @@ export default function AdminLibraryPage() {
       
       if (!docRes.ok) throw new Error('Failed to save document');
       
-      toast.success(isRtl ? 'تم الرفع بنجاح' : 'Uploaded successfully');
+      alert(isRtl ? 'تم الرفع بنجاح' : 'Uploaded successfully');
       setShowForm(false);
       setFile(null);
       setFormData({ ...formData, titleAr: '', titleEn: '' });
       fetchDocuments();
     } catch (err: any) {
-      toast.error(err.message);
+      alert(err.message);
     } finally {
       setIsUploading(false);
     }
@@ -93,11 +92,11 @@ export default function AdminLibraryPage() {
         headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
       });
       if (res.ok) {
-        toast.success('Deleted successfully');
+        alert('Deleted successfully');
         setDocuments(docs => docs.filter(d => d.id !== id));
       }
     } catch (err) {
-      toast.error('Delete failed');
+      alert('Delete failed');
     }
   };
 
