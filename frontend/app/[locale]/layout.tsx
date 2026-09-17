@@ -1,4 +1,4 @@
-﻿import { NextIntlClientProvider } from 'next-intl';
+import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 import { ReactNode } from 'react';
 import { Cairo, Inter } from 'next/font/google';
@@ -157,8 +157,9 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   };
 }
 
-import { CSPostHogProvider } from '@/components/providers/PostHogProvider';
-import SuspendedPostHogPageView from '@/components/providers/PostHogPageView';
+import dynamic from 'next/dynamic';
+
+const DynamicPostHogTracker = dynamic(() => import('@/components/providers/PostHogTracker'), { ssr: false });
 
 interface LayoutProps {
   children: ReactNode;
@@ -185,19 +186,17 @@ export default async function LocaleLayout({
 
   return (
     <html lang={safeLocale} dir={dir} className={`print:bg-white ${cairo.variable} ${inter.variable}`}>
-      <CSPostHogProvider>
-        <body className={`bg-[#020617] print:bg-white text-slate-100 print:text-black ${safeLocale === 'ar' ? 'font-arabic' : 'font-sans'} antialiased`}>
-          <SuspendedPostHogPageView />
-          <NextIntlClientProvider messages={messages}>
-            <Navbar />
-            {children}
-            <SocialFloatingButtons />
-            <SocialProofPopup isRtl={safeLocale === 'ar'} />
-            <CookieBanner />
-          </NextIntlClientProvider>
-          <Analytics />
-        </body>
-      </CSPostHogProvider>
+      <body className={`bg-[#020617] print:bg-white text-slate-100 print:text-black ${safeLocale === 'ar' ? 'font-arabic' : 'font-sans'} antialiased`}>
+        <DynamicPostHogTracker />
+        <NextIntlClientProvider messages={messages}>
+          <Navbar />
+          {children}
+          <SocialFloatingButtons />
+          <SocialProofPopup isRtl={safeLocale === 'ar'} />
+          <CookieBanner />
+        </NextIntlClientProvider>
+        <Analytics />
+      </body>
     </html>
   );
 }
