@@ -70,6 +70,7 @@ export default async function HomePage({ params: { locale } }: PageProps) {
           src="/og-image.webp"
           alt="Background"
           fill
+          sizes="100vw"
           priority
           quality={60}
           className="object-cover opacity-40 scale-105"
@@ -552,6 +553,7 @@ export default async function HomePage({ params: { locale } }: PageProps) {
                       src={profile.imageUrl}
                       alt={profile.user?.nameEn || 'Teacher'}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-contain object-bottom transition-transform duration-700 group-hover:scale-110 group-hover:-translate-y-2 origin-bottom drop-shadow-2xl"
                     />
                   )}
@@ -789,6 +791,7 @@ export default async function HomePage({ params: { locale } }: PageProps) {
                         src={post.coverImage}
                         alt={locale === 'ar' ? post.titleAr : post.titleEn}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>

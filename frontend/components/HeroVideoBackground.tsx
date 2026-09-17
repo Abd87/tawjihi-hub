@@ -7,13 +7,13 @@ export default function HeroVideoBackground() {
 
   useEffect(() => {
     // We defer loading the video by 2.5 seconds to ensure the 
-    // initial page load (LCP) and Lighthouse scores aren't blocked by a massive 2.6MB download.
+    // initial page load (LCP) and Lighthouse scores aren't blocked by a massive download.
     const timer = setTimeout(() => {
       // Use matchMedia for a more reliable mobile check in headless browsers like Lighthouse
       if (window.matchMedia('(min-width: 768px)').matches) {
         setShouldLoadVideo(true);
       }
-    }, 100);
+    }, 2500);
 
     return () => clearTimeout(timer);
   }, []);
