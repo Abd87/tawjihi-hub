@@ -17,7 +17,8 @@ import {
   Globe,
   PenTool,
   Newspaper,
-  Send
+  Send,
+  BrainCircuit
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
