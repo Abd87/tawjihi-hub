@@ -404,6 +404,24 @@ export default function DashboardPage() {
 
           <div className="flex items-center gap-4">
             <Link 
+              href={`/${locale}/dashboard/planner`}
+              className="flex items-center gap-2 px-4 py-3 sm:p-4.5 bg-brand-500/10 border border-brand-500/30 text-brand-400 hover:border-brand-500/60 hover:bg-brand-500/20 rounded-2xl transition-all shadow-sm font-semibold text-sm"
+            >
+              <Calendar className="h-5 w-5" />
+              <span className="hidden sm:inline">{locale === 'ar' ? 'الجدول الذكي' : 'Smart Planner'}</span>
+            </Link>
+            
+            {isBtec && (
+              <Link 
+                href={`/${locale}/dashboard/btec-hub`}
+                className="flex items-center gap-2 px-4 py-3 sm:p-4.5 bg-sky-500/10 border border-sky-500/30 text-sky-400 hover:border-sky-500/60 hover:bg-sky-500/20 rounded-2xl transition-all shadow-sm font-semibold text-sm"
+              >
+                <BrainCircuit className="h-5 w-5" />
+                <span className="hidden sm:inline">{locale === 'ar' ? 'مرجع المهام' : 'Tasks Hub'}</span>
+              </Link>
+            )}
+
+            <Link 
               href="/dashboard/settings"
               className="flex items-center gap-2 px-4 py-3 sm:p-4.5 bg-slate-950/80 border border-slate-800 hover:border-brand-500/50 hover:bg-slate-900 rounded-2xl transition-all shadow-sm"
               title={locale === 'ar' ? 'الإعدادات' : 'Settings'}
