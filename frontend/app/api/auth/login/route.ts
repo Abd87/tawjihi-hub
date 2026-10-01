@@ -41,6 +41,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid email or password' }, { status: 401 });
     }
 
+    if (!user.emailVerified && !user.isMasterAdmin) {
+      return NextResponse.json({ requireVerification: true, email: user.email }, { status: 403 });
+    }
+
+    if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET is missing');
     if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET is missing');
     const secret = process.env.JWT_SECRET;
     const token = jwt.sign({ userId: user.id, email: user.email, role: user.role, isMasterAdmin: user.isMasterAdmin }, secret, { expiresIn: '7d' });

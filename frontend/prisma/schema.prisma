@@ -31,6 +31,10 @@ model User {
   phoneNumber   String?
   isMasterAdmin Boolean       @default(false)
   revenueSharePercent Float @default(70.0)
+
+  emailVerified           DateTime?
+  verificationToken       String?
+  verificationTokenExpiry DateTime?
   
   enrollments   Enrollment[]
   createdCourses Course[]     @relation("TeacherCourses")

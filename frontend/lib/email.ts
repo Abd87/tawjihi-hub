@@ -204,3 +204,42 @@ export async function sendBroadcastEmail({
     return { success: false, error };
   }
 }
+
+export async function sendVerificationEmail({
+  email,
+  name,
+  code,
+}: {
+  email: string;
+  name: string;
+  code: string;
+}) {
+  try {
+    const data = await resend.emails.send({
+      from: SENDER_EMAIL,
+      to: [email],
+      subject: 'تأكيد حسابك في منصة توجيهي هب | Verify Your Email',
+      html: `
+        <div dir="rtl" style="font-family: Arial, sans-serif; background-color: #020617; color: #e2e8f0; padding: 30px; border-radius: 16px; max-width: 600px; margin: 0 auto; border: 1px solid #1e293b;">
+          <div style="text-align: center; margin-bottom: 24px;">
+            <img src="${LOGO_URL}" alt="Tawjihi Hub" style="height: 50px; width: auto; display: inline-block;" />
+          </div>
+          <h1 style="color: #38bdf8; text-align: center; font-size: 22px;">أهلاً بك يا ${name} 👋</h1>
+          <p style="font-size: 16px; line-height: 1.6; text-align: center;">شكراً لتسجيلك في منصة توجيهي هب. لتفعيل حسابك، يرجى إدخال رمز التحقق التالي:</p>
+          <div style="text-align: center; margin: 32px 0;">
+            <div style="background-color: #0f172a; border: 2px dashed #38bdf8; color: #f8fafc; padding: 16px 32px; border-radius: 12px; font-size: 32px; font-weight: bold; letter-spacing: 4px; display: inline-block;">
+              ${code}
+            </div>
+          </div>
+          <p style="font-size: 14px; color: #94a3b8; text-align: center;">هذا الرمز صالح لمدة 15 دقيقة فقط.</p>
+          <hr style="border: none; border-top: 1px solid #1e293b; margin: 24px 0;" />
+          <p style="font-size: 12px; color: #94a3b8; text-align: center;">إذا لم تقم بإنشاء حساب، يرجى تجاهل هذه الرسالة.</p>
+        </div>
+      `,
+    });
+    return { success: true, data };
+  } catch (error) {
+    console.error('Failed to send verification email:', error);
+    return { success: false, error };
+  }
+}

@@ -178,7 +178,13 @@ function RegisterForm() {
         throw new Error(data.error || t('errorGeneric'));
       }
 
+      if (data.requireVerification) {
+        window.location.href = `/${locale}/verify?email=${encodeURIComponent(data.email)}`;
+        return;
+      }
+
       localStorage.setItem('token', data.token);
+      
       localStorage.setItem('user', JSON.stringify(data.user));
       localStorage.removeItem('dashboardTrack');
       saveUserToAdminUsers(data.user, password);

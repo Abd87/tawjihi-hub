@@ -68,6 +68,9 @@ export async function POST(request: Request) {
       }
     }
 
+    const verificationToken = Math.floor(100000 + Math.random() * 900000).toString();
+    const verificationTokenExpiry = new Date(Date.now() + 15 * 60 * 1000); // 15 mins
+
     const user = await prisma.user.create({
       data: {
         email,
@@ -79,40 +82,44 @@ export async function POST(request: Request) {
         phoneNumber,
         isMasterAdmin,
         parentEmail: finalRole === 'PARENT' ? linkedStudentEmail : null,
+        verificationToken,
+        verificationTokenExpiry,
+        emailVerified: isMasterAdmin ? new Date() : null,
       }
     });
 
-    // Send welcome email to student and admin alert to admin@tawjihihub.com
     try {
-      const welcomeRes = await sendWelcomeEmail({ email: user.email, name: user.nameAr || user.nameEn || 'طالبنا العزيز' });
-      console.log('Welcome email result:', welcomeRes);
-      const alertRes = await sendAdminNewUserAlert({ name: user.nameAr || user.nameEn || 'مستخدم جديد', email: user.email, role: user.role, trackType: user.trackType });
-      console.log('Admin user alert result:', alertRes);
+      if (isMasterAdmin) {
+        await sendWelcomeEmail({ email: user.email, name: user.nameAr || user.nameEn || 'User' });
+      } else {
+        const { sendVerificationEmail } = await import('@/lib/email');
+        await sendVerificationEmail({ email: user.email, name: user.nameAr || user.nameEn || 'User', code: verificationToken });
+      }
+      
+      const alertRes = await sendAdminNewUserAlert({ name: user.nameAr || user.nameEn || 'New User', email: user.email, role: user.role, trackType: user.trackType });
     } catch (emailErr) {
       console.error('Email sending error during registration:', emailErr);
     }
 
-    if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET is missing');
-    const secret = process.env.JWT_SECRET;
-    const token = jwt.sign({ userId: user.id, email: user.email, role: user.role, isMasterAdmin: user.isMasterAdmin, trackType: user.trackType }, secret, { expiresIn: '7d' });
+    if (isMasterAdmin) {
+      if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET is missing');
+      const secret = process.env.JWT_SECRET;
+      const token = jwt.sign({ userId: user.id, email: user.email, role: user.role, isMasterAdmin: user.isMasterAdmin, trackType: user.trackType }, secret, { expiresIn: '7d' });
 
-    const { passwordHash: _, parentEmail, ...userWithoutPassword } = user;
-    const responseUser = {
-      ...userWithoutPassword,
-      linkedStudentEmail: parentEmail
-    };
+      const { passwordHash: _, parentEmail, ...userWithoutPassword } = user;
+      const response = NextResponse.json({ token, user: { ...userWithoutPassword, linkedStudentEmail: parentEmail } });
+      
+      response.cookies.set('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge: 60 * 60 * 24 * 7,
+        path: '/',
+      });
+      return response;
+    }
 
-    const response = NextResponse.json({ token, user: responseUser });
-    
-    response.cookies.set('token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      maxAge: 60 * 60 * 24 * 7, // 7 days
-      path: '/',
-    });
-
-    return response;
+    return NextResponse.json({ requireVerification: true, email: user.email });
   } catch (error: any) {
     console.error('Register error:', error);
     return NextResponse.json({ error: error?.message || 'Internal server error' }, { status: 500 });

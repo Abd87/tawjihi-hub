@@ -123,6 +123,11 @@ export default function LoginPage() {
       const data = await response.json();
 
       if (!response.ok) {
+        if (data.requireVerification) {
+          window.location.href = `/${locale}/verify?email=${encodeURIComponent(data.email)}`;
+          return;
+        }
+        if (data.fieldErrors) {
         if (data.fieldErrors) {
           const errorsObj: Record<string, string> = {};
           for (const key in data.fieldErrors) {
