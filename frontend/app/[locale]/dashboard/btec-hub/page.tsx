@@ -5,78 +5,100 @@ import Link from 'next/link';
 
 export default function BtecHubPage({ params: { locale } }: { params: { locale: string } }) {
   const isAr = locale === 'ar';
+  const [tasks, setTasks] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const res = await fetch('/api/btec');
+        if (res.ok) {
+          const data = await res.json();
+          setTasks(data);
+        }
+      } catch (e) {
+        console.error(e);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTasks();
+  }, []);
+
+  // Map majors to colors
+  const getColor = (major: string) => {
+    switch(major.toUpperCase()) {
+      case 'IT': return 'emerald';
+      case 'BUSINESS': return 'sky';
+      case 'ENGINEERING': return 'amber';
+      case 'ART': return 'purple';
+      default: return 'indigo';
+    }
+  };
 
   return (
     <div className="min-h-screen p-8 text-slate-100 font-sans max-w-7xl mx-auto">
       <div className="flex justify-between items-center mb-10">
         <div>
           <h1 className="text-3xl font-bold text-emerald-400">مرجع مهام BTEC 📚</h1>
-          <p className="text-slate-400 mt-2">مساحة عمل متكاملة لمهام وتعيينات نظام بيتيك (قريباً)</p>
+          <p className="text-slate-400 mt-2">مساحة عمل متكاملة لمهام وتعيينات نظام بيتيك المعتمدة</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-        {/* Skeleton Cards for future DB data */}
-        <div className="bg-[#0f172a] rounded-2xl border border-slate-800 p-6 shadow-xl relative overflow-hidden group">
-          <div className="absolute top-0 right-0 w-2 h-full bg-emerald-500"></div>
-          <span className="text-xs font-bold px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full mb-4 inline-block">تكنولوجيا المعلومات (IT)</span>
-          <h2 className="text-xl font-bold mb-2">الوحدة الأولى: قواعد البيانات</h2>
-          <p className="text-slate-400 text-sm mb-6 line-clamp-2">تصميم قاعدة بيانات علائقية وتطبيق قواعد التطبيع (Normalization) للوصول إلى النموذج الثالث.</p>
-          
-          <div className="grid grid-cols-3 gap-2 mb-6 text-center text-xs font-bold">
-            <div className="bg-slate-800/50 p-2 rounded-lg border border-slate-700">
-              <span className="text-slate-300 block mb-1">Pass</span>
-              <span className="text-emerald-400">P1, P2</span>
-            </div>
-            <div className="bg-slate-800/50 p-2 rounded-lg border border-slate-700">
-              <span className="text-slate-300 block mb-1">Merit</span>
-              <span className="text-sky-400">M1</span>
-            </div>
-            <div className="bg-slate-800/50 p-2 rounded-lg border border-slate-700">
-              <span className="text-slate-300 block mb-1">Distinction</span>
-              <span className="text-amber-400">D1</span>
-            </div>
-          </div>
-
-          <button disabled className="w-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 py-2 rounded-xl font-medium cursor-not-allowed">
-            عرض التفاصيل ومعايير التقييم
-          </button>
+      {loading ? (
+        <div className="flex justify-center items-center py-20">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500"></div>
         </div>
-
-        <div className="bg-[#0f172a] rounded-2xl border border-slate-800 p-6 shadow-xl relative overflow-hidden group">
-          <div className="absolute top-0 right-0 w-2 h-full bg-sky-500"></div>
-          <span className="text-xs font-bold px-3 py-1 bg-sky-500/20 text-sky-400 rounded-full mb-4 inline-block">إدارة الأعمال (Business)</span>
-          <h2 className="text-xl font-bold mb-2">الوحدة الثانية: التسويق</h2>
-          <p className="text-slate-400 text-sm mb-6 line-clamp-2">إعداد خطة تسويقية لمنتج جديد، تشمل تحليل PESTLE و SWOT وتحديد المزيج التسويقي 7Ps.</p>
-          
-          <div className="grid grid-cols-3 gap-2 mb-6 text-center text-xs font-bold">
-            <div className="bg-slate-800/50 p-2 rounded-lg border border-slate-700">
-              <span className="text-slate-300 block mb-1">Pass</span>
-              <span className="text-emerald-400">P3, P4</span>
-            </div>
-            <div className="bg-slate-800/50 p-2 rounded-lg border border-slate-700">
-              <span className="text-slate-300 block mb-1">Merit</span>
-              <span className="text-sky-400">M2</span>
-            </div>
-            <div className="bg-slate-800/50 p-2 rounded-lg border border-slate-700">
-              <span className="text-slate-300 block mb-1">Distinction</span>
-              <span className="text-amber-400">D2</span>
-            </div>
-          </div>
-
-          <button disabled className="w-full bg-sky-500/10 text-sky-400 border border-sky-500/30 py-2 rounded-xl font-medium cursor-not-allowed">
-            عرض التفاصيل ومعايير التقييم
-          </button>
+      ) : tasks.length === 0 ? (
+        <div className="bg-[#0f172a] border border-slate-800 rounded-2xl p-12 text-center">
+          <h3 className="text-xl font-bold text-slate-400 mb-2">لا توجد مهام حالياً</h3>
+          <p className="text-slate-500">سيقوم المعلمون والمدراء بإضافة مهام التخصصات قريباً.</p>
         </div>
-      </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+          {tasks.map(task => {
+            const c = getColor(task.major);
+            return (
+              <div key={task.id} className="bg-[#0f172a] rounded-2xl border border-slate-800 p-6 shadow-xl relative overflow-hidden group flex flex-col h-full">
+                {/* Fallback to hardcoded tailwind classes to ensure they compile correctly if dynamically generated classes fail in purge */}
+                <div className={`absolute top-0 right-0 w-2 h-full ${c === 'emerald' ? 'bg-emerald-500' : c === 'sky' ? 'bg-sky-500' : c === 'amber' ? 'bg-amber-500' : c === 'purple' ? 'bg-purple-500' : 'bg-indigo-500'}`}></div>
+                
+                <span className={`text-xs font-bold px-3 py-1 rounded-full mb-4 w-fit inline-block ${c === 'emerald' ? 'bg-emerald-500/20 text-emerald-400' : c === 'sky' ? 'bg-sky-500/20 text-sky-400' : c === 'amber' ? 'bg-amber-500/20 text-amber-400' : c === 'purple' ? 'bg-purple-500/20 text-purple-400' : 'bg-indigo-500/20 text-indigo-400'}`}>
+                  {task.major}
+                </span>
+                
+                <h2 className="text-xl font-bold mb-2 flex-grow-0">{task.titleAr}</h2>
+                <p className="text-slate-400 text-sm mb-6 flex-grow">{task.descriptionAr}</p>
+                
+                <div className="grid grid-cols-3 gap-2 mb-6 text-center text-xs font-bold shrink-0">
+                  <div className="bg-slate-800/50 p-2 rounded-lg border border-slate-700">
+                    <span className="text-slate-300 block mb-1">Pass</span>
+                    <span className="text-emerald-400 line-clamp-1" title={task.passCriteria}>{task.passCriteria || '-'}</span>
+                  </div>
+                  <div className="bg-slate-800/50 p-2 rounded-lg border border-slate-700">
+                    <span className="text-slate-300 block mb-1">Merit</span>
+                    <span className="text-sky-400 line-clamp-1" title={task.meritCriteria}>{task.meritCriteria || '-'}</span>
+                  </div>
+                  <div className="bg-slate-800/50 p-2 rounded-lg border border-slate-700">
+                    <span className="text-slate-300 block mb-1">Distinction</span>
+                    <span className="text-amber-400 line-clamp-1" title={task.distinctionCriteria}>{task.distinctionCriteria || '-'}</span>
+                  </div>
+                </div>
 
-      <div className="bg-indigo-600/10 border border-indigo-500/30 rounded-2xl p-8 text-center max-w-2xl mx-auto">
-        <h3 className="text-2xl font-bold text-indigo-400 mb-4">جاري العمل على قاعدة البيانات 🚧</h3>
-        <p className="text-slate-300 leading-relaxed">
-          نحن نقوم الآن بربط هذه الصفحة مع قاعدة البيانات لتتمكن من تصفح كافة المهام الحقيقية المخصصة لتخصصك، وتقسيمها حسب معايير التقييم (P, M, D).
-        </p>
-      </div>
-
+                {task.templateUrl ? (
+                  <a href={task.templateUrl} target="_blank" rel="noopener noreferrer" className={`text-center block w-full py-2 rounded-xl font-medium transition-colors ${c === 'emerald' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/20' : c === 'sky' ? 'bg-sky-500/10 text-sky-400 border border-sky-500/30 hover:bg-sky-500/20' : c === 'amber' ? 'bg-amber-500/10 text-amber-400 border border-amber-500/30 hover:bg-amber-500/20' : 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 hover:bg-indigo-500/20'}`}>
+                    📥 تحميل قالب المهمة
+                  </a>
+                ) : (
+                  <button disabled className="w-full bg-slate-800/50 text-slate-500 py-2 rounded-xl font-medium cursor-not-allowed">
+                    القالب غير متوفر
+                  </button>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
