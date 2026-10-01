@@ -60,8 +60,8 @@ export async function POST(request: Request) {
     let finalRole = role || 'STUDENT';
 
     if (role === 'ADMIN' || role === 'TEACHER') {
-      const adminCount = await prisma.user.count({ where: { role: 'ADMIN' } });
-      if (adminCount === 0 && role === 'ADMIN') {
+      const masterAdminCount = await prisma.user.count({ where: { isMasterAdmin: true } });
+      if (masterAdminCount === 0 && role === 'ADMIN') {
         isMasterAdmin = true;
       } else {
         return NextResponse.json({ error: 'Forbidden: Cannot register as Admin or Teacher' }, { status: 403 });

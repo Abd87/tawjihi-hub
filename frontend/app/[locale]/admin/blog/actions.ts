@@ -66,7 +66,7 @@ export async function createManualBlogPost(formData: FormData) {
     const slug = formData.get('slug') as string || `manual-post-${Date.now()}`;
     
     // In real app, we'd get the actual admin's ID
-    const admin = await prisma.user.findFirst({ where: { role: 'ADMIN' } });
+    const admin = await prisma.user.findFirst({ where: { isMasterAdmin: true } });
     if (!admin) {
       return { success: false, error: 'No admin user found' };
     }

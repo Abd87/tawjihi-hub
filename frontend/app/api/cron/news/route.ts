@@ -13,7 +13,7 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: 'Unauthorized: Invalid Cron Secret' }, { status: 401 });
     }
 
-    const admin = await prisma.user.findFirst({ where: { role: 'ADMIN' } });
+    const admin = await prisma.user.findFirst({ where: { isMasterAdmin: true } });
     if (!admin) {
       return NextResponse.json({ error: 'No admin user found to author posts' }, { status: 400 });
     }

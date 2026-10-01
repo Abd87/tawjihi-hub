@@ -119,7 +119,7 @@ export async function POST(request: Request) {
     const decoded = jwt.verify(token, secret) as any;
 
     const currentUser = await prisma.user.findUnique({ where: { id: decoded.userId } });
-    if (!currentUser || currentUser.role !== 'ADMIN') {
+    if (!currentUser || (!currentUser.isMasterAdmin && currentUser.role !== 'ADMIN')) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     }
 
@@ -174,7 +174,7 @@ export async function DELETE(request: Request) {
     const decoded = jwt.verify(token, secret) as any;
 
     const currentUser = await prisma.user.findUnique({ where: { id: decoded.userId } });
-    if (!currentUser || currentUser.role !== 'ADMIN') {
+    if (!currentUser || (!currentUser.isMasterAdmin && currentUser.role !== 'ADMIN')) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     }
 
