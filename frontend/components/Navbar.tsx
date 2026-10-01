@@ -60,6 +60,26 @@ export default function Navbar() {
     checkUser();
     window.addEventListener('local-storage-update', checkUser);
     window.addEventListener('storage', checkUser);
+
+    // Server verification to prevent localStorage spoofing
+    const verifyUser = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) return;
+        const res = await fetch('/api/auth/me', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setUser(data.user);
+          localStorage.setItem('user', JSON.stringify(data.user));
+        }
+      } catch (err) {
+        // ignore offline errors
+      }
+    };
+    verifyUser();
+
     return () => {
       window.removeEventListener('local-storage-update', checkUser);
       window.removeEventListener('storage', checkUser);

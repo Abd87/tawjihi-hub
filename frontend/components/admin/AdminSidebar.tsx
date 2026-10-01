@@ -3,22 +3,9 @@
 import { useTranslations } from 'next-intl';
 import { Link, usePathname, useRouter } from '@/i18n/routing';
 import { 
-  BarChart2, 
-  BookOpen, 
-  HelpCircle, 
-  Users, 
-  Settings, 
-  GraduationCap, 
-  Ticket, 
-  FileText,
-  LogOut,
-  ChevronRight,
-  ChevronLeft,
-  Globe,
-  PenTool,
-  Newspaper,
-  Send,
-  BrainCircuit
+  BarChart2, BookOpen, HelpCircle, Users, Settings, 
+  GraduationCap, Ticket, FileText, LogOut, ChevronRight, 
+  ChevronLeft, Globe, PenTool, Newspaper, Send, BrainCircuit
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
@@ -35,12 +22,36 @@ export default function AdminSidebar() {
   const [user, setUser] = useState<{ nameAr: string; nameEn: string; role: string } | null>(null);
 
   useEffect(() => {
+    // 1. Instantly load from localStorage for fast UI
     try {
       const stored = localStorage.getItem('user');
       if (stored) {
         setUser(JSON.parse(stored));
       }
     } catch {}
+
+    // 2. Verify with server to prevent localStorage tampering
+    const verifyUser = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) return;
+        const res = await fetch('/api/auth/me', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (res.ok) {
+          const data = await res.json();
+          // Update state with secure backend data
+          setUser(data.user);
+          localStorage.setItem('user', JSON.stringify(data.user));
+        } else {
+          // If server rejects, they shouldn't be here
+          setUser(null);
+        }
+      } catch (err) {
+        console.error('Failed to verify user', err);
+      }
+    };
+    verifyUser();
 
     const handleToggle = () => setCollapsed(prev => !prev);
     window.addEventListener('toggle-admin-sidebar', handleToggle);
