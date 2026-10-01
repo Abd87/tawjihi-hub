@@ -128,7 +128,6 @@ export default function LoginPage() {
           return;
         }
         if (data.fieldErrors) {
-        if (data.fieldErrors) {
           const errorsObj: Record<string, string> = {};
           for (const key in data.fieldErrors) {
              errorsObj[key] = data.fieldErrors[key][0];
