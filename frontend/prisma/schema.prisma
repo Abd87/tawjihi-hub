@@ -35,6 +35,8 @@ model User {
   emailVerified           DateTime?
   verificationToken       String?
   verificationTokenExpiry DateTime?
+
+  studyPlan               Json?     // Saves the auto-generated smart study schedule
   
   enrollments   Enrollment[]
   createdCourses Course[]     @relation("TeacherCourses")
@@ -512,4 +514,28 @@ model LibraryDocument {
   updatedAt     DateTime @updatedAt
 
   @@map("library_documents")
+}
+
+
+// ------------------------------------------------------
+// BTEC Hub Models
+// ------------------------------------------------------
+
+model BtecTask {
+  id                  String   @id @default(uuid())
+  major               String   // e.g., 'IT', 'Business', 'Engineering'
+  titleAr             String
+  titleEn             String?
+  descriptionAr       String?  @db.Text
+  
+  // Grading Criteria
+  passCriteria        String?  @db.Text // P1, P2...
+  meritCriteria       String?  @db.Text // M1, M2...
+  distinctionCriteria String?  @db.Text // D1, D2...
+  
+  // Resources like templates
+  templateUrl         String?  // Link to download word/pdf template
+  
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
 }
